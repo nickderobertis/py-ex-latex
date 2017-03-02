@@ -268,9 +268,12 @@ def latex_equations_to_pdf(latex_list, directory, name='Equations', below_text=N
     assert text_size in (8, 9, 10, 11, 12, 14, 17, 20) #latex allowed font sizes
     
     if inline:
-        surround_char = '$'
+        surround_char_beg = '$'
+        surround_char_end = '$'
     else:
-        surround_char = '$$'
+        surround_char_beg = r'\begin{dmath}'
+        surround_char_end = r'\end{dmath}'
+
     
     headers = [r'\documentclass[{} pt]{{extarticle}}'.format(text_size), 
                #First size is text size, second is math size, third is script size,
@@ -278,6 +281,7 @@ def latex_equations_to_pdf(latex_list, directory, name='Equations', below_text=N
                r'\DeclareMathSizes{{{0}}}{{{1}}}{{{2}}}{{{3}}}'.format(
                     text_size, math_size, script_size, scriptscript_size),
                r'\usepackage{amsmath}',
+               r'\usepackage{breqn}',
                r'\usepackage[margin=0.3in]{geometry}',
               r'\author{Nick DeRobertis}' ,r'\begin{document}', r'\setlength{{\parskip}}{{{}}}'.format(para_space)]
     footers = [r'\end{document}']
@@ -285,7 +289,7 @@ def latex_equations_to_pdf(latex_list, directory, name='Equations', below_text=N
     file_path = os.path.join(directory, name_tex)
     with open(file_path, 'w') as f:
         f.write('\n'.join(headers) + '\n')
-        [f.write(surround_char + '{}'.format(line) + surround_char + '\n\n') for line in latex_list]
+        [f.write(surround_char_beg + '{}'.format(line) + surround_char_end + '\n\n') for line in latex_list]
         if below_text:
             f.write('\n' + below_text + '\n')
         f.write('\n'.join(footers))
