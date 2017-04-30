@@ -199,6 +199,7 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
         colname_flags = ['y'] #set first colnames to show
         for i in range(len(dflist) - 1):
             colname_flags.append('n') #set rest of colnames not to show
+    panel_order = -1
     for i, df in enumerate(dflist): #for each csv in the list
         df = dflist[i].applymap(lambda x: string_format[i].format(float(x)) if is_number(x) else x)
         df = df.fillna(missing_rep)
@@ -208,8 +209,9 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
             latex_list = [line for line in csv_to_raw_latex(df.to_csv(), missing_rep=missing_rep,
                                                         csvstring=True, skipfix='_') if not line.startswith('\\')]
         number_of_columns = 1 + latex_list[0].count(' & ') #number of columns is 1 + number of seperators
-        if panel_names is not None:
-            panel_letter = chr(i + ord('A')) #sets first panel to A, second to B, and so on
+        if panel_names is not None and panel_names[i]:
+            panel_order += 1 #In combination with next line, sets panel to A, etc.
+            panel_letter = chr(panel_order + ord('A')) #sets first panel to A, second to B, and so on
             #LaTeX formatting code
             latex_list.insert(1,r'\midrule \\[-11pt]')
             latex_list.insert(2,'\n')
