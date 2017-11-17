@@ -17,11 +17,6 @@ def date_time_move_latex(tablename,filepath, folder_name='Tables'):
         filepath: full filepath of table, without table name. put r before quotes as follows: r'C:\Users\Folder'
 
     """
-    def exit_sequence(tablename, filepath):
-        os.remove(os.path.join(filepath, str(tablename) + '.aux'))
-        os.remove(os.path.join(filepath, str(tablename) + '.log'))
-        return
-    
     def remove_if_exists(filepath):
         try:
             os.remove(filepath)
@@ -34,6 +29,18 @@ def date_time_move_latex(tablename,filepath, folder_name='Tables'):
         except FileNotFoundError:
             print('Cannot move: did not find {}'.format(inpath))
 
+    def remove_all_if_exist(filepaths):
+        [remove_if_exists(filepath) for filepath in filepaths]
+
+    def move_all_if_exists(inpaths, outfolder):
+        [move_if_exists(inpath, outfolder) for inpath in inpaths]
+
+    def exit_sequence():
+        inpath_aux = os.path.join(filepath, str(tablename) + '.aux')
+        inpath_log = os.path.join(filepath, str(tablename) + '.log')
+        remove_all_if_exist([inpath_aux, inpath_log])
+        return
+
     os.chdir(filepath) #sets working directory to current directory of table
     table_pdf = tablename + ".pdf"
     table_tex = tablename + ".tex"
@@ -41,6 +48,7 @@ def date_time_move_latex(tablename,filepath, folder_name='Tables'):
     inpath_pdf = os.path.join(filepath,table_pdf)
     inpath_tex = os.path.join(filepath,table_tex)
     inpath_xlsx = os.path.join(filepath,table_xlsx)
+    all_inpaths = [inpath_pdf, inpath_tex, inpath_xlsx]
 
     tables_path = os.path.join(filepath, folder_name) #set table directory
     if not os.path.exists(tables_path): #create a general table directory if it doesn't exist
@@ -60,37 +68,21 @@ def date_time_move_latex(tablename,filepath, folder_name='Tables'):
         str_count = "Num" + str(count)
         name_str = datetime_str + str_count
         folder_path = os.path.join(tables_path,name_str)
-        outpath_tex = os.path.join(folder_path,table_tex)
-        outpath_pdf = os.path.join(folder_path,table_pdf)
-        outpath_xlsx = os.path.join(folder_path,table_xlsx)
+        outpath_tex =  os.path.join(folder_path, table_tex)
         if os.path.exists(folder_path): #if the folder already exists
             if os.path.exists(outpath_tex): #if there is already a tex file with the same name
                 if filecmp.cmp(outpath_tex,inpath_tex) == True: #if this is the same exact table
-                    exit_sequence(tablename,filepath)
-                    remove_if_exists(inpath_pdf)
-                    os.remove(inpath_tex)
-                    if os.path.isfile(inpath_xlsx): #if there is an XLSX file, delete it as well
-                        os.remove(inpath_xlsx)
-                    return #stop
+                    exit_sequence()
+                    return remove_all_if_exist(all_inpaths)
                 else: #if there is a tex file with the same name but it's not the same table
                     continue #go to next iteration of loop (change output number)
             else:
-                move_if_exists(inpath_pdf,outpath_pdf) #moves file
-                shutil.move(inpath_tex,outpath_tex) #moves file
-                if os.path.isfile(inpath_xlsx): #if Excel file exists, move it
-                    shutil.move(inpath_xlsx,outpath_xlsx)
-                exit_sequence(tablename,filepath)
-                return
+                move_all_if_exists(all_inpaths, folder_path)
+                return exit_sequence()
         else: #if the folder doesn't exist
             os.mkdir(folder_path) #create the folder
-            move_if_exists(inpath_pdf,outpath_pdf) #moves file
-            shutil.move(inpath_tex,outpath_tex) #moves file
-            if os.path.isfile(inpath_xlsx): #if Excel file exists, move it
-                    print(inpath_xlsx)
-                    print(outpath_xlsx)
-                    shutil.move(inpath_xlsx,outpath_xlsx)
-            exit_sequence(tablename,filepath)
-            return
+            move_all_if_exists(all_inpaths, folder_path)
+            return exit_sequence()
         
 def csv_to_raw_latex(infile, csvstring=False, missing_rep=" - ", formatstr='{:.3f}', skipfix=None):
     '''
@@ -293,7 +285,9 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
 
 
     os.chdir(outfolder) #changes working filepath
-    os.system('pdflatex ' + '"' + outname_tex + '"') #create PDF
+    # Only create pdf if we are creating a standalone document
+    if as_document:
+        os.system('pdflatex ' + '"' + outname_tex + '"') #create PDF
     date_time_move_latex(outname,outfolder) #move table into appropriate date/number folder
     
 def latex_equations_to_pdf(latex_list, directory, name='Equations', below_text=None,
@@ -337,5 +331,7 @@ def latex_equations_to_pdf(latex_list, directory, name='Equations', below_text=N
             f.write('\n'.join(footers))
         
     os.chdir(directory)
-    os.system('pdflatex ' + '"' + name_tex + '"') #create pdf
+    # Only create pdf if we are creating a standalone document
+    if as_document:
+        os.system('pdflatex ' + '"' + name_tex + '"') #create pdf
     date_time_move_latex(name, directory, 'Equations')
