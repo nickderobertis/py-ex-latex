@@ -21,6 +21,18 @@ def date_time_move_latex(tablename,filepath, folder_name='Tables'):
         os.remove(os.path.join(filepath, str(tablename) + '.aux'))
         os.remove(os.path.join(filepath, str(tablename) + '.log'))
         return
+    
+    def remove_if_exists(filepath):
+        try:
+            os.remove(filepath)
+        except FileNotFoundError:
+            print('Cannot delete: did not find {}'.format(filepath))
+            
+    def move_if_exists(inpath, outpath):
+        try:
+            shutil.move(inpath, outpath)
+        except FileNotFoundError:
+            print('Cannot move: did not find {}'.format(inpath))
 
     os.chdir(filepath) #sets working directory to current directory of table
     table_pdf = tablename + ".pdf"
@@ -55,7 +67,7 @@ def date_time_move_latex(tablename,filepath, folder_name='Tables'):
             if os.path.exists(outpath_tex): #if there is already a tex file with the same name
                 if filecmp.cmp(outpath_tex,inpath_tex) == True: #if this is the same exact table
                     exit_sequence(tablename,filepath)
-                    os.remove(inpath_pdf)
+                    remove_if_exists(inpath_pdf)
                     os.remove(inpath_tex)
                     if os.path.isfile(inpath_xlsx): #if there is an XLSX file, delete it as well
                         os.remove(inpath_xlsx)
@@ -63,7 +75,7 @@ def date_time_move_latex(tablename,filepath, folder_name='Tables'):
                 else: #if there is a tex file with the same name but it's not the same table
                     continue #go to next iteration of loop (change output number)
             else:
-                shutil.move(inpath_pdf,outpath_pdf) #moves file
+                move_if_exists(inpath_pdf,outpath_pdf) #moves file
                 shutil.move(inpath_tex,outpath_tex) #moves file
                 if os.path.isfile(inpath_xlsx): #if Excel file exists, move it
                     shutil.move(inpath_xlsx,outpath_xlsx)
@@ -71,7 +83,7 @@ def date_time_move_latex(tablename,filepath, folder_name='Tables'):
                 return
         else: #if the folder doesn't exist
             os.mkdir(folder_path) #create the folder
-            shutil.move(inpath_pdf,outpath_pdf) #moves file
+            move_if_exists(inpath_pdf,outpath_pdf) #moves file
             shutil.move(inpath_tex,outpath_tex) #moves file
             if os.path.isfile(inpath_xlsx): #if Excel file exists, move it
                     print(inpath_xlsx)
@@ -127,10 +139,11 @@ def csv_to_raw_latex(infile, csvstring=False, missing_rep=" - ", formatstr='{:.3
                 item = item.replace('%','\%')
                 item = item.replace('_','\_')
             if item.find('.') is not -1: #if we are dealing with a number with decimals
-                try:
-                    item = formatstr.format(float(item))
-                except:
-                    pass
+                if formatstr:
+                    try:
+                        item = formatstr.format(float(item))
+                    except:
+                        pass
             item = item.replace('\n','')
             line_string += item
         line_string += " \\\ \n"
@@ -143,10 +156,10 @@ def csv_to_raw_latex(infile, csvstring=False, missing_rep=" - ", formatstr='{:.3
         
     return latex_list
 
-def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', string_format='{:.3f}', 
+def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', string_format='', 
                        above_text='', below_text='',
                      font_size=12, caption='', parse_dates=False, missing_rep=' - ', panel_names=None, colname_flags=None,
-                      outmethod='pandas'):
+                       as_document=True, outmethod='pandas'):
     '''
     Takes a dataframe or list of dataframes as input and outputs to a LaTeX formatted table with multiple panels,
     creates a PDF, and moves the LaTeX file and PDF to a dated folder.
@@ -163,8 +176,8 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
                         as well as L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm}) for left, center, and right aligned
                         fixed width. Additionally . aligns on the decimal. Default is first column left aligned, rest 
                         center aligned.
-        string_format:  String or list of format of numbers in the table. Please see Python number formats. {:.3f} is 
-                        three decimals, the default.
+        string_format:  String or list of format of numbers in the table. Please see Python number formats. Pass a blank
+                        string to leave formatting untouched (the default).
         font_size:      Font size, default 12
         caption:        Title of table
         missing_rep:    Representation for missing numbers, default " - "
@@ -172,6 +185,8 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
         colname_flags:  Python list of yes or no flags for whether to display column names for each panel. Default is to
                         display column names only for the first panel, as usually the panels have the same columns. 
                         The default input for a three panel table would be ['y','n','n']
+        as_document:    Boolean. True to output latex wrappers for table to be a standalone document. False to write
+                        only table wrappers so that table can be included in another document
         outmethod:      String, 'pandas' or 'csv'. If 'pandas', uses pandas' built in df.to_latex() to build latex. If
                         'csv', uses df.to_csv() and then dero.raw_csv_to_latex(). The latter case is useful when the table
                         itself contains latex expressions.
@@ -201,29 +216,36 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
             colname_flags.append('n') #set rest of colnames not to show
     panel_order = -1
     for i, df in enumerate(dflist): #for each csv in the list
-        df = dflist[i].applymap(lambda x: string_format[i].format(float(x)) if is_number(x) else x)
+        if string_format[i]:
+            df = dflist[i].applymap(lambda x: string_format[i].format(float(x)) if is_number(x) else x)
         df = df.fillna(missing_rep)
         if outmethod.lower() == 'pandas':
             latex_list = [line for line in df.to_latex().split('\n') if not line.startswith('\\')]
         elif outmethod.lower() == 'csv':
             latex_list = [line for line in csv_to_raw_latex(df.to_csv(), missing_rep=missing_rep,
-                                                        csvstring=True, skipfix='_') if not line.startswith('\\')]
+                                                        csvstring=True, skipfix='_',
+                                                        formatstr=string_format[i]) if not line.startswith('\\')]
         number_of_columns = 1 + latex_list[0].count(' & ') #number of columns is 1 + number of seperators
+        if colname_flags[i].lower() in ('n','no'): #if the flag for colnames is no for this panel
+            latex_list = latex_list[1:] #chop off colnames
         if panel_names is not None and panel_names[i]:
             panel_order += 1 #In combination with next line, sets panel to A, etc.
             panel_letter = chr(panel_order + ord('A')) #sets first panel to A, second to B, and so on
             #LaTeX formatting code
-            latex_list.insert(1,r'\midrule \\[-11pt]')
-            latex_list.insert(2,'\n')
-            latex_list.insert(3,r'\multicolumn{' + str(number_of_columns) + '}{c}{Panel '+ panel_letter + ': ' + panel_names[i] + '} \\\ \\\[-11pt]')
-            latex_list.insert(4,'\n')
-            latex_list.insert(5,r'\midrule')
-            latex_list.insert(6,'\n')
+            panel_latex_list = [
+                r'\midrule \\[-11pt]',
+                '\n',
+                r'\multicolumn{' + str(number_of_columns) + '}{c}{Panel '+ panel_letter + ': ' + panel_names[i] + '} \\\ \\\[-11pt]',
+                '\n',
+                r'\midrule',
+                '\n'              
+            ]
         else: #if there is no panel name, just put in a midrule
-            latex_list.insert(1,r'\midrule')
-            latex_list.insert(2,'\n')
-        if colname_flags[i].lower() in ('n','no'): #if the flag for colnames is no for this panel
-            latex_list = latex_list[1:] #chop off colnames
+            panel_latex_list = [
+                r'\midrule',
+                '\n'
+            ]
+        latex_list = panel_latex_list + latex_list
         latex_string = "\n".join(latex_list) #convert list to string
         latex_string_list.append(latex_string) #add this csv's LaTeX table string to the full list of LaTeX table strings
 
@@ -232,18 +254,30 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
         tabular_string = 'l' + 'c' * (number_of_columns - 1) #first column left aligned, rest centered
     
     #Set list of lines to be written to output file at beginning
-    latex_header_list = [r'\documentclass[' + str(font_size) + 'pt]{article}',r'\usepackage{amsmath}',r'\usepackage{pdflscape}',r'\usepackage[margin=0.3in]{geometry}',
+    document_header_list = [r'\documentclass[' + str(font_size) + 'pt]{article}',r'\usepackage{amsmath}',r'\usepackage{pdflscape}',r'\usepackage[margin=0.3in]{geometry}',
                          r'\usepackage{dcolumn}',r'\usepackage{booktabs}',r'\usepackage{array}', r'\usepackage{threeparttable}',
                          r'\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}',
                          r'\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}',
                          r'\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}',
                          r'\newcolumntype{.}{D{.}{.}{-1}}',r'\title{\LaTeX}',r'\date{}',r'\author{Nick DeRobertis}',
-                         r'\begin{document}',r'\begin{table}',r'\centering',r'\begin{threeparttable}',
+                         r'\begin{document}']
+    
+    table_header_list =  [r'\begin{table}',r'\centering',r'\begin{threeparttable}',
                          above_text,r'\caption{' + caption + '}',r'\begin{tabular}{' + tabular_string + '}',
                          r'\toprule']
 
     #Set list of lines to be written to output file at end
-    latex_footer_list = [r'\bottomrule',r'\end{tabular}',r'\begin{tablenotes}[para,flushleft]',r'\item ' + below_text,r'\end{tablenotes}',r'\end{threeparttable}',r'\end{table}',r'\end{document}']
+    table_footer_list = [r'\bottomrule',r'\end{tabular}',r'\begin{tablenotes}[para,flushleft]',r'\item ' + below_text,r'\end{tablenotes}',
+                         r'\end{threeparttable}',r'\end{table}']
+    
+    document_footer_list = [r'\end{document}']
+    
+    if as_document:
+        latex_header_list = document_header_list + table_header_list
+        latex_footer_list = table_footer_list + document_footer_list
+    else:
+        latex_header_list = table_header_list
+        latex_footer_list = table_footer_list
 
     #Actually write to file
     with open(outpath,'w') as f:
