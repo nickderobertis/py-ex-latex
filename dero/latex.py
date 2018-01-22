@@ -170,6 +170,8 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
                         center aligned.
         string_format:  String or list of format of numbers in the table. Please see Python number formats. Pass a blank
                         string to leave formatting untouched (the default).
+        above_text:     String of text to display above table
+        below_text:     String of text to display below table
         font_size:      Font size, default 12
         caption:        Title of table
         missing_rep:    Representation for missing numbers, default " - "
@@ -198,8 +200,22 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
         except (ValueError, TypeError):
             return False
 
+    def latex_replacements(string):
+        return string.replace('&','\&').replace('%','\%').replace('_','\_')
+
+    def latex_filename_replacements(string):
+        return string.replace('%', 'pct')
+
+    def all_latex_replacements(*tuple):
+        return [latex_replacements(item) for item in tuple]
+
+    # Latex string replacements will be made in the data below. Here make adjustments to titles, above/below text, etc.
+    caption, above_text, below_text = all_latex_replacements(caption, above_text, below_text)
+    outname = latex_filename_replacements(outname)
+    if panel_names is not None:
+        panel_names = all_latex_replacements(*panel_names)
+
     outname_tex = str(outname) + ".tex"
-    outname_pdf = str(outname) + ".pdf"
     outpath = os.path.join(outfolder, outname_tex)
     latex_string_list = [] #set container for final LaTeX table contents
     if (colname_flags is None) or (len(colname_flags) is not len(dflist)): #if the user didn't specify whether to use colnames, or they specified an incorrect number of flags
