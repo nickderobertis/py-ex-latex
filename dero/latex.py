@@ -150,7 +150,8 @@ def csv_to_raw_latex(infile, csvstring=False, missing_rep=" - ", formatstr='{:.3
 
 def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', string_format='', 
                        above_text='', below_text='',
-                     font_size=12, caption='', parse_dates=False, missing_rep=' - ', panel_names=None, colname_flags=None,
+                     font_size=12, caption='', missing_rep=' - ', landscape=False,
+                       panel_names=None, colname_flags=None,
                        as_document=True, outmethod='pandas'):
     '''
     Takes a dataframe or list of dataframes as input and outputs to a LaTeX formatted table with multiple panels,
@@ -175,6 +176,7 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
         font_size:      Font size, default 12
         caption:        Title of table
         missing_rep:    Representation for missing numbers, default " - "
+        landscape:      Boolean. True to switch table to landscape output instead of portrait.
         panel_names:    Python list of names of each panel, to go below column names, e.g. ['Table','Other Table']
         colname_flags:  Python list of yes or no flags for whether to display column names for each panel. Default is to
                         display column names only for the first panel, as usually the panels have the same columns. 
@@ -279,6 +281,10 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
                          r'\end{threeparttable}',r'\end{table}']
     
     document_footer_list = [r'\end{document}']
+
+    if landscape:
+        table_header_list.insert(0, r'\begin{landscape}')
+        table_footer_list.append(r'\end{landscape}')
     
     if as_document:
         latex_header_list = document_header_list + table_header_list
