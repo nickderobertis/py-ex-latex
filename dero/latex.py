@@ -206,7 +206,7 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
         return string.replace('&','\&').replace('%','\%').replace('_','\_')
 
     def latex_filename_replacements(string):
-        return string.replace('%', 'pct')
+        return string.replace('%', 'pct').replace('/','_').replace('\\','_')
 
     def all_latex_replacements(*tuple):
         return [latex_replacements(item) for item in tuple]
