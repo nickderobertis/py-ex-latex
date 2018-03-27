@@ -1,0 +1,30 @@
+from dero.latex.figure.models.graphic import Graphic
+from dero.latex.models import Item
+from dero.latex.models.caption import Caption
+from dero.latex.models.label import Label
+from dero.latex.logic.builder import build_content
+
+
+class Subfigure(Item):
+    name = 'subfigure'
+
+    def __init__(self, filepath, caption=None, label=None, centering=True, position_str=None):
+        self.graphic = Graphic(filepath)
+        self.caption = Caption(caption) if caption else None
+        self.label = Label(label) if label else None
+
+        contents = build_content(
+            [self.graphic],
+            caption=self.caption,
+            label=self.label,
+            centering=centering,
+            position_str=position_str
+        )
+
+        super().__init__(self.name, contents)
+
+    def __repr__(self):
+        return f'<Subfigure({self.graphic.filepath}, caption={self.caption})>'
+
+
+

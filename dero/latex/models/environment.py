@@ -1,3 +1,4 @@
+from dero.latex.texgen import _begin_str, _end_str
 
 class Environment:
 
@@ -12,10 +13,3 @@ class Environment:
 
     def wrap(self, other):
         return '\n'.join([self._begin, other, self._end])
-
-
-def _begin_str(str_):
-    return rf'\begin{{{str_}}}'
-
-def _end_str(str_):
-    return fr'\end{{{str_}}}'
