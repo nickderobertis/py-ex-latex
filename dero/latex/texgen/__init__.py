@@ -17,3 +17,11 @@ def _centering_str():
 
 def _document_class_str():
     return r'\documentclass{article}'
+
+
+def _usepackage_str(str_, modifier_str=None):
+    if modifier_str:
+        full_modifier_str = f'[{modifier_str}]'
+    else:
+        full_modifier_str = ''
+    return rf'\usepackage{full_modifier_str}{{{str_}}}'

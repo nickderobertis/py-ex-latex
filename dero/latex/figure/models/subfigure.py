@@ -8,7 +8,7 @@ from dero.latex.logic.builder import build_content
 class Subfigure(Item):
     name = 'subfigure'
 
-    def __init__(self, filepath, caption=None, label=None, centering=True, position_str=None):
+    def __init__(self, filepath, caption=None, label=None, centering=True, position_str=r'[t]{0.45\linewidth}'):
         self.graphic = Graphic(filepath)
         self.caption = Caption(caption) if caption else None
         self.label = Label(label) if label else None

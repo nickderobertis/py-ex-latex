@@ -73,16 +73,19 @@ def date_time_move_latex(tablename,filepath, folder_name='Tables'):
             if os.path.exists(outpath_tex): #if there is already a tex file with the same name
                 if filecmp.cmp(outpath_tex,inpath_tex) == True: #if this is the same exact table
                     exit_sequence()
-                    return remove_all_if_exist(all_inpaths)
+                    remove_all_if_exist(all_inpaths)
+                    return None
                 else: #if there is a tex file with the same name but it's not the same table
                     continue #go to next iteration of loop (change output number)
             else:
                 move_all_if_exists(all_inpaths, folder_path)
-                return exit_sequence()
+                exit_sequence()
+                return folder_path
         else: #if the folder doesn't exist
             os.mkdir(folder_path) #create the folder
             move_all_if_exists(all_inpaths, folder_path)
-            return exit_sequence()
+            exit_sequence()
+            return folder_path
 
 
 def csv_to_raw_latex(infile, csvstring=False, missing_rep=" - ", formatstr='{:.3f}', skipfix=None):

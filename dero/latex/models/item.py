@@ -4,15 +4,22 @@ from dero.latex.texgen import _basic_item_str
 
 class Item(StringAdditionMixin):
 
-    def __init__(self, name, contents):
-        self.env = Environment(name)
+    def __init__(self, name, contents, pre_env_contents=None, post_env_contents=None, env_modifiers=None):
+        self.env = Environment(name, modifiers=env_modifiers)
         self.contents = contents
+
+        self._output = ''
+        if pre_env_contents:
+            self._output += pre_env_contents
+        self._output += self.env.wrap(str(self.contents))
+        if post_env_contents:
+            self._output += post_env_contents
 
     def __repr__(self):
         return f'<Item(name={self.env.name}, contents={self.contents})>'
 
     def __str__(self):
-        return self.env.wrap(self.contents)
+        return self._output
 
 class SimpleItem(StringAdditionMixin):
 

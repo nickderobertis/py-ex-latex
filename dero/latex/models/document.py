@@ -1,8 +1,8 @@
 from dero.latex.models.environment import Environment
 from dero.latex.models.item import Item
 from dero.latex.texgen import _document_class_str
-from dero.latex.models.package import Package
 from dero.latex.logic.builder import _build
+from dero.latex.models.landscape import Landscape
 
 class DocumentEnvironment(Environment):
     name = 'document'
@@ -13,16 +13,18 @@ class DocumentEnvironment(Environment):
 class Document(Item):
     name = 'document'
 
-    def __init__(self, package_str_list, content):
-        self.packages = [Package(package_str) for package_str in package_str_list]
+    def __init__(self, packages, content, landscape=False):
+        self.packages = packages
 
-        contents = _build([
+        pre_env_contents = _build([
             _document_class_str(),
-            *[str(package) for package in self.packages],
-            str(content)
+            *[str(package) for package in self.packages]
         ])
 
-        super().__init__(self.name, contents)
+        if landscape:
+            content = Landscape().wrap(str(content))
+
+        super().__init__(self.name, content, pre_env_contents=pre_env_contents)
 
     def __repr__(self):
         return f'<Document>'
