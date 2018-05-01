@@ -10,7 +10,7 @@ def _include_graphics_str(filepath, width=r'\linewidth'):
     return rf'\includegraphics[width={width}]{{{filepath}}}'
 
 def _basic_item_str(item_name, contents):
-    return rf'\{item_name}{{{contents}}}'
+    return rf'\{item_name}{{{general_latex_replacements(contents)}}}'
 
 def _centering_str():
     return r'\centering'
@@ -25,3 +25,7 @@ def _usepackage_str(str_, modifier_str=None):
     else:
         full_modifier_str = ''
     return rf'\usepackage{full_modifier_str}{{{str_}}}'
+
+
+def general_latex_replacements(string):
+    return string.replace('&','\&').replace('%','\%').replace('_','\_')

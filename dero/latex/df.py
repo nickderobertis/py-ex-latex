@@ -2,6 +2,7 @@ import os
 
 import pandas as pd
 
+from dero.latex.texgen import general_latex_replacements
 from dero.latex.tools import csv_to_raw_latex, date_time_move_latex
 
 
@@ -59,14 +60,11 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
         except (ValueError, TypeError):
             return False
 
-    def latex_replacements(string):
-        return string.replace('&','\&').replace('%','\%').replace('_','\_')
-
     def latex_filename_replacements(string):
         return string.replace('%', 'pct').replace('/','_').replace('\\','_')
 
     def all_latex_replacements(*tuple):
-        return [latex_replacements(item) for item in tuple]
+        return [general_latex_replacements(item) for item in tuple]
 
     # Latex string replacements will be made in the data below. Here make adjustments to titles, above/below text, etc.
     caption, above_text, below_text = all_latex_replacements(caption, above_text, below_text)
