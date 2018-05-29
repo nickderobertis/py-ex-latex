@@ -1,16 +1,19 @@
 from dero.latex.table.models.table.section import TableSection
+from dero.latex.models.mixins import ReprMixin
 
 
-class PanelGrid:
+class PanelGrid(ReprMixin):
+    repr_cols = ['sections', 'shape']
 
     def __init__(self, sections: [TableSection], shape: tuple=None):
         self.shape = GridShape.from_tuple(shape)
         self.sections = sections
 
 
-class GridShape:
+class GridShape(ReprMixin):
+    repr_cols = ['rows', 'columns']
 
-    def __init__(self, rows, columns):
+    def __init__(self, rows: int, columns: int):
         self.rows = rows
         self.columns = columns
 
