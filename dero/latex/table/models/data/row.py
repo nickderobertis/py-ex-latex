@@ -1,7 +1,8 @@
 from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.data.dataitem import DataItem
+from dero.latex.table.models.mixins import AmpersandAddMixin
 from dero.latex.texparser.clean import _remove_backslashes
-from dero.latex.table.models.data.mixins import AmpersandAddMixin
+
 
 class DataRow(ReprMixin, AmpersandAddMixin):
     repr_cols = ['values']

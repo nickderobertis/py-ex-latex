@@ -1,5 +1,5 @@
 from dero.latex.models.mixins import ReprMixin
-from dero.latex.table.models.data.mixins import AmpersandAddMixin
+from dero.latex.table.models.mixins import AmpersandAddMixin
 
 class DataItem(ReprMixin, AmpersandAddMixin):
     repr_cols = ['value']
