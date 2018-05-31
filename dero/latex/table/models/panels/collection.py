@@ -1,8 +1,110 @@
+import numpy as np
+
 from dero.latex.table.models.panels.panel import Panel
+from dero.latex.table.models.panels.panel import PanelGrid
+from dero.latex.table.models.labels.table import LabelTable
 from dero.latex.models.mixins import ReprMixin
+from dero.latex.table.models.labels.collection import LabelCollection
+from dero.latex.table.logic.panels.combine import common_column_labels, common_row_labels
 
 class PanelCollection(ReprMixin):
     repr_cols = ['panels']
 
-    def __init__(self, panels: [Panel]):
+    def __init__(self, panels: [Panel], label_consolidation='object', top_left_corner_labels: LabelTable=None,
+                 pad_rows=1, pad_columns=1):
         self.panels = panels
+        self.label_consolidation = label_consolidation.lower().strip() \
+            if isinstance(label_consolidation, str) else label_consolidation
+        self.top_left_corner_labels = top_left_corner_labels \
+            if top_left_corner_labels is not None else LabelTable([])
+        self.pad_rows = pad_rows
+        self.pad_columns = pad_columns
+
+        self.consolidate_labels()
+
+    @property
+    def rows(self):
+        try:
+            return self._rows
+        except AttributeError:
+            self._rows = self._create_panel_rows()
+
+        return self._rows
+
+    def _create_panel_rows(self):
+        column_pad = LabelTable.from_list_of_lists([[' ']]* self.pad_columns)
+        rows = []
+
+        for panel_row in self.grid:
+            rows.append(
+                panel_row[0] + column_pad.join(panel_row[1:])
+            )
+
+        # Now pad rows
+        max_length = max([len(row) for row in rows])
+        for row in rows:
+            row.pad(max_length, direction='right')
+
+        return rows
+
+
+    @property
+    def grid(self):
+        try:
+            return self._grid
+        except AttributeError:
+            self._grid = np.concatenate([panel.panel_grid for panel in self.panels])
+
+        return self._grid
+
+    def consolidate_labels(self):
+
+        if self.label_consolidation is None:
+            return
+
+        if self.label_consolidation == 'object':
+            use_object_equality = True
+        elif self.label_consolidation in ('string', True):
+            use_object_equality = False
+        else:
+            raise ValueError(f'must pass object, string, or None to label consolidation. Got {self.label_consolidation}')
+
+        column_labels: [LabelTable] = common_column_labels(
+            self.grid,
+            use_object_equality=use_object_equality
+        )
+
+        row_labels: [LabelTable] = common_row_labels(
+            self.grid,
+            use_object_equality=use_object_equality
+        )
+
+        self._add_column_labels(column_labels)
+
+        # After adding column labels, there is an additional row at the top of the grid
+        # Therefore we will need one additional LabelTable for the first row, which is the row of column labels
+        # If top_left_corner_labels was passed on object creation, use that as LabelTable. Otherwise use a blank one
+        row_labels = [self.top_left_corner_labels] + row_labels
+        self._add_row_labels(row_labels)
+
+    def _add_column_labels(self, column_labels: [LabelTable]):
+        assert len(column_labels) == self.grid.shape[1]
+
+        # Form PanelGrid from labels
+        column_label_grid = PanelGrid(column_labels, shape=(1,len(column_labels)))
+
+        # Combine label PanelGrid and existing PanelGrid
+        self._grid = np.concatenate([column_label_grid, self._grid])
+
+    def _add_row_labels(self, row_labels: [LabelTable]):
+        assert len(row_labels) == self.grid.shape[0]
+
+        # Form PanelGrid from labels
+        row_label_grid = PanelGrid(row_labels, shape=(len(row_labels), 1))
+
+        # Combine label PanelGrid and existing PanelGrid
+        self._grid = np.concatenate([row_label_grid, self._grid], axis=1)
+
+
+
+

@@ -1,7 +1,7 @@
 from dero.latex.models.mixins import ReprMixin
-from dero.latex.table.models.mixins import AmpersandAddMixin
+from dero.latex.table.models.mixins import RowAddMixin
 
-class DataItem(ReprMixin, AmpersandAddMixin):
+class DataItem(ReprMixin, RowAddMixin):
     repr_cols = ['value']
 
     def __init__(self, value):
