@@ -8,6 +8,10 @@ class TableSection:
     def __init__(self, rows: [Row]):
         self.rows = rows
 
+    def __iter__(self):
+        for row in self.rows:
+            yield row
+
     def __add__(self, other):
         num_rows = max([len(self.rows), len(other.rows)])
 
@@ -94,3 +98,11 @@ class TableSection:
 
         return out_section
 
+    def pad(self, length: int, direction='right'):
+        """
+        Expand table out to the right or left with blanks, until it is length passed (apply to every row)
+        :param length:
+        :param direction:
+        :return:
+        """
+        [row.pad(length=length, direction=direction) for row in self.rows]

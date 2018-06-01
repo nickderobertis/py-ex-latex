@@ -17,7 +17,7 @@ class Row(ReprMixin, RowAddMixin):
         return len(self.values)
 
     def __str__(self):
-        return sum(self.values)
+        return ' & '.join(self.values) + r'\\'
 
     def pad(self, length: int, direction='right'):
         """

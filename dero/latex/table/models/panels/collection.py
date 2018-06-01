@@ -1,17 +1,28 @@
 import numpy as np
+import pandas as pd
 
 from dero.latex.table.models.panels.panel import Panel
 from dero.latex.table.models.panels.panel import PanelGrid
 from dero.latex.table.models.labels.table import LabelTable
 from dero.latex.models.mixins import ReprMixin
-from dero.latex.table.models.labels.collection import LabelCollection
+from dero.latex.table.models.table.section import TableSection
 from dero.latex.table.logic.panels.combine import common_column_labels, common_row_labels
 
 class PanelCollection(ReprMixin):
     repr_cols = ['panels']
 
-    def __init__(self, panels: [Panel], label_consolidation='object', top_left_corner_labels: LabelTable=None,
-                 pad_rows=1, pad_columns=1):
+    def __init__(self, panels: [Panel], label_consolidation: str='object', top_left_corner_labels: LabelTable=None,
+                 pad_rows: int=1, pad_columns: int=1):
+        """
+
+        :param panels:
+        :param label_consolidation: pass 'object' to compare object equality for label consolidation, 'str'
+                                    for converting all labels to strings then comparing equality. Use 'object'
+                                    for more control over consolidation.
+        :param top_left_corner_labels: additional LabelTable of labels to place in the top left corner
+        :param pad_rows: horizontal spacing to put between panels
+        :param pad_columns: vertical spacing to put between TableSections
+        """
         self.panels = panels
         self.label_consolidation = label_consolidation.lower().strip() \
             if isinstance(label_consolidation, str) else label_consolidation
@@ -21,6 +32,27 @@ class PanelCollection(ReprMixin):
         self.pad_columns = pad_columns
 
         self.consolidate_labels()
+
+    def iterpanels(self):
+        """
+        First panel is headers. Then each original panel
+
+        self.grid includes all panels as well as labels. Need to separate back out to
+        get each panel
+        :return:
+        :rtype:
+        """
+
+        # grid should have just one extra row of labels
+        panel_lengths = [1] + [panel.panel_grid.shape[0] for panel in self.panels]
+        assert len(self.grid) == sum(panel_lengths)
+
+        position = 0
+        for length in panel_lengths:
+            bottom_slice = position
+            top_slice = position + length
+            yield Panel(self.grid[bottom_slice:top_slice])
+            position = position + length
 
     @property
     def rows(self):
@@ -33,7 +65,7 @@ class PanelCollection(ReprMixin):
 
     def _create_panel_rows(self):
         column_pad = LabelTable.from_list_of_lists([[' ']]* self.pad_columns)
-        rows = []
+        rows: [TableSection] = []
 
         for panel_row in self.grid:
             rows.append(
@@ -41,9 +73,9 @@ class PanelCollection(ReprMixin):
             )
 
         # Now pad rows
-        max_length = max([len(row) for row in rows])
+        self.num_columns = max([row.num_columns for row in rows])
         for row in rows:
-            row.pad(max_length, direction='right')
+            row.pad(self.num_columns, direction='right')
 
         return rows
 
@@ -64,7 +96,7 @@ class PanelCollection(ReprMixin):
 
         if self.label_consolidation == 'object':
             use_object_equality = True
-        elif self.label_consolidation in ('string', True):
+        elif self.label_consolidation in ('string', 'str', True):
             use_object_equality = False
         else:
             raise ValueError(f'must pass object, string, or None to label consolidation. Got {self.label_consolidation}')

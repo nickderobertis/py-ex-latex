@@ -19,6 +19,15 @@ def _multi_option_item_str(item_name, *options):
 def _centering_str():
     return r'\centering'
 
+def _toprule_str():
+    return r'\toprule'
+
+def _midrule_str():
+    return r'\midrule'
+
+def _bottomrule_str():
+    return r'\bottomrule'
+
 def _document_class_str():
     return r'\documentclass{article}'
 

@@ -1,3 +1,5 @@
+import pandas as pd
+
 from dero.latex.table.models.data.valuestable import ValuesTable
 from dero.latex.table.models.table.section import TableSection
 from dero.latex.table.models.data.row import DataRow
@@ -57,4 +59,26 @@ class DataTable(TableSection, ReprMixin):
             rows += self.values_table.rows
 
         return rows
+
+    @classmethod
+    def from_df(cls, df: pd.DataFrame, include_columns=True, include_index=False, *args, **kwargs):
+        values_table = ValuesTable.from_df(df)
+
+        if include_columns:
+            column_label_table = LabelTable.from_df_index(df.columns)
+        else:
+            column_label_table = None
+
+        if include_index:
+            row_label_table = LabelTable.from_df_index(df.index)
+        else:
+            row_label_table = None
+
+        return cls(
+            values_table,
+            column_labels=column_label_table,
+            row_labels=row_label_table,
+            *args,
+            **kwargs,
+        )
 

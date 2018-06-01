@@ -3,6 +3,7 @@ from dero.latex.table.models.panels.collection import PanelCollection
 from dero.latex.table.models.table.caption import Caption
 
 
+
 class Table(ReprMixin):
     repr_cols = ['caption', 'above_text', 'panels', 'below_text']
 

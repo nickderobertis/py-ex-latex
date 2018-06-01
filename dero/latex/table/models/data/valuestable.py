@@ -1,12 +1,12 @@
 from pandas import DataFrame
 from dero.latex.table.models.data.row import DataRow
+from dero.latex.table.models.table.section import TableSection
 
 
-class ValuesTable:
+class ValuesTable(TableSection):
 
     def __init__(self, rows: [DataRow]):
-        self.rows = rows
-        self.num_columns = max([len(row) for row in rows])
+        super().__init__(rows)
 
     @classmethod
     def from_df(cls, df):

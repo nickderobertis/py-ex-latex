@@ -1,3 +1,6 @@
+import pandas as pd
+from pandas.indexes.base import Index as PandasIndex
+
 from dero.latex.table.models.table.section import TableSection
 from dero.latex.table.models.labels.collection import LabelCollection
 from dero.latex.table.models.labels.row import LabelRow
@@ -47,5 +50,10 @@ class LabelTable(TableSection, ReprMixin):
             )
 
         return cls(label_collections)
+
+    def from_df_index(self, df_columns: PandasIndex):
+        column_list = [col for col in df_columns]
+
+        return LabelTable.from_list_of_lists([column_list])
 
 
