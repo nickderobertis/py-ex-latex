@@ -2,7 +2,7 @@ from dero.latex.figure.models.graphic import Graphic
 from dero.latex.models import Item
 from dero.latex.models.caption import Caption
 from dero.latex.models.label import Label
-from dero.latex.logic.builder import build_content
+from dero.latex.logic.builder import build_figure_content
 
 
 class Subfigure(Item):
@@ -13,7 +13,7 @@ class Subfigure(Item):
         self.caption = Caption(caption) if caption else None
         self.label = Label(label) if label else None
 
-        contents = build_content(
+        contents = build_figure_content(
             [self.graphic],
             caption=self.caption,
             label=self.label,
