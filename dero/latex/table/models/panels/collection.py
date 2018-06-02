@@ -9,10 +9,10 @@ from dero.latex.table.models.table.section import TableSection
 from dero.latex.table.logic.panels.combine import common_column_labels, common_row_labels
 
 class PanelCollection(ReprMixin):
-    repr_cols = ['panels']
+    repr_cols = ['name', 'panels']
 
     def __init__(self, panels: [Panel], label_consolidation: str='object', top_left_corner_labels: LabelTable=None,
-                 pad_rows: int=1, pad_columns: int=1):
+                 pad_rows: int=1, pad_columns: int=1, name: str=None):
         """
 
         :param panels:
@@ -22,7 +22,9 @@ class PanelCollection(ReprMixin):
         :param top_left_corner_labels: additional LabelTable of labels to place in the top left corner
         :param pad_rows: horizontal spacing to put between panels
         :param pad_columns: vertical spacing to put between TableSections
+        :param name: name that will be used to construct caption in output
         """
+        self.name = name
         self.panels = panels
         self.label_consolidation = label_consolidation.lower().strip() \
             if isinstance(label_consolidation, str) else label_consolidation
@@ -136,6 +138,31 @@ class PanelCollection(ReprMixin):
 
         # Combine label PanelGrid and existing PanelGrid
         self._grid = np.concatenate([row_label_grid, self._grid], axis=1)
+
+    @classmethod
+    def from_list_of_lists_of_dfs(cls, df_list_of_lists: [[pd.DataFrame]], *args,
+                                  panel_args=tuple(), panel_kwargs={}, **kwargs):
+        """
+        Note: convenience method for if not much control over table is needed.
+        To apply different options to each panel, construct them individually using
+        Panel.from_df_list
+
+        :param df_list_of_lists:
+        :param args: args to pass to PanelCollection constructor
+        :param panel_args: Panel.from_df_list args. Same args will be passed to all panels
+        :param panel_kwargs: Panel.from_df_list kwargs. Same kwargs will be passed to all panels
+        :param kwargs: kwargs to pass to PanelCollection constructor
+
+        :return: PanelCollection
+        """
+        panels = []
+        for df_list in df_list_of_lists:
+            panels.append(
+                Panel.from_df_list(df_list, *panel_args, **panel_kwargs)
+            )
+
+        return cls(panels, *args, **kwargs)
+
 
 
 

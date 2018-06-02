@@ -9,10 +9,11 @@ from dero.latex.table.models.table.section import TableSection
 
 
 class Panel(ReprMixin):
-    repr_cols = ['panel_grid']
+    repr_cols = ['name', 'panel_grid']
 
-    def __init__(self, panel_grid: PanelGrid):
+    def __init__(self, panel_grid: PanelGrid, name: str=None):
         self.panel_grid = panel_grid
+        self.name = name
 
     @classmethod
     def from_df(cls, df: pd.DataFrame, include_columns=True, include_index=False):
@@ -25,13 +26,14 @@ class Panel(ReprMixin):
         return cls(PanelGrid([data_table]))
 
     @classmethod
-    def from_df_list(cls, df_list: [pd.DataFrame], shape: tuple=None, include_columns=True, include_index=False):
+    def from_df_list(cls, df_list: [pd.DataFrame], shape: tuple=None, name: str=None, include_columns=True, include_index=False):
         """
 
         :param df_list: list of pandas DataFrame
         :param shape: tuple of (rows, columns) to arrange DataFrames. They will be placed from left to right,
                       then from top to bottom.
                       passsing None defaults one column, as many rows as DataFrames
+        :param name: name to be displayed with panel
         :param include_columns:
         :param include_index:
         :return:
@@ -40,7 +42,8 @@ class Panel(ReprMixin):
             DataTable.from_df(
                 df,
                 include_columns=include_columns,
-                include_index=include_index
+                include_index=include_index,
+                name=name
             )
             for df in df_list
         ]

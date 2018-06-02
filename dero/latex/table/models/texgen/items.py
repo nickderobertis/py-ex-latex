@@ -45,6 +45,17 @@ class ThreePartTable(Item, ReprMixin):
         content = LineBreak().join(valid_items)
         super(Item).__init__(self.name, content)
 
+    @classmethod
+    def from_panel_collection(cls, panel_collection: PanelCollection, *args, tabular_kwargs={}, **kwargs):
+        tabular = Tabular(panel_collection, **tabular_kwargs)
+
+        if panel_collection.name is not None:
+            caption = Caption(panel_collection.name)
+        else:
+            caption = None
+
+        return cls(tabular, caption=caption, *args, **kwargs)
+
 class Table(Item, ReprMixin):
     name = 'table'
     repr_cols = ['caption']
@@ -62,6 +73,16 @@ class Table(Item, ReprMixin):
         content = LineBreak().join(valid_items)
         super(Item).__init__(self.name, content)
 
+    @classmethod
+    def from_panel_collection(cls, panel_collection: PanelCollection, *args, tabular_kwargs={},
+                              three_part_table_kwargs={}, **kwargs):
+        three_part_table = ThreePartTable.from_panel_collection(
+            panel_collection,
+            tabular_kwargs=tabular_kwargs,
+            **three_part_table_kwargs
+        )
+        return cls(three_part_table, *args, **kwargs)
+
 class TableDocument(Document):
 
     def __init__(self, content: Table, packages: [Package]=None, landscape: bool=False):
@@ -71,3 +92,14 @@ class TableDocument(Document):
         packages += default_packages
 
         super().__init__(packages, content, landscape=landscape)
+
+    @classmethod
+    def from_panel_collection(cls, panel_collection: PanelCollection, *args, tabular_kwargs={},
+                              three_part_table_kwargs={}, table_kwargs={}, **kwargs):
+        table = Table.from_panel_collection(
+            panel_collection,
+            tabular_kwargs=tabular_kwargs,
+            three_part_table_kwargs=three_part_table_kwargs,
+            **table_kwargs
+        )
+        return cls(table, *args, **kwargs)
