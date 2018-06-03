@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 from dero.latex.table.models.panels.panel import Panel
-from dero.latex.table.models.panels.panel import PanelGrid
+from dero.latex.table.models.panels.panel import PanelGrid, GridShape
 from dero.latex.table.models.labels.table import LabelTable
 from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.table.section import TableSection
@@ -87,7 +87,7 @@ class PanelCollection(ReprMixin):
         try:
             return self._grid
         except AttributeError:
-            self._grid = np.concatenate([panel.panel_grid for panel in self.panels])
+            self._grid = np.concatenate([panel.panel_grid for panel in self.panels]).view(GridShape)
 
         return self._grid
 

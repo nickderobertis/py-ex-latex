@@ -20,7 +20,6 @@ class DataTable(TableSection, ReprMixin):
         self.top_left_corner_label = top_left_corner_label \
             if top_left_corner_label is not None else Label(' ')
         self.should_add_top_left = (column_labels is not None) and (row_labels is not None)
-        super().__init__()
 
     @property
     def rows(self):

@@ -36,5 +36,5 @@ def index_array(sections: [TableSection], shape: tuple=None):
         else:
             raise ValueError(f'must pass tuple of shape or sections, got tup: {tup}, sections: {sections}')
 
-    return np.array([i for i in range(len(sections))]).reshape(shape)
+    return np.array(sections).reshape(shape)
 

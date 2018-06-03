@@ -12,7 +12,6 @@ class LabelTable(TableSection, ReprMixin):
 
     def __init__(self, label_collections: [LabelCollection]):
         self.label_collections = label_collections
-        super().__init__()
 
     def __iter__(self):
         for collection in self.label_collections:
@@ -51,9 +50,10 @@ class LabelTable(TableSection, ReprMixin):
 
         return cls(label_collections)
 
-    def from_df_index(self, df_columns: PandasIndex):
+    @classmethod
+    def from_df_index(cls, df_columns: PandasIndex):
         column_list = [col for col in df_columns]
 
-        return LabelTable.from_list_of_lists([column_list])
+        return cls.from_list_of_lists([column_list])
 
 

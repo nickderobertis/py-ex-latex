@@ -16,14 +16,14 @@ class Panel(ReprMixin):
         self.name = name
 
     @classmethod
-    def from_df(cls, df: pd.DataFrame, include_columns=True, include_index=False):
+    def from_df(cls, df: pd.DataFrame, include_columns=True, include_index=False, name: str=None):
         data_table = DataTable.from_df(
             df,
             include_columns=include_columns,
             include_index=include_index
         )
 
-        return cls(PanelGrid([data_table]))
+        return cls(PanelGrid([data_table]), name=name)
 
     @classmethod
     def from_df_list(cls, df_list: [pd.DataFrame], shape: tuple=None, name: str=None, include_columns=True, include_index=False):
@@ -43,12 +43,11 @@ class Panel(ReprMixin):
                 df,
                 include_columns=include_columns,
                 include_index=include_index,
-                name=name
             )
             for df in df_list
         ]
 
-        return cls(PanelGrid(data_table_list, shape=shape))
+        return cls(PanelGrid(data_table_list, shape=shape), name=name)
 
     @property
     def rows(self):

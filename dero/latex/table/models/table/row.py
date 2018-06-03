@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Iterable
 
 from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.data.dataitem import DataItem
@@ -10,7 +10,7 @@ from dero.latex.texparser.clean import _remove_backslashes
 class Row(ReprMixin, RowAddMixin):
     repr_cols = ['values']
 
-    def __init__(self, values: Union([DataItem], LabelCollection)):
+    def __init__(self, values: Union[Iterable[DataItem], LabelCollection]):
         self.values = values
 
     def __len__(self):

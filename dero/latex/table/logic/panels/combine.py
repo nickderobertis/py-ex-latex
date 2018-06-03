@@ -1,11 +1,11 @@
 import copy
 
-from dero.latex.table.models.panels.grid import PanelGrid
+from dero.latex.table.models.panels.grid import GridShape
 from dero.latex.table.models.labels.table import LabelTable
 from dero.latex.table.models.labels.collection import LabelCollection
 from dero.latex.table.models.table.section import TableSection
 
-def common_column_labels(grid: PanelGrid, use_object_equality=True):
+def common_column_labels(grid: GridShape, use_object_equality=True):
     axis = 1 # columns
     all_column_ints = list(range(grid.shape[1]))
 
@@ -16,7 +16,7 @@ def common_column_labels(grid: PanelGrid, use_object_equality=True):
         use_object_equality=use_object_equality
     )
 
-def common_row_labels(grid: PanelGrid, use_object_equality=True):
+def common_row_labels(grid: GridShape, use_object_equality=True):
     axis = 0  # rows
     all_row_ints = list(range(grid.shape[0]))
 
@@ -28,7 +28,7 @@ def common_row_labels(grid: PanelGrid, use_object_equality=True):
     )
 
 
-def _selected_common_labels_for_axis(grid: PanelGrid, selections: [int]=[0], axis: int=0, use_object_equality=True):
+def _selected_common_labels_for_axis(grid: GridShape, selections: [int]=[0], axis: int=0, use_object_equality=True):
     common_label_tables: [LabelTable] = []
     for i in selections:
         common_label_tables.append(
@@ -43,7 +43,7 @@ def _selected_common_labels_for_axis(grid: PanelGrid, selections: [int]=[0], axi
     return common_label_tables
 
 
-def _common_labels(grid: PanelGrid, num: int, axis: int=0, use_object_equality=True):
+def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=True):
     subgrid = _get_subgrid(
         grid=grid,
         num=num,
@@ -53,6 +53,10 @@ def _common_labels(grid: PanelGrid, num: int, axis: int=0, use_object_equality=T
     label_attr = _get_label_attr(axis=axis)
 
     label_tables: [LabelTable] = [getattr(section, label_attr, None) for section in subgrid]
+
+    # first labels missing, no consolidation to be done, consolidated labels are None
+    if label_tables[0] is None:
+        return LabelTable.from_list_of_lists([[]])
 
     common_label_collections = []
     for i, label_collection in enumerate(label_tables[0]):
@@ -103,7 +107,7 @@ def _get_label_attr(axis: int=0):
     else:
         raise ValueError(f'axis must be 0 or 1, got {axis}')
 
-def _get_subgrid(grid: PanelGrid, num: int, axis: int=0):
+def _get_subgrid(grid: GridShape, num: int, axis: int=0):
     # select rows
     if axis == 0:
         return _grid_if_not(grid[num])
@@ -114,10 +118,10 @@ def _get_subgrid(grid: PanelGrid, num: int, axis: int=0):
         raise ValueError(f'axis must be 0 or 1, got {axis}')
 
 def _grid_if_not(ambiguous_grid):
-    if isinstance(ambiguous_grid, PanelGrid):
+    if isinstance(ambiguous_grid, GridShape):
         return ambiguous_grid
     else:
-        return PanelGrid([ambiguous_grid])
+        return GridShape([ambiguous_grid])
 
 def _compare_label_collections(collection1: LabelCollection, collection2: LabelCollection, use_object_equality=True):
     if use_object_equality:
