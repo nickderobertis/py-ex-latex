@@ -14,7 +14,7 @@ class NewColumnTypes(StringAdditionMixin):
         ]
 
     def __str__(self):
-        return LineBreak.join(self.contents)
+        return LineBreak().join(self.contents)
 
 
 

@@ -2,6 +2,33 @@ import re
 
 from dero.latex.models.mixins import ReprMixin
 
+class ColumnAlignment(ReprMixin):
+    repr_cols = ['align']
+
+    def __init__(self, align_str: str):
+        ColumnAlignment._validate_align_str(align_str)
+        self.align = align_str
+
+    def __str__(self):
+        return self.align
+
+    def __add__(self, other):
+        return self.align + other.align
+
+    def __radd__(self, other):
+        return other.align + self.align
+
+    @staticmethod
+    def _validate_align_str(align_str):
+        basic_pattern = re.compile(r'[lcr]')
+        length_pattern = re.compile(r'[LCR]\{[\d\w\s]+\}')
+
+        basic_match = basic_pattern.fullmatch(align_str)
+        length_match = length_pattern.fullmatch(align_str)
+
+        if not (basic_match or length_match):
+            raise ValueError(f'expected alignment of l, c, r, L{{size}}, C{{size}}, or R{{size}}. Got {align_str}')
+
 
 class ColumnsAlignment(ReprMixin):
     repr_cols = ['aligns']
@@ -42,35 +69,6 @@ class ColumnsAlignment(ReprMixin):
         align_str_list = _full_align_str_to_align_str_list(align_str)
         aligns = [ColumnAlignment(align) for align in align_str_list]
         return cls(aligns)
-
-
-
-class ColumnAlignment(ReprMixin):
-    repr_cols = ['align']
-
-    def __init__(self, align_str: str):
-        ColumnAlignment._validate_align_str(align_str)
-        self.align = align_str
-
-    def __str__(self):
-        return self.align
-
-    def __add__(self, other):
-        return self.align + other.align
-
-    def __radd__(self, other):
-        return other.align + self.align
-
-    @staticmethod
-    def _validate_align_str(align_str):
-        basic_pattern = re.compile(r'[lcr]')
-        length_pattern = re.compile(r'[LCR]\{[\d\w\s]+\}')
-
-        basic_match = basic_pattern.fullmatch(align_str)
-        length_match = length_pattern.fullmatch(align_str)
-
-        if not (basic_match or length_match):
-            raise ValueError(f'expected alignment of l, c, r, L{{size}}, C{{size}}, or R{{size}}. Got {align_str}')
 
 
 def _full_align_str_to_align_str_list(align_str: str):

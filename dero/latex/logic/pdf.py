@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from dero import date_time_move_latex
+from dero.latex.tools import date_time_move_latex
 
 
 def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='figure', as_document=True):
