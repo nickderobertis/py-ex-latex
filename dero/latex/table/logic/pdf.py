@@ -28,5 +28,6 @@ def output_panel_collection_to_tex(panel_collection: PanelCollection, out_folder
         table_or_document,
         outfolder=out_folder,
         outname=out_name,
-        as_document=as_document
+        as_document=as_document,
+        move_folder_name='Tables'
     )

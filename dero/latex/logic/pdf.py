@@ -4,7 +4,8 @@ import shutil
 from dero.latex.tools import date_time_move_latex
 
 
-def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='figure', as_document=True):
+def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='figure', as_document=True,
+                              move_folder_name='Figures'):
 
     # We will change paths, so save original to switch back to
     orig_path = os.getcwd()
@@ -26,7 +27,7 @@ def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='fi
 
     if as_document:
         os.system('pdflatex ' + '"' + outname_tex + '"') #create PDF
-    new_outfolder = date_time_move_latex(outname, outfolder, folder_name='Figures') #move table into appropriate date/number folder
+    new_outfolder = date_time_move_latex(outname, outfolder, folder_name=move_folder_name) #move table into appropriate date/number folder
     sources_outfolder = os.path.join(new_outfolder, 'Sources')
 
     if image_paths and new_outfolder:
