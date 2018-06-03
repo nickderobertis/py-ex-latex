@@ -9,4 +9,10 @@ class Label(ReprMixin, RowAddMixin):
         self.value = value
 
     def __eq__(self, other):
-        return self.value == other.value
+        if hasattr(other, 'value'):
+            return self.value == other.value
+        else:
+            return self.value == other
+
+    def __str__(self):
+        return str(self.value)

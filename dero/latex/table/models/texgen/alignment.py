@@ -34,35 +34,37 @@ class ColumnsAlignment(ReprMixin):
     repr_cols = ['aligns']
 
     def __init__(self, aligns: [ColumnAlignment]= None, num_columns: int=None):
-
-        if aligns is None and num_columns is None:
-            raise ValueError('must pass aligns or num columns')
-
-        # default align is first column left, rest centered
-        if aligns is None and num_columns is not None:
-            self.aligns = [ColumnAlignment('l')] + [ColumnAlignment('c')] * (num_columns - 1)
-
-        # if we don't know how many columns, must assume passed number of aligns is correct
-        if num_columns is None:
-            self.aligns = aligns
-
-        # number of alignments matches number of columns. no extra processing needed
-        if len(aligns) == num_columns:
-            self.aligns = aligns
-
-        # if one alignment is passed with many columns, use that align with all columns
-        if len(aligns) == 1:
-            self.aligns = [aligns[0]] * num_columns
-        else:
-            raise ValueError(f'got {len(aligns)} alignments for {num_columns} columns. unclear how to apply')
+        self.aligns = ColumnsAlignment._get_aligns(aligns, num_columns)
 
     def __str__(self):
-        return sum(self.aligns)
+        return ''.join(str(align) for align in self.aligns)
 
     def __iter__(self):
         for align in self.aligns:
             yield align
 
+    @staticmethod
+    def _get_aligns(aligns: [ColumnAlignment]= None, num_columns: int=None):
+        if aligns is None and num_columns is None:
+            raise ValueError('must pass aligns or num columns')
+
+        # default align is first column left, rest centered
+        if aligns is None and num_columns is not None:
+            return [ColumnAlignment('l')] + [ColumnAlignment('c')] * (num_columns - 1)
+
+        # if we don't know how many columns, must assume passed number of aligns is correct
+        if num_columns is None:
+            return aligns
+
+        # number of alignments matches number of columns. no extra processing needed
+        if len(aligns) == num_columns:
+            return aligns
+
+        # if one alignment is passed with many columns, use that align with all columns
+        if len(aligns) == 1:
+            return [aligns[0]] * num_columns
+        else:
+            raise ValueError(f'got {len(aligns)} alignments for {num_columns} columns. unclear how to apply')
 
     @classmethod
     def from_alignment_str(cls, align_str: str):

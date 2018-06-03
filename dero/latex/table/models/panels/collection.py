@@ -65,6 +65,15 @@ class PanelCollection(ReprMixin):
 
         return self._rows
 
+    @property
+    def num_columns(self) -> int:
+        try:
+            return self._num_columns
+        except AttributeError:
+            self._num_columns = max([row.num_columns for row in self.rows])
+
+        return self._num_columns
+
     def _create_panel_rows(self):
         column_pad = LabelTable.from_list_of_lists([[' ']]* self.pad_columns)
         rows: [TableSection] = []
@@ -74,10 +83,14 @@ class PanelCollection(ReprMixin):
                 panel_row[0] + column_pad.join(panel_row[1:])
             )
 
+        try:
+            num_columns = self._num_columns
+        except AttributeError:
+            num_columns = max([row.num_columns for row in rows])
+
         # Now pad rows
-        self.num_columns = max([row.num_columns for row in rows])
         for row in rows:
-            row.pad(self.num_columns, direction='right')
+            row.pad(num_columns, direction='right')
 
         return rows
 

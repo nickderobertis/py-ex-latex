@@ -22,12 +22,12 @@ class Tabular(Item, ReprMixin):
 
     def __init__(self, panel_collection: PanelCollection, align: ColumnsAlignment=None,
                  mid_rules=True):
-        self.align = align
+        self.align = align if align is not None else ColumnsAlignment(num_columns=panel_collection.num_columns)
         self.panel_collection = panel_collection
 
         content = build_tabular_content_from_panel_collection(panel_collection, mid_rule=mid_rules)
 
-        super().__init__(self.name, content, env_modifiers=f'{{{align}}}')
+        super().__init__(self.name, content, env_modifiers=f'{{{self.align}}}')
 
 class ThreePartTable(Item, ReprMixin):
     name = 'threeparttable'

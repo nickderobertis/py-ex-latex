@@ -15,4 +15,4 @@ _direct_default_packages = [
 ]
 
 default_packages = [Package(package_str) for package_str in _default_package_strs] + \
-                   _direct_default_packages + NewColumnTypes()
+                   _direct_default_packages + [NewColumnTypes()]

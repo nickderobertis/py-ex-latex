@@ -17,7 +17,7 @@ class Row(ReprMixin, RowAddMixin):
         return len(self.values)
 
     def __str__(self):
-        return ' & '.join(str(value) for value in self.values) + r'\\'
+        return ' & '.join(str(value) if value != [] else ' ' for value in self.values) + r'\\'
 
     def __iter__(self):
         for value in self.values:
