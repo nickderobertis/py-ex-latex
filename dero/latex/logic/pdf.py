@@ -28,10 +28,10 @@ def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='fi
     if as_document:
         os.system('pdflatex ' + '"' + outname_tex + '"') #create PDF
     new_outfolder = date_time_move_latex(outname, outfolder, folder_name=move_folder_name) #move table into appropriate date/number folder
-    sources_outfolder = os.path.join(new_outfolder, 'Sources')
 
     if image_paths and new_outfolder:
         # Copy second time to move pictures along with pdf
+        sources_outfolder = os.path.join(new_outfolder, 'Sources')
         _move_if_needed(sources_tempfolder, sources_outfolder)
 
     os.chdir(orig_path)
