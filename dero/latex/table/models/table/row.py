@@ -3,7 +3,7 @@ from typing import Union
 from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.data.dataitem import DataItem
 from dero.latex.table.models.labels.collection import LabelCollection
-from dero.latex.table.models.mixins import RowAddMixin
+from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
 from dero.latex.texparser.clean import _remove_backslashes
 
 

@@ -1,0 +1,1 @@
+from dero.latex.table.models.panels import PanelCollection, Panel

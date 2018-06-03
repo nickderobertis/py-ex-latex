@@ -1,6 +1,6 @@
 from dero.latex.table.models.labels.label import Label
 from dero.latex.models.mixins import ReprMixin
-from dero.latex.table.models.mixins import RowAddMixin
+from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
 
 
 class LabelCollection(RowAddMixin, ReprMixin):
