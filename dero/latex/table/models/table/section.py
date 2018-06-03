@@ -1,6 +1,7 @@
 from copy import deepcopy
 
 from dero.latex.table.models.table.row import Row
+from dero.latex.logic.tools import _max_len_or_zero
 
 
 class TableSection:
@@ -12,13 +13,16 @@ class TableSection:
         for row in self.rows:
             yield row
 
+    def __getitem__(self, item):
+        return self.rows[item]
+
     def __add__(self, other):
         num_rows = max([len(self.rows), len(other.rows)])
 
         out_rows = []
 
         for row_num in range(num_rows):
-            out_row = Row()
+            out_row = Row([])
             try:
                 out_row += self[row_num]
             except IndexError:
@@ -77,7 +81,7 @@ class TableSection:
         return self._num_columns
 
     def _set_num_columns(self):
-        return max([len(row) for row in self.rows])
+        return _max_len_or_zero(self.rows)
 
     def join(self, sections):
         """

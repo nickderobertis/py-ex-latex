@@ -1,10 +1,10 @@
-import pandas as pd
 from pandas.indexes.base import Index as PandasIndex
 
-from dero.latex.table.models.table.section import TableSection
+from dero.latex.logic.tools import _max_len_or_zero
+from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.labels.collection import LabelCollection
 from dero.latex.table.models.labels.row import LabelRow
-from dero.latex.models.mixins import ReprMixin
+from dero.latex.table.models.table.section import TableSection
 
 
 class LabelTable(TableSection, ReprMixin):
@@ -30,7 +30,7 @@ class LabelTable(TableSection, ReprMixin):
         return self._rows
 
     def _create_label_rows(self):
-        len_rows = max([len(collection) for collection in self.label_collections])
+        len_rows = _max_len_or_zero(self.label_collections)
 
         rows = []
         for label_collection in self.label_collections:

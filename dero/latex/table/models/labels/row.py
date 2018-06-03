@@ -3,6 +3,7 @@ from dero.latex.table.models.labels.collection import LabelCollection
 from dero.latex.table.models.labels.multicolumn import MultiColumn
 
 class LabelRow(Row):
+    repr_cols = ['values', 'length']
 
     def __init__(self, values: LabelCollection, length: int=None):
         self.length = length if length is not None else len(values)
@@ -12,11 +13,11 @@ class LabelRow(Row):
         num_values = len(self.values)
         # as many columns as values, simply sum
         if self.length == num_values:
-            return sum(self.values)
+            return str(sum(self.values))
         # from here, passed length different than length of values
         # if only one value, use multicolumn format over number of columns
         elif num_values == 1:
-            return MultiColumn(contents=self.values[0], span=self.length)
+            return str(MultiColumn(contents=self.values[0], span=self.length))
         # differing number of values from length, but number of values is not 1
         # therefore it is unclear how to expand into a multicolumn format
         # (how many columns should each label span?)

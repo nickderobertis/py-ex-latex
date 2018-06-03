@@ -35,7 +35,7 @@ class DataTable(TableSection, ReprMixin):
         rows = []
 
         if self.column_labels is not None:
-            for i, row in self.column_labels.rows:
+            for i, row in enumerate(self.column_labels.rows):
                 if self.should_add_top_left:
                     # first row should start with top left corner label
                     if i == 0:

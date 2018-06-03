@@ -14,7 +14,7 @@ class TableNotes(Item, ReprMixin):
     name = 'tablenotes'
 
     def __int__(self, content: str):
-        super(Item).__init__(self.name, content, env_modifiers=f'[para, flushleft]')
+        super().__init__(self.name, content, env_modifiers=f'[para, flushleft]')
 
 class Tabular(Item, ReprMixin):
     name = 'tabular'
@@ -27,7 +27,7 @@ class Tabular(Item, ReprMixin):
 
         content = build_tabular_content_from_panel_collection(panel_collection, mid_rule=mid_rules)
 
-        super(Item).__init__(self.name, content, env_modifiers=f'{{{align}}}')
+        super().__init__(self.name, content, env_modifiers=f'{{{align}}}')
 
 class ThreePartTable(Item, ReprMixin):
     name = 'threeparttable'
@@ -43,7 +43,7 @@ class ThreePartTable(Item, ReprMixin):
         valid_items = [item for item in items if item is not None]
 
         content = LineBreak().join(valid_items)
-        super(Item).__init__(self.name, content)
+        super().__init__(self.name, content)
 
     @classmethod
     def from_panel_collection(cls, panel_collection: PanelCollection, *args, tabular_kwargs={}, **kwargs):
@@ -71,7 +71,7 @@ class Table(Item, ReprMixin):
         valid_items = [item for item in items if item is not None]
 
         content = LineBreak().join(valid_items)
-        super(Item).__init__(self.name, content)
+        super().__init__(self.name, content)
 
     @classmethod
     def from_panel_collection(cls, panel_collection: PanelCollection, *args, tabular_kwargs={},

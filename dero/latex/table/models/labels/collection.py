@@ -17,7 +17,7 @@ class LabelCollection(RowAddMixin, ReprMixin):
         return self.values[item]
 
     def __str__(self):
-        return sum(self.values)
+        return str(sum(self.values))
 
     def __len__(self):
         return len(self.values)
