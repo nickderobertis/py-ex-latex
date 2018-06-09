@@ -38,7 +38,7 @@ class PanelCollection(ReprMixin):
         self.label_consolidation = label_consolidation.lower().strip() \
             if isinstance(label_consolidation, str) else label_consolidation
         self.top_left_corner_labels = top_left_corner_labels \
-            if top_left_corner_labels is not None else LabelTable([])
+            if top_left_corner_labels is not None else LabelTable.from_list_of_lists([[' ']])
         self.pad_rows = pad_rows
         self.pad_columns = pad_columns
 
@@ -137,8 +137,8 @@ class PanelCollection(ReprMixin):
         # After adding column labels, there is an additional row at the top of the grid
         # Therefore we will need one additional LabelTable for the first row, which is the row of column labels
         # If top_left_corner_labels was passed on object creation, use that as LabelTable. Otherwise use a blank one
-        row_labels = [self.top_left_corner_labels] + row_labels
-        self._add_row_labels(row_labels)
+        all_row_labels = [self.top_left_corner_labels] + [label_table.T for label_table in row_labels] # also transpose for rows
+        self._add_row_labels(all_row_labels)
 
         # Remove from the original tables the labels that were just consolidated
         remove_label_collections_from_grid(
@@ -157,9 +157,10 @@ class PanelCollection(ReprMixin):
             # Add first elem
             new_row = np.array([grid_row[0]]).view(GridShape).reshape(1,1)
             # Add following elems
-            for elem in grid_row[1:]:
+            for n_elem, elem in enumerate(grid_row[1:]):
                 # Add pads between following elems
-                new_row = np.append(new_row, np.array([column_pad])).view(GridShape)
+                if not (n_elem == 0 and self.has_row_labels): # only skip first if there are row labels
+                    new_row = np.append(new_row, np.array([column_pad])).view(GridShape)
                 new_row = np.append(new_row, elem).view(GridShape)
                 new_row = new_row.reshape((1, new_row.shape[0])) # reorganize into row
             grid_rows.append(new_row)
@@ -209,7 +210,10 @@ class PanelCollection(ReprMixin):
 
         if all(table.is_empty for table in row_labels):
             # if no consolidated labels, no need to add
+            self.has_row_labels = False
             return
+
+        self.has_row_labels = True
 
         # Form PanelGrid from labels
         row_label_grid = PanelGrid(row_labels, shape=(len(row_labels), 1))

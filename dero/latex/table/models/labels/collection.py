@@ -7,6 +7,8 @@ class LabelCollection(RowAddMixin, ReprMixin):
     repr_cols = ['values']
 
     def __init__(self, values: [Label]):
+        if isinstance(values, tuple):
+            values = list(values)
         self.values = values
 
     def __iter__(self):

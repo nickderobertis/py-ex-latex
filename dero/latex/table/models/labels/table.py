@@ -1,4 +1,5 @@
 from pandas.core.indexes.base import Index as PandasIndex
+from itertools import zip_longest
 
 from dero.latex.logic.tools import _max_len_or_zero
 from dero.latex.models.mixins import ReprMixin
@@ -62,5 +63,9 @@ class LabelTable(TableSection, ReprMixin):
 
     def remove(self, item):
         self.label_collections.remove(item)
+
+    @property
+    def T(self):
+        return LabelTable(list(map(LabelCollection, zip_longest(*self.label_collections))))
 
 
