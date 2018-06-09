@@ -3,8 +3,10 @@ from typing import Union, Iterable
 from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.data.dataitem import DataItem
 from dero.latex.table.models.labels.collection import LabelCollection
+from dero.latex.table.models.labels.label import Label
 from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
 from dero.latex.texparser.clean import _remove_backslashes
+from dero.latex.table.models.spacing.cell import CellSpacer
 
 
 class Row(ReprMixin, RowAddMixin):
@@ -17,7 +19,7 @@ class Row(ReprMixin, RowAddMixin):
         return len(self.values)
 
     def __str__(self):
-        return ' & '.join(str(value) if value != [] else ' ' for value in self.values) + r'\\'
+        return ' & '.join(str(value) if value != [] else ' ' for value in self.values)
 
     def __iter__(self):
         for value in self.values:
@@ -32,10 +34,13 @@ class Row(ReprMixin, RowAddMixin):
         num_values_to_add = length - len(self)
         direction = direction.lower().strip()
 
+        if num_values_to_add == 0:
+            return
+
         if direction == 'right':
-            self.values += [' '] * num_values_to_add
+            self.values += [CellSpacer()] * num_values_to_add
         elif direction == 'left':
-            self.values = [' '] * num_values_to_add + self.values
+            self.values = [CellSpacer()] * num_values_to_add + self.values
         else:
             raise ValueError(f'must pass left or right for direction. got {direction}')
 
@@ -45,3 +50,18 @@ class Row(ReprMixin, RowAddMixin):
         str_values = latex_row_str.split(' & ')
         values = [DataItem(value) for value in str_values]
         return cls(values)
+
+    @property
+    def is_spacer(self):
+        booleans = []
+        for item in self.values:
+            if isinstance(item, CellSpacer):
+                result = True
+            elif isinstance(item, (Label, DataItem)):
+                result = item.value.strip() == ''
+            elif isinstance(item, str):
+                result = item.strip() == ''
+            else:
+                raise ValueError(f'cannot check whether {item} of type {type(item)} is a spacer or not')
+            booleans.append(result)
+        return all(booleans)

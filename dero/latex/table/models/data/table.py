@@ -21,6 +21,42 @@ class DataTable(TableSection, ReprMixin):
             if top_left_corner_label is not None else Label(' ')
         self.should_add_top_left = (column_labels is not None) and (row_labels is not None)
 
+    def __add__(self, other):
+        if isinstance(other, DataTable):
+            values_table = self.values_table + other.values_table
+            column_labels = _add_if_not_none(self.column_labels, other.column_labels)
+            row_labels = _add_if_not_none(self.row_labels, other.row_labels)
+        elif isinstance(other, TableSection):
+            values_table = self.values_table + other
+            column_labels = self.column_labels
+            row_labels = self.row_labels
+        else:
+            raise ValueError(f'must add DataTable or TableSection to type {type(self)}. Got type {type(other)}')
+
+        return DataTable(
+            values_table=values_table,
+            column_labels=column_labels,
+            row_labels=row_labels
+        )
+
+    def __radd__(self, other):
+        if isinstance(other, DataTable):
+            values_table = other.values_table + self.values_table
+            column_labels = _add_if_not_none(other.column_labels, self.column_labels)
+            row_labels = _add_if_not_none(other.row_labels, self.row_labels)
+        elif isinstance(other, TableSection):
+            values_table = other + self.values_table
+            column_labels = self.column_labels
+            row_labels = self.row_labels
+        else:
+            raise ValueError(f'must add DataTable or TableSection to type {type(self)}. Got type {type(other)}')
+
+        return DataTable(
+            values_table=values_table,
+            column_labels=column_labels,
+            row_labels=row_labels
+        )
+
     @property
     def rows(self):
         try:
@@ -81,3 +117,9 @@ class DataTable(TableSection, ReprMixin):
             **kwargs,
         )
 
+def _add_if_not_none(first, second):
+    if first is None:
+        return second
+    if second is None:
+        return first
+    return first + second

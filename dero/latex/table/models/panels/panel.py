@@ -67,6 +67,10 @@ class Panel(ReprMixin):
             rows += panel_row.rows
         return rows
 
+    @property
+    def is_spacer(self):
+        return all([row.is_spacer for row in self.rows])
+
 
 
 

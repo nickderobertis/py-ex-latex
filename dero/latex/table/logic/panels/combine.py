@@ -56,7 +56,7 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
 
     # first labels missing, no consolidation to be done, consolidated labels are None
     if label_tables[0] is None:
-        return LabelTable.from_list_of_lists([[]])
+        return LabelTable([])
 
     common_label_collections = []
     for i, label_collection in enumerate(label_tables[0]):
@@ -73,8 +73,31 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
 
     return LabelTable(common_label_collections)
 
+def remove_label_collections_from_grid(grid: GridShape, column_labels: [LabelTable]=None,
+                                       row_labels: [LabelTable]=None, use_object_equality=True):
+    for row in grid:
+        for section in row:
+            if column_labels is not None:
+                for label_table in column_labels:
+                    _remove_label_collections(
+                        section,
+                        label_table,
+                        axis=1,
+                        use_object_equality=use_object_equality,
+                        inplace=True
+                    )
+            if row_labels is not None:
+                for label_table in row_labels:
+                    _remove_label_collections(
+                        section,
+                        label_table,
+                        axis=0,
+                        use_object_equality=use_object_equality,
+                        inplace=True
+                    )
+
 def _remove_label_collections(section: TableSection, label_table: LabelTable, axis: int=0,
-                              use_object_equality=True):
+                              use_object_equality=True, inplace=False):
 
     # Handle section not having labels for this axis
     label_attr = _get_label_attr(axis=axis)
@@ -82,7 +105,8 @@ def _remove_label_collections(section: TableSection, label_table: LabelTable, ax
         return section
 
     # Now has labels for this axis. Create a copy to avoid modifying original
-    out_section = copy.deepcopy(section)
+    if not inplace:
+        section = copy.deepcopy(section)
 
     for label_collection in label_table:
         for section_label_collection in getattr(section, label_attr, []):
@@ -92,9 +116,9 @@ def _remove_label_collections(section: TableSection, label_table: LabelTable, ax
                 use_object_equality=use_object_equality
             )
             if match:
-                getattr(out_section, label_attr).remove(section_label_collection)
+                getattr(section, label_attr).remove(section_label_collection)
 
-    return out_section
+    return section
 
 
 def _get_label_attr(axis: int=0):

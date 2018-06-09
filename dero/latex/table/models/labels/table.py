@@ -1,4 +1,4 @@
-from pandas.indexes.base import Index as PandasIndex
+from pandas.core.indexes.base import Index as PandasIndex
 
 from dero.latex.logic.tools import _max_len_or_zero
 from dero.latex.models.mixins import ReprMixin
@@ -55,5 +55,12 @@ class LabelTable(TableSection, ReprMixin):
         column_list = [col for col in df_columns]
 
         return cls.from_list_of_lists([column_list])
+
+    @property
+    def is_empty(self):
+        return len(self.label_collections) == 0
+
+    def remove(self, item):
+        self.label_collections.remove(item)
 
 

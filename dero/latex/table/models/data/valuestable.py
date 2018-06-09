@@ -1,5 +1,6 @@
 from pandas import DataFrame
 from dero.latex.table.models.data.row import DataRow
+from dero.latex.table.models.data.dataitem import DataItem
 from dero.latex.table.models.table.section import TableSection
 
 
@@ -13,6 +14,18 @@ class ValuesTable(TableSection):
         latex_str_list = _build_latex_str_list_from_df(df)
         rows = [DataRow.from_latex_row_str(row_str) for row_str in latex_str_list]
         return cls(rows)
+
+    @classmethod
+    def from_list_of_lists(cls, list_of_lists):
+        data_rows: [DataRow] = []
+        for list_row in list_of_lists:
+            data_values = [DataItem(value) for value in list_row]
+            data_rows.append(
+                DataRow(data_values)
+            )
+
+        return cls(data_rows)
+
 
     def __repr__(self):
         return f'<ValuesTable(shape=({len(self.rows)} , {self.num_columns}))>'

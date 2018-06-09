@@ -2,9 +2,11 @@ from copy import deepcopy
 
 from dero.latex.table.models.table.row import Row
 from dero.latex.logic.tools import _max_len_or_zero
+from dero.latex.models.mixins import ReprMixin
 
 
-class TableSection:
+class TableSection(ReprMixin):
+    repr_cols = ['rows']
 
     def __init__(self, rows: [Row]):
         self.rows = rows
@@ -69,6 +71,12 @@ class TableSection:
         other_class = type(other)
         klass = self_class if self_class == other_class else TableSection
 
+        # import here to avoid circular imports
+        from dero.latex.table.models.spacing.rowtable import RowPadTable
+        from dero.latex.table.models.spacing.columntable import ColumnPadTable
+        if klass in (RowPadTable, ColumnPadTable):
+            return TableSection
+
         return klass
 
     @property
@@ -110,3 +118,7 @@ class TableSection:
         :return:
         """
         [row.pad(length=length, direction=direction) for row in self.rows]
+
+    @property
+    def is_spacer(self):
+        return all([row.is_spacer for row in self.rows])
