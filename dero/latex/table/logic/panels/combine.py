@@ -109,14 +109,22 @@ def _remove_label_collections(section: TableSection, label_table: LabelTable, ax
         section = copy.deepcopy(section)
 
     for label_collection in label_table:
-        for section_label_collection in getattr(section, label_attr, []):
-            match = _compare_label_collections(
-                label_collection,
-                section_label_collection,
-                use_object_equality=use_object_equality
-            )
-            if match:
-                getattr(section, label_attr).remove(section_label_collection)
+        section_label_table: LabelTable = getattr(section, label_attr, [])
+        if section_label_table is not None:
+            for section_label_collection in section_label_table:
+                match = _compare_label_collections(
+                    label_collection,
+                    section_label_collection,
+                    use_object_equality=use_object_equality
+                )
+                if match:
+                    section_label_table.remove(section_label_collection)
+
+
+    # once all label collections have been removed, remove table
+    section_label_table = getattr(section, label_attr, False)
+    if section_label_table and section_label_table.label_collections == []:
+        setattr(section, label_attr, None)
 
     return section
 

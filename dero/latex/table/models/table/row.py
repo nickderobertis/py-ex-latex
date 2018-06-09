@@ -58,7 +58,7 @@ class Row(ReprMixin, RowAddMixin):
             if isinstance(item, CellSpacer):
                 result = True
             elif isinstance(item, (Label, DataItem)):
-                result = item.value.strip() == ''
+                result = str(item.value).strip() == ''
             elif isinstance(item, str):
                 result = item.strip() == ''
             else:
