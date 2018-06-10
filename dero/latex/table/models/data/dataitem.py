@@ -10,3 +10,14 @@ class DataItem(ReprMixin, RowAddMixin):
 
     def __str__(self):
         return f'{self.value}'
+
+    def _add_class(self, other):
+        from dero.latex.table.models.table.row import Row
+        from dero.latex.table.models.data.row import DataRow
+        # keep same class if both are same class
+        # otherwise, default to Row class
+        self_class = type(self)
+        other_class = type(other)
+        klass = DataRow if self_class == other_class else Row
+
+        return klass
