@@ -1,4 +1,5 @@
 import pandas as pd
+from typing import Union
 
 from dero.latex.table.models.data.valuestable import ValuesTable
 from dero.latex.table.models.table.section import TableSection
@@ -12,12 +13,17 @@ class DataTable(TableSection, ReprMixin):
     repr_cols = ['values_table', 'column_labels', 'row_labels']
 
     def __init__(self, values_table: ValuesTable, column_labels: LabelTable=None, row_labels: LabelTable=None,
-                 top_left_corner_label: Label = None):
+                 top_left_corner_label: Union[Label, str] = None):
         self.values_table = values_table
         self.column_labels = column_labels
         self.row_labels = row_labels
+
+        if isinstance(top_left_corner_label, str):
+            top_left_corner_label = Label(top_left_corner_label)
+
         self.top_left_corner_label = top_left_corner_label \
             if top_left_corner_label is not None else CellSpacer()
+
         self.should_add_top_left = (column_labels is not None) and (row_labels is not None)
 
     def __add__(self, other):
