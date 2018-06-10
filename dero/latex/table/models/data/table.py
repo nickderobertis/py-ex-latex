@@ -90,7 +90,7 @@ class DataTable(TableSection, ReprMixin):
             column_label_table = None
 
         if include_index:
-            row_label_table = LabelTable.from_df_index(df.index)
+            row_label_table = LabelTable.from_df_index(df.index).T
         else:
             row_label_table = None
 
