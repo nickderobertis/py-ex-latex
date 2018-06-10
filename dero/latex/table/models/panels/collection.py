@@ -152,7 +152,6 @@ class PanelCollection(ReprMixin):
         )
 
     def pad_grid(self):
-        column_pad = ColumnPadTable()
         row_pad = RowPadTable()
 
         grid_rows: [GridShape] = []
@@ -163,7 +162,7 @@ class PanelCollection(ReprMixin):
             for n_elem, elem in enumerate(grid_row[1:]):
                 # Add pads between following elems
                 if self.pad_columns and not (n_elem == 0 and self.has_row_labels): # only skip first if there are row labels
-                    new_row = np.append(new_row, np.array([column_pad] * self.pad_columns)).view(GridShape)
+                    new_row = np.append(new_row, np.array([ColumnPadTable(self.pad_columns)])).view(GridShape)
                 new_row = np.append(new_row, elem).view(GridShape)
                 new_row = new_row.reshape((1, new_row.shape[0])) # reorganize into row
             grid_rows.append(new_row)

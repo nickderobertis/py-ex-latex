@@ -22,7 +22,13 @@ class LabelCollection(RowAddMixin, ReprMixin):
         return str(sum(self.values))
 
     def __len__(self):
-        return len(self.values)
+        length = 0
+        for value in self.values:
+            if isinstance(value, Label):
+                length += len(value)
+            else:
+                length += 1
+        return length
 
     def matches(self, other):
         """

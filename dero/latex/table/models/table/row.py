@@ -12,7 +12,7 @@ from dero.latex.table.models.spacing.cell import CellSpacer
 class Row(ReprMixin, RowAddMixin):
     repr_cols = ['values']
 
-    def __init__(self, values: Union[Iterable[DataItem], LabelCollection]):
+    def __init__(self, values: Union[Iterable[DataItem], LabelCollection, Label]):
 
         # Don't allow nested rows. If the only values passed to a Row are a Row, then use the values of that
         # row rather than the row itself as values
@@ -22,7 +22,13 @@ class Row(ReprMixin, RowAddMixin):
             self.values = values
 
     def __len__(self):
-        return len(self.values)
+        length = 0
+        for value in self.values:
+            if isinstance(value, (Label, LabelCollection, DataItem)):
+                length += len(value)
+            else:
+                length += 1
+        return length
 
     def __str__(self):
         str_list = []
@@ -53,9 +59,9 @@ class Row(ReprMixin, RowAddMixin):
             return
 
         if direction == 'right':
-            self.values += [CellSpacer()] * num_values_to_add
+            self.values += [CellSpacer(num_values_to_add)]
         elif direction == 'left':
-            self.values = [CellSpacer()] * num_values_to_add + self.values
+            self.values = [CellSpacer(num_values_to_add)] + self.values
         else:
             raise ValueError(f'must pass left or right for direction. got {direction}')
 

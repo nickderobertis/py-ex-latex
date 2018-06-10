@@ -1,12 +1,14 @@
 from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
+from dero.latex.table.models.labels.multicolumn import MultiColumn
 
 
 class Label(ReprMixin, RowAddMixin):
-    repr_cols = ['value']
+    repr_cols = ['value', 'span']
 
-    def __init__(self, value):
+    def __init__(self, value, span: int=1):
         self.value = value
+        self.span = span
 
     def __eq__(self, other):
         if hasattr(other, 'value'):
@@ -15,7 +17,13 @@ class Label(ReprMixin, RowAddMixin):
             return self.value == other
 
     def __str__(self):
-        return str(self.value)
+        if len(self) == 1:
+            return str(self.value)
+        else:
+            return str(MultiColumn(self.value, span=self.span))
+
+    def __len__(self):
+        return self.span
 
     def _add_class(self, other):
         from dero.latex.table.models.table.row import Row

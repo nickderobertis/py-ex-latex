@@ -1,7 +1,6 @@
 from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
 
-
 class DataItem(ReprMixin, RowAddMixin):
     repr_cols = ['value']
 
@@ -21,3 +20,6 @@ class DataItem(ReprMixin, RowAddMixin):
         klass = DataRow if self_class == other_class else Row
 
         return klass
+
+    def __len__(self):
+        return 1

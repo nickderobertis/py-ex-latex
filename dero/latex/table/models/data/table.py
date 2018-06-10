@@ -21,15 +21,19 @@ class DataTable(TableSection, ReprMixin):
         if isinstance(top_left_corner_label, str):
             top_left_corner_label = Label(top_left_corner_label)
 
-        self.top_left_corner_label = top_left_corner_label \
-            if top_left_corner_label is not None else CellSpacer()
+        if top_left_corner_label is None:
+            if row_labels is None:
+                top_left_corner_label = CellSpacer()
+            else:
+                top_left_corner_label = CellSpacer(row_labels.num_columns)
+        self.top_left_corner_label = top_left_corner_label
 
         self.should_add_top_left = (column_labels is not None) and (row_labels is not None)
 
     def __add__(self, other):
         if isinstance(other, DataTable):
-            if self.row_labels.matches(other.row_labels):
-                # if right table has same row labels, eliminate right row labels. Just add valyes
+            if self.row_labels.matches(other.row_labels) or other.row_labels is None:
+                # if right table has same or None row labels, eliminate right row labels. Just add values
                 values_table = self.values_table + other.values_table
                 column_labels = _add_if_not_none(self.column_labels, other.column_labels)
             else:
@@ -37,8 +41,7 @@ class DataTable(TableSection, ReprMixin):
                 values_table = self.values_table + ValuesTable(other.row_labels.rows) + other.values_table
                 column_labels = _add_if_not_none(
                     self.column_labels,
-                    # add padding in column headers to keep alignment
-                    *[CellSpacer() for i in range(other.row_labels.num_columns)],
+                    other.top_left_corner_label,
                     other.column_labels
                 )
 
@@ -57,7 +60,8 @@ class DataTable(TableSection, ReprMixin):
         return DataTable(
             values_table=values_table,
             column_labels=column_labels,
-            row_labels=row_labels
+            row_labels=row_labels,
+            top_left_corner_label=self.top_left_corner_label
         )
 
     @property
@@ -152,7 +156,9 @@ class DataTable(TableSection, ReprMixin):
         )
 
         if extra_header is not None:
-            header = LabelCollection.from_str_list([extra_header])
+            # create multicolumn label
+            label = Label(extra_header, span=values_table.num_columns)
+            header = LabelCollection([label])
             if include_columns:
                 # add to existing
                 dt.column_labels.label_collections.insert(0, header)

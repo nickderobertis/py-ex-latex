@@ -35,7 +35,7 @@ class TableSection(ReprMixin):
                 out_row.pad(self.num_columns, direction='left')
             # Special handling for ColumnPadTable. Ignore rows, just always pad right by one cell
             if isinstance(other, ColumnPadTable):
-                out_row.pad(self.num_columns + 1, direction='right')
+                out_row.pad(self.num_columns + other.width, direction='right')
             else:
                 try:
                     out_row += other[row_num]

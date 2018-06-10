@@ -7,7 +7,7 @@ from dero.latex.table.models.data.valuestable import ValuesTable
 class RowPadTable(ValuesTable):
 
     def __init__(self, num_cols: int = 1):
-        row = DataRow([CellSpacer()] * num_cols)
+        row = DataRow([CellSpacer(num_cols)])
         super().__init__([row])
 
     @property
