@@ -137,7 +137,9 @@ class PanelCollection(ReprMixin):
         # After adding column labels, there is an additional row at the top of the grid
         # Therefore we will need one additional LabelTable for the first row, which is the row of column labels
         # If top_left_corner_labels was passed on object creation, use that as LabelTable. Otherwise use a blank one
-        all_row_labels = [self.top_left_corner_labels] + [label_table.T for label_table in row_labels] # also transpose for rows
+        all_row_labels = [label_table.T for label_table in row_labels] # also transpose for rows
+        if self.has_column_labels:
+            all_row_labels = [self.top_left_corner_labels] + all_row_labels
         self._add_row_labels(all_row_labels)
 
         # Remove from the original tables the labels that were just consolidated
@@ -159,8 +161,8 @@ class PanelCollection(ReprMixin):
             # Add following elems
             for n_elem, elem in enumerate(grid_row[1:]):
                 # Add pads between following elems
-                if not (n_elem == 0 and self.has_row_labels): # only skip first if there are row labels
-                    new_row = np.append(new_row, np.array([column_pad])).view(GridShape)
+                if self.pad_columns and not (n_elem == 0 and self.has_row_labels): # only skip first if there are row labels
+                    new_row = np.append(new_row, np.array([column_pad] * self.pad_columns)).view(GridShape)
                 new_row = np.append(new_row, elem).view(GridShape)
                 new_row = new_row.reshape((1, new_row.shape[0])) # reorganize into row
             grid_rows.append(new_row)

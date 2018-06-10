@@ -1,4 +1,4 @@
-
+from typing import Iterable
 
 class RowAddMixin:
 
@@ -6,36 +6,22 @@ class RowAddMixin:
 
         klass = self._add_class(other)
 
-        if hasattr(self, 'value') and hasattr(other, 'value'):
-            return klass([self.value, other.value])
-        elif hasattr(self, 'values') and hasattr(other, 'value'):
-            return klass(self.values + [other.value])
-        elif hasattr(self, 'values') and hasattr(other, 'values'):
-            return klass(self.values + other.values)
-        elif hasattr(self, 'value') and hasattr(other, 'values'):
-            return klass([self.value] + other.values)
-        elif hasattr(self, 'value'):
-            return klass([self.value, other])
-        elif hasattr(self, 'values'):
-            return klass(self.values + [other])
-        return klass([self, other])
+        if hasattr(self, 'value'):
+            return _add_to_value(self.value, other, klass)
+        if hasattr(self, 'values'):
+            return _add_to_values(self.values, other, klass)
+        else:
+            raise NotImplementedError
 
     def __radd__(self, other):
         klass = self._add_class(other)
 
-        if hasattr(self, 'value') and hasattr(other, 'value'):
-            return klass([other.value, self.value])
-        elif hasattr(self, 'values') and hasattr(other, 'value'):
-            return klass([other.value] + self.values)
-        elif hasattr(self, 'values') and hasattr(other, 'values'):
-            return klass(other.values + self.values)
-        elif hasattr(self, 'value') and hasattr(other, 'values'):
-            return klass(other.values + [self.value])
-        elif hasattr(self, 'value'):
-            return klass([other, self.value])
-        elif hasattr(self, 'values'):
-            return klass([other] + self.values)
-        return klass([self, other])
+        if hasattr(self, 'value'):
+            return _radd_to_value(self, other, klass)
+        if hasattr(self, 'values'):
+            return _radd_to_values(self, other, klass)
+        else:
+            raise NotImplementedError
 
     def _add_class(self, other):
         from dero.latex.table.models.table.row import Row
@@ -46,3 +32,53 @@ class RowAddMixin:
         klass = self_class if self_class == other_class else Row
 
         return klass
+
+def _add_to_value(value, other, klass):
+    # handle named classes which have value or values attr
+    if hasattr(other, 'value'):
+        return klass([value, other.value])
+    if hasattr(other, 'values'):
+        return klass([value] + other.values)
+
+    # handle builtin classes.
+    # add lists, tuples, etc
+    if isinstance(other, Iterable):
+        return klass([value] + list(other))
+    # treat as single item, create list out of the two items
+    else:
+        return klass([value, other])
+
+
+def _add_to_values(values, other, klass):
+    # handle named classes which have value or values attr
+    if hasattr(other, 'value'):
+        return klass(values + [other.value])
+    if hasattr(other, 'values'):
+        return klass(values + other.values)
+
+    # handle builtin classes.
+    # add lists, tuples, etc
+    if isinstance(other, Iterable):
+        return klass(values + list(other))
+    # treat as single item, append to existing list
+    else:
+        return klass(values + [other])
+
+def _radd_to_value(value, other, klass):
+    # handle builtin classes.
+    # add lists, tuples, etc
+    if isinstance(other, Iterable):
+        return klass(list(other) + [value])
+    # treat as single item, create list out of the two items
+    else:
+        return klass([other, value])
+
+
+def _radd_to_values(values, other, klass):
+    # handle builtin classes.
+    # add lists, tuples, etc
+    if isinstance(other, Iterable):
+        return klass(list(other) + values)
+    # treat as single item, append to existing list
+    else:
+        return klass([other] + values)

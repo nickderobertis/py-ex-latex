@@ -4,6 +4,7 @@ from dero.latex.table.models.data.dataitem import DataItem
 from dero.latex.table.models.table.section import TableSection
 
 
+
 class ValuesTable(TableSection):
 
     def __init__(self, rows: [DataRow]):
@@ -25,6 +26,19 @@ class ValuesTable(TableSection):
             )
 
         return cls(data_rows)
+
+    def __add__(self, other):
+        # import here to avoid circular imports
+        from dero.latex.table.models.spacing.columntable import ColumnPadTable
+
+        table_section: TableSection = super().__add__(other)
+
+        # if just adding padding, retain class rather than drop to general base TableSection
+        if isinstance(other, ColumnPadTable):
+            return ValuesTable(table_section.rows)
+        else:
+            return table_section
+
 
 
     def __repr__(self):

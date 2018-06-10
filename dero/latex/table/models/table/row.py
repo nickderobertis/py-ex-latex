@@ -13,13 +13,28 @@ class Row(ReprMixin, RowAddMixin):
     repr_cols = ['values']
 
     def __init__(self, values: Union[Iterable[DataItem], LabelCollection]):
-        self.values = values
+
+        # Don't allow nested rows. If the only values passed to a Row are a Row, then use the values of that
+        # row rather than the row itself as values
+        if isinstance(values, Row):
+            self.values = values.values
+        else:
+            self.values = values
 
     def __len__(self):
         return len(self.values)
 
     def __str__(self):
-        return ' & '.join(str(value) if value != [] else ' ' for value in self.values)
+        str_list = []
+        for value in self.values:
+            # Handle other forms of blanks
+            if isinstance(value, Iterable) and len(value) == 1 and str(value[0]).strip() == '':
+                str_list.append(' ')
+            # The usual case, just join string representation of items
+            else:
+                str_list.append(str(value))
+
+        return ' & '.join(str_list)
 
     def __iter__(self):
         for value in self.values:

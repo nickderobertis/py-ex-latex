@@ -1,18 +1,13 @@
-
+from copy import deepcopy
 
 from dero.latex.table.models.spacing.cell import CellSpacer
-from dero.latex.table.models.data.row import DataRow
+from dero.latex.table.models.table.section import TableSection
 from dero.latex.table.models.data.valuestable import ValuesTable
 
 class ColumnPadTable(ValuesTable):
 
-    def __init__(self, num_rows: int = 1):
-        rows = ColumnPadTable._create_data_rows(num_rows)
-        super().__init__(rows)
-
-    @staticmethod
-    def _create_data_rows(num_rows: int):
-        return [DataRow([CellSpacer()]) for i in range(num_rows)]
+    def __init__(self):
+        super().__init__([])
 
     @property
     def num_columns(self):
@@ -20,6 +15,18 @@ class ColumnPadTable(ValuesTable):
 
     def __repr__(self):
         return f'<ColumnPadTable({len(self.rows)})>'
+
+    def __add__(self, other):
+
+        if not isinstance(other, TableSection):
+            raise NotImplementedError
+
+        out_section: TableSection = deepcopy(other)
+
+        for row in out_section.rows:
+            row.pad(other.num_columns + 1, direction='left')
+
+        return out_section
 
 
 

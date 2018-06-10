@@ -19,6 +19,9 @@ class TableSection(ReprMixin):
         return self.rows[item]
 
     def __add__(self, other):
+        # import here to avoid circular imports
+        from dero.latex.table.models.spacing.columntable import ColumnPadTable
+
         num_rows = max([len(self.rows), len(other.rows)])
 
         out_rows = []
@@ -30,10 +33,14 @@ class TableSection(ReprMixin):
             except IndexError:
                 # expected to hit here when sections have different numbers of rows
                 out_row.pad(self.num_columns, direction='left')
-            try:
-                out_row += other[row_num]
-            except IndexError:
-                out_row.pad(other.num_columns + self.num_columns, direction='right')
+            # Special handling for ColumnPadTable. Ignore rows, just always pad right by one cell
+            if isinstance(other, ColumnPadTable):
+                out_row.pad(self.num_columns + 1, direction='right')
+            else:
+                try:
+                    out_row += other[row_num]
+                except IndexError:
+                    out_row.pad(other.num_columns + self.num_columns, direction='right')
 
             out_rows.append(out_row)
 

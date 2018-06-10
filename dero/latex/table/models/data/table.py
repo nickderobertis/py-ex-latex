@@ -2,8 +2,7 @@ import pandas as pd
 
 from dero.latex.table.models.data.valuestable import ValuesTable
 from dero.latex.table.models.table.section import TableSection
-from dero.latex.table.models.data.row import DataRow
-from dero.latex.table.models.labels.row import LabelRow
+from dero.latex.table.models.spacing.columntable import ColumnPadTable, CellSpacer
 from dero.latex.table.models.labels.table import LabelTable
 from dero.latex.table.models.labels.label import Label
 from dero.latex.models.mixins import ReprMixin
@@ -18,7 +17,7 @@ class DataTable(TableSection, ReprMixin):
         self.column_labels = column_labels
         self.row_labels = row_labels
         self.top_left_corner_label = top_left_corner_label \
-            if top_left_corner_label is not None else Label(' ')
+            if top_left_corner_label is not None else CellSpacer()
         self.should_add_top_left = (column_labels is not None) and (row_labels is not None)
 
     def __add__(self, other):
@@ -26,26 +25,12 @@ class DataTable(TableSection, ReprMixin):
             values_table = self.values_table + other.values_table
             column_labels = _add_if_not_none(self.column_labels, other.column_labels)
             row_labels = _add_if_not_none(self.row_labels, other.row_labels)
+        elif isinstance(other, ColumnPadTable):
+            values_table = self.values_table + other
+            column_labels = self.column_labels + other
+            row_labels = self.row_labels
         elif isinstance(other, TableSection):
             values_table = self.values_table + other
-            column_labels = self.column_labels
-            row_labels = self.row_labels
-        else:
-            raise ValueError(f'must add DataTable or TableSection to type {type(self)}. Got type {type(other)}')
-
-        return DataTable(
-            values_table=values_table,
-            column_labels=column_labels,
-            row_labels=row_labels
-        )
-
-    def __radd__(self, other):
-        if isinstance(other, DataTable):
-            values_table = other.values_table + self.values_table
-            column_labels = _add_if_not_none(other.column_labels, self.column_labels)
-            row_labels = _add_if_not_none(other.row_labels, self.row_labels)
-        elif isinstance(other, TableSection):
-            values_table = other + self.values_table
             column_labels = self.column_labels
             row_labels = self.row_labels
         else:
@@ -78,7 +63,7 @@ class DataTable(TableSection, ReprMixin):
                         out_row = self.top_left_corner_label + row
                     # other label rows, blank top left label
                     else:
-                        out_row = Label(' ') + row
+                        out_row = CellSpacer() + row
                 # without top left, no need for additional processing, add to output
                 else:
                     out_row = row

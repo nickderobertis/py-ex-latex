@@ -14,6 +14,24 @@ class LabelTable(TableSection, ReprMixin):
     def __init__(self, label_collections: [LabelCollection]):
         self.label_collections = label_collections
 
+    def __add__(self, other):
+        # Import here to avoid circular imports
+        from dero.latex.table.models.data.table import DataTable
+
+        # Return a DataTable if just adding labels to an existing DataTable
+        if isinstance(other, DataTable) and not other.row_labels:
+            values_table = other.values_table
+            column_labels = other.column_labels
+            row_labels = self
+
+            return DataTable(
+                values_table=values_table,
+                column_labels=column_labels,
+                row_labels=row_labels
+            )
+        else:
+            return super().__add__(other)
+
     def __iter__(self):
         for collection in self.label_collections:
             yield collection
