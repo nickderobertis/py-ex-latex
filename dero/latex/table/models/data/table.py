@@ -51,6 +51,35 @@ class DataTable(TableSection, ReprMixin):
 
         return self._rows
 
+    # Following properties/setters exist to recreate rows if user overrides values table or labels
+
+    @property
+    def column_labels(self):
+        return self._column_labels
+
+    @column_labels.setter
+    def column_labels(self, labels: LabelTable):
+        self._column_labels = labels
+        self._recreate_rows_if_created()
+
+    @property
+    def row_labels(self):
+        return self._row_labels
+
+    @row_labels.setter
+    def row_labels(self, labels: LabelTable):
+        self._row_labels = labels
+        self._recreate_rows_if_created()
+
+    @property
+    def values_table(self):
+        return self._values_table
+
+    @values_table.setter
+    def values_table(self, table: ValuesTable):
+        self._values_table = table
+        self._recreate_rows_if_created()
+
     def _create_rows(self):
 
         rows = []

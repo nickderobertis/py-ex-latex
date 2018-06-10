@@ -129,3 +129,18 @@ class TableSection(ReprMixin):
     @property
     def is_spacer(self):
         return all([row.is_spacer for row in self.rows])
+
+
+    def _recreate_rows_if_created(self):
+        """
+        Used for recreating rows after labels or value table have been modified.
+        Don't want to create rows if they've never been created before (initialization)
+        :return:
+        """
+        # run creation process again
+        if hasattr(self, '_rows'):
+            self._rows = self._create_rows()
+        # else, do nothing
+
+    def _create_rows(self):
+        raise NotImplementedError

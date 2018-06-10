@@ -59,6 +59,17 @@ class LabelTable(TableSection, ReprMixin):
 
         return rows
 
+    # Following property/setter exist to recreate rows if user overrides labels
+
+    @property
+    def label_collections(self):
+        return self._label_collections
+
+    @label_collections.setter
+    def label_collections(self, label_collections: [LabelCollection]):
+        self._label_collections = label_collections
+        self._recreate_rows_if_created()
+
     @classmethod
     def from_list_of_lists(cls, list_of_lists: [[str]]):
         label_collections = []
