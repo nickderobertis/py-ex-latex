@@ -24,5 +24,5 @@ class ReprMixin:
         return f'<{type(self).__name__}{repr_col_str}>'
 
     @property
-    def contents(self):
+    def readable_repr(self):
         return show_contents(self)
