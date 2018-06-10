@@ -6,22 +6,12 @@ class RowAddMixin:
 
         klass = self._add_class(other)
 
-        if hasattr(self, 'value'):
-            return _add_to_value(self.value, other, klass)
-        if hasattr(self, 'values'):
-            return _add_to_values(self.values, other, klass)
-        else:
-            raise NotImplementedError
+        return _add_to_value_or_values(self, other, klass)
 
     def __radd__(self, other):
         klass = self._add_class(other)
 
-        if hasattr(self, 'value'):
-            return _radd_to_value(self.value, other, klass)
-        if hasattr(self, 'values'):
-            return _radd_to_values(self.values, other, klass)
-        else:
-            raise NotImplementedError
+        return _radd_to_value_or_values(self, other, klass)
 
     def _add_class(self, other):
         from dero.latex.table.models.table.row import Row
@@ -32,6 +22,22 @@ class RowAddMixin:
         klass = self_class if self_class == other_class else Row
 
         return klass
+
+def _add_to_value_or_values(obj, other, klass):
+    if hasattr(obj, 'value'):
+        return _add_to_value(obj, other, klass)
+    if hasattr(obj, 'values'):
+        return _add_to_values(obj.values, other, klass)
+    else:
+        raise NotImplementedError
+
+def _radd_to_value_or_values(obj, other, klass):
+    if hasattr(obj, 'value'):
+        return _radd_to_value(obj, other, klass)
+    if hasattr(obj, 'values'):
+        return _radd_to_values(obj.values, other, klass)
+    else:
+        raise NotImplementedError
 
 def _add_to_value(value, other, klass):
     # handle named classes which have value or values attr
