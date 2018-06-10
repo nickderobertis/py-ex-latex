@@ -3,7 +3,7 @@ import pandas as pd
 from dero.latex.table.models.data.valuestable import ValuesTable
 from dero.latex.table.models.table.section import TableSection
 from dero.latex.table.models.spacing.columntable import ColumnPadTable, CellSpacer
-from dero.latex.table.models.labels.table import LabelTable
+from dero.latex.table.models.labels.table import LabelTable, LabelCollection
 from dero.latex.table.models.labels.label import Label
 from dero.latex.models.mixins import ReprMixin
 
@@ -122,7 +122,9 @@ class DataTable(TableSection, ReprMixin):
         return rows
 
     @classmethod
-    def from_df(cls, df: pd.DataFrame, include_columns=True, include_index=False, *args, **kwargs):
+    def from_df(cls, df: pd.DataFrame, include_columns=True, include_index=False,
+                extra_header: str=None,
+                *args, **kwargs):
         values_table = ValuesTable.from_df(df)
 
         if include_columns:
@@ -135,13 +137,25 @@ class DataTable(TableSection, ReprMixin):
         else:
             row_label_table = None
 
-        return cls(
+        dt = cls(
             values_table,
             column_labels=column_label_table,
             row_labels=row_label_table,
             *args,
             **kwargs,
         )
+
+        if extra_header is not None:
+            header = LabelCollection.from_str_list([extra_header])
+            if include_columns:
+                # add to existing
+                dt.column_labels.label_collections.insert(0, header)
+            else:
+                # create column labels as extra header
+                dt.column_labels = LabelTable([header])
+
+        return dt
+
 
 def _add_if_not_none(*items):
     not_none_items = [item for item in items if item is not None]

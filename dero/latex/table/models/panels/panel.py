@@ -16,6 +16,19 @@ class Panel(ReprMixin):
         self.name = name
 
     @classmethod
+    def from_data_tables(cls, data_table_list: [DataTable], shape: tuple=None, name: str=None):
+        """
+
+        :param data_table_list: list of dero.latex.table.DataTable
+        :param shape: tuple of (rows, columns) to arrange DataTables. They will be placed from left to right,
+                      then from top to bottom.
+                      passsing None defaults one column, as many rows as DataTables
+        :param name: name to be displayed with panel
+        :return:
+        """
+        return cls(PanelGrid(data_table_list, shape=shape), name=name)
+
+    @classmethod
     def from_df(cls, df: pd.DataFrame, include_columns=True, include_index=False, name: str=None):
         data_table = DataTable.from_df(
             df,
@@ -23,7 +36,7 @@ class Panel(ReprMixin):
             include_index=include_index
         )
 
-        return cls(PanelGrid([data_table]), name=name)
+        return cls.from_data_tables([data_table], name=name)
 
     @classmethod
     def from_df_list(cls, df_list: [pd.DataFrame], shape: tuple=None, name: str=None, include_columns=True, include_index=False):
@@ -47,7 +60,7 @@ class Panel(ReprMixin):
             for df in df_list
         ]
 
-        return cls(PanelGrid(data_table_list, shape=shape), name=name)
+        return cls.from_data_tables(data_table_list, shape=shape, name=name)
 
     @property
     def rows(self):
