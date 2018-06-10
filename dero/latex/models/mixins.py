@@ -1,3 +1,4 @@
+from dero.latex.logic.tools import show_contents
 
 class StringAdditionMixin:
 
@@ -21,3 +22,7 @@ class ReprMixin:
         else:
             repr_col_str = ''
         return f'<{type(self).__name__}{repr_col_str}>'
+
+    @property
+    def contents(self):
+        return show_contents(self)
