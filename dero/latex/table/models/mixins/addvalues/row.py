@@ -25,7 +25,7 @@ class RowAddMixin:
 
 def _add_to_value_or_values(obj, other, klass):
     if hasattr(obj, 'value'):
-        return _add_to_value(obj.value, other, klass)
+        return _add_to_value(obj, other, klass)
     if hasattr(obj, 'values'):
         return _add_to_values(obj.values, other, klass)
     else:
@@ -33,7 +33,7 @@ def _add_to_value_or_values(obj, other, klass):
 
 def _radd_to_value_or_values(obj, other, klass):
     if hasattr(obj, 'value'):
-        return _radd_to_value(obj.value, other, klass)
+        return _radd_to_value(obj, other, klass)
     if hasattr(obj, 'values'):
         return _radd_to_values(obj.values, other, klass)
     else:
