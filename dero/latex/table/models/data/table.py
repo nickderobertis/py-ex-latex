@@ -22,9 +22,21 @@ class DataTable(TableSection, ReprMixin):
 
     def __add__(self, other):
         if isinstance(other, DataTable):
-            values_table = self.values_table + other.values_table
-            column_labels = _add_if_not_none(self.column_labels, other.column_labels)
-            row_labels = _add_if_not_none(self.row_labels, other.row_labels)
+            if self.row_labels.matches(other.row_labels):
+                # if right table has same row labels, eliminate right row labels. Just add valyes
+                values_table = self.values_table + other.values_table
+                column_labels = _add_if_not_none(self.column_labels, other.column_labels)
+            else:
+                # if right table has unique row labels, absorb them into middle of values table
+                values_table = self.values_table + ValuesTable(other.row_labels.rows) + other.values_table
+                column_labels = _add_if_not_none(
+                    self.column_labels,
+                    # add padding in column headers to keep alignment
+                    *[CellSpacer() for i in range(other.row_labels.num_columns)],
+                    other.column_labels
+                )
+
+            row_labels = self.row_labels
         elif isinstance(other, ColumnPadTable):
             values_table = self.values_table + other
             column_labels = self.column_labels + other
@@ -131,9 +143,6 @@ class DataTable(TableSection, ReprMixin):
             **kwargs,
         )
 
-def _add_if_not_none(first, second):
-    if first is None:
-        return second
-    if second is None:
-        return first
-    return first + second
+def _add_if_not_none(*items):
+    not_none_items = [item for item in items if item is not None]
+    return sum(not_none_items[1:], not_none_items[0])

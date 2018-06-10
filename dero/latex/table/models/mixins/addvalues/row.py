@@ -17,9 +17,9 @@ class RowAddMixin:
         klass = self._add_class(other)
 
         if hasattr(self, 'value'):
-            return _radd_to_value(self, other, klass)
+            return _radd_to_value(self.value, other, klass)
         if hasattr(self, 'values'):
-            return _radd_to_values(self, other, klass)
+            return _radd_to_values(self.values, other, klass)
         else:
             raise NotImplementedError
 

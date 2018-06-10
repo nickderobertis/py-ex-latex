@@ -1,5 +1,6 @@
 from pandas.core.indexes.base import Index as PandasIndex
 from itertools import zip_longest
+import warnings
 
 from dero.latex.logic.tools import _max_len_or_zero
 from dero.latex.models.mixins import ReprMixin
@@ -96,5 +97,20 @@ class LabelTable(TableSection, ReprMixin):
     @property
     def T(self):
         return LabelTable(list(map(LabelCollection, zip_longest(*self.label_collections))))
+
+    def matches(self, other):
+        if not isinstance(other, LabelTable):
+            warnings.warn(f'LabelTable.matches() called on type {type(other)}. Will always return False')
+            return False
+
+        max_rows = max(len(self.label_collections), len(other.label_collections))
+
+        # Go through all label collections, calling LabelCollection.matches, and returning False if any don't match
+        for n_row in range(max_rows):
+            if not self.label_collections[n_row].matches(other.label_collections[n_row]):
+                return False
+
+        # made it through loop, so all were matching
+        return True
 
 
