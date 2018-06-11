@@ -1,6 +1,6 @@
 from dero.latex.models import Environment
 from dero.latex.models.mixins import StringAdditionMixin
-from dero.latex.texgen import _basic_item_str
+from dero.latex.texgen import _basic_item_str, _multi_option_item_str
 
 class Item(StringAdditionMixin):
 
@@ -32,3 +32,15 @@ class SimpleItem(StringAdditionMixin):
 
     def __str__(self):
         return _basic_item_str(self.name, self.contents)
+
+class MultiOptionSimpleItem(StringAdditionMixin):
+
+    def __init__(self, name, *options):
+        self.name = name
+        self.options = options
+
+    def __repr__(self):
+        return f'<{self.name.title()}({self.options})>'
+
+    def __str__(self):
+        return _multi_option_item_str(self.name, *self.options)

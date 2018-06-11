@@ -1,0 +1,1 @@
+from dero.latex.table.logic.pdf import output_panel_collection_to_tex

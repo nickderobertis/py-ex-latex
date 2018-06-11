@@ -1,0 +1,54 @@
+from typing import Union
+
+from dero.latex.table.models.panels.collection import PanelCollection
+from dero.latex.table.models.table.row import Row
+from dero.latex.table.models.texgen.lines import TopRule, MidRule, BottomRule, TableLine
+from dero.latex.table.models.texgen.breaks import TableRowBreak, LineBreak
+
+def build_tabular_content_from_panel_collection(panel_collection: PanelCollection, mid_rule=True):
+    rows: [Row, TableLine] = _build_tabular_rows_from_panel_collection(
+        panel_collection=panel_collection,
+        mid_rule=mid_rule
+    )
+
+    content: str = _build_tabular_str_from_rows_and_lines(rows)
+
+    return content
+
+
+
+def _build_tabular_rows_from_panel_collection(panel_collection: PanelCollection, mid_rule=True):
+    rows: [Row, TableLine] = [TopRule()]
+    panels = list(panel_collection.iterpanels())
+    for i, panel in enumerate(panels):
+        rows += panel.rows
+        # add mid rule when:
+        # boolean is turned on,
+        # not the last loop,
+        # and panel is not made entirely of spacers,
+        # and next panel is not made entirely of spacers
+        if mid_rule and i != len(panels) - 1 and not panel.is_spacer and not panels[i + 1].is_spacer:
+            rows.append(MidRule())
+
+    rows.append(BottomRule())
+    return rows
+
+
+def _build_tabular_str_from_rows_and_lines(rows_and_lines: [Row, TableLine], break_size_adjustment: str=None):
+    output_str = ''
+    for i, row_or_line in enumerate(rows_and_lines):
+        end = _get_break_by_type_of_instance(row_or_line, break_size_adjustment=break_size_adjustment)
+        output_str += f'{row_or_line}{end}'
+    return output_str
+
+
+def _get_break_by_type_of_instance(row_or_line: Union[Row, TableLine], break_size_adjustment: str=None):
+    table_row_break = TableRowBreak(break_size_adjustment)
+    line_break = LineBreak()
+    if isinstance(row_or_line, TableLine):
+        end = line_break
+    elif isinstance(row_or_line, Row):
+        end = table_row_break
+
+    return end
+
