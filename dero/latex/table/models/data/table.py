@@ -1,5 +1,6 @@
 import pandas as pd
 from typing import Union
+from copy import deepcopy
 
 from dero.latex.table.models.data.valuestable import ValuesTable
 from dero.latex.table.models.table.section import TableSection
@@ -114,7 +115,8 @@ class DataTable(TableSection, ReprMixin):
                         out_row = self.top_left_corner_label + row
                     # other label rows, blank top left label
                     else:
-                        out_row = CellSpacer() + row
+                        out_row = deepcopy(row)
+                        out_row.pad(self.row_labels.num_columns + self.values_table.num_columns, direction='left')
                 # without top left, no need for additional processing, add to output
                 else:
                     out_row = row
@@ -133,7 +135,7 @@ class DataTable(TableSection, ReprMixin):
 
     @classmethod
     def from_df(cls, df: pd.DataFrame, include_columns=True, include_index=False,
-                extra_header: str=None,
+                extra_header: str=None, extra_header_underline=True,
                 *args, **kwargs):
         values_table = ValuesTable.from_df(df)
 
@@ -156,9 +158,16 @@ class DataTable(TableSection, ReprMixin):
         )
 
         if extra_header is not None:
+
+            # set underline
+            if extra_header_underline:
+                underline = 0 # place an underline under the singular label
+            else:
+                underline = None # no underline
+
             # create multicolumn label
             label = Label(extra_header, span=values_table.num_columns)
-            header = LabelCollection([label])
+            header = LabelCollection([label], underline=underline)
             if include_columns:
                 # add to existing
                 dt.column_labels.label_collections.insert(0, header)

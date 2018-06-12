@@ -2,7 +2,7 @@ from typing import Union
 
 from dero.latex.table.models.panels.collection import PanelCollection
 from dero.latex.table.models.table.row import Row
-from dero.latex.table.models.texgen.lines import TopRule, MidRule, BottomRule, TableLine
+from dero.latex.table.models.texgen.lines import TopRule, MidRule, BottomRule, TableLine, TableLineSegment
 from dero.latex.table.models.texgen.breaks import TableRowBreak, LineBreak
 
 def build_tabular_content_from_panel_collection(panel_collection: PanelCollection, mid_rule=True):
@@ -49,6 +49,8 @@ def _get_break_by_type_of_instance(row_or_line: Union[Row, TableLine], break_siz
         end = line_break
     elif isinstance(row_or_line, Row):
         end = table_row_break
+    else:
+        raise NotImplementedError(f'could not determine type of break for row or line type {type(row_or_line)}')
 
     return end
 

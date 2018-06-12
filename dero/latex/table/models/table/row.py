@@ -22,17 +22,13 @@ class Row(ReprMixin, RowAddMixin):
             self.values = values
 
     def __len__(self):
-        length = 0
-        for value in self.values:
-            if isinstance(value, (Label, LabelCollection, DataItem)):
-                length += len(value)
-            else:
-                length += 1
-        return length
+        return sum(_get_length(value) for value in self.values)
 
     def __str__(self):
         str_list = []
+        position = 0
         for value in self.values:
+            position += _get_length(value)
             # Handle other forms of blanks
             if isinstance(value, Iterable) and len(value) == 1 and str(value[0]).strip() == '':
                 str_list.append(' ')
@@ -86,3 +82,10 @@ class Row(ReprMixin, RowAddMixin):
                 raise ValueError(f'cannot check whether {item} of type {type(item)} is a spacer or not')
             booleans.append(result)
         return all(booleans)
+
+def _get_length(obj):
+    from dero.latex.table.models.texgen.lines import TableLineOfSegments, TableLineSegment
+    if isinstance(obj, (Label, LabelCollection, DataItem, TableLineOfSegments, TableLineSegment)):
+        return len(obj)
+    else:
+        return 1

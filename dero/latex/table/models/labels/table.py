@@ -7,6 +7,7 @@ from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.labels.collection import LabelCollection
 from dero.latex.table.models.labels.row import LabelRow
 from dero.latex.table.models.table.section import TableSection
+from dero.latex.table.models.texgen.lines import TableLineSegment, TableLineOfSegments
 
 
 class LabelTable(TableSection, ReprMixin):
@@ -38,7 +39,7 @@ class LabelTable(TableSection, ReprMixin):
             yield collection
 
     def __getitem__(self, item):
-        return self.label_collections[item]
+        return self.rows[item]
 
     @property
     def rows(self):
@@ -53,10 +54,15 @@ class LabelTable(TableSection, ReprMixin):
         len_rows = _max_len_or_zero(self.label_collections)
 
         rows = []
+        label_collection: LabelCollection
         for label_collection in self.label_collections:
             rows.append(
-                LabelRow(label_collection, length=len_rows)
+                LabelRow(label_collection)
             )
+            if label_collection.underlines is not None:
+                rows.append(
+                    TableLineOfSegments.from_list_of_ints(label_collection.underlines, num_columns=len(label_collection))
+                )
 
         return rows
 

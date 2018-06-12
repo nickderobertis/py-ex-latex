@@ -16,6 +16,9 @@ def _multi_option_item_str(item_name, *options):
     options_str = ''.join([f'{{{general_latex_replacements(str(option))}}}' for option in options])
     return rf'\{item_name}{options_str}'
 
+def _cmidrule_str(align, col_str):
+    return _multi_option_item_str(rf'cmidrule({align})', col_str)
+
 def _centering_str():
     return r'\centering'
 
