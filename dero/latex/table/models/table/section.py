@@ -4,7 +4,6 @@ from dero.latex.table.models.table.row import Row
 from dero.latex.logic.tools import _max_len_or_zero
 from dero.latex.models.mixins import ReprMixin
 
-
 class TableSection(ReprMixin):
     repr_cols = ['rows']
 
@@ -18,11 +17,15 @@ class TableSection(ReprMixin):
     def __getitem__(self, item):
         return self.rows[item]
 
+    @property
+    def length(self):
+        return len(self.rows)
+
     def __add__(self, other):
         # import here to avoid circular imports
         from dero.latex.table.models.spacing.columntable import ColumnPadTable
 
-        num_rows = max([len(self.rows), len(other.rows)])
+        num_rows = max([self.length, other.length])
 
         out_rows = []
 
@@ -50,7 +53,7 @@ class TableSection(ReprMixin):
         return klass(out_rows)
 
     def __radd__(self, other):
-        num_rows = max([len(self.rows), len(other.rows)])
+        num_rows = max([self.length, other.length])
 
         out_rows = []
 
@@ -149,8 +152,15 @@ class TableSection(ReprMixin):
 
 def _get_class_for_row(*objs, row_number: int=0):
     from dero.latex.table.models.texgen.lines import TableLineOfSegments
+    from dero.latex.table.models.labels.row import LabelRow, LabelCollection
 
     suggested_class = _get_by_row_number_first_class_without_index_error(*objs, row_number=row_number)
+
+    # this is one row class that should not be created unless explicitly calling the rows method of LabelTable.
+    # this is because LabelCollections contain underlines, which are created separately from LabelRows in the
+    # _create_rows method of LabelTable. If adding a collection to a row, will lose the underline
+    if issubclass(suggested_class, LabelRow):
+        return LabelCollection
 
     # already got a row class, just return it
     if issubclass(suggested_class, (Row, TableLineOfSegments)):
@@ -171,7 +181,7 @@ def _get_row_class_for_item_class(klass):
     if issubclass(klass, DataItem):
         return DataRow
     if issubclass(klass, (Label, LabelCollection)):
-        return LabelRow
+        return LabelCollection
     else:
         raise NotImplementedError(f'could not determine row class for item class {klass}')
 

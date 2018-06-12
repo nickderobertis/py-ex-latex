@@ -1,11 +1,10 @@
 import numpy as np
 import pandas as pd
-pd.Index
+from typing import Union
 
 from dero.latex.table.models.panels.panel import Panel
 from dero.latex.table.models.panels.panel import PanelGrid, GridShape
-from dero.latex.table.models.labels.table import LabelTable
-from dero.latex.table.models.data.valuestable import ValuesTable
+from dero.latex.table.models.labels.table import LabelTable, LabelCollection
 from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.table.section import TableSection
 from dero.latex.table.logic.panels.combine import (
@@ -37,8 +36,7 @@ class PanelCollection(ReprMixin):
         self.panels = panels
         self.label_consolidation = label_consolidation.lower().strip() \
             if isinstance(label_consolidation, str) else label_consolidation
-        self.top_left_corner_labels = top_left_corner_labels \
-            if top_left_corner_labels is not None else LabelTable.from_list_of_lists([[' ']])
+        self.top_left_corner_labels = _set_top_left_corner_labels(top_left_corner_labels)
         self.pad_rows = pad_rows
         self.pad_columns = pad_columns
 
@@ -253,6 +251,19 @@ class PanelCollection(ReprMixin):
         )
 
 
+def _set_top_left_corner_labels(top_left_corner_labels: Union[LabelTable, LabelCollection, list, str] = None):
+    if top_left_corner_labels is None:
+        return LabelTable.from_list_of_lists([[' ']])
 
+    if isinstance(top_left_corner_labels, LabelTable):
+        return top_left_corner_labels
+    elif isinstance(top_left_corner_labels, LabelCollection):
+        return LabelTable([top_left_corner_labels])
+    elif isinstance(top_left_corner_labels, list):
+        return LabelTable.from_list_of_lists([top_left_corner_labels]).T
+    elif isinstance(top_left_corner_labels, str):
+        return LabelTable.from_list_of_lists([[top_left_corner_labels]])
+    else:
+        raise NotImplementedError(f'was not able to create LabelTable out of {top_left_corner_labels}')
 
 

@@ -19,6 +19,7 @@ class LabelTable(TableSection, ReprMixin):
     def __add__(self, other):
         # Import here to avoid circular imports
         from dero.latex.table.models.data.table import DataTable
+        from dero.latex.table.models.spacing.columntable import ColumnPadTable
 
         # Return a DataTable if just adding labels to an existing DataTable
         if isinstance(other, DataTable) and not other.row_labels:
@@ -31,6 +32,9 @@ class LabelTable(TableSection, ReprMixin):
                 column_labels=column_labels,
                 row_labels=row_labels
             )
+        if isinstance(other, ColumnPadTable):
+            self.pad(self.num_columns + 1)
+            return self
         else:
             return super().__add__(other)
 
@@ -39,7 +43,11 @@ class LabelTable(TableSection, ReprMixin):
             yield collection
 
     def __getitem__(self, item):
-        return self.rows[item]
+        return self.label_collections[item]
+
+    @property
+    def length(self):
+        return len(self.label_collections)
 
     @property
     def rows(self):
@@ -119,4 +127,11 @@ class LabelTable(TableSection, ReprMixin):
         # made it through loop, so all were matching
         return True
 
-
+    def pad(self, length: int, direction='right'):
+        """
+        Expand table out to the right or left with blanks, until it is length passed (apply to every row)
+        :param length:
+        :param direction:
+        :return:
+        """
+        [collection.pad(length=length, direction=direction) for collection in self.label_collections]

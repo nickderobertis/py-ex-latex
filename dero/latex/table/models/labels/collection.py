@@ -1,12 +1,14 @@
 from typing import Union
 import re
+from copy import deepcopy
 
+from dero.latex.logic.tools import _add_if_not_none
 from dero.latex.table.models.labels.label import Label
-from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
+from dero.latex.table.models.table.rowbase import RowBase
 
 
-class LabelCollection(RowAddMixin, ReprMixin):
+class LabelCollection(RowBase):
     repr_cols = ['values', 'underlines']
 
     def __init__(self, values: [Label], underline: Union[int, str]=None):
@@ -23,18 +25,8 @@ class LabelCollection(RowAddMixin, ReprMixin):
         underline_label_indices = _convert_underline_to_label_index_list(underline)
         self.underlines = self._convert_label_indices_to_column_indices(underline_label_indices)
 
-    def __iter__(self):
-        for label in self.values:
-            yield label
-
-    def __getitem__(self, item):
-        return self.values[item]
-
     def __str__(self):
         return str(sum(self.values))
-
-    def __len__(self):
-        return sum(_get_item_length(value) for value in self.values)
 
     def matches(self, other):
         """
@@ -43,8 +35,16 @@ class LabelCollection(RowAddMixin, ReprMixin):
         :param other:
         :return:
         """
-        matches = [value == other[i] for i, value in enumerate(self)]
-        return all(matches)
+        for i, value in enumerate(self):
+            try:
+                other[i]
+            except IndexError:
+                return False # any one misalignment, no match
+            if value != other[i]:
+                return False
+
+        # same number of rows, all rows equal
+        return True
 
     @classmethod
     def from_str_list(cls, str_list):
@@ -66,6 +66,58 @@ class LabelCollection(RowAddMixin, ReprMixin):
 
         return column_indices
 
+    def shift_underlines(self, shift):
+        if self.underlines is None:
+            return
+        self.underlines = [u + shift for u in self.underlines]
+
+    def __add__(self, other):
+        # need to handle shifting of indices
+        if isinstance(other, LabelCollection):
+            to_add = deepcopy(other)
+            to_add.shift_underlines(len(self))
+        else:
+            to_add = other
+
+        result = super().__add__(to_add)
+
+        # carry through underlines with addition
+        if isinstance(result, LabelCollection):
+            underlines = _add_if_not_none(self.underlines, to_add.underlines)
+            result.underlines = underlines
+
+        return result
+
+    def __radd__(self, other):
+        # need to handle shifting of indices
+        to_add = deepcopy(self)
+        to_add.shift_underlines(len(self))
+
+        result = RowAddMixin.radd(to_add, other)
+
+        # carry through underlines with addition
+        if isinstance(result, LabelCollection):
+            if isinstance(other, LabelCollection):
+                underlines = _add_if_not_none(to_add.underlines, other.underlines)
+            else:
+                underlines = to_add.underlines
+            result.underlines = underlines
+
+        return result
+
+    def pad(self, length: int, direction='right'):
+        """
+        Expand row out to the right or left with blanks, until it is length passed
+        :param length:
+        :return:
+        """
+
+        # only necessary to move underline columns if padding left
+        if direction == 'left':
+            num_values_to_add = length - len(self)
+            self.shift_underlines(num_values_to_add)
+
+        super().pad(length=length, direction=direction)
 
 def _get_item_length(item):
     if isinstance(item, Label):

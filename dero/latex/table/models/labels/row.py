@@ -13,3 +13,9 @@ class LabelRow(Row):
     @property
     def length(self):
         return len(self)
+
+    def _add_class(self, other):
+        if isinstance(other, (LabelCollection, Label)):
+            return LabelRow
+        else:
+            return super()._add_class(other)

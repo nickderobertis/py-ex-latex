@@ -74,9 +74,11 @@ class Panel(ReprMixin):
     def _set_rows(self):
         rows: [Row] = []
         for grid_row in self.panel_grid:
-            panel_row = TableSection([]) # empty table section to start
-            for table_section in grid_row:
-                panel_row += table_section
+            for i, table_section in enumerate(grid_row):
+                if i == 0:
+                    panel_row = table_section
+                else:
+                    panel_row += table_section
             rows += panel_row.rows
         return rows
 

@@ -1,13 +1,15 @@
-import pandas as pd
-from typing import Union
 from copy import deepcopy
+from typing import Union
 
-from dero.latex.table.models.data.valuestable import ValuesTable
-from dero.latex.table.models.table.section import TableSection
-from dero.latex.table.models.spacing.columntable import ColumnPadTable, CellSpacer
-from dero.latex.table.models.labels.table import LabelTable, LabelCollection
-from dero.latex.table.models.labels.label import Label
+import pandas as pd
+
+from dero.latex.logic.tools import _add_if_not_none
 from dero.latex.models.mixins import ReprMixin
+from dero.latex.table.models.data.valuestable import ValuesTable
+from dero.latex.table.models.labels.label import Label
+from dero.latex.table.models.labels.table import LabelTable, LabelCollection
+from dero.latex.table.models.spacing.columntable import ColumnPadTable, CellSpacer
+from dero.latex.table.models.table.section import TableSection
 
 
 class DataTable(TableSection, ReprMixin):
@@ -33,13 +35,18 @@ class DataTable(TableSection, ReprMixin):
 
     def __add__(self, other):
         if isinstance(other, DataTable):
-            if self.row_labels.matches(other.row_labels) or other.row_labels is None:
+            row_labels_match = _determine_match(self.row_labels, other.row_labels)
+            if row_labels_match or other.row_labels is None:
                 # if right table has same or None row labels, eliminate right row labels. Just add values
-                values_table = self.values_table + other.values_table
+                values_table = _add_if_not_none(self.values_table, other.values_table)
                 column_labels = _add_if_not_none(self.column_labels, other.column_labels)
             else:
                 # if right table has unique row labels, absorb them into middle of values table
-                values_table = self.values_table + ValuesTable(other.row_labels.rows) + other.values_table
+                values_table = _add_if_not_none(
+                    self.values_table,
+                    ValuesTable(other.row_labels.rows),
+                    other.values_table
+                )
                 column_labels = _add_if_not_none(
                     self.column_labels,
                     other.top_left_corner_label,
@@ -48,11 +55,11 @@ class DataTable(TableSection, ReprMixin):
 
             row_labels = self.row_labels
         elif isinstance(other, ColumnPadTable):
-            values_table = self.values_table + other
-            column_labels = self.column_labels + other
+            values_table = self.values_table + other if self.values_table is not None else None
+            column_labels = self.column_labels + other if self.column_labels is not None else None
             row_labels = self.row_labels
         elif isinstance(other, TableSection):
-            values_table = self.values_table + other
+            values_table = _add_if_not_none(self.values_table, other)
             column_labels = self.column_labels
             row_labels = self.row_labels
         else:
@@ -177,7 +184,16 @@ class DataTable(TableSection, ReprMixin):
 
         return dt
 
+def _determine_match(labels1: LabelTable, labels2: LabelTable):
+    # handle equality for None
+    if labels1 is None:
+        if labels2 is None:
+            return True
+        else:
+            return False
+    elif labels2 is None:
+        # labels 1 must not be None here
+        return False
 
-def _add_if_not_none(*items):
-    not_none_items = [item for item in items if item is not None]
-    return sum(not_none_items[1:], not_none_items[0])
+    # here, both are not None
+    return labels1.matches(labels2)

@@ -112,6 +112,13 @@ class TableLineOfSegments(RowAddMixin, TableLine):
         line_of_segments.num_columns = self.num_columns + other.num_columns
         return line_of_segments
 
+    def __getitem__(self, item):
+        return self.values[item]
+
+    def __iter__(self):
+        for value in self.values:
+            yield value
+
     @property
     def num_columns(self):
         return self._num_columns
