@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from dero.latex.texgen import _toprule_str, _midrule_str, _bottomrule_str, _cmidrule_str
 from dero.latex.models.mixins import StringAdditionMixin, ReprMixin
 from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
@@ -69,6 +71,10 @@ class TableLineSegment(StringAdditionMixin, ReprMixin, RowAddMixin):
         else:
             return cls(int_list[0], int_list[-1])
 
+    @property
+    def is_spacer(self):
+        return True
+
 class TableLineOfSegments(RowAddMixin, TableLine):
     repr_cols = ['values', 'num_columns']
 
@@ -85,11 +91,12 @@ class TableLineOfSegments(RowAddMixin, TableLine):
     def __add__(self, other):
         # need to handle shifting of indices
         if isinstance(other, (TableLineOfSegments, TableLineSegment)):
-            other.shift(len(self))
+            to_add = deepcopy(other)
+            to_add.shift(len(self))
         else:
             raise NotImplementedError(f'cannot add type {type(other)} to TableLineOfSegments')
-        line_of_segments: TableLineOfSegments =  super().__add__(other)
-        line_of_segments.num_columns = self.num_columns + other.num_columns
+        line_of_segments: TableLineOfSegments =  super().__add__(to_add)
+        line_of_segments.num_columns = self.num_columns + to_add.num_columns
         return line_of_segments
 
     def __radd__(self, other):
@@ -99,8 +106,9 @@ class TableLineOfSegments(RowAddMixin, TableLine):
         except TypeError:
             raise NotImplementedError('cannot right add TableLineOfSegments without knowing how many columns to shift. '
                                       f'Could not calculate length of other. type of other: {type(other)}')
-        self.shift(shift)
-        line_of_segments: TableLineOfSegments =  super().__radd__(other)
+        to_add = deepcopy(self)
+        to_add.shift(shift)
+        line_of_segments: TableLineOfSegments = RowAddMixin.radd(to_add, other)
         line_of_segments.num_columns = self.num_columns + other.num_columns
         return line_of_segments
 
@@ -123,6 +131,10 @@ class TableLineOfSegments(RowAddMixin, TableLine):
         :param shift:
         :return:
         """
+        #### TEMP
+        # import pdb
+        # pdb.set_trace()
+        #### END TEMP
         [value.shift(shift) for value in self.values]
 
     def _add_class(self, other):
@@ -170,3 +182,7 @@ class TableLineOfSegments(RowAddMixin, TableLine):
             raise ValueError(f'must pass right or left for direction. got {direction}')
 
         self.num_columns = length # extend number of columns to new length
+
+    @property
+    def is_spacer(self):
+        return all([value.is_spacer for value in self.values])
