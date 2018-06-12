@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from typing import Union
 
+from dero.latex.table.logic.panels.letters import panel_string
 from dero.latex.table.models.panels.panel import Panel
 from dero.latex.table.models.panels.panel import PanelGrid, GridShape
 from dero.latex.table.models.labels.table import LabelTable, LabelCollection
@@ -53,8 +54,22 @@ class PanelCollection(ReprMixin):
         :rtype:
         """
 
+        if self.has_column_labels:
+            orig_panel_index = -2
+        else:
+            orig_panel_index = -1
+        name_used = False
+
         for row in self.rows:
-            yield Panel(PanelGrid([row]))
+            if not row.is_spacer: # don't increment original panel index when going through inserted spacing
+                orig_panel_index += 1
+                name_used = False # need to reset to use name again
+            if orig_panel_index < 0 or name_used: # column labels panel, no matching name
+                yield Panel(PanelGrid([row]))
+            else: # user passed panel, may have matching name
+                full_name = panel_string(orig_panel_index) + self.panels[orig_panel_index].name
+                yield Panel(PanelGrid([row]), name=full_name)
+                name_used = True # only allow name to be used once
 
     @property
     def rows(self):
