@@ -1,5 +1,5 @@
 from copy import deepcopy
-from typing import Union
+from typing import Union, AnyStr, List
 
 import pandas as pd
 
@@ -10,26 +10,17 @@ from dero.latex.table.models.labels.label import Label
 from dero.latex.table.models.labels.table import LabelTable, LabelCollection
 from dero.latex.table.models.spacing.columntable import ColumnPadTable, CellSpacer
 from dero.latex.table.models.table.section import TableSection
-
+from dero.latex.table.logic.panels.topleft import _set_top_left_corner_labels
 
 class DataTable(TableSection, ReprMixin):
     repr_cols = ['values_table', 'column_labels', 'row_labels']
 
     def __init__(self, values_table: ValuesTable, column_labels: LabelTable=None, row_labels: LabelTable=None,
-                 top_left_corner_label: Union[Label, str] = None):
+                 top_left_corner_labels: Union[Label, str] = None):
         self.values_table = values_table
         self.column_labels = column_labels
         self.row_labels = row_labels
-
-        if isinstance(top_left_corner_label, str):
-            top_left_corner_label = Label(top_left_corner_label)
-
-        if top_left_corner_label is None:
-            if row_labels is None:
-                top_left_corner_label = CellSpacer()
-            else:
-                top_left_corner_label = CellSpacer(row_labels.num_columns)
-        self.top_left_corner_label = top_left_corner_label
+        self.top_left_corner_labels = _set_top_left_corner_labels(top_left_corner_labels)
 
         self.should_add_top_left = (column_labels is not None) and (row_labels is not None)
 
@@ -49,7 +40,7 @@ class DataTable(TableSection, ReprMixin):
                 )
                 column_labels = _add_if_not_none(
                     self.column_labels,
-                    other.top_left_corner_label,
+                    other.top_left_corner_labels,
                     other.column_labels
                 )
 
@@ -69,7 +60,7 @@ class DataTable(TableSection, ReprMixin):
             values_table=values_table,
             column_labels=column_labels,
             row_labels=row_labels,
-            top_left_corner_label=self.top_left_corner_label
+            top_left_corner_labels=self.top_left_corner_labels
         )
 
     @property
@@ -115,19 +106,11 @@ class DataTable(TableSection, ReprMixin):
         rows = []
 
         if self.column_labels is not None:
-            for i, row in enumerate(self.column_labels.rows):
-                if self.should_add_top_left:
-                    # first row should start with top left corner label
-                    if i == 0:
-                        out_row = self.top_left_corner_label + row
-                    # other label rows, blank top left label
-                    else:
-                        out_row = deepcopy(row)
-                        out_row.pad(self.row_labels.num_columns + self.values_table.num_columns, direction='left')
-                # without top left, no need for additional processing, add to output
-                else:
-                    out_row = row
-                rows.append(out_row)
+            if self.should_add_top_left:
+                column_labels = self.top_left_corner_labels + self.column_labels
+            else:
+                column_labels = self.column_labels
+            rows += column_labels.rows
 
         # need to add row labels inline with values table
         if self.row_labels is not None:
@@ -143,7 +126,28 @@ class DataTable(TableSection, ReprMixin):
     @classmethod
     def from_df(cls, df: pd.DataFrame, include_columns=True, include_index=False,
                 extra_header: str=None, extra_header_underline=True,
-                *args, **kwargs):
+                top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
+                **kwargs):
+        """
+        Use for the most fine-grained control in creating tables. Construct DataTables from
+        pandas DataFrames, modify labels as needed, assemble them into Panels, then create a latex Table with
+        Table.from_panel_list.
+
+        :param df:
+        :param include_columns:
+        :param include_index:
+        :param extra_header: extra multicolumn header to place over the existing column labels (or over values if
+                             there are no column labels). Useful when placing multiple DataTables horizontally
+                             in a Panel.
+        :param extra_header_underline: whether to add an underline under the extra header, if the extre header
+                                       was passed
+        :param top_left_corner_labels: additional labels to place in the top left corner. pass a single string
+                                       or a list of strings for convenience. a list of strings will be create labels
+                                       which span the gap horizontally and go downwards, one label per row. pass
+                                       LabelCollection or LabelTable for more control.
+        :param kwargs: DataTable kwargs
+        :return:
+        """
         values_table = ValuesTable.from_df(df)
 
         if include_columns:
@@ -160,7 +164,7 @@ class DataTable(TableSection, ReprMixin):
             values_table,
             column_labels=column_label_table,
             row_labels=row_label_table,
-            *args,
+            top_left_corner_labels=top_left_corner_labels,
             **kwargs,
         )
 

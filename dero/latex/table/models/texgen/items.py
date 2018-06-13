@@ -10,10 +10,11 @@ from dero.latex.models.document import Document
 from dero.latex.models.package import Package
 from dero.latex.table.models.texgen.packages import default_packages
 
+
 class TableNotes(Item, ReprMixin):
     name = 'tablenotes'
 
-    def __int__(self, content: str):
+    def __init__(self, content: str):
         super().__init__(self.name, content, env_modifiers=f'[para, flushleft]')
 
 class Tabular(Item, ReprMixin):
@@ -83,6 +84,23 @@ class Table(Item, ReprMixin):
         )
         return cls(three_part_table, *args, **kwargs)
 
+    @classmethod
+    def from_table_model(cls, table, *args, **kwargs):
+        from dero.latex.table.models.table.table import Table as TableModel
+        table: TableModel
+        tabular = Tabular(
+            table.panels,
+            align=table.align,
+            mid_rules=table.mid_rules
+        )
+
+        three_part_table = ThreePartTable(
+            tabular,
+            caption=table.caption,
+            below_text=table.below_text
+        )
+        return cls(three_part_table, *args, **kwargs)
+
 class TableDocument(Document):
 
     def __init__(self, content: Table, packages: [Package]=None, landscape: bool=False):
@@ -103,3 +121,10 @@ class TableDocument(Document):
             **table_kwargs
         )
         return cls(table, *args, **kwargs)
+
+    @classmethod
+    def from_table_model(cls, table, *args, **kwargs):
+        from dero.latex.table.models.table.table import Table as TableModel
+        table: TableModel
+        tex_table = Table.from_table_model(table, *args, **kwargs)
+        return cls(tex_table, *args, landscape=table.landscape, **kwargs)

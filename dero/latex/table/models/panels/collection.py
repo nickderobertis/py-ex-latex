@@ -1,34 +1,41 @@
+from typing import Union, AnyStr, List
+
 import numpy as np
 import pandas as pd
-from typing import Union
 
-from dero.latex.table.logic.panels.letters import panel_string
-from dero.latex.table.models.panels.panel import Panel
-from dero.latex.table.models.panels.panel import PanelGrid, GridShape
-from dero.latex.table.models.labels.table import LabelTable, LabelCollection
 from dero.latex.models.mixins import ReprMixin
-from dero.latex.table.models.table.section import TableSection
 from dero.latex.table.logic.panels.combine import (
     common_column_labels,
     common_row_labels,
     remove_label_collections_from_grid
 )
+from dero.latex.table.logic.panels.letters import panel_string
+from dero.latex.table.logic.panels.topleft import _set_top_left_corner_labels
+from dero.latex.table.models.labels.table import LabelTable, LabelCollection
+from dero.latex.table.models.panels.panel import Panel
+from dero.latex.table.models.panels.panel import PanelGrid, GridShape
 from dero.latex.table.models.spacing.columntable import ColumnPadTable
 from dero.latex.table.models.spacing.rowtable import RowPadTable
+from dero.latex.table.models.table.section import TableSection
 
 
 class PanelCollection(ReprMixin):
     repr_cols = ['name', 'panels']
 
-    def __init__(self, panels: [Panel], label_consolidation: str='object', top_left_corner_labels: LabelTable=None,
+    def __init__(self, panels: [Panel], label_consolidation: str='object',
+                 top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr]=None,
                  pad_rows: int=1, pad_columns: int=1, name: str=None):
         """
 
-        :param panels:
+        :param panels: list of Panels, which represent a full set of rows of the table. for multiple
+                        sections in one set of rows, create DataTables for each section and pass to Panels.
         :param label_consolidation: pass 'object' to compare object equality for label consolidation, 'str'
                                     for converting all labels to strings then comparing equality. Use 'object'
                                     for more control over consolidation.
-        :param top_left_corner_labels: additional LabelTable of labels to place in the top left corner
+        :param top_left_corner_labels: additional labels to place in the top left corner. pass a single string
+                                       or a list of strings for convenience. a list of strings will be create labels
+                                       which span the gap horizontally and go downwards, one label per row. pass
+                                       LabelCollection or LabelTable for more control.
         :param pad_rows: horizontal spacing to put between panels
         :param pad_columns: vertical spacing to put between TableSections
         :param name: name that will be used to construct caption in output
@@ -64,7 +71,8 @@ class PanelCollection(ReprMixin):
             if not row.is_spacer: # don't increment original panel index when going through inserted spacing
                 orig_panel_index += 1
                 name_used = False # need to reset to use name again
-            if orig_panel_index < 0 or name_used: # column labels panel, no matching name
+            if orig_panel_index < 0 or name_used or self.panels[orig_panel_index].name is None:
+                # column labels panel, no matching name. Or no name for user supplied panel
                 yield Panel(PanelGrid([row]))
             else: # user passed panel, may have matching name
                 full_name = panel_string(orig_panel_index) + self.panels[orig_panel_index].name
@@ -240,6 +248,12 @@ class PanelCollection(ReprMixin):
     def from_list_of_lists_of_dfs(cls, df_list_of_lists: [[pd.DataFrame]], *args,
                                   panel_args=tuple(), panel_kwargs={}, **kwargs):
         """
+        To create a single panel table, pass a single list within
+        a list of DataFrames, e.g. [[df1, df2]] then shape will specify how the DataFrames will
+        be organized in the Panel. If you pass two lists within the outer list, then shape will
+        apply to each Panel. So [[df1, df2], [df3, df4]] with shape=(1,2) create a two Panel table
+        with two tables placed within each panel going horizontally, so that the overall shape is (2,2).
+
         Note: convenience method for if not much control over table is needed.
         To apply different options to each panel, construct them individually using
         Panel.from_df_list
@@ -258,27 +272,17 @@ class PanelCollection(ReprMixin):
                 Panel.from_df_list(df_list, *panel_args, **panel_kwargs)
             )
 
+        label_consolidation = kwargs.pop('label_consolidation', 'string')
+
         return cls(
             panels,
             *args,
-            label_consolidation='string',
+            label_consolidation=label_consolidation,
             **kwargs
         )
 
-
-def _set_top_left_corner_labels(top_left_corner_labels: Union[LabelTable, LabelCollection, list, str] = None):
-    if top_left_corner_labels is None:
-        return LabelTable.from_list_of_lists([[' ']])
-
-    if isinstance(top_left_corner_labels, LabelTable):
-        return top_left_corner_labels
-    elif isinstance(top_left_corner_labels, LabelCollection):
-        return LabelTable([top_left_corner_labels])
-    elif isinstance(top_left_corner_labels, list):
-        return LabelTable.from_list_of_lists([top_left_corner_labels]).T
-    elif isinstance(top_left_corner_labels, str):
-        return LabelTable.from_list_of_lists([[top_left_corner_labels]])
-    else:
-        raise NotImplementedError(f'was not able to create LabelTable out of {top_left_corner_labels}')
+    def to_tex(self, mid_rule=True):
+        from dero.latex.table.logic.table.build import build_tabular_content_from_panel_collection
+        return build_tabular_content_from_panel_collection(self, mid_rule=mid_rule)
 
 
