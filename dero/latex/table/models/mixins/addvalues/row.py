@@ -3,15 +3,10 @@ from typing import Iterable
 class RowAddMixin:
 
     def __add__(self, other):
-
-        klass = self._add_class(other)
-
-        return _add_to_value_or_values(self, other, klass)
+        return RowAddMixin.add(self, other)
 
     def __radd__(self, other):
-        klass = self._add_class(other)
-
-        return _radd_to_value_or_values(self, other, klass)
+        return RowAddMixin.radd(self, other)
 
     def _add_class(self, other):
         from dero.latex.table.models.table.row import Row
@@ -22,6 +17,18 @@ class RowAddMixin:
         klass = self_class if self_class == other_class else Row
 
         return klass
+
+    @staticmethod
+    def add(obj, other):
+        klass = obj._add_class(other)
+
+        return _add_to_value_or_values(obj, other, klass)
+
+    @staticmethod
+    def radd(obj, other):
+        klass = obj._add_class(other)
+
+        return _radd_to_value_or_values(obj, other, klass)
 
 def _add_to_value_or_values(obj, other, klass):
     if hasattr(obj, 'value'):

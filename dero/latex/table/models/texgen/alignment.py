@@ -21,13 +21,13 @@ class ColumnAlignment(ReprMixin):
     @staticmethod
     def _validate_align_str(align_str):
         basic_pattern = re.compile(r'[lcr]')
-        length_pattern = re.compile(r'[LCR]\{[\d\w\s]+\}')
+        length_pattern = re.compile(r'[LCRD]\{[\d\w\s]+\}')
 
         basic_match = basic_pattern.fullmatch(align_str)
         length_match = length_pattern.fullmatch(align_str)
 
         if not (basic_match or length_match):
-            raise ValueError(f'expected alignment of l, c, r, L{{size}}, C{{size}}, or R{{size}}. Got {align_str}')
+            raise ValueError(f'expected alignment of l, c, r, L{{size}}, C{{size}}, R{{size}}, or D{{size}}. Got {align_str}')
 
 
 class ColumnsAlignment(ReprMixin):
@@ -67,10 +67,11 @@ class ColumnsAlignment(ReprMixin):
             raise ValueError(f'got {len(aligns)} alignments for {num_columns} columns. unclear how to apply')
 
     @classmethod
-    def from_alignment_str(cls, align_str: str):
+    def from_alignment_str(cls, align_str: str, num_columns: int=None):
         align_str_list = _full_align_str_to_align_str_list(align_str)
         aligns = [ColumnAlignment(align) for align in align_str_list]
-        return cls(aligns)
+
+        return cls(aligns, num_columns=num_columns)
 
 
 def _full_align_str_to_align_str_list(align_str: str):

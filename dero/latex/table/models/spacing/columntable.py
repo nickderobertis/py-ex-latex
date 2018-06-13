@@ -6,7 +6,8 @@ from dero.latex.table.models.data.valuestable import ValuesTable
 
 class ColumnPadTable(ValuesTable):
 
-    def __init__(self):
+    def __init__(self, width: int=1):
+        self.width = width
         super().__init__([])
 
     @property
@@ -24,7 +25,7 @@ class ColumnPadTable(ValuesTable):
         out_section: TableSection = deepcopy(other)
 
         for row in out_section.rows:
-            row.pad(other.num_columns + 1, direction='left')
+            row.pad(other.num_columns + self.width, direction='left')
 
         return out_section
 

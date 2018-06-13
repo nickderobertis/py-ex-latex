@@ -1,26 +1,21 @@
+from typing import Union
+
 from dero.latex.table.models.table.row import Row
-from dero.latex.table.models.labels.collection import LabelCollection
+from dero.latex.table.models.labels.collection import LabelCollection, Label
 from dero.latex.table.models.labels.multicolumn import MultiColumn
 
 class LabelRow(Row):
     repr_cols = ['values', 'length']
 
-    def __init__(self, values: LabelCollection, length: int=None):
-        self.length = length if length is not None else len(values)
+    def __init__(self, values: Union[LabelCollection, Label]):
         super().__init__(values)
 
-    def __str__(self):
-        num_values = len(self.values)
-        # as many columns as values, simply sum
-        if self.length == num_values:
-            return str(sum(self.values))
-        # from here, passed length different than length of values
-        # if only one value, use multicolumn format over number of columns
-        elif num_values == 1:
-            return str(MultiColumn(contents=self.values[0], span=self.length))
-        # differing number of values from length, but number of values is not 1
-        # therefore it is unclear how to expand into a multicolumn format
-        # (how many columns should each label span?)
+    @property
+    def length(self):
+        return len(self)
+
+    def _add_class(self, other):
+        if isinstance(other, (LabelCollection, Label)):
+            return LabelRow
         else:
-            raise NotImplementedError('got different length of label row from number of labels, and number of '
-                                      f'labels was not 1. got {num_values} labels to cover {self.length} columns')
+            return super()._add_class(other)

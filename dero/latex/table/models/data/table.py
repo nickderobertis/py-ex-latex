@@ -1,54 +1,56 @@
+from copy import deepcopy
+from typing import Union, AnyStr, List
+
 import pandas as pd
-from typing import Union
 
-from dero.latex.table.models.data.valuestable import ValuesTable
-from dero.latex.table.models.table.section import TableSection
-from dero.latex.table.models.spacing.columntable import ColumnPadTable, CellSpacer
-from dero.latex.table.models.labels.table import LabelTable, LabelCollection
-from dero.latex.table.models.labels.label import Label
+from dero.latex.logic.tools import _add_if_not_none
 from dero.latex.models.mixins import ReprMixin
-
+from dero.latex.table.models.data.valuestable import ValuesTable
+from dero.latex.table.models.labels.label import Label
+from dero.latex.table.models.labels.table import LabelTable, LabelCollection
+from dero.latex.table.models.spacing.columntable import ColumnPadTable, CellSpacer
+from dero.latex.table.models.table.section import TableSection
+from dero.latex.table.logic.panels.topleft import _set_top_left_corner_labels
 
 class DataTable(TableSection, ReprMixin):
     repr_cols = ['values_table', 'column_labels', 'row_labels']
 
     def __init__(self, values_table: ValuesTable, column_labels: LabelTable=None, row_labels: LabelTable=None,
-                 top_left_corner_label: Union[Label, str] = None):
+                 top_left_corner_labels: Union[Label, str] = None):
         self.values_table = values_table
         self.column_labels = column_labels
         self.row_labels = row_labels
-
-        if isinstance(top_left_corner_label, str):
-            top_left_corner_label = Label(top_left_corner_label)
-
-        self.top_left_corner_label = top_left_corner_label \
-            if top_left_corner_label is not None else CellSpacer()
+        self.top_left_corner_labels = _set_top_left_corner_labels(top_left_corner_labels)
 
         self.should_add_top_left = (column_labels is not None) and (row_labels is not None)
 
     def __add__(self, other):
         if isinstance(other, DataTable):
-            if self.row_labels.matches(other.row_labels):
-                # if right table has same row labels, eliminate right row labels. Just add valyes
-                values_table = self.values_table + other.values_table
+            row_labels_match = _determine_match(self.row_labels, other.row_labels)
+            if row_labels_match or other.row_labels is None:
+                # if right table has same or None row labels, eliminate right row labels. Just add values
+                values_table = _add_if_not_none(self.values_table, other.values_table)
                 column_labels = _add_if_not_none(self.column_labels, other.column_labels)
             else:
                 # if right table has unique row labels, absorb them into middle of values table
-                values_table = self.values_table + ValuesTable(other.row_labels.rows) + other.values_table
+                values_table = _add_if_not_none(
+                    self.values_table,
+                    ValuesTable(other.row_labels.rows),
+                    other.values_table
+                )
                 column_labels = _add_if_not_none(
                     self.column_labels,
-                    # add padding in column headers to keep alignment
-                    *[CellSpacer() for i in range(other.row_labels.num_columns)],
+                    other.top_left_corner_labels,
                     other.column_labels
                 )
 
             row_labels = self.row_labels
         elif isinstance(other, ColumnPadTable):
-            values_table = self.values_table + other
-            column_labels = self.column_labels + other
+            values_table = self.values_table + other if self.values_table is not None else None
+            column_labels = self.column_labels + other if self.column_labels is not None else None
             row_labels = self.row_labels
         elif isinstance(other, TableSection):
-            values_table = self.values_table + other
+            values_table = _add_if_not_none(self.values_table, other)
             column_labels = self.column_labels
             row_labels = self.row_labels
         else:
@@ -57,7 +59,8 @@ class DataTable(TableSection, ReprMixin):
         return DataTable(
             values_table=values_table,
             column_labels=column_labels,
-            row_labels=row_labels
+            row_labels=row_labels,
+            top_left_corner_labels=self.top_left_corner_labels
         )
 
     @property
@@ -103,18 +106,11 @@ class DataTable(TableSection, ReprMixin):
         rows = []
 
         if self.column_labels is not None:
-            for i, row in enumerate(self.column_labels.rows):
-                if self.should_add_top_left:
-                    # first row should start with top left corner label
-                    if i == 0:
-                        out_row = self.top_left_corner_label + row
-                    # other label rows, blank top left label
-                    else:
-                        out_row = CellSpacer() + row
-                # without top left, no need for additional processing, add to output
-                else:
-                    out_row = row
-                rows.append(out_row)
+            if self.should_add_top_left:
+                column_labels = self.top_left_corner_labels + self.column_labels
+            else:
+                column_labels = self.column_labels
+            rows += column_labels.rows
 
         # need to add row labels inline with values table
         if self.row_labels is not None:
@@ -129,8 +125,29 @@ class DataTable(TableSection, ReprMixin):
 
     @classmethod
     def from_df(cls, df: pd.DataFrame, include_columns=True, include_index=False,
-                extra_header: str=None,
-                *args, **kwargs):
+                extra_header: str=None, extra_header_underline=True,
+                top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
+                **kwargs):
+        """
+        Use for the most fine-grained control in creating tables. Construct DataTables from
+        pandas DataFrames, modify labels as needed, assemble them into Panels, then create a latex Table with
+        Table.from_panel_list.
+
+        :param df:
+        :param include_columns:
+        :param include_index:
+        :param extra_header: extra multicolumn header to place over the existing column labels (or over values if
+                             there are no column labels). Useful when placing multiple DataTables horizontally
+                             in a Panel.
+        :param extra_header_underline: whether to add an underline under the extra header, if the extre header
+                                       was passed
+        :param top_left_corner_labels: additional labels to place in the top left corner. pass a single string
+                                       or a list of strings for convenience. a list of strings will be create labels
+                                       which span the gap horizontally and go downwards, one label per row. pass
+                                       LabelCollection or LabelTable for more control.
+        :param kwargs: DataTable kwargs
+        :return:
+        """
         values_table = ValuesTable.from_df(df)
 
         if include_columns:
@@ -147,12 +164,21 @@ class DataTable(TableSection, ReprMixin):
             values_table,
             column_labels=column_label_table,
             row_labels=row_label_table,
-            *args,
+            top_left_corner_labels=top_left_corner_labels,
             **kwargs,
         )
 
         if extra_header is not None:
-            header = LabelCollection.from_str_list([extra_header])
+
+            # set underline
+            if extra_header_underline:
+                underline = 0 # place an underline under the singular label
+            else:
+                underline = None # no underline
+
+            # create multicolumn label
+            label = Label(extra_header, span=values_table.num_columns)
+            header = LabelCollection([label], underline=underline)
             if include_columns:
                 # add to existing
                 dt.column_labels.label_collections.insert(0, header)
@@ -162,7 +188,16 @@ class DataTable(TableSection, ReprMixin):
 
         return dt
 
+def _determine_match(labels1: LabelTable, labels2: LabelTable):
+    # handle equality for None
+    if labels1 is None:
+        if labels2 is None:
+            return True
+        else:
+            return False
+    elif labels2 is None:
+        # labels 1 must not be None here
+        return False
 
-def _add_if_not_none(*items):
-    not_none_items = [item for item in items if item is not None]
-    return sum(not_none_items[1:], not_none_items[0])
+    # here, both are not None
+    return labels1.matches(labels2)

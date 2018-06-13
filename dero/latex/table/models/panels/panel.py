@@ -1,5 +1,6 @@
 import pandas as pd
 
+from dero.latex.logic.tools import _max_len_or_zero
 from dero.latex.table.models.panels.grid import PanelGrid, GridShape
 from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.data.table import DataTable
@@ -72,17 +73,38 @@ class Panel(ReprMixin):
         return self._rows
 
     def _set_rows(self):
+        from dero.latex.table.models.labels.table import LabelTable, LabelCollection
+        from dero.latex.table.models.labels.label import Label
         rows: [Row] = []
+
+        # Add panel name
+        if self.name is not None:
+            label_collection = LabelCollection([Label(self.name, span=self.num_columns, align='l')])
+            name_table = LabelTable([label_collection])
+            rows += name_table.rows
+
         for grid_row in self.panel_grid:
-            panel_row = TableSection([]) # empty table section to start
-            for table_section in grid_row:
-                panel_row += table_section
+            for i, table_section in enumerate(grid_row):
+                if i == 0:
+                    panel_row = table_section
+                else:
+                    panel_row += table_section
             rows += panel_row.rows
         return rows
 
     @property
     def is_spacer(self):
         return all([row.is_spacer for row in self.rows])
+
+    @property
+    def num_columns(self):
+        num_columns = 0
+        for grid_row in self.panel_grid:
+            row_num_columns = [table_section.num_columns for table_section in grid_row]
+            max_for_row = max(row_num_columns)
+            num_columns = max(num_columns, max_for_row) # update global max with row max
+        return num_columns
+
 
 
 
