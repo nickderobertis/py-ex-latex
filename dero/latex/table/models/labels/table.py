@@ -33,7 +33,7 @@ class LabelTable(TableSection, ReprMixin):
                 row_labels=row_labels
             )
         if isinstance(other, ColumnPadTable):
-            self.pad(self.num_columns + 1)
+            self.pad(self.num_columns + other.width)
             return self
         else:
             return super().__add__(other)
