@@ -5,7 +5,7 @@ from dero.latex.table.models.labels.table import LabelTable
 from dero.latex.table.models.labels.collection import LabelCollection
 from dero.latex.table.models.table.section import TableSection
 
-def common_column_labels(grid: GridShape, use_object_equality=True):
+def common_column_labels(grid: GridShape, use_object_equality=True, enforce_label_order=True):
     axis = 1 # columns
     all_column_ints = list(range(grid.shape[1]))
 
@@ -13,10 +13,11 @@ def common_column_labels(grid: GridShape, use_object_equality=True):
         grid,
         selections=all_column_ints,
         axis=axis,
-        use_object_equality=use_object_equality
+        use_object_equality=use_object_equality,
+        enforce_label_order=enforce_label_order
     )
 
-def common_row_labels(grid: GridShape, use_object_equality=True):
+def common_row_labels(grid: GridShape, use_object_equality=True, enforce_label_order=True):
     axis = 0  # rows
     all_row_ints = list(range(grid.shape[0]))
 
@@ -24,11 +25,13 @@ def common_row_labels(grid: GridShape, use_object_equality=True):
         grid,
         selections=all_row_ints,
         axis=axis,
-        use_object_equality=use_object_equality
+        use_object_equality=use_object_equality,
+        enforce_label_order=enforce_label_order
     )
 
 
-def _selected_common_labels_for_axis(grid: GridShape, selections: [int]=[0], axis: int=0, use_object_equality=True):
+def _selected_common_labels_for_axis(grid: GridShape, selections: [int]=[0], axis: int=0, use_object_equality=True,
+                                     enforce_label_order=True):
     common_label_tables: [LabelTable] = []
     for i in selections:
         common_label_tables.append(
@@ -36,14 +39,16 @@ def _selected_common_labels_for_axis(grid: GridShape, selections: [int]=[0], axi
                 grid,
                 i,
                 axis=axis,
-                use_object_equality=use_object_equality
+                use_object_equality=use_object_equality,
+                enforce_label_order=enforce_label_order
             )
         )
 
     return common_label_tables
 
 
-def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=True):
+def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=True,
+                   enforce_label_order=True):
     subgrid = _get_subgrid(
         grid=grid,
         num=num,
@@ -72,7 +77,10 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
                     common_label_table.append(label_collection)
                     stored_match = True
             else:
-                break # as soon as one label collection doesn't match, stop consolidating
+                if enforce_label_order:
+                    break # as soon as one label collection doesn't match, stop consolidating
+                else:
+                    continue # don't worry about non-match, continue consolidating
 
     return common_label_table
 
