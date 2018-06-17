@@ -58,8 +58,9 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
     if label_tables[0] is None:
         return LabelTable([])
 
-    common_label_collections = []
+    common_label_table = LabelTable([])
     for i, label_collection in enumerate(label_tables[0]):
+        stored_match = False # only want to add each matched collection once. use boolean to track
         for label_table in label_tables[1:]:
             match = _compare_label_collections(
                 label_collection,
@@ -67,11 +68,13 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
                 use_object_equality=use_object_equality
             )
             if match:
-                common_label_collections.append(label_collection)
+                if not stored_match:
+                    common_label_table.append(label_collection)
+                    stored_match = True
             else:
                 break # as soon as one label collection doesn't match, stop consolidating
 
-    return LabelTable(common_label_collections)
+    return common_label_table
 
 def remove_label_collections_from_grid(grid: GridShape, column_labels: [LabelTable]=None,
                                        row_labels: [LabelTable]=None, use_object_equality=True):
@@ -160,3 +163,16 @@ def _compare_label_collections(collection1: LabelCollection, collection2: LabelC
         return collection1 == collection2
     else:
         return collection1.matches(collection2)
+
+def _add_to_label_table_if_not_in_label_table(label_table: LabelTable, label_collection: LabelCollection,
+                                              use_object_equality=True):
+    """
+    Note: inplace
+    """
+    # don't want to keep adding match over and over. need to check if match is already
+    # stored in the common label table. must check two different ways depending on whether
+    # we are using object equality or string consolidation
+    if use_object_equality and label_collection not in label_table:
+        label_table.append(label_collection)
+    if (not use_object_equality) and (not label_table.contains(label_collection)):
+        label_table.append(label_collection)
