@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Iterable
 import re
 from copy import deepcopy
 
@@ -47,9 +47,20 @@ class LabelCollection(RowBase):
         return True
 
     @classmethod
-    def from_str_list(cls, str_list):
+    def from_str_list(cls, str_list: [str]) -> 'LabelCollection':
         labels = [Label(value) for value in str_list]
         return cls(labels)
+
+    @classmethod
+    def parse_unknown_type(cls, unknown_type: Union[str, Iterable[str], 'LabelCollection']) -> 'LabelCollection':
+        if isinstance(unknown_type, LabelCollection):
+            return unknown_type
+        if isinstance(unknown_type, str):
+            unknown_type = [unknown_type]
+        if isinstance(unknown_type, list):
+            return LabelCollection.from_str_list(unknown_type)
+        else:
+            raise ValueError(f'unable to parse type {type(unknown_type)} into label collection')
 
     def _convert_label_indices_to_column_indices(self, label_indices: [int]):
         column_indices = []

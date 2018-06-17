@@ -45,6 +45,9 @@ class LabelTable(TableSection, ReprMixin):
     def __getitem__(self, item):
         return self.label_collections[item]
 
+    def __contains__(self, item):
+        return item in self.label_collections
+
     @property
     def length(self):
         return len(self.label_collections)
@@ -113,6 +116,11 @@ class LabelTable(TableSection, ReprMixin):
         return LabelTable(list(map(LabelCollection, zip_longest(*self.label_collections))))
 
     def matches(self, other):
+        """
+        Note: use to compare strings inside LabelTables. Use regular equality comparison to compare objects
+        :param other:
+        :return:
+        """
         if not isinstance(other, LabelTable):
             warnings.warn(f'LabelTable.matches() called on type {type(other)}. Will always return False')
             return False
@@ -127,6 +135,28 @@ class LabelTable(TableSection, ReprMixin):
         # made it through loop, so all were matching
         return True
 
+    def contains(self, item):
+        """
+        Note: use to compare strings inside LabelCollections. Use label_collection in LabelTable to compare objects
+        :param item:
+        :return:
+        """
+
+        if not isinstance(item, (str, list, LabelCollection)):
+            warnings.warn(f'LabelTable.contains() called on type {type(item)}. Will always return False')
+            return False
+
+        item: LabelCollection = LabelCollection.parse_unknown_type(item)
+
+        label_collection: LabelCollection
+        for label_collection in self:
+            if label_collection.matches(item):
+                return True # as soon as one match, return true
+
+        # went through all label collections without a match. no match
+        return False
+
+
     def pad(self, length: int, direction='right'):
         """
         Expand table out to the right or left with blanks, until it is length passed (apply to every row)
@@ -135,3 +165,9 @@ class LabelTable(TableSection, ReprMixin):
         :return:
         """
         [collection.pad(length=length, direction=direction) for collection in self.label_collections]
+
+    def append(self, item):
+        item: LabelCollection = LabelCollection.parse_unknown_type(item)
+
+        # add rather than append directly to activate setter
+        self.label_collections = self.label_collections + [item]
