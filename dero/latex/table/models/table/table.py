@@ -66,7 +66,7 @@ class Table(ReprMixin):
         )
 
     @classmethod
-    def from_panel_list(cls, panels: [Panel], label_consolidation: str='object',
+    def from_panel_list(cls, panels: [Panel], label_consolidation: str='object', enforce_label_order=True,
                         top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
                  pad_rows: int=1, pad_columns: int=1, caption: str=None, above_text: str=None,
                  below_text: str=None, align: str = None, mid_rules=True, landscape=False):
@@ -76,11 +76,20 @@ class Table(ReprMixin):
         Construct Panels individually, either directly from DataFrames with Panel.from_df_list, or for even more
         control, use DataTable.from_df and override labels with custom LabelTables.
 
-        :param panels:
-        :param label_consolidation:
-        :param top_left_corner_labels:
-        :param pad_rows:
-        :param pad_columns:
+        :param panels: list of Panels
+        :param label_consolidation: pass 'object' to to avoid consolidating labels. pass 'str' to consolidate if
+                                    column or index contents are identical within a column or row of DataFrames
+        :param enforce_label_order: pass False to allow consolidating lower labels even if upper labels do not match.
+                                    e.g. if labels on one table are [['Top1'], ['Bot1', 'Bot2']], then labels on the other
+                                    table are [['Top2'], ['Bot1', 'Bot2']], consolidated labels when passing False will be
+                                    ['Bot1', 'Bot2'], while when passing True, no labels will be consolidated. Under True,
+                                    will start from the top label, then stop consolidating once it has a mismatch.
+        :param top_left_corner_labels: additional labels to place in the top left corner. pass a single string
+                                       or a list of strings for convenience. a list of strings will be create labels
+                                       which span the gap horizontally and go downwards, one label per row. pass
+                                       LabelCollection or LabelTable for more control.
+        :param pad_rows: horizontal spacing to put between panels
+        :param pad_columns: vertical spacing to put between TableSections
         :param caption: overall caption to place at top of table
         :param above_text: Not yet implemented
         :param below_text: text to place below table
@@ -94,6 +103,7 @@ class Table(ReprMixin):
         panel_collection = PanelCollection(
             panels,
             label_consolidation=label_consolidation,
+            enforce_label_order=enforce_label_order,
             top_left_corner_labels=top_left_corner_labels,
             pad_rows=pad_rows,
             pad_columns=pad_columns,
@@ -113,7 +123,7 @@ class Table(ReprMixin):
     @classmethod
     def from_list_of_lists_of_dfs(cls, df_list_of_lists: [[pd.DataFrame]], shape: tuple=None,
                                   include_columns=True, include_index=False,
-                                  label_consolidation: str = 'str',
+                                  label_consolidation: str = 'str', enforce_label_order=True,
                                   top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
                                   pad_rows: int = 1, pad_columns: int = 1, caption: str = None, above_text: str = None,
                                   below_text: str = None, align: str = None, mid_rules=True, landscape=False
@@ -144,6 +154,11 @@ class Table(ReprMixin):
                                        or a list of strings for convenience. a list of strings will be create labels
                                        which span the gap horizontally and go downwards, one label per row. pass
                                        LabelCollection or LabelTable for more control.
+        :param enforce_label_order: pass False to allow consolidating lower labels even if upper labels do not match.
+                                    e.g. if labels on one table are [['Top1'], ['Bot1', 'Bot2']], then labels on the other
+                                    table are [['Top2'], ['Bot1', 'Bot2']], consolidated labels when passing False will be
+                                    ['Bot1', 'Bot2'], while when passing True, no labels will be consolidated. Under True,
+                                    will start from the top label, then stop consolidating once it has a mismatch.
         :param pad_rows: horizontal spacing to put between panels
         :param pad_columns: vertical spacing to put between TableSections
         :param caption: overall caption to place at top of table
@@ -164,6 +179,7 @@ class Table(ReprMixin):
                 include_index=include_index,
             ),
             label_consolidation=label_consolidation,
+            enforce_label_order=enforce_label_order,
             top_left_corner_labels=top_left_corner_labels,
             pad_rows=pad_rows,
             pad_columns=pad_columns,

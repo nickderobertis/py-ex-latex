@@ -5,7 +5,7 @@ from dero.latex.table.models.labels.table import LabelTable
 from dero.latex.table.models.labels.collection import LabelCollection
 from dero.latex.table.models.table.section import TableSection
 
-def common_column_labels(grid: GridShape, use_object_equality=True):
+def common_column_labels(grid: GridShape, use_object_equality=True, enforce_label_order=True):
     axis = 1 # columns
     all_column_ints = list(range(grid.shape[1]))
 
@@ -13,10 +13,11 @@ def common_column_labels(grid: GridShape, use_object_equality=True):
         grid,
         selections=all_column_ints,
         axis=axis,
-        use_object_equality=use_object_equality
+        use_object_equality=use_object_equality,
+        enforce_label_order=enforce_label_order
     )
 
-def common_row_labels(grid: GridShape, use_object_equality=True):
+def common_row_labels(grid: GridShape, use_object_equality=True, enforce_label_order=True):
     axis = 0  # rows
     all_row_ints = list(range(grid.shape[0]))
 
@@ -24,11 +25,13 @@ def common_row_labels(grid: GridShape, use_object_equality=True):
         grid,
         selections=all_row_ints,
         axis=axis,
-        use_object_equality=use_object_equality
+        use_object_equality=use_object_equality,
+        enforce_label_order=enforce_label_order
     )
 
 
-def _selected_common_labels_for_axis(grid: GridShape, selections: [int]=[0], axis: int=0, use_object_equality=True):
+def _selected_common_labels_for_axis(grid: GridShape, selections: [int]=[0], axis: int=0, use_object_equality=True,
+                                     enforce_label_order=True):
     common_label_tables: [LabelTable] = []
     for i in selections:
         common_label_tables.append(
@@ -36,14 +39,16 @@ def _selected_common_labels_for_axis(grid: GridShape, selections: [int]=[0], axi
                 grid,
                 i,
                 axis=axis,
-                use_object_equality=use_object_equality
+                use_object_equality=use_object_equality,
+                enforce_label_order=enforce_label_order
             )
         )
 
     return common_label_tables
 
 
-def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=True):
+def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=True,
+                   enforce_label_order=True):
     subgrid = _get_subgrid(
         grid=grid,
         num=num,
@@ -58,8 +63,9 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
     if label_tables[0] is None:
         return LabelTable([])
 
-    common_label_collections = []
+    common_label_table = LabelTable([])
     for i, label_collection in enumerate(label_tables[0]):
+        stored_match = False # only want to add each matched collection once. use boolean to track
         for label_table in label_tables[1:]:
             match = _compare_label_collections(
                 label_collection,
@@ -67,11 +73,16 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
                 use_object_equality=use_object_equality
             )
             if match:
-                common_label_collections.append(label_collection)
+                if not stored_match:
+                    common_label_table.append(label_collection)
+                    stored_match = True
             else:
-                break # as soon as one label collection doesn't match, stop consolidating
+                if enforce_label_order:
+                    break # as soon as one label collection doesn't match, stop consolidating
+                else:
+                    continue # don't worry about non-match, continue consolidating
 
-    return LabelTable(common_label_collections)
+    return common_label_table
 
 def remove_label_collections_from_grid(grid: GridShape, column_labels: [LabelTable]=None,
                                        row_labels: [LabelTable]=None, use_object_equality=True):
@@ -160,3 +171,16 @@ def _compare_label_collections(collection1: LabelCollection, collection2: LabelC
         return collection1 == collection2
     else:
         return collection1.matches(collection2)
+
+def _add_to_label_table_if_not_in_label_table(label_table: LabelTable, label_collection: LabelCollection,
+                                              use_object_equality=True):
+    """
+    Note: inplace
+    """
+    # don't want to keep adding match over and over. need to check if match is already
+    # stored in the common label table. must check two different ways depending on whether
+    # we are using object equality or string consolidation
+    if use_object_equality and label_collection not in label_table:
+        label_table.append(label_collection)
+    if (not use_object_equality) and (not label_table.contains(label_collection)):
+        label_table.append(label_collection)

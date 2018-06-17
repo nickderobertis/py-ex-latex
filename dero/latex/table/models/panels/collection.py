@@ -22,7 +22,7 @@ from dero.latex.table.models.table.section import TableSection
 class PanelCollection(ReprMixin):
     repr_cols = ['name', 'panels']
 
-    def __init__(self, panels: [Panel], label_consolidation: str='object',
+    def __init__(self, panels: [Panel], label_consolidation: str='object', enforce_label_order=True,
                  top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr]=None,
                  pad_rows: int=1, pad_columns: int=1, name: str=None):
         """
@@ -32,6 +32,11 @@ class PanelCollection(ReprMixin):
         :param label_consolidation: pass 'object' to compare object equality for label consolidation, 'str'
                                     for converting all labels to strings then comparing equality. Use 'object'
                                     for more control over consolidation.
+        :param enforce_label_order: pass False to allow consolidating lower labels even if upper labels do not match.
+                                    e.g. if labels on one table are [['Top1'], ['Bot1', 'Bot2']], then labels on the other
+                                    table are [['Top2'], ['Bot1', 'Bot2']], consolidated labels when passing False will be
+                                    ['Bot1', 'Bot2'], while when passing True, no labels will be consolidated. Under True,
+                                    will start from the top label, then stop consolidating once it has a mismatch.
         :param top_left_corner_labels: additional labels to place in the top left corner. pass a single string
                                        or a list of strings for convenience. a list of strings will be create labels
                                        which span the gap horizontally and go downwards, one label per row. pass
@@ -44,6 +49,7 @@ class PanelCollection(ReprMixin):
         self.panels = panels
         self.label_consolidation = label_consolidation.lower().strip() \
             if isinstance(label_consolidation, str) else label_consolidation
+        self.enforce_label_order = enforce_label_order
         self.top_left_corner_labels = _set_top_left_corner_labels(top_left_corner_labels)
         self.pad_rows = pad_rows
         self.pad_columns = pad_columns
@@ -145,12 +151,14 @@ class PanelCollection(ReprMixin):
 
         column_labels: [LabelTable] = common_column_labels(
             self.grid,
-            use_object_equality=use_object_equality
+            use_object_equality=use_object_equality,
+            enforce_label_order=self.enforce_label_order
         )
 
         row_labels: [LabelTable] = common_row_labels(
             self.grid,
-            use_object_equality=use_object_equality
+            use_object_equality=use_object_equality,
+            enforce_label_order=self.enforce_label_order
         )
 
         self._add_column_labels(column_labels)

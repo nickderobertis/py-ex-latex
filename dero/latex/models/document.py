@@ -1,7 +1,7 @@
 from dero.latex.models.environment import Environment
 from dero.latex.models.item import Item
 from dero.latex.texgen import _document_class_str
-from dero.latex.logic.builder import _build
+
 from dero.latex.models.landscape import Landscape
 
 class DocumentEnvironment(Environment):
@@ -14,6 +14,7 @@ class Document(Item):
     name = 'document'
 
     def __init__(self, packages, content, landscape=False):
+        from dero.latex.logic.builder import _build
         self.packages = packages
 
         pre_env_contents = _build([
