@@ -4,6 +4,18 @@ from dero.latex.table.models.labels.multicolumn import MultiColumn
 
 
 class Label(ReprMixin, RowAddMixin):
+    """
+    Only necessary to use if need to set span or alignment manually. Can construct LabelCollection objects from Labels.
+
+    Useful for constructing custom multicolumn labels.
+
+    >>>import dero.latex.table as lt
+    >>>data_table = lt.DataTable.from_df(some_df)
+    >>>label = lt.Label('Long label', span=5, align='r')
+    >>>long_label_collection = lt.LabelCollection([label], underline='1-5')
+    >>>
+    >>>data_table.column_labels.insert(long_label_collection, 0)
+    """
     repr_cols = ['value', 'span']
 
     def __init__(self, value, span: int=1, align='c'):

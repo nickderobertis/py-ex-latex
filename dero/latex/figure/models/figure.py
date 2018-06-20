@@ -11,6 +11,12 @@ SubfigureOrGraphic = Union[Subfigure, Graphic]
 SubfiguresOrGraphics = List[SubfigureOrGraphic]
 
 class Figure(Item):
+    """
+    used for creating latex figures from images. Currently the main usage is the Figure class created with the method
+    Figure.from_dict_of_names_and_filepaths. Pass a dictionary where the keys are names for subfigures and the values
+    are filepaths where the image for the subfigure is located.
+
+    """
     name = 'figure'
 
     def __init__(self, subfigures: SubfiguresOrGraphics, caption=None, label=None, centering=True, position_str=None):

@@ -8,6 +8,9 @@ from dero.latex.logic.builder import build_figure_content
 
 
 class Subfigure(Item):
+    """
+    Used for more control over building figures
+    """
     name = 'subfigure'
 
     def __init__(self, filepath, caption=None, label=None, centering=True, position_str=r'[t]{0.45\linewidth}'):

@@ -17,6 +17,10 @@ from dero.latex.logic.pdf import _document_to_pdf_and_move
 
 
 class Table(ReprMixin):
+    """
+    An object for creating latex tables. Easiest way to create is with Table.from_list_of_lists_of_dfs,
+    but for more control, construct Panel objects and use Table.from_panel_list
+    """
     repr_cols = ['caption', 'above_text', 'panels', 'below_text']
 
     def __init__(self, panels: PanelCollection, caption: str=None, above_text: str=None, below_text: str=None,
