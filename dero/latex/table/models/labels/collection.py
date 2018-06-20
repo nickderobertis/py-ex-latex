@@ -9,6 +9,11 @@ from dero.latex.table.models.table.rowbase import RowBase
 
 
 class LabelCollection(RowBase):
+    """
+    Represents one row of labels. Use to construct a LabelTable to apply to a DataTable.
+
+    Main usage is LabelCollection.from_str_list
+    """
     repr_cols = ['values', 'underlines']
 
     def __init__(self, values: [Label], underline: Union[int, str]=None):

@@ -10,6 +10,11 @@ from dero.latex.table.models.table.section import TableSection
 
 
 class Panel(ReprMixin):
+    """
+    Represents one section of a table. May have multiple DataTables within one panel.
+
+
+    """
     repr_cols = ['name', 'panel_grid']
 
     def __init__(self, panel_grid: PanelGrid, name: str=None):

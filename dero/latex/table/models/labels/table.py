@@ -11,6 +11,17 @@ from dero.latex.table.models.texgen.lines import TableLineSegment, TableLineOfSe
 
 
 class LabelTable(TableSection, ReprMixin):
+    """
+    A set of label rows to apply to a DataTable.
+
+    Example:
+
+    >>>import dero.latex.table as lt
+    >>>data_table = lt.DataTable.from_df(some_df)
+    >>>col_label_table = lt.LabelTable.from_list_of_lists([['One header'],['More','Headers']])
+    >>>row_label_table = lt.LabelTable.from_list_of_lists([['Some','Row','Labels']]).T
+    >>>data_table.column_labels = col_label_table
+    """
     repr_cols = ['label_collections']
 
     def __init__(self, label_collections: [LabelCollection]):
@@ -171,3 +182,9 @@ class LabelTable(TableSection, ReprMixin):
 
         # add rather than append directly to activate setter
         self.label_collections = self.label_collections + [item]
+
+    def insert(self, item, index):
+        item: LabelCollection = LabelCollection.parse_unknown_type(item)
+
+        # add rather than append directly to activate setter
+        self.label_collections.insert(item, index)

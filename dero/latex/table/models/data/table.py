@@ -13,6 +13,12 @@ from dero.latex.table.models.table.section import TableSection
 from dero.latex.table.logic.panels.topleft import _set_top_left_corner_labels
 
 class DataTable(TableSection, ReprMixin):
+    """
+    Represents a subsection in a panel, but tracks row and column labels, which may be consolidated when
+    assembled into Panels then a Table
+
+    Use DataTable.from_df to create a DataTable from a pandas DataFrame.
+    """
     repr_cols = ['values_table', 'column_labels', 'row_labels']
 
     def __init__(self, values_table: ValuesTable, column_labels: LabelTable=None, row_labels: LabelTable=None,
