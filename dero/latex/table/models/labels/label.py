@@ -1,6 +1,7 @@
 from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
 from dero.latex.table.models.labels.multicolumn import MultiColumn
+from dero.latex.texgen import general_latex_replacements
 
 
 class Label(ReprMixin, RowAddMixin):
@@ -30,10 +31,11 @@ class Label(ReprMixin, RowAddMixin):
             return self.value == other
 
     def __str__(self):
+        latex_valid_value = general_latex_replacements(str(self.value))
         if len(self) == 1:
-            return str(self.value)
+            return str(latex_valid_value)
         else:
-            return str(MultiColumn(self.value, span=self.span, align=self.align))
+            return str(MultiColumn(latex_valid_value, span=self.span, align=self.align))
 
     def __len__(self):
         return self.span

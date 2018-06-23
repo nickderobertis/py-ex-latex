@@ -1,5 +1,6 @@
 from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
+from dero.latex.texgen import general_latex_replacements
 
 class DataItem(ReprMixin, RowAddMixin):
     repr_cols = ['value']
@@ -8,7 +9,7 @@ class DataItem(ReprMixin, RowAddMixin):
         self.value = value
 
     def __str__(self):
-        return f'{self.value}'
+        return f'{general_latex_replacements(str(self.value))}'
 
     def _add_class(self, other):
         from dero.latex.table.models.table.row import Row
