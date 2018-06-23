@@ -20,6 +20,10 @@ from dero.latex.table.models.table.section import TableSection
 
 
 class PanelCollection(ReprMixin):
+    """
+    Lays panel contents in a grid, consolidates labels, creates padding between tables
+
+    """
     repr_cols = ['name', 'panels']
 
     def __init__(self, panels: [Panel], label_consolidation: str='object', enforce_label_order=True,
@@ -253,8 +257,10 @@ class PanelCollection(ReprMixin):
         self._grid = np.concatenate([row_label_grid, self._grid], axis=1).view(GridShape)
 
     @classmethod
-    def from_list_of_lists_of_dfs(cls, df_list_of_lists: [[pd.DataFrame]], *args,
-                                  panel_args=tuple(), panel_kwargs={}, **kwargs):
+    def from_list_of_lists_of_dfs(cls, df_list_of_lists: [[pd.DataFrame]],
+                                  panel_names: [str]=None, *args,
+                                  panel_kwargs={},
+                                  data_table_kwargs={}, **kwargs):
         """
         To create a single panel table, pass a single list within
         a list of DataFrames, e.g. [[df1, df2]] then shape will specify how the DataFrames will
@@ -267,17 +273,26 @@ class PanelCollection(ReprMixin):
         Panel.from_df_list
 
         :param df_list_of_lists:
+        :param panel_names: list of panel names. Must be of same length as outer list in df_list_of_lists
         :param args: args to pass to PanelCollection constructor
-        :param panel_args: Panel.from_df_list args. Same args will be passed to all panels
         :param panel_kwargs: Panel.from_df_list kwargs. Same kwargs will be passed to all panels
         :param kwargs: kwargs to pass to PanelCollection constructor
+        :param data_table_kwargs: kwargs to be passed to DataTable.from_df. Same kwargs will be passed to
+                                  all data tables.
 
         :return: PanelCollection
         """
+        _validate_panel_names(panel_names, df_list_of_lists)
+
         panels = []
-        for df_list in df_list_of_lists:
+        for i, df_list in enumerate(df_list_of_lists):
+            panel_name = _panel_name_or_none(panel_names, i)
             panels.append(
-                Panel.from_df_list(df_list, *panel_args, **panel_kwargs)
+                Panel.from_df_list(
+                    df_list,
+                    name=panel_name,
+                    data_table_kwargs=data_table_kwargs,
+                    **panel_kwargs)
             )
 
         label_consolidation = kwargs.pop('label_consolidation', 'string')
@@ -293,4 +308,18 @@ class PanelCollection(ReprMixin):
         from dero.latex.table.logic.table.build import build_tabular_content_from_panel_collection
         return build_tabular_content_from_panel_collection(self, mid_rule=mid_rule)
 
+def _panel_name_or_none(panel_names: [str], index: int):
+    if panel_names is not None:
+        return panel_names[index]
+    else:
+        return None
 
+def _validate_panel_names(panel_names: [str], df_list_of_lists: [[pd.DataFrame]]):
+    if panel_names is None:
+        return
+
+    num_panel_names = len(panel_names)
+    num_panels = len(df_list_of_lists)
+    if num_panel_names != num_panels:
+        raise ValueError(f'must pass as many panel names as panels. Got {num_panel_names} names '
+                         f'and {num_panels} panels.')

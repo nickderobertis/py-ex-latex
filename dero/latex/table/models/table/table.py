@@ -125,12 +125,14 @@ class Table(ReprMixin):
         )
 
     @classmethod
-    def from_list_of_lists_of_dfs(cls, df_list_of_lists: [[pd.DataFrame]], shape: tuple=None,
+    def from_list_of_lists_of_dfs(cls, df_list_of_lists: [[pd.DataFrame]],
+                                  panel_names: [str]=None, shape: tuple=None,
                                   include_columns=True, include_index=False,
                                   label_consolidation: str = 'str', enforce_label_order=True,
                                   top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
                                   pad_rows: int = 1, pad_columns: int = 1, caption: str = None, above_text: str = None,
-                                  below_text: str = None, align: str = None, mid_rules=True, landscape=False
+                                  below_text: str = None, align: str = None, mid_rules=True, landscape=False,
+                                  data_table_kwargs={}
                                   ):
         """
         To create a single panel table, pass a single list within
@@ -143,13 +145,13 @@ class Table(ReprMixin):
         To apply different options to each panel, construct them individually using
         Panel.from_df_list or sub panels individually with DataTable.from_df then make modifications
 
-        :param df_list: list of pandas DataFrame
+        :param df_list_of_lists: list of lists of pandas DataFrame
+        :param panel_names: list of panel names. Must be of same length as outer list in df_list_of_lists
         :param shape: tuple of (rows, columns) to arrange DataFrames. They will be placed from left to right,
                       then from top to bottom.
                       passsing None defaults one column, as many rows as DataFrames.
                       Note: this is for each panel. To apply a different shape to each Panel, construct Panels individually
                       and pass to Table.from_panel_list
-        :param name: name to be displayed with panel
         :param include_columns:
         :param include_index:
         :param label_consolidation: pass 'object' to to avoid consolidating labels. pass 'str' to consolidate if
@@ -173,10 +175,13 @@ class Table(ReprMixin):
                         fixed width. Default is first column left aligned, rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
+        :param data_table_kwargs: kwargs to be passed to DataTable.from_df. Same kwargs will be passed to
+                                  all data tables.
         :return:
         """
         panel_collection = PanelCollection.from_list_of_lists_of_dfs(
             df_list_of_lists,
+            panel_names=panel_names,
             panel_kwargs=dict(
                 shape=shape,
                 include_columns=include_columns,
@@ -187,7 +192,8 @@ class Table(ReprMixin):
             top_left_corner_labels=top_left_corner_labels,
             pad_rows=pad_rows,
             pad_columns=pad_columns,
-            name=caption
+            name=caption,
+            data_table_kwargs=data_table_kwargs
         )
 
         return cls(

@@ -45,7 +45,8 @@ class Panel(ReprMixin):
         return cls.from_data_tables([data_table], name=name)
 
     @classmethod
-    def from_df_list(cls, df_list: [pd.DataFrame], shape: tuple=None, name: str=None, include_columns=True, include_index=False):
+    def from_df_list(cls, df_list: [pd.DataFrame], shape: tuple=None, name: str=None, include_columns=True,
+                     include_index=False, data_table_kwargs={}):
         """
 
         :param df_list: list of pandas DataFrame
@@ -55,6 +56,8 @@ class Panel(ReprMixin):
         :param name: name to be displayed with panel
         :param include_columns:
         :param include_index:
+        :param data_table_kwargs: kwargs to be passed to DataTable.from_df. Same kwargs will be passed to
+                                  all data tables.
         :return:
         """
         data_table_list = [
@@ -62,6 +65,7 @@ class Panel(ReprMixin):
                 df,
                 include_columns=include_columns,
                 include_index=include_index,
+                **data_table_kwargs
             )
             for df in df_list
         ]
