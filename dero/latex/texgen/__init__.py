@@ -45,3 +45,6 @@ def _usepackage_str(str_, modifier_str=None):
 
 def general_latex_replacements(string):
     return string.replace('&','\&').replace('%','\%').replace('_','\_')
+
+def latex_filename_replacements(string):
+    return string.replace('%', 'pct').replace('/','_').replace('\\','_')

@@ -6,6 +6,7 @@ from dero.latex.models.caption import Caption
 from dero.latex.models.label import Label
 from dero.latex.logic.builder import build_figure_content
 from dero.latex.models.document import Document
+from dero.latex.texgen import latex_filename_replacements
 
 SubfigureOrGraphic = Union[Subfigure, Graphic]
 SubfiguresOrGraphics = List[SubfigureOrGraphic]
@@ -76,6 +77,8 @@ class Figure(Item):
             outfolder = '.'
         if outname is None:
             outname = 'figure'
+        else:
+            outname = latex_filename_replacements(outname)
 
         _document_to_pdf_and_move(
             to_output,

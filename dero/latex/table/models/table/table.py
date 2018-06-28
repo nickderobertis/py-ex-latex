@@ -13,6 +13,7 @@ from dero.latex.table.models.texgen.items import (
     Caption
 )
 from dero.latex.logic.pdf import _document_to_pdf_and_move
+from dero.latex.texgen import latex_filename_replacements
 
 
 
@@ -60,6 +61,8 @@ class Table(ReprMixin):
 
         if outname is None:
             outname = self.caption
+
+        outname = latex_filename_replacements(outname)
 
         _document_to_pdf_and_move(
             tex,
