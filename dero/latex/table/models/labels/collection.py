@@ -52,9 +52,20 @@ class LabelCollection(RowBase):
         return True
 
     @classmethod
-    def from_str_list(cls, str_list: [str]) -> 'LabelCollection':
+    def from_str_list(cls, str_list: [str], underline: Union[int, str]=None) -> 'LabelCollection':
+        """
+
+        Args:
+            str_list:
+            underline: int, str, or None, pass index or label to underline, pass a str range, e.g. '2-5' for a
+                  range of labels to underline, pass space separated indices as a str, e.g. '0 2' for
+                  separated underlines, or a combination, e.g. '2-5 8'
+
+        Returns:
+
+        """
         labels = [Label(value) for value in str_list]
-        return cls(labels)
+        return cls(labels, underline=underline)
 
     @classmethod
     def parse_unknown_type(cls, unknown_type: Union[str, Iterable[str], 'LabelCollection']) -> 'LabelCollection':
@@ -155,10 +166,11 @@ def _convert_underline_to_label_index_list(underline: Union[int, str]=None):
     for part in underline.split():
         # handle each space separated part. if just a range, will only be one part
         # check if is range like '3-5'
-        if _is_range_str(part):
-            int_list += _range_str_to_int_list(part)
         try:
-            int_list.append(int(part))
+            if _is_range_str(part):
+                int_list += _range_str_to_int_list(part)
+            else:
+                int_list.append(int(part))
         except ValueError:
             raise NotImplementedError(f'could not parse underline str into int. full underline '
                                       f'str: {underline}. failed processing part: {part}')
@@ -167,7 +179,7 @@ def _convert_underline_to_label_index_list(underline: Union[int, str]=None):
 
 def _range_str_to_int_list(underline: str):
     bottom, top = underline.split('-')
-    return [i for i in range(bottom, top + 1)]
+    return [i for i in range(int(bottom), int(top) + 1)]
 
 
 def _is_range_str(underline: str):

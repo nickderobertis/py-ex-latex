@@ -1,8 +1,8 @@
-from copy import deepcopy
-from typing import Union, AnyStr, List
+from typing import Union
 
 import pandas as pd
 
+from dero.latex.table.models.interfaces import LabelClassOrStrs
 from dero.latex.logic.tools import _add_if_not_none
 from dero.latex.models.mixins import ReprMixin
 from dero.latex.table.models.data.valuestable import ValuesTable
@@ -132,7 +132,7 @@ class DataTable(TableSection, ReprMixin):
     @classmethod
     def from_df(cls, df: pd.DataFrame, include_columns=True, include_index=False,
                 extra_header: str=None, extra_header_underline=True,
-                top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
+                top_left_corner_labels: LabelClassOrStrs = None,
                 **kwargs):
         """
         Use for the most fine-grained control in creating tables. Construct DataTables from
@@ -142,9 +142,13 @@ class DataTable(TableSection, ReprMixin):
         :param df:
         :param include_columns:
         :param include_index:
-        :param extra_header: extra multicolumn header to place over the existing column labels (or over values if
+        :param extra_header: extra headers to place over the existing column labels (or over values if
                              there are no column labels). Useful when placing multiple DataTables horizontally
-                             in a Panel.
+                             in a Panel. If a str is passed, str will become a multicolumn header for the entire
+                             DataTable. If a list of as many strs as there are columns is passed, these
+                             will be placed above any existing column labels. LabelTable and LabelCollection objects
+                             may also be passed for more control. When those objects are passed, the extra_header_underline
+                             argument is ignored.
         :param extra_header_underline: whether to add an underline under the extra header, if the extre header
                                        was passed
         :param top_left_corner_labels: additional labels to place in the top left corner. pass a single string
@@ -176,21 +180,35 @@ class DataTable(TableSection, ReprMixin):
 
         if extra_header is not None:
 
-            # set underline
-            if extra_header_underline:
-                underline = 0 # place an underline under the singular label
-            else:
-                underline = None # no underline
+            header = _create_header_label_collection(extra_header, values_table, extra_header_underline)
 
-            # create multicolumn label
-            label = Label(extra_header, span=values_table.num_columns)
-            header = LabelCollection([label], underline=underline)
             if include_columns:
                 # add to existing
                 dt.column_labels.label_collections.insert(0, header)
             else:
                 # create column labels as extra header
                 dt.column_labels = LabelTable([header])
+
+            if include_index:  # need to add to top left
+                if isinstance(header, LabelTable):
+                    num_spacers = len(header.rows())
+                else:
+                    num_spacers = 1
+
+                # top left has one by default. if there were already columns, that top left is used up by the columns
+                # and we need to add more. if there are not columns, then this one existing top left can be used
+                # for the new header
+                if not include_columns:
+                    num_spacers -= 1
+
+                for i in range(num_spacers):
+                    dt.top_left_corner_labels.label_collections.insert(0, LabelCollection.from_str_list([' ']))
+
+            # add spacer to top left corner labels to match new row of headers
+            if (not include_columns) and include_index:
+                # header becomes new columns, have to add top left as if there were columns
+                dt.should_add_top_left = True
+
 
         return dt
 
@@ -207,3 +225,35 @@ def _determine_match(labels1: LabelTable, labels2: LabelTable):
 
     # here, both are not None
     return labels1.matches(labels2)
+
+def _create_header_label_collection(extra_header: LabelClassOrStrs, values_table: ValuesTable, underline: bool):
+
+    # TODO: combine label tables vertically
+    if isinstance(extra_header, LabelTable):
+        raise NotImplementedError('need to implement passing LabelTable for extra header')
+
+    if isinstance(extra_header, LabelCollection):
+        return extra_header
+
+    if isinstance(extra_header, list):
+        if len(extra_header) != values_table.num_columns:
+            raise ValueError(f'passed extra header has {len(extra_header)} columns, while table has '
+                             f'{values_table.num_columns} columns')
+        if underline:
+            underline_arg = f'0-{len(extra_header) - 1}'
+        else:
+            underline_arg = None
+        return LabelCollection.from_str_list(extra_header, underline=underline_arg)
+
+    if isinstance(extra_header, str):
+        # create multicolumn label
+        label = Label(extra_header, span=values_table.num_columns)
+        # set underline
+        if underline:
+            underline_arg = 0  # place an underline under the singular label
+        else:
+            underline_arg = None  # no underline
+        return LabelCollection([label], underline=underline_arg)
+
+    raise ValueError(f'expected LabelTable, LabelCollection, list of strs, or str for extra header. '
+                     f'got {extra_header} of type {type(extra_header)}')

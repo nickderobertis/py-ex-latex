@@ -209,6 +209,74 @@ class Table(ReprMixin):
             landscape=landscape
         )
 
+    @classmethod
+    def from_panel_name_df_dict(cls, panel_name_df_dict: {str: pd.DataFrame},
+                                include_columns=True, include_index=False,
+                                label_consolidation: str = 'str', enforce_label_order=True,
+                                top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
+                                pad_rows: int = 1, caption: str = None, above_text: str = None,
+                                below_text: str = None, align: str = None, mid_rules=True, landscape=False,
+                                data_table_kwargs={}
+                                ):
+        """
+        Convenience method for when there is only one DataFrame per panel. All options will be applied all panels and
+        DataTables.
+        To apply different options to each panel, construct them individually using
+        Panel.from_df_list or sub panels individually with DataTable.from_df then make modifications
+
+        :param panel_name_df_dict: dictionary where keys are names of panels, and values are DataFrames to put in panels
+                                   (only one DataFrame per panel. Use another method if more control is needed)
+        :param include_columns:
+        :param include_index:
+        :param label_consolidation: pass 'object' to to avoid consolidating labels. pass 'str' to consolidate if
+                                    column or index contents are identical within a column or row of DataFrames
+        :param top_left_corner_labels: additional labels to place in the top left corner. pass a single string
+                                       or a list of strings for convenience. a list of strings will be create labels
+                                       which span the gap horizontally and go downwards, one label per row. pass
+                                       LabelCollection or LabelTable for more control.
+        :param enforce_label_order: pass False to allow consolidating lower labels even if upper labels do not match.
+                                    e.g. if labels on one table are [['Top1'], ['Bot1', 'Bot2']], then labels on the other
+                                    table are [['Top2'], ['Bot1', 'Bot2']], consolidated labels when passing False will be
+                                    ['Bot1', 'Bot2'], while when passing True, no labels will be consolidated. Under True,
+                                    will start from the top label, then stop consolidating once it has a mismatch.
+        :param pad_rows: horizontal spacing to put between panels
+        :param caption: overall caption to place at top of table
+        :param above_text: Not yet implemented
+        :param below_text: text to place below table
+        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned
+                        as well as L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm}) for left, center, and right aligned
+                        fixed width. Default is first column left aligned, rest center aligned.
+        :param mid_rules: whether to add mid rules between panels
+        :param landscape: whether to output landscape tex
+        :param data_table_kwargs: kwargs to be passed to DataTable.from_df. Same kwargs will be passed to
+                                  all data tables.
+        :return:
+        """
+
+        df_list_of_lists = []
+        panel_names = []
+        for panel_name, df in panel_name_df_dict.items():
+            df_list_of_lists.append([df])
+            panel_names.append(panel_name)
+
+        return cls.from_list_of_lists_of_dfs(
+            df_list_of_lists,
+            panel_names=panel_names,
+            include_columns=include_columns,
+            include_index=include_index,
+            label_consolidation=label_consolidation,
+            enforce_label_order=enforce_label_order,
+            top_left_corner_labels=top_left_corner_labels,
+            pad_rows=pad_rows,
+            caption=caption,
+            above_text=above_text,
+            below_text=below_text,
+            align=align,
+            mid_rules=mid_rules,
+            landscape=landscape,
+            data_table_kwargs=data_table_kwargs
+        )
+
     @property
     def align(self):
         return self._align
