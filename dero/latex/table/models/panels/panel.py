@@ -2,7 +2,7 @@ import pandas as pd
 
 from dero.latex.logic.tools import _max_len_or_zero
 from dero.latex.table.models.panels.grid import PanelGrid, GridShape
-from dero.latex.models.mixins import ReprMixin
+from dero.mixins.repr import ReprMixin
 from dero.latex.table.models.data.table import DataTable
 from dero.latex.table.models.table.row import Row
 from dero.latex.table.models.table.section import TableSection

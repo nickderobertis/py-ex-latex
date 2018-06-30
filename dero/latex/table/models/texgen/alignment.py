@@ -1,6 +1,7 @@
 import re
 
-from dero.latex.models.mixins import ReprMixin
+from dero.mixins.repr import ReprMixin
+
 
 class ColumnAlignment(ReprMixin):
     repr_cols = ['align']

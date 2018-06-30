@@ -4,7 +4,7 @@ import pandas as pd
 
 from dero.latex.table.models.interfaces import LabelClassOrStrs
 from dero.latex.logic.tools import _add_if_not_none
-from dero.latex.models.mixins import ReprMixin
+from dero.mixins.repr import ReprMixin
 from dero.latex.table.models.data.valuestable import ValuesTable
 from dero.latex.table.models.labels.label import Label
 from dero.latex.table.models.labels.table import LabelTable, LabelCollection

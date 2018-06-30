@@ -1,7 +1,7 @@
 from typing import Union, AnyStr, List
 import pandas as pd
 
-from dero.latex.models.mixins import ReprMixin
+from dero.mixins.repr import ReprMixin
 from dero.latex.table.models.panels.collection import PanelCollection, Panel
 from dero.latex.table.models.labels.table import LabelTable, LabelCollection
 from dero.latex.table.models.table.caption import Caption

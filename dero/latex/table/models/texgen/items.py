@@ -1,5 +1,5 @@
 from dero.latex.models.item import Item
-from dero.latex.models.mixins import ReprMixin
+from dero.mixins.repr import ReprMixin
 from dero.latex.table.models.panels.collection import PanelCollection
 from dero.latex.table.models.texgen.alignment import ColumnsAlignment
 from dero.latex.table.logic.table.build import build_tabular_content_from_panel_collection

@@ -1,7 +1,7 @@
 import numpy as np
 
 from dero.latex.table.models.table.section import TableSection
-from dero.latex.models.mixins import ReprMixin
+from dero.mixins.repr import ReprMixin
 
 
 class PanelGrid(ReprMixin):

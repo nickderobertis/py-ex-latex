@@ -7,17 +7,6 @@ def _max_len_or_zero(iterable: Iterable) -> int:
     except ValueError:
         return 0
 
-def show_contents(obj):
-    """
-    Used to view what's inside a latex table object
-
-    >>>import dero.latex.table as lt
-    >>>dt = lt.DataTable.from_df(some_df)
-    >>>show_contents(dt)
-    :param obj:
-    :return:
-    """
-    print(_readable_repr(repr(obj)))
 
 def _readable_repr(repr_str):
     out_letters = []
