@@ -2,7 +2,7 @@ import os
 
 import pandas as pd
 
-from dero.latex.texgen import general_latex_replacements
+from dero.latex.texgen.replacements.file import general_latex_replacements
 from dero.latex.tools import csv_to_raw_latex, date_time_move_latex
 
 

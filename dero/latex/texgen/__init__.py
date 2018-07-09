@@ -1,3 +1,5 @@
+from dero.latex.texgen.replacements.file import general_latex_replacements
+
 def _begin_str(str_):
     return rf'\begin{{{str_}}}'
 
@@ -49,8 +51,3 @@ def _usepackage_str(str_, modifier_str=None):
     return rf'\usepackage{full_modifier_str}{{{str_}}}'
 
 
-def general_latex_replacements(string):
-    return string.replace('&','\&').replace('%','\%').replace('_','\_')
-
-def latex_filename_replacements(string):
-    return string.replace('%', 'pct').replace('/','_').replace('\\','_')

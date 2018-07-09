@@ -1,7 +1,7 @@
 from dero.mixins.repr import ReprMixin
 from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
 from dero.latex.table.models.labels.multicolumn import MultiColumn
-from dero.latex.texgen import general_latex_replacements
+from dero.latex.texgen.replacements.file import general_latex_replacements
 
 
 class Label(ReprMixin, RowAddMixin):

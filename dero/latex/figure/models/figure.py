@@ -6,7 +6,7 @@ from dero.latex.models import Item
 from dero.latex.models.caption import Caption
 from dero.latex.models.label import Label
 from dero.latex.logic.builder import build_figure_content
-from dero.latex.texgen import latex_filename_replacements
+from dero.latex.texgen.replacements.filename import latex_filename_replacements
 
 SubfigureOrGraphic = Union[Subfigure, Graphic]
 SubfiguresOrGraphics = List[SubfigureOrGraphic]

@@ -9,7 +9,7 @@ from dero.latex.texgen.packages import default_packages
 
 from dero.latex.models.landscape import Landscape
 from dero.latex.logic.pdf import _document_to_pdf_and_move
-from dero.latex.texgen import latex_filename_replacements
+from dero.latex.texgen.replacements.filename import latex_filename_replacements
 from dero.latex.logic.extract.docitems import extract_document_items_from_ambiguous_collection
 from dero.latex.models.title import Title
 
