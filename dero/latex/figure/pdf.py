@@ -52,8 +52,8 @@ def _filepaths_to_document_or_figure(filepaths, subfigure_kwargs={}, figure_kwar
     ]
 
     document = Document(
-        packages,
         figure,
+        packages,
         **document_kwargs
     )
 

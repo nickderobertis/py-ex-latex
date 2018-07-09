@@ -1,17 +1,17 @@
 from typing import Union, List
 
 from dero.latex.figure.models.subfigure import Subfigure, Graphic
+from dero.latex.models.documentitem import DocumentItem
 from dero.latex.models import Item
 from dero.latex.models.caption import Caption
 from dero.latex.models.label import Label
 from dero.latex.logic.builder import build_figure_content
-from dero.latex.models.document import Document
 from dero.latex.texgen import latex_filename_replacements
 
 SubfigureOrGraphic = Union[Subfigure, Graphic]
 SubfiguresOrGraphics = List[SubfigureOrGraphic]
 
-class Figure(Item):
+class Figure(DocumentItem, Item):
     """
     used for creating latex figures from images. Currently the main usage is the Figure class created with the method
     Figure.from_dict_of_names_and_filepaths. Pass a dictionary where the keys are names for subfigures and the values
@@ -49,25 +49,15 @@ class Figure(Item):
         return self.subfigures[item]
 
     def as_document(self, landscape=False):
-        from dero.latex.models.package import Package
+        from dero.latex.models.document import Document
+        from dero.latex.figure.packages import default_packages
 
-        simple_package_strs = [
-            'caption',
-            'subcaption',
-            'graphicx',
-            'pdflscape'
-        ]
-        simple_packages = [Package(str_) for str_ in simple_package_strs]
-
-        packages = simple_packages + [
-            Package('geometry', modifier_str='margin=0.1in')
-        ]
-
-        return Document(packages, self, landscape=landscape)
+        return Document(self, default_packages, landscape=landscape)
 
     def to_pdf_and_move(self, as_document=True, outfolder: str=None, outname: str=None,
                         landscape=False):
         from dero.latex.logic.pdf import _document_to_pdf_and_move
+        from dero.latex.models.document import Document
 
         to_output: Figure = self
         if as_document:

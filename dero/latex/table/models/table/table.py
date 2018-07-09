@@ -14,10 +14,11 @@ from dero.latex.table.models.texgen.items import (
 )
 from dero.latex.logic.pdf import _document_to_pdf_and_move
 from dero.latex.texgen import latex_filename_replacements
+from dero.latex.models.documentitem import DocumentItem
 
 
 
-class Table(ReprMixin):
+class Table(ReprMixin, DocumentItem):
     """
     An object for creating latex tables. Easiest way to create is with Table.from_list_of_lists_of_dfs,
     but for more control, construct Panel objects and use Table.from_panel_list
@@ -45,6 +46,9 @@ class Table(ReprMixin):
         self.align = align
         self.mid_rules = mid_rules
         self.landscape = landscape
+
+    def __str__(self):
+        return self.to_tex(as_document=False)
 
     def to_tex(self, as_document=True):
         if as_document:
