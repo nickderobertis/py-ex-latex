@@ -165,16 +165,18 @@ class PanelCollection(ReprMixin):
             enforce_label_order=self.enforce_label_order
         )
 
-        self._add_column_labels(column_labels)
+        if column_labels is not None:
+            self._add_column_labels(column_labels)
 
-        # After adding column labels, there is an additional row at the top of the grid
-        # Therefore we will need one additional LabelTable for the first row, which is the row of column labels
-        # If top_left_corner_labels was passed on object creation, use that as LabelTable. Otherwise use a blank one
-        if self.has_column_labels:
-            all_row_labels = [self.top_left_corner_labels] + row_labels
-        else:
-            all_row_labels = row_labels
-        self._add_row_labels(all_row_labels)
+        if row_labels is not None:
+            # After adding column labels, there is an additional row at the top of the grid
+            # Therefore we will need one additional LabelTable for the first row, which is the row of column labels
+            # If top_left_corner_labels was passed on object creation, use that as LabelTable. Otherwise use a blank one
+            if self.has_column_labels:
+                all_row_labels = [self.top_left_corner_labels] + row_labels
+            else:
+                all_row_labels = row_labels
+            self._add_row_labels(all_row_labels)
 
         # Remove from the original tables the labels that were just consolidated
         remove_label_collections_from_grid(

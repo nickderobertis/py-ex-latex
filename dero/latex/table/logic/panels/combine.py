@@ -44,7 +44,12 @@ def _selected_common_labels_for_axis(grid: GridShape, selections: [int]=[0], axi
             )
         )
 
-    return common_label_tables
+    non_none_tables = [table for table in common_label_tables if table is not None]
+
+    if non_none_tables == []:
+        return None
+
+    return non_none_tables
 
 
 def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=True,
@@ -61,7 +66,7 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
 
     # first labels missing, no consolidation to be done, consolidated labels are None
     if label_tables[0] is None:
-        return LabelTable([])
+        return None
 
     common_label_table = LabelTable([])
     for i, label_collection in enumerate(label_tables[0]):
