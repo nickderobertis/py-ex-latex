@@ -111,7 +111,7 @@ class TableDocument(Document):
 
         packages += default_packages
 
-        super().__init__(packages, content, landscape=landscape)
+        super().__init__(content, packages, landscape=landscape)
 
     @classmethod
     def from_panel_collection(cls, panel_collection: PanelCollection, *args, tabular_kwargs={},

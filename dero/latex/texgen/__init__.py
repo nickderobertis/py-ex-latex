@@ -34,6 +34,12 @@ def _bottomrule_str():
 def _document_class_str():
     return r'\documentclass{article}'
 
+def _maketitle_str():
+    return r'\maketitle'
+
+def _todays_date_str():
+    return r'\today'
+
 
 def _usepackage_str(str_, modifier_str=None):
     if modifier_str:

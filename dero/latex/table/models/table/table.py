@@ -1,17 +1,13 @@
-from typing import Union, AnyStr, List
+from typing import Union, AnyStr, List, TYPE_CHECKING
 import pandas as pd
+
+if TYPE_CHECKING:
+    from dero.latex.table.models.texgen.items import ColumnsAlignment
 
 from dero.mixins.repr import ReprMixin
 from dero.latex.table.models.panels.collection import PanelCollection, Panel
 from dero.latex.table.models.labels.table import LabelTable, LabelCollection
 from dero.latex.table.models.table.caption import Caption
-from dero.latex.table.models.texgen.items import (
-    TableDocument,
-    Table as TexTable,
-    ColumnsAlignment,
-    TableNotes,
-    Caption
-)
 from dero.latex.logic.pdf import _document_to_pdf_and_move
 from dero.latex.texgen import latex_filename_replacements
 from dero.latex.models.documentitem import DocumentItem
@@ -39,6 +35,7 @@ class Table(ReprMixin, DocumentItem):
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         """
+        from dero.latex.table.models.texgen.items import TableNotes
         self.panels = panels
         self.caption = Caption(caption)
         self.above_text = _set_above_text(above_text)
@@ -51,6 +48,7 @@ class Table(ReprMixin, DocumentItem):
         return self.to_tex(as_document=False)
 
     def to_tex(self, as_document=True):
+        from dero.latex.table.models.texgen.items import TableDocument, Table as TexTable
         if as_document:
             class_factory = TableDocument.from_table_model
         else:
@@ -286,7 +284,8 @@ class Table(ReprMixin, DocumentItem):
         return self._align
 
     @align.setter
-    def align(self, align: Union[ColumnsAlignment, str]):
+    def align(self, align: Union['ColumnsAlignment', str]):
+        from dero.latex.table.models.texgen.items import ColumnsAlignment
         if align is None:
             self._align = ColumnsAlignment(num_columns=self.panels.num_columns)
         elif isinstance(align, ColumnsAlignment):
