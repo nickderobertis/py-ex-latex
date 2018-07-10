@@ -10,6 +10,7 @@ from dero.latex.models.document import Document
 from dero.latex.models.package import Package
 from dero.latex.table.models.texgen.packages import default_packages
 from dero.latex.texgen import general_latex_replacements
+from dero.latex.models.landscape import Landscape
 
 
 class TableNotes(Item, ReprMixin):
@@ -63,8 +64,9 @@ class Table(Item, ReprMixin):
     name = 'table'
     repr_cols = ['caption']
 
-    def __init__(self, three_part_table: ThreePartTable, centering=True):
+    def __init__(self, three_part_table: ThreePartTable, centering=True, landscape=False):
         self.caption = three_part_table.caption
+        self.landscape = landscape
 
         items = [
             _centering_str() if centering else None,
@@ -74,7 +76,14 @@ class Table(Item, ReprMixin):
         valid_items = [item for item in items if item is not None]
 
         content = LineBreak().join(valid_items)
+
         super().__init__(self.name, content)
+
+    def __str__(self):
+        content_with_env = super().__str__()
+        if self.landscape:
+            content_with_env = Landscape().wrap(str(content_with_env))
+        return content_with_env
 
     @classmethod
     def from_panel_collection(cls, panel_collection: PanelCollection, *args, tabular_kwargs={},
@@ -101,7 +110,7 @@ class Table(Item, ReprMixin):
             caption=table.caption,
             below_text=table.below_text
         )
-        return cls(three_part_table, *args, **kwargs)
+        return cls(three_part_table, *args, landscape=table.landscape, **kwargs)
 
 class TableDocument(Document):
 
