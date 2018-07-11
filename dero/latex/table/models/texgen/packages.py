@@ -4,7 +4,6 @@ from dero.latex.texgen.packages.columntypes import ColumnTypesPackage
 _default_package_strs = [
     'amsmath',
     'pdflscape',
-    'dcolumn',
     'booktabs',
     'array',
     'threeparttable'

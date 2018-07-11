@@ -15,5 +15,5 @@ class ColumnTypesPackage(Package):
         package_import = super().__str__()
         return _build([
             package_import,
-            NewColumnTypes
+            NewColumnTypes()
         ])
