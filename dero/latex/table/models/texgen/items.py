@@ -138,4 +138,4 @@ class TableDocument(Document):
         from dero.latex.table.models.table.table import Table as TableModel
         table: TableModel
         tex_table = Table.from_table_model(table, *args, **kwargs)
-        return cls(tex_table, *args, landscape=table.landscape, **kwargs)
+        return cls(tex_table, *args, **kwargs)
