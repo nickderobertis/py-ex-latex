@@ -22,7 +22,7 @@ class ColumnAlignment(ReprMixin):
     @staticmethod
     def _validate_align_str(align_str):
         basic_pattern = re.compile(r'[lcr]')
-        length_pattern = re.compile(r'[LCRD]\{[\d\w\s]+\}')
+        length_pattern = re.compile(r'[LCRD]\{[\d\w\s.]+\}')
 
         basic_match = basic_pattern.fullmatch(align_str)
         length_match = length_pattern.fullmatch(align_str)
