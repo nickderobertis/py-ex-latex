@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, List
 
 import pandas as pd
 
@@ -180,20 +180,18 @@ class DataTable(TableSection, ReprMixin):
 
         if extra_header is not None:
 
-            header = _create_header_label_collection(extra_header, values_table, extra_header_underline)
+            header = _create_header_label_collection_list(extra_header, values_table, extra_header_underline)
 
             if include_columns:
                 # add to existing
-                dt.column_labels.label_collections.insert(0, header)
+                header.reverse() # need to insert end first, so they end up in original order
+                [dt.column_labels.label_collections.insert(0, label_collection) for label_collection in header]
             else:
                 # create column labels as extra header
-                dt.column_labels = LabelTable([header])
+                dt.column_labels = LabelTable(header)
 
             if include_index:  # need to add to top left
-                if isinstance(header, LabelTable):
-                    num_spacers = len(header.rows())
-                else:
-                    num_spacers = 1
+                num_spacers = len(header)
 
                 # top left has one by default. if there were already columns, that top left is used up by the columns
                 # and we need to add more. if there are not columns, then this one existing top left can be used
@@ -226,14 +224,14 @@ def _determine_match(labels1: LabelTable, labels2: LabelTable):
     # here, both are not None
     return labels1.matches(labels2)
 
-def _create_header_label_collection(extra_header: LabelClassOrStrs, values_table: ValuesTable, underline: bool):
+def _create_header_label_collection_list(extra_header: LabelClassOrStrs, values_table: ValuesTable,
+                                         underline: bool) -> List[LabelCollection]:
 
-    # TODO: combine label tables vertically
     if isinstance(extra_header, LabelTable):
-        raise NotImplementedError('need to implement passing LabelTable for extra header')
+        return extra_header.label_collections
 
     if isinstance(extra_header, LabelCollection):
-        return extra_header
+        return [extra_header]
 
     if isinstance(extra_header, list):
         if len(extra_header) != values_table.num_columns:
@@ -243,7 +241,7 @@ def _create_header_label_collection(extra_header: LabelClassOrStrs, values_table
             underline_arg = f'0-{len(extra_header) - 1}'
         else:
             underline_arg = None
-        return LabelCollection.from_str_list(extra_header, underline=underline_arg)
+        return [LabelCollection.from_str_list(extra_header, underline=underline_arg)]
 
     if isinstance(extra_header, str):
         # create multicolumn label
@@ -253,7 +251,7 @@ def _create_header_label_collection(extra_header: LabelClassOrStrs, values_table
             underline_arg = 0  # place an underline under the singular label
         else:
             underline_arg = None  # no underline
-        return LabelCollection([label], underline=underline_arg)
+        return [LabelCollection([label], underline=underline_arg)]
 
     raise ValueError(f'expected LabelTable, LabelCollection, list of strs, or str for extra header. '
                      f'got {extra_header} of type {type(extra_header)}')
