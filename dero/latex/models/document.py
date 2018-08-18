@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Union, Tuple
 
 from dero.latex.models.environment import Environment
 from dero.latex.models import Item
@@ -18,6 +18,7 @@ ListOfItems = List[AnyItem]
 ItemOrListOfItems = Union[AnyItem, ListOfItems]
 StrList = List[str]
 StrListOrNone = Union[StrList, None]
+ItemAndPreEnvContents = Tuple[AnyItem, StrListOrNone]
 
 class DocumentEnvironment(Environment):
     name = 'document'
@@ -25,11 +26,11 @@ class DocumentEnvironment(Environment):
     def __init__(self):
         super().__init__(name=self.name)
 
-class Document(Item):
+class Document(DocumentItem, Item):
     name = 'document'
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
-                 title=None, author=None, date=None):
+                 title=None, author=None, date=None, skip_title_page: bool=False):
         from dero.latex.logic.builder import _build
         from dero.latex.models.titlepage import TitlePage
 
@@ -38,7 +39,7 @@ class Document(Item):
 
         self.packages = packages
 
-        pre_env_contents = _build([
+        self.pre_env_contents = _build([
             _document_class_str(),
             *[str(package) for package in self.packages]
         ])
@@ -46,9 +47,12 @@ class Document(Item):
         if isinstance(content, Item):
             content = [content]
 
-        if _should_create_title_page(title=title, author=author, date=date):
+        if not skip_title_page and _should_create_title_page(title=title, author=author, date=date):
             title_page = TitlePage(title=title, author=author, date=date)
             content.insert(0, title_page)
+            self.has_title_page = True
+        else:
+            self.has_title_page = False
 
         self.filepaths = self._get_filepaths_from_items(content)
 
@@ -58,7 +62,7 @@ class Document(Item):
         if landscape:
             content = Landscape().wrap(str(content))
 
-        super().__init__(self.name, content, pre_env_contents=pre_env_contents)
+        super().__init__(self.name, content, pre_env_contents=self.pre_env_contents)
 
     def __repr__(self):
         return f'<Document>'
@@ -94,11 +98,11 @@ class Document(Item):
 
     @classmethod
     def from_ambiguous_collection(cls, collection, packages: List[Package]=None, landscape=False,
-                                  title=None, author=None, date=None):
+                                  title=None, author=None, date=None, skip_title_page: bool=False):
         content = extract_document_items_from_ambiguous_collection(collection)
 
         return cls(content, packages=packages, landscape=landscape,
-                   title=title, author=author, date=date)
+                   title=title, author=author, date=date, skip_title_page=skip_title_page)
 
 def _should_create_title_page(title=None, author=None, date=None):
     return any([
@@ -106,3 +110,18 @@ def _should_create_title_page(title=None, author=None, date=None):
         author is not None,
         date is not None
     ])
+
+def _content_items_and_collected_pre_env_contents():
+    raise NotImplementedError('see TODO in _standardize_content_item_for_inclusion_in_document')
+
+def _standardize_content_item_for_inclusion_in_document(item: AnyItem) -> ItemAndPreEnvContents:
+
+    # No extra processing needed if not Document
+    if not isinstance(item, Document):
+        return item, None
+
+    # TODO: restructure to remove title pages
+    # TODO: restructure to extract content from Document
+
+    return item, item.pre_env_contents
+
