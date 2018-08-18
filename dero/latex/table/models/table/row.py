@@ -34,7 +34,8 @@ class Row(RowBase):
 
     @classmethod
     def from_latex_row_str(cls, latex_row_str):
-        latex_row_str = _remove_backslashes(latex_row_str)
+        # Split before removing backslashes so that \& doesn't get counted as &
         str_values = latex_row_str.split(' & ')
+        str_values = [_remove_backslashes(val) for val in str_values]
         values = [DataItem(value) for value in str_values]
         return cls(values)
