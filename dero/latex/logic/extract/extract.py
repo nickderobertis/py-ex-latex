@@ -1,5 +1,7 @@
 from typing import Iterable
 
+# TODO: refactor to simplify
+
 def extract_objs_of_type_from_ambiguous_collection(collection, obj_types):
     collected_objs = []
     if isinstance(collection, dict):
@@ -17,7 +19,9 @@ def extract_objs_of_type_from_ambiguous_collection(collection, obj_types):
 def _extract_objs_of_type_from_dict(collection, obj_types):
     collected_objs = []
     for key, obj in collection.items():
-        if _is_collection(obj, obj_types):
+        if isinstance(collection, dict):
+            collected_objs += _extract_objs_of_type_from_dict(collection, obj_types)
+        elif _is_collection(obj, obj_types):
             collected_objs += extract_objs_of_type_from_ambiguous_collection(obj, obj_types)
         elif isinstance(obj, obj_types):
             collected_objs.append(obj)
@@ -29,7 +33,9 @@ def _extract_objs_of_type_from_dict(collection, obj_types):
 def _extract_objs_of_type_from_normal_iterable(collection, obj_types):
     collected_objs = []
     for obj in collection:
-        if _is_collection(obj, obj_types):
+        if isinstance(collection, dict):
+            collected_objs += _extract_objs_of_type_from_dict(collection, obj_types)
+        elif _is_collection(obj, obj_types):
             collected_objs += extract_objs_of_type_from_ambiguous_collection(obj, obj_types)
         elif isinstance(obj, obj_types):
             collected_objs.append(obj)
