@@ -5,6 +5,7 @@ from dero.latex.models.documentitem import DocumentItem
 from dero.latex.models import Item
 from dero.latex.models.caption import Caption
 from dero.latex.models.label import Label
+from dero.latex.models.landscape import Landscape
 from dero.latex.logic.builder import build_figure_content
 from dero.latex.texgen.replacements.filename import latex_filename_replacements
 
@@ -20,11 +21,13 @@ class Figure(DocumentItem, Item):
     """
     name = 'figure'
 
-    def __init__(self, subfigures: SubfiguresOrGraphics, caption=None, label=None, centering=True, position_str=None):
+    def __init__(self, subfigures: SubfiguresOrGraphics, caption=None, label=None, centering=True, position_str=None,
+                 landscape: bool=False):
         self.subfigures = subfigures
         self.caption = Caption(caption) if caption else None
         self.label = Label(label) if label else None
         self.centering = centering
+        self.landscape = landscape
 
         self._remove_subfigure_elevate_contents_to_figure_if_single_subfigure()
 
@@ -37,6 +40,10 @@ class Figure(DocumentItem, Item):
         )
 
         super().__init__(self.name, content)
+
+        # Landscape needs to go around figure tags, so wrap output rather than contents
+        if landscape:
+            self._output = Landscape().wrap(self._output)
 
     def __repr__(self):
         return f'<Figure(subfigures={self.subfigures}, caption={self.caption})>'
@@ -61,7 +68,9 @@ class Figure(DocumentItem, Item):
 
         to_output: Figure = self
         if as_document:
-            to_output: Document = self.as_document(landscape=landscape)
+            to_output: Document = self.as_document(
+                landscape=landscape if self.landscape == False else False  # don't apply landscape twice
+            )
 
         if outfolder is None:
             outfolder = '.'
@@ -103,21 +112,44 @@ class Figure(DocumentItem, Item):
         return source_paths
 
     @classmethod
-    def from_dict_of_names_and_filepaths(cls, filepath_name_dict: dict, figure_name: str=None):
+    def from_dict_of_names_and_filepaths(cls, filepath_name_dict: dict, figure_name: str=None,
+                                         position_str_name_dict: dict=None, label=None, centering=True,
+                                         landscape: bool = False):
         """
 
-        :param filepath_name_dict: dictionary where keys are names of subfigures and values
-                                   are the filepaths to the images for those figures.
-        :param figure_name: name for overall figure
-        :return: Figure
+        Args:
+            filepath_name_dict: dictionary where keys are names of subfigures and values
+                                are the filepaths to the images for those subfigures.
+            figure_name: name for overall figure
+            position_str_name_dict: dictionary where keys are names of subfigures and values
+                                are the position strs for those figures, e.g. r'[t]{0.45\linewidth}'
+
+        Returns:
+
         """
+
+        # TODO: add possibility of passing grid shape rather than actual position str
+
+        if position_str_name_dict is None:
+            position_str_name_dict = {}
+
         subfigures = []
         for name, filepath in filepath_name_dict.items():
             subfigures.append(
-                Subfigure(filepath, caption=name)
+                Subfigure(
+                    filepath,
+                    caption=name,
+                    position_str=position_str_name_dict[name] if name in position_str_name_dict else r'[t]{0.45\linewidth}'
+                )
             )
 
-        return cls(subfigures, caption=figure_name)
+        return cls(
+            subfigures,
+            caption=figure_name,
+            label=label,
+            centering=centering,
+            landscape=landscape
+        )
 
     def _remove_subfigure_elevate_contents_to_figure_if_single_subfigure(self):
         """
