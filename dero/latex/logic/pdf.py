@@ -26,7 +26,9 @@ def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='fi
          for filepath in image_paths]
 
     if as_document:
-        os.system('pdflatex ' + '"' + outname_tex + '"') #create PDF
+        # create PDF. Need to run twice for last page, as is written to aux file on the first iteration and
+        # aux file is used on the second iteration
+        [os.system('pdflatex ' + '"' + outname_tex + '"') for i in range(2)]
     new_outfolder = date_time_move_latex(outname, outfolder, folder_name=move_folder_name) #move table into appropriate date/number folder
 
     if image_paths and new_outfolder:

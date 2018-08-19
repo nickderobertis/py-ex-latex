@@ -6,11 +6,12 @@ _default_package_strs = [
     'pdflscape',
     'booktabs',
     'array',
-    'threeparttable'
+    'threeparttable',
+    'fancyhdr',
+    'lastpage'
 ]
 
 _direct_default_packages = [
-    Package('geometry', modifier_str='margin=0.3in'),
     ColumnTypesPackage()
 ]
 

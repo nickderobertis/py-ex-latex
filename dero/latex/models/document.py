@@ -6,12 +6,14 @@ from dero.latex.models.documentitem import DocumentItem
 from dero.latex.texgen import _document_class_str
 from dero.latex.models.package import Package
 from dero.latex.texgen.packages import default_packages
-
+from dero.latex.models.page.style import PageStyle
 from dero.latex.models.landscape import Landscape
 from dero.latex.logic.pdf import _document_to_pdf_and_move
 from dero.latex.texgen.replacements.filename import latex_filename_replacements
 from dero.latex.logic.extract.docitems import extract_document_items_from_ambiguous_collection
-from dero.latex.models.title import Title
+from dero.latex.models.page.number import right_aligned_page_numbers
+from dero.latex.models.page.header import remove_header
+from dero.latex.models.page.footer import CenterFooter
 
 AnyItem = Union[Item, DocumentItem]
 ListOfItems = List[AnyItem]
@@ -30,19 +32,33 @@ class Document(DocumentItem, Item):
     name = 'document'
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
-                 title=None, author=None, date=None, skip_title_page: bool=False):
+                 title: str=None, author: str=None, date: str=None, skip_title_page: bool=False,
+                 page_modifier_str: str='margin=0.8in, bottom=1.2in', page_header: bool=False,
+                 page_numbers: bool=True):
         from dero.latex.logic.builder import _build
         from dero.latex.models.titlepage import TitlePage
 
         if packages is None:
-            packages = default_packages
+            packages = default_packages.copy()
+
+        # Set margins, body size, etc. with geometry package
+        packages.append(Package('geometry', modifier_str=page_modifier_str))
 
         self.packages = packages
 
-        self.pre_env_contents = _build([
+        possible_pre_env_contents = [
             _document_class_str(),
-            *[str(package) for package in self.packages]
-        ])
+            *[str(package) for package in self.packages],
+            PageStyle('fancy'),
+
+            # header is there by default. add remove header lines if page_header=False
+            remove_header if not page_header else None,
+
+            # add right page numbers. if not, use blank center footer to clear default page numbers in center footer
+            right_aligned_page_numbers if page_numbers else CenterFooter('')
+        ]
+
+        self.pre_env_contents = _build([item for item in possible_pre_env_contents if item is not None])
 
         if isinstance(content, Item):
             content = [content]
@@ -98,11 +114,16 @@ class Document(DocumentItem, Item):
 
     @classmethod
     def from_ambiguous_collection(cls, collection, packages: List[Package]=None, landscape=False,
-                                  title=None, author=None, date=None, skip_title_page: bool=False):
+                                  title=None, author=None, date=None, skip_title_page: bool=False,
+                                  page_modifier_str: str = 'margin=0.8in, bottom=1.2in', page_header: bool = False,
+                                  page_numbers: bool = True
+                                  ):
         content = extract_document_items_from_ambiguous_collection(collection)
 
         return cls(content, packages=packages, landscape=landscape,
-                   title=title, author=author, date=date, skip_title_page=skip_title_page)
+                   title=title, author=author, date=date, skip_title_page=skip_title_page,
+                   page_modifier_str=page_modifier_str, page_header=page_header,
+                   page_numbers=page_numbers)
 
 def _should_create_title_page(title=None, author=None, date=None):
     return any([
