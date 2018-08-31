@@ -47,9 +47,7 @@ def _filepaths_to_document_or_figure(filepaths, subfigure_kwargs={}, figure_kwar
     ]
     simple_packages = [Package(str_) for str_ in simple_package_strs]
 
-    packages = simple_packages + [
-        Package('geometry', modifier_str='margin=0.1in')
-    ]
+    packages = simple_packages + []  # add any packages with options here with the Package class
 
     document = Document(
         figure,

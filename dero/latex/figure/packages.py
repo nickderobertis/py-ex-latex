@@ -8,6 +8,4 @@ simple_package_strs = [
 ]
 simple_packages = [Package(str_) for str_ in simple_package_strs]
 
-default_packages = simple_packages + [
-    Package('geometry', modifier_str='margin=0.1in')
-]
+default_packages = simple_packages + []  # add any packages with options here with the Package class
