@@ -1,7 +1,7 @@
 from typing import Dict, List
 
 latex_escape_character = '\\' # literal \
-latex_replacement_items = ['%', '&', '_']
+latex_replacement_items = ['%', '&', '_', '#']
 replacement_dict = {
         latex_replacement_item: latex_escape_character + latex_replacement_item \
         for latex_replacement_item in latex_replacement_items
