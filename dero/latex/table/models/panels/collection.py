@@ -58,6 +58,8 @@ class PanelCollection(ReprMixin):
         self.pad_rows = pad_rows
         self.pad_columns = pad_columns
 
+        self.has_row_labels = False
+        self.has_column_labels = False
         self.consolidate_labels()
         self.pad_grid()
 
@@ -137,7 +139,11 @@ class PanelCollection(ReprMixin):
         try:
             return self._grid
         except AttributeError:
-            self._grid = np.concatenate([panel.panel_grid for panel in self.panels]).view(GridShape)
+            self._grid = _concatenate_uneven_rows_filling_right(
+                [panel.panel_grid for panel in self.panels],
+                fill_value=TableSection([]),
+                array_class=GridShape
+            )
 
         return self._grid
 
@@ -167,6 +173,15 @@ class PanelCollection(ReprMixin):
 
         if column_labels is not None:
             self._add_column_labels(column_labels)
+            if row_labels is None:
+                # If there are column labels but not row labels, still need to deal with top left label.
+                # Adding the top left label is handled in the if row_labels is not None block, but it will
+                # not be reached as row_labels is None. Therefore create a blank label table for each grid row
+                # except for the column labels. The top left label to go with the column row will be added
+                # in the following block.
+                # Grid shape -1 to exclude just added column labels
+                row_labels = [LabelTable([]) for row_index in range(self.grid.shape[0] - 1)]
+
 
         if row_labels is not None:
             # After adding column labels, there is an additional row at the top of the grid
@@ -325,3 +340,47 @@ def _validate_panel_names(panel_names: [str], df_list_of_lists: [[pd.DataFrame]]
     if num_panel_names != num_panels:
         raise ValueError(f'must pass as many panel names as panels. Got {num_panel_names} names '
                          f'and {num_panels} panels.')
+
+
+def _concatenate_uneven_rows_filling_right(rows, fill_value=np.nan, array_class=None):
+    """
+    Concatenates along vertical axis, filling right as needed.
+
+    Examples:
+        a = np.array(
+            [[1, 2, 3]]
+        )
+        b = np.array(
+            [[4, 5]]
+        )
+        _concatenate_uneven_rows_filling_right([a, b])
+
+        array([[ 1.,  2.,  3.],
+               [ 4.,  5., nan]])
+
+    Args:
+        rows:
+        fill_value:
+        array_class:
+
+    Returns:
+
+    """
+    max_len = max([row.shape[1] for row in rows])
+
+    concat_rows = []
+    for row in rows:
+        num_to_add = max_len - row.shape[1]
+        if num_to_add > 0:
+            add_array = np.array([[fill_value] * num_to_add])
+            concat_array = np.concatenate([row, add_array], axis=1)
+        else:
+            concat_array = row
+        concat_rows.append(concat_array)
+
+    out_arr = np.concatenate(concat_rows)
+
+    if array_class:
+        out_arr = out_arr.view(array_class)
+
+    return out_arr

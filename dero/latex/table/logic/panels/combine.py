@@ -72,11 +72,16 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
     for i, label_collection in enumerate(label_tables[0]):
         stored_match = False # only want to add each matched collection once. use boolean to track
         for label_table in label_tables[1:]:
-            match = _compare_label_collections(
-                label_collection,
-                label_table[i],
-                use_object_equality=use_object_equality
-            )
+            # If there is a corresponding label table and it has this index label collection
+            if label_table is not None and i < len(label_table.label_collections):
+                match = _compare_label_collections(
+                    label_collection,
+                    label_table[i],
+                    use_object_equality=use_object_equality
+                )
+            else:
+                # No labels, nothing to consolidate
+                match = False
             if match:
                 if not stored_match:
                     common_label_table.append(label_collection)
@@ -86,6 +91,9 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
                     break # as soon as one label collection doesn't match, stop consolidating
                 else:
                     continue # don't worry about non-match, continue consolidating
+
+    if common_label_table.is_empty:
+        return None
 
     return common_label_table
 
