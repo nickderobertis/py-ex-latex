@@ -9,12 +9,14 @@ class TitlePage(DocumentItem):
     def __init__(self, title=None, author=None, date=None):
         from dero.latex.logic.builder import _build
 
-        self.contents = [
+        contents = [
             Title(title) if title is not None else None,
             Author(author) if author is not None else None,
             Date(date) if date is not None else Date(),
             _maketitle_str()
         ]
+
+        self.contents = [content for content in contents if content is not None]
 
         self._output = _build(self.contents)
 
