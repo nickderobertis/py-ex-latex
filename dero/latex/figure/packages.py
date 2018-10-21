@@ -4,7 +4,9 @@ simple_package_strs = [
     'caption',
     'subcaption',
     'graphicx',
-    'pdflscape'
+    'pdflscape',
+    'fancyhdr',
+    'lastpage'
 ]
 simple_packages = [Package(str_) for str_ in simple_package_strs]
 
