@@ -33,8 +33,15 @@ def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='fi
 
     if image_paths and new_outfolder:
         # Copy second time to move pictures along with pdf
+        sources_tempfolder = os.path.join(outfolder, 'Sources')
         sources_outfolder = os.path.join(new_outfolder, 'Sources')
-        _move_if_needed(sources_tempfolder, sources_outfolder)
+        if not os.path.exists(sources_outfolder):
+            os.makedirs(sources_outfolder)
+        [_move_if_exists_and_is_needed(
+            os.path.join(sources_tempfolder, _latex_valid_basename(filepath)),
+            os.path.join(sources_outfolder, _latex_valid_basename(filepath))
+         )
+         for filepath in image_paths]
 
     os.chdir(orig_path)
 
@@ -51,6 +58,12 @@ def _move_if_needed(src, dst):
         shutil.move(src, dst)
     except shutil.SameFileError:
         pass
+
+def _move_if_exists_and_is_needed(src, dst):
+    if not os.path.exists(src):
+        return
+
+    _move_if_needed(src, dst)
 
 
 def _move_folder_or_move_files_if_destination_folder_exists(src, dst):
