@@ -2,6 +2,7 @@ from typing import Dict, List
 
 latex_escape_character = '\\' # literal \
 latex_replacement_items = ['%', '&', '_', '#']
+latex_block_escape_characters = ['$']
 replacement_dict = {
         latex_replacement_item: latex_escape_character + latex_replacement_item \
         for latex_replacement_item in latex_replacement_items
@@ -9,27 +10,45 @@ replacement_dict = {
 
 class Replacer:
 
-    def __init__(self, replacement_dict: Dict[str, str], escape_character: str=None):
+    def __init__(self, replacement_dict: Dict[str, str], escape_next_character_characters: List[str]=None,
+                 escape_until_same_next_character_characters: List[str]=None):
+        """
+
+        Args:
+            replacement_dict: dict where keys are strings to be replaced, and values are replacements
+            escape_next_character_characters: list of one character strings for which after that character,
+                the next character should not be replaced
+            escape_until_same_next_character_characters: list of one character strings for which after that
+                character, until this same character is seen again, characters should not be replaced
+        """
         self.replacement_dict = replacement_dict
-        self.escape_character = escape_character
+        self.escape_next_character_characters = escape_next_character_characters
+        self.escape_until_same_next_character_characters = escape_until_same_next_character_characters
 
     def replace(self, string: str) -> str:
         possible_replacement = ''
         replacing = False
         output_str = ''
         previous_letter = ''
+        escaped_until_character = ''  # blank string when not in an escaped block
         for letter in string:
             wipe_replacement = True # wipe unless told not to by the loop
-            ### TEMP
-            # import pdb
-            # pdb.set_trace()
-            ### END TEMP
             output_letter = letter
             possible_replacement += letter
 
+            # Check if we're in an escaped block
+            if escaped_until_character != '':
+                if possible_replacement == escaped_until_character:
+                    # End of escaped block
+                    escaped_until_character = ''
+            elif possible_replacement in self.escape_until_same_next_character_characters:
+                # escaped block is starting
+                escaped_until_character = possible_replacement
+                replacing = False
+
             # automatically is skipped if longer than one letter, so won't enter while replacing
-            if possible_replacement in self.first_letters:
-                if previous_letter == self.escape_character:
+            if (possible_replacement in self.first_letters) and (escaped_until_character == ''):
+                if previous_letter in self.escape_next_character_characters:
                     # Escape character. No need to replace. Start over
                     replacing = False
                 else:
@@ -124,4 +143,8 @@ def _extract_replacements_where_letter_matches_index_n(n: int, letter: str, dict
     return {key: value for key, value in dict_.items() if key[n] == letter}
 
 
-latex_replacer = Replacer(replacement_dict, escape_character=latex_escape_character)
+latex_replacer = Replacer(
+    replacement_dict,
+    escape_next_character_characters=[latex_escape_character],
+    escape_until_same_next_character_characters=latex_block_escape_characters
+)
