@@ -160,13 +160,30 @@ class Figure(DocumentItem, Item):
         if len(self.subfigures) != 1:
             return
 
-        self.subfigures: List[Subfigure]
+        self.subfigures: List[Union[Subfigure, Graphic]]
+
+        if hasattr(self.subfigures[0], 'graphic'):
+            # got subfigure
+            item_is_subfigure = True
+            orig_graphic = self.subfigures[0].graphic
+        else:
+            # got graphic
+            item_is_subfigure = False
+            orig_graphic = self.subfigures[0]
+
+        # Elevate caption of sub-figure if there is no figure caption
+        if self.caption is None and item_is_subfigure:
+            self.caption = self.subfigures[0].caption
+
         # update width to whole page
-        graphic = Graphic(self.subfigures[0].graphic.filepath, width=r'1.26\paperwidth')
+        graphic = Graphic(orig_graphic.filepath, width=r'1.1\paperwidth')
+
         # need to turn off centering to cover whole page
         self.centering = False
 
         self.subfigures = [graphic]
+
+
 
 
 
