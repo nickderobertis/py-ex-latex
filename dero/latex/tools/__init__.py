@@ -1,9 +1,9 @@
 import datetime
 import filecmp
 import os
-import shutil
 
 from dero.data import replace_missing_csv
+from dero.latex.tools.fileops import move_if_exists, remove_all_if_exist, remove_if_exists, move_all_if_exists
 
 
 def date_time_move_latex(tablename,filepath, folder_name='Tables'):
@@ -17,23 +17,6 @@ def date_time_move_latex(tablename,filepath, folder_name='Tables'):
         filepath: full filepath of table, without table name. put r before quotes as follows: r'C:\Users\Folder'
 
     """
-    def remove_if_exists(filepath):
-        try:
-            os.remove(filepath)
-        except FileNotFoundError:
-            print('Cannot delete: did not find {}'.format(filepath))
-
-    def move_if_exists(inpath, outpath):
-        try:
-            shutil.move(inpath, outpath)
-        except FileNotFoundError:
-            print('Cannot move: did not find {}'.format(inpath))
-
-    def remove_all_if_exist(filepaths):
-        [remove_if_exists(filepath) for filepath in filepaths]
-
-    def move_all_if_exists(inpaths, outfolder):
-        [move_if_exists(inpath, outfolder) for inpath in inpaths]
 
     def exit_sequence():
         inpath_aux = os.path.join(filepath, str(tablename) + '.aux')
@@ -151,3 +134,4 @@ def csv_to_raw_latex(infile, csvstring=False, missing_rep=" - ", formatstr='{:.3
         f.close()
 
     return latex_list
+
