@@ -1,4 +1,5 @@
-from typing import Union, List
+import os
+from typing import Union, List, Dict
 
 from dero.latex.figure.models.subfigure import Subfigure, Graphic
 from dero.latex.models.documentitem import DocumentItem
@@ -8,9 +9,12 @@ from dero.latex.models.label import Label
 from dero.latex.models.landscape import Landscape
 from dero.latex.logic.builder import build_figure_content
 from dero.latex.texgen.replacements.filename import latex_filename_replacements
+from matplotlib.pyplot import Axes, Figure as PltFigure
 
 SubfigureOrGraphic = Union[Subfigure, Graphic]
 SubfiguresOrGraphics = List[SubfigureOrGraphic]
+PltFigureOrAxes = Union[Axes, PltFigure]
+PltFigureOrAxesNameDict = Dict[str, PltFigureOrAxes]
 
 class Figure(DocumentItem, Item):
     """
@@ -151,6 +155,48 @@ class Figure(DocumentItem, Item):
             landscape=landscape
         )
 
+    @classmethod
+    def from_dict_of_names_and_plt_figures(cls, plt_fig_name_dict: PltFigureOrAxesNameDict, sources_outfolder: str,
+                                           source_filetype: str = 'pdf',
+                                           figure_name: str=None,
+                                           position_str_name_dict: dict=None, label=None, centering=True,
+                                           landscape: bool = False):
+        """
+
+        Args:
+            plt_fig_name_dict: Key is display name in output figure, value is matplotlib axes or figure
+            sources_outfolder: folder to output individual plt figures
+            source_filetype: Filetype for individual plt figures. The default is pdf. Use png or another image type if
+                outputting complicated figures or performance may be affected when viewing the pdf.
+            figure_name: name for overall figure
+            position_str_name_dict: dictionary where keys are names of subfigures and values
+                are the position strs for those figures, e.g. r'[t]{0.45\linewidth}'
+            label:
+            centering:
+            landscape:
+
+        Returns: Figure
+
+        """
+
+        filepath_name_dict = {}  # store outputted filepaths of sources to pass to from_dict_of_names_and_filepaths
+        for name, plt_figure_or_axes in plt_fig_name_dict.items():
+            plt_figure = _get_plt_figure_from_axes_or_figure(plt_figure_or_axes)
+            outpath = os.path.join(sources_outfolder, f'{latex_filename_replacements(name)}.{source_filetype}')
+            plt_figure.savefig(outpath)
+            filepath_name_dict[name] = outpath
+
+        return cls.from_dict_of_names_and_filepaths(
+            filepath_name_dict,
+            figure_name=figure_name,
+            position_str_name_dict=position_str_name_dict,
+            label=label,
+            centering=centering,
+            landscape=landscape
+        )
+
+
+
     def _remove_subfigure_elevate_contents_to_figure_if_single_subfigure(self):
         """
         If there is a single subfigure, leaving in subfigure format results in very small output. Must strip
@@ -184,6 +230,13 @@ class Figure(DocumentItem, Item):
         self.subfigures = [graphic]
 
 
+def _get_plt_figure_from_axes_or_figure(plt_axes_or_fig: PltFigureOrAxes) -> PltFigure:
+    # Both axes and figure have the get_figure method, however for the figure, it will return None
+    possible_figure = plt_axes_or_fig.get_figure()
+    if possible_figure is None:
+        return plt_axes_or_fig  # had figure already
+    else:
+        return possible_figure # extracted figure from axes
 
 
 
