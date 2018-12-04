@@ -43,7 +43,7 @@ def _run_func_handling_file_modify_exceptions(func: Callable, filepath: str, *ar
     func_desc = _get_func_short_description(func, func_short_desc)
 
     try:
-        func(*args, **kwargs)
+        func(filepath, *args, **kwargs)
     except FileNotFoundError:
         print(f'Cannot {func_desc}: did not find {filepath}')
         return
