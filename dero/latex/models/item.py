@@ -1,4 +1,3 @@
-from dero.latex.models import Environment
 from dero.latex.models.mixins import StringAdditionMixin
 from dero.latex.texgen import _basic_item_str, _multi_option_item_str
 from dero.latex.logic.format.contents import format_contents
@@ -6,6 +5,7 @@ from dero.latex.logic.format.contents import format_contents
 class Item(StringAdditionMixin):
 
     def __init__(self, name, contents, pre_env_contents=None, post_env_contents=None, env_modifiers=None):
+        from dero.latex.models import Environment
         self.env = Environment(name, modifiers=env_modifiers)
         self.contents = contents
 
