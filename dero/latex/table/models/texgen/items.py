@@ -9,7 +9,6 @@ from dero.latex.texgen import _centering_str
 from dero.latex.models.document import Document
 from dero.latex.models.package import Package
 from dero.latex.table.models.texgen.packages import default_packages
-from dero.latex.texgen import general_latex_replacements
 from dero.latex.models.landscape import Landscape
 
 
@@ -17,7 +16,6 @@ class TableNotes(Item, ReprMixin):
     name = 'tablenotes'
 
     def __init__(self, content: str):
-        content = general_latex_replacements(content)
         super().__init__(self.name, content, env_modifiers=f'[para, flushleft]')
 
 class Tabular(Item, ReprMixin):

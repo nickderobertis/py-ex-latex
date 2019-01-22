@@ -1,4 +1,4 @@
-from dero.latex.texgen.replacements.file import general_latex_replacements
+from dero.latex.logic.format.contents import format_contents
 
 def _begin_str(str_):
     return rf'\begin{{{str_}}}'
@@ -12,10 +12,10 @@ def _include_graphics_str(filepath, width=r'\linewidth'):
     return rf'\includegraphics[width={width}]{{{filepath}}}'
 
 def _basic_item_str(item_name, contents):
-    return rf'\{item_name}{{{general_latex_replacements(contents)}}}'
+    return rf'\{item_name}{{{format_contents(contents)}}}'
 
 def _multi_option_item_str(item_name, *options):
-    options_str = ''.join([f'{{{general_latex_replacements(str(option))}}}' for option in options])
+    options_str = ''.join([f'{{{format_contents(str(option))}}}' for option in options])
     return rf'\{item_name}{options_str}'
 
 def _cmidrule_str(align, col_str):

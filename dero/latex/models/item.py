@@ -1,6 +1,7 @@
 from dero.latex.models import Environment
 from dero.latex.models.mixins import StringAdditionMixin
 from dero.latex.texgen import _basic_item_str, _multi_option_item_str
+from dero.latex.logic.format.contents import format_contents
 
 class Item(StringAdditionMixin):
 
@@ -11,7 +12,7 @@ class Item(StringAdditionMixin):
         self._output = ''
         if pre_env_contents:
             self._output += pre_env_contents
-        self._output += self.env.wrap(str(self.contents))
+        self._output += self.env.wrap(format_contents(self.contents))
         if post_env_contents:
             self._output += post_env_contents
 
