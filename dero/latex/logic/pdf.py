@@ -76,4 +76,4 @@ def _move_folder_or_move_files_if_destination_folder_exists(src, dst):
 
 def _latex_valid_basename(filepath):
     basename = os.path.basename(filepath)
-    return basename.replace(' ', '_').replace('/','_').replace('%','pct')
+    return basename.replace(' ', '_').replace('/','_').replace('%','pct').replace('$','')
