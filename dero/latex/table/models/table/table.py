@@ -14,7 +14,7 @@ from dero.latex.models.documentitem import DocumentItem
 
 
 
-class Table(ReprMixin, DocumentItem):
+class Table(DocumentItem, ReprMixin):
     """
     An object for creating latex tables. Easiest way to create is with Table.from_list_of_lists_of_dfs,
     but for more control, construct Panel objects and use Table.from_panel_list

@@ -10,12 +10,14 @@ from dero.latex.models.document import Document
 from dero.latex.models.package import Package
 from dero.latex.table.models.texgen.packages import default_packages
 from dero.latex.models.landscape import Landscape
+from dero.latex.logic.format.contents import format_contents
 
 
 class TableNotes(Item, ReprMixin):
     name = 'tablenotes'
 
     def __init__(self, content: str):
+        content = format_contents(content)
         super().__init__(self.name, content, env_modifiers=f'[para, flushleft]')
 
 class Tabular(Item, ReprMixin):

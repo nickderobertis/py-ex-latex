@@ -11,6 +11,12 @@ def _end_str(str_):
 def _include_graphics_str(filepath, width=r'\linewidth'):
     return rf'\includegraphics[width={width}]{{{filepath}}}'
 
+
+def _no_braces_item_str(item_name, contents) -> str:
+    from dero.latex.logic.format.contents import format_contents
+    return rf'\{item_name} {format_contents(contents)}'
+
+
 def _basic_item_str(item_name, contents):
     from dero.latex.logic.format.contents import format_contents
     return rf'\{item_name}{{{format_contents(contents)}}}'

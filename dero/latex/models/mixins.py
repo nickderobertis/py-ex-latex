@@ -10,3 +10,14 @@ class StringAdditionMixin:
         return self.__str__().join(str(i) for i in iterable)
 
 
+class IsSpecificClassMixin:
+    """
+    creates attribute is_ClassName (with whatever class name)
+
+    be sure to put this mixin first among multiple classes
+    """
+
+    def __init__(self, *args, **kwargs):
+        class_name = self.__class__.__name__
+        setattr(self, f'is_{class_name}', True)
+        super().__init__(*args, **kwargs)
