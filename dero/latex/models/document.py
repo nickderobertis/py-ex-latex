@@ -116,14 +116,14 @@ class Document(DocumentItem, Item):
 
     @classmethod
     def from_ambiguous_collection(cls, collection, packages: List[Package]=None, landscape=False,
-                                  title=None, author=None, date=None, skip_title_page: bool=False,
+                                  title=None, author=None, date=None, abstract: str = None, skip_title_page: bool=False,
                                   page_modifier_str: str = 'margin=0.8in, bottom=1.2in', page_header: bool = False,
                                   page_numbers: bool = True
                                   ):
         content = extract_document_items_from_ambiguous_collection(collection)
 
         return cls(content, packages=packages, landscape=landscape,
-                   title=title, author=author, date=date, skip_title_page=skip_title_page,
+                   title=title, author=author, date=date, abstract=abstract, skip_title_page=skip_title_page,
                    page_modifier_str=page_modifier_str, page_header=page_header,
                    page_numbers=page_numbers)
 
