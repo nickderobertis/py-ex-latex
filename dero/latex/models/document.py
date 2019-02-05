@@ -14,6 +14,7 @@ from dero.latex.logic.extract.docitems import extract_document_items_from_ambigu
 from dero.latex.models.page.number import right_aligned_page_numbers
 from dero.latex.models.page.header import remove_header
 from dero.latex.models.page.footer import CenterFooter
+from dero.latex.models.section.abstract import Abstract
 
 AnyItem = Union[Item, DocumentItem]
 ListOfItems = List[AnyItem]
@@ -32,7 +33,8 @@ class Document(DocumentItem, Item):
     name = 'document'
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
-                 title: str=None, author: str=None, date: str=None, skip_title_page: bool=False,
+                 title: str=None, author: str=None, date: str=None, abstract: str=None,
+                 skip_title_page: bool=False,
                  page_modifier_str: str='margin=0.8in, bottom=1.2in', page_header: bool=False,
                  page_numbers: bool=True):
         from dero.latex.logic.builder import _build
@@ -60,11 +62,11 @@ class Document(DocumentItem, Item):
 
         self.pre_env_contents = _build([item for item in possible_pre_env_contents if item is not None])
 
-        if isinstance(content, Item):
+        if isinstance(content, (Item, str)):
             content = [content]
 
-        if not skip_title_page and _should_create_title_page(title=title, author=author, date=date):
-            title_page = TitlePage(title=title, author=author, date=date)
+        if not skip_title_page and _should_create_title_page(title=title, author=author, date=date, abstract=abstract):
+            title_page = TitlePage(title=title, author=author, date=date, abstract=abstract)
             content.insert(0, title_page)
             self.has_title_page = True
         else:
@@ -125,11 +127,12 @@ class Document(DocumentItem, Item):
                    page_modifier_str=page_modifier_str, page_header=page_header,
                    page_numbers=page_numbers)
 
-def _should_create_title_page(title=None, author=None, date=None):
+def _should_create_title_page(title: str = None, author: str = None, date: str = None, abstract: str = None):
     return any([
         title is not None,
         author is not None,
-        date is not None
+        date is not None,
+        abstract is not None
     ])
 
 def _content_items_and_collected_pre_env_contents():
