@@ -1,6 +1,6 @@
-from typing import Iterable
-
 # TODO: refactor to simplify
+from dero.latex.logic.extract.tools import _is_collection
+
 
 def extract_objs_of_type_from_ambiguous_collection(collection, obj_types):
     collected_objs = []
@@ -44,9 +44,3 @@ def _extract_objs_of_type_from_normal_iterable(collection, obj_types):
     return collected_objs
 
 
-def _is_collection(collection, desired_obj_types):
-    if isinstance(collection, str):
-        return False
-    if isinstance(collection, desired_obj_types):
-        return False
-    return isinstance(collection, Iterable)
