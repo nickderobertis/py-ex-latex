@@ -1,4 +1,4 @@
-from typing import Union, AnyStr, List, TYPE_CHECKING
+from typing import Union, AnyStr, List, TYPE_CHECKING, Optional
 import pandas as pd
 
 if TYPE_CHECKING:
@@ -22,7 +22,7 @@ class Table(DocumentItem, ReprMixin):
     repr_cols = ['caption', 'above_text', 'panels', 'below_text']
 
     def __init__(self, panels: PanelCollection, caption: str=None, above_text: str=None, below_text: str=None,
-                 align: str = None, mid_rules=True, landscape=False):
+                 align: str = None, mid_rules=True, landscape=False, label: Optional[str] = None):
         """
 
         :param panels: list of Panels
@@ -34,6 +34,7 @@ class Table(DocumentItem, ReprMixin):
                         fixed width. Default is first column left aligned, rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
+        :param label: label for table to be referenced in text
         """
         from dero.latex.table.models.texgen.items import TableNotes
         self.panels = panels
@@ -43,6 +44,7 @@ class Table(DocumentItem, ReprMixin):
         self.align = align
         self.mid_rules = mid_rules
         self.landscape = landscape
+        self.label = label
 
     def __str__(self):
         return self.to_tex(as_document=False)
@@ -77,8 +79,9 @@ class Table(DocumentItem, ReprMixin):
     @classmethod
     def from_panel_list(cls, panels: [Panel], label_consolidation: str='object', enforce_label_order=True,
                         top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
-                 pad_rows: int=1, pad_columns: int=1, caption: str=None, above_text: str=None,
-                 below_text: str=None, align: str = None, mid_rules=True, landscape=False):
+                        pad_rows: int=1, pad_columns: int=1, caption: str=None, above_text: str=None,
+                        below_text: str=None, align: str = None, mid_rules=True, landscape=False,
+                        label: Optional[str] = None):
         """
         Note: to quickly create latex tables, use Table.from_list_of_lists_of_dfs to pass
         pandas DataFrames directly. Use this method when more control is needed than is provided by that method.
@@ -107,6 +110,7 @@ class Table(DocumentItem, ReprMixin):
                         fixed width. Default is first column left aligned, rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
+        :param label: label for table to be referenced in text
         :return:
         """
         panel_collection = PanelCollection(
@@ -126,7 +130,8 @@ class Table(DocumentItem, ReprMixin):
             below_text=below_text,
             align=align,
             mid_rules=mid_rules,
-            landscape=landscape
+            landscape=landscape,
+            label=label
         )
 
     @classmethod
@@ -137,6 +142,7 @@ class Table(DocumentItem, ReprMixin):
                                   top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
                                   pad_rows: int = 1, pad_columns: int = 1, caption: str = None, above_text: str = None,
                                   below_text: str = None, align: str = None, mid_rules=True, landscape=False,
+                                  label: Optional[str] = None,
                                   data_table_kwargs={}
                                   ):
         """
@@ -180,6 +186,7 @@ class Table(DocumentItem, ReprMixin):
                         fixed width. Default is first column left aligned, rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
+        :param label: label for table to be referenced in text
         :param data_table_kwargs: kwargs to be passed to DataTable.from_df. Same kwargs will be passed to
                                   all data tables.
         :return:
@@ -208,7 +215,8 @@ class Table(DocumentItem, ReprMixin):
             below_text=below_text,
             align=align,
             mid_rules=mid_rules,
-            landscape=landscape
+            landscape=landscape,
+            label=label
         )
 
     @classmethod
@@ -218,6 +226,7 @@ class Table(DocumentItem, ReprMixin):
                                 top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
                                 pad_rows: int = 1, caption: str = None, above_text: str = None,
                                 below_text: str = None, align: str = None, mid_rules=True, landscape=False,
+                                label: Optional[str] = None,
                                 data_table_kwargs={}
                                 ):
         """
@@ -250,6 +259,7 @@ class Table(DocumentItem, ReprMixin):
                         fixed width. Default is first column left aligned, rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
+        :param label: label for table to be referenced in text
         :param data_table_kwargs: kwargs to be passed to DataTable.from_df. Same kwargs will be passed to
                                   all data tables.
         :return:
@@ -276,7 +286,8 @@ class Table(DocumentItem, ReprMixin):
             align=align,
             mid_rules=mid_rules,
             landscape=landscape,
-            data_table_kwargs=data_table_kwargs
+            data_table_kwargs=data_table_kwargs,
+            label=label
         )
 
     @property

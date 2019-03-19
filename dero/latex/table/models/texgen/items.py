@@ -1,3 +1,4 @@
+from typing import Optional
 from dero.latex.models.item import Item
 from dero.mixins.repr import ReprMixin
 from dero.latex.table.models.panels.collection import PanelCollection
@@ -11,6 +12,7 @@ from dero.latex.models.package import Package
 from dero.latex.table.models.texgen.packages import default_packages
 from dero.latex.models.landscape import Landscape
 from dero.latex.logic.format.contents import format_contents
+from dero.latex.models.label import Label
 
 
 class TableNotes(Item, ReprMixin):
@@ -64,11 +66,12 @@ class Table(Item, ReprMixin):
     name = 'table'
     repr_cols = ['caption']
 
-    def __init__(self, three_part_table: ThreePartTable, centering=True, landscape=False):
+    def __init__(self, three_part_table: ThreePartTable, centering=True, landscape=False, label: Optional[str] = None):
         self.caption = three_part_table.caption
         self.landscape = landscape
 
         items = [
+            Label(label) if label else None,
             _centering_str() if centering else None,
             three_part_table
         ]
@@ -110,7 +113,7 @@ class Table(Item, ReprMixin):
             caption=table.caption,
             below_text=table.below_text
         )
-        return cls(three_part_table, *args, landscape=table.landscape, **kwargs)
+        return cls(three_part_table, *args, landscape=table.landscape, label=table.label, **kwargs)
 
 class TableDocument(Document):
 
