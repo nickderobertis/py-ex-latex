@@ -1,4 +1,4 @@
-from typing import List, Union, Tuple
+from typing import List, Union, Tuple, Optional
 
 from dero.latex.models.environment import Environment
 from dero.latex.models import Item
@@ -35,7 +35,7 @@ class Document(DocumentItem, Item):
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
                  title: str=None, author: str=None, date: str=None, abstract: str=None,
                  skip_title_page: bool=False,
-                 page_modifier_str: str='margin=0.8in, bottom=1.2in', page_header: bool=False,
+                 page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in', page_header: bool=False,
                  page_numbers: bool=True):
         from dero.latex.logic.builder import _build
         from dero.latex.models.titlepage import TitlePage
@@ -43,8 +43,9 @@ class Document(DocumentItem, Item):
         if packages is None:
             packages = default_packages.copy()
 
-        # Set margins, body size, etc. with geometry package
-        packages.append(Package('geometry', modifier_str=page_modifier_str))
+        if page_modifier_str is not None:
+            # Set margins, body size, etc. with geometry package
+            packages.append(Package('geometry', modifier_str=page_modifier_str))
 
         self.packages = packages
 
