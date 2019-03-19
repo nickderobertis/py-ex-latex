@@ -10,3 +10,4 @@ from dero.latex.models.lists.unordered import UnorderedList
 from dero.latex.models.lists.ordered import OrderedList
 from dero.latex.models.format.raw import Raw
 from dero.latex.models.ref import Ref
+from dero.latex.models.footnote import Footnote
