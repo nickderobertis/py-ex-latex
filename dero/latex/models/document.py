@@ -36,7 +36,7 @@ class Document(DocumentItem, Item):
                  title: str=None, author: str=None, date: str=None, abstract: str=None,
                  skip_title_page: bool=False,
                  page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in', page_header: bool=False,
-                 page_numbers: bool=True):
+                 page_numbers: bool=True, appendix_modifier_str: Optional[str] = 'page'):
         from dero.latex.logic.builder import _build
         from dero.latex.models.titlepage import TitlePage
 
@@ -46,6 +46,8 @@ class Document(DocumentItem, Item):
         if page_modifier_str is not None:
             # Set margins, body size, etc. with geometry package
             packages.append(Package('geometry', modifier_str=page_modifier_str))
+
+        packages.append(Package('appendix', modifier_str=appendix_modifier_str))
 
         self.packages = packages
 
