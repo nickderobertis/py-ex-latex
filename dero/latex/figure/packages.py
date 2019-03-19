@@ -6,7 +6,8 @@ simple_package_strs = [
     'graphicx',
     'pdflscape',
     'fancyhdr',
-    'lastpage'
+    'lastpage',
+    'textcomp'
 ]
 simple_packages = [Package(str_) for str_ in simple_package_strs]
 

@@ -8,7 +8,8 @@ _default_package_strs = [
     'array',
     'threeparttable',
     'fancyhdr',
-    'lastpage'
+    'lastpage',
+    'textcomp'
 ]
 
 _direct_default_packages = [
