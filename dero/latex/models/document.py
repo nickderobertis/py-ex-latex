@@ -1,4 +1,4 @@
-from typing import List, Union, Tuple, Optional
+from typing import List, Union, Tuple, Optional, Dict
 
 from dero.latex.models.environment import Environment
 from dero.latex.models import Item
@@ -14,7 +14,7 @@ from dero.latex.logic.extract.docitems import extract_document_items_from_ambigu
 from dero.latex.models.page.number import right_aligned_page_numbers
 from dero.latex.models.page.header import remove_header
 from dero.latex.models.page.footer import CenterFooter
-from dero.latex.models.section.abstract import Abstract
+from dero.latex.models.format.sectionnum import SectionNumberingFormatter
 
 AnyItem = Union[Item, DocumentItem]
 ListOfItems = List[AnyItem]
@@ -36,7 +36,8 @@ class Document(DocumentItem, Item):
                  title: str=None, author: str=None, date: str=None, abstract: str=None,
                  skip_title_page: bool=False,
                  page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in', page_header: bool=False,
-                 page_numbers: bool=True, appendix_modifier_str: Optional[str] = 'page'):
+                 page_numbers: bool=True, appendix_modifier_str: Optional[str] = 'page',
+                 section_numbering_styles: Optional[Dict[str, str]] = None):
         from dero.latex.logic.builder import _build
         from dero.latex.models.titlepage import TitlePage
 
@@ -49,11 +50,14 @@ class Document(DocumentItem, Item):
 
         packages.append(Package('appendix', modifier_str=appendix_modifier_str))
 
+        section_num_styles = SectionNumberingFormatter.list_from_string_format_dict(section_numbering_styles)
+
         self.packages = packages
 
         possible_pre_env_contents = [
             _document_class_str(),
             *[str(package) for package in self.packages],
+            *section_num_styles,
             PageStyle('fancy'),
 
             # header is there by default. add remove header lines if page_header=False
@@ -118,17 +122,10 @@ class Document(DocumentItem, Item):
         return filepaths
 
     @classmethod
-    def from_ambiguous_collection(cls, collection, packages: List[Package]=None, landscape=False,
-                                  title=None, author=None, date=None, abstract: str = None, skip_title_page: bool=False,
-                                  page_modifier_str: str = 'margin=0.8in, bottom=1.2in', page_header: bool = False,
-                                  page_numbers: bool = True
-                                  ):
+    def from_ambiguous_collection(cls, collection, **document_kwargs):
         content = extract_document_items_from_ambiguous_collection(collection)
 
-        return cls(content, packages=packages, landscape=landscape,
-                   title=title, author=author, date=date, abstract=abstract, skip_title_page=skip_title_page,
-                   page_modifier_str=page_modifier_str, page_header=page_header,
-                   page_numbers=page_numbers)
+        return cls(content, **document_kwargs)
 
 def _should_create_title_page(title: str = None, author: str = None, date: str = None, abstract: str = None):
     return any([
