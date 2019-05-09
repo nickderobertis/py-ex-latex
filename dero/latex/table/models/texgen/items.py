@@ -71,9 +71,9 @@ class Table(Item, ReprMixin):
         self.landscape = landscape
 
         items = [
-            Label(label) if label else None,
             _centering_str() if centering else None,
-            three_part_table
+            three_part_table,
+            Label(label) if label else None,
         ]
 
         valid_items = [item for item in items if item is not None]
