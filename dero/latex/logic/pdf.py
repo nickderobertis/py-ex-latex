@@ -7,14 +7,10 @@ from dero.latex.tools import date_time_move_latex
 def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='figure', as_document=True,
                               move_folder_name='Figures'):
 
-    # We will change paths, so save original to switch back to
-    orig_path = os.getcwd()
-
-    os.chdir(outfolder)
-
     # Create tex file
     outname_tex = outname + '.tex'
-    with open(outname_tex, 'w') as f:
+    outpath_tex = os.path.abspath(os.path.join(outfolder, outname_tex))
+    with open(outpath_tex, 'w') as f:
         f.write(str(document))
 
     if image_paths:
@@ -26,9 +22,7 @@ def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='fi
          for filepath in image_paths]
 
     if as_document:
-        # create PDF. Need to run twice for last page, as is written to aux file on the first iteration and
-        # aux file is used on the second iteration
-        [os.system('pdflatex ' + '"' + outname_tex + '"') for i in range(2)]
+        _latex_file_to_pdf(outfolder, outname_tex)
     new_outfolder = date_time_move_latex(outname, outfolder, folder_name=move_folder_name) #move table into appropriate date/number folder
 
     if image_paths and new_outfolder:
@@ -43,6 +37,14 @@ def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='fi
          )
          for filepath in image_paths]
 
+
+def _latex_file_to_pdf(folder: str, filename: str):
+    # create PDF. Need to run twice for last page, as is written to aux file on the first iteration and
+    # aux file is used on the second iteration
+    orig_path = os.getcwd()
+    os.chdir(folder)
+    pdflatex_command = f'pdflatex "{filename}"'
+    [os.system(pdflatex_command) for _ in range(2)]
     os.chdir(orig_path)
 
 

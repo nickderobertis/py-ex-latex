@@ -24,20 +24,21 @@ def date_time_move_latex(tablename,filepath, folder_name='Tables'):
         remove_all_if_exist([inpath_aux, inpath_log])
         return
 
-    os.chdir(filepath) #sets working directory to current directory of table
+    def join_paths(*paths):
+        return os.path.abspath(os.path.join(*paths))
+
     table_pdf = tablename + ".pdf"
     table_tex = tablename + ".tex"
     table_xlsx = tablename + ".xlsx"
-    inpath_pdf = os.path.join(filepath,table_pdf)
-    inpath_tex = os.path.join(filepath,table_tex)
-    inpath_xlsx = os.path.join(filepath,table_xlsx)
+    inpath_pdf = join_paths(filepath,table_pdf)
+    inpath_tex = join_paths(filepath,table_tex)
+    inpath_xlsx = join_paths(filepath,table_xlsx)
     all_inpaths = [inpath_pdf, inpath_tex, inpath_xlsx]
 
-    tables_path = os.path.join(filepath, folder_name) #set table directory
+    tables_path = join_paths(filepath, folder_name) #set table directory
     if not os.path.exists(tables_path): #create a general table directory if it doesn't exist
         os.makedirs(tables_path)
 
-    current_date = datetime.datetime.today().timetuple()
     current_time = datetime.datetime.today().timetuple()
     format_time = [str(current_time[0]),str(current_time[1]),str(current_time[2])]
     for i in range(3):

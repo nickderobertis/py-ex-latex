@@ -1,4 +1,4 @@
-from typing import List, Union, Tuple, Optional, Dict
+from typing import List, Optional, Dict
 
 from dero.latex.models.environment import Environment
 from dero.latex.models import Item
@@ -15,13 +15,9 @@ from dero.latex.models.page.number import right_aligned_page_numbers
 from dero.latex.models.page.header import remove_header
 from dero.latex.models.page.footer import CenterFooter
 from dero.latex.models.format.sectionnum import SectionNumberingFormatter
+from dero.latex.typing import AnyItem, ListOfItems, ItemOrListOfItems, StrListOrNone, ItemAndPreEnvContents
+from dero.latex.logic.extract.filepaths import get_filepaths_from_items
 
-AnyItem = Union[Item, DocumentItem]
-ListOfItems = List[AnyItem]
-ItemOrListOfItems = Union[AnyItem, ListOfItems]
-StrList = List[str]
-StrListOrNone = Union[StrList, None]
-ItemAndPreEnvContents = Tuple[AnyItem, StrListOrNone]
 
 class DocumentEnvironment(Environment):
     name = 'document'
@@ -47,6 +43,9 @@ class Document(DocumentItem, Item):
         if page_modifier_str is not None:
             # Set margins, body size, etc. with geometry package
             packages.append(Package('geometry', modifier_str=page_modifier_str))
+
+        if section_numbering_styles is None:
+            section_numbering_styles = {}
 
         packages.append(Package('appendix', modifier_str=appendix_modifier_str))
 
@@ -108,18 +107,7 @@ class Document(DocumentItem, Item):
         )
 
     def _get_filepaths_from_items(self, content: ListOfItems) -> StrListOrNone:
-        from dero.latex.figure import Figure
-
-        filepaths = []
-        for item in content:
-            # TODO: handling for other types which may have filepaths
-            if isinstance(item, Figure):
-                filepaths += item.filepaths
-
-        if filepaths == []:
-            return None
-
-        return filepaths
+        return get_filepaths_from_items(content)
 
     @classmethod
     def from_ambiguous_collection(cls, collection, **document_kwargs):

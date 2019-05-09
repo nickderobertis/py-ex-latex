@@ -1,4 +1,5 @@
 import posixpath
+import os
 
 from dero.latex.models.mixins import StringAdditionMixin
 from dero.latex.texgen import _include_graphics_str
@@ -22,7 +23,10 @@ class Graphic(StringAdditionMixin):
         basename = _latex_valid_basename(filepath)
         source_path = posixpath.join('Sources', basename)
 
-        self.filepath = filepath
+        self._filepath_parts = filepath.split(os.path.sep)
         self.source_path = source_path
 
+    @property
+    def filepath(self):
+        return os.path.sep.join(self._filepath_parts)
 

@@ -11,3 +11,7 @@ def extract_document_items_from_ambiguous_collection(collection) -> List[Documen
 
 def extract_document_items_from_ambiguous_collection_by_type(collection) -> List[DocumentItem]:
     return extract_objs_of_type_from_ambiguous_collection(collection, DocumentItem)
+
+
+def is_latex_item(item) -> bool:
+    return hasattr(item, 'is_LatexItem') and getattr(item, 'is_LatexItem')
