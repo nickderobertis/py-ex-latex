@@ -1,6 +1,6 @@
 from dero.latex.table.models.panels.collection import PanelCollection
 from dero.latex.table.models.texgen.items import Table, TableDocument
-from dero.latex.logic.pdf import _document_to_pdf_and_move
+from dero.latex.logic.pdf.main import document_to_pdf_and_move
 
 
 def output_panel_collection_to_tex(panel_collection: PanelCollection, out_folder: str, out_name: str='table',
@@ -24,7 +24,7 @@ def output_panel_collection_to_tex(panel_collection: PanelCollection, out_folder
         )
 
 
-    _document_to_pdf_and_move(
+    document_to_pdf_and_move(
         table_or_document,
         outfolder=out_folder,
         outname=out_name,

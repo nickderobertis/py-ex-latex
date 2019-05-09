@@ -1,7 +1,8 @@
 import posixpath
 
 from dero.latex.figure.models import Subfigure, Figure
-from dero.latex.logic.pdf import _document_to_pdf_and_move, _latex_valid_basename
+from dero.latex.logic.pdf.main import document_to_pdf_and_move
+from dero.latex.texgen.replacements.filename import _latex_valid_basename
 from dero.latex.models.document import Document
 from dero.latex.models.package import Package
 
@@ -20,7 +21,7 @@ def filepaths_to_pdf_figure_and_move(filepaths,  outfolder, outname='figure', as
         as_document=as_document
     )
 
-    _document_to_pdf_and_move(
+    document_to_pdf_and_move(
         document_or_figure,
         outfolder,
         image_paths=filepaths,

@@ -8,7 +8,7 @@ from dero.mixins.repr import ReprMixin
 from dero.latex.table.models.panels.collection import PanelCollection, Panel
 from dero.latex.table.models.labels.table import LabelTable, LabelCollection
 from dero.latex.table.models.table.caption import Caption
-from dero.latex.logic.pdf import _document_to_pdf_and_move
+from dero.latex.logic.pdf.main import document_to_pdf_and_move
 from dero.latex.texgen.replacements.filename import latex_filename_replacements
 from dero.latex.models.documentitem import DocumentItem
 
@@ -68,7 +68,7 @@ class Table(DocumentItem, ReprMixin):
 
         outname = latex_filename_replacements(outname)
 
-        _document_to_pdf_and_move(
+        document_to_pdf_and_move(
             tex,
             outfolder=outfolder,
             outname=outname,

@@ -67,7 +67,7 @@ class Figure(DocumentItem, Item):
 
     def to_pdf_and_move(self, as_document=True, outfolder: str=None, outname: str=None,
                         landscape=False):
-        from dero.latex.logic.pdf import _document_to_pdf_and_move
+        from dero.latex.logic.pdf.main import document_to_pdf_and_move
         from dero.latex.models.document import Document
 
         to_output: Figure = self
@@ -83,7 +83,7 @@ class Figure(DocumentItem, Item):
         else:
             outname = latex_filename_replacements(outname)
 
-        _document_to_pdf_and_move(
+        document_to_pdf_and_move(
             to_output,
             outfolder,
             image_paths=self.filepaths,

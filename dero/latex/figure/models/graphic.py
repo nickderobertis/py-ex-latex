@@ -18,7 +18,7 @@ class Graphic(StringAdditionMixin):
         return _include_graphics_str(self.source_path, self.width)
 
     def _set_path(self, filepath: str):
-        from dero.latex.logic.pdf import _latex_valid_basename
+        from dero.latex.texgen.replacements.filename import _latex_valid_basename
 
         basename = _latex_valid_basename(filepath)
         source_path = posixpath.join('Sources', basename)

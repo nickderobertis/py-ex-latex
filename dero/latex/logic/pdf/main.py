@@ -1,11 +1,13 @@
 import os
-import shutil
 
 from dero.latex.tools import date_time_move_latex
+from dero.latex.logic.pdf.fileops import _move_if_exists_and_is_needed, _copy_if_needed
+from dero.latex.texgen.replacements.filename import _latex_valid_basename
+from dero.latex.logic.pdf.api.main import latex_str_to_pdf_obj
 
 
-def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='figure', as_document=True,
-                              move_folder_name='Figures'):
+def document_to_pdf_and_move(document, outfolder, image_paths=None, outname='figure', as_document=True,
+                             move_folder_name='Figures'):
 
     # Create tex file
     outname_tex = outname + '.tex'
@@ -22,7 +24,9 @@ def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='fi
          for filepath in image_paths]
 
     if as_document:
-        _latex_file_to_pdf(outfolder, outname_tex)
+        outname_pdf = outname + '.pdf'
+        outpath_pdf = os.path.abspath(os.path.join(outfolder, outname_pdf))
+        latex_str_to_pdf_file(str(document), outpath_pdf)
     new_outfolder = date_time_move_latex(outname, outfolder, folder_name=move_folder_name) #move table into appropriate date/number folder
 
     if image_paths and new_outfolder:
@@ -38,7 +42,7 @@ def _document_to_pdf_and_move(document, outfolder, image_paths=None, outname='fi
          for filepath in image_paths]
 
 
-def _latex_file_to_pdf(folder: str, filename: str):
+def latex_file_to_pdf(folder: str, filename: str):
     # create PDF. Need to run twice for last page, as is written to aux file on the first iteration and
     # aux file is used on the second iteration
     orig_path = os.getcwd()
@@ -48,34 +52,7 @@ def _latex_file_to_pdf(folder: str, filename: str):
     os.chdir(orig_path)
 
 
-def _copy_if_needed(src, dst):
-    try:
-        shutil.copy(src, dst)
-    except shutil.SameFileError:
-        pass
-
-
-def _move_if_needed(src, dst):
-    try:
-        shutil.move(src, dst)
-    except shutil.SameFileError:
-        pass
-
-def _move_if_exists_and_is_needed(src, dst):
-    if not os.path.exists(src):
-        return
-
-    _move_if_needed(src, dst)
-
-
-def _move_folder_or_move_files_if_destination_folder_exists(src, dst):
-    try:
-        _move_if_needed(src, dst)
-    except shutil.Error:
-        files = [file for file in next(os.walk(src))[2]]
-        [_move_if_needed(file, dst) for file in files]
-
-
-def _latex_valid_basename(filepath):
-    basename = os.path.basename(filepath)
-    return basename.replace(' ', '_').replace('/','_').replace('%','pct').replace('$','')
+def latex_str_to_pdf_file(latex_str: str, filepath: str):
+    pdf = latex_str_to_pdf_obj(latex_str)
+    pdf.save_to(filepath)
+    return pdf
