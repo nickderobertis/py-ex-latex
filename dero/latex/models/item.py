@@ -1,5 +1,5 @@
 from dero.latex.models.mixins import StringAdditionMixin, IsSpecificClassMixin
-from dero.latex.texgen import _basic_item_str, _multi_option_item_str, _no_braces_item_str
+from dero.latex.texgen import _basic_item_str, _multi_option_item_str, _no_braces_item_str, item_equals_str
 
 
 class IsLatexItemMixin:
@@ -69,3 +69,16 @@ class NoBracesItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
     def __str__(self):
         return _no_braces_item_str(self.name, self.contents)
 
+
+class EqualsItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
+
+    def __init__(self, name, contents):
+        self.name = name
+        self.contents = contents
+        super().__init__()
+
+    def __repr__(self):
+        return f'<{self.name.title()}({self.contents})>'
+
+    def __str__(self):
+        return item_equals_str(self.name, self.contents)

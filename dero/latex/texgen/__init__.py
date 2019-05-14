@@ -26,6 +26,11 @@ def _multi_option_item_str(item_name, *options):
     options_str = ''.join([f'{{{format_contents(str(option))}}}' for option in options])
     return rf'\{item_name}{options_str}'
 
+
+def item_equals_str(item_name, contents):
+    return rf'\{item_name}={contents}'
+
+
 def _cmidrule_str(align, col_str):
     return _multi_option_item_str(rf'cmidrule({align})', col_str)
 

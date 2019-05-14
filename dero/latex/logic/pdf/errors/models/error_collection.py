@@ -1,4 +1,5 @@
-from typing import List
+from typing import List, Dict
+import warnings
 from latex.exc import LatexBuildError
 from dero.latex.logic.pdf.errors.models.error import LatexError
 
@@ -13,10 +14,20 @@ class LatexErrorCollection:
         return self.errors[index]
 
     def _parse_errors(self) -> List[LatexError]:
-        error_dict_list = self.exc.get_errors()
+        error_dict_list = get_errors_dict_list(self.exc)
         errors = []
         for error_dict in error_dict_list:
             arg_dict = error_dict.copy()
             arg_dict.pop('error')
             errors.append(LatexError(**arg_dict))
+        if not errors:
+            warnings.warn(f'got LatexBuildError with no errors attached: {self.exc}')
         return errors
+
+def get_errors_dict_list(exc: LatexBuildError) -> List[Dict[str, str]]:
+    try:
+        return exc.get_errors()
+    except AttributeError as e:
+        if "'NoneType' object has no attribute 'splitlines'" in str(e):
+            return []
+        raise e

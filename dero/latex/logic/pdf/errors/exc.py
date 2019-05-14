@@ -6,12 +6,17 @@ import sys
 import inspect
 from dero.latex.logic.pdf.errors.models.exception_manager import LatexExceptionManager
 
+
 class LatexException(Exception):
     _match_str = ''
+
 
 class TooManyUnprocessedFloatsException(LatexException):
     _match_str = 'Too many unprocessed floats'
 
+
+class OutputLoopConsecutiveDeadCycles(LatexException):
+    _match_str = 'consecutive dead cycles'
 
 ####### Exception Manager Logic (only define specific exceptions above here) #############
 
