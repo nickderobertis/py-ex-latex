@@ -11,13 +11,14 @@ class APIExceptionHandler:
 
     def __init__(self, exceptions: List[LatexException], orig_exception: Exception, latex_str: str,
                  prepend_kwargs_dict: PrependKwargsDict = None, prepend_items_dict: PrependItemsDict = None,
-                 retries_remaining: int = 3):
+                 retries_remaining: int = 3, **latex_kwargs):
         self.exceptions = exceptions
         self.orig_exception = orig_exception
         self.latex_str = latex_str
         self.prepend_kwargs_dict = prepend_kwargs_dict
         self.prepend_items_dict = prepend_items_dict
         self.retries_remaining = retries_remaining
+        self.latex_kwargs = latex_kwargs
 
     def handle_exceptions(self):
         from dero.latex.logic.pdf.api.main import latex_str_to_pdf_obj
@@ -30,7 +31,8 @@ class APIExceptionHandler:
                     self.latex_str,
                     retries_remaining=self.retries_remaining - 1,
                     prepend_items_dict=self.prepend_items_dict,
-                    prepend_kwargs_dict=self.prepend_kwargs_dict
+                    prepend_kwargs_dict=self.prepend_kwargs_dict,
+                    **self.latex_kwargs
                 )
             raise LatexException(self.orig_exception)
         prepend_items_dict, prepend_kwarg_dict, unhandled_exceptions = handle_prepend_exceptions(
@@ -47,7 +49,8 @@ class APIExceptionHandler:
             self.latex_str,
             retries_remaining=self.retries_remaining,
             prepend_items_dict=prepend_items_dict,
-            prepend_kwargs_dict=prepend_kwarg_dict
+            prepend_kwargs_dict=prepend_kwarg_dict,
+            **self.latex_kwargs
         )
 
 
