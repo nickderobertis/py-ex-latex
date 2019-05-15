@@ -13,8 +13,9 @@ class Subfigure(Item):
     """
     name = 'subfigure'
 
-    def __init__(self, filepath, caption=None, label=None, centering=True, position_str=r'[t]{0.45\linewidth}'):
-        self.graphic = Graphic(filepath)
+    def __init__(self, filepath, caption=None, label=None, centering=True, position_str=r'[t]{0.45\linewidth}',
+                 cache: bool = True):
+        self.graphic = Graphic(filepath, cache=cache)
         self.caption = Caption(caption) if caption else None
         self.label = Label(label) if label else None
 

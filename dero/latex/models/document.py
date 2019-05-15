@@ -17,6 +17,7 @@ from dero.latex.models.page.footer import CenterFooter
 from dero.latex.models.format.sectionnum import SectionNumberingFormatter
 from dero.latex.typing import AnyItem, ListOfItems, ItemOrListOfItems, StrListOrNone, ItemAndPreEnvContents
 from dero.latex.logic.extract.filepaths import get_filepaths_from_items
+from dero.latex.logic.extract.binaries import get_binaries_from_items
 
 
 class DocumentEnvironment(Environment):
@@ -78,7 +79,10 @@ class Document(DocumentItem, Item):
         else:
             self.has_title_page = False
 
+        self.content = content
+
         self.filepaths = self._get_filepaths_from_items(content)
+        self.binaries = get_binaries_from_items(content)
 
         # combine content into a single str
         content = _build(content)
@@ -103,7 +107,8 @@ class Document(DocumentItem, Item):
             outname=outname,
             image_paths=self.filepaths,
             move_folder_name=move_folder_name,
-            as_document=as_document
+            as_document=as_document,
+            image_binaries=self.binaries
         )
 
     def _get_filepaths_from_items(self, content: ListOfItems) -> StrListOrNone:

@@ -1,5 +1,5 @@
 import os
-from typing import Union, List, Dict
+from typing import Union, List, Dict, Any
 
 from dero.latex.figure.models.subfigure import Subfigure, Graphic
 from dero.latex.models.documentitem import DocumentItem
@@ -88,32 +88,33 @@ class Figure(DocumentItem, Item):
             outfolder,
             image_paths=self.filepaths,
             outname=outname,
-            as_document=as_document
+            as_document=as_document,
+            image_binaries=self.binaries
         )
 
     @property
-    def filepaths(self):
-        filepaths = []
-        for subfigure in self:
-            if isinstance(subfigure, Subfigure):
-                filepaths.append(subfigure.graphic.filepath)
-            elif isinstance(subfigure, Graphic):
-                filepaths.append(subfigure.filepath)
-            else:
-                raise ValueError(f'must pass Subfigures or Graphics to Figure. got type {type(subfigure)}')
-        return filepaths
+    def filepaths(self) -> List[str]:
+        return self._extract_items_from_subfigures_and_graphics_into_list('filepath')
 
     @property
-    def source_paths(self):
-        source_paths = []
+    def source_paths(self) -> List[str]:
+        return self._extract_items_from_subfigures_and_graphics_into_list('source_path')
+
+    @property
+    def binaries(self) -> List[bytes]:
+        return self._extract_items_from_subfigures_and_graphics_into_list('binary')
+
+    def _extract_items_from_subfigures_and_graphics_into_list(self, item_name: str) -> List[Any]:
+        items = []
         for subfigure in self:
             if isinstance(subfigure, Subfigure):
-                source_paths.append(subfigure.graphic.source_path)
+                items.append(getattr(subfigure.graphic, item_name))
             elif isinstance(subfigure, Graphic):
-                source_paths.append(subfigure.source_path)
+                items.append(getattr(subfigure, item_name))
             else:
                 raise ValueError(f'must pass Subfigures or Graphics to Figure. got type {type(subfigure)}')
-        return source_paths
+        return items
+
 
     @classmethod
     def from_dict_of_names_and_filepaths(cls, filepath_name_dict: dict, figure_name: str=None,

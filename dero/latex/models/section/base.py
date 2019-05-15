@@ -6,6 +6,7 @@ from dero.latex.logic.builder import _build
 from dero.latex.models.documentitem import DocumentItem
 from dero.latex.models.label import Label
 from dero.latex.logic.extract.filepaths import get_filepaths_from_items
+from dero.latex.logic.extract.binaries import get_binaries_from_items
 
 
 class TextAreaBase(DocumentItem, Item, ReprMixin):
@@ -15,6 +16,7 @@ class TextAreaBase(DocumentItem, Item, ReprMixin):
 
     def __init__(self, name, contents, label: Optional[str] = None, **kwargs):
         self.filepaths = get_filepaths_from_items(contents)
+        self.binaries = get_binaries_from_items(contents)
         contents = self.format_contents(contents)
         if label is not None:
             label = Label(label)
