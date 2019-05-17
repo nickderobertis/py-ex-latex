@@ -11,24 +11,24 @@ from tempdir import TempDir
 from latex.exc import LatexBuildError
 
 
-class PdfLatexBuilder:
-    """A simple pdflatex based buidler for LaTeX files.
+class LuaLatexBuilder:
+    """A simple lualatex based buidler for LaTeX files.
 
     Builds LaTeX files by copying them to a temporary directly and running
-    ``pdflatex`` until the associated ``.aux`` file stops changing.
+    ``lualatex`` until the associated ``.aux`` file stops changing.
 
     .. note:: This may miss changes if ``biblatex`` or other additional tools
               are used. Usually, the :class:`~latex.build.LatexMkBuilder` will
               give more reliable results.
 
-    :param pdflatex: The path to the ``pdflatex`` binary (will looked up on
+    :param lualatex: The path to the ``pdflatex`` binary (will looked up on
                     ``$PATH``).
     :param max_runs: An integer providing an upper limit on the amount of times
                      ``pdflatex`` can be rerun before an exception is thrown.
     """
 
-    def __init__(self, pdflatex='pdflatex', max_runs=15):
-        self.pdflatex = pdflatex
+    def __init__(self, lualatex='lualatex', max_runs=15):
+        self.lualatex = lualatex
         self.max_runs = 15
 
     @data('source')
@@ -43,8 +43,10 @@ class PdfLatexBuilder:
             base_fn = os.path.splitext(tmp.name)[0]
             output_fn = base_fn + '.pdf'
             aux_fn = base_fn + '.aux'
-            args = [self.pdflatex, '-interaction=batchmode', '-halt-on-error',
-                    '-no-shell-escape', '-file-line-error', tmp.name]
+            args = [self.lualatex, '-interaction=batchmode',
+                    '-halt-on-error',
+                    '-no-shell-escape', '-file-line-error',
+                    tmp.name]
 
             # create environment
             newenv = os.environ.copy()
@@ -79,4 +81,4 @@ class PdfLatexBuilder:
             return I(open(output_fn, 'rb').read(), encoding=None)
 
     def is_available(self):
-        return bool(which(self.pdflatex))
+        return bool(which(self.lualatex))

@@ -12,7 +12,7 @@ from dero.latex.logic.pdf.errors.exc import (
 from dero.latex.logic.pdf.api.exc_handler.main import APIExceptionHandler
 from dero.latex.logic.pdf.api.exc_handler.prepend.typing import PrependKwargsDict, PrependItemsDict
 from dero.latex.logic.pdf.api.exc_handler.prepend.main import add_prepend_items_dict_to_latex_str
-from dero.latex.logic.pdf.api.builders.pdflatex import PdfLatexBuilder
+from dero.latex.logic.pdf.api.builders.lualatex import LuaLatexBuilder
 
 def latex_str_to_pdf_obj(latex_str: str,  texinputs: Optional[List[str]] = None, retries_remaining: int = 3,
                          prepend_items_dict: PrependItemsDict = None,
@@ -37,6 +37,6 @@ def latex_str_to_pdf_obj(latex_str: str,  texinputs: Optional[List[str]] = None,
 def _latex_to_pdf_obj(latex_str: str, texinputs: Optional[List[str]] = None) -> Data:
     if texinputs is None:
         texinputs = []
-    pdf = PdfLatexBuilder().build_pdf(latex_str, texinputs=texinputs)
+    pdf = LuaLatexBuilder().build_pdf(latex_str, texinputs=texinputs)
     return pdf
 
