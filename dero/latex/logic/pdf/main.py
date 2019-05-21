@@ -1,5 +1,5 @@
 import os
-import pathlib
+from tempdir import TempDir
 
 from dero.latex.tools import date_time_move_latex
 from dero.latex.logic.pdf.fileops import _move_if_exists_and_is_needed, _copy_if_needed
@@ -8,7 +8,7 @@ from dero.latex.logic.pdf.api.main import latex_str_to_pdf_obj
 from dero.latex.typing import BytesListOrNone, StrList, BytesList, StrListOrNone
 
 
-def document_to_pdf_and_move(document, outfolder, image_paths=None, outname='figure', as_document=True,
+def document_to_pdf_and_move(document, outfolder, image_paths: StrListOrNone = None, outname='figure', as_document=True,
                              move_folder_name='Figures', image_binaries: BytesListOrNone = None):
 
     # Create tex file
@@ -17,19 +17,9 @@ def document_to_pdf_and_move(document, outfolder, image_paths=None, outname='fig
     with open(outpath_tex, 'w') as f:
         f.write(str(document))
 
-    if image_paths:
-        # Copy first time for creation of pdf
-        sources_tempfolder = os.path.join(outfolder, 'Sources')
-        tex_inputs = [os.path.abspath(outfolder), '']
-        if not os.path.exists(sources_tempfolder):
-            os.makedirs(sources_tempfolder)
-        if image_binaries:
-            _write_image_paths_and_binaries_to_folder(sources_tempfolder, image_paths, image_binaries)
-        else:
-            [_copy_if_needed(filepath, os.path.join(sources_tempfolder, _latex_valid_basename(filepath)))
-             for filepath in image_paths]
-    else:
-        tex_inputs = None
+    tex_inputs = output_sources_return_tex_input_paths(
+        outfolder, image_paths=image_paths, image_binaries=image_binaries
+    )
 
     if as_document:
         outname_pdf = outname + '.pdf'
@@ -68,6 +58,35 @@ def latex_str_to_pdf_file(latex_str: str, filepath: str,  texinputs: StrListOrNo
     pdf.save_to(filepath)
     return pdf
 
+
+def latex_str_to_pdf_obj_with_sources(latex_str: str, image_paths: StrListOrNone = None,
+                                          image_binaries: BytesListOrNone = None):
+    with TempDir() as tmpdir:
+        tex_inputs = output_sources_return_tex_input_paths(
+            tmpdir, image_paths=image_paths, image_binaries=image_binaries
+        )
+        pdf = latex_str_to_pdf_obj(latex_str, texinputs=tex_inputs)
+
+    return pdf
+
+
+def output_sources_return_tex_input_paths(outfolder: str, image_paths: StrListOrNone = None,
+                                          image_binaries: BytesListOrNone = None):
+    if image_paths:
+        # Copy first time for creation of pdf
+        sources_tempfolder = os.path.join(outfolder, 'Sources')
+        tex_inputs = [os.path.abspath(outfolder), '']
+        if not os.path.exists(sources_tempfolder):
+            os.makedirs(sources_tempfolder)
+        if image_binaries:
+            _write_image_paths_and_binaries_to_folder(sources_tempfolder, image_paths, image_binaries)
+        else:
+            [_copy_if_needed(filepath, os.path.join(sources_tempfolder, _latex_valid_basename(filepath)))
+             for filepath in image_paths]
+    else:
+        tex_inputs = None
+
+    return tex_inputs
 
 def _write_image_paths_and_binaries_to_folder(folder: str, image_paths: StrList, image_binaries: BytesList):
     if len(image_binaries) != len(image_paths):

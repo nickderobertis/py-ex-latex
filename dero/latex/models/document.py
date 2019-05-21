@@ -8,7 +8,7 @@ from dero.latex.models.package import Package
 from dero.latex.texgen.packages import default_packages
 from dero.latex.models.page.style import PageStyle
 from dero.latex.models.landscape import Landscape
-from dero.latex.logic.pdf.main import document_to_pdf_and_move
+from dero.latex.logic.pdf.main import document_to_pdf_and_move, latex_str_to_pdf_obj_with_sources
 from dero.latex.texgen.replacements.filename import latex_filename_replacements
 from dero.latex.logic.extract.docitems import extract_document_items_from_ambiguous_collection
 from dero.latex.models.page.number import right_aligned_page_numbers
@@ -94,6 +94,15 @@ class Document(DocumentItem, Item):
 
     def __repr__(self):
         return f'<Document>'
+
+    def _repr_pdf_(self):
+        tex = str(self)
+
+        return latex_str_to_pdf_obj_with_sources(
+            tex,
+            image_paths=self.filepaths,
+            image_binaries=self.binaries
+        ).readb()
 
     def to_pdf_and_move(self, outfolder, outname='document',
                               move_folder_name='Tables', as_document=True):
