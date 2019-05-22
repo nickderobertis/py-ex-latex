@@ -1,4 +1,4 @@
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Sequence
 
 from dero.latex.models.environment import Environment
 from dero.latex.models import Item
@@ -18,6 +18,9 @@ from dero.latex.models.format.sectionnum import SectionNumberingFormatter
 from dero.latex.typing import AnyItem, ListOfItems, ItemOrListOfItems, StrListOrNone, ItemAndPreEnvContents
 from dero.latex.logic.extract.filepaths import get_filepaths_from_items
 from dero.latex.logic.extract.binaries import get_binaries_from_items
+from dero.latex.models.references.bibtex.base import BibTexEntryBase
+from dero.latex.models.control.filecontents import FileContents
+from dero.latex.models.references.bibtex.addresource import AddBibResource
 
 
 class DocumentEnvironment(Environment):
@@ -31,12 +34,15 @@ class Document(DocumentItem, Item):
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
                  title: str=None, author: str=None, date: str=None, abstract: str=None,
+                 references: Optional[Sequence[BibTexEntryBase]] = None,
                  skip_title_page: bool=False,
                  page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in', page_header: bool=False,
                  page_numbers: bool=True, appendix_modifier_str: Optional[str] = 'page',
                  section_numbering_styles: Optional[Dict[str, str]] = None):
         from dero.latex.logic.builder import _build
         from dero.latex.models.titlepage import TitlePage
+
+        self.has_references = references is not None
 
         if packages is None:
             packages = default_packages.copy()
@@ -49,6 +55,10 @@ class Document(DocumentItem, Item):
             section_numbering_styles = {}
 
         packages.append(Package('appendix', modifier_str=appendix_modifier_str))
+
+        if references:
+            packages.append(Package('filecontents'))
+            packages.append(Package('biblatex', modifier_str='backend=bibtex'))
 
         section_num_styles = SectionNumberingFormatter.list_from_string_format_dict(section_numbering_styles)
 
@@ -79,6 +89,13 @@ class Document(DocumentItem, Item):
         else:
             self.has_title_page = False
 
+        if references:
+            use_resource = AddBibResource('refs.bib')
+            self.pre_env_contents = _build([self.pre_env_contents, use_resource])
+            all_references = _build(references)
+            references_inline_file = FileContents(all_references, 'refs.bib')
+            content.append(references_inline_file)
+
         self.content = content
 
         self.filepaths = self._get_filepaths_from_items(content)
@@ -101,7 +118,8 @@ class Document(DocumentItem, Item):
         return latex_str_to_pdf_obj_with_sources(
             tex,
             image_paths=self.filepaths,
-            image_binaries=self.binaries
+            image_binaries=self.binaries,
+            run_bibtex=self.has_references
         ).readb()
 
     def to_pdf_and_move(self, outfolder, outname='document',
@@ -117,7 +135,8 @@ class Document(DocumentItem, Item):
             image_paths=self.filepaths,
             move_folder_name=move_folder_name,
             as_document=as_document,
-            image_binaries=self.binaries
+            image_binaries=self.binaries,
+            run_bibtex=self.has_references
         )
 
     def _get_filepaths_from_items(self, content: ListOfItems) -> StrListOrNone:

@@ -1,3 +1,4 @@
+from typing import Dict
 
 
 def _begin_str(str_):
@@ -10,6 +11,10 @@ def _end_str(str_):
 
 def _include_graphics_str(filepath, width=r'\linewidth'):
     return rf'\includegraphics[width={width}]{{{filepath}}}'
+
+
+def no_options_no_contents_str(item_name: str) -> str:
+    return rf'\{item_name}'
 
 
 def _no_braces_item_str(item_name, contents) -> str:
@@ -64,3 +69,19 @@ def _usepackage_str(str_, modifier_str=None):
     return rf'\usepackage{full_modifier_str}{{{str_}}}'
 
 
+def bibtex_str(item_type: str, item_accessor: str, fields: Dict[str, str]) -> str:
+    from dero.latex.logic.builder import _build
+    begin_str = f'@{item_type}{{{item_accessor},'
+    field_strs = ['    ' + _bibtex_field_str(key, value) for key, value in fields.items()]
+    end_str = '}'
+    full_str = _build([
+        begin_str,
+        *field_strs,
+        end_str
+    ])
+
+    return full_str
+
+
+def _bibtex_field_str(key: str, value: str) -> str:
+    return f'{key} = "{value}",'

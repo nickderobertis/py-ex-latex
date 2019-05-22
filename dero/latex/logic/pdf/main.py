@@ -9,7 +9,8 @@ from dero.latex.typing import BytesListOrNone, StrList, BytesList, StrListOrNone
 
 
 def document_to_pdf_and_move(document, outfolder, image_paths: StrListOrNone = None, outname='figure', as_document=True,
-                             move_folder_name='Figures', image_binaries: BytesListOrNone = None):
+                             move_folder_name='Figures', image_binaries: BytesListOrNone = None,
+                             run_bibtex: bool = False):
 
     # Create tex file
     outname_tex = outname + '.tex'
@@ -24,7 +25,7 @@ def document_to_pdf_and_move(document, outfolder, image_paths: StrListOrNone = N
     if as_document:
         outname_pdf = outname + '.pdf'
         outpath_pdf = os.path.abspath(os.path.join(outfolder, outname_pdf))
-        latex_str_to_pdf_file(str(document), outpath_pdf, texinputs=tex_inputs)
+        latex_str_to_pdf_file(str(document), outpath_pdf, texinputs=tex_inputs, run_bibtex=run_bibtex)
     new_outfolder = date_time_move_latex(outname, outfolder, folder_name=move_folder_name) #move table into appropriate date/number folder
 
     if image_paths and new_outfolder:
@@ -53,19 +54,20 @@ def latex_file_to_pdf(folder: str, filename: str):
     os.chdir(orig_path)
 
 
-def latex_str_to_pdf_file(latex_str: str, filepath: str,  texinputs: StrListOrNone = None):
-    pdf = latex_str_to_pdf_obj(latex_str, texinputs=texinputs)
+def latex_str_to_pdf_file(latex_str: str, filepath: str, texinputs: StrListOrNone = None,
+                          run_bibtex: bool = False):
+    pdf = latex_str_to_pdf_obj(latex_str, texinputs=texinputs, run_bibtex=run_bibtex)
     pdf.save_to(filepath)
     return pdf
 
 
 def latex_str_to_pdf_obj_with_sources(latex_str: str, image_paths: StrListOrNone = None,
-                                          image_binaries: BytesListOrNone = None):
+                                      image_binaries: BytesListOrNone = None, run_bibtex: bool = False):
     with TempDir() as tmpdir:
         tex_inputs = output_sources_return_tex_input_paths(
             tmpdir, image_paths=image_paths, image_binaries=image_binaries
         )
-        pdf = latex_str_to_pdf_obj(latex_str, texinputs=tex_inputs)
+        pdf = latex_str_to_pdf_obj(latex_str, texinputs=tex_inputs, run_bibtex=run_bibtex)
 
     return pdf
 

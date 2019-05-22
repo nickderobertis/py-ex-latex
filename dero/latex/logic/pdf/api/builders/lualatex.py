@@ -27,17 +27,19 @@ class LuaLatexBuilder:
                      ``pdflatex`` can be rerun before an exception is thrown.
     """
 
-    def __init__(self, lualatex='lualatex', max_runs=15):
+    def __init__(self, lualatex='lualatex', bibtex: str = 'bibtex', max_runs=15):
         self.lualatex = lualatex
+        self.bibtex = bibtex
         self.max_runs = 15
 
     @data('source')
-    def build_pdf(self, source, texinputs=[]):
+    def build_pdf(self, source, texinputs=[], run_bibtex: bool = False):
         with TempDir() as tmpdir,\
                 source.temp_saved(suffix='.latex', dir=tmpdir) as tmp:
 
             # close temp file, so other processes can access it also on Windows
             tmp.close()
+            called_bibtex = False
 
             # calculate output filename
             base_fn = os.path.splitext(tmp.name)[0]
@@ -69,6 +71,16 @@ class LuaLatexBuilder:
                 aux = open(aux_fn, 'rb').read()
 
                 if aux == prev_aux:
+                    # Stable aux file
+                    if run_bibtex and not called_bibtex:
+                        called_bibtex = True  # ensure only called once
+                        bibtex_args = [self.bibtex, os.path.basename(aux_fn)]
+                        subprocess.check_call(bibtex_args,
+                                              cwd=tmpdir,
+                                              env=newenv,
+                                              stdin=open(os.devnull, 'r'),
+                                              stdout=open(os.devnull, 'w'), )
+                        continue  # go back into the loop to process with biblography
                     break
 
                 prev_aux = aux
