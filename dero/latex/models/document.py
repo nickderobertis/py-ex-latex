@@ -58,7 +58,7 @@ class Document(DocumentItem, Item):
 
         if references:
             packages.append(Package('filecontents'))
-            packages.append(Package('biblatex', modifier_str='backend=bibtex'))
+            packages.append(Package('biblatex', modifier_str='backend=bibtex,citestyle=authoryear,natbib'))
 
         section_num_styles = SectionNumberingFormatter.list_from_string_format_dict(section_numbering_styles)
 
