@@ -39,12 +39,14 @@ class ThreePartTable(Item, ReprMixin):
     name = 'threeparttable'
     repr_cols = ['caption']
 
-    def __init__(self, table_content: Tabular, caption: Caption=None, below_text: TableNotes=None):
+    def __init__(self, table_content: Tabular, caption: Caption=None, below_text: TableNotes=None,
+                 label: Optional[Label] = None):
         self.caption = caption
         items = [
             caption,
             table_content,
-            below_text
+            below_text,
+            label
         ]
         valid_items = [item for item in items if item is not None]
 
@@ -66,14 +68,13 @@ class Table(Item, ReprMixin):
     name = 'table'
     repr_cols = ['caption']
 
-    def __init__(self, three_part_table: ThreePartTable, centering=True, landscape=False, label: Optional[str] = None):
+    def __init__(self, three_part_table: ThreePartTable, centering=True, landscape=False):
         self.caption = three_part_table.caption
         self.landscape = landscape
 
         items = [
             _centering_str() if centering else None,
-            three_part_table,
-            Label(label) if label else None,
+            three_part_table
         ]
 
         valid_items = [item for item in items if item is not None]
@@ -111,9 +112,10 @@ class Table(Item, ReprMixin):
         three_part_table = ThreePartTable(
             tabular,
             caption=table.caption,
-            below_text=table.below_text
+            below_text=table.below_text,
+            label=Label(table.label) if table.label else None
         )
-        return cls(three_part_table, *args, landscape=table.landscape, label=table.label, **kwargs)
+        return cls(three_part_table, *args, landscape=table.landscape, **kwargs)
 
 class TableDocument(Document):
 
