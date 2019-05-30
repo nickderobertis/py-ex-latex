@@ -11,4 +11,8 @@ simple_package_strs = [
 ]
 simple_packages = [Package(str_) for str_ in simple_package_strs]
 
-default_packages = simple_packages + []  # add any packages with options here with the Package class
+direct_packages = [
+    Package('biblatex', modifier_str='backend=bibtex,citestyle=authoryear,natbib')
+]
+
+default_packages = simple_packages + direct_packages  # add any packages with options here with the Package class
