@@ -75,11 +75,17 @@ class LuaLatexBuilder:
                     if run_bibtex and not called_bibtex:
                         called_bibtex = True  # ensure only called once
                         bibtex_args = [self.bibtex, os.path.basename(aux_fn)]
-                        subprocess.check_call(bibtex_args,
+                        try:
+                            subprocess.check_call(bibtex_args,
                                               cwd=tmpdir,
                                               env=newenv,
                                               stdin=open(os.devnull, 'r'),
                                               stdout=open(os.devnull, 'w'), )
+                        except CalledProcessError as e:
+                            # TODO: parse log file, raise proper exception
+                            with open(base_fn + '.blg', 'r') as f:
+                                log_contents = f.read()
+                            raise Exception(log_contents)
                         continue  # go back into the loop to process with biblography
                     break
 
