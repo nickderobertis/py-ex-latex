@@ -13,5 +13,7 @@ from dero.latex.models.format.raw import Raw
 from dero.latex.models.ref import Ref
 from dero.latex.models.footnote import Footnote
 from dero.latex.models.references.bibtex.article import BibTexArticle
+from dero.latex.models.references.bibtex.misc import BibTexMisc
+from dero.latex.models.references.bibtex.manual import BibTexManual
 from dero.latex.models.references.bibtex.printbib import PrintBibliography
 from dero.latex.models.references.citations import Cite, CiteP, CiteT

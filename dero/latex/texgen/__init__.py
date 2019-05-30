@@ -84,4 +84,5 @@ def bibtex_str(item_type: str, item_accessor: str, fields: Dict[str, str]) -> st
 
 
 def _bibtex_field_str(key: str, value: str) -> str:
-    return f'{key} = "{value}",'
+    from dero.latex.logic.format.contents import format_contents
+    return f'{key} = {{{format_contents(value)}}},'
