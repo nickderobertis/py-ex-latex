@@ -15,7 +15,7 @@ def document_to_pdf_and_move(document, outfolder, image_paths: StrListOrNone = N
     # Create tex file
     outname_tex = outname + '.tex'
     outpath_tex = os.path.abspath(os.path.join(outfolder, outname_tex))
-    with open(outpath_tex, 'w') as f:
+    with open(outpath_tex, 'w', encoding='utf8') as f:
         f.write(str(document))
 
     tex_inputs = output_sources_return_tex_input_paths(

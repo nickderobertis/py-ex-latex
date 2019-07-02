@@ -11,6 +11,9 @@ from dero.latex.table.models.table.caption import Caption
 from dero.latex.logic.pdf.main import document_to_pdf_and_move
 from dero.latex.texgen.replacements.filename import latex_filename_replacements
 from dero.latex.models.documentitem import DocumentItem
+from dero.latex.models.commands.newenvironment import NewEnvironment
+from dero.latex.models.commands.begin import Begin
+from dero.latex.models.commands.end import End
 
 
 
@@ -45,16 +48,20 @@ class Table(DocumentItem, ReprMixin):
         self.mid_rules = mid_rules
         self.landscape = landscape
         self.label = label
+        self.set_begin_document_items(landscape)
 
     def __str__(self):
         return self.to_tex(as_document=False)
 
     def to_tex(self, as_document=True):
-        from dero.latex.table.models.texgen.items import TableDocument, Table as TexTable
+        from dero.latex.table.models.texgen.items import TableDocument, Table as TexTable, LTable
         if as_document:
             class_factory = TableDocument.from_table_model
         else:
-            class_factory = TexTable.from_table_model
+            if self.landscape:
+                class_factory = LTable.from_table_model
+            else:
+                class_factory = TexTable.from_table_model
 
         tex_generator = class_factory(self)
         return str(tex_generator)
@@ -305,6 +312,17 @@ class Table(DocumentItem, ReprMixin):
             self._align = ColumnsAlignment.from_alignment_str(align, num_columns=self.panels.num_columns)
         else:
             raise NotImplementedError(f'could not create align from {align}')
+
+    def set_begin_document_items(self, landscape: bool):
+        begin_doc_items = []
+        if landscape:
+            ltable_def = NewEnvironment(
+                'ltable',
+                Begin('landscape') + Begin('table'),
+                End('table') + End('landscape')
+            )
+            begin_doc_items.append(ltable_def)
+        self.begin_document_items = begin_doc_items
 
 
 

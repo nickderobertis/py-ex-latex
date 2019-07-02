@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Sequence, Union
 from dero.latex.models.item import Item
 from dero.mixins.repr import ReprMixin
 from dero.latex.table.models.panels.collection import PanelCollection
@@ -13,14 +13,14 @@ from dero.latex.table.models.texgen.packages import default_packages
 from dero.latex.models.landscape import Landscape
 from dero.latex.logic.format.contents import format_contents
 from dero.latex.models.label import Label
+from dero.latex.models.section.base import TextAreaBase
 
 
-class TableNotes(Item, ReprMixin):
+class TableNotes(TextAreaBase, ReprMixin):
     name = 'tablenotes'
 
-    def __init__(self, content: str):
-        content = format_contents(content)
-        super().__init__(self.name, content, env_modifiers=f'[para, flushleft]')
+    def __init__(self, contents: Union[str, Sequence[str]]):
+        super().__init__(self.name, contents, env_modifiers=f'[para, flushleft]')
 
 class Tabular(Item, ReprMixin):
     name = 'tabular'
@@ -116,6 +116,11 @@ class Table(Item, ReprMixin):
             label=Label(table.label) if table.label else None
         )
         return cls(three_part_table, *args, landscape=table.landscape, **kwargs)
+
+
+class LTable(Table):
+    name = 'ltable'
+
 
 class TableDocument(Document):
 

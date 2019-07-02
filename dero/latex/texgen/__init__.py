@@ -1,17 +1,15 @@
-from typing import Dict
-
-
-def _begin_str(str_):
-    return rf'\begin{{{str_}}}'
-
-
-def _end_str(str_):
-    return fr'\end{{{str_}}}'
+from typing import Dict, Optional
 
 
 def _include_graphics_str(filepath, width=r'\linewidth'):
     return rf'\includegraphics[width={width}]{{{filepath}}}'
 
+
+def _bracket_modifier_str(modifiers: Optional[str] = None) -> str:
+    if modifiers is None:
+        return ''
+
+    return f'[{modifiers}]'
 
 def no_options_no_contents_str(item_name: str) -> str:
     return rf'\{item_name}'
@@ -22,9 +20,11 @@ def _no_braces_item_str(item_name, contents) -> str:
     return rf'\{item_name} {format_contents(contents)}'
 
 
-def _basic_item_str(item_name, contents):
+def _basic_item_str(item_name, contents, modifiers: Optional[str] = None, pre_modifiers: Optional[str] = None):
     from dero.latex.logic.format.contents import format_contents
-    return rf'\{item_name}{{{format_contents(contents)}}}'
+    return rf'\{item_name}{pre_modifiers if pre_modifiers is not None else ""}' \
+        rf'{{{format_contents(contents)}}}{modifiers if modifiers is not None else ""}'
+
 
 def _multi_option_item_str(item_name, *options):
     from dero.latex.logic.format.contents import format_contents
@@ -50,9 +50,6 @@ def _midrule_str():
 
 def _bottomrule_str():
     return r'\bottomrule'
-
-def _document_class_str():
-    return r'\documentclass{article}'
 
 def _maketitle_str():
     return r'\maketitle'

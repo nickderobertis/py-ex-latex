@@ -10,6 +10,10 @@ from dero.latex.models.landscape import Landscape
 from dero.latex.logic.builder import build_figure_content
 from dero.latex.texgen.replacements.filename import latex_filename_replacements
 from matplotlib.pyplot import Axes, Figure as PltFigure
+from dero.latex.models.commands.newenvironment import NewEnvironment
+from dero.latex.models.commands.begin import Begin
+from dero.latex.models.commands.end import End
+from dero.latex.models.environment import Environment
 
 SubfigureOrGraphic = Union[Subfigure, Graphic]
 SubfiguresOrGraphics = List[SubfigureOrGraphic]
@@ -45,9 +49,14 @@ class Figure(DocumentItem, Item):
 
         super().__init__(self.name, content)
 
-        # Landscape needs to go around figure tags, so wrap output rather than contents
         if landscape:
-            self._output = Landscape().wrap(self._output)
+            lfigure_def = NewEnvironment(
+                'lfigure',
+                Begin('landscape') + Begin('figure'),
+                End('figure') + End('landscape')
+            )
+            self.begin_document_items = [lfigure_def]
+            self.env = Environment('lfigure')
 
     def __repr__(self):
         return f'<Figure(subfigures={self.subfigures}, caption={self.caption})>'

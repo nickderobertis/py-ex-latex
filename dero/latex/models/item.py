@@ -1,3 +1,4 @@
+from typing import Optional
 from dero.latex.models.mixins import StringAdditionMixin, IsSpecificClassMixin
 from dero.latex.texgen import (
     _basic_item_str,
@@ -18,34 +19,37 @@ class Item(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
         from dero.latex.models import Environment
         self.env = Environment(name, modifiers=env_modifiers)
         self.contents = contents
-
-        self._output = ''
-        if pre_env_contents:
-            self._output += pre_env_contents
-        self._output += self.env.wrap(str(self.contents))
-        if post_env_contents:
-            self._output += post_env_contents
+        self.pre_env_contents = pre_env_contents
+        self.post_env_contents = post_env_contents
         super().__init__()
 
     def __repr__(self):
         return f'<Item(name={self.env.name}, contents={self.contents})>'
 
     def __str__(self):
+        self._output = ''
+        if self.pre_env_contents:
+            self._output += self.pre_env_contents
+        self._output += self.env.wrap(str(self.contents))
+        if self.post_env_contents:
+            self._output += self.post_env_contents
         return self._output
 
 
 class SimpleItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
 
-    def __init__(self, name, contents):
+    def __init__(self, name, contents, modifiers: Optional[str] = None, pre_modifiers: Optional[str] = None):
         self.name = name
         self.contents = contents
+        self.modifiers = modifiers
+        self.pre_modifiers = pre_modifiers
         super().__init__()
 
     def __repr__(self):
         return f'<{self.name.title()}({self.contents})>'
 
     def __str__(self):
-        return _basic_item_str(self.name, self.contents)
+        return _basic_item_str(self.name, self.contents, self.modifiers, self.pre_modifiers)
 
 
 class MultiOptionSimpleItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):

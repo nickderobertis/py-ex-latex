@@ -3,7 +3,7 @@ from typing import List, Optional, Dict, Sequence
 from dero.latex.models.environment import Environment
 from dero.latex.models import Item
 from dero.latex.models.documentitem import DocumentItem
-from dero.latex.texgen import _document_class_str
+from dero.latex.models.control.documentclass import DocumentClass
 from dero.latex.models.package import Package
 from dero.latex.texgen.packages import default_packages
 from dero.latex.models.page.style import PageStyle
@@ -18,9 +18,12 @@ from dero.latex.models.format.sectionnum import SectionNumberingFormatter
 from dero.latex.typing import AnyItem, ListOfItems, ItemOrListOfItems, StrListOrNone, ItemAndPreEnvContents
 from dero.latex.logic.extract.filepaths import get_filepaths_from_items
 from dero.latex.logic.extract.binaries import get_binaries_from_items
+from dero.latex.logic.extract.begin_doc_items import get_begin_document_items_from_items
 from dero.latex.models.references.bibtex.base import BibTexEntryBase
 from dero.latex.models.control.filecontents import FileContents
 from dero.latex.models.references.bibtex.addresource import AddBibResource
+from dero.latex.models.commands.endfloat import DeclareDelayedFloatFlavor
+from dero.latex.models.format.linespacing import LineSpacing
 
 
 class DocumentEnvironment(Environment):
@@ -38,7 +41,10 @@ class Document(DocumentItem, Item):
                  skip_title_page: bool=False,
                  page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in', page_header: bool=False,
                  page_numbers: bool=True, appendix_modifier_str: Optional[str] = 'page',
-                 section_numbering_styles: Optional[Dict[str, str]] = None):
+                 section_numbering_styles: Optional[Dict[str, str]] = None, floats_at_end: bool = False,
+                 floats_at_end_options: str = 'nolists',
+                 document_type: str = 'article', font_size: Optional[float] = None,
+                 num_columns: Optional[int] = None, line_spacing: Optional[float] = None):
         from dero.latex.logic.builder import _build
         from dero.latex.models.titlepage import TitlePage
 
@@ -50,6 +56,19 @@ class Document(DocumentItem, Item):
         if page_modifier_str is not None:
             # Set margins, body size, etc. with geometry package
             packages.append(Package('geometry', modifier_str=page_modifier_str))
+
+        if floats_at_end:
+            packages.extend([
+                Package('endfloat', modifier_str=floats_at_end_options if floats_at_end_options else None),
+                DeclareDelayedFloatFlavor('ltable', 'table'),  # treat custom environment ltable (landscape table) as table
+                DeclareDelayedFloatFlavor('lfigure', 'figure') # treat custom environment lfigure (landscape figure) as figure
+            ])
+
+        if line_spacing:
+            packages.extend([
+                Package('setspace'),
+                LineSpacing(line_spacing)
+            ])
 
         if section_numbering_styles is None:
             section_numbering_styles = {}
@@ -63,8 +82,22 @@ class Document(DocumentItem, Item):
 
         self.packages = packages
 
+        if isinstance(content, (Item, str)):
+            content = [content]
+
+        self.begin_document_items = get_begin_document_items_from_items(content, unique=True)
+        if self.begin_document_items is None:
+            begin_doc_items = []
+        else:
+            begin_doc_items = self.begin_document_items
+
         possible_pre_env_contents = [
-            _document_class_str(),
+            DocumentClass(
+                document_type=document_type,
+                font_size=font_size,
+                num_columns=num_columns
+            ),
+            *begin_doc_items,
             *[str(package) for package in self.packages],
             *section_num_styles,
             PageStyle('fancy'),
@@ -77,9 +110,6 @@ class Document(DocumentItem, Item):
         ]
 
         self.pre_env_contents = _build([item for item in possible_pre_env_contents if item is not None])
-
-        if isinstance(content, (Item, str)):
-            content = [content]
 
         if not skip_title_page and _should_create_title_page(title=title, author=author, date=date, abstract=abstract):
             title_page = TitlePage(title=title, author=author, date=date, abstract=abstract)
