@@ -27,13 +27,14 @@ class Item(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
         return f'<Item(name={self.env.name}, contents={self.contents})>'
 
     def __str__(self):
-        self._output = ''
-        if self.pre_env_contents:
-            self._output += self.pre_env_contents
-        self._output += self.env.wrap(str(self.contents))
-        if self.post_env_contents:
-            self._output += self.post_env_contents
-        return self._output
+        from dero.latex.logic.builder import _build
+        possible_items = [
+            self.pre_env_contents,
+            self.env.wrap(str(self.contents)),
+            self.post_env_contents
+        ]
+        items = [item for item in possible_items if item]
+        return _build(items)
 
 
 class SimpleItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
