@@ -24,6 +24,7 @@ from dero.latex.models.control.filecontents import FileContents
 from dero.latex.models.references.bibtex.addresource import AddBibResource
 from dero.latex.models.commands.endfloat import DeclareDelayedFloatFlavor
 from dero.latex.models.format.linespacing import LineSpacing
+from dero.latex.models.commands.floatrow import DeclareFloatFont, FloatSetup
 
 
 class DocumentEnvironment(Environment):
@@ -44,7 +45,8 @@ class Document(DocumentItem, Item):
                  section_numbering_styles: Optional[Dict[str, str]] = None, floats_at_end: bool = False,
                  floats_at_end_options: str = 'nolists',
                  document_type: str = 'article', font_size: Optional[float] = None,
-                 num_columns: Optional[int] = None, line_spacing: Optional[float] = None):
+                 num_columns: Optional[int] = None, line_spacing: Optional[float] = None,
+                 tables_relative_font_size: int = 0, figures_relative_font_size: int = 0):
         from dero.latex.logic.builder import _build
         from dero.latex.models.titlepage import TitlePage
 
@@ -56,6 +58,25 @@ class Document(DocumentItem, Item):
         if page_modifier_str is not None:
             # Set margins, body size, etc. with geometry package
             packages.append(Package('geometry', modifier_str=page_modifier_str))
+
+        if tables_relative_font_size or figures_relative_font_size:
+            packages.append(Package('floatrow'))
+            if tables_relative_font_size:
+                declared_font = DeclareFloatFont(tables_relative_font_size)
+                float_setup_str = f'font={declared_font.size_def.name},cappostion=top'
+                packages.extend([
+                    declared_font,
+                    FloatSetup('table', float_setup_str),
+                    # FloatSetup('ltable', float_setup_str)
+                ])
+            if figures_relative_font_size:
+                declared_font = DeclareFloatFont(figures_relative_font_size)
+                float_setup_str = f'font={declared_font.size_def.name},cappostion=top'
+                packages.extend([
+                    declared_font,
+                    FloatSetup('figure', float_setup_str),
+                    # FloatSetup('lfigure', float_setup_str)
+                ])
 
         if floats_at_end:
             packages.extend([
