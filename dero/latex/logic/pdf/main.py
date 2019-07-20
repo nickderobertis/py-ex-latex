@@ -77,7 +77,7 @@ def output_sources_return_tex_input_paths(outfolder: str, image_paths: StrListOr
     if image_paths:
         # Copy first time for creation of pdf
         sources_tempfolder = os.path.join(outfolder, 'Sources')
-        tex_inputs = [os.path.abspath(outfolder), '']
+        tex_inputs = [os.path.abspath(outfolder), os.path.abspath(sources_tempfolder), '.']
         if not os.path.exists(sources_tempfolder):
             os.makedirs(sources_tempfolder)
         if image_binaries:

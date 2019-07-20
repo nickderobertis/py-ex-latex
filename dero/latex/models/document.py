@@ -36,7 +36,6 @@ class Document(ContainerItem, Item):
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
                  title: str=None, author: str=None, date: str=None, abstract: str=None,
-                 references: Optional[Sequence[BibTexEntryBase]] = None,
                  skip_title_page: bool=False,
                  page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in', page_header: bool=False,
                  page_numbers: bool=True, appendix_modifier_str: Optional[str] = 'page',
@@ -48,13 +47,12 @@ class Document(ContainerItem, Item):
         from dero.latex.logic.builder import _build
         from dero.latex.models.titlepage import TitlePage
 
-        self.has_references = references is not None
-
         self.add_data_from_content(content)
+
+        self.has_references = self.data.references is not None
 
         self.data.packages.extend(self.construct_packages(
             packages=packages,
-            references=references,
             page_modifier_str=page_modifier_str,
             appendix_modifier_str=appendix_modifier_str,
             floats_at_end=floats_at_end,
@@ -99,12 +97,7 @@ class Document(ContainerItem, Item):
         else:
             self.has_title_page = False
 
-        if references:
-            use_resource = AddBibResource('refs.bib')
-            self.pre_env_contents = _build([self.pre_env_contents, use_resource])
-            all_references = _build(references)
-            references_inline_file = FileContents(all_references, 'refs.bib')
-            content.append(references_inline_file)
+        content.extend(self.data.end_document_items)
 
         self.content = content
 
@@ -152,7 +145,7 @@ class Document(ContainerItem, Item):
 
         return cls(content, **document_kwargs)
 
-    def construct_packages(self, packages: List[Package]=None, references: Optional[Sequence[BibTexEntryBase]] = None,
+    def construct_packages(self, packages: List[Package]=None,
                            page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in',
                            appendix_modifier_str: Optional[str] = 'page',
                            floats_at_end: bool = False, floats_at_end_options: str = 'nolists',
@@ -198,9 +191,6 @@ class Document(ContainerItem, Item):
             ])
 
         packages.append(Package('appendix', modifier_str=appendix_modifier_str))
-
-        if references:
-            packages.append(Package('filecontents'))
 
         return packages
 

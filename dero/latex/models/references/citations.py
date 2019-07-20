@@ -1,4 +1,5 @@
 from dero.latex.models.item import SimpleItem
+from dero.latex.models.package import Package
 
 
 class Cite(SimpleItem):
@@ -8,9 +9,17 @@ class Cite(SimpleItem):
         super().__init__(self.name, item_accessor)
 
 
-class CiteT(Cite):
+class NatBibCiteBase(Cite):
+
+    def __init__(self, item_accessor):
+        self.init_data()
+        self.data.packages.append(Package('natbib'))
+        return super().__init__(item_accessor)
+
+
+class CiteT(NatBibCiteBase):
     name = 'citet'
 
 
-class CiteP(Cite):
+class CiteP(NatBibCiteBase):
     name = 'citep'

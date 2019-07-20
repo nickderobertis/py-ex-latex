@@ -52,7 +52,9 @@ class LuaLatexBuilder:
 
             # create environment
             newenv = os.environ.copy()
-            newenv['TEXINPUTS'] = os.pathsep.join(texinputs) + os.pathsep
+            inputs_value = os.pathsep.join(texinputs) + os.pathsep
+            newenv['TEXINPUTS'] = inputs_value
+            newenv['BSTINPUTS'] = inputs_value
 
             # run until aux file settles
             prev_aux = None
