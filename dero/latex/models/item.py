@@ -1,5 +1,6 @@
 from typing import Optional
-from dero.latex.models.mixins import StringAdditionMixin, IsSpecificClassMixin
+from dero.mixins.attrequals import EqOnAttrsMixin, EqHashMixin
+from dero.latex.models.mixins import StringAdditionMixin, IsSpecificClassMixin, StringEqMixin
 from dero.latex.texgen import (
     _basic_item_str,
     _multi_option_item_str,
@@ -9,11 +10,34 @@ from dero.latex.texgen import (
 )
 
 
+
 class IsLatexItemMixin:
     is_LatexItem = True
 
 
-class Item(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
+class DataItem:
+    def init_data(self):
+        from dero.latex.models.documentsetup import DocumentSetupData
+        if not hasattr(self, 'data'):
+            self.data = DocumentSetupData()
+
+
+class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin, EqOnAttrsMixin, EqHashMixin):
+    
+
+    def __init__(self, *args, **kwargs):
+        self.init_data()
+        super().__init__(*args, **kwargs)
+
+
+class Item(ItemBase):
+    equal_attrs = [
+        'contents',
+        'pre_env_contents',
+        'post_env_contents',
+        'data',
+        'env'
+    ]
 
     def __init__(self, name, contents, pre_env_contents=None, post_env_contents=None, env_modifiers=None):
         from dero.latex.models import Environment
@@ -37,7 +61,13 @@ class Item(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
         return _build(items)
 
 
-class SimpleItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
+class SimpleItem(ItemBase):
+    equal_attrs = [
+        'contents',
+        'pre_env_contents',
+        'post_env_contents',
+        'data'
+    ]
 
     def __init__(self, name, contents, modifiers: Optional[str] = None, pre_modifiers: Optional[str] = None):
         self.name = name

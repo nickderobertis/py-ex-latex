@@ -14,6 +14,7 @@ from dero.latex.models.documentitem import DocumentItem
 from dero.latex.models.commands.newenvironment import NewEnvironment
 from dero.latex.models.commands.begin import Begin
 from dero.latex.models.commands.end import End
+from dero.latex.models.documentsetup import DocumentSetupData
 
 
 
@@ -48,6 +49,7 @@ class Table(DocumentItem, ReprMixin):
         self.mid_rules = mid_rules
         self.landscape = landscape
         self.label = label
+        self.data = DocumentSetupData()
         self.set_begin_document_items(landscape)
 
     def __str__(self):
@@ -322,7 +324,7 @@ class Table(DocumentItem, ReprMixin):
                 End('table') + End('landscape')
             )
             begin_doc_items.append(ltable_def)
-        self.begin_document_items = begin_doc_items
+        self.data.begin_document_items.extend(begin_doc_items) 
 
 
 

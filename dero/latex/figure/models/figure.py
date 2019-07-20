@@ -14,13 +14,14 @@ from dero.latex.models.commands.newenvironment import NewEnvironment
 from dero.latex.models.commands.begin import Begin
 from dero.latex.models.commands.end import End
 from dero.latex.models.environment import Environment
+from dero.latex.models.containeritem import ContainerItem
 
 SubfigureOrGraphic = Union[Subfigure, Graphic]
 SubfiguresOrGraphics = List[SubfigureOrGraphic]
 PltFigureOrAxes = Union[Axes, PltFigure]
 PltFigureOrAxesNameDict = Dict[str, PltFigureOrAxes]
 
-class Figure(DocumentItem, Item):
+class Figure(ContainerItem, Item):
     """
     used for creating latex figures from images. Currently the main usage is the Figure class created with the method
     Figure.from_dict_of_names_and_filepaths. Pass a dictionary where the keys are names for subfigures and the values
@@ -39,6 +40,8 @@ class Figure(DocumentItem, Item):
 
         self._remove_subfigure_elevate_contents_to_figure_if_single_subfigure()
 
+        self.add_data_from_content(self.subfigures)
+
         content = build_figure_content(
             self.subfigures,
             caption=self.caption,
@@ -55,7 +58,7 @@ class Figure(DocumentItem, Item):
                 Begin('landscape') + Begin('figure'),
                 End('figure') + End('landscape')
             )
-            self.begin_document_items = [lfigure_def]
+            self.data.begin_document_items.append(lfigure_def)
             self.env = Environment('lfigure')
 
     def __repr__(self):
@@ -95,34 +98,11 @@ class Figure(DocumentItem, Item):
         document_to_pdf_and_move(
             to_output,
             outfolder,
-            image_paths=self.filepaths,
+            image_paths=self.data.filepaths,
             outname=outname,
             as_document=as_document,
-            image_binaries=self.binaries
+            image_binaries=self.data.binaries
         )
-
-    @property
-    def filepaths(self) -> List[str]:
-        return self._extract_items_from_subfigures_and_graphics_into_list('filepath')
-
-    @property
-    def source_paths(self) -> List[str]:
-        return self._extract_items_from_subfigures_and_graphics_into_list('source_path')
-
-    @property
-    def binaries(self) -> List[bytes]:
-        return self._extract_items_from_subfigures_and_graphics_into_list('binary')
-
-    def _extract_items_from_subfigures_and_graphics_into_list(self, item_name: str) -> List[Any]:
-        items = []
-        for subfigure in self:
-            if isinstance(subfigure, Subfigure):
-                items.append(getattr(subfigure.graphic, item_name))
-            elif isinstance(subfigure, Graphic):
-                items.append(getattr(subfigure, item_name))
-            else:
-                raise ValueError(f'must pass Subfigures or Graphics to Figure. got type {type(subfigure)}')
-        return items
 
 
     @classmethod
@@ -232,7 +212,7 @@ class Figure(DocumentItem, Item):
             self.caption = self.subfigures[0].caption
 
         # update width to whole page
-        graphic = Graphic(orig_graphic.filepath, width=r'1.1\paperwidth')
+        graphic = Graphic(orig_graphic.filepaths[0], width=r'1.1\paperwidth')
 
         # need to turn off centering to cover whole page
         self.centering = False

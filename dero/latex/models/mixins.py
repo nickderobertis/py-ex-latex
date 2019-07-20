@@ -10,6 +10,15 @@ class StringAdditionMixin:
         return self.__str__().join(str(i) for i in iterable)
 
 
+class StringEqMixin:
+
+    def __eq__(self, value):
+        return str(self) == str(value)
+
+    def __hash__(self):
+        return hash(str(self))
+
+
 class IsSpecificClassMixin:
     """
     creates attribute is_ClassName (with whatever class name)

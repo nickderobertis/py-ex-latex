@@ -5,9 +5,10 @@ from dero.latex.models import Item
 from dero.latex.models.caption import Caption
 from dero.latex.models.label import Label
 from dero.latex.logic.builder import build_figure_content
+from dero.latex.models.containeritem import ContainerItem
 
 
-class Subfigure(Item):
+class Subfigure(ContainerItem, Item):
     """
     Used for more control over building figures
     """
@@ -18,6 +19,8 @@ class Subfigure(Item):
         self.graphic = Graphic(filepath, cache=cache)
         self.caption = Caption(caption) if caption else None
         self.label = Label(label) if label else None
+
+        self.add_data_from_content(self.graphic)
 
         contents = build_figure_content(
             [self.graphic],

@@ -16,15 +16,13 @@ from dero.latex.models.page.header import remove_header
 from dero.latex.models.page.footer import CenterFooter
 from dero.latex.models.format.sectionnum import SectionNumberingFormatter
 from dero.latex.typing import AnyItem, ListOfItems, ItemOrListOfItems, StrListOrNone, ItemAndPreEnvContents
-from dero.latex.logic.extract.filepaths import get_filepaths_from_items
-from dero.latex.logic.extract.binaries import get_binaries_from_items
-from dero.latex.logic.extract.begin_doc_items import get_begin_document_items_from_items
 from dero.latex.models.references.bibtex.base import BibTexEntryBase
 from dero.latex.models.control.filecontents import FileContents
 from dero.latex.models.references.bibtex.addresource import AddBibResource
 from dero.latex.models.commands.endfloat import DeclareDelayedFloatFlavor
 from dero.latex.models.format.linespacing import LineSpacing
 from dero.latex.models.commands.floatrow import DeclareFloatFont, FloatSetup
+from dero.latex.models.containeritem import ContainerItem
 
 
 class DocumentEnvironment(Environment):
@@ -33,7 +31,7 @@ class DocumentEnvironment(Environment):
     def __init__(self):
         super().__init__(name=self.name)
 
-class Document(DocumentItem, Item):
+class Document(ContainerItem, Item):
     name = 'document'
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
@@ -52,6 +50,114 @@ class Document(DocumentItem, Item):
 
         self.has_references = references is not None
 
+        self.add_data_from_content(content)
+
+        self.data.packages.extend(self.construct_packages(
+            packages=packages,
+            references=references,
+            page_modifier_str=page_modifier_str,
+            appendix_modifier_str=appendix_modifier_str,
+            floats_at_end=floats_at_end,
+            floats_at_end_options=floats_at_end_options,
+            line_spacing=line_spacing,
+            tables_relative_font_size=tables_relative_font_size,
+            figures_relative_font_size=figures_relative_font_size
+        ))
+
+        if section_numbering_styles is None:
+            section_numbering_styles = {}
+
+        section_num_styles = SectionNumberingFormatter.list_from_string_format_dict(section_numbering_styles)
+
+        if isinstance(content, (Item, str)):
+            content = [content]
+
+        possible_pre_env_contents = [
+            DocumentClass(
+                document_type=document_type,
+                font_size=font_size,
+                num_columns=num_columns
+            ),
+            *self.data.begin_document_items,
+            *[str(package) for package in self.data.packages],
+            *section_num_styles,
+            PageStyle('fancy'),
+
+            # header is there by default. add remove header lines if page_header=False
+            remove_header if not page_header else None,
+
+            # add right page numbers. if not, use blank center footer to clear default page numbers in center footer
+            right_aligned_page_numbers if page_numbers else CenterFooter('')
+        ]
+
+        self.pre_env_contents = _build([item for item in possible_pre_env_contents if item is not None])
+
+        if not skip_title_page and _should_create_title_page(title=title, author=author, date=date, abstract=abstract):
+            title_page = TitlePage(title=title, author=author, date=date, abstract=abstract)
+            content.insert(0, title_page)
+            self.has_title_page = True
+        else:
+            self.has_title_page = False
+
+        if references:
+            use_resource = AddBibResource('refs.bib')
+            self.pre_env_contents = _build([self.pre_env_contents, use_resource])
+            all_references = _build(references)
+            references_inline_file = FileContents(all_references, 'refs.bib')
+            content.append(references_inline_file)
+
+        self.content = content
+
+        # combine content into a single str
+        content = _build(content)
+
+        if landscape:
+            content = Landscape().wrap(str(content))
+
+        super().__init__(self.name, content, pre_env_contents=self.pre_env_contents)
+
+    def __repr__(self):
+        return f'<Document>'
+
+    def _repr_pdf_(self):
+        tex = str(self)
+
+        return latex_str_to_pdf_obj_with_sources(
+            tex,
+            image_paths=self.data.filepaths,
+            image_binaries=self.data.binaries,
+            run_bibtex=self.has_references
+        ).readb()
+
+    def to_pdf_and_move(self, outfolder, outname='document',
+                              move_folder_name='Tables', as_document=True):
+        tex = str(self)
+
+        outname = latex_filename_replacements(outname)
+
+        document_to_pdf_and_move(
+            tex,
+            outfolder=outfolder,
+            outname=outname,
+            image_paths=self.data.filepaths,
+            move_folder_name=move_folder_name,
+            as_document=as_document,
+            image_binaries=self.data.binaries,
+            run_bibtex=self.has_references
+        )
+
+    @classmethod
+    def from_ambiguous_collection(cls, collection, **document_kwargs):
+        content = extract_document_items_from_ambiguous_collection(collection)
+
+        return cls(content, **document_kwargs)
+
+    def construct_packages(self, packages: List[Package]=None, references: Optional[Sequence[BibTexEntryBase]] = None,
+                           page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in',
+                           appendix_modifier_str: Optional[str] = 'page',
+                           floats_at_end: bool = False, floats_at_end_options: str = 'nolists',
+                           line_spacing: Optional[float] = None,
+                           tables_relative_font_size: int = 0, figures_relative_font_size: int = 0) -> List[Package]:
         if packages is None:
             packages = default_packages.copy()
 
@@ -91,112 +197,13 @@ class Document(DocumentItem, Item):
                 LineSpacing(line_spacing)
             ])
 
-        if section_numbering_styles is None:
-            section_numbering_styles = {}
-
         packages.append(Package('appendix', modifier_str=appendix_modifier_str))
 
         if references:
             packages.append(Package('filecontents'))
 
-        section_num_styles = SectionNumberingFormatter.list_from_string_format_dict(section_numbering_styles)
+        return packages
 
-        self.packages = packages
-
-        if isinstance(content, (Item, str)):
-            content = [content]
-
-        self.begin_document_items = get_begin_document_items_from_items(content, unique=True)
-        if self.begin_document_items is None:
-            begin_doc_items = []
-        else:
-            begin_doc_items = self.begin_document_items
-
-        possible_pre_env_contents = [
-            DocumentClass(
-                document_type=document_type,
-                font_size=font_size,
-                num_columns=num_columns
-            ),
-            *begin_doc_items,
-            *[str(package) for package in self.packages],
-            *section_num_styles,
-            PageStyle('fancy'),
-
-            # header is there by default. add remove header lines if page_header=False
-            remove_header if not page_header else None,
-
-            # add right page numbers. if not, use blank center footer to clear default page numbers in center footer
-            right_aligned_page_numbers if page_numbers else CenterFooter('')
-        ]
-
-        self.pre_env_contents = _build([item for item in possible_pre_env_contents if item is not None])
-
-        if not skip_title_page and _should_create_title_page(title=title, author=author, date=date, abstract=abstract):
-            title_page = TitlePage(title=title, author=author, date=date, abstract=abstract)
-            content.insert(0, title_page)
-            self.has_title_page = True
-        else:
-            self.has_title_page = False
-
-        if references:
-            use_resource = AddBibResource('refs.bib')
-            self.pre_env_contents = _build([self.pre_env_contents, use_resource])
-            all_references = _build(references)
-            references_inline_file = FileContents(all_references, 'refs.bib')
-            content.append(references_inline_file)
-
-        self.content = content
-
-        self.filepaths = self._get_filepaths_from_items(content)
-        self.binaries = get_binaries_from_items(content)
-
-        # combine content into a single str
-        content = _build(content)
-
-        if landscape:
-            content = Landscape().wrap(str(content))
-
-        super().__init__(self.name, content, pre_env_contents=self.pre_env_contents)
-
-    def __repr__(self):
-        return f'<Document>'
-
-    def _repr_pdf_(self):
-        tex = str(self)
-
-        return latex_str_to_pdf_obj_with_sources(
-            tex,
-            image_paths=self.filepaths,
-            image_binaries=self.binaries,
-            run_bibtex=self.has_references
-        ).readb()
-
-    def to_pdf_and_move(self, outfolder, outname='document',
-                              move_folder_name='Tables', as_document=True):
-        tex = str(self)
-
-        outname = latex_filename_replacements(outname)
-
-        document_to_pdf_and_move(
-            tex,
-            outfolder=outfolder,
-            outname=outname,
-            image_paths=self.filepaths,
-            move_folder_name=move_folder_name,
-            as_document=as_document,
-            image_binaries=self.binaries,
-            run_bibtex=self.has_references
-        )
-
-    def _get_filepaths_from_items(self, content: ListOfItems) -> StrListOrNone:
-        return get_filepaths_from_items(content)
-
-    @classmethod
-    def from_ambiguous_collection(cls, collection, **document_kwargs):
-        content = extract_document_items_from_ambiguous_collection(collection)
-
-        return cls(content, **document_kwargs)
 
 def _should_create_title_page(title: str = None, author: str = None, date: str = None, abstract: str = None):
     return any([
