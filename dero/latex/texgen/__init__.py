@@ -1,4 +1,6 @@
-from typing import Dict, Optional
+from typing import Dict, Optional, TYPE_CHECKING
+if TYPE_CHECKING:
+    from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
 
 
 def _include_graphics_str(filepath, width=r'\linewidth'):
@@ -11,19 +13,25 @@ def _bracket_modifier_str(modifiers: Optional[str] = None) -> str:
 
     return f'[{modifiers}]'
 
-def no_options_no_contents_str(item_name: str) -> str:
-    return rf'\{item_name}'
+def no_options_no_contents_str(item_name: str, overlay: Optional['Overlay'] = None) -> str:
+    overlay = overlay if overlay is not None else ""
+    return rf'\{item_name}{overlay}'
 
 
-def _no_braces_item_str(item_name, contents) -> str:
+def _no_braces_item_str(item_name, contents, overlay: Optional['Overlay'] = None) -> str:
     from dero.latex.logic.format.contents import format_contents
-    return rf'\{item_name} {format_contents(contents)}'
+    overlay = overlay if overlay is not None else ""
+    return rf'\{item_name}{overlay} {format_contents(contents)}'
 
 
-def _basic_item_str(item_name, contents, modifiers: Optional[str] = None, pre_modifiers: Optional[str] = None):
+def _basic_item_str(item_name, contents, modifiers: Optional[str] = None, pre_modifiers: Optional[str] = None,
+                    overlay: Optional['Overlay'] = None):
     from dero.latex.logic.format.contents import format_contents
-    return rf'\{item_name}{pre_modifiers if pre_modifiers is not None else ""}' \
-        rf'{{{format_contents(contents)}}}{modifiers if modifiers is not None else ""}'
+    pre_modifiers = pre_modifiers if pre_modifiers is not None else ""
+    modifiers = modifiers if modifiers is not None else ""
+    overlay = overlay if overlay is not None else ""
+
+    return rf'\{item_name}{overlay}{pre_modifiers}{{{format_contents(contents)}}}{modifiers}'
 
 
 def _multi_option_item_str(item_name, *options):

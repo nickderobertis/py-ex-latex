@@ -1,4 +1,6 @@
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
+if TYPE_CHECKING:
+    from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
 from dero.mixins.attrequals import EqOnAttrsMixin, EqHashMixin
 from dero.latex.models.mixins import StringAdditionMixin, IsSpecificClassMixin, StringEqMixin
 from dero.latex.texgen import (
@@ -69,18 +71,20 @@ class SimpleItem(ItemBase):
         'data'
     ]
 
-    def __init__(self, name, contents, modifiers: Optional[str] = None, pre_modifiers: Optional[str] = None):
+    def __init__(self, name, contents, modifiers: Optional[str] = None, pre_modifiers: Optional[str] = None,
+                 overlay: Optional['Overlay'] = None):
         self.name = name
         self.contents = contents
         self.modifiers = modifiers
         self.pre_modifiers = pre_modifiers
+        self.overlay = overlay
         super().__init__()
 
     def __repr__(self):
         return f'<{self.name.title()}({self.contents})>'
 
     def __str__(self):
-        return _basic_item_str(self.name, self.contents, self.modifiers, self.pre_modifiers)
+        return _basic_item_str(self.name, self.contents, self.modifiers, self.pre_modifiers, overlay=self.overlay)
 
 
 class MultiOptionSimpleItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
@@ -99,16 +103,17 @@ class MultiOptionSimpleItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditi
 
 class NoBracesItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
 
-    def __init__(self, name, contents):
+    def __init__(self, name, contents, overlay: Optional['Overlay'] = None):
         self.name = name
         self.contents = contents
+        self.overlay = overlay
         super().__init__()
 
     def __repr__(self):
         return f'<{self.name.title()}({self.contents})>'
 
     def __str__(self):
-        return _no_braces_item_str(self.name, self.contents)
+        return _no_braces_item_str(self.name, self.contents, overlay=self.overlay)
 
 
 class EqualsItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
@@ -127,12 +132,13 @@ class EqualsItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
 
 class NoOptionsNoContentsItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
 
-    def __init__(self, name):
+    def __init__(self, name, overlay: Optional['Overlay'] = None):
         self.name = name
+        self.overlay = overlay
         super().__init__()
 
     def __repr__(self):
         return f'<{self.name.title()}>'
 
     def __str__(self):
-        return no_options_no_contents_str(self.name)
+        return no_options_no_contents_str(self.name, overlay=self.overlay)

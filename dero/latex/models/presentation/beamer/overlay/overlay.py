@@ -14,4 +14,6 @@ class Overlay:
         return ','.join([str(option) for option in self.overlay_options])
 
     def __str__(self) -> str:
+        if self.overlay_options_str == '':
+            return ''
         return f'<{self.overlay_options_str}>'
