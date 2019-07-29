@@ -89,16 +89,17 @@ class SimpleItem(ItemBase):
 
 class MultiOptionSimpleItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
 
-    def __init__(self, name, *options):
+    def __init__(self, name, *options, overlay: Optional['Overlay'] = None):
         self.name = name
         self.options = options
+        self.overlay = overlay
         super().__init__()
 
     def __repr__(self):
         return f'<{self.name.title()}({self.options})>'
 
     def __str__(self):
-        return _multi_option_item_str(self.name, *self.options)
+        return _multi_option_item_str(self.name, *self.options, overlay=self.overlay)
 
 
 class NoBracesItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):

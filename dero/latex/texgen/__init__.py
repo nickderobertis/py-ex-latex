@@ -34,10 +34,11 @@ def _basic_item_str(item_name, contents, modifiers: Optional[str] = None, pre_mo
     return rf'\{item_name}{overlay}{pre_modifiers}{{{format_contents(contents)}}}{modifiers}'
 
 
-def _multi_option_item_str(item_name, *options):
+def _multi_option_item_str(item_name, *options, overlay: Optional['Overlay'] = None):
     from dero.latex.logic.format.contents import format_contents
+    overlay = overlay if overlay is not None else ""
     options_str = ''.join([f'{{{format_contents(str(option))}}}' for option in options])
-    return rf'\{item_name}{options_str}'
+    return rf'\{item_name}{overlay}{options_str}'
 
 
 def item_equals_str(item_name, contents):
