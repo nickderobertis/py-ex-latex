@@ -4,7 +4,7 @@ from dero.latex.models.item import SimpleItem
 class DocumentClass(SimpleItem):
     name = 'documentclass'
 
-    def __init__(self, document_type: str = 'article', font_size: Optional[float] = None,
+    def __init__(self, document_type: str = 'article', font_size: Optional[float] = 11,
                  num_columns: Optional[int] = None):
         self.document_type = document_type
         self.font_size = font_size
