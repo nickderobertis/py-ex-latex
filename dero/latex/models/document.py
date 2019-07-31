@@ -31,86 +31,47 @@ class DocumentEnvironment(Environment):
     def __init__(self):
         super().__init__(name=self.name)
 
-class Document(ContainerItem, Item):
-    name = 'document'
 
-    def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
-                 title: str=None, author: str=None, date: str=None, abstract: str=None,
-                 skip_title_page: bool=False,
-                 page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in', page_header: bool=False,
-                 page_numbers: bool=True, appendix_modifier_str: Optional[str] = 'page',
-                 section_numbering_styles: Optional[Dict[str, str]] = None, floats_at_end: bool = False,
-                 floats_at_end_options: str = 'nolists',
-                 document_type: str = 'article', font_size: Optional[float] = None,
-                 num_columns: Optional[int] = None, line_spacing: Optional[float] = None,
-                 tables_relative_font_size: int = 0, figures_relative_font_size: int = 0):
+class DocumentBase(ContainerItem, Item):
+    name = '<invalid, do not use DocumentBase directly>'
+    document_class_obj = None
+
+    def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
+                 pre_env_contents: Optional[ItemOrListOfItems] = None):
         from dero.latex.logic.builder import _build
-        from dero.latex.models.titlepage import TitlePage
 
         self.add_data_from_content(content)
 
-        self.has_references = self.data.references is not None
+        if packages is not None:
+            self.data.packages.extend(packages)
 
-        self.data.packages.extend(self.construct_packages(
-            packages=packages,
-            page_modifier_str=page_modifier_str,
-            appendix_modifier_str=appendix_modifier_str,
-            floats_at_end=floats_at_end,
-            floats_at_end_options=floats_at_end_options,
-            line_spacing=line_spacing,
-            tables_relative_font_size=tables_relative_font_size,
-            figures_relative_font_size=figures_relative_font_size
-        ))
-
-        if section_numbering_styles is None:
-            section_numbering_styles = {}
-
-        section_num_styles = SectionNumberingFormatter.list_from_string_format_dict(section_numbering_styles)
+        self.has_references = False
+        if self.data.references:
+            self.has_references = True
 
         if isinstance(content, (Item, str)):
             content = [content]
 
+        if pre_env_contents is None:
+            pre_env_contents = []
+
         possible_pre_env_contents = [
-            DocumentClass(
-                document_type=document_type,
-                font_size=font_size,
-                num_columns=num_columns
-            ),
+            self.document_class_obj,
             *self.data.begin_document_items,
             *[str(package) for package in self.data.packages],
-            *section_num_styles,
-            PageStyle('fancy'),
-
-            # header is there by default. add remove header lines if page_header=False
-            remove_header if not page_header else None,
-
-            # add right page numbers. if not, use blank center footer to clear default page numbers in center footer
-            right_aligned_page_numbers if page_numbers else CenterFooter('')
+            *pre_env_contents
         ]
 
         self.pre_env_contents = _build([item for item in possible_pre_env_contents if item is not None])
 
-        if not skip_title_page and _should_create_title_page(title=title, author=author, date=date, abstract=abstract):
-            title_page = TitlePage(title=title, author=author, date=date, abstract=abstract)
-            content.insert(0, title_page)
-            self.has_title_page = True
-        else:
-            self.has_title_page = False
-
         content.extend(self.data.end_document_items)
 
-        self.content = content
+        self.contents = content
 
         # combine content into a single str
         content = _build(content)
 
-        if landscape:
-            content = Landscape().wrap(str(content))
-
         super().__init__(self.name, content, pre_env_contents=self.pre_env_contents)
-
-    def __repr__(self):
-        return f'<Document>'
 
     def _repr_pdf_(self):
         tex = str(self)
@@ -144,6 +105,79 @@ class Document(ContainerItem, Item):
         content = extract_document_items_from_ambiguous_collection(collection)
 
         return cls(content, **document_kwargs)
+
+
+class Document(DocumentBase):
+    name = 'document'
+
+    def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
+                 title: str=None, author: str=None, date: str=None, abstract: str=None,
+                 skip_title_page: bool=False,
+                 page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in', page_header: bool=False,
+                 page_numbers: bool=True, appendix_modifier_str: Optional[str] = 'page',
+                 section_numbering_styles: Optional[Dict[str, str]] = None, floats_at_end: bool = False,
+                 floats_at_end_options: str = 'nolists',
+                 document_type: str = 'article', font_size: Optional[float] = None,
+                 num_columns: Optional[int] = None, line_spacing: Optional[float] = None,
+                 tables_relative_font_size: int = 0, figures_relative_font_size: int = 0):
+        from dero.latex.logic.builder import _build
+        from dero.latex.models.titlepage import TitlePage
+
+        all_packages = self.construct_packages(
+            packages=packages,
+            page_modifier_str=page_modifier_str,
+            appendix_modifier_str=appendix_modifier_str,
+            floats_at_end=floats_at_end,
+            floats_at_end_options=floats_at_end_options,
+            line_spacing=line_spacing,
+            tables_relative_font_size=tables_relative_font_size,
+            figures_relative_font_size=figures_relative_font_size
+        )
+
+        if section_numbering_styles is None:
+            section_numbering_styles = {}
+
+        section_num_styles = SectionNumberingFormatter.list_from_string_format_dict(section_numbering_styles)
+
+        if isinstance(content, (Item, str)):
+            content = [content]
+
+        self.document_class_obj = DocumentClass(
+                document_type=document_type,
+                font_size=font_size,
+                num_columns=num_columns
+            )
+
+        possible_extra_pre_env_contents = [
+            *section_num_styles,
+            PageStyle('fancy'),
+
+            # header is there by default. add remove header lines if page_header=False
+            remove_header if not page_header else None,
+
+            # add right page numbers. if not, use blank center footer to clear default page numbers in center footer
+            right_aligned_page_numbers if page_numbers else CenterFooter('')
+        ]
+
+        pre_env_contents = [item for item in possible_extra_pre_env_contents if item is not None]
+
+        if not skip_title_page and _should_create_title_page(title=title, author=author, date=date, abstract=abstract):
+            title_page = TitlePage(title=title, author=author, date=date, abstract=abstract)
+            content.insert(0, title_page)
+            self.has_title_page = True
+        else:
+            self.has_title_page = False
+
+        # combine content into a single str
+        content = _build(content)
+
+        if landscape:
+            content = Landscape().wrap(str(content))
+
+        super().__init__(content, packages=all_packages, pre_env_contents=pre_env_contents)
+
+    def __repr__(self):
+        return f'<Document>'
 
     def construct_packages(self, packages: List[Package]=None,
                            page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in',
