@@ -31,6 +31,22 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
         self.init_data()
         super().__init__(*args, **kwargs)
 
+    def _wrap_with(self, item: Optional[str], begin_wrap: str, end_wrap: str,
+                   format_contents: bool = True) -> Optional[str]:
+        if format_contents:
+            from dero.latex.logic.format.contents import format_contents as fmt
+        else:
+            fmt = lambda x: x
+
+        if item is None:
+            return None
+
+        return f'{begin_wrap}{fmt(item)}{end_wrap}'
+
+    def _wrap_with_bracket(self, item: Optional[str]):
+        return self._wrap_with(item, '[', ']')
+
+
 
 class Item(ItemBase):
     equal_attrs = [

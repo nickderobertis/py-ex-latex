@@ -1,5 +1,5 @@
 from dero.latex.models.documentitem import DocumentItem
-from dero.latex.models.title import Title
+from dero.latex.models.title.title import Title
 from dero.latex.models.credits.author import Author
 from dero.latex.models.date import Date
 from dero.latex.models.section.abstract import Abstract

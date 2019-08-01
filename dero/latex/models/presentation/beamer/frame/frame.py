@@ -9,7 +9,7 @@ from dero.latex.models.presentation.beamer.frame.title import FrameTitle
 class Frame(TextAreaBase):
     name = 'frame'
 
-    def __init__(self, content, title: Optional[str] = None, label: Optional[str] = None):
+    def __init__(self, content, title: Optional[str] = None, label: Optional[str] = None, **kwargs):
         self.title = title
         if isinstance(content, (Item, str)):
             content = [content]
@@ -23,4 +23,4 @@ class Frame(TextAreaBase):
         # TODO: evaluate whether fragile can be passed for all frames and what the performance hit is. If cannot, then
         # TODO: must determine from contents whether fragile should be passed. Will require adding boolean data types
         # TODO: to item data
-        super().__init__(self.name, self.content, label=label, env_modifiers='[fragile]')
+        super().__init__(self.name, self.content, label=label, env_modifiers='[fragile]', **kwargs)

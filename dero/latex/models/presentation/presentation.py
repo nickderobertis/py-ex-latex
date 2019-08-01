@@ -1,21 +1,29 @@
-from typing import List, Optional
+from typing import List, Optional, Sequence
 from dero.latex.models.document import DocumentBase
 from dero.latex.typing import ItemOrListOfItems
 from dero.latex.models.package import Package
 from dero.latex.models.control.documentclass import DocumentClass
 from dero.latex.models.control.mode import Mode
 from dero.latex.models.presentation.beamer.theme.usetheme import UseTheme
+from dero.latex.models.title.frame import TitleFrame, should_create_title_frame
+from dero.latex.models.item import ItemBase
 
 
 class Presentation(DocumentBase):
     name = 'document'
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
-                 pre_env_contents: Optional[ItemOrListOfItems] = None, font_size: Optional[float] = 11,
-                 theme: str = 'Madrid',
-                 backend: str = 'beamer'):
+                 pre_env_contents: Optional[ItemOrListOfItems] = None,
+                 title: Optional[str] = None, author: Optional[str] = None, date: Optional[str] = None,
+                 short_title: Optional[str] = None, subtitle: Optional[str] = None, short_author: Optional[str] = None,
+                 institutions: Optional[Sequence[Sequence[str]]] = None, short_institution: Optional[str] = None,
+                 font_size: Optional[float] = 11, theme: str = 'Madrid', backend: str = 'beamer'):
 
         self.init_data()
+        self.title_frame = None
+
+        if isinstance(content, (ItemBase, str)):
+            content = [content]
 
         if backend != 'beamer':
             raise NotImplementedError('only beamer backend is currently supported for Presentation')
@@ -34,5 +42,18 @@ class Presentation(DocumentBase):
                     contents=styles
                 )
             )
+
+            if should_create_title_frame(title, author, date, subtitle, institutions):
+                self.title_frame = TitleFrame(
+                    title=title,
+                    author=author,
+                    date=date,
+                    short_title=short_title,
+                    subtitle=subtitle,
+                    short_author=short_author,
+                    institutions=institutions,
+                    short_institution=short_institution
+                )
+                content.insert(0, self.title_frame)
 
         super().__init__(content, packages=packages, pre_env_contents=pre_env_contents)

@@ -1,8 +1,7 @@
-from typing import List, Optional, Dict, Sequence
+from typing import List, Optional, Dict
 
 from dero.latex.models.environment import Environment
-from dero.latex.models import Item
-from dero.latex.models.documentitem import DocumentItem
+from dero.latex.models.item import Item, ItemBase
 from dero.latex.models.control.documentclass import DocumentClass
 from dero.latex.models.package import Package
 from dero.latex.texgen.packages import default_packages
@@ -15,10 +14,7 @@ from dero.latex.models.page.number import right_aligned_page_numbers
 from dero.latex.models.page.header import remove_header
 from dero.latex.models.page.footer import CenterFooter
 from dero.latex.models.format.sectionnum import SectionNumberingFormatter
-from dero.latex.typing import AnyItem, ListOfItems, ItemOrListOfItems, StrListOrNone, ItemAndPreEnvContents
-from dero.latex.models.references.bibtex.base import BibTexEntryBase
-from dero.latex.models.control.filecontents import FileContents
-from dero.latex.models.references.bibtex.addresource import AddBibResource
+from dero.latex.typing import AnyItem, ItemOrListOfItems, ItemAndPreEnvContents
 from dero.latex.models.commands.endfloat import DeclareDelayedFloatFlavor
 from dero.latex.models.format.linespacing import LineSpacing
 from dero.latex.models.commands.floatrow import DeclareFloatFont, FloatSetup
@@ -49,7 +45,7 @@ class DocumentBase(ContainerItem, Item):
         if self.data.references:
             self.has_references = True
 
-        if isinstance(content, (Item, str)):
+        if isinstance(content, (ItemBase, str)):
             content = [content]
 
         if pre_env_contents is None:
@@ -121,7 +117,7 @@ class Document(DocumentBase):
                  num_columns: Optional[int] = None, line_spacing: Optional[float] = None,
                  tables_relative_font_size: int = 0, figures_relative_font_size: int = 0):
         from dero.latex.logic.builder import _build
-        from dero.latex.models.titlepage import TitlePage
+        from dero.latex.models.title.page import TitlePage
 
         all_packages = self.construct_packages(
             packages=packages,
