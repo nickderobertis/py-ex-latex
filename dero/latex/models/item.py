@@ -43,8 +43,12 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
 
         return f'{begin_wrap}{fmt(item)}{end_wrap}'
 
-    def _wrap_with_bracket(self, item: Optional[str]):
+    def _wrap_with_bracket(self, item: Optional[str]) -> Optional[str]:
         return self._wrap_with(item, '[', ']')
+
+    def _wrap_with_braces(self, item: Optional[str]) -> Optional[str]:
+        return self._wrap_with(item, '{', '}')
+
 
 
 
