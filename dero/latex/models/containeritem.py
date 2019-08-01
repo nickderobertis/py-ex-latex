@@ -10,7 +10,7 @@ class ContainerItem(DocumentItem):
 
     def __init__(self, name, content, *args, **kwargs):
         self.add_data_from_content(content)
-        return super().__init__(name, content, *args, **kwargs)
+        super().__init__(name, content, *args, **kwargs)
 
     def add_data_from_content(self, content):
         self.init_data()

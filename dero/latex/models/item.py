@@ -107,7 +107,7 @@ class SimpleItem(ItemBase):
         return _basic_item_str(self.name, self.contents, self.modifiers, self.pre_modifiers, overlay=self.overlay)
 
 
-class MultiOptionSimpleItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
+class MultiOptionSimpleItem(ItemBase):
 
     def __init__(self, name, *options, overlay: Optional['Overlay'] = None):
         self.name = name
@@ -122,7 +122,7 @@ class MultiOptionSimpleItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditi
         return _multi_option_item_str(self.name, *self.options, overlay=self.overlay)
 
 
-class NoBracesItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
+class NoBracesItem(ItemBase):
 
     def __init__(self, name, contents, overlay: Optional['Overlay'] = None):
         self.name = name
@@ -137,7 +137,7 @@ class NoBracesItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
         return _no_braces_item_str(self.name, self.contents, overlay=self.overlay)
 
 
-class EqualsItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
+class EqualsItem(ItemBase):
 
     def __init__(self, name, contents):
         self.name = name
@@ -151,7 +151,7 @@ class EqualsItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
         return item_equals_str(self.name, self.contents)
 
 
-class NoOptionsNoContentsItem(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
+class NoOptionsNoContentsItem(ItemBase):
 
     def __init__(self, name, overlay: Optional['Overlay'] = None):
         self.name = name

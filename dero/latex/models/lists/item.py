@@ -2,10 +2,11 @@ from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
 from dero.latex.models.item import NoBracesItem
+from dero.latex.models.containeritem import ContainerItem
 from dero.mixins.repr import ReprMixin
 
 
-class ListItem(NoBracesItem, ReprMixin):
+class ListItem(ContainerItem, NoBracesItem, ReprMixin):
     name = 'item'
     repr_cols = ['contents']
 
