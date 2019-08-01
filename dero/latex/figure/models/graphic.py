@@ -1,15 +1,24 @@
-from typing import List
+from typing import List, Union
 import posixpath
 import os
 
 from dero.latex.models.mixins import StringAdditionMixin
 from dero.latex.texgen import _include_graphics_str
 from dero.latex.models.item import ItemBase
+from dero.latex.models.format.linewidth import LineWidth
 
 
 class Graphic(ItemBase):
 
-    def __init__(self, filepath, width=r'\linewidth', cache: bool = True):
+    def __init__(self, filepath, width: Union[str, float] = 1.0, cache: bool = True):
+        """
+
+        Args:
+            filepath:
+            width: if a float is passed, is interpreted as a fraction of line width. if a str is passed, will be passed
+                into latex directly
+            cache:
+        """
         self._set_path(filepath)
         self.width = width
         self.binaries = None
@@ -21,7 +30,7 @@ class Graphic(ItemBase):
         return f'<Graphic({self.filepaths[0]}, width={self.width})>'
 
     def __str__(self):
-        return _include_graphics_str(self.source_paths[0], self.width)
+        return _include_graphics_str(self.source_paths[0], self.width_str)
 
     def _set_path(self, filepath: str):
         from dero.latex.texgen.replacements.filename import _latex_valid_basename
@@ -40,3 +49,11 @@ class Graphic(ItemBase):
     def filepaths(self) -> List[str]:
         return [os.path.sep.join(self._filepath_parts)]
 
+    @property
+    def width_str(self) -> str:
+        # Handle float being passed
+        if isinstance(self.width, (float, int)):
+            return f'{self.width}{LineWidth()}'
+
+        # Handle manually passing a width string
+        return self.width
