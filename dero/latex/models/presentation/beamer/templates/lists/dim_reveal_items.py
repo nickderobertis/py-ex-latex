@@ -1,5 +1,6 @@
 from typing import Sequence, List
 from dero.latex.models.lists.item import ListItem
+from dero.latex.models.lists.base import VerticalFillMixin
 from dero.latex.models.format.textcolor import TextColor
 from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
 from dero.latex.models.presentation.beamer.overlay.until_end import UntilEnd
@@ -20,14 +21,16 @@ class DimAndRevealListItem(ListItem):
         super().__init__(contents, overlay=next_ov, **kwargs)
 
 
-class DimAndRevealListItems(ContainerItem, ItemBase):
+class DimAndRevealListItems(VerticalFillMixin, ContainerItem, ItemBase):
     name = '<dim and reveal container, should not enter latex output>'
 
-    def __init__(self, contents: Sequence, dim_last_item: bool = False, opacity: float = 0.3, **item_kwargs):
+    def __init__(self, contents: Sequence, dim_last_item: bool = False, opacity: float = 0.3,
+                 vertical_fill: bool = False, **item_kwargs):
         self.orig_contents = contents
         self.dim_last_item = dim_last_item
         self.opacity = opacity
         self.item_kwargs = item_kwargs
+        self.vertical_fill = vertical_fill
         self.add_data_from_content(contents)
 
     @property
@@ -41,5 +44,4 @@ class DimAndRevealListItems(ContainerItem, ItemBase):
         return output
 
     def __str__(self) -> str:
-        from dero.latex.logic.builder import _build
-        return _build(self.contents)
+        return self.generate_content(self.contents)

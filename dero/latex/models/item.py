@@ -92,19 +92,27 @@ class SimpleItem(ItemBase):
     ]
 
     def __init__(self, name, contents, modifiers: Optional[str] = None, pre_modifiers: Optional[str] = None,
-                 overlay: Optional['Overlay'] = None):
+                 overlay: Optional['Overlay'] = None, format_content: bool = True):
         self.name = name
         self.contents = contents
         self.modifiers = modifiers
         self.pre_modifiers = pre_modifiers
         self.overlay = overlay
+        self.format_content = format_content
         super().__init__()
 
     def __repr__(self):
         return f'<{self.name.title()}({self.contents})>'
 
     def __str__(self):
-        return _basic_item_str(self.name, self.contents, self.modifiers, self.pre_modifiers, overlay=self.overlay)
+        return _basic_item_str(
+            self.name,
+            self.contents,
+            self.modifiers,
+            self.pre_modifiers,
+            overlay=self.overlay,
+            format_content=self.format_content
+        )
 
 
 class MultiOptionSimpleItem(ItemBase):

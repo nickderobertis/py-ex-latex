@@ -8,9 +8,11 @@ from dero.latex.models.label import Label
 from dero.latex.models.containeritem import ContainerItem
 
 
-class TextAreaBase(ContainerItem, Item, ReprMixin):
+class TextAreaMixin(ContainerItem):
+    """
+    Mixin for extracting data from content then formatting it, regardless of the data type passed
+    """
     name = 'textarea'
-    repr_cols = ['title', 'contents']
     next_level_down_class = None  # once subclassed, will be overridden with the next level down text area class
 
     def __init__(self, name, contents, label: Optional[str] = None, **kwargs):
@@ -25,6 +27,8 @@ class TextAreaBase(ContainerItem, Item, ReprMixin):
         if isinstance(contents, (list, tuple)):
             return _build([self.format_contents(c) for c in contents])
         elif isinstance(contents, dict):
+            if self.next_level_down_class is None:
+                raise ValueError(f'cannot parse dict as have no next_level_down_class in {self.__class__.name}')
             subcontents = []
             for title, content in contents.items():
                 subcontents.append(
@@ -46,6 +50,8 @@ class TextAreaBase(ContainerItem, Item, ReprMixin):
             return str(content)
 
 
+class TextAreaBase(TextAreaMixin, Item, ReprMixin):
+    repr_cols = ['title', 'contents']
 
 
 class SectionBase(TextAreaBase):

@@ -25,13 +25,16 @@ def _no_braces_item_str(item_name, contents, overlay: Optional['Overlay'] = None
 
 
 def _basic_item_str(item_name, contents, modifiers: Optional[str] = None, pre_modifiers: Optional[str] = None,
-                    overlay: Optional['Overlay'] = None):
+                    overlay: Optional['Overlay'] = None, format_content: bool = True):
     from dero.latex.logic.format.contents import format_contents
     pre_modifiers = pre_modifiers if pre_modifiers is not None else ""
     modifiers = modifiers if modifiers is not None else ""
     overlay = overlay if overlay is not None else ""
 
-    return rf'\{item_name}{overlay}{pre_modifiers}{{{format_contents(contents)}}}{modifiers}'
+    if format_content:
+        contents = format_contents(contents)
+
+    return rf'\{item_name}{overlay}{pre_modifiers}{{{contents}}}{modifiers}'
 
 
 def _multi_option_item_str(item_name, *options, overlay: Optional['Overlay'] = None):

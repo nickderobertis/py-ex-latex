@@ -2,10 +2,9 @@ from typing import List, Union
 import posixpath
 import os
 
-from dero.latex.models.mixins import StringAdditionMixin
 from dero.latex.texgen import _include_graphics_str
 from dero.latex.models.item import ItemBase
-from dero.latex.models.format.linewidth import LineWidth
+from dero.latex.models.sizes.linewidth import LineWidth
 
 
 class Graphic(ItemBase):
