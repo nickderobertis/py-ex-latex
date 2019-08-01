@@ -1,6 +1,6 @@
 from dero.latex.models.documentitem import DocumentItem
 from dero.latex.models.title import Title
-from dero.latex.models.author import Author
+from dero.latex.models.credits.author import Author
 from dero.latex.models.date import Date
 from dero.latex.models.section.abstract import Abstract
 from dero.latex.texgen import _maketitle_str
