@@ -1,5 +1,5 @@
 from dero.latex.models.mixins import StringAdditionMixin
-from dero.latex.table.models.texgen.breaks import LineBreak
+from dero.latex.models.format.breaks import LineBreak
 
 # TODO: more flexible. Currently just passes full strings
 

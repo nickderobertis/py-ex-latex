@@ -1,4 +1,4 @@
-from dero.latex.table.models.texgen.breaks import LineBreak
+from dero.latex.models.format.breaks import LineBreak
 
 def build_figure_content(items, caption=None, label=None, centering=True, position_str=None):
     from dero.latex.texgen import _centering_str

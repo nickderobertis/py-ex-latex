@@ -13,7 +13,7 @@ class LineBreak(Break):
     def __str__(self):
         return '\n'
 
-class TableRowBreak(Break, ReprMixin):
+class OutputLineBreak(Break, ReprMixin):
     repr_cols = ['size_adjustment']
 
     def __init__(self, size_adjustment: str=None):

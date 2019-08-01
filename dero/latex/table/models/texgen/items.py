@@ -5,13 +5,12 @@ from dero.latex.table.models.panels.collection import PanelCollection
 from dero.latex.table.models.texgen.alignment import ColumnsAlignment
 from dero.latex.table.logic.table.build import build_tabular_content_from_panel_collection
 from dero.latex.models.caption import Caption
-from dero.latex.table.models.texgen.breaks import LineBreak
+from dero.latex.models.format.breaks import LineBreak
 from dero.latex.texgen import _centering_str
 from dero.latex.models.document import Document
 from dero.latex.models.package import Package
 from dero.latex.table.models.texgen.packages import default_packages
 from dero.latex.models.landscape import Landscape
-from dero.latex.logic.format.contents import format_contents
 from dero.latex.models.label import Label
 from dero.latex.models.section.base import TextAreaBase
 
