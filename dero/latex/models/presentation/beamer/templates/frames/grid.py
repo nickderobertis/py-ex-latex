@@ -37,3 +37,17 @@ class GridFrame(Frame):
             content_in_columns.append(row)
 
         return content_in_columns
+
+
+class AutoWidthGridFrame(GridFrame):
+    """
+    Creates a GridFrame, automatically setting widths as an even split based on the shape of the content passed
+    """
+
+    def __init__(self, content: Sequence[Sequence[Any]], **kwargs):
+        grid_shape = []
+        for row in content:
+            num_columns = len(row)
+            width = 1/num_columns  # TODO: perhaps add padding, so don't sum to 1?
+            grid_shape.append([width for _ in range(len(row))])
+        super().__init__(content, grid_shape, **kwargs)
