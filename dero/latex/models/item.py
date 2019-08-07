@@ -25,16 +25,22 @@ class DataItem:
 
 
 class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin, EqOnAttrsMixin, EqHashMixin):
+    """
+    Base class for all latex generating classes
+    
+    Note: Does not pass any args to super call, so do not put another class below this one expecting args to
+    be passed
+    """
     
 
     def __init__(self, *args, **kwargs):
         self.init_data()
-        super().__init__(*args, **kwargs)
+        super().__init__()
 
     def _wrap_with(self, item: Optional[str], begin_wrap: str, end_wrap: str,
                    format_contents: bool = True) -> Optional[str]:
         if format_contents:
-            from dero.latex.logic.format.contents import format_contents as fmt
+            fmt = self._format_content
         else:
             fmt = lambda x: x
 
@@ -48,6 +54,15 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
 
     def _wrap_with_braces(self, item: Optional[str]) -> Optional[str]:
         return self._wrap_with(item, '{', '}')
+
+    @staticmethod
+    def _empty_str_if_none(item: Optional[str]) -> str:
+        return item if item is not None else ''
+
+    @staticmethod
+    def _format_content(content):
+        from dero.latex.logic.format.contents import format_contents as fmt
+        return fmt(content)
 
 
 

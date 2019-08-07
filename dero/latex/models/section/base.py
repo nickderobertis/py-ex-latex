@@ -21,6 +21,7 @@ class TextAreaMixin(ContainerItem):
         if label is not None:
             label = Label(label)
             contents = _build([contents, label])
+        self.contents = contents
         super().__init__(name, contents, **kwargs)
 
     def format_contents(self, contents):
