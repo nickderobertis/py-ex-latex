@@ -1,7 +1,7 @@
 from typing import Optional, Sequence, List, Tuple, Union, TYPE_CHECKING
 if TYPE_CHECKING:
     from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
-    from dero.latex.models.graphics.tikz.node import Node
+    from dero.latex.models.graphics.tikz.node.node import Node
 from dero.latex.models.graphics.tikz.item import TikZItem
 
 PATH_TYPES = (
@@ -19,7 +19,7 @@ class Path(TikZItem):
     name = 'path'
 
 
-    def __init__(self, path_type: str, points: Sequence[Tuple[float, float]],
+    def __init__(self, path_type: str, points: Sequence[Union[Tuple[float, float], 'Node']],
                  draw_type: str = '--',
                  options: Optional[Sequence[str]] = None,
                  overlay: Optional['Overlay'] = None):
@@ -61,3 +61,14 @@ class Path(TikZItem):
                 location: Tuple[float, float]
                 locations.append(str(location))
         return self.draw_join_str.join(locations)
+
+
+class SpecificPath(Path):
+    """
+    Subclass this path to build specific paths such as rectangle, circle, arrow
+    """
+    draw_type = '<invalid, do not use SpecificPath directly>'
+    path_type = '<invalid, do not use SpecificPath directly>'
+
+    def __init__(self, points: Sequence[Tuple[float, float]], *args, **kwargs):
+        super().__init__(self.path_type, points, *args, draw_type=self.draw_type, **kwargs)
