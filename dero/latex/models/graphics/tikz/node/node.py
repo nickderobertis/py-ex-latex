@@ -11,7 +11,7 @@ from dero.latex.logic.format.contents import format_contents
 
 class Node(TikZItem):
 
-    def __init__(self, location: Optional[Tuple[int, int]] = None, contents: Optional = None,
+    def __init__(self, contents: Optional = None, location: Optional[Tuple[int, int]] = None,
                  label: Optional[str] = None,
                  options: Optional[Sequence[str]] = None,
                  overlay: Optional['Overlay'] = None):
