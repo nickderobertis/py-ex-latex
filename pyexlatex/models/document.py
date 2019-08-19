@@ -79,8 +79,9 @@ class DocumentBase(ContainerItem, Item):
             run_bibtex=self.has_references
         ).readb()
 
-    def to_pdf_and_move(self, outfolder, outname='document',
-                              move_folder_name='Tables', as_document=True):
+    def to_pdf(self, outfolder, outname='document',
+               move_folder_name='Tables', as_document=True,
+               date_time_move: bool = False):
         tex = str(self)
 
         outname = latex_filename_replacements(outname)
@@ -93,7 +94,8 @@ class DocumentBase(ContainerItem, Item):
             move_folder_name=move_folder_name,
             as_document=as_document,
             image_binaries=self.data.binaries,
-            run_bibtex=self.has_references
+            run_bibtex=self.has_references,
+            date_time_move=date_time_move
         )
 
     @classmethod
