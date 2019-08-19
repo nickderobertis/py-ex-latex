@@ -34,7 +34,7 @@ class DocumentBase(ContainerItem, Item):
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
                  pre_env_contents: Optional[ItemOrListOfItems] = None):
-        from pyexlatex.logic.builder import _build
+        from pyexlatex.logic.builder import build, _build
 
         self.add_data_from_content(content)
 
@@ -65,7 +65,7 @@ class DocumentBase(ContainerItem, Item):
         self.contents = content
 
         # combine content into a single str
-        content = _build(content)
+        content = build(content)
 
         super().__init__(self.name, content, pre_env_contents=self.pre_env_contents)
 

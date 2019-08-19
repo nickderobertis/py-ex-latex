@@ -32,16 +32,20 @@ class DimAndRevealListItems(VerticalFillMixin, ContainerItem, ItemBase):
         self.item_kwargs = item_kwargs
         self.vertical_fill = vertical_fill
         self.add_data_from_content(contents)
+        self.contents = self._get_contents()
 
-    @property
-    def contents(self) -> List[DimAndRevealListItem]:
+    def _get_contents(self) -> List[DimAndRevealListItem]:
         output = [DimAndRevealListItem(item, opacity=self.opacity, **self.item_kwargs) for item in self.orig_contents]
         if not self.dim_last_item:
             output[-1] = DimAndRevealListItem(
                 self.orig_contents[-1], dim=False, opacity=self.opacity, **self.item_kwargs
             )
+        output = self.vertically_space_content(output)
 
         return output
 
     def __str__(self) -> str:
-        return self.generate_content(self.contents)
+        from pyexlatex.logic.builder import _build
+        if isinstance(self.contents, str):
+            return self.contents
+        return _build(self.contents)

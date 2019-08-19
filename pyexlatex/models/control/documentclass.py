@@ -1,26 +1,28 @@
-from typing import Optional
+from typing import Optional, Sequence
 from pyexlatex.models.item import SimpleItem
+
 
 class DocumentClass(SimpleItem):
     name = 'documentclass'
 
     def __init__(self, document_type: str = 'article', font_size: Optional[float] = 11,
-                 num_columns: Optional[int] = None):
+                 num_columns: Optional[int] = None, options: Optional[Sequence[str]] = None):
         self.document_type = document_type
         self.font_size = font_size
         self.num_columns = num_columns
+        self.options = options
         super().__init__(self.name, document_type, pre_modifiers=self._pre_modifiers_str)
 
     @property
     def _pre_modifiers_str(self) -> str:
-        options = []
+        options = self._get_list_copy_from_list_or_none(self.options)
         if self.font_size is not None:
             options.append(f'{self.font_size}pt')
         if self.num_columns is not None:
             options.append(self._num_columns_str)
 
         options_str = ', '.join(options)
-        return f'[{options_str}]'
+        return self._wrap_with_bracket(options_str)
 
     def _validate(self):
         if self.font_size is not None:
