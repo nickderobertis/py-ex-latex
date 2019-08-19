@@ -1,0 +1,29 @@
+pyexlatex.logic.pdf.errors package
+==================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.logic.pdf.errors.models
+
+Submodules
+----------
+
+pyexlatex.logic.pdf.errors.exc module
+-------------------------------------
+
+.. automodule:: pyexlatex.logic.pdf.errors.exc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.logic.pdf.errors
+   :members:
+   :undoc-members:
+   :show-inheritance:

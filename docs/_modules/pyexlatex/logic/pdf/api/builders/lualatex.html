@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyexlatex.logic.pdf.api.builders.lualatex &#8212; pyexlatex 0.3.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/sphinx_paramlinks.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyexlatex.logic.pdf.api.builders.lualatex</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="k">import</span> <span class="n">CalledProcessError</span>
+
+<span class="kn">from</span> <span class="nn">future.utils</span> <span class="k">import</span> <span class="n">raise_from</span>
+<span class="kn">from</span> <span class="nn">data</span> <span class="k">import</span> <span class="n">Data</span> <span class="k">as</span> <span class="n">I</span>
+<span class="kn">from</span> <span class="nn">data.decorators</span> <span class="k">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">shutilwhich</span> <span class="k">import</span> <span class="n">which</span>
+<span class="kn">from</span> <span class="nn">tempdir</span> <span class="k">import</span> <span class="n">TempDir</span>
+
+<span class="kn">from</span> <span class="nn">latex.exc</span> <span class="k">import</span> <span class="n">LatexBuildError</span>
+
+
+<div class="viewcode-block" id="LuaLatexBuilder"><a class="viewcode-back" href="../../../../../../api/pyexlatex.logic.pdf.api.builders.html#pyexlatex.logic.pdf.api.builders.lualatex.LuaLatexBuilder">[docs]</a><span class="k">class</span> <span class="nc">LuaLatexBuilder</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A simple lualatex based buidler for LaTeX files.</span>
+
+<span class="sd">    Builds LaTeX files by copying them to a temporary directly and running</span>
+<span class="sd">    ``lualatex`` until the associated ``.aux`` file stops changing.</span>
+
+<span class="sd">    .. note:: This may miss changes if ``biblatex`` or other additional tools</span>
+<span class="sd">              are used. Usually, the :class:`~latex.build.LatexMkBuilder` will</span>
+<span class="sd">              give more reliable results.</span>
+
+<span class="sd">    :param lualatex: The path to the ``pdflatex`` binary (will looked up on</span>
+<span class="sd">                    ``$PATH``).</span>
+<span class="sd">    :param max_runs: An integer providing an upper limit on the amount of times</span>
+<span class="sd">                     ``pdflatex`` can be rerun before an exception is thrown.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="LuaLatexBuilder.__init__"><a class="viewcode-back" href="../../../../../../api/pyexlatex.logic.pdf.api.builders.html#pyexlatex.logic.pdf.api.builders.lualatex.LuaLatexBuilder.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lualatex</span><span class="o">=</span><span class="s1">&#39;lualatex&#39;</span><span class="p">,</span> <span class="n">bibtex</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;bibtex&#39;</span><span class="p">,</span> <span class="n">max_runs</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lualatex</span> <span class="o">=</span> <span class="n">lualatex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bibtex</span> <span class="o">=</span> <span class="n">bibtex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_runs</span> <span class="o">=</span> <span class="mi">15</span></div>
+
+<div class="viewcode-block" id="LuaLatexBuilder.build_pdf"><a class="viewcode-back" href="../../../../../../api/pyexlatex.logic.pdf.api.builders.html#pyexlatex.logic.pdf.api.builders.lualatex.LuaLatexBuilder.build_pdf">[docs]</a>    <span class="nd">@data</span><span class="p">(</span><span class="s1">&#39;source&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">build_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">texinputs</span><span class="o">=</span><span class="p">[],</span> <span class="n">run_bibtex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">TempDir</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdir</span><span class="p">,</span>\
+                <span class="n">source</span><span class="o">.</span><span class="n">temp_saved</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;.latex&#39;</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="n">tmpdir</span><span class="p">)</span> <span class="k">as</span> <span class="n">tmp</span><span class="p">:</span>
+
+            <span class="c1"># close temp file, so other processes can access it also on Windows</span>
+            <span class="n">tmp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">called_bibtex</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="c1"># calculate output filename</span>
+            <span class="n">base_fn</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">tmp</span><span class="o">.</span><span class="n">name</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">output_fn</span> <span class="o">=</span> <span class="n">base_fn</span> <span class="o">+</span> <span class="s1">&#39;.pdf&#39;</span>
+            <span class="n">aux_fn</span> <span class="o">=</span> <span class="n">base_fn</span> <span class="o">+</span> <span class="s1">&#39;.aux&#39;</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lualatex</span><span class="p">,</span> <span class="s1">&#39;-interaction=batchmode&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;-halt-on-error&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;-no-shell-escape&#39;</span><span class="p">,</span> <span class="s1">&#39;-file-line-error&#39;</span><span class="p">,</span>
+                    <span class="n">tmp</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+
+            <span class="c1"># create environment</span>
+            <span class="n">newenv</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">inputs_value</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">texinputs</span><span class="p">)</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span>
+            <span class="n">newenv</span><span class="p">[</span><span class="s1">&#39;TEXINPUTS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">inputs_value</span>
+            <span class="n">newenv</span><span class="p">[</span><span class="s1">&#39;BSTINPUTS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">inputs_value</span>
+
+            <span class="c1"># run until aux file settles</span>
+            <span class="n">prev_aux</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">runs_left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_runs</span>
+            <span class="k">while</span> <span class="n">runs_left</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">(</span><span class="n">args</span><span class="p">,</span>
+                                          <span class="n">cwd</span><span class="o">=</span><span class="n">tmpdir</span><span class="p">,</span>
+                                          <span class="n">env</span><span class="o">=</span><span class="n">newenv</span><span class="p">,</span>
+                                          <span class="n">stdin</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">devnull</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">),</span>
+                                          <span class="n">stdout</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">devnull</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">),</span> <span class="p">)</span>
+                <span class="k">except</span> <span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">raise_from</span><span class="p">(</span><span class="n">LatexBuildError</span><span class="p">(</span><span class="n">base_fn</span> <span class="o">+</span> <span class="s1">&#39;.log&#39;</span><span class="p">),</span> <span class="n">e</span><span class="p">)</span>
+
+                <span class="c1"># check aux-file</span>
+                <span class="n">aux</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">aux_fn</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="n">aux</span> <span class="o">==</span> <span class="n">prev_aux</span><span class="p">:</span>
+                    <span class="c1"># Stable aux file</span>
+                    <span class="k">if</span> <span class="n">run_bibtex</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">called_bibtex</span><span class="p">:</span>
+                        <span class="n">called_bibtex</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># ensure only called once</span>
+                        <span class="n">bibtex_args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">bibtex</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">aux_fn</span><span class="p">)]</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">subprocess</span><span class="o">.</span><span class="n">check_call</span><span class="p">(</span><span class="n">bibtex_args</span><span class="p">,</span>
+                                              <span class="n">cwd</span><span class="o">=</span><span class="n">tmpdir</span><span class="p">,</span>
+                                              <span class="n">env</span><span class="o">=</span><span class="n">newenv</span><span class="p">,</span>
+                                              <span class="n">stdin</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">devnull</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">),</span>
+                                              <span class="n">stdout</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">devnull</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">),</span> <span class="p">)</span>
+                        <span class="k">except</span> <span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                            <span class="c1"># TODO: parse log file, raise proper exception</span>
+                            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">base_fn</span> <span class="o">+</span> <span class="s1">&#39;.blg&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                                <span class="n">log_contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+                            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">log_contents</span><span class="p">)</span>
+                        <span class="k">continue</span>  <span class="c1"># go back into the loop to process with biblography</span>
+                    <span class="k">break</span>
+
+                <span class="n">prev_aux</span> <span class="o">=</span> <span class="n">aux</span>
+                <span class="n">runs_left</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                    <span class="s1">&#39;Maximum number of runs (</span><span class="si">{}</span><span class="s1">) without a stable .aux file &#39;</span>
+                    <span class="s1">&#39;reached.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_runs</span><span class="p">))</span>
+
+            <span class="k">return</span> <span class="n">I</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">output_fn</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LuaLatexBuilder.is_available"><a class="viewcode-back" href="../../../../../../api/pyexlatex.logic.pdf.api.builders.html#pyexlatex.logic.pdf.api.builders.lualatex.LuaLatexBuilder.is_available">[docs]</a>    <span class="k">def</span> <span class="nf">is_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">which</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lualatex</span><span class="p">))</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../api/modules.html">pyexlatex</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick DeRobertis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

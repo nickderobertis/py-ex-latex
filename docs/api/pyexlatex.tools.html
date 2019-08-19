@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyexlatex.tools package &#8212; pyexlatex 0.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_paramlinks.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="pyexlatex.texparser.references.bibtex package" href="pyexlatex.texparser.references.bibtex.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="pyexlatex-tools-package">
+<h1>pyexlatex.tools package<a class="headerlink" href="#pyexlatex-tools-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyexlatex.tools.fileops">
+<span id="pyexlatex-tools-fileops-module"></span><h2>pyexlatex.tools.fileops module<a class="headerlink" href="#module-pyexlatex.tools.fileops" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyexlatex.tools.fileops.move_all_if_exists">
+<code class="sig-prename descclassname">pyexlatex.tools.fileops.</code><code class="sig-name descname">move_all_if_exists</code><span class="sig-paren">(</span><em class="sig-param">inpaths</em>, <em class="sig-param">outfolder</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools/fileops.html#move_all_if_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.fileops.move_all_if_exists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyexlatex.tools.fileops.move_if_exists">
+<code class="sig-prename descclassname">pyexlatex.tools.fileops.</code><code class="sig-name descname">move_if_exists</code><span class="sig-paren">(</span><em class="sig-param">inpath</em>, <em class="sig-param">outpath</em>, <em class="sig-param">retries=3</em>, <em class="sig-param">sleep_time=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools/fileops.html#move_if_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.fileops.move_if_exists" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyexlatex.tools.fileops.remove_all_if_exist">
+<code class="sig-prename descclassname">pyexlatex.tools.fileops.</code><code class="sig-name descname">remove_all_if_exist</code><span class="sig-paren">(</span><em class="sig-param">filepaths</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools/fileops.html#remove_all_if_exist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.fileops.remove_all_if_exist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyexlatex.tools.fileops.remove_if_exists">
+<code class="sig-prename descclassname">pyexlatex.tools.fileops.</code><code class="sig-name descname">remove_if_exists</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">retries=3</em>, <em class="sig-param">sleep_time=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools/fileops.html#remove_if_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.fileops.remove_if_exists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.tools">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyexlatex.tools" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyexlatex.tools.csv_to_raw_latex">
+<code class="sig-prename descclassname">pyexlatex.tools.</code><code class="sig-name descname">csv_to_raw_latex</code><span class="sig-paren">(</span><em class="sig-param">infile</em>, <em class="sig-param">csvstring=False</em>, <em class="sig-param">missing_rep=' - '</em>, <em class="sig-param">formatstr='{:.3f}'</em>, <em class="sig-param">skipfix=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools.html#csv_to_raw_latex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.csv_to_raw_latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a CSV text file and converts it to a LaTeX formatted list, with each line of the LaTeX
+file as an item in the list.</p>
+<dl class="simple">
+<dt>Required options:</dt><dd><p>infile: Full file path of CSV (include r before quotes)</p>
+</dd>
+<dt>Optional options:</dt><dd><p>csvstring: True to pass a CSV string to infile rather than load from file
+missing_rep: Representation for missing numbers, default ” - ”
+formatstr: Python string for number formatting, for example ‘{:.3f}’ with quotes
+skipfix: String or list of strings of fixes to skip, options are [‘&amp;’,’%’,’_’]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyexlatex.tools.date_time_move_latex">
+<code class="sig-prename descclassname">pyexlatex.tools.</code><code class="sig-name descname">date_time_move_latex</code><span class="sig-paren">(</span><em class="sig-param">tablename</em>, <em class="sig-param">filepath</em>, <em class="sig-param">folder_name='Tables'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools.html#date_time_move_latex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.date_time_move_latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a LaTeX tex and PDF after the PDF’s been created by pdflatex and moves it into a table
+folder with the date, checking if the table was just previously created. If it’s the same as
+before, it just deletes the file.</p>
+<dl class="simple">
+<dt>Required arguments:</dt><dd><p>tablename: operating system name of the table, without extensions
+filepath: full filepath of table, without table name. put r before quotes as follows: r’C:UsersFolder’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyexlatex.tools.replace_missing_csv">
+<code class="sig-prename descclassname">pyexlatex.tools.</code><code class="sig-name descname">replace_missing_csv</code><span class="sig-paren">(</span><em class="sig-param">csv_list</em>, <em class="sig-param">missing_rep</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools.html#replace_missing_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.replace_missing_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces missing items in a CSV with a given missing representation string.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyexlatex</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyexlatex.html">pyexlatex package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyexlatex.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.table.html">pyexlatex.table package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.texgen.html">pyexlatex.texgen package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.texparser.html">pyexlatex.texparser package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pyexlatex.tools package</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-pyexlatex.tools.fileops">pyexlatex.tools.fileops module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-pyexlatex.tools">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.df">pyexlatex.df module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.equations">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">pyexlatex</a><ul>
+  <li><a href="pyexlatex.html">pyexlatex package</a><ul>
+      <li>Previous: <a href="pyexlatex.texparser.references.bibtex.html" title="previous chapter">pyexlatex.texparser.references.bibtex package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick DeRobertis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/pyexlatex.tools.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

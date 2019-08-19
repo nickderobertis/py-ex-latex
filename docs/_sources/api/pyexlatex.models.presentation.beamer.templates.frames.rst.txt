@@ -1,0 +1,46 @@
+pyexlatex.models.presentation.beamer.templates.frames package
+=============================================================
+
+Submodules
+----------
+
+pyexlatex.models.presentation.beamer.templates.frames.dim\_reveal module
+------------------------------------------------------------------------
+
+.. automodule:: pyexlatex.models.presentation.beamer.templates.frames.dim_reveal
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.presentation.beamer.templates.frames.graphic module
+--------------------------------------------------------------------
+
+.. automodule:: pyexlatex.models.presentation.beamer.templates.frames.graphic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.presentation.beamer.templates.frames.grid module
+-----------------------------------------------------------------
+
+.. automodule:: pyexlatex.models.presentation.beamer.templates.frames.grid
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.presentation.beamer.templates.frames.two\_col module
+---------------------------------------------------------------------
+
+.. automodule:: pyexlatex.models.presentation.beamer.templates.frames.two_col
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.presentation.beamer.templates.frames
+   :members:
+   :undoc-members:
+   :show-inheritance:

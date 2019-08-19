@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyexlatex.table.logic.panels.combine &#8212; pyexlatex 0.3.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx_paramlinks.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyexlatex.table.logic.panels.combine</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.panels.grid</span> <span class="k">import</span> <span class="n">GridShape</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.labels.table</span> <span class="k">import</span> <span class="n">LabelTable</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.labels.collection</span> <span class="k">import</span> <span class="n">LabelCollection</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.table.section</span> <span class="k">import</span> <span class="n">TableSection</span>
+
+<div class="viewcode-block" id="common_column_labels"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.logic.panels.html#pyexlatex.table.logic.panels.combine.common_column_labels">[docs]</a><span class="k">def</span> <span class="nf">common_column_labels</span><span class="p">(</span><span class="n">grid</span><span class="p">:</span> <span class="n">GridShape</span><span class="p">,</span> <span class="n">use_object_equality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">enforce_label_order</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># columns</span>
+    <span class="n">all_column_ints</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="n">_selected_common_labels_for_axis</span><span class="p">(</span>
+        <span class="n">grid</span><span class="p">,</span>
+        <span class="n">selections</span><span class="o">=</span><span class="n">all_column_ints</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+        <span class="n">use_object_equality</span><span class="o">=</span><span class="n">use_object_equality</span><span class="p">,</span>
+        <span class="n">enforce_label_order</span><span class="o">=</span><span class="n">enforce_label_order</span>
+    <span class="p">)</span></div>
+
+<div class="viewcode-block" id="common_row_labels"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.logic.panels.html#pyexlatex.table.logic.panels.combine.common_row_labels">[docs]</a><span class="k">def</span> <span class="nf">common_row_labels</span><span class="p">(</span><span class="n">grid</span><span class="p">:</span> <span class="n">GridShape</span><span class="p">,</span> <span class="n">use_object_equality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">enforce_label_order</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># rows</span>
+    <span class="n">all_row_ints</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="n">_selected_common_labels_for_axis</span><span class="p">(</span>
+        <span class="n">grid</span><span class="p">,</span>
+        <span class="n">selections</span><span class="o">=</span><span class="n">all_row_ints</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+        <span class="n">use_object_equality</span><span class="o">=</span><span class="n">use_object_equality</span><span class="p">,</span>
+        <span class="n">enforce_label_order</span><span class="o">=</span><span class="n">enforce_label_order</span>
+    <span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_selected_common_labels_for_axis</span><span class="p">(</span><span class="n">grid</span><span class="p">:</span> <span class="n">GridShape</span><span class="p">,</span> <span class="n">selections</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">use_object_equality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                     <span class="n">enforce_label_order</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">common_label_tables</span><span class="p">:</span> <span class="p">[</span><span class="n">LabelTable</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">selections</span><span class="p">:</span>
+        <span class="n">common_label_tables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">_common_labels</span><span class="p">(</span>
+                <span class="n">grid</span><span class="p">,</span>
+                <span class="n">i</span><span class="p">,</span>
+                <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
+                <span class="n">use_object_equality</span><span class="o">=</span><span class="n">use_object_equality</span><span class="p">,</span>
+                <span class="n">enforce_label_order</span><span class="o">=</span><span class="n">enforce_label_order</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="n">non_none_tables</span> <span class="o">=</span> <span class="p">[</span><span class="n">table</span> <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">common_label_tables</span> <span class="k">if</span> <span class="n">table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">non_none_tables</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">non_none_tables</span>
+
+
+<span class="k">def</span> <span class="nf">_common_labels</span><span class="p">(</span><span class="n">grid</span><span class="p">:</span> <span class="n">GridShape</span><span class="p">,</span> <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">use_object_equality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">enforce_label_order</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">subgrid</span> <span class="o">=</span> <span class="n">_get_subgrid</span><span class="p">(</span>
+        <span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span>
+        <span class="n">num</span><span class="o">=</span><span class="n">num</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="n">axis</span>
+    <span class="p">)</span>
+
+    <span class="n">label_attr</span> <span class="o">=</span> <span class="n">_get_label_attr</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+
+    <span class="n">label_tables</span><span class="p">:</span> <span class="p">[</span><span class="n">LabelTable</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">subgrid</span><span class="p">]</span>
+
+    <span class="c1"># first labels missing, no consolidation to be done, consolidated labels are None</span>
+    <span class="k">if</span> <span class="n">label_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">common_label_table</span> <span class="o">=</span> <span class="n">LabelTable</span><span class="p">([])</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">label_collection</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">label_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">stored_match</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># only want to add each matched collection once. use boolean to track</span>
+        <span class="k">for</span> <span class="n">label_table</span> <span class="ow">in</span> <span class="n">label_tables</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="c1"># If there is a corresponding label table and it has this index label collection</span>
+            <span class="k">if</span> <span class="n">label_table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">label_table</span><span class="o">.</span><span class="n">label_collections</span><span class="p">):</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">_compare_label_collections</span><span class="p">(</span>
+                    <span class="n">label_collection</span><span class="p">,</span>
+                    <span class="n">label_table</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="n">use_object_equality</span><span class="o">=</span><span class="n">use_object_equality</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># No labels, nothing to consolidate</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">stored_match</span><span class="p">:</span>
+                    <span class="n">common_label_table</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_collection</span><span class="p">)</span>
+                    <span class="n">stored_match</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">enforce_label_order</span><span class="p">:</span>
+                    <span class="k">break</span> <span class="c1"># as soon as one label collection doesn&#39;t match, stop consolidating</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">continue</span> <span class="c1"># don&#39;t worry about non-match, continue consolidating</span>
+
+    <span class="k">if</span> <span class="n">common_label_table</span><span class="o">.</span><span class="n">is_empty</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">common_label_table</span>
+
+<div class="viewcode-block" id="remove_label_collections_from_grid"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.logic.panels.html#pyexlatex.table.logic.panels.combine.remove_label_collections_from_grid">[docs]</a><span class="k">def</span> <span class="nf">remove_label_collections_from_grid</span><span class="p">(</span><span class="n">grid</span><span class="p">:</span> <span class="n">GridShape</span><span class="p">,</span> <span class="n">column_labels</span><span class="p">:</span> <span class="p">[</span><span class="n">LabelTable</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                       <span class="n">row_labels</span><span class="p">:</span> <span class="p">[</span><span class="n">LabelTable</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_object_equality</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">grid</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">column_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">label_table</span> <span class="ow">in</span> <span class="n">column_labels</span><span class="p">:</span>
+                    <span class="n">_remove_label_collections</span><span class="p">(</span>
+                        <span class="n">section</span><span class="p">,</span>
+                        <span class="n">label_table</span><span class="p">,</span>
+                        <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                        <span class="n">use_object_equality</span><span class="o">=</span><span class="n">use_object_equality</span><span class="p">,</span>
+                        <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">)</span>
+            <span class="k">if</span> <span class="n">row_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">label_table</span> <span class="ow">in</span> <span class="n">row_labels</span><span class="p">:</span>
+                    <span class="n">_remove_label_collections</span><span class="p">(</span>
+                        <span class="n">section</span><span class="p">,</span>
+                        <span class="n">label_table</span><span class="p">,</span>
+                        <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                        <span class="n">use_object_equality</span><span class="o">=</span><span class="n">use_object_equality</span><span class="p">,</span>
+                        <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">)</span></div>
+
+<span class="k">def</span> <span class="nf">_remove_label_collections</span><span class="p">(</span><span class="n">section</span><span class="p">:</span> <span class="n">TableSection</span><span class="p">,</span> <span class="n">label_table</span><span class="p">:</span> <span class="n">LabelTable</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                              <span class="n">use_object_equality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+    <span class="c1"># Handle section not having labels for this axis</span>
+    <span class="n">label_attr</span> <span class="o">=</span> <span class="n">_get_label_attr</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">section</span>
+
+    <span class="c1"># Now has labels for this axis. Create a copy to avoid modifying original</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">inplace</span><span class="p">:</span>
+        <span class="n">section</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">label_collection</span> <span class="ow">in</span> <span class="n">label_table</span><span class="p">:</span>
+        <span class="n">section_label_table</span><span class="p">:</span> <span class="n">LabelTable</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">if</span> <span class="n">section_label_table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">section_label_collection</span> <span class="ow">in</span> <span class="n">section_label_table</span><span class="p">:</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">_compare_label_collections</span><span class="p">(</span>
+                    <span class="n">label_collection</span><span class="p">,</span>
+                    <span class="n">section_label_collection</span><span class="p">,</span>
+                    <span class="n">use_object_equality</span><span class="o">=</span><span class="n">use_object_equality</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="n">section_label_table</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">section_label_collection</span><span class="p">)</span>
+
+
+    <span class="c1"># once all label collections have been removed, remove table</span>
+    <span class="n">section_label_table</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">section_label_table</span> <span class="ow">and</span> <span class="n">section_label_table</span><span class="o">.</span><span class="n">label_collections</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">section</span>
+
+
+<span class="k">def</span> <span class="nf">_get_label_attr</span><span class="p">(</span><span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="c1"># select rows</span>
+    <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;row_labels&#39;</span>
+    <span class="c1"># select columns</span>
+    <span class="k">elif</span> <span class="n">axis</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;column_labels&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;axis must be 0 or 1, got </span><span class="si">{axis}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_get_subgrid</span><span class="p">(</span><span class="n">grid</span><span class="p">:</span> <span class="n">GridShape</span><span class="p">,</span> <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="c1"># select rows</span>
+    <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_grid_if_not</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="n">num</span><span class="p">])</span>
+    <span class="c1"># select columns</span>
+    <span class="k">elif</span> <span class="n">axis</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_grid_if_not</span><span class="p">(</span><span class="n">grid</span><span class="p">[:,</span> <span class="n">num</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;axis must be 0 or 1, got </span><span class="si">{axis}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_grid_if_not</span><span class="p">(</span><span class="n">ambiguous_grid</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ambiguous_grid</span><span class="p">,</span> <span class="n">GridShape</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ambiguous_grid</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">GridShape</span><span class="p">([</span><span class="n">ambiguous_grid</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">_compare_label_collections</span><span class="p">(</span><span class="n">collection1</span><span class="p">:</span> <span class="n">LabelCollection</span><span class="p">,</span> <span class="n">collection2</span><span class="p">:</span> <span class="n">LabelCollection</span><span class="p">,</span> <span class="n">use_object_equality</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">use_object_equality</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">collection1</span> <span class="o">==</span> <span class="n">collection2</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">collection1</span><span class="o">.</span><span class="n">matches</span><span class="p">(</span><span class="n">collection2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_add_to_label_table_if_not_in_label_table</span><span class="p">(</span><span class="n">label_table</span><span class="p">:</span> <span class="n">LabelTable</span><span class="p">,</span> <span class="n">label_collection</span><span class="p">:</span> <span class="n">LabelCollection</span><span class="p">,</span>
+                                              <span class="n">use_object_equality</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Note: inplace</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># don&#39;t want to keep adding match over and over. need to check if match is already</span>
+    <span class="c1"># stored in the common label table. must check two different ways depending on whether</span>
+    <span class="c1"># we are using object equality or string consolidation</span>
+    <span class="k">if</span> <span class="n">use_object_equality</span> <span class="ow">and</span> <span class="n">label_collection</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">label_table</span><span class="p">:</span>
+        <span class="n">label_table</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_collection</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">use_object_equality</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">label_table</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">label_collection</span><span class="p">)):</span>
+        <span class="n">label_table</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_collection</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../api/modules.html">pyexlatex</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick DeRobertis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,86 @@
+pyexlatex.models.format package
+===============================
+
+Submodules
+----------
+
+pyexlatex.models.format.adjustbox module
+----------------------------------------
+
+.. automodule:: pyexlatex.models.format.adjustbox
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.and\_ module
+------------------------------------
+
+.. automodule:: pyexlatex.models.format.and_
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.breaks module
+-------------------------------------
+
+.. automodule:: pyexlatex.models.format.breaks
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.linespacing module
+------------------------------------------
+
+.. automodule:: pyexlatex.models.format.linespacing
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.raw module
+----------------------------------
+
+.. automodule:: pyexlatex.models.format.raw
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.sectionnum module
+-----------------------------------------
+
+.. automodule:: pyexlatex.models.format.sectionnum
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.text module
+-----------------------------------
+
+.. automodule:: pyexlatex.models.format.text
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.textcolor module
+----------------------------------------
+
+.. automodule:: pyexlatex.models.format.textcolor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.vfill module
+------------------------------------
+
+.. automodule:: pyexlatex.models.format.vfill
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.format
+   :members:
+   :undoc-members:
+   :show-inheritance:

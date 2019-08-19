@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyexlatex.texgen &#8212; pyexlatex 0.3.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_paramlinks.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyexlatex.texgen</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">pyexlatex.models.presentation.beamer.overlay.overlay</span> <span class="k">import</span> <span class="n">Overlay</span>
+
+
+<span class="k">def</span> <span class="nf">_include_graphics_str</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\linewidth&#39;</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rf</span><span class="s1">&#39;\includegraphics[width=</span><span class="si">{width}</span><span class="s1">]{{</span><span class="si">{filepath}</span><span class="s1">}}&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">_bracket_modifier_str</span><span class="p">(</span><span class="n">modifiers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">modifiers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;[</span><span class="si">{modifiers}</span><span class="s1">]&#39;</span>
+
+<div class="viewcode-block" id="no_options_no_contents_str"><a class="viewcode-back" href="../../api/pyexlatex.texgen.html#pyexlatex.texgen.no_options_no_contents_str">[docs]</a><span class="k">def</span> <span class="nf">no_options_no_contents_str</span><span class="p">(</span><span class="n">item_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay</span> <span class="k">if</span> <span class="n">overlay</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">rf</span><span class="s1">&#39;\</span><span class="si">{item_name}{overlay}</span><span class="s1">&#39;</span></div>
+
+
+<span class="k">def</span> <span class="nf">_no_braces_item_str</span><span class="p">(</span><span class="n">item_name</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">pyexlatex.logic.format.contents</span> <span class="k">import</span> <span class="n">format_contents</span>
+    <span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay</span> <span class="k">if</span> <span class="n">overlay</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">rf</span><span class="s1">&#39;\</span><span class="si">{item_name}{overlay}</span><span class="s1"> {format_contents(contents)}&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">_basic_item_str</span><span class="p">(</span><span class="n">item_name</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">pre_modifiers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">format_content</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">pyexlatex.logic.format.contents</span> <span class="k">import</span> <span class="n">format_contents</span>
+    <span class="n">pre_modifiers</span> <span class="o">=</span> <span class="n">pre_modifiers</span> <span class="k">if</span> <span class="n">pre_modifiers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">modifiers</span> <span class="o">=</span> <span class="n">modifiers</span> <span class="k">if</span> <span class="n">modifiers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay</span> <span class="k">if</span> <span class="n">overlay</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">format_content</span><span class="p">:</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="n">format_contents</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">rf</span><span class="s1">&#39;\</span><span class="si">{item_name}{overlay}{pre_modifiers}</span><span class="s1">{{</span><span class="si">{contents}</span><span class="s1">}}</span><span class="si">{modifiers}</span><span class="s1">&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">_multi_option_item_str</span><span class="p">(</span><span class="n">item_name</span><span class="p">,</span> <span class="o">*</span><span class="n">options</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">pyexlatex.logic.format.contents</span> <span class="k">import</span> <span class="n">format_contents</span>
+    <span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay</span> <span class="k">if</span> <span class="n">overlay</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">options_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">f</span><span class="s1">&#39;{{{format_contents(str(option))}}}&#39;</span> <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">options</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">rf</span><span class="s1">&#39;\</span><span class="si">{item_name}{overlay}{options_str}</span><span class="s1">&#39;</span>
+
+
+<div class="viewcode-block" id="item_equals_str"><a class="viewcode-back" href="../../api/pyexlatex.texgen.html#pyexlatex.texgen.item_equals_str">[docs]</a><span class="k">def</span> <span class="nf">item_equals_str</span><span class="p">(</span><span class="n">item_name</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rf</span><span class="s1">&#39;\</span><span class="si">{item_name}</span><span class="s1">=</span><span class="si">{contents}</span><span class="s1">&#39;</span></div>
+
+
+<span class="k">def</span> <span class="nf">_cmidrule_str</span><span class="p">(</span><span class="n">align</span><span class="p">,</span> <span class="n">col_str</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">_multi_option_item_str</span><span class="p">(</span><span class="n">rf</span><span class="s1">&#39;cmidrule(</span><span class="si">{align}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">col_str</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_centering_str</span><span class="p">():</span>
+    <span class="k">return</span> <span class="sa">r</span><span class="s1">&#39;\centering&#39;</span>
+
+<span class="k">def</span> <span class="nf">_toprule_str</span><span class="p">():</span>
+    <span class="k">return</span> <span class="sa">r</span><span class="s1">&#39;\toprule&#39;</span>
+
+<span class="k">def</span> <span class="nf">_midrule_str</span><span class="p">():</span>
+    <span class="k">return</span> <span class="sa">r</span><span class="s1">&#39;\midrule&#39;</span>
+
+<span class="k">def</span> <span class="nf">_bottomrule_str</span><span class="p">():</span>
+    <span class="k">return</span> <span class="sa">r</span><span class="s1">&#39;\bottomrule&#39;</span>
+
+<span class="k">def</span> <span class="nf">_maketitle_str</span><span class="p">():</span>
+    <span class="k">return</span> <span class="sa">r</span><span class="s1">&#39;\maketitle&#39;</span>
+
+<span class="k">def</span> <span class="nf">_todays_date_str</span><span class="p">():</span>
+    <span class="k">return</span> <span class="sa">r</span><span class="s1">&#39;\today&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">_usepackage_str</span><span class="p">(</span><span class="n">str_</span><span class="p">,</span> <span class="n">modifier_str</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">modifier_str</span><span class="p">:</span>
+        <span class="n">full_modifier_str</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;[</span><span class="si">{modifier_str}</span><span class="s1">]&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">full_modifier_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">rf</span><span class="s1">&#39;\usepackage</span><span class="si">{full_modifier_str}</span><span class="s1">{{</span><span class="si">{str_}</span><span class="s1">}}&#39;</span>
+
+
+<div class="viewcode-block" id="bibtex_str"><a class="viewcode-back" href="../../api/pyexlatex.texgen.html#pyexlatex.texgen.bibtex_str">[docs]</a><span class="k">def</span> <span class="nf">bibtex_str</span><span class="p">(</span><span class="n">item_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item_accessor</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fields</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">pyexlatex.logic.builder</span> <span class="k">import</span> <span class="n">_build</span>
+    <span class="n">begin_str</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;@</span><span class="si">{item_type}</span><span class="s1">{{</span><span class="si">{item_accessor}</span><span class="s1">,&#39;</span>
+    <span class="n">field_strs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;    &#39;</span> <span class="o">+</span> <span class="n">_bibtex_field_str</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">fields</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+    <span class="n">end_str</span> <span class="o">=</span> <span class="s1">&#39;}&#39;</span>
+    <span class="n">full_str</span> <span class="o">=</span> <span class="n">_build</span><span class="p">([</span>
+        <span class="n">begin_str</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">field_strs</span><span class="p">,</span>
+        <span class="n">end_str</span>
+    <span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">full_str</span></div>
+
+
+<span class="k">def</span> <span class="nf">_bibtex_field_str</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">pyexlatex.logic.format.contents</span> <span class="k">import</span> <span class="n">format_contents</span>
+    <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{key}</span><span class="s1"> = {{{format_contents(value)}}},&#39;</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">pyexlatex</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick DeRobertis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

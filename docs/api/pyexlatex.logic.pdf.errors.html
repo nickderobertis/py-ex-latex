@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyexlatex.logic.pdf.errors package &#8212; pyexlatex 0.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx_paramlinks.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyexlatex.logic.pdf.errors.models package" href="pyexlatex.logic.pdf.errors.models.html" />
+    <link rel="prev" title="pyexlatex.logic.pdf.api.exc_handler.prepend package" href="pyexlatex.logic.pdf.api.exc_handler.prepend.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="pyexlatex-logic-pdf-errors-package">
+<h1>pyexlatex.logic.pdf.errors package<a class="headerlink" href="#pyexlatex-logic-pdf-errors-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.logic.pdf.errors.models.html">pyexlatex.logic.pdf.errors.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.pdf.errors.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.pdf.errors.models.html#module-pyexlatex.logic.pdf.errors.models.error">pyexlatex.logic.pdf.errors.models.error module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.pdf.errors.models.html#module-pyexlatex.logic.pdf.errors.models.error_collection">pyexlatex.logic.pdf.errors.models.error_collection module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.pdf.errors.models.html#module-pyexlatex.logic.pdf.errors.models.exception_manager">pyexlatex.logic.pdf.errors.models.exception_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.pdf.errors.models.html#module-pyexlatex.logic.pdf.errors.models">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyexlatex.logic.pdf.errors.exc">
+<span id="pyexlatex-logic-pdf-errors-exc-module"></span><h2>pyexlatex.logic.pdf.errors.exc module<a class="headerlink" href="#module-pyexlatex.logic.pdf.errors.exc" title="Permalink to this headline">¶</a></h2>
+<p>Add exceptions here and set _match_str to whatever string should match the exception. They will automatically
+be passed to the exception manager</p>
+<dl class="exception">
+<dt id="pyexlatex.logic.pdf.errors.exc.LatexException">
+<em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.logic.pdf.errors.exc.</code><code class="sig-name descname">LatexException</code><a class="reference internal" href="../_modules/pyexlatex/logic/pdf/errors/exc.html#LatexException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.pdf.errors.exc.LatexException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pyexlatex.logic.pdf.errors.exc.OutputLoopConsecutiveDeadCycles">
+<em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.logic.pdf.errors.exc.</code><code class="sig-name descname">OutputLoopConsecutiveDeadCycles</code><a class="reference internal" href="../_modules/pyexlatex/logic/pdf/errors/exc.html#OutputLoopConsecutiveDeadCycles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.pdf.errors.exc.OutputLoopConsecutiveDeadCycles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.logic.pdf.errors.exc.LatexException" title="pyexlatex.logic.pdf.errors.exc.LatexException"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.logic.pdf.errors.exc.LatexException</span></code></a></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="pyexlatex.logic.pdf.errors.exc.TooManyUnprocessedFloatsException">
+<em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.logic.pdf.errors.exc.</code><code class="sig-name descname">TooManyUnprocessedFloatsException</code><a class="reference internal" href="../_modules/pyexlatex/logic/pdf/errors/exc.html#TooManyUnprocessedFloatsException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.pdf.errors.exc.TooManyUnprocessedFloatsException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.logic.pdf.errors.exc.LatexException" title="pyexlatex.logic.pdf.errors.exc.LatexException"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.logic.pdf.errors.exc.LatexException</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.logic.pdf.errors">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyexlatex.logic.pdf.errors" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyexlatex</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyexlatex.html">pyexlatex package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyexlatex.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a><ul class="current">
+<li class="toctree-l5 current"><a class="reference internal" href="pyexlatex.logic.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.logic.extract.html">pyexlatex.logic.extract package</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.logic.format.html">pyexlatex.logic.format package</a></li>
+<li class="toctree-l6 current"><a class="reference internal" href="pyexlatex.logic.pdf.html">pyexlatex.logic.pdf package</a><ul class="current">
+<li class="toctree-l7 current"><a class="reference internal" href="pyexlatex.logic.pdf.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l8"><a class="reference internal" href="pyexlatex.logic.pdf.api.html">pyexlatex.logic.pdf.api package</a></li>
+<li class="toctree-l8 current"><a class="current reference internal" href="#">pyexlatex.logic.pdf.errors package</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="pyexlatex.logic.pdf.errors.models.html">pyexlatex.logic.pdf.errors.models package</a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#module-pyexlatex.logic.pdf.errors.exc">pyexlatex.logic.pdf.errors.exc module</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#module-pyexlatex.logic.pdf.errors">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="pyexlatex.logic.pdf.html#submodules">Submodules</a></li>
+<li class="toctree-l7"><a class="reference internal" href="pyexlatex.logic.pdf.html#module-pyexlatex.logic.pdf.fileops">pyexlatex.logic.pdf.fileops module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="pyexlatex.logic.pdf.html#module-pyexlatex.logic.pdf.main">pyexlatex.logic.pdf.main module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="pyexlatex.logic.pdf.html#module-pyexlatex.logic.pdf">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.logic.html#submodules">Submodules</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.logic.html#module-pyexlatex.logic.builder">pyexlatex.logic.builder module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.logic.html#module-pyexlatex.logic.tools">pyexlatex.logic.tools module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.logic.html#module-pyexlatex.logic">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.table.html">pyexlatex.table package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.texgen.html">pyexlatex.texgen package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.texparser.html">pyexlatex.texparser package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.tools.html">pyexlatex.tools package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.df">pyexlatex.df module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.equations">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">pyexlatex</a><ul>
+  <li><a href="pyexlatex.html">pyexlatex package</a><ul>
+  <li><a href="pyexlatex.logic.html">pyexlatex.logic package</a><ul>
+  <li><a href="pyexlatex.logic.pdf.html">pyexlatex.logic.pdf package</a><ul>
+      <li>Previous: <a href="pyexlatex.logic.pdf.api.exc_handler.prepend.html" title="previous chapter">pyexlatex.logic.pdf.api.exc_handler.prepend package</a></li>
+      <li>Next: <a href="pyexlatex.logic.pdf.errors.models.html" title="next chapter">pyexlatex.logic.pdf.errors.models package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick DeRobertis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/pyexlatex.logic.pdf.errors.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

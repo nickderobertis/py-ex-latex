@@ -1,0 +1,29 @@
+pyexlatex.models.credits package
+================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.models.credits.institution
+
+Submodules
+----------
+
+pyexlatex.models.credits.author module
+--------------------------------------
+
+.. automodule:: pyexlatex.models.credits.author
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.credits
+   :members:
+   :undoc-members:
+   :show-inheritance:

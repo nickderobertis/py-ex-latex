@@ -1,0 +1,54 @@
+pyexlatex.models.control package
+================================
+
+Submodules
+----------
+
+pyexlatex.models.control.documentclass module
+---------------------------------------------
+
+.. automodule:: pyexlatex.models.control.documentclass
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.control.extrafloats module
+-------------------------------------------
+
+.. automodule:: pyexlatex.models.control.extrafloats
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.control.filecontents module
+--------------------------------------------
+
+.. automodule:: pyexlatex.models.control.filecontents
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.control.maxdeadcycles module
+---------------------------------------------
+
+.. automodule:: pyexlatex.models.control.maxdeadcycles
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.control.mode module
+------------------------------------
+
+.. automodule:: pyexlatex.models.control.mode
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.control
+   :members:
+   :undoc-members:
+   :show-inheritance:

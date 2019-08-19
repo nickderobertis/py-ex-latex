@@ -1,0 +1,30 @@
+pyexlatex.models.credits.institution package
+============================================
+
+Submodules
+----------
+
+pyexlatex.models.credits.institution.inst module
+------------------------------------------------
+
+.. automodule:: pyexlatex.models.credits.institution.inst
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.credits.institution.institute module
+-----------------------------------------------------
+
+.. automodule:: pyexlatex.models.credits.institution.institute
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.credits.institution
+   :members:
+   :undoc-members:
+   :show-inheritance:

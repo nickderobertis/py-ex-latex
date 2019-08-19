@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyexlatex.table.models.texgen.lines &#8212; pyexlatex 0.3.0 documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx_paramlinks.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyexlatex.table.models.texgen.lines</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">from</span> <span class="nn">pyexlatex.texgen</span> <span class="k">import</span> <span class="n">_toprule_str</span><span class="p">,</span> <span class="n">_midrule_str</span><span class="p">,</span> <span class="n">_bottomrule_str</span><span class="p">,</span> <span class="n">_cmidrule_str</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.mixins</span> <span class="k">import</span> <span class="n">StringAdditionMixin</span>
+<span class="kn">from</span> <span class="nn">mixins.repr</span> <span class="k">import</span> <span class="n">ReprMixin</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.mixins.addvalues.row</span> <span class="k">import</span> <span class="n">RowAddMixin</span>
+
+
+<div class="viewcode-block" id="TableLine"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TableLine">[docs]</a><span class="k">class</span> <span class="nc">TableLine</span><span class="p">(</span><span class="n">StringAdditionMixin</span><span class="p">,</span> <span class="n">ReprMixin</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="TopRule"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TopRule">[docs]</a><span class="k">class</span> <span class="nc">TopRule</span><span class="p">(</span><span class="n">TableLine</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_toprule_str</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="MidRule"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.MidRule">[docs]</a><span class="k">class</span> <span class="nc">MidRule</span><span class="p">(</span><span class="n">TableLine</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_midrule_str</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="BottomRule"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.BottomRule">[docs]</a><span class="k">class</span> <span class="nc">BottomRule</span><span class="p">(</span><span class="n">TableLine</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_bottomrule_str</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="TableLineSegment"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TableLineSegment">[docs]</a><span class="k">class</span> <span class="nc">TableLineSegment</span><span class="p">(</span><span class="n">StringAdditionMixin</span><span class="p">,</span> <span class="n">ReprMixin</span><span class="p">,</span> <span class="n">RowAddMixin</span><span class="p">):</span>
+    <span class="n">repr_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;col_from&#39;</span><span class="p">,</span> <span class="s1">&#39;col_to&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="TableLineSegment.__init__"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TableLineSegment.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col_from</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">col_to</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">align</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;lr&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_from</span> <span class="o">=</span> <span class="n">col_from</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_to</span> <span class="o">=</span> <span class="n">col_to</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">align</span> <span class="o">=</span> <span class="n">align</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_cmidrule_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">align</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_range_str</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_to</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">col_to</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_from</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<div class="viewcode-block" id="TableLineSegment.shift"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TableLineSegment.shift">[docs]</a>    <span class="k">def</span> <span class="nf">shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Increments col_from and col_to by int. Used to shift underlines as tables are combined</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_from</span> <span class="o">+=</span> <span class="n">shift</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">col_to</span> <span class="o">+=</span> <span class="n">shift</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_range_str</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># add 1 to all columns to reindex to latex indices (1-based) from python indices (0-based)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_to</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">col_to</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_from</span> <span class="c1"># single column</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">col_to</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">col_to</span> <span class="c1"># multi column</span>
+
+        <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;{self.col_from + 1}-{col_to + 1}&#39;</span>
+
+
+    <span class="k">def</span> <span class="nf">_add_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">TableLineOfSegments</span>
+
+<div class="viewcode-block" id="TableLineSegment.from_list_of_ints"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TableLineSegment.from_list_of_ints">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_of_ints</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">int_list</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">int_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">int_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">int_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">int_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_spacer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="TableLineOfSegments"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TableLineOfSegments">[docs]</a><span class="k">class</span> <span class="nc">TableLineOfSegments</span><span class="p">(</span><span class="n">RowAddMixin</span><span class="p">,</span> <span class="n">TableLine</span><span class="p">):</span>
+    <span class="n">repr_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;values&#39;</span><span class="p">,</span> <span class="s1">&#39;num_columns&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="TableLineOfSegments.__init__"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TableLineOfSegments.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">segments</span><span class="p">:</span> <span class="p">[</span><span class="n">TableLineSegment</span><span class="p">],</span> <span class="n">num_columns</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">segments</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_columns</span> <span class="o">=</span> <span class="n">num_columns</span></div>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">segment</span><span class="p">)</span> <span class="k">for</span> <span class="n">segment</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_columns</span>
+
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="c1"># need to handle shifting of indices</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="p">(</span><span class="n">TableLineOfSegments</span><span class="p">,</span> <span class="n">TableLineSegment</span><span class="p">)):</span>
+            <span class="n">to_add</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+            <span class="n">to_add</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;cannot add type {type(other)} to TableLineOfSegments&#39;</span><span class="p">)</span>
+        <span class="n">line_of_segments</span><span class="p">:</span> <span class="n">TableLineOfSegments</span> <span class="o">=</span>  <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">to_add</span><span class="p">)</span>
+        <span class="n">line_of_segments</span><span class="o">.</span><span class="n">num_columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_columns</span> <span class="o">+</span> <span class="n">to_add</span><span class="o">.</span><span class="n">num_columns</span>
+        <span class="k">return</span> <span class="n">line_of_segments</span>
+
+    <span class="k">def</span> <span class="nf">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="c1"># need to handle shifting of indices</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">shift</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;cannot right add TableLineOfSegments without knowing how many columns to shift. &#39;</span>
+                                      <span class="n">f</span><span class="s1">&#39;Could not calculate length of other. type of other: {type(other)}&#39;</span><span class="p">)</span>
+        <span class="n">to_add</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">to_add</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift</span><span class="p">)</span>
+        <span class="n">line_of_segments</span><span class="p">:</span> <span class="n">TableLineOfSegments</span> <span class="o">=</span> <span class="n">RowAddMixin</span><span class="o">.</span><span class="n">radd</span><span class="p">(</span><span class="n">to_add</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+        <span class="n">line_of_segments</span><span class="o">.</span><span class="n">num_columns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_columns</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">num_columns</span>
+        <span class="k">return</span> <span class="n">line_of_segments</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_columns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_columns</span>
+
+    <span class="nd">@num_columns</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">num_columns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_columns</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">num_columns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_num_columns</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">num_columns</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_num_columns</span> <span class="o">=</span> <span class="n">num_columns</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;must provide int or None for num columns in TableLineOfSegments. got </span><span class="si">{num_columns}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TableLineOfSegments.shift"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TableLineOfSegments.shift">[docs]</a>    <span class="k">def</span> <span class="nf">shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Increments col_from and col_to by int for all segments within this line of segments</span>
+<span class="sd">        :param shift:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#### TEMP</span>
+        <span class="c1"># import pdb</span>
+        <span class="c1"># pdb.set_trace()</span>
+        <span class="c1">#### END TEMP</span>
+        <span class="p">[</span><span class="n">value</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">_add_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">TableLineOfSegments</span>
+
+<div class="viewcode-block" id="TableLineOfSegments.from_list_of_ints"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TableLineOfSegments.from_list_of_ints">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_of_ints</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">int_list</span><span class="p">:</span> <span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">num_columns</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">int_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">([</span><span class="n">TableLineSegment</span><span class="p">(</span><span class="n">int_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+
+        <span class="c1"># create ranges out of consecutive ints. Add segments with either ranges or individual ints</span>
+        <span class="n">segments</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">current_range</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">int_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">int_list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># now have int and last int for all loops</span>
+                <span class="k">if</span> <span class="n">int_</span> <span class="o">-</span> <span class="n">last_int</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># consecutive range continues</span>
+                    <span class="n">current_range</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">int_</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>  <span class="c1"># break in range. need to output prior, and start new range</span>
+                    <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TableLineSegment</span><span class="o">.</span><span class="n">from_list_of_ints</span><span class="p">(</span><span class="n">current_range</span><span class="p">))</span>
+                    <span class="n">current_range</span> <span class="o">=</span> <span class="p">[</span><span class="n">int_</span><span class="p">]</span>
+
+            <span class="n">last_int</span> <span class="o">=</span> <span class="n">int_</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># initialization</span>
+                <span class="n">current_range</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">int_</span><span class="p">)</span>
+
+        <span class="n">segments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TableLineSegment</span><span class="o">.</span><span class="n">from_list_of_ints</span><span class="p">(</span><span class="n">current_range</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">segments</span><span class="p">,</span> <span class="n">num_columns</span><span class="o">=</span><span class="n">num_columns</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TableLineOfSegments.pad"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TableLineOfSegments.pad">[docs]</a>    <span class="k">def</span> <span class="nf">pad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method is here to avoid errors when adding rows together through TableSection.__add__</span>
+<span class="sd">        No padding is actually necessary for these rows as they are not in the tabular format,</span>
+<span class="sd">        these lines only specify the columns which need to be underlined.</span>
+
+<span class="sd">        However when padding left, we just need to shift the values rather than creating padding</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span>
+            <span class="k">pass</span> <span class="c1"># no shift necessary, column numbers have not changed</span>
+        <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;left&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">length</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span> <span class="c1"># shift column indices right to adjust for new left cells</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;must pass right or left for direction. got </span><span class="si">{direction}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_columns</span> <span class="o">=</span> <span class="n">length</span> <span class="c1"># extend number of columns to new length</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_spacer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">all</span><span class="p">([</span><span class="n">value</span><span class="o">.</span><span class="n">is_spacer</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">])</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../api/modules.html">pyexlatex</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick DeRobertis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

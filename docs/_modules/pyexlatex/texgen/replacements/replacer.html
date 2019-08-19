@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyexlatex.texgen.replacements.replacer &#8212; pyexlatex 0.3.0 documentation</title>
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_paramlinks.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyexlatex.texgen.replacements.replacer</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="n">latex_escape_character</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span> <span class="c1"># literal \</span>
+<span class="n">latex_replacement_items</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;%&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">]</span>
+<span class="n">latex_block_escape_characters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$&#39;</span><span class="p">]</span>
+<span class="n">replacement_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">latex_replacement_item</span><span class="p">:</span> <span class="n">latex_escape_character</span> <span class="o">+</span> <span class="n">latex_replacement_item</span> \
+        <span class="k">for</span> <span class="n">latex_replacement_item</span> <span class="ow">in</span> <span class="n">latex_replacement_items</span>
+    <span class="p">}</span>
+
+<div class="viewcode-block" id="Replacer"><a class="viewcode-back" href="../../../../api/pyexlatex.texgen.replacements.html#pyexlatex.texgen.replacements.replacer.Replacer">[docs]</a><span class="k">class</span> <span class="nc">Replacer</span><span class="p">:</span>
+
+<div class="viewcode-block" id="Replacer.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.texgen.replacements.html#pyexlatex.texgen.replacements.replacer.Replacer.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">replacement_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">escape_next_character_characters</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">escape_until_same_next_character_characters</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            replacement_dict: dict where keys are strings to be replaced, and values are replacements</span>
+<span class="sd">            escape_next_character_characters: list of one character strings for which after that character,</span>
+<span class="sd">                the next character should not be replaced</span>
+<span class="sd">            escape_until_same_next_character_characters: list of one character strings for which after that</span>
+<span class="sd">                character, until this same character is seen again, characters should not be replaced</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">replacement_dict</span> <span class="o">=</span> <span class="n">replacement_dict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">escape_next_character_characters</span> <span class="o">=</span> <span class="n">escape_next_character_characters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">escape_until_same_next_character_characters</span> <span class="o">=</span> <span class="n">escape_until_same_next_character_characters</span></div>
+
+<div class="viewcode-block" id="Replacer.replace"><a class="viewcode-back" href="../../../../api/pyexlatex.texgen.replacements.html#pyexlatex.texgen.replacements.replacer.Replacer.replace">[docs]</a>    <span class="k">def</span> <span class="nf">replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">possible_replacement</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">replacing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">output_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">previous_letter</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">escaped_until_character</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># blank string when not in an escaped block</span>
+        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">string</span><span class="p">:</span>
+            <span class="n">wipe_replacement</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># wipe unless told not to by the loop</span>
+            <span class="n">output_letter</span> <span class="o">=</span> <span class="n">letter</span>
+            <span class="n">possible_replacement</span> <span class="o">+=</span> <span class="n">letter</span>
+
+            <span class="c1"># Check if we&#39;re in an escaped block</span>
+            <span class="k">if</span> <span class="n">escaped_until_character</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">possible_replacement</span> <span class="o">==</span> <span class="n">escaped_until_character</span><span class="p">:</span>
+                    <span class="c1"># End of escaped block</span>
+                    <span class="n">escaped_until_character</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">elif</span> <span class="n">possible_replacement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">escape_until_same_next_character_characters</span><span class="p">:</span>
+                <span class="c1"># escaped block is starting</span>
+                <span class="n">escaped_until_character</span> <span class="o">=</span> <span class="n">possible_replacement</span>
+                <span class="n">replacing</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="c1"># automatically is skipped if longer than one letter, so won&#39;t enter while replacing</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">possible_replacement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_letters</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">escaped_until_character</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">previous_letter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">escape_next_character_characters</span><span class="p">:</span>
+                    <span class="c1"># Escape character. No need to replace. Start over</span>
+                    <span class="n">replacing</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># may be something to replace</span>
+                    <span class="n">replacing</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="c1"># Handle single character replacements</span>
+                    <span class="k">if</span> <span class="n">possible_replacement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_full_first_letter_replacements</span><span class="p">:</span>
+                        <span class="c1"># Got a replacement.</span>
+                        <span class="c1"># Do replacement</span>
+                        <span class="n">output_letter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_full_first_letter_replacements</span><span class="p">[</span><span class="n">possible_replacement</span><span class="p">]</span>
+                        <span class="c1"># Reset for next replacement</span>
+                        <span class="n">replacing</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">if</span> <span class="n">replacing</span><span class="p">:</span>
+                <span class="c1"># Handle multiple character replacements</span>
+                <span class="n">current_replacements</span> <span class="o">=</span> <span class="n">_replacements_starting_with</span><span class="p">(</span>
+                    <span class="n">possible_replacement</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">replacement_dict</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">current_replacements</span> <span class="o">==</span> <span class="p">{}:</span>
+                    <span class="c1"># No replacements found. Start over</span>
+                    <span class="n">replacing</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Matching replacements. Determine whether may be another replacement key prefixed by this one</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_replacements</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="c1"># Single replacement. If it&#39;s a full replacement, do it</span>
+                        <span class="k">if</span> <span class="nb">list</span><span class="p">(</span><span class="n">current_replacements</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">replacement_dict</span><span class="p">:</span>
+                            <span class="n">output_letter</span> <span class="o">=</span> <span class="n">current_replacements</span><span class="p">[</span><span class="n">possible_replacement</span><span class="p">]</span>
+                            <span class="c1"># Reset for next replacement</span>
+                            <span class="n">replacing</span> <span class="o">=</span> <span class="kc">False</span>
+
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="c1"># we haven&#39;t gotten to the end of this replacement yet, continue until end</span>
+                            <span class="n">wipe_replacement</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c1"># Multiple matching replacements, continue until only one match</span>
+                        <span class="n">wipe_replacement</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">if</span> <span class="n">wipe_replacement</span><span class="p">:</span>
+                <span class="n">possible_replacement</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+            <span class="n">previous_letter</span> <span class="o">=</span> <span class="n">letter</span> <span class="c1"># Maybe should set to output letter? doesn&#39;t matter for current use cases</span>
+            <span class="n">output_str</span> <span class="o">+=</span> <span class="n">output_letter</span>
+
+        <span class="k">return</span> <span class="n">output_str</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">first_letters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_first_letters&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_letters</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_first_letters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_first_letters</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_letters</span>
+
+    <span class="k">def</span> <span class="nf">_extract_first_letters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">_extract_letters_of_index_n</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">replacement_dict</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">unique_full_first_letter_replacements</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_unique_full_first_letter_replacements&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unique_full_first_letter_replacements</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_unique_full_first_letter_replacements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_unique_full_first_letter_replacements</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_unique_full_first_letter_replacements</span>
+
+    <span class="k">def</span> <span class="nf">_extract_unique_full_first_letter_replacements</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="n">first_letters_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">first_letters</span><span class="p">)</span>
+        <span class="n">unique_letters</span> <span class="o">=</span> <span class="p">[</span><span class="n">letter</span> <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">first_letters_set</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_letters</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">replacements</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">unique_letters</span><span class="p">:</span>
+            <span class="n">replacements</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">_full_replacements_starting_with</span><span class="p">(</span><span class="n">letter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">replacement_dict</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">replacements</span></div>
+
+
+<span class="k">def</span> <span class="nf">_full_replacements_starting_with</span><span class="p">(</span><span class="n">starts_with_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">replacement_dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="n">replacements</span> <span class="o">=</span> <span class="n">_replacements_starting_with</span><span class="p">(</span><span class="n">starts_with_str</span><span class="p">,</span> <span class="n">replacement_dict</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">replacements</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">starts_with_str</span><span class="p">)}</span>
+
+<span class="k">def</span> <span class="nf">_replacements_starting_with</span><span class="p">(</span><span class="n">starts_with_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">replacement_dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="n">replacements</span> <span class="o">=</span> <span class="n">replacement_dict</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">starts_with_str</span><span class="p">):</span>
+        <span class="n">replacements</span> <span class="o">=</span> <span class="n">_extract_replacements_where_letter_matches_index_n</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">letter</span><span class="p">,</span> <span class="n">replacements</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">replacements</span>
+
+
+<span class="k">def</span> <span class="nf">_extract_letters_of_index_n</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dict_</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">key</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">dict_</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">_extract_replacements_where_letter_matches_index_n</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">letter</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dict_</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">dict_</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="n">letter</span><span class="p">}</span>
+
+
+<span class="n">latex_replacer</span> <span class="o">=</span> <span class="n">Replacer</span><span class="p">(</span>
+    <span class="n">replacement_dict</span><span class="p">,</span>
+    <span class="n">escape_next_character_characters</span><span class="o">=</span><span class="p">[</span><span class="n">latex_escape_character</span><span class="p">],</span>
+    <span class="n">escape_until_same_next_character_characters</span><span class="o">=</span><span class="n">latex_block_escape_characters</span>
+<span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">pyexlatex</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  <li><a href="../../texgen.html">pyexlatex.texgen</a><ul>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick DeRobertis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
