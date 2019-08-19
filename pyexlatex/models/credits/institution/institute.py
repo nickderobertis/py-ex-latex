@@ -55,6 +55,10 @@ class Institution(ItemBase):
         Faculty of Physics\\
         Very Famous University
     """
+    equal_attrs = [
+        'institution_lines',
+        'num'
+    ]
 
     def __init__(self, institution_lines: Sequence[str], num: int):
         self.institution_lines = institution_lines
