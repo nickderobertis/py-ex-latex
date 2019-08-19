@@ -12,6 +12,9 @@ sphinx-autodoc-typehints = "*"
 sphinxcontrib-fulltoc = "*"
 sphinx-paramlinks = "*"
 twine = "*"
+mixins = "*"
+pandas = "*"
+tempdir = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"

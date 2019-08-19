@@ -48,7 +48,14 @@ PACKAGE_INSTALL_REQUIRES = [
     # e.g.
     # 'package',
     # 'otherpackage>=1,<2'
-    'mixins'
+    'mixins',
+    'pandas',
+    'tempdir',
+    'data',
+    'latex',
+    'future',
+    'sympy',
+    'shutilwhich'
 ]
 
 # Sphinx executes all the import statements as it generates the documentation. To avoid having to install all

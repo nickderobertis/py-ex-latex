@@ -1,5 +1,7 @@
 import os
-from typing import Union, List, Dict, Any
+from typing import Union, List, Dict, Any, TYPE_CHECKING
+if TYPE_CHECKING:
+    from matplotlib.pyplot import Axes, Figure as PltFigure
 
 from pyexlatex.figure.models.subfigure import Subfigure, Graphic
 from pyexlatex.models.documentitem import DocumentItem
@@ -9,7 +11,7 @@ from pyexlatex.models.label import Label
 from pyexlatex.models.landscape import Landscape
 from pyexlatex.logic.builder import build_figure_content
 from pyexlatex.texgen.replacements.filename import latex_filename_replacements
-from matplotlib.pyplot import Axes, Figure as PltFigure
+
 from pyexlatex.models.commands.newenvironment import NewEnvironment
 from pyexlatex.models.commands.begin import Begin
 from pyexlatex.models.commands.end import End
@@ -18,7 +20,7 @@ from pyexlatex.models.containeritem import ContainerItem
 
 SubfigureOrGraphic = Union[Subfigure, Graphic]
 SubfiguresOrGraphics = List[SubfigureOrGraphic]
-PltFigureOrAxes = Union[Axes, PltFigure]
+PltFigureOrAxes = Union['Axes', 'PltFigure']
 PltFigureOrAxesNameDict = Dict[str, PltFigureOrAxes]
 
 class Figure(ContainerItem, Item):
@@ -220,7 +222,7 @@ class Figure(ContainerItem, Item):
         self.subfigures = [graphic]
 
 
-def _get_plt_figure_from_axes_or_figure(plt_axes_or_fig: PltFigureOrAxes) -> PltFigure:
+def _get_plt_figure_from_axes_or_figure(plt_axes_or_fig: PltFigureOrAxes) -> 'PltFigure':
     # Both axes and figure have the get_figure method, however for the figure, it will return None
     possible_figure = plt_axes_or_fig.get_figure()
     if possible_figure is None:
