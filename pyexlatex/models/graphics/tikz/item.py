@@ -1,4 +1,3 @@
-from copy import deepcopy
 from typing import Sequence, Optional
 from pyexlatex.models.item import ItemBase
 from pyexlatex.models.section.base import TextAreaMixin
@@ -27,12 +26,6 @@ class TikZItem(TextAreaMixin, ItemBase):
         if self.options is None:
             return ''
         return self._wrap_with_bracket(', '.join(self.options))
-
-    @staticmethod
-    def _get_list_copy_from_list_or_none(list_or_none: Optional[list]):
-        if list_or_none is None:
-            return []
-        return deepcopy(list_or_none)
 
 
 

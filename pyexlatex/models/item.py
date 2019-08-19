@@ -1,6 +1,7 @@
 from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+from copy import deepcopy
 from mixins.attrequals import EqOnAttrsMixin, EqHashMixin
 from pyexlatex.models.mixins import StringAdditionMixin, IsSpecificClassMixin, StringEqMixin
 from pyexlatex.texgen import (
@@ -63,6 +64,12 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
     def _format_content(content):
         from pyexlatex.logic.format.contents import format_contents as fmt
         return fmt(content)
+
+    @staticmethod
+    def _get_list_copy_from_list_or_none(list_or_none: Optional[list]):
+        if list_or_none is None:
+            return []
+        return deepcopy(list_or_none)
 
 
 

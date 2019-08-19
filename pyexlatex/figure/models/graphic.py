@@ -1,15 +1,19 @@
-from typing import List, Union
+from typing import List, Union, Sequence, Optional, TYPE_CHECKING
+if TYPE_CHECKING:
+    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
 import posixpath
 import os
 
 from pyexlatex.texgen import _include_graphics_str
-from pyexlatex.models.item import ItemBase
-from pyexlatex.models.sizes.linewidth import LineWidth
+from pyexlatex.models.item import SimpleItem
+from pyexlatex.models.sizes.textwidth import TextWidth
 
 
-class Graphic(ItemBase):
+class Graphic(SimpleItem):
+    name = 'includegraphics'
 
-    def __init__(self, filepath, width: Union[str, float] = 1.0, cache: bool = True):
+    def __init__(self, filepath, width: Union[str, float] = 1.0, cache: bool = True, options: Sequence[str] = None,
+                 overlay: Optional['Overlay'] = None):
         """
 
         Args:
@@ -22,14 +26,26 @@ class Graphic(ItemBase):
         self.width = width
         self.binaries = None
 
+        self.options = self._get_list_copy_from_list_or_none(options)
+        self.options.append(
+            f'width={self.width_str}'
+        )
+
         if cache:
             self._cache(filepath)
+
+        super().__init__(
+            self.name,
+            self.source_paths[0],
+            pre_modifiers=self.options_str,
+            overlay=overlay
+        )
+
+
 
     def __repr__(self):
         return f'<Graphic({self.filepaths[0]}, width={self.width})>'
 
-    def __str__(self):
-        return _include_graphics_str(self.source_paths[0], self.width_str)
 
     def _set_path(self, filepath: str):
         from pyexlatex.texgen.replacements.filename import _latex_valid_basename
@@ -52,7 +68,14 @@ class Graphic(ItemBase):
     def width_str(self) -> str:
         # Handle float being passed
         if isinstance(self.width, (float, int)):
-            return f'{self.width}{LineWidth()}'
+            return f'{self.width}{TextWidth()}'
 
         # Handle manually passing a width string
         return self.width
+
+    @property
+    def options_str(self) -> Optional[str]:
+        if self.options is None:
+            return None
+
+        return self._wrap_with_bracket(', '.join(self.options))
