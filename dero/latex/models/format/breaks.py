@@ -1,5 +1,5 @@
 from dero.latex.models.mixins import StringAdditionMixin
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 
 
 class Break(StringAdditionMixin):

@@ -1,7 +1,7 @@
 from typing import Dict
 from dero.latex.texgen import bibtex_str
 from dero.latex.models.documentitem import DocumentItem
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 
 class BibTexEntryBase(DocumentItem, ReprMixin):
     is_BibTexEntry = True

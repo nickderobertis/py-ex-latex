@@ -3,7 +3,7 @@ from typing import Union, AnyStr, List
 import numpy as np
 import pandas as pd
 
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 from dero.latex.table.logic.panels.combine import (
     common_column_labels,
     common_row_labels,

@@ -1,7 +1,7 @@
 from typing import Optional
 from dero.latex.models.item import ItemBase
 from dero.latex.texgen import no_options_no_contents_str
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 
 class Mode(ItemBase, ReprMixin):
     name = 'mode'

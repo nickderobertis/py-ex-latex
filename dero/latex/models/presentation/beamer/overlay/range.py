@@ -1,4 +1,4 @@
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 from dero.latex.models.presentation.beamer.overlay.overlay_param import OverlayParameter
 
 

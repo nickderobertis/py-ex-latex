@@ -1,7 +1,7 @@
 from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
-from dero.mixins.attrequals import EqOnAttrsMixin, EqHashMixin
+from mixins.attrequals import EqOnAttrsMixin, EqHashMixin
 from dero.latex.models.mixins import StringAdditionMixin, IsSpecificClassMixin, StringEqMixin
 from dero.latex.texgen import (
     _basic_item_str,

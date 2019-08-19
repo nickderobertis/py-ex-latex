@@ -2,7 +2,7 @@ from copy import deepcopy
 
 from dero.latex.table.models.table.row import Row
 from dero.latex.logic.tools import _max_len_or_zero
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 
 
 class TableSection(ReprMixin):

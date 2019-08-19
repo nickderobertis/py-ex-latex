@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 from dero.latex.table.models.data.dataitem import DataItem
 from dero.latex.table.models.labels.label import Label
 from dero.latex.table.models.mixins.addvalues.row import RowAddMixin

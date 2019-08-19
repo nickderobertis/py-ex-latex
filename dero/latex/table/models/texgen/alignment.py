@@ -1,6 +1,6 @@
 import re
 
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 
 
 class ColumnAlignment(ReprMixin):

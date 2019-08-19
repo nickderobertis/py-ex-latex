@@ -2,7 +2,7 @@ from copy import deepcopy
 
 from dero.latex.texgen import _toprule_str, _midrule_str, _bottomrule_str, _cmidrule_str
 from dero.latex.models.mixins import StringAdditionMixin
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
 
 

@@ -1,6 +1,6 @@
 from typing import Optional
 from dero.latex.models.item import Item
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 from dero.latex.logic.format.contents import format_contents as fmt
 from dero.latex.logic.builder import _build
 from dero.latex.models.documentitem import DocumentItem

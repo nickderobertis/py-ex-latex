@@ -4,7 +4,7 @@ import pandas as pd
 if TYPE_CHECKING:
     from dero.latex.table.models.texgen.items import ColumnsAlignment
 
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 from dero.latex.table.models.panels.collection import PanelCollection, Panel
 from dero.latex.table.models.labels.table import LabelTable, LabelCollection
 from dero.latex.table.models.table.caption import Caption

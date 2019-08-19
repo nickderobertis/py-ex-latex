@@ -1,8 +1,8 @@
 from typing import List, Optional, Sequence
 from dero.latex.models.documentitem import DocumentItem
 from dero.latex.models.package import Package
-from dero.mixins.repr import ReprMixin
-from dero.mixins.attrequals import EqOnAttrsMixin, EqHashMixin
+from mixins.repr import ReprMixin
+from mixins.attrequals import EqOnAttrsMixin, EqHashMixin
 from dero.latex.models.references.bibtex.base import BibTexEntryBase
 
 

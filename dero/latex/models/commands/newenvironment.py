@@ -1,5 +1,5 @@
 from dero.latex.models.item import MultiOptionSimpleItem
-from dero.mixins.attrequals import EqOnAttrsWithConversionMixin, EqHashMixin
+from mixins.attrequals import EqOnAttrsWithConversionMixin, EqHashMixin
 
 
 class NewEnvironment(MultiOptionSimpleItem, EqOnAttrsWithConversionMixin, EqHashMixin):

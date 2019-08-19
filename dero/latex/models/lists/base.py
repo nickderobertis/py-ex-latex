@@ -2,7 +2,7 @@ from typing import Optional, Union, Sequence, Tuple, TYPE_CHECKING
 if TYPE_CHECKING:
     from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
 from dero.latex.models.item import Item, ItemBase
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 from dero.latex.models.lists.item import ListItem
 from dero.latex.models.containeritem import ContainerItem
 from dero.latex.models.format.vfill import VFill

@@ -3,7 +3,7 @@ from itertools import zip_longest
 import warnings
 
 from dero.latex.logic.tools import _max_len_or_zero
-from dero.mixins.repr import ReprMixin
+from mixins.repr import ReprMixin
 from dero.latex.table.models.labels.collection import LabelCollection
 from dero.latex.table.models.labels.row import LabelRow
 from dero.latex.table.models.table.section import TableSection
