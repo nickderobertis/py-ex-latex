@@ -1,2 +1,2 @@
-from dero.latex.figure.models.figure import Figure
-from dero.latex.figure.models.subfigure import Subfigure
+from pyexlatex.figure.models.figure import Figure
+from pyexlatex.figure.models.subfigure import Subfigure

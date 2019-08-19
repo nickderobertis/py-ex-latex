@@ -1,5 +1,5 @@
-from dero.latex.models.item import SimpleItem
-from dero.latex.logic.builder import _build
+from pyexlatex.models.item import SimpleItem
+from pyexlatex.logic.builder import _build
 
 class FancyHeader(SimpleItem):
     name = 'fancyhead'

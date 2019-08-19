@@ -1,8 +1,8 @@
 from typing import Optional
-from dero.latex.models.sizes.textwidth import TextWidth
-from dero.latex.models.sizes.textheight import TextHeight
-from dero.latex.models.boxes.vbox import VBox
-from dero.latex.models.section.base import TextAreaBase
+from pyexlatex.models.sizes.textwidth import TextWidth
+from pyexlatex.models.sizes.textheight import TextHeight
+from pyexlatex.models.boxes.vbox import VBox
+from pyexlatex.models.section.base import TextAreaBase
 
 
 class Column(TextAreaBase):

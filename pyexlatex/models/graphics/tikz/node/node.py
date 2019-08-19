@@ -2,11 +2,11 @@ import uuid
 from copy import deepcopy
 from typing import Tuple, Optional, Sequence, TYPE_CHECKING
 if TYPE_CHECKING:
-    from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
 
-from dero.latex.models.graphics.tikz.item import TikZItem
-from dero.latex.models.graphics.tikz.node.position.position import NodePosition
-from dero.latex.logic.format.contents import format_contents
+from pyexlatex.models.graphics.tikz.item import TikZItem
+from pyexlatex.models.graphics.tikz.node.position.position import NodePosition
+from pyexlatex.logic.format.contents import format_contents
 
 
 class Node(TikZItem):

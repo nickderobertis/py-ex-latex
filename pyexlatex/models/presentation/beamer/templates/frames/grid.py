@@ -1,7 +1,7 @@
 from typing import Optional, Sequence, Any, List, Tuple
-from dero.latex.models.presentation.beamer.frame.frame import Frame
-from dero.latex.models.presentation.beamer.columns.column import Column
-from dero.latex.models.presentation.beamer.columns.columns import Columns
+from pyexlatex.models.presentation.beamer.frame.frame import Frame
+from pyexlatex.models.presentation.beamer.columns.column import Column
+from pyexlatex.models.presentation.beamer.columns.columns import Columns
 
 
 class GridFrame(Frame):

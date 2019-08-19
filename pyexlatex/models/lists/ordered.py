@@ -1,4 +1,4 @@
-from dero.latex.models.lists.base import ListBase
+from pyexlatex.models.lists.base import ListBase
 
 
 class OrderedList(ListBase):

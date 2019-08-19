@@ -1,4 +1,4 @@
-from dero.latex.models.references.bibtex.style.custom.jof import jof_style
+from pyexlatex.models.references.bibtex.style.custom.jof import jof_style
 
 CUSTOM_STYLES_OBJS = [
     jof_style

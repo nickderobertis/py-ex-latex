@@ -2,12 +2,12 @@ from pandas.core.indexes.base import Index as PandasIndex
 from itertools import zip_longest
 import warnings
 
-from dero.latex.logic.tools import _max_len_or_zero
+from pyexlatex.logic.tools import _max_len_or_zero
 from mixins.repr import ReprMixin
-from dero.latex.table.models.labels.collection import LabelCollection
-from dero.latex.table.models.labels.row import LabelRow
-from dero.latex.table.models.table.section import TableSection
-from dero.latex.table.models.texgen.lines import TableLineSegment, TableLineOfSegments
+from pyexlatex.table.models.labels.collection import LabelCollection
+from pyexlatex.table.models.labels.row import LabelRow
+from pyexlatex.table.models.table.section import TableSection
+from pyexlatex.table.models.texgen.lines import TableLineSegment, TableLineOfSegments
 
 
 class LabelTable(TableSection, ReprMixin):
@@ -16,7 +16,7 @@ class LabelTable(TableSection, ReprMixin):
 
     Example:
 
-    >>>import dero.latex.table as lt
+    >>>import pyexlatex.table as lt
     >>>data_table = lt.DataTable.from_df(some_df)
     >>>col_label_table = lt.LabelTable.from_list_of_lists([['One header'],['More','Headers']])
     >>>row_label_table = lt.LabelTable.from_list_of_lists([['Some','Row','Labels']]).T
@@ -29,8 +29,8 @@ class LabelTable(TableSection, ReprMixin):
 
     def __add__(self, other):
         # Import here to avoid circular imports
-        from dero.latex.table.models.data.table import DataTable
-        from dero.latex.table.models.spacing.columntable import ColumnPadTable
+        from pyexlatex.table.models.data.table import DataTable
+        from pyexlatex.table.models.spacing.columntable import ColumnPadTable
 
         # Return a DataTable if just adding labels to an existing DataTable
         if isinstance(other, DataTable) and not other.row_labels:

@@ -1,9 +1,9 @@
 from typing import Optional, Sequence, Any, List, Tuple
-from dero.latex.models.presentation.beamer.frame.frame import Frame
-from dero.latex.models.format.adjustbox import AdjustBox
-from dero.latex.models.sizes.textwidth import TextWidth
-from dero.latex.figure.models.graphic import Graphic
-from dero.latex.models.format.vfill import VFill
+from pyexlatex.models.presentation.beamer.frame.frame import Frame
+from pyexlatex.models.format.adjustbox import AdjustBox
+from pyexlatex.models.sizes.textwidth import TextWidth
+from pyexlatex.figure.models.graphic import Graphic
+from pyexlatex.models.format.vfill import VFill
 
 
 class FullWidthFrame(Frame):

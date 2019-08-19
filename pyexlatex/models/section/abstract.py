@@ -1,6 +1,6 @@
-from dero.latex.models.item import Item
-from dero.latex.models.documentitem import DocumentItem
-from dero.latex.logic.format.contents import format_contents
+from pyexlatex.models.item import Item
+from pyexlatex.models.documentitem import DocumentItem
+from pyexlatex.logic.format.contents import format_contents
 
 
 class Abstract(DocumentItem, Item):

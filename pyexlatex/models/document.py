@@ -1,24 +1,24 @@
 from typing import List, Optional, Dict
 
-from dero.latex.models.environment import Environment
-from dero.latex.models.item import Item, ItemBase
-from dero.latex.models.control.documentclass import DocumentClass
-from dero.latex.models.package import Package
-from dero.latex.texgen.packages import default_packages
-from dero.latex.models.page.style import PageStyle
-from dero.latex.models.landscape import Landscape
-from dero.latex.logic.pdf.main import document_to_pdf_and_move, latex_str_to_pdf_obj_with_sources
-from dero.latex.texgen.replacements.filename import latex_filename_replacements
-from dero.latex.logic.extract.docitems import extract_document_items_from_ambiguous_collection
-from dero.latex.models.page.number import right_aligned_page_numbers
-from dero.latex.models.page.header import remove_header
-from dero.latex.models.page.footer import CenterFooter
-from dero.latex.models.format.sectionnum import SectionNumberingFormatter
-from dero.latex.typing import AnyItem, ItemOrListOfItems, ItemAndPreEnvContents
-from dero.latex.models.commands.endfloat import DeclareDelayedFloatFlavor
-from dero.latex.models.format.linespacing import LineSpacing
-from dero.latex.models.commands.floatrow import DeclareFloatFont, FloatSetup
-from dero.latex.models.containeritem import ContainerItem
+from pyexlatex.models.environment import Environment
+from pyexlatex.models.item import Item, ItemBase
+from pyexlatex.models.control.documentclass import DocumentClass
+from pyexlatex.models.package import Package
+from pyexlatex.texgen.packages import default_packages
+from pyexlatex.models.page.style import PageStyle
+from pyexlatex.models.landscape import Landscape
+from pyexlatex.logic.pdf.main import document_to_pdf_and_move, latex_str_to_pdf_obj_with_sources
+from pyexlatex.texgen.replacements.filename import latex_filename_replacements
+from pyexlatex.logic.extract.docitems import extract_document_items_from_ambiguous_collection
+from pyexlatex.models.page.number import right_aligned_page_numbers
+from pyexlatex.models.page.header import remove_header
+from pyexlatex.models.page.footer import CenterFooter
+from pyexlatex.models.format.sectionnum import SectionNumberingFormatter
+from pyexlatex.typing import AnyItem, ItemOrListOfItems, ItemAndPreEnvContents
+from pyexlatex.models.commands.endfloat import DeclareDelayedFloatFlavor
+from pyexlatex.models.format.linespacing import LineSpacing
+from pyexlatex.models.commands.floatrow import DeclareFloatFont, FloatSetup
+from pyexlatex.models.containeritem import ContainerItem
 
 
 class DocumentEnvironment(Environment):
@@ -34,7 +34,7 @@ class DocumentBase(ContainerItem, Item):
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
                  pre_env_contents: Optional[ItemOrListOfItems] = None):
-        from dero.latex.logic.builder import _build
+        from pyexlatex.logic.builder import _build
 
         self.add_data_from_content(content)
 
@@ -116,8 +116,8 @@ class Document(DocumentBase):
                  document_type: str = 'article', font_size: Optional[float] = None,
                  num_columns: Optional[int] = None, line_spacing: Optional[float] = None,
                  tables_relative_font_size: int = 0, figures_relative_font_size: int = 0):
-        from dero.latex.logic.builder import _build
-        from dero.latex.models.title.page import TitlePage
+        from pyexlatex.logic.builder import _build
+        from pyexlatex.models.title.page import TitlePage
 
         all_packages = self.construct_packages(
             packages=packages,

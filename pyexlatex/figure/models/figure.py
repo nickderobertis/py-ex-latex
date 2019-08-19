@@ -1,20 +1,20 @@
 import os
 from typing import Union, List, Dict, Any
 
-from dero.latex.figure.models.subfigure import Subfigure, Graphic
-from dero.latex.models.documentitem import DocumentItem
-from dero.latex.models import Item
-from dero.latex.models.caption import Caption
-from dero.latex.models.label import Label
-from dero.latex.models.landscape import Landscape
-from dero.latex.logic.builder import build_figure_content
-from dero.latex.texgen.replacements.filename import latex_filename_replacements
+from pyexlatex.figure.models.subfigure import Subfigure, Graphic
+from pyexlatex.models.documentitem import DocumentItem
+from pyexlatex.models import Item
+from pyexlatex.models.caption import Caption
+from pyexlatex.models.label import Label
+from pyexlatex.models.landscape import Landscape
+from pyexlatex.logic.builder import build_figure_content
+from pyexlatex.texgen.replacements.filename import latex_filename_replacements
 from matplotlib.pyplot import Axes, Figure as PltFigure
-from dero.latex.models.commands.newenvironment import NewEnvironment
-from dero.latex.models.commands.begin import Begin
-from dero.latex.models.commands.end import End
-from dero.latex.models.environment import Environment
-from dero.latex.models.containeritem import ContainerItem
+from pyexlatex.models.commands.newenvironment import NewEnvironment
+from pyexlatex.models.commands.begin import Begin
+from pyexlatex.models.commands.end import End
+from pyexlatex.models.environment import Environment
+from pyexlatex.models.containeritem import ContainerItem
 
 SubfigureOrGraphic = Union[Subfigure, Graphic]
 SubfiguresOrGraphics = List[SubfigureOrGraphic]
@@ -72,15 +72,15 @@ class Figure(ContainerItem, Item):
         return self.subfigures[item]
 
     def as_document(self, landscape=False):
-        from dero.latex.models.document import Document
-        from dero.latex.figure.packages import default_packages
+        from pyexlatex.models.document import Document
+        from pyexlatex.figure.packages import default_packages
 
         return Document(self, default_packages, landscape=landscape)
 
     def to_pdf_and_move(self, as_document=True, outfolder: str=None, outname: str=None,
                         landscape=False):
-        from dero.latex.logic.pdf.main import document_to_pdf_and_move
-        from dero.latex.models.document import Document
+        from pyexlatex.logic.pdf.main import document_to_pdf_and_move
+        from pyexlatex.models.document import Document
 
         to_output: Figure = self
         if as_document:

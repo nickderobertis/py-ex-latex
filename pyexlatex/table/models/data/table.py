@@ -2,15 +2,15 @@ from typing import Union, List
 
 import pandas as pd
 
-from dero.latex.table.models.interfaces import LabelClassOrStrs
-from dero.latex.logic.tools import _add_if_not_none
+from pyexlatex.table.models.interfaces import LabelClassOrStrs
+from pyexlatex.logic.tools import _add_if_not_none
 from mixins.repr import ReprMixin
-from dero.latex.table.models.data.valuestable import ValuesTable
-from dero.latex.table.models.labels.label import Label
-from dero.latex.table.models.labels.table import LabelTable, LabelCollection
-from dero.latex.table.models.spacing.columntable import ColumnPadTable, CellSpacer
-from dero.latex.table.models.table.section import TableSection
-from dero.latex.table.logic.panels.topleft import _set_top_left_corner_labels
+from pyexlatex.table.models.data.valuestable import ValuesTable
+from pyexlatex.table.models.labels.label import Label
+from pyexlatex.table.models.labels.table import LabelTable, LabelCollection
+from pyexlatex.table.models.spacing.columntable import ColumnPadTable, CellSpacer
+from pyexlatex.table.models.table.section import TableSection
+from pyexlatex.table.logic.panels.topleft import _set_top_left_corner_labels
 
 class DataTable(TableSection, ReprMixin):
     """

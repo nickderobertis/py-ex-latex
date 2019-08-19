@@ -1,5 +1,5 @@
-from dero.latex.models.section.base import TextAreaBase
-from dero.latex.models.section.sections import Section
+from pyexlatex.models.section.base import TextAreaBase
+from pyexlatex.models.section.sections import Section
 
 
 class Appendix(TextAreaBase):

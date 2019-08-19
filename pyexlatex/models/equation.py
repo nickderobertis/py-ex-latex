@@ -1,8 +1,8 @@
 from typing import Union, Optional
 from sympy import Eq, latex
-from dero.latex.models.item import IsLatexItemMixin
-from dero.latex.models.mixins import IsSpecificClassMixin
-from dero.latex.logic.format import eq as format_eq
+from pyexlatex.models.item import IsLatexItemMixin
+from pyexlatex.models.mixins import IsSpecificClassMixin
+from pyexlatex.logic.format import eq as format_eq
 
 class Equation(IsSpecificClassMixin, IsLatexItemMixin):
     name = 'equation'

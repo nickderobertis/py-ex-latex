@@ -1,11 +1,11 @@
 from typing import Optional, Sequence
-from dero.latex.models.item import ItemBase
-from dero.latex.models.references.bibtex.base import BibTexEntryBase
-from dero.latex.models.references.bibtex.style.manager import StyleManager
-from dero.latex.models.control.filecontents import FileContents
-from dero.latex.models.containeritem import ContainerItem
-from dero.latex.models.package import Package
-from dero.latex.texgen import _basic_item_str
+from pyexlatex.models.item import ItemBase
+from pyexlatex.models.references.bibtex.base import BibTexEntryBase
+from pyexlatex.models.references.bibtex.style.manager import StyleManager
+from pyexlatex.models.control.filecontents import FileContents
+from pyexlatex.models.containeritem import ContainerItem
+from pyexlatex.models.package import Package
+from pyexlatex.texgen import _basic_item_str
 
 
 class Bibliography(ContainerItem, ItemBase):
@@ -23,14 +23,14 @@ class Bibliography(ContainerItem, ItemBase):
         self.data.packages.append(Package('natbib'))
 
     def _include_references_file(self, references: Optional[Sequence[BibTexEntryBase]] = None):
-        from dero.latex.logic.builder import _build
+        from pyexlatex.logic.builder import _build
         all_references = _build(references)
         references_inline_file = FileContents(all_references, 'refs.bib')
         self.data.end_document_items.append(references_inline_file)
         self.data.packages.append(Package('filecontents'))
 
     def __str__(self):
-        from dero.latex.logic.builder import _build
+        from pyexlatex.logic.builder import _build
         bibliography_str = _basic_item_str('bibliography', 'refs')
         output = _build([
             self.style,

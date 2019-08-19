@@ -2,8 +2,7 @@ import datetime
 import filecmp
 import os
 
-from dero.data import replace_missing_csv
-from dero.latex.tools.fileops import move_if_exists, remove_all_if_exist, remove_if_exists, move_all_if_exists
+from pyexlatex.tools.fileops import move_if_exists, remove_all_if_exist, remove_if_exists, move_all_if_exists
 
 
 def date_time_move_latex(tablename,filepath, folder_name='Tables'):
@@ -136,3 +135,18 @@ def csv_to_raw_latex(infile, csvstring=False, missing_rep=" - ", formatstr='{:.3
 
     return latex_list
 
+
+def replace_missing_csv(csv_list, missing_rep):
+    '''
+    Replaces missing items in a CSV with a given missing representation string.
+    '''
+    full_list = []
+    for line in csv_list:
+        line_list = line.split(',')
+        new_line_list = []
+        for item in line_list:
+            if item == '': #if the item is missing
+                item = missing_rep
+            new_line_list.append(item)
+        full_list.append(new_line_list)
+    return full_list

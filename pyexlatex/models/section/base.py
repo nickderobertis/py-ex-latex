@@ -1,11 +1,11 @@
 from typing import Optional
-from dero.latex.models.item import Item
+from pyexlatex.models.item import Item
 from mixins.repr import ReprMixin
-from dero.latex.logic.format.contents import format_contents as fmt
-from dero.latex.logic.builder import _build
-from dero.latex.models.documentitem import DocumentItem
-from dero.latex.models.label import Label
-from dero.latex.models.containeritem import ContainerItem
+from pyexlatex.logic.format.contents import format_contents as fmt
+from pyexlatex.logic.builder import _build
+from pyexlatex.models.documentitem import DocumentItem
+from pyexlatex.models.label import Label
+from pyexlatex.models.containeritem import ContainerItem
 
 
 class TextAreaMixin(ContainerItem):

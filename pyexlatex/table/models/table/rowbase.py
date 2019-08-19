@@ -1,10 +1,10 @@
 from typing import Iterable
 
 from mixins.repr import ReprMixin
-from dero.latex.table.models.data.dataitem import DataItem
-from dero.latex.table.models.labels.label import Label
-from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
-from dero.latex.table.models.spacing.cell import CellSpacer
+from pyexlatex.table.models.data.dataitem import DataItem
+from pyexlatex.table.models.labels.label import Label
+from pyexlatex.table.models.mixins.addvalues.row import RowAddMixin
+from pyexlatex.table.models.spacing.cell import CellSpacer
 
 
 class RowBase(ReprMixin, RowAddMixin):
@@ -45,8 +45,8 @@ class RowBase(ReprMixin, RowAddMixin):
 
 
 def _get_length(obj):
-    from dero.latex.table.models.texgen.lines import TableLineOfSegments, TableLineSegment
-    from dero.latex.table.models.labels.collection import LabelCollection
+    from pyexlatex.table.models.texgen.lines import TableLineOfSegments, TableLineSegment
+    from pyexlatex.table.models.labels.collection import LabelCollection
     if isinstance(obj, (Label, LabelCollection, DataItem, TableLineOfSegments, TableLineSegment)):
         return len(obj)
     else:

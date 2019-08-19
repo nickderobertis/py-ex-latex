@@ -1,5 +1,5 @@
-from dero.latex.models.package import Package
-from dero.latex.texgen.packages.columntypes import ColumnTypesPackage
+from pyexlatex.models.package import Package
+from pyexlatex.texgen.packages.columntypes import ColumnTypesPackage
 
 _default_package_strs = [
     'amsmath',

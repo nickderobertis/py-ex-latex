@@ -1,7 +1,7 @@
 import math
 import os
 
-from dero.latex.tools import date_time_move_latex
+from pyexlatex.tools import date_time_move_latex
 
 
 def latex_equations_to_pdf(latex_list, directory, name='Equations', below_text=None,

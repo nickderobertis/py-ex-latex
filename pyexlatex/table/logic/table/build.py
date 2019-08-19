@@ -1,9 +1,9 @@
 from typing import Union
 
-from dero.latex.table.models.panels.collection import PanelCollection
-from dero.latex.table.models.table.row import Row
-from dero.latex.table.models.texgen.lines import TopRule, MidRule, BottomRule, TableLine
-from dero.latex.models.format.breaks import OutputLineBreak, LineBreak
+from pyexlatex.table.models.panels.collection import PanelCollection
+from pyexlatex.table.models.table.row import Row
+from pyexlatex.table.models.texgen.lines import TopRule, MidRule, BottomRule, TableLine
+from pyexlatex.models.format.breaks import OutputLineBreak, LineBreak
 
 def build_tabular_content_from_panel_collection(panel_collection: PanelCollection, mid_rule=True):
     rows: [Row, TableLine] = _build_tabular_rows_from_panel_collection(

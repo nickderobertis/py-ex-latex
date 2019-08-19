@@ -1,9 +1,9 @@
 import copy
 
-from dero.latex.table.models.panels.grid import GridShape
-from dero.latex.table.models.labels.table import LabelTable
-from dero.latex.table.models.labels.collection import LabelCollection
-from dero.latex.table.models.table.section import TableSection
+from pyexlatex.table.models.panels.grid import GridShape
+from pyexlatex.table.models.labels.table import LabelTable
+from pyexlatex.table.models.labels.collection import LabelCollection
+from pyexlatex.table.models.table.section import TableSection
 
 def common_column_labels(grid: GridShape, use_object_equality=True, enforce_label_order=True):
     axis = 1 # columns

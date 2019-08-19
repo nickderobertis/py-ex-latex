@@ -1,4 +1,4 @@
-from dero.latex.models.item import IsLatexItemMixin, IsSpecificClassMixin
+from pyexlatex.models.item import IsLatexItemMixin, IsSpecificClassMixin
 
 
 class Raw(IsSpecificClassMixin, IsLatexItemMixin):

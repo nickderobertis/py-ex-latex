@@ -1,10 +1,10 @@
 from typing import Optional, Sequence
-from dero.latex.models.presentation.beamer.frame.frame import Frame
-from dero.latex.models.title.title import Title
-from dero.latex.models.title.subtitle import Subtitle
-from dero.latex.models.credits.author import Author
-from dero.latex.models.date import Date
-from dero.latex.models.title.framepage import MakeFrameTitle
+from pyexlatex.models.presentation.beamer.frame.frame import Frame
+from pyexlatex.models.title.title import Title
+from pyexlatex.models.title.subtitle import Subtitle
+from pyexlatex.models.credits.author import Author
+from pyexlatex.models.date import Date
+from pyexlatex.models.title.framepage import MakeFrameTitle
 
 
 class TitleFrame(Frame):
@@ -27,7 +27,7 @@ class TitleFrame(Frame):
 
         self.pre_env_content = [content for content in pre_env_contents if content is not None]
         self.add_data_from_content(self.pre_env_content)
-        from dero.latex.logic.builder import _build
+        from pyexlatex.logic.builder import _build
         pre_env_contents = _build(self.pre_env_content)
 
         super().__init__(MakeFrameTitle(), label='title-frame', pre_env_contents=pre_env_contents, **kwargs)

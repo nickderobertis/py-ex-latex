@@ -1,11 +1,11 @@
 from typing import Sequence, List, Union
-from dero.latex.models.presentation.beamer.templates.frames.grid import AutoSizeGridFrame
-from dero.latex.figure.models.graphic import Graphic
-from dero.latex.models.format.vfill import VFill
-from dero.latex.models.presentation.beamer.templates.lists.dim_reveal_items import DimAndRevealListItems
-from dero.latex.models.presentation.beamer.templates.frames.dim_reveal import DimRevealMixin
-from dero.latex.models.lists.ordered import OrderedList
-from dero.latex.models.lists.unordered import UnorderedList
+from pyexlatex.models.presentation.beamer.templates.frames.grid import AutoSizeGridFrame
+from pyexlatex.figure.models.graphic import Graphic
+from pyexlatex.models.format.vfill import VFill
+from pyexlatex.models.presentation.beamer.templates.lists.dim_reveal_items import DimAndRevealListItems
+from pyexlatex.models.presentation.beamer.templates.frames.dim_reveal import DimRevealMixin
+from pyexlatex.models.lists.ordered import OrderedList
+from pyexlatex.models.lists.unordered import UnorderedList
 
 
 class TwoColumnFrame(AutoSizeGridFrame):

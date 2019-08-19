@@ -1,5 +1,5 @@
 from typing import Optional
-from dero.latex.models.section.base import TextAreaBase
+from pyexlatex.models.section.base import TextAreaBase
 
 
 class BlockBase(TextAreaBase):

@@ -1,6 +1,6 @@
 from typing import Optional
-from dero.latex.models.item import ItemBase
-from dero.latex.texgen import no_options_no_contents_str
+from pyexlatex.models.item import ItemBase
+from pyexlatex.texgen import no_options_no_contents_str
 from mixins.repr import ReprMixin
 
 class Mode(ItemBase, ReprMixin):
@@ -19,8 +19,8 @@ class Mode(ItemBase, ReprMixin):
         """
         \mode must be on its own line with no whitespace in some cases, so must have a custom __str__ method
         """
-        from dero.latex.logic.builder import _build
-        from dero.latex.logic.format.contents import format_contents
+        from pyexlatex.logic.builder import _build
+        from pyexlatex.logic.format.contents import format_contents
         mode_definition = no_options_no_contents_str(self.name)  # \mode
         mode_type_str = f'<{self.mode_type}>'
         contents_str = f'{{{format_contents(self.contents)}}}'

@@ -1,5 +1,5 @@
-from dero.latex.models.mixins import IsSpecificClassMixin
-from dero.latex.models.item import IsLatexItemMixin
+from pyexlatex.models.mixins import IsSpecificClassMixin
+from pyexlatex.models.item import IsLatexItemMixin
 
 
 class DocumentItem(IsSpecificClassMixin, IsLatexItemMixin):

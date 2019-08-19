@@ -1,1 +1,1 @@
-from dero.latex.table.models.panels.collection import PanelCollection, Panel
+from pyexlatex.table.models.panels.collection import PanelCollection, Panel

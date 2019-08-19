@@ -2,9 +2,9 @@ from typing import List, Union
 import posixpath
 import os
 
-from dero.latex.texgen import _include_graphics_str
-from dero.latex.models.item import ItemBase
-from dero.latex.models.sizes.linewidth import LineWidth
+from pyexlatex.texgen import _include_graphics_str
+from pyexlatex.models.item import ItemBase
+from pyexlatex.models.sizes.linewidth import LineWidth
 
 
 class Graphic(ItemBase):
@@ -32,7 +32,7 @@ class Graphic(ItemBase):
         return _include_graphics_str(self.source_paths[0], self.width_str)
 
     def _set_path(self, filepath: str):
-        from dero.latex.texgen.replacements.filename import _latex_valid_basename
+        from pyexlatex.texgen.replacements.filename import _latex_valid_basename
 
         basename = _latex_valid_basename(filepath)
         source_path = posixpath.join('Sources', basename)

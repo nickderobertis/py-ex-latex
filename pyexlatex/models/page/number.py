@@ -1,6 +1,6 @@
-from dero.latex.models.item import SimpleItem
-from dero.latex.models.page.footer import RightFooter, CenterFooter
-from dero.latex.logic.builder import _build
+from pyexlatex.models.item import SimpleItem
+from pyexlatex.models.page.footer import RightFooter, CenterFooter
+from pyexlatex.logic.builder import _build
 
 
 class PageReference(SimpleItem):

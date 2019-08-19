@@ -1,6 +1,6 @@
 import numpy as np
 
-from dero.latex.table.models.table.section import TableSection
+from pyexlatex.table.models.table.section import TableSection
 from mixins.repr import ReprMixin
 
 

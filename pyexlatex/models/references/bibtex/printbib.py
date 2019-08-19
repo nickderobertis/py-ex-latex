@@ -1,5 +1,5 @@
-from dero.latex.models.item import NoOptionsNoContentsItem
-from dero.latex.models.documentitem import DocumentItem
+from pyexlatex.models.item import NoOptionsNoContentsItem
+from pyexlatex.models.documentitem import DocumentItem
 
 class PrintBibliography(NoOptionsNoContentsItem, DocumentItem):
     name = 'printbibliography'

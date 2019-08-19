@@ -1,5 +1,5 @@
 from typing import Optional, Dict
-from dero.latex.models.references.bibtex.base import BibTexEntryBase
+from pyexlatex.models.references.bibtex.base import BibTexEntryBase
 
 
 class BibTexArticle(BibTexEntryBase):

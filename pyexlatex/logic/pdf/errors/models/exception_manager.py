@@ -1,8 +1,8 @@
 from typing import List, Dict, TYPE_CHECKING
 if TYPE_CHECKING:
-    from dero.latex.logic.pdf.errors.exc import LatexException
-from dero.latex.logic.pdf.errors.models.error import LatexError
-from dero.latex.logic.pdf.errors.models.error_collection import LatexErrorCollection
+    from pyexlatex.logic.pdf.errors.exc import LatexException
+from pyexlatex.logic.pdf.errors.models.error import LatexError
+from pyexlatex.logic.pdf.errors.models.error_collection import LatexErrorCollection
 from latex.exc import LatexBuildError
 
 
@@ -20,7 +20,7 @@ class LatexExceptionManager:
         return exception_map
 
     def exception_from_error(self, error: LatexError) -> 'LatexException':
-        from dero.latex.logic.pdf.errors.exc import LatexException
+        from pyexlatex.logic.pdf.errors.exc import LatexException
         for possible_match in self.match_strs:
             if possible_match in error.error:
                 exc_class = self.exceptions[possible_match]

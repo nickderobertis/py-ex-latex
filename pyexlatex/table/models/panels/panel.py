@@ -1,11 +1,11 @@
 import pandas as pd
 
-from dero.latex.logic.tools import _max_len_or_zero
-from dero.latex.table.models.panels.grid import PanelGrid, GridShape
+from pyexlatex.logic.tools import _max_len_or_zero
+from pyexlatex.table.models.panels.grid import PanelGrid, GridShape
 from mixins.repr import ReprMixin
-from dero.latex.table.models.data.table import DataTable
-from dero.latex.table.models.table.row import Row
-from dero.latex.table.models.table.section import TableSection
+from pyexlatex.table.models.data.table import DataTable
+from pyexlatex.table.models.table.row import Row
+from pyexlatex.table.models.table.section import TableSection
 
 
 
@@ -25,7 +25,7 @@ class Panel(ReprMixin):
     def from_data_tables(cls, data_table_list: [DataTable], shape: tuple=None, name: str=None):
         """
 
-        :param data_table_list: list of dero.latex.table.DataTable
+        :param data_table_list: list of pyexlatex.table.DataTable
         :param shape: tuple of (rows, columns) to arrange DataTables. They will be placed from left to right,
                       then from top to bottom.
                       passsing None defaults one column, as many rows as DataTables
@@ -82,8 +82,8 @@ class Panel(ReprMixin):
         return self._rows
 
     def _set_rows(self):
-        from dero.latex.table.models.labels.table import LabelTable, LabelCollection
-        from dero.latex.table.models.labels.label import Label
+        from pyexlatex.table.models.labels.table import LabelTable, LabelCollection
+        from pyexlatex.table.models.labels.label import Label
         rows: [Row] = []
 
         # Add panel name

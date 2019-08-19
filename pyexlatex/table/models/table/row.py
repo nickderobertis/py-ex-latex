@@ -1,11 +1,11 @@
 from typing import Union, Iterable
 
-from dero.latex.table.models.data.dataitem import DataItem
-from dero.latex.table.models.labels.collection import LabelCollection
-from dero.latex.table.models.labels.label import Label
-from dero.latex.table.models.spacing.cell import CellSpacer
-from dero.latex.table.models.table.rowbase import RowBase
-from dero.latex.texparser.clean import _remove_backslashes
+from pyexlatex.table.models.data.dataitem import DataItem
+from pyexlatex.table.models.labels.collection import LabelCollection
+from pyexlatex.table.models.labels.label import Label
+from pyexlatex.table.models.spacing.cell import CellSpacer
+from pyexlatex.table.models.table.rowbase import RowBase
+from pyexlatex.texparser.clean import _remove_backslashes
 
 
 class Row(RowBase):

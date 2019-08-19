@@ -1,11 +1,11 @@
 
 
-from dero.latex.figure.models.graphic import Graphic
-from dero.latex.models import Item
-from dero.latex.models.caption import Caption
-from dero.latex.models.label import Label
-from dero.latex.logic.builder import build_figure_content
-from dero.latex.models.containeritem import ContainerItem
+from pyexlatex.figure.models.graphic import Graphic
+from pyexlatex.models import Item
+from pyexlatex.models.caption import Caption
+from pyexlatex.models.label import Label
+from pyexlatex.logic.builder import build_figure_content
+from pyexlatex.models.containeritem import ContainerItem
 
 
 class Subfigure(ContainerItem, Item):

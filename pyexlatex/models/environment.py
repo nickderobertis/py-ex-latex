@@ -1,6 +1,6 @@
 from typing import Optional
-from dero.latex.models.commands.begin import Begin
-from dero.latex.models.commands.end import End
+from pyexlatex.models.commands.begin import Begin
+from pyexlatex.models.commands.end import End
 
 class Environment:
 
@@ -14,5 +14,5 @@ class Environment:
         return f'<Environment(name={self.name})>'
 
     def wrap(self, other):
-        from dero.latex.logic.builder import _build
+        from pyexlatex.logic.builder import _build
         return _build([self._begin, other, self._end])

@@ -2,7 +2,7 @@ from typing import Union, AnyStr
 
 
 def _set_top_left_corner_labels(top_left_corner_labels = None):
-    from dero.latex.table import LabelTable, LabelCollection
+    from pyexlatex.table import LabelTable, LabelCollection
 
     if top_left_corner_labels is None:
         return LabelTable.from_list_of_lists([[' ']])

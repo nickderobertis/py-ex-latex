@@ -1,4 +1,4 @@
-from dero.latex.models.item import Item
+from pyexlatex.models.item import Item
 
 class FileContents(Item):
     name = 'filecontents'

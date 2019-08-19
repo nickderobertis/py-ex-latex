@@ -1,7 +1,7 @@
 from typing import Optional, Callable, Tuple
 import warnings
-from dero.latex.logic.pdf.errors.exc import TooManyUnprocessedFloatsException
-from dero.latex.models.control.extrafloats import ExtraFloats
+from pyexlatex.logic.pdf.errors.exc import TooManyUnprocessedFloatsException
+from pyexlatex.models.control.extrafloats import ExtraFloats
 
 EXTRA_FLOATS_LIMIT = 10000
 DEFAULT_EXTRA_FLOATS = 1000
@@ -20,7 +20,7 @@ def get_extra_float_and_new_num_floats(extra_floats_num: Optional[int] = None) -
 
 # def handle_too_many_floats_exception(latex_str: str, callback: Callable, extra_floats_num: Optional[int] = None,
 #                                      **callback_kwargs):
-#     from dero.latex.logic.builder import _build
+#     from pyexlatex.logic.builder import _build
 #
 #     if extra_floats_num is None:
 #         num_floats = DEFAULT_EXTRA_FLOATS

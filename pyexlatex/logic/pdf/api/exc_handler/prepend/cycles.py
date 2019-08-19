@@ -1,7 +1,7 @@
 from typing import Optional, Callable, Tuple
 import warnings
-from dero.latex.logic.pdf.errors.exc import OutputLoopConsecutiveDeadCycles
-from dero.latex.models.control.maxdeadcycles import MaxDeadCycles
+from pyexlatex.logic.pdf.errors.exc import OutputLoopConsecutiveDeadCycles
+from pyexlatex.models.control.maxdeadcycles import MaxDeadCycles
 
 EXTRA_CYCLES_LIMIT = 1000
 DEFAULT_EXTRA_CYCLES = 200
@@ -22,7 +22,7 @@ def get_max_dead_cycles_and_new_num_cycles(cycles_num: Optional[int] = None) -> 
 
 def handle_output_loop_cycles_exception(latex_str: str, callback: Callable, cycles_num: Optional[int] = None,
                                         **callback_kwargs):
-    from dero.latex.logic.builder import _build
+    from pyexlatex.logic.builder import _build
 
     if cycles_num is None:
         cycles = DEFAULT_EXTRA_CYCLES

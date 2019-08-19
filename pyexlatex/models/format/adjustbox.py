@@ -1,7 +1,7 @@
 from typing import Sequence
-from dero.latex.models.item import Item
-from dero.latex.models.section.base import TextAreaMixin
-from dero.latex.models.package import Package
+from pyexlatex.models.item import Item
+from pyexlatex.models.section.base import TextAreaMixin
+from pyexlatex.models.package import Package
 
 
 class AdjustBox(TextAreaMixin, Item):

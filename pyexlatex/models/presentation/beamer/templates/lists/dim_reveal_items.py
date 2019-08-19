@@ -1,12 +1,12 @@
 from typing import Sequence, List
-from dero.latex.models.lists.item import ListItem
-from dero.latex.models.lists.base import VerticalFillMixin
-from dero.latex.models.format.textcolor import TextColor
-from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
-from dero.latex.models.presentation.beamer.overlay.until_end import UntilEnd
-from dero.latex.models.presentation.beamer.overlay.next import NextWithIncrement, NextWithoutIncrement
-from dero.latex.models.containeritem import ContainerItem
-from dero.latex.models.item import ItemBase
+from pyexlatex.models.lists.item import ListItem
+from pyexlatex.models.lists.base import VerticalFillMixin
+from pyexlatex.models.format.textcolor import TextColor
+from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+from pyexlatex.models.presentation.beamer.overlay.until_end import UntilEnd
+from pyexlatex.models.presentation.beamer.overlay.next import NextWithIncrement, NextWithoutIncrement
+from pyexlatex.models.containeritem import ContainerItem
+from pyexlatex.models.item import ItemBase
 
 
 class DimAndRevealListItem(ListItem):

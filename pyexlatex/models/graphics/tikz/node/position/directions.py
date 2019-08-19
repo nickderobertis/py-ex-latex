@@ -1,9 +1,9 @@
 from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from dero.latex.models.graphics.tikz.node.node import Node
-from dero.latex.models.item import ItemBase
-from dero.latex.models.package import Package
-from dero.latex.models.graphics.tikz.library import TikZLibrary
+    from pyexlatex.models.graphics.tikz.node.node import Node
+from pyexlatex.models.item import ItemBase
+from pyexlatex.models.package import Package
+from pyexlatex.models.graphics.tikz.library import TikZLibrary
 
 
 class DirectionBase(ItemBase):

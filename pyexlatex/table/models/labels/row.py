@@ -1,8 +1,8 @@
 from typing import Union
 
-from dero.latex.table.models.table.row import Row
-from dero.latex.table.models.labels.collection import LabelCollection, Label
-from dero.latex.table.models.labels.multicolumn import MultiColumn
+from pyexlatex.table.models.table.row import Row
+from pyexlatex.table.models.labels.collection import LabelCollection, Label
+from pyexlatex.table.models.labels.multicolumn import MultiColumn
 
 class LabelRow(Row):
     repr_cols = ['values', 'length']

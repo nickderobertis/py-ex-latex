@@ -1,5 +1,5 @@
 from mixins.repr import ReprMixin
-from dero.latex.models.presentation.beamer.overlay.overlay_param import OverlayParameter
+from pyexlatex.models.presentation.beamer.overlay.overlay_param import OverlayParameter
 
 
 class Range(ReprMixin, OverlayParameter):

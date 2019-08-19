@@ -1,7 +1,7 @@
 from copy import deepcopy
 
-from dero.latex.table.models.table.row import Row
-from dero.latex.logic.tools import _max_len_or_zero
+from pyexlatex.table.models.table.row import Row
+from pyexlatex.logic.tools import _max_len_or_zero
 from mixins.repr import ReprMixin
 
 
@@ -24,7 +24,7 @@ class TableSection(ReprMixin):
 
     def __add__(self, other):
         # import here to avoid circular imports
-        from dero.latex.table.models.spacing.columntable import ColumnPadTable
+        from pyexlatex.table.models.spacing.columntable import ColumnPadTable
 
         num_rows = max([self.length, other.length])
 
@@ -85,8 +85,8 @@ class TableSection(ReprMixin):
         klass = self_class if self_class == other_class else TableSection
 
         # import here to avoid circular imports
-        from dero.latex.table.models.spacing.rowtable import RowPadTable
-        from dero.latex.table.models.spacing.columntable import ColumnPadTable
+        from pyexlatex.table.models.spacing.rowtable import RowPadTable
+        from pyexlatex.table.models.spacing.columntable import ColumnPadTable
         if klass in (RowPadTable, ColumnPadTable):
             return TableSection
 
@@ -152,8 +152,8 @@ class TableSection(ReprMixin):
         raise NotImplementedError
 
 def _get_class_for_row(*objs, row_number: int=0):
-    from dero.latex.table.models.texgen.lines import TableLineOfSegments
-    from dero.latex.table.models.labels.row import LabelRow, LabelCollection
+    from pyexlatex.table.models.texgen.lines import TableLineOfSegments
+    from pyexlatex.table.models.labels.row import LabelRow, LabelCollection
 
     suggested_class = _get_by_row_number_first_class_without_index_error(*objs, row_number=row_number)
 
@@ -172,11 +172,11 @@ def _get_class_for_row(*objs, row_number: int=0):
 
 
 def _get_row_class_for_item_class(klass):
-    from dero.latex.table.models.texgen.lines import TableLineSegment, TableLineOfSegments
-    from dero.latex.table.models.data.dataitem import DataItem
-    from dero.latex.table.models.data.row import DataRow
-    from dero.latex.table.models.labels.label import Label
-    from dero.latex.table.models.labels.row import LabelRow, LabelCollection
+    from pyexlatex.table.models.texgen.lines import TableLineSegment, TableLineOfSegments
+    from pyexlatex.table.models.data.dataitem import DataItem
+    from pyexlatex.table.models.data.row import DataRow
+    from pyexlatex.table.models.labels.label import Label
+    from pyexlatex.table.models.labels.row import LabelRow, LabelCollection
     if issubclass(klass, TableLineSegment):
         return TableLineOfSegments
     if issubclass(klass, DataItem):

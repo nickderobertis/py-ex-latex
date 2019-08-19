@@ -2,10 +2,10 @@ from typing import Union, Iterable
 import re
 from copy import deepcopy
 
-from dero.latex.logic.tools import _add_if_not_none
-from dero.latex.table.models.labels.label import Label
-from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
-from dero.latex.table.models.table.rowbase import RowBase
+from pyexlatex.logic.tools import _add_if_not_none
+from pyexlatex.table.models.labels.label import Label
+from pyexlatex.table.models.mixins.addvalues.row import RowAddMixin
+from pyexlatex.table.models.table.rowbase import RowBase
 
 
 class LabelCollection(RowBase):

@@ -1,4 +1,4 @@
-from dero.latex.models.item import EqualsItem
+from pyexlatex.models.item import EqualsItem
 
 class MaxDeadCycles(EqualsItem):
     name = 'maxdeadcycles'

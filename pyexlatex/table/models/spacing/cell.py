@@ -1,6 +1,6 @@
 
 
-from dero.latex.table.models.labels.label import Label
+from pyexlatex.table.models.labels.label import Label
 
 class CellSpacer(Label):
 

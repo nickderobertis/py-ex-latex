@@ -1,4 +1,4 @@
-from dero.latex.models.package import Package
+from pyexlatex.models.package import Package
 
 simple_package_strs = [
     'caption',

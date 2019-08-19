@@ -1,7 +1,7 @@
 from pandas import DataFrame
-from dero.latex.table.models.data.row import DataRow
-from dero.latex.table.models.data.dataitem import DataItem
-from dero.latex.table.models.table.section import TableSection
+from pyexlatex.table.models.data.row import DataRow
+from pyexlatex.table.models.data.dataitem import DataItem
+from pyexlatex.table.models.table.section import TableSection
 
 
 
@@ -29,7 +29,7 @@ class ValuesTable(TableSection):
 
     def __add__(self, other):
         # import here to avoid circular imports
-        from dero.latex.table.models.spacing.columntable import ColumnPadTable
+        from pyexlatex.table.models.spacing.columntable import ColumnPadTable
 
         table_section: TableSection = super().__add__(other)
 

@@ -1,5 +1,5 @@
-from dero.latex.models.section.base import SectionBase
-from dero.latex.models.section.paragraphs import Paragraph
+from pyexlatex.models.section.base import SectionBase
+from pyexlatex.models.section.paragraphs import Paragraph
 
 
 class SubSubSection(SectionBase):

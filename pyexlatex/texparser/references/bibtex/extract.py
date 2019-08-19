@@ -1,7 +1,7 @@
 from typing import List
 import bibtexparser
 from bibtexparser.bibdatabase import BibDatabase
-from dero.latex.models.references.bibtex.generic import BibTexEntry
+from pyexlatex.models.references.bibtex.generic import BibTexEntry
 
 
 def extract_bibtex_str(bibtex: str) -> List[BibTexEntry]:

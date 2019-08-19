@@ -1,8 +1,8 @@
 from typing import Optional, Sequence, List, Tuple, Union, TYPE_CHECKING
 if TYPE_CHECKING:
-    from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
-    from dero.latex.models.graphics.tikz.node.node import Node
-from dero.latex.models.graphics.tikz.item import TikZItem
+    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.models.graphics.tikz.node.node import Node
+from pyexlatex.models.graphics.tikz.item import TikZItem
 
 PATH_TYPES = (
     'draw',

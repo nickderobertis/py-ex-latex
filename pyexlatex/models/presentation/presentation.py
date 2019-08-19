@@ -1,12 +1,12 @@
 from typing import List, Optional, Sequence
-from dero.latex.models.document import DocumentBase
-from dero.latex.typing import ItemOrListOfItems
-from dero.latex.models.package import Package
-from dero.latex.models.control.documentclass import DocumentClass
-from dero.latex.models.control.mode import Mode
-from dero.latex.models.presentation.beamer.theme.usetheme import UseTheme
-from dero.latex.models.title.frame import TitleFrame, should_create_title_frame
-from dero.latex.models.item import ItemBase
+from pyexlatex.models.document import DocumentBase
+from pyexlatex.typing import ItemOrListOfItems
+from pyexlatex.models.package import Package
+from pyexlatex.models.control.documentclass import DocumentClass
+from pyexlatex.models.control.mode import Mode
+from pyexlatex.models.presentation.beamer.theme.usetheme import UseTheme
+from pyexlatex.models.title.frame import TitleFrame, should_create_title_frame
+from pyexlatex.models.item import ItemBase
 
 
 class Presentation(DocumentBase):

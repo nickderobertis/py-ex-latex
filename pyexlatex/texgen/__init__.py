@@ -1,6 +1,6 @@
 from typing import Dict, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
 
 
 def _include_graphics_str(filepath, width=r'\linewidth'):
@@ -19,14 +19,14 @@ def no_options_no_contents_str(item_name: str, overlay: Optional['Overlay'] = No
 
 
 def _no_braces_item_str(item_name, contents, overlay: Optional['Overlay'] = None) -> str:
-    from dero.latex.logic.format.contents import format_contents
+    from pyexlatex.logic.format.contents import format_contents
     overlay = overlay if overlay is not None else ""
     return rf'\{item_name}{overlay} {format_contents(contents)}'
 
 
 def _basic_item_str(item_name, contents, modifiers: Optional[str] = None, pre_modifiers: Optional[str] = None,
                     overlay: Optional['Overlay'] = None, format_content: bool = True):
-    from dero.latex.logic.format.contents import format_contents
+    from pyexlatex.logic.format.contents import format_contents
     pre_modifiers = pre_modifiers if pre_modifiers is not None else ""
     modifiers = modifiers if modifiers is not None else ""
     overlay = overlay if overlay is not None else ""
@@ -38,7 +38,7 @@ def _basic_item_str(item_name, contents, modifiers: Optional[str] = None, pre_mo
 
 
 def _multi_option_item_str(item_name, *options, overlay: Optional['Overlay'] = None):
-    from dero.latex.logic.format.contents import format_contents
+    from pyexlatex.logic.format.contents import format_contents
     overlay = overlay if overlay is not None else ""
     options_str = ''.join([f'{{{format_contents(str(option))}}}' for option in options])
     return rf'\{item_name}{overlay}{options_str}'
@@ -79,7 +79,7 @@ def _usepackage_str(str_, modifier_str=None):
 
 
 def bibtex_str(item_type: str, item_accessor: str, fields: Dict[str, str]) -> str:
-    from dero.latex.logic.builder import _build
+    from pyexlatex.logic.builder import _build
     begin_str = f'@{item_type}{{{item_accessor},'
     field_strs = ['    ' + _bibtex_field_str(key, value) for key, value in fields.items()]
     end_str = '}'
@@ -93,5 +93,5 @@ def bibtex_str(item_type: str, item_accessor: str, fields: Dict[str, str]) -> st
 
 
 def _bibtex_field_str(key: str, value: str) -> str:
-    from dero.latex.logic.format.contents import format_contents
+    from pyexlatex.logic.format.contents import format_contents
     return f'{key} = {{{format_contents(value)}}},'

@@ -1,7 +1,7 @@
 from typing import List, Dict
 import warnings
 from latex.exc import LatexBuildError
-from dero.latex.logic.pdf.errors.models.error import LatexError
+from pyexlatex.logic.pdf.errors.models.error import LatexError
 
 
 class LatexErrorCollection:

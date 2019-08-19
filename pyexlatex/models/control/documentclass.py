@@ -1,5 +1,5 @@
 from typing import Optional
-from dero.latex.models.item import SimpleItem
+from pyexlatex.models.item import SimpleItem
 
 class DocumentClass(SimpleItem):
     name = 'documentclass'

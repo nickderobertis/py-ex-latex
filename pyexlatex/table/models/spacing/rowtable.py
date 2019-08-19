@@ -1,8 +1,8 @@
 
 
-from dero.latex.table.models.spacing.cell import CellSpacer
-from dero.latex.table.models.data.row import DataRow
-from dero.latex.table.models.data.valuestable import ValuesTable
+from pyexlatex.table.models.spacing.cell import CellSpacer
+from pyexlatex.table.models.data.row import DataRow
+from pyexlatex.table.models.data.valuestable import ValuesTable
 
 class RowPadTable(ValuesTable):
 

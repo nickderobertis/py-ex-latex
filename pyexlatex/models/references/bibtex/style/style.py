@@ -1,7 +1,7 @@
 from typing import Optional
-from dero.latex.models.item import SimpleItem
-from dero.latex.models.package import Package
-from dero.latex.models.control.filecontents import FileContents
+from pyexlatex.models.item import SimpleItem
+from pyexlatex.models.package import Package
+from pyexlatex.models.control.filecontents import FileContents
 
 
 class BibliographyStyle(SimpleItem):

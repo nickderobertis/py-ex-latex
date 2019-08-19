@@ -1,4 +1,4 @@
-from dero.latex.models.references.bibtex.style.style import Style
+from pyexlatex.models.references.bibtex.style.style import Style
 
 BUILTIN_STYLE_NAMES = [
     'abbrv',

@@ -1,5 +1,5 @@
 # TODO: refactor to simplify
-from dero.latex.logic.extract.tools import _is_collection
+from pyexlatex.logic.extract.tools import _is_collection
 
 
 def extract_objs_of_type_from_ambiguous_collection(collection, obj_types):

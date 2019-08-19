@@ -1,4 +1,4 @@
-from dero.latex.models.references.bibtex.style.style import Style
+from pyexlatex.models.references.bibtex.style.style import Style
 
 
 JOF_STYLE = r"""

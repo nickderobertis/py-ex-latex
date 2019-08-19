@@ -1,6 +1,6 @@
 from typing import Optional
-from dero.latex.models.section.base import TextAreaMixin
-from dero.latex.models.item import SimpleItem
+from pyexlatex.models.section.base import TextAreaMixin
+from pyexlatex.models.item import SimpleItem
 
 
 # TODO: update all of this after getting a better understanding of how boxes work and the syntax.

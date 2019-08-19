@@ -1,4 +1,4 @@
-from dero.latex.models.section.base import TextAreaBase
+from pyexlatex.models.section.base import TextAreaBase
 
 
 class Columns(TextAreaBase):

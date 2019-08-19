@@ -1,9 +1,9 @@
 from typing import List, Optional, Sequence
-from dero.latex.models.documentitem import DocumentItem
-from dero.latex.models.package import Package
+from pyexlatex.models.documentitem import DocumentItem
+from pyexlatex.models.package import Package
 from mixins.repr import ReprMixin
 from mixins.attrequals import EqOnAttrsMixin, EqHashMixin
-from dero.latex.models.references.bibtex.base import BibTexEntryBase
+from pyexlatex.models.references.bibtex.base import BibTexEntryBase
 
 
 class UniqueDataList(list):

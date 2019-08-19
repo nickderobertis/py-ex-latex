@@ -1,4 +1,4 @@
-from dero.latex.models.item import MultiOptionSimpleItem
+from pyexlatex.models.item import MultiOptionSimpleItem
 
 class MultiColumn(MultiOptionSimpleItem):
     name = 'multicolumn'

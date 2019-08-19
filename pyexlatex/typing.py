@@ -1,7 +1,7 @@
 from typing import Union, List, Tuple, Dict, Optional
 
-from dero.latex.models import Item
-from dero.latex.models.documentitem import DocumentItem
+from pyexlatex.models import Item
+from pyexlatex.models.documentitem import DocumentItem
 
 AnyItem = Union[Item, DocumentItem]
 ListOfItems = List[AnyItem]

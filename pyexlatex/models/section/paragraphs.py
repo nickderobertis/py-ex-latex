@@ -1,4 +1,4 @@
-from dero.latex.models.section.base import ParagraphBase
+from pyexlatex.models.section.base import ParagraphBase
 
 
 class SubParagraph(ParagraphBase):

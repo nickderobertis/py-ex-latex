@@ -1,9 +1,9 @@
 import os
 from typing import Union, List, Dict, Any, Optional
 from copy import deepcopy
-from dero.latex.models import Item
-from dero.latex.models.section.base import TextAreaBase
-from dero.latex.models.presentation.beamer.frame.title import FrameTitle
+from pyexlatex.models import Item
+from pyexlatex.models.section.base import TextAreaBase
+from pyexlatex.models.presentation.beamer.frame.title import FrameTitle
 
 
 class Frame(TextAreaBase):

@@ -4,19 +4,19 @@ import numpy as np
 import pandas as pd
 
 from mixins.repr import ReprMixin
-from dero.latex.table.logic.panels.combine import (
+from pyexlatex.table.logic.panels.combine import (
     common_column_labels,
     common_row_labels,
     remove_label_collections_from_grid
 )
-from dero.latex.table.logic.panels.letters import panel_string
-from dero.latex.table.logic.panels.topleft import _set_top_left_corner_labels
-from dero.latex.table.models.labels.table import LabelTable, LabelCollection
-from dero.latex.table.models.panels.panel import Panel
-from dero.latex.table.models.panels.panel import PanelGrid, GridShape
-from dero.latex.table.models.spacing.columntable import ColumnPadTable
-from dero.latex.table.models.spacing.rowtable import RowPadTable
-from dero.latex.table.models.table.section import TableSection
+from pyexlatex.table.logic.panels.letters import panel_string
+from pyexlatex.table.logic.panels.topleft import _set_top_left_corner_labels
+from pyexlatex.table.models.labels.table import LabelTable, LabelCollection
+from pyexlatex.table.models.panels.panel import Panel
+from pyexlatex.table.models.panels.panel import PanelGrid, GridShape
+from pyexlatex.table.models.spacing.columntable import ColumnPadTable
+from pyexlatex.table.models.spacing.rowtable import RowPadTable
+from pyexlatex.table.models.table.section import TableSection
 
 
 class PanelCollection(ReprMixin):
@@ -322,7 +322,7 @@ class PanelCollection(ReprMixin):
         )
 
     def to_tex(self, mid_rule=True):
-        from dero.latex.table.logic.table.build import build_tabular_content_from_panel_collection
+        from pyexlatex.table.logic.table.build import build_tabular_content_from_panel_collection
         return build_tabular_content_from_panel_collection(self, mid_rule=mid_rule)
 
 def _panel_name_or_none(panel_names: [str], index: int):

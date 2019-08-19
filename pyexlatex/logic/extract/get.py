@@ -1,5 +1,5 @@
-from dero.latex.typing import ListOrDictOrItem, StrListOrNone, AnyItem
-from dero.latex.logic.extract.docitems import is_latex_item
+from pyexlatex.typing import ListOrDictOrItem, StrListOrNone, AnyItem
+from pyexlatex.logic.extract.docitems import is_latex_item
 
 
 def get_attr_from_items_or_collection(content: ListOrDictOrItem, attr: str, unique: bool = False) -> StrListOrNone:

@@ -1,12 +1,12 @@
 from typing import Optional, Dict, Any, List, Tuple
-from dero.latex.logic.pdf.errors.exc import (
+from pyexlatex.logic.pdf.errors.exc import (
     TooManyUnprocessedFloatsException,
     OutputLoopConsecutiveDeadCycles,
     LatexException
 )
-from dero.latex.logic.pdf.api.exc_handler.prepend.floats import get_extra_float_and_new_num_floats
-from dero.latex.logic.pdf.api.exc_handler.prepend.cycles import get_max_dead_cycles_and_new_num_cycles
-from dero.latex.logic.pdf.api.exc_handler.prepend.typing import PrependItemsDict, PrependKwargsDict
+from pyexlatex.logic.pdf.api.exc_handler.prepend.floats import get_extra_float_and_new_num_floats
+from pyexlatex.logic.pdf.api.exc_handler.prepend.cycles import get_max_dead_cycles_and_new_num_cycles
+from pyexlatex.logic.pdf.api.exc_handler.prepend.typing import PrependItemsDict, PrependKwargsDict
 
 
 def handle_prepend_exceptions(exceptions: List[LatexException], prepend_kwarg_dict: PrependKwargsDict = None,
@@ -59,7 +59,7 @@ def get_prepend_kwarg_dict(prepend_kwarg_dict: PrependKwargsDict = None) -> Prep
 
 
 def add_prepend_items_dict_to_latex_str(prepend_items_dict: PrependItemsDict, latex_str: str) -> str:
-    from dero.latex.logic.builder import _build
+    from pyexlatex.logic.builder import _build
     if not prepend_items_dict:
         return latex_str
     prepend_items = [str(item) for item in prepend_items_dict.values()]

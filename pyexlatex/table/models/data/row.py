@@ -1,4 +1,4 @@
-from dero.latex.table.models.table.row import Row
+from pyexlatex.table.models.table.row import Row
 
 
 class DataRow(Row):

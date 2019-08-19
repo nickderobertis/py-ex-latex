@@ -1,6 +1,6 @@
 from typing import Dict
-from dero.latex.texgen import bibtex_str
-from dero.latex.models.documentitem import DocumentItem
+from pyexlatex.texgen import bibtex_str
+from pyexlatex.models.documentitem import DocumentItem
 from mixins.repr import ReprMixin
 
 class BibTexEntryBase(DocumentItem, ReprMixin):

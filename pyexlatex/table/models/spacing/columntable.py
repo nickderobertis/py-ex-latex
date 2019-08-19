@@ -1,8 +1,8 @@
 from copy import deepcopy
 
-from dero.latex.table.models.spacing.cell import CellSpacer
-from dero.latex.table.models.table.section import TableSection
-from dero.latex.table.models.data.valuestable import ValuesTable
+from pyexlatex.table.models.spacing.cell import CellSpacer
+from pyexlatex.table.models.table.section import TableSection
+from pyexlatex.table.models.data.valuestable import ValuesTable
 
 class ColumnPadTable(ValuesTable):
 

@@ -1,5 +1,5 @@
 from typing import Dict, List
-from dero.latex.models.commands.renewcommand import ReNewCommand
+from pyexlatex.models.commands.renewcommand import ReNewCommand
 
 
 class SectionNumberingFormatter(ReNewCommand):

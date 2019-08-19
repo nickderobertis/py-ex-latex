@@ -1,8 +1,8 @@
 from typing import Sequence, Tuple, Optional, Union, TYPE_CHECKING
 if TYPE_CHECKING:
-    from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
-    from dero.latex.models.graphics.tikz.node.node import Node
-from dero.latex.models.graphics.tikz.path import SpecificPath
+    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.models.graphics.tikz.node.node import Node
+from pyexlatex.models.graphics.tikz.path import SpecificPath
 
 
 class Arrow(SpecificPath):

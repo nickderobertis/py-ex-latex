@@ -1,4 +1,4 @@
-from dero.latex.models.mixins import StringAdditionMixin
+from pyexlatex.models.mixins import StringAdditionMixin
 from mixins.repr import ReprMixin
 
 

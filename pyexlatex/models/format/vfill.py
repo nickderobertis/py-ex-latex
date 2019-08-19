@@ -1,4 +1,4 @@
-from dero.latex.models.item import NoOptionsNoContentsItem
+from pyexlatex.models.item import NoOptionsNoContentsItem
 
 
 class VFill(NoOptionsNoContentsItem):

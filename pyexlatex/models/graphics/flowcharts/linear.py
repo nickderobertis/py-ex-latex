@@ -1,10 +1,10 @@
 from typing import Sequence, Union, Optional, List
 from copy import deepcopy
-from dero.latex.models.item import ItemBase
-from dero.latex.models.containeritem import ContainerItem
-from dero.latex.models.graphics.tikz.node.node import Node
-from dero.latex.models.graphics.arrow import Arrow
-from dero.latex.models.graphics.tikz.node.position.directions import Right, Below, DirectionBase
+from pyexlatex.models.item import ItemBase
+from pyexlatex.models.containeritem import ContainerItem
+from pyexlatex.models.graphics.tikz.node.node import Node
+from pyexlatex.models.graphics.arrow import Arrow
+from pyexlatex.models.graphics.tikz.node.position.directions import Right, Below, DirectionBase
 
 
 class LinearFlowchart(ContainerItem, ItemBase):
@@ -19,7 +19,7 @@ class LinearFlowchart(ContainerItem, ItemBase):
         self.contents = self._get_contents()
 
     def __str__(self) -> str:
-        from dero.latex.logic.builder import _build
+        from pyexlatex.logic.builder import _build
         return _build(self.contents)
 
     def _get_contents(self) -> List[Union[Node, Arrow]]:

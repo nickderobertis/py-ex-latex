@@ -1,10 +1,10 @@
 import posixpath
 
-from dero.latex.figure.models import Subfigure, Figure
-from dero.latex.logic.pdf.main import document_to_pdf_and_move
-from dero.latex.texgen.replacements.filename import _latex_valid_basename
-from dero.latex.models.document import Document
-from dero.latex.models.package import Package
+from pyexlatex.figure.models import Subfigure, Figure
+from pyexlatex.logic.pdf.main import document_to_pdf_and_move
+from pyexlatex.texgen.replacements.filename import _latex_valid_basename
+from pyexlatex.models.document import Document
+from pyexlatex.models.package import Package
 
 
 def filepaths_to_pdf_figure_and_move(filepaths,  outfolder, outname='figure', as_document=True,

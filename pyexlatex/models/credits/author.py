@@ -1,7 +1,7 @@
 from typing import Optional, Sequence, Union
-from dero.latex.models.item import SimpleItem
-from dero.latex.models.credits.institution.inst import Inst
-from dero.latex.models.credits.institution.institute import Institutes
+from pyexlatex.models.item import SimpleItem
+from pyexlatex.models.credits.institution.inst import Inst
+from pyexlatex.models.credits.institution.institute import Institutes
 
 
 class Author(SimpleItem):

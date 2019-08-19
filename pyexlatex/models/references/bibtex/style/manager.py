@@ -1,6 +1,6 @@
-from dero.latex.models.references.bibtex.style.builtin_styles import BUILTIN_STYLES
-from dero.latex.models.references.bibtex.style.custom import CUSTOM_STYLES
-from dero.latex.models.references.bibtex.style.style import Style
+from pyexlatex.models.references.bibtex.style.builtin_styles import BUILTIN_STYLES
+from pyexlatex.models.references.bibtex.style.custom import CUSTOM_STYLES
+from pyexlatex.models.references.bibtex.style.style import Style
 
 class StyleManager:
 

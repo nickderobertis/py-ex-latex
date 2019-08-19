@@ -1,5 +1,5 @@
-from dero.latex.models.item import MultiOptionSimpleItem, SimpleItem
-from dero.latex.models.sizes.textsizes import Size
+from pyexlatex.models.item import MultiOptionSimpleItem, SimpleItem
+from pyexlatex.models.sizes.textsizes import Size
 
 class DeclareFloatFont(MultiOptionSimpleItem):
     name = 'DeclareFloatFont'

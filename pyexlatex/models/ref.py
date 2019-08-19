@@ -1,4 +1,4 @@
-from dero.latex.models.item import SimpleItem
+from pyexlatex.models.item import SimpleItem
 
 
 class Ref(SimpleItem):

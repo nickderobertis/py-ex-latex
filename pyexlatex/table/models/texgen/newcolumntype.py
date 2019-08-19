@@ -1,5 +1,5 @@
-from dero.latex.models.mixins import StringAdditionMixin
-from dero.latex.models.format.breaks import LineBreak
+from pyexlatex.models.mixins import StringAdditionMixin
+from pyexlatex.models.format.breaks import LineBreak
 
 # TODO: more flexible. Currently just passes full strings
 

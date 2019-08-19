@@ -1,7 +1,7 @@
-from dero.latex.models.format.breaks import LineBreak
+from pyexlatex.models.format.breaks import LineBreak
 
 def build_figure_content(items, caption=None, label=None, centering=True, position_str=None):
-    from dero.latex.texgen import _centering_str
+    from pyexlatex.texgen import _centering_str
     elements = [
         position_str,
         _centering_str() if centering else None,

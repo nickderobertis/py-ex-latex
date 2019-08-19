@@ -1,7 +1,7 @@
 from mixins.repr import ReprMixin
-from dero.latex.table.models.mixins.addvalues.row import RowAddMixin
-from dero.latex.table.models.labels.multicolumn import MultiColumn
-from dero.latex.texgen.replacements.file import general_latex_replacements
+from pyexlatex.table.models.mixins.addvalues.row import RowAddMixin
+from pyexlatex.table.models.labels.multicolumn import MultiColumn
+from pyexlatex.texgen.replacements.file import general_latex_replacements
 
 
 class Label(ReprMixin, RowAddMixin):
@@ -10,7 +10,7 @@ class Label(ReprMixin, RowAddMixin):
 
     Useful for constructing custom multicolumn labels.
 
-    >>>import dero.latex.table as lt
+    >>>import pyexlatex.table as lt
     >>>data_table = lt.DataTable.from_df(some_df)
     >>>label = lt.Label('Long label', span=5, align='r')
     >>>long_label_collection = lt.LabelCollection([label], underline='1-5')
@@ -41,8 +41,8 @@ class Label(ReprMixin, RowAddMixin):
         return self.span
 
     def _add_class(self, other):
-        from dero.latex.table.models.table.row import Row
-        from dero.latex.table.models.labels.row import LabelRow
+        from pyexlatex.table.models.table.row import Row
+        from pyexlatex.table.models.labels.row import LabelRow
         # keep same class if both are same class
         # otherwise, default to Row class
         self_class = type(self)

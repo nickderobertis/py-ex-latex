@@ -1,11 +1,11 @@
 import os
 from tempdir import TempDir
 
-from dero.latex.tools import date_time_move_latex
-from dero.latex.logic.pdf.fileops import _move_if_exists_and_is_needed, _copy_if_needed
-from dero.latex.texgen.replacements.filename import _latex_valid_basename
-from dero.latex.logic.pdf.api.main import latex_str_to_pdf_obj
-from dero.latex.typing import BytesListOrNone, StrList, BytesList, StrListOrNone
+from pyexlatex.tools import date_time_move_latex
+from pyexlatex.logic.pdf.fileops import _move_if_exists_and_is_needed, _copy_if_needed
+from pyexlatex.texgen.replacements.filename import _latex_valid_basename
+from pyexlatex.logic.pdf.api.main import latex_str_to_pdf_obj
+from pyexlatex.typing import BytesListOrNone, StrList, BytesList, StrListOrNone
 
 
 def document_to_pdf_and_move(document, outfolder, image_paths: StrListOrNone = None, outname='figure', as_document=True,

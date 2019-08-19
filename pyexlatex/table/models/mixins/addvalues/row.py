@@ -9,7 +9,7 @@ class RowAddMixin:
         return RowAddMixin.radd(self, other)
 
     def _add_class(self, other):
-        from dero.latex.table.models.table.row import Row
+        from pyexlatex.table.models.table.row import Row
         # keep same class if both are same class
         # otherwise, default to Row class
         self_class = type(self)

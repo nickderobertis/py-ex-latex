@@ -1,8 +1,8 @@
 from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
-from dero.latex.models.item import NoBracesItem
-from dero.latex.models.containeritem import ContainerItem
+    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+from pyexlatex.models.item import NoBracesItem
+from pyexlatex.models.containeritem import ContainerItem
 from mixins.repr import ReprMixin
 
 

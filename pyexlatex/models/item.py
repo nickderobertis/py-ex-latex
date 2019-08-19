@@ -1,9 +1,9 @@
 from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
 from mixins.attrequals import EqOnAttrsMixin, EqHashMixin
-from dero.latex.models.mixins import StringAdditionMixin, IsSpecificClassMixin, StringEqMixin
-from dero.latex.texgen import (
+from pyexlatex.models.mixins import StringAdditionMixin, IsSpecificClassMixin, StringEqMixin
+from pyexlatex.texgen import (
     _basic_item_str,
     _multi_option_item_str,
     _no_braces_item_str,
@@ -19,7 +19,7 @@ class IsLatexItemMixin:
 
 class DataItem:
     def init_data(self):
-        from dero.latex.models.documentsetup import DocumentSetupData
+        from pyexlatex.models.documentsetup import DocumentSetupData
         if not hasattr(self, 'data'):
             self.data = DocumentSetupData()
 
@@ -61,7 +61,7 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
 
     @staticmethod
     def _format_content(content):
-        from dero.latex.logic.format.contents import format_contents as fmt
+        from pyexlatex.logic.format.contents import format_contents as fmt
         return fmt(content)
 
 
@@ -77,7 +77,7 @@ class Item(ItemBase):
     ]
 
     def __init__(self, name, contents, pre_env_contents=None, post_env_contents=None, env_modifiers=None):
-        from dero.latex.models import Environment
+        from pyexlatex.models import Environment
         self.env = Environment(name, modifiers=env_modifiers)
         self.contents = contents
         self.pre_env_contents = pre_env_contents
@@ -88,7 +88,7 @@ class Item(ItemBase):
         return f'<Item(name={self.env.name}, contents={self.contents})>'
 
     def __str__(self):
-        from dero.latex.logic.builder import _build
+        from pyexlatex.logic.builder import _build
         possible_items = [
             self.pre_env_contents,
             self.env.wrap(str(self.contents)),

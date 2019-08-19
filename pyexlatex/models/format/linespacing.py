@@ -1,5 +1,5 @@
 from typing import Optional
-from dero.latex.models.item import (
+from pyexlatex.models.item import (
     StringAdditionMixin,
     IsSpecificClassMixin,
     IsLatexItemMixin,

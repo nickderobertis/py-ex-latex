@@ -1,6 +1,6 @@
-from dero.latex.models.documentitem import DocumentItem
-from dero.latex.logic.extract.get import get_attr_from_items_or_collection
-from dero.latex.models.documentsetup import DocumentSetupData
+from pyexlatex.models.documentitem import DocumentItem
+from pyexlatex.logic.extract.get import get_attr_from_items_or_collection
+from pyexlatex.models.documentsetup import DocumentSetupData
 
 
 class ContainerItem(DocumentItem):

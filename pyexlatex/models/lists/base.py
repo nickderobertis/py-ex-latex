@@ -1,11 +1,11 @@
 from typing import Optional, Union, Sequence, Tuple, TYPE_CHECKING
 if TYPE_CHECKING:
-    from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
-from dero.latex.models.item import Item, ItemBase
+    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+from pyexlatex.models.item import Item, ItemBase
 from mixins.repr import ReprMixin
-from dero.latex.models.lists.item import ListItem
-from dero.latex.models.containeritem import ContainerItem
-from dero.latex.models.format.vfill import VFill
+from pyexlatex.models.lists.item import ListItem
+from pyexlatex.models.containeritem import ContainerItem
+from pyexlatex.models.format.vfill import VFill
 
 ListItemDefinition = Union[str, ListItem]
 
@@ -14,7 +14,7 @@ class VerticalFillMixin:
     vertical_fill = False
 
     def generate_content(self, items):
-        from dero.latex.logic.builder import _build
+        from pyexlatex.logic.builder import _build
         output = []
         for item in items:
             if isinstance(item, str):

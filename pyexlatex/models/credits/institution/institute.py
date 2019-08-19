@@ -1,8 +1,8 @@
 from typing import Optional, Sequence, List, Union
-from dero.latex.models.item import SimpleItem, ItemBase
-from dero.latex.models.credits.institution.inst import Inst
-from dero.latex.models.format.breaks import OutputLineBreak
-from dero.latex.models.format.and_ import And
+from pyexlatex.models.item import SimpleItem, ItemBase
+from pyexlatex.models.credits.institution.inst import Inst
+from pyexlatex.models.format.breaks import OutputLineBreak
+from pyexlatex.models.format.and_ import And
 
 
 class Institutes(SimpleItem):
@@ -23,7 +23,7 @@ class Institutes(SimpleItem):
     name = 'institute'
 
     def __init__(self, institutions: Sequence[Sequence[str]], short_institution: Optional[str] = None):
-        from dero.latex.logic.builder import _build
+        from pyexlatex.logic.builder import _build
         self.institutions = institutions
         self.short_institution = short_institution
 
@@ -61,7 +61,7 @@ class Institution(ItemBase):
         self.num = num
 
     def __str__(self) -> str:
-        from dero.latex.logic.builder import _build
+        from pyexlatex.logic.builder import _build
         inst = Inst(self.num)
         inst_output = OutputLineBreak().join(self.institution_lines)
         return _build([

@@ -2,7 +2,7 @@ import os
 
 import pandas as pd
 
-from dero.latex.tools import csv_to_raw_latex, date_time_move_latex
+from pyexlatex.tools import csv_to_raw_latex, date_time_move_latex
 
 
 def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', string_format='',
@@ -41,11 +41,11 @@ def df_to_pdf_and_move(dflist, outfolder, outname='table', tabular_string='', st
         as_document:    Boolean. True to output latex wrappers for table to be a standalone document. False to write
                         only table wrappers so that table can be included in another document
         outmethod:      String, 'pandas' or 'csv'. If 'pandas', uses pandas' built in df.to_latex() to build latex. If
-                        'csv', uses df.to_csv() and then dero.raw_csv_to_latex(). The latter case is useful when the table
+                        'csv', uses df.to_csv() and then pyexlatex.df.raw_csv_to_latex(). The latter case is useful when the table
                         itself contains latex expressions.
 
     '''
-    from dero.latex.texgen.replacements.file import general_latex_replacements
+    from pyexlatex.texgen.replacements.file import general_latex_replacements
 
     if isinstance(dflist, pd.DataFrame):
         dflist = [dflist]

@@ -1,7 +1,7 @@
 from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from dero.latex.models.presentation.beamer.overlay.overlay import Overlay
-from dero.latex.models.item import SimpleItem
+    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+from pyexlatex.models.item import SimpleItem
 
 
 class Uncover(SimpleItem):

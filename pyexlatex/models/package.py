@@ -1,4 +1,4 @@
-from dero.latex.texgen import _usepackage_str
+from pyexlatex.texgen import _usepackage_str
 
 
 class Package:

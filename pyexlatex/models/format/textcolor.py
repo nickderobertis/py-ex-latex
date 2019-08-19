@@ -1,5 +1,5 @@
-from dero.latex.models.item import MultiOptionSimpleItem
-from dero.latex.models.package import Package
+from pyexlatex.models.item import MultiOptionSimpleItem
+from pyexlatex.models.package import Package
 
 class TextColor(MultiOptionSimpleItem):
     name = 'textcolor'

@@ -1,4 +1,4 @@
-from dero.latex.models.environment import Environment
+from pyexlatex.models.environment import Environment
 
 class Landscape(Environment):
     name = 'landscape'

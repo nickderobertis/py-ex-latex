@@ -1,5 +1,5 @@
-from dero.latex.models.item import SimpleItem
-from dero.latex.models.package import Package
+from pyexlatex.models.item import SimpleItem
+from pyexlatex.models.package import Package
 
 
 class Cite(SimpleItem):

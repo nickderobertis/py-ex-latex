@@ -1,6 +1,6 @@
 
-from dero.latex.models.package import Package
-from dero.latex.table.models.texgen.newcolumntype import NewColumnTypes
+from pyexlatex.models.package import Package
+from pyexlatex.table.models.texgen.newcolumntype import NewColumnTypes
 
 class ColumnTypesPackage(Package):
     """
@@ -11,7 +11,7 @@ class ColumnTypesPackage(Package):
         super().__init__('dcolumn')
 
     def __str__(self):
-        from dero.latex.logic.builder import _build
+        from pyexlatex.logic.builder import _build
         package_import = super().__str__()
         return _build([
             package_import,

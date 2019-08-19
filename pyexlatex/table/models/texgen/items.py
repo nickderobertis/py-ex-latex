@@ -1,18 +1,18 @@
 from typing import Optional, Sequence, Union
-from dero.latex.models.item import Item
+from pyexlatex.models.item import Item
 from mixins.repr import ReprMixin
-from dero.latex.table.models.panels.collection import PanelCollection
-from dero.latex.table.models.texgen.alignment import ColumnsAlignment
-from dero.latex.table.logic.table.build import build_tabular_content_from_panel_collection
-from dero.latex.models.caption import Caption
-from dero.latex.models.format.breaks import LineBreak
-from dero.latex.texgen import _centering_str
-from dero.latex.models.document import Document
-from dero.latex.models.package import Package
-from dero.latex.table.models.texgen.packages import default_packages
-from dero.latex.models.landscape import Landscape
-from dero.latex.models.label import Label
-from dero.latex.models.section.base import TextAreaBase
+from pyexlatex.table.models.panels.collection import PanelCollection
+from pyexlatex.table.models.texgen.alignment import ColumnsAlignment
+from pyexlatex.table.logic.table.build import build_tabular_content_from_panel_collection
+from pyexlatex.models.caption import Caption
+from pyexlatex.models.format.breaks import LineBreak
+from pyexlatex.texgen import _centering_str
+from pyexlatex.models.document import Document
+from pyexlatex.models.package import Package
+from pyexlatex.table.models.texgen.packages import default_packages
+from pyexlatex.models.landscape import Landscape
+from pyexlatex.models.label import Label
+from pyexlatex.models.section.base import TextAreaBase
 
 
 class TableNotes(TextAreaBase, ReprMixin):
@@ -100,7 +100,7 @@ class Table(Item, ReprMixin):
 
     @classmethod
     def from_table_model(cls, table, *args, **kwargs):
-        from dero.latex.table.models.table.table import Table as TableModel
+        from pyexlatex.table.models.table.table import Table as TableModel
         table: TableModel
         tabular = Tabular(
             table.panels,
@@ -144,7 +144,7 @@ class TableDocument(Document):
 
     @classmethod
     def from_table_model(cls, table, *args, **kwargs):
-        from dero.latex.table.models.table.table import Table as TableModel
+        from pyexlatex.table.models.table.table import Table as TableModel
         table: TableModel
         tex_table = Table.from_table_model(table, *args, **kwargs)
         return cls(tex_table, *args, **kwargs)
