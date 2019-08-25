@@ -20,7 +20,10 @@ class LinearFlowchart(ContainerItem, ItemBase):
 
     def __str__(self) -> str:
         from pyexlatex.logic.builder import _build
-        return _build(self.contents)
+        if isinstance(self.contents, (list, tuple)):
+            return _build(self.contents)
+        else:
+            return str(self.contents)
 
     def _get_contents(self) -> List[Union[Node, Arrow]]:
         nodes = self.nodes
@@ -43,7 +46,7 @@ class LinearFlowchart(ContainerItem, ItemBase):
                 # If beyond the first element, need to create a new node with the same info, but with
                 # position relative to the last element
                 new_node = Node(
-                    contents=item.contents,
+                    contents=item.content,
                     location=self.direction(of=out_nodes[i - 1]),
                     label=item.label,
                     options=item.options,
