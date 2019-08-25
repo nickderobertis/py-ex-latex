@@ -1,19 +1,32 @@
 from typing import Sequence, List, Union
-from pyexlatex.models.presentation.beamer.templates.frames.grid import AutoSizeGridFrame
+from pyexlatex.models.presentation.beamer.templates.frames.grid import GridFrame, Frame
 from pyexlatex.figure.models.graphic import Graphic
 from pyexlatex.models.format.vfill import VFill
 from pyexlatex.models.presentation.beamer.templates.frames.dim_reveal import DimRevealMixin
 from pyexlatex.models.sizes.textheight import TextHeight
 from pyexlatex.models.format.centering import Centering
+from pyexlatex.models.layouts.multicol import MultiCol
 
 
-class TwoColumnFrame(AutoSizeGridFrame):
+class TwoColumnFrame(GridFrame):
 
     def __init__(self, left_content, right_content, **frame_kwargs):
         super().__init__([[left_content, right_content]], **frame_kwargs)
 
 
-class TwoColumnGraphicFrame(TwoColumnFrame):
+class BasicTwoColumnFrame(Frame):
+    """
+    Creates a CellFrame, automatically setting widths and heights as an even split based on the shape
+    of the content passed
+    """
+
+    def __init__(self, left_content, right_content, **frame_kwargs):
+        self.content = [left_content, right_content]
+        self.layout = MultiCol(self.content)
+        super().__init__(self.layout.content, **frame_kwargs)
+
+
+class TwoGraphicBase:
 
     def __init__(self, content, graphic_filepaths: Sequence[str], graphics_on_right: bool = True, **frame_kwargs):
         self.content = content
@@ -62,11 +75,19 @@ class TwoColumnGraphicFrame(TwoColumnFrame):
     @property
     def graphic_height(self) -> str:
         total_area = 1 - self.graphic_spacing
-        per_graphic = total_area/len(self.graphic_filepaths)
+        per_graphic = total_area / len(self.graphic_filepaths)
         return f'{per_graphic}{TextHeight()}'
 
 
-class TwoColumnGraphicDimRevealFrame(DimRevealMixin, TwoColumnGraphicFrame):
+class TwoColumnGraphicFrame(TwoGraphicBase, TwoColumnFrame):
+    pass
+
+
+class BasicTwoColumnGraphicFrame(TwoGraphicBase, BasicTwoColumnFrame):
+    pass
+
+
+class TwoColumnGraphicDimRevealBase(DimRevealMixin):
 
     def __init__(self, content: Sequence[str], graphic_filepaths: Sequence[str],
                  graphics_on_right: bool = True, ordered_list: bool = False,
@@ -74,3 +95,11 @@ class TwoColumnGraphicDimRevealFrame(DimRevealMixin, TwoColumnGraphicFrame):
         super().__init__(content, ordered_list=ordered_list,
                          graphic_filepaths=graphic_filepaths, graphics_on_right=graphics_on_right,
                          **frame_kwargs)
+
+
+class TwoColumnGraphicDimRevealFrame(TwoColumnGraphicDimRevealBase, TwoColumnGraphicFrame):
+    pass
+
+
+class BasicTwoColumnGraphicDimRevealFrame(TwoColumnGraphicDimRevealBase, TwoColumnGraphicFrame):
+    pass
