@@ -37,9 +37,10 @@ class DimAndRevealListItems(VerticalFillMixin, ContainerItem, ItemBase):
     name = '<dim and reveal container, should not enter latex output>'
 
     def __init__(self, contents: Sequence, dim_last_item: bool = False, opacity: float = 0.3,
-                 vertical_fill: bool = False, **item_kwargs):
+                 vertical_fill: bool = False, dim_earlier_items: bool = True, **item_kwargs):
         self.orig_contents = contents
         self.dim_last_item = dim_last_item
+        self.dim_earlier_items = dim_earlier_items
         self.opacity = opacity
         self.item_kwargs = item_kwargs
         self.vertical_fill = vertical_fill
@@ -47,7 +48,14 @@ class DimAndRevealListItems(VerticalFillMixin, ContainerItem, ItemBase):
         self.contents = self._get_contents()
 
     def _get_contents(self) -> List[DimAndRevealListItem]:
-        output = [DimAndRevealListItem(item, opacity=self.opacity, **self.item_kwargs) for item in self.orig_contents]
+        output = [
+            DimAndRevealListItem(
+                item,
+                opacity=self.opacity,
+                dim=self.dim_earlier_items,
+                **self.item_kwargs
+            ) for item in self.orig_contents
+        ]
         if not self.dim_last_item:
             output[-1] = DimAndRevealListItem(
                 self.orig_contents[-1], dim=False, opacity=self.opacity, **self.item_kwargs
