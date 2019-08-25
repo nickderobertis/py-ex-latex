@@ -1,7 +1,7 @@
 from typing import Sequence, Tuple, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from pyexlatex.presentation.beamer.overlay import Overlay
-from pyexlatex.models.graphics.tikz.path import SpecificPath
+from pyexlatex.graphics.tikz import SpecificPath
 
 
 class Rectangle(SpecificPath):

@@ -1,9 +1,9 @@
 from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from pyexlatex.models.graphics.tikz.node.node import Node
+    from pyexlatex.graphics.tikz import Node
 from pyexlatex.models.item import ItemBase
 from pyexlatex.models.package import Package
-from pyexlatex.models.graphics.tikz.library import TikZLibrary
+from pyexlatex.graphics.tikz.library import TikZLibrary
 
 
 class DirectionBase(ItemBase):

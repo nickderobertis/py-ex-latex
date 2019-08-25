@@ -1,8 +1,8 @@
 from typing import Optional, Sequence, List, Tuple, Union, TYPE_CHECKING
 if TYPE_CHECKING:
     from pyexlatex.presentation.beamer.overlay import Overlay
-    from pyexlatex.models.graphics.tikz.node.node import Node
-from pyexlatex.models.graphics.tikz.item import TikZItem
+    from pyexlatex.graphics.tikz import Node
+from pyexlatex.graphics.tikz.item import TikZItem
 
 PATH_TYPES = (
     'draw',
