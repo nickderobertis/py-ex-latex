@@ -83,12 +83,14 @@ class Item(ItemBase):
         'env'
     ]
 
-    def __init__(self, name, contents, pre_env_contents=None, post_env_contents=None, env_modifiers=None):
+    def __init__(self, name, contents, pre_env_contents=None, post_env_contents=None, env_modifiers=None,
+                 overlay: Optional['Overlay'] = None):
         from pyexlatex.models import Environment
-        self.env = Environment(name, modifiers=env_modifiers)
+        self.env = Environment(name, modifiers=env_modifiers, overlay=overlay)
         self.contents = contents
         self.pre_env_contents = pre_env_contents
         self.post_env_contents = post_env_contents
+        self.overlay = overlay
         super().__init__()
 
     def __repr__(self):
