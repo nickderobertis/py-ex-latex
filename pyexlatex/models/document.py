@@ -1,4 +1,5 @@
 from typing import List, Optional, Dict
+from copy import deepcopy
 
 from pyexlatex.models.environment import Environment
 from pyexlatex.models.item import Item, ItemBase
@@ -64,6 +65,8 @@ class DocumentBase(ContainerItem, Item):
 
         self.contents = content
 
+
+        content = deepcopy(content)  # don't overwrite original objects
         # combine content into a single str
         content = build(content)
 
