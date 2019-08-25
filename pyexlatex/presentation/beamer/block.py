@@ -1,6 +1,6 @@
 from typing import Optional
 from pyexlatex.models.section.base import TextAreaBase
-from pyexlatex.models.presentation.beamer.theme.setcolor import SetBeamerColor
+from pyexlatex.presentation.beamer import SetBeamerColor
 
 
 class BlockBase(TextAreaBase):

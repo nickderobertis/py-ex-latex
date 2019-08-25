@@ -1,6 +1,6 @@
 from typing import Dict, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay import Overlay
 
 
 def _include_graphics_str(filepath, width=r'\linewidth'):

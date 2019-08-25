@@ -1,9 +1,8 @@
-import os
-from typing import Union, List, Dict, Any, Optional
+from typing import Optional
 from copy import deepcopy
 from pyexlatex.models import Item
 from pyexlatex.models.section.base import TextAreaBase
-from pyexlatex.models.presentation.beamer.frame.title import FrameTitle
+from pyexlatex.presentation.beamer import FrameTitle
 
 
 class Frame(TextAreaBase):

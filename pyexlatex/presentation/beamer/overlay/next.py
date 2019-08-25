@@ -1,5 +1,5 @@
-from pyexlatex.models.presentation.beamer.overlay.offset import Offset
-from pyexlatex.models.presentation.beamer.overlay.overlay_param import OverlayParameter
+from pyexlatex.presentation.beamer.overlay import Offset
+from pyexlatex.presentation.beamer.overlay import OverlayParameter
 
 
 class NextBase(OverlayParameter):

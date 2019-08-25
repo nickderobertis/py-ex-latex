@@ -1,5 +1,5 @@
 from typing import Optional, Sequence
-from pyexlatex.models.presentation.beamer.frame.frame import Frame
+from pyexlatex.presentation.beamer import Frame
 from pyexlatex.models.title.title import Title
 from pyexlatex.models.title.subtitle import Subtitle
 from pyexlatex.models.credits.author import Author

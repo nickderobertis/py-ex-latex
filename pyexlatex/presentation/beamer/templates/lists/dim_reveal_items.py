@@ -2,9 +2,9 @@ from typing import Sequence, List
 from pyexlatex.models.lists.item import ListItem
 from pyexlatex.models.lists.base import VerticalFillMixin
 from pyexlatex.models.format.text.color import TextColor
-from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
-from pyexlatex.models.presentation.beamer.overlay.until_end import UntilEnd
-from pyexlatex.models.presentation.beamer.overlay.next import NextWithIncrement, NextWithoutIncrement
+from pyexlatex.presentation.beamer.overlay import Overlay
+from pyexlatex.presentation.beamer.overlay import UntilEnd
+from pyexlatex.presentation.beamer.overlay import NextWithIncrement, NextWithoutIncrement
 from pyexlatex.models.containeritem import ContainerItem
 from pyexlatex.models.item import ItemBase
 

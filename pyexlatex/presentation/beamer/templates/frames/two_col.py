@@ -1,8 +1,8 @@
 from typing import Sequence, List, Union
-from pyexlatex.models.presentation.beamer.templates.frames.grid import GridFrame, Frame
+from pyexlatex.presentation.beamer import GridFrame, Frame
 from pyexlatex.figure.models.graphic import Graphic
 from pyexlatex.models.format.vfill import VFill
-from pyexlatex.models.presentation.beamer.templates.frames.dim_reveal import DimRevealMixin
+from pyexlatex.presentation.beamer import DimRevealMixin
 from pyexlatex.models.sizes.textheight import TextHeight
 from pyexlatex.models.format.centering import Centering
 from pyexlatex.models.layouts.multicol import MultiCol

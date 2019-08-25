@@ -1,7 +1,7 @@
 from typing import Sequence
 from pyexlatex.models.layouts.base import LayoutBase
-from pyexlatex.models.presentation.beamer.columns.columns import Columns
-from pyexlatex.models.presentation.beamer.columns.column import Column
+from pyexlatex.presentation.beamer import Columns
+from pyexlatex.presentation.beamer import Column
 
 
 class MultiCol(LayoutBase):

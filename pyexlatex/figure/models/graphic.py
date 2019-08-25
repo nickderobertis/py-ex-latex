@@ -1,10 +1,9 @@
 from typing import List, Union, Sequence, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay import Overlay
 import posixpath
 import os
 
-from pyexlatex.texgen import _include_graphics_str
 from pyexlatex.models.item import SimpleItem
 from pyexlatex.models.sizes.textwidth import TextWidth
 

@@ -1,6 +1,6 @@
-from typing import Optional, Sequence, Any, List, Tuple
-from pyexlatex.models.presentation.beamer.columns.column import Column
-from pyexlatex.models.presentation.beamer.columns.columns import Columns
+from typing import Sequence, Any, List, Tuple
+from pyexlatex.presentation.beamer import Column
+from pyexlatex.presentation.beamer import Columns
 from pyexlatex.models.layouts.base import LayoutBase
 
 

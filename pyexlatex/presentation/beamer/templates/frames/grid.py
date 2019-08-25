@@ -1,7 +1,5 @@
-from typing import Optional, Sequence, Any, List, Tuple
-from pyexlatex.models.presentation.beamer.frame.frame import Frame
-from pyexlatex.models.presentation.beamer.columns.column import Column
-from pyexlatex.models.presentation.beamer.columns.columns import Columns
+from typing import Sequence, Any, Tuple
+from pyexlatex.presentation.beamer import Frame
 from pyexlatex.models.layouts.grid import CellLayout, GridLayout
 
 

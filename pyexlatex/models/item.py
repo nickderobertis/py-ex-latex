@@ -1,9 +1,9 @@
 from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay import Overlay
 from copy import deepcopy
 from mixins.attrequals import EqOnAttrsMixin, EqHashMixin
-from pyexlatex.models.mixins import StringAdditionMixin, IsSpecificClassMixin, StringEqMixin
+from pyexlatex.models.mixins import StringAdditionMixin, IsSpecificClassMixin
 from pyexlatex.texgen import (
     _basic_item_str,
     _multi_option_item_str,

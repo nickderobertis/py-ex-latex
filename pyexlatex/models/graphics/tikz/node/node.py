@@ -1,8 +1,7 @@
 import uuid
-from copy import deepcopy
 from typing import Tuple, Optional, Sequence, TYPE_CHECKING
 if TYPE_CHECKING:
-    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay import Overlay
 
 from pyexlatex.models.graphics.tikz.item import TikZItem
 from pyexlatex.models.graphics.tikz.node.position.position import NodePosition
