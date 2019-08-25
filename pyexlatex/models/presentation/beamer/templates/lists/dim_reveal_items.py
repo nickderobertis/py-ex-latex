@@ -1,7 +1,7 @@
 from typing import Sequence, List
 from pyexlatex.models.lists.item import ListItem
 from pyexlatex.models.lists.base import VerticalFillMixin
-from pyexlatex.models.format.textcolor import TextColor
+from pyexlatex.models.format.text.color import TextColor
 from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
 from pyexlatex.models.presentation.beamer.overlay.until_end import UntilEnd
 from pyexlatex.models.presentation.beamer.overlay.next import NextWithIncrement, NextWithoutIncrement

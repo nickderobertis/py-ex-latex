@@ -17,7 +17,7 @@ from pyexlatex.models.page.footer import CenterFooter
 from pyexlatex.models.format.sectionnum import SectionNumberingFormatter
 from pyexlatex.typing import AnyItem, ItemOrListOfItems, ItemAndPreEnvContents
 from pyexlatex.models.commands.endfloat import DeclareDelayedFloatFlavor
-from pyexlatex.models.format.linespacing import LineSpacing
+from pyexlatex.models.format.text.linespacing import LineSpacing
 from pyexlatex.models.commands.floatrow import DeclareFloatFont, FloatSetup
 from pyexlatex.models.containeritem import ContainerItem
 

@@ -2,7 +2,7 @@ from typing import Optional, Sequence, List, Union
 from pyexlatex.models.item import SimpleItem, ItemBase
 from pyexlatex.models.credits.institution.inst import Inst
 from pyexlatex.models.format.breaks import OutputLineBreak
-from pyexlatex.models.format.and_ import And
+from pyexlatex.models.control.and_ import And
 
 
 class Institutes(SimpleItem):
@@ -23,7 +23,6 @@ class Institutes(SimpleItem):
     name = 'institute'
 
     def __init__(self, institutions: Sequence[Sequence[str]], short_institution: Optional[str] = None):
-        from pyexlatex.logic.builder import _build
         self.institutions = institutions
         self.short_institution = short_institution
 

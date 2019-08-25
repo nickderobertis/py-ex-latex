@@ -2,8 +2,8 @@ from pyexlatex.models.item import IsLatexItemMixin, IsSpecificClassMixin
 
 
 class Raw(IsSpecificClassMixin, IsLatexItemMixin):
-    """
-    don't replace latex characters in this block
+    r"""
+    Don't replace latex characters in this blocks such as \ or %, useful for adding latex commands or comments manually.
     """
 
     def __init__(self, contents):
