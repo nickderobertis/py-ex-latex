@@ -1,8 +1,9 @@
 from pyexlatex.texgen import _multi_option_item_str
 from pyexlatex.models.item import MultiOptionSimpleItem
 from pyexlatex.models.package import Package
+from pyexlatex.models.section.base import TextAreaMixin
 
-class TextColor(MultiOptionSimpleItem):
+class TextColor(TextAreaMixin, MultiOptionSimpleItem):
     name = 'textcolor'
 
     def __init__(self, content, color: str, opacity: float = 1.0, **kwargs):
@@ -11,7 +12,8 @@ class TextColor(MultiOptionSimpleItem):
         self.init_data()
         self.data.packages.append(Package('xcolor'))
         self.content = content
-        super().__init__(self.name, self.color_str, content, **kwargs)
+        contents = self.format_contents(content)
+        MultiOptionSimpleItem.__init__(self, self.name, self.color_str, contents, **kwargs)
 
     @property
     def opacity_str(self) -> str:
