@@ -18,3 +18,10 @@ from pyexlatex.models.references.bibtex.misc import BibTexMisc
 from pyexlatex.models.references.bibtex.manual import BibTexManual
 from pyexlatex.models.references.bibliography import Bibliography
 from pyexlatex.models.references.citations import Cite, CiteP, CiteT
+from pyexlatex.models.format.text.color import TextColor
+from pyexlatex.models.format.text.monospace import Monospace
+from pyexlatex.models.format.text.underline import Underline
+from pyexlatex.models.format.code.python import Python
+from pyexlatex.figure.models.graphic import Graphic
+
+
