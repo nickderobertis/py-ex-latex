@@ -32,23 +32,24 @@ class Replacer:
         previous_letter = ''
         escaped_until_character = ''  # blank string when not in an escaped block
         for letter in string:
+            letter_is_escaped = previous_letter in self.escape_next_character_characters
             wipe_replacement = True # wipe unless told not to by the loop
             output_letter = letter
             possible_replacement += letter
 
             # Check if we're in an escaped block
             if escaped_until_character != '':
-                if possible_replacement == escaped_until_character:
+                if possible_replacement == escaped_until_character and not letter_is_escaped:
                     # End of escaped block
                     escaped_until_character = ''
-            elif possible_replacement in self.escape_until_same_next_character_characters:
+            elif possible_replacement in self.escape_until_same_next_character_characters and not letter_is_escaped:
                 # escaped block is starting
                 escaped_until_character = possible_replacement
                 replacing = False
 
             # automatically is skipped if longer than one letter, so won't enter while replacing
             if (possible_replacement in self.first_letters) and (escaped_until_character == ''):
-                if previous_letter in self.escape_next_character_characters:
+                if letter_is_escaped:
                     # Escape character. No need to replace. Start over
                     replacing = False
                 else:
