@@ -16,7 +16,7 @@ class TikZItem(TextAreaMixin, ItemBase):
         super().__init__(name, contents)
 
     def __str__(self):
-        item_str = f'\{self.name} {self.options_str} {self.contents};'
+        item_str = fr'\{self.name} {self.options_str} {self.contents};'
         if self.overlay:
             item_str = Uncover(item_str, overlay=self.overlay)
         return item_str
