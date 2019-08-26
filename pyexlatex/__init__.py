@@ -23,5 +23,6 @@ from pyexlatex.models.format.text.monospace import Monospace
 from pyexlatex.models.format.text.underline import Underline
 from pyexlatex.models.format.code.python import Python
 from pyexlatex.figure.models.graphic import Graphic
-
-
+from pyexlatex.models.format.vfill import VFill
+from pyexlatex.models.hyperlinks import Hyperlink
+from pyexlatex.models.package import Package

@@ -1,6 +1,6 @@
 from typing import Sequence
-from pyexlatex.presentation.beamer import Frame
-from pyexlatex.presentation.beamer import DimAndRevealListItems
+from pyexlatex.presentation.beamer.frame.frame import Frame
+from pyexlatex.presentation.beamer.templates.lists.dim_reveal_items import DimAndRevealListItems
 from pyexlatex.models.lists.ordered import OrderedList
 from pyexlatex.models.lists.unordered import UnorderedList
 

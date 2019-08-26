@@ -4,7 +4,7 @@ if TYPE_CHECKING:
     from pyexlatex.presentation.beamer.overlay import Overlay
 
 from pyexlatex.graphics.tikz.item import TikZItem
-from pyexlatex.graphics.tikz import NodePosition
+from pyexlatex.graphics.tikz.node.position.position import NodePosition
 from pyexlatex.logic.format.contents import format_contents
 
 

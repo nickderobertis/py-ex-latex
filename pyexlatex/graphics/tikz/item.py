@@ -1,8 +1,8 @@
 from typing import Sequence, Optional
 from pyexlatex.models.item import ItemBase
 from pyexlatex.models.section.base import TextAreaMixin
-from pyexlatex.presentation.beamer.overlay import Overlay
-from pyexlatex.presentation.beamer.overlay import Uncover
+from pyexlatex.presentation.beamer.overlay.overlay import Overlay
+from pyexlatex.presentation.beamer.overlay.commands.uncover import Uncover
 
 
 class TikZItem(TextAreaMixin, ItemBase):

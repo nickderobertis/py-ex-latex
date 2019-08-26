@@ -2,7 +2,7 @@ from typing import Sequence, Tuple, Optional, Union, TYPE_CHECKING
 if TYPE_CHECKING:
     from pyexlatex.presentation.beamer.overlay import Overlay
     from pyexlatex.graphics.tikz import Node
-from pyexlatex.graphics.tikz import SpecificPath
+from pyexlatex.graphics.tikz.path import SpecificPath
 
 
 class Arrow(SpecificPath):

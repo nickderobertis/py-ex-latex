@@ -15,4 +15,8 @@ from pyexlatex.presentation.beamer.templates.frames.two_col import (
     TwoColumnFrame
 )
 from pyexlatex.presentation.beamer.templates.frames.dim_reveal import DimRevealListFrame
-from pyexlatex.presentation.beamer.templates.frames.graphic import GraphicFrame, MultiGraphicFrame
+from pyexlatex.presentation.beamer.templates.frames.graphic import (
+    GraphicFrame,
+    MultiGraphicFrame,
+    adjust_to_full_size,
+)

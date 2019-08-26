@@ -1,5 +1,5 @@
 from typing import Tuple, Union, Optional
-from pyexlatex.graphics.tikz import DirectionBase
+from pyexlatex.graphics.tikz.node.position.directions import DirectionBase
 
 
 class NodePosition:

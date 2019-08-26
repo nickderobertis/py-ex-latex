@@ -5,10 +5,10 @@ from pyexlatex.typing import ItemOrListOfItems
 from pyexlatex.models.package import Package
 from pyexlatex.models.control.documentclass import DocumentClass
 from pyexlatex.models.control.mode import Mode
-from pyexlatex.presentation.beamer import UseTheme
+from pyexlatex.presentation.beamer.theme.usetheme import UseTheme
 from pyexlatex.models.title.frame import TitleFrame, should_create_title_frame
 from pyexlatex.models.item import ItemBase
-from pyexlatex.presentation.beamer import eliminate_dim_reveal
+from pyexlatex.presentation.beamer.templates.lists.dim_reveal_items import eliminate_dim_reveal
 
 
 class Presentation(DocumentBase):

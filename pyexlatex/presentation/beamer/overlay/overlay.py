@@ -1,5 +1,5 @@
 from typing import Union, Sequence
-from pyexlatex.presentation.beamer.overlay import OverlayParameter
+from pyexlatex.presentation.beamer.overlay.overlay_param import OverlayParameter
 
 OverlayOption = Union[OverlayParameter, int]
 

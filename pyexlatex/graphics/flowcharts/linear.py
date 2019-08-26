@@ -2,9 +2,9 @@ from typing import Sequence, Union, Optional, List
 from copy import deepcopy
 from pyexlatex.models.item import ItemBase
 from pyexlatex.models.containeritem import ContainerItem
-from pyexlatex.graphics.tikz import Node
+from pyexlatex.graphics.tikz.node.node import Node
 from pyexlatex.graphics import Arrow
-from pyexlatex.graphics.tikz import Right, Below
+from pyexlatex.graphics.tikz.node.position.directions import Right, Below
 
 
 class LinearFlowchart(ContainerItem, ItemBase):

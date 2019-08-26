@@ -1,5 +1,5 @@
 from typing import Sequence, Any
-from pyexlatex.presentation.beamer import Frame
+from pyexlatex.presentation.beamer.frame.frame import Frame
 from pyexlatex.models.format.adjustbox import AdjustBox
 from pyexlatex.models.sizes.textwidth import TextWidth
 from pyexlatex.models.sizes.textheight import TextHeight

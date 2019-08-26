@@ -1,5 +1,5 @@
 from typing import Sequence, Any, Tuple
-from pyexlatex.presentation.beamer import Frame
+from pyexlatex.presentation.beamer.frame.frame import Frame
 from pyexlatex.layouts import CellLayout, GridLayout
 
 
