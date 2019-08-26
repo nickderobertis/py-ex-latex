@@ -5,6 +5,9 @@ OverlayOption = Union[OverlayParameter, int]
 
 
 class Overlay:
+    """
+    Creates an effect on a frame such as appearing on a later frame.
+    """
 
     def __init__(self, overlay_options: Sequence[OverlayOption]):
         self.overlay_options = overlay_options

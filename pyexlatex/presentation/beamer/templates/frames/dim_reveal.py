@@ -17,6 +17,9 @@ class DimRevealMixin:
 
 
 class DimRevealListFrame(DimRevealMixin, Frame):
+    """
+    A Frame where the content is bulleted or numbered dim and reveal items
+    """
 
     def __init__(self, content: Sequence[str], ordered_list: bool = False, **frame_kwargs):
         super().__init__(content, ordered_list=ordered_list, **frame_kwargs)

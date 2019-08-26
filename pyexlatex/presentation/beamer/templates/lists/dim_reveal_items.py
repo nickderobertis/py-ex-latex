@@ -10,6 +10,11 @@ from pyexlatex.models.item import ItemBase
 
 
 class DimAndRevealListItem(ListItem):
+    """
+    Single list item which reveals on each slide one-by-one and as the next one reveals, the last one dims.
+
+    Use DimAndRevealListItems to construct.
+    """
 
     def __init__(self, contents, dim: bool = True, opacity: float = 0.3, **kwargs):
         self.dim = dim
@@ -34,6 +39,11 @@ class DimAndRevealListItem(ListItem):
 
 
 class DimAndRevealListItems(VerticalFillMixin, ContainerItem, ItemBase):
+    """
+    List items which reveal on each slide one-by-one and as the next one reveals, the last one dims.
+
+    Pass to a list class such as OrderedList or UnorderedList
+    """
     name = '<dim and reveal container, should not enter latex output>'
 
     def __init__(self, contents: Sequence, dim_last_item: bool = False, opacity: float = 0.3,

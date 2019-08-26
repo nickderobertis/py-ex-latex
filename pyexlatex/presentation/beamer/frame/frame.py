@@ -6,6 +6,9 @@ from pyexlatex.presentation.beamer.frame.title import FrameTitle
 
 
 class Frame(TextAreaBase):
+    """
+    Basic unit for creating a slide in a presentation.
+    """
     name = 'frame'
 
     def __init__(self, content, title: Optional[str] = None, label: Optional[str] = None, **kwargs):

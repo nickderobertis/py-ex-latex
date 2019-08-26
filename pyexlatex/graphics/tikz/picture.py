@@ -5,6 +5,9 @@ from pyexlatex.models.package import Package
 
 
 class TikZPicture(TextAreaMixin, Item):
+    """
+    Container which holds any graphics.
+    """
     name = 'tikzpicture'
 
     def __init__(self, contents, env_modifiers: Optional[Sequence[str]]=None):

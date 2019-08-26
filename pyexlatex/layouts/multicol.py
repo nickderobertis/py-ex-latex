@@ -5,6 +5,9 @@ from pyexlatex.presentation.beamer.columns.columns import Columns
 
 
 class MultiCol(LayoutBase):
+    """
+    Multi-column layout that does not make any constraints on vertical sizing.
+    """
 
     def __init__(self, content: Sequence, **kwargs):
         self.orig_content = content

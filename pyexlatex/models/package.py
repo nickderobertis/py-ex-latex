@@ -2,6 +2,9 @@ from pyexlatex.texgen import _usepackage_str
 
 
 class Package:
+    r"""
+    Represents LaTeX \usepackage{}, pass to Document if any custom LaTeX packages are needed.
+    """
 
     def __init__(self, name, modifier_str=None):
         self.name = name

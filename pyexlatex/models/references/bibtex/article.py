@@ -3,6 +3,9 @@ from pyexlatex.models.references.bibtex.base import BibTexEntryBase
 
 
 class BibTexArticle(BibTexEntryBase):
+    """
+    Biblography document which is an article.
+    """
     item_type = 'article'
     required_attrs = ['author', 'title', 'journal', 'year']
     optional_attrs = ['volume', 'number', 'pages', 'month', 'note']

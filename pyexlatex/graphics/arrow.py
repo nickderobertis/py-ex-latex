@@ -6,6 +6,9 @@ from pyexlatex.graphics.tikz.path import SpecificPath
 
 
 class Arrow(SpecificPath):
+    """
+    Draws an arrow from one location to another.
+    """
     draw_type = '--'
     path_type = 'draw'
 

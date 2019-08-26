@@ -13,8 +13,16 @@ class NextBase(OverlayParameter):
 
 
 class NextWithIncrement(NextBase):
+    """
+    Option to be passed to Overlay which makes object appear on the next slide of the frame, and creates an additional
+    slide
+    """
     next_char = '+'
 
 
 class NextWithoutIncrement(NextBase):
+    """
+        Option to be passed to Overlay which makes object appear on the next slide of the frame, and does not creates
+        an additional slide
+        """
     next_char = '.'

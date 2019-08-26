@@ -47,6 +47,10 @@ class MultiGraphicFrame(Frame):
 
 
 def adjust_to_full_size(content: Any) -> Center:
+    """
+    Takes content and adjusts it to 90% text width, 80% text height, but keeping the aspect ratio.
+    """
+
     content = AdjustBox(
         content,
         adjust_options=[

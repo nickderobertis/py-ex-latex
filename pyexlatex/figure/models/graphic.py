@@ -9,6 +9,13 @@ from pyexlatex.models.sizes.textwidth import TextWidth
 
 
 class Graphic(SimpleItem):
+    """
+    Basic class for including graphics.
+
+    In most documents, a Figure would be used to give more structure to the graphic. This class will literally just
+    include the image with no other structure. It is typically more useful in presentations where the structure
+    is already being provided.
+    """
     name = 'includegraphics'
 
     def __init__(self, filepath, width: Union[str, float] = 1.0, cache: bool = True, options: Sequence[str] = None,

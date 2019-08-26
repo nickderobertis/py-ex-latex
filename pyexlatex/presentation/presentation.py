@@ -12,6 +12,10 @@ from pyexlatex.presentation.beamer.templates.lists.dim_reveal_items import elimi
 
 
 class Presentation(DocumentBase):
+    """
+    The main high-level class for creating presentations, can render presentations as PDF in either a presenter
+    style or a handouts style.
+    """
     name = 'document'
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,

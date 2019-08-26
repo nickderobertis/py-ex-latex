@@ -4,6 +4,9 @@ from pyexlatex.models.package import Package
 from pyexlatex.models.section.base import TextAreaMixin
 
 class TextColor(TextAreaMixin, MultiOptionSimpleItem):
+    """
+    Changes the color of text.
+    """
     name = 'textcolor'
 
     def __init__(self, content, color: str, opacity: float = 1.0, **kwargs):

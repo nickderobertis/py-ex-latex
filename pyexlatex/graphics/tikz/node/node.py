@@ -9,6 +9,9 @@ from pyexlatex.logic.format.contents import format_contents
 
 
 class Node(TikZItem):
+    """
+    Represents a location in a graphic, but can also have a style and text, e.g. rectangle filled with text
+    """
 
     def __init__(self, contents: Optional = None, location: Optional[Tuple[int, int]] = None,
                  label: Optional[str] = None,

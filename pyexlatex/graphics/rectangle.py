@@ -5,6 +5,9 @@ from pyexlatex.graphics.tikz.path import SpecificPath
 
 
 class Rectangle(SpecificPath):
+    """
+    Draws a rectangle.
+    """
     draw_type = 'rectangle'
     path_type = 'draw'
 

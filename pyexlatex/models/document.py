@@ -109,6 +109,9 @@ class DocumentBase(ContainerItem, Item):
 
 
 class Document(DocumentBase):
+    """
+    Main class used for creating latex documents, use for all except presentations.
+    """
     name = 'document'
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,

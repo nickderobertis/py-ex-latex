@@ -9,6 +9,10 @@ from pyexlatex.layouts.multicol import MultiCol
 
 
 class TwoColumnFrame(GridFrame):
+    """
+    Creates a GridFrame, automatically setting widths and heights as an even split based on the shape
+    of the content passed
+    """
 
     def __init__(self, left_content, right_content, **frame_kwargs):
         super().__init__([[left_content, right_content]], **frame_kwargs)
@@ -16,8 +20,7 @@ class TwoColumnFrame(GridFrame):
 
 class BasicTwoColumnFrame(Frame):
     """
-    Creates a CellFrame, automatically setting widths and heights as an even split based on the shape
-    of the content passed
+    Similar to TwoColumnFrame but does not put any constraints on vertical sizing
     """
 
     def __init__(self, left_content, right_content, **frame_kwargs):
@@ -80,10 +83,16 @@ class TwoGraphicBase:
 
 
 class TwoColumnGraphicFrame(TwoGraphicBase, TwoColumnFrame):
+    """
+    A GridFrame with graphics on one side and text on the other.
+    """
     pass
 
 
 class BasicTwoColumnGraphicFrame(TwoGraphicBase, BasicTwoColumnFrame):
+    """
+    Similar to TwoColumnGraphicFrame, but does not put any constraints on vertical sizing
+    """
     pass
 
 
@@ -98,8 +107,14 @@ class TwoColumnGraphicDimRevealBase(DimRevealMixin):
 
 
 class TwoColumnGraphicDimRevealFrame(TwoColumnGraphicDimRevealBase, TwoColumnGraphicFrame):
+    """
+    A TwoColumnGraphicFrame where the non-graphic column is bulleted or numbered dim and reveal items
+    """
     pass
 
 
 class BasicTwoColumnGraphicDimRevealFrame(TwoColumnGraphicDimRevealBase, TwoColumnGraphicFrame):
+    """
+    A BasicTwoColumnGraphicFrame where the non-graphic column is bulleted or numbered dim and reveal items
+    """
     pass

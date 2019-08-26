@@ -36,14 +36,23 @@ class BlockBase(TextAreaBase):
 
 
 class Block(BlockBase):
+    """
+    Block with an optional header
+    """
     name = 'block'
 
 
 class AlertBlock(BlockBase):
+    """
+    Block with an optional header which is red
+    """
     name = 'alertblock'
 
 
 class ExamplesBlock(BlockBase):
+    """
+    Block which always has the header title "Examples"
+    """
     name = 'examples'
 
     def __init__(self, content):

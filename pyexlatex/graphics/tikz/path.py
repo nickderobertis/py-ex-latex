@@ -15,7 +15,11 @@ PATH_TYPES = (
 
 Location = Union[Tuple[float, float], 'Node']
 
+
 class Path(TikZItem):
+    """
+    Lower-level class for drawing individual lines or shapes, should only be needed to be used for very custom graphics
+    """
     name = 'path'
 
 

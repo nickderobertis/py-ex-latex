@@ -103,18 +103,34 @@ class HorizontalDirection(DirectionBase):
 
 
 class Above(VerticalDirection):
+    """
+    Used for placing nodes: construct with one node, pass as placement to another node, that second node will
+    be placed above the first node.
+    """
     name = 'above'
 
 
 class Right(HorizontalDirection):
+    """
+    Used for placing nodes: construct with one node, pass as placement to another node, that second node will
+    be placed to the right of the first node.
+    """
     name = 'right'
 
 
 class Below(VerticalDirection):
+    """
+    Used for placing nodes: construct with one node, pass as placement to another node, that second node will
+    be placed below the first node.
+    """
     name = 'below'
 
 
 class Left(HorizontalDirection):
+    """
+    Used for placing nodes: construct with one node, pass as placement to another node, that second node will
+    be placed to the left of the first node.
+    """
     name = 'left'
 
 

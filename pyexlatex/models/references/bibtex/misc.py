@@ -3,6 +3,9 @@ from pyexlatex.models.references.bibtex.base import BibTexEntryBase
 
 
 class BibTexMisc(BibTexEntryBase):
+    """
+    Biblography document which is of miscellaneous type.
+    """
     item_type = 'misc'
     optional_attrs = ['author', 'title', 'howpublished', 'month', 'year', 'note']
 

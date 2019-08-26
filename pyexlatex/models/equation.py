@@ -6,6 +6,9 @@ from pyexlatex.models.mixins import IsSpecificClassMixin
 from pyexlatex.logic.format import eq as format_eq
 
 class Equation(IsSpecificClassMixin, IsLatexItemMixin):
+    """
+    Pass sympy or string equations to have them rendered in LaTeX.
+    """
     name = 'equation'
 
     def __init__(self, eq: Optional['Eq'] = None, str_eq: Optional[str] = None,

@@ -8,6 +8,10 @@ from pyexlatex.graphics.tikz.node.position.directions import Right, Below
 
 
 class LinearFlowchart(ContainerItem, ItemBase):
+    """
+    Creates a linear flow chart (nodes with arrows in between), going horizontally or vertically from one item
+    to the next.
+    """
 
     def __init__(self, steps: Sequence[Union[Node, str]], horizontal: bool = True,
                  node_options: Optional[Sequence[str]] = None):
