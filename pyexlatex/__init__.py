@@ -17,6 +17,8 @@ from pyexlatex.models.references.citations import Cite, CiteP, CiteT
 from pyexlatex.models.format.text.color import TextColor
 from pyexlatex.models.format.text.monospace import Monospace
 from pyexlatex.models.format.text.underline import Underline
+from pyexlatex.models.format.text.bold import Bold
+from pyexlatex.models.format.text.italics import Italics
 from pyexlatex.models.format.code.python import Python
 from pyexlatex.figure.models.graphic import Graphic
 from pyexlatex.models.format.vfill import VFill
