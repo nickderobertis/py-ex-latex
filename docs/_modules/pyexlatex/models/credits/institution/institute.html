@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.credits.institution.institute &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.models.credits.institution.institute &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx_paramlinks.css" />
@@ -36,7 +36,7 @@
 <span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="k">import</span> <span class="n">SimpleItem</span><span class="p">,</span> <span class="n">ItemBase</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.credits.institution.inst</span> <span class="k">import</span> <span class="n">Inst</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.format.breaks</span> <span class="k">import</span> <span class="n">OutputLineBreak</span>
-<span class="kn">from</span> <span class="nn">pyexlatex.models.format.and_</span> <span class="k">import</span> <span class="n">And</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.control.and_</span> <span class="k">import</span> <span class="n">And</span>
 
 
 <div class="viewcode-block" id="Institutes"><a class="viewcode-back" href="../../../../../api/pyexlatex.models.credits.institution.html#pyexlatex.models.credits.institution.institute.Institutes">[docs]</a><span class="k">class</span> <span class="nc">Institutes</span><span class="p">(</span><span class="n">SimpleItem</span><span class="p">):</span>
@@ -57,7 +57,6 @@
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;institute&#39;</span>
 
 <div class="viewcode-block" id="Institutes.__init__"><a class="viewcode-back" href="../../../../../api/pyexlatex.models.credits.institution.html#pyexlatex.models.credits.institution.institute.Institutes.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">institutions</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">short_institution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">pyexlatex.logic.builder</span> <span class="k">import</span> <span class="n">_build</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">institutions</span> <span class="o">=</span> <span class="n">institutions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">short_institution</span> <span class="o">=</span> <span class="n">short_institution</span>
 
@@ -89,6 +88,10 @@
 <span class="sd">        Faculty of Physics\\</span>
 <span class="sd">        Very Famous University</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">equal_attrs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;institution_lines&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;num&#39;</span>
+    <span class="p">]</span>
 
 <div class="viewcode-block" id="Institution.__init__"><a class="viewcode-back" href="../../../../../api/pyexlatex.models.credits.institution.html#pyexlatex.models.credits.institution.institute.Institution.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">institution_lines</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">institution_lines</span> <span class="o">=</span> <span class="n">institution_lines</span>

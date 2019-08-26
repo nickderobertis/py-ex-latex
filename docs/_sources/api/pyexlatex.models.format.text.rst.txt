@@ -1,0 +1,70 @@
+pyexlatex.models.format.text package
+====================================
+
+Submodules
+----------
+
+pyexlatex.models.format.text.bold module
+----------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.bold
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.text.color module
+-----------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.color
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.text.italics module
+-------------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.italics
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.text.linespacing module
+-----------------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.linespacing
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.text.monospace module
+---------------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.monospace
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.text.text module
+----------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.text
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.text.underline module
+---------------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.underline
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.format.text
+   :members:
+   :undoc-members:
+   :show-inheritance:

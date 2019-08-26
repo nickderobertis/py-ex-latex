@@ -1,0 +1,30 @@
+pyexlatex.models.format.code package
+====================================
+
+Submodules
+----------
+
+pyexlatex.models.format.code.minted module
+------------------------------------------
+
+.. automodule:: pyexlatex.models.format.code.minted
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.code.python module
+------------------------------------------
+
+.. automodule:: pyexlatex.models.format.code.python
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.format.code
+   :members:
+   :undoc-members:
+   :show-inheritance:

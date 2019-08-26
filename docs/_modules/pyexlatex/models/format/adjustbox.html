@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.format.adjustbox &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.models.format.adjustbox &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_paramlinks.css" />
@@ -33,12 +33,11 @@
             
   <h1>Source code for pyexlatex.models.format.adjustbox</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Sequence</span>
-<span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="k">import</span> <span class="n">Item</span>
-<span class="kn">from</span> <span class="nn">pyexlatex.models.section.base</span> <span class="k">import</span> <span class="n">TextAreaMixin</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.section.base</span> <span class="k">import</span> <span class="n">TextAreaBase</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.package</span> <span class="k">import</span> <span class="n">Package</span>
 
 
-<div class="viewcode-block" id="AdjustBox"><a class="viewcode-back" href="../../../../api/pyexlatex.models.format.html#pyexlatex.models.format.adjustbox.AdjustBox">[docs]</a><span class="k">class</span> <span class="nc">AdjustBox</span><span class="p">(</span><span class="n">TextAreaMixin</span><span class="p">,</span> <span class="n">Item</span><span class="p">):</span>
+<div class="viewcode-block" id="AdjustBox"><a class="viewcode-back" href="../../../../api/pyexlatex.models.format.html#pyexlatex.models.format.adjustbox.AdjustBox">[docs]</a><span class="k">class</span> <span class="nc">AdjustBox</span><span class="p">(</span><span class="n">TextAreaBase</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;adjustbox&#39;</span>
 
 <div class="viewcode-block" id="AdjustBox.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.models.format.html#pyexlatex.models.format.adjustbox.AdjustBox.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">adjust_options</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>

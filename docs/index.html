@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Welcome to Python Extends LaTeX documentation! &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>Welcome to Python Extends LaTeX documentation! &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx_paramlinks.css" />
@@ -69,7 +69,7 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.equation.Equation" title="pyexlatex.models.equation.Equation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.equation.Equation</span></code></a>([eq, …])</p></td>
-<td><p></p></td>
+<td><p>Pass sympy or string equations to have them rendered in LaTeX.</p></td>
 </tr>
 </tbody>
 </table>
@@ -83,37 +83,37 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.section.html#pyexlatex.models.section.paragraphs.Paragraph" title="pyexlatex.models.section.paragraphs.Paragraph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.section.paragraphs.Paragraph</span></code></a>(…)</p></td>
-<td><p></p></td>
+<td><p>A paragraph, the second smallest section block.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.section.html#pyexlatex.models.section.paragraphs.SubParagraph" title="pyexlatex.models.section.paragraphs.SubParagraph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.section.paragraphs.SubParagraph</span></code></a>(…)</p></td>
-<td><p></p></td>
+<td><p>Part of a paragraph, the smallest section block.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.section.html#pyexlatex.models.section.sections.Section" title="pyexlatex.models.section.sections.Section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.section.sections.Section</span></code></a>(…)</p></td>
-<td><p></p></td>
+<td><p>A section of the document, the largest section type.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.section.html#pyexlatex.models.section.sections.SubSection" title="pyexlatex.models.section.sections.SubSection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.section.sections.SubSection</span></code></a>(…)</p></td>
-<td><p></p></td>
+<td><p>A part of a section, the second largest section type.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.section.html#pyexlatex.models.section.sections.SubSubSection" title="pyexlatex.models.section.sections.SubSubSection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.section.sections.SubSubSection</span></code></a>(…)</p></td>
-<td><p></p></td>
+<td><p>A part of a subsection, the third largest section type.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.lists.html#pyexlatex.models.lists.unordered.UnorderedList" title="pyexlatex.models.lists.unordered.UnorderedList"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.lists.unordered.UnorderedList</span></code></a>(items)</p></td>
-<td><p></p></td>
+<td><p>Bullet point items.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.lists.html#pyexlatex.models.lists.unordered.UnorderedList" title="pyexlatex.models.lists.unordered.UnorderedList"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.lists.unordered.UnorderedList</span></code></a>(items)</p></td>
-<td><p></p></td>
+<td><p>Bullet point items.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.raw.Raw" title="pyexlatex.models.format.raw.Raw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.format.raw.Raw</span></code></a>(contents)</p></td>
-<td><p>don’t replace latex characters in this block</p></td>
+<td><p>Don’t replace latex characters in this blocks such as or %, useful for adding latex commands or comments manually.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.text.Text" title="pyexlatex.models.format.text.Text"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.format.text.Text</span></code></a>(env[, …])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.format.text.Text</span></code></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.ref.Ref" title="pyexlatex.models.ref.Ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.ref.Ref</span></code></a>(contents)</p></td>
-<td><p></p></td>
+<td><p>Pass a label to create an in text reference to that label.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.footnote.Footnote" title="pyexlatex.models.footnote.Footnote"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.footnote.Footnote</span></code></a>(contents)</p></td>
-<td><p></p></td>
+<td><p>Creates a footnote at the bottom of the page, with a mark next to where the object itself is placed to reference the footnote.</p></td>
 </tr>
 </tbody>
 </table>
@@ -127,25 +127,25 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.references.bibtex.html#pyexlatex.models.references.bibtex.article.BibTexArticle" title="pyexlatex.models.references.bibtex.article.BibTexArticle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.references.bibtex.article.BibTexArticle</span></code></a>(…)</p></td>
-<td><p></p></td>
+<td><p>Biblography document which is an article.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.references.bibtex.html#pyexlatex.models.references.bibtex.misc.BibTexMisc" title="pyexlatex.models.references.bibtex.misc.BibTexMisc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.references.bibtex.misc.BibTexMisc</span></code></a>(…)</p></td>
-<td><p></p></td>
+<td><p>Biblography document which is of miscellaneous type.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.references.bibtex.html#pyexlatex.models.references.bibtex.manual.BibTexManual" title="pyexlatex.models.references.bibtex.manual.BibTexManual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.references.bibtex.manual.BibTexManual</span></code></a>(…)</p></td>
-<td><p></p></td>
+<td><p>Biblography document which is a manual.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.references.bibliography.Bibliography</span></code></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.references.html#pyexlatex.models.references.citations.Cite" title="pyexlatex.models.references.citations.Cite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.references.citations.Cite</span></code></a>(…)</p></td>
-<td><p></p></td>
+<td><p>Basic citation command, creates a reference to a document included in the bibliography.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.references.html#pyexlatex.models.references.citations.CiteP" title="pyexlatex.models.references.citations.CiteP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.references.citations.CiteP</span></code></a>(…)</p></td>
-<td><p></p></td>
+<td><p>Paragraph citation command, creates a paragraph (with parentheses) reference to a document included in the bibliography.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.references.html#pyexlatex.models.references.citations.CiteT" title="pyexlatex.models.references.citations.CiteT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pyexlatex.models.references.citations.CiteT</span></code></a>(…)</p></td>
-<td><p></p></td>
+<td><p>In text citation command, creates an in text (without parentheses) reference to a document included in the bibliography.</p></td>
 </tr>
 </tbody>
 </table>
@@ -159,8 +159,8 @@
 <li class="toctree-l2"><a class="reference internal" href="api/pyexlatex.html">pyexlatex package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/pyexlatex.html#subpackages">Subpackages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/pyexlatex.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/pyexlatex.html#module-pyexlatex.df">pyexlatex.df module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api/pyexlatex.html#module-pyexlatex.equations">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/pyexlatex.html#module-contents">Module contents</a></li>
 </ul>

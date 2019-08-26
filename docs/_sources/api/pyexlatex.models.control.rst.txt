@@ -4,6 +4,14 @@ pyexlatex.models.control package
 Submodules
 ----------
 
+pyexlatex.models.control.and\_ module
+-------------------------------------
+
+.. automodule:: pyexlatex.models.control.and_
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyexlatex.models.control.documentclass module
 ---------------------------------------------
 

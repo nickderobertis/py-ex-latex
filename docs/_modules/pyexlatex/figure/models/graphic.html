@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.figure.models.graphic &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.figure.models.graphic &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_paramlinks.css" />
@@ -32,18 +32,28 @@
           <div class="body" role="main">
             
   <h1>Source code for pyexlatex.figure.models.graphic</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">pyexlatex.presentation.beamer.overlay</span> <span class="k">import</span> <span class="n">Overlay</span>
 <span class="kn">import</span> <span class="nn">posixpath</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">pyexlatex.texgen</span> <span class="k">import</span> <span class="n">_include_graphics_str</span>
-<span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="k">import</span> <span class="n">ItemBase</span>
-<span class="kn">from</span> <span class="nn">pyexlatex.models.sizes.linewidth</span> <span class="k">import</span> <span class="n">LineWidth</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="k">import</span> <span class="n">SimpleItem</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.sizes.textwidth</span> <span class="k">import</span> <span class="n">TextWidth</span>
 
 
-<div class="viewcode-block" id="Graphic"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.graphic.Graphic">[docs]</a><span class="k">class</span> <span class="nc">Graphic</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+<div class="viewcode-block" id="Graphic"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.graphic.Graphic">[docs]</a><span class="k">class</span> <span class="nc">Graphic</span><span class="p">(</span><span class="n">SimpleItem</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Basic class for including graphics.</span>
 
-<div class="viewcode-block" id="Graphic.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.graphic.Graphic.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="sd">    In most documents, a Figure would be used to give more structure to the graphic. This class will literally just</span>
+<span class="sd">    include the image with no other structure. It is typically more useful in presentations where the structure</span>
+<span class="sd">    is already being provided.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;includegraphics&#39;</span>
+
+<div class="viewcode-block" id="Graphic.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.graphic.Graphic.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        Args:</span>
@@ -56,14 +66,26 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">binaries</span> <span class="o">=</span> <span class="kc">None</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_list_copy_from_list_or_none</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">f</span><span class="s1">&#39;width=</span><span class="si">{self.width_str}</span><span class="s1">&#39;</span>
+        <span class="p">)</span>
+
         <span class="k">if</span> <span class="n">cache</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_cache</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">source_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">pre_modifiers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options_str</span><span class="p">,</span>
+            <span class="n">overlay</span><span class="o">=</span><span class="n">overlay</span>
+        <span class="p">)</span></div>
+
+
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;&lt;Graphic(</span><span class="si">{self.filepaths[0]}</span><span class="s1">, width=</span><span class="si">{self.width}</span><span class="s1">)&gt;&#39;</span>
 
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">_include_graphics_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">width_str</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_set_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">pyexlatex.texgen.replacements.filename</span> <span class="k">import</span> <span class="n">_latex_valid_basename</span>
@@ -86,10 +108,17 @@
     <span class="k">def</span> <span class="nf">width_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="c1"># Handle float being passed</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">)):</span>
-            <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.width}</span><span class="s1">{LineWidth()}&#39;</span>
+            <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.width}</span><span class="s1">{TextWidth()}&#39;</span>
 
         <span class="c1"># Handle manually passing a width string</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">options_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_with_bracket</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">))</span></div>
 </pre></div>
 
           </div>

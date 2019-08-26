@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.logic.builder &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.logic.builder &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css" />
@@ -50,6 +50,22 @@
 
 <span class="k">def</span> <span class="nf">_build</span><span class="p">(</span><span class="n">elements</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">LineBreak</span><span class="p">()</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="build"><a class="viewcode-back" href="../../../api/pyexlatex.logic.html#pyexlatex.logic.builder.build">[docs]</a><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;contents&#39;</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">build</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="n">result</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">build</span><span class="p">(</span><span class="n">content</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">result</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;contents&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;content&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">content</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="n">built</span> <span class="o">=</span> <span class="n">_build</span><span class="p">([</span><span class="n">build</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">content</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">built</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">content</span><span class="p">)</span></div>
 </pre></div>
 
           </div>

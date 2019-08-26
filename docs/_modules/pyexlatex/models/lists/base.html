@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.lists.base &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.models.lists.base &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_paramlinks.css" />
@@ -32,10 +32,10 @@
           <div class="body" role="main">
             
   <h1>Source code for pyexlatex.models.lists.base</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">pyexlatex.models.presentation.beamer.overlay.overlay</span> <span class="k">import</span> <span class="n">Overlay</span>
-<span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="k">import</span> <span class="n">Item</span><span class="p">,</span> <span class="n">ItemBase</span>
+    <span class="kn">from</span> <span class="nn">pyexlatex.presentation.beamer.overlay</span> <span class="k">import</span> <span class="n">Overlay</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="k">import</span> <span class="n">Item</span>
 <span class="kn">from</span> <span class="nn">mixins.repr</span> <span class="k">import</span> <span class="n">ReprMixin</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.lists.item</span> <span class="k">import</span> <span class="n">ListItem</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.containeritem</span> <span class="k">import</span> <span class="n">ContainerItem</span>
@@ -47,8 +47,7 @@
 <div class="viewcode-block" id="VerticalFillMixin"><a class="viewcode-back" href="../../../../api/pyexlatex.models.lists.html#pyexlatex.models.lists.base.VerticalFillMixin">[docs]</a><span class="k">class</span> <span class="nc">VerticalFillMixin</span><span class="p">:</span>
     <span class="n">vertical_fill</span> <span class="o">=</span> <span class="kc">False</span>
 
-<div class="viewcode-block" id="VerticalFillMixin.generate_content"><a class="viewcode-back" href="../../../../api/pyexlatex.models.lists.html#pyexlatex.models.lists.base.VerticalFillMixin.generate_content">[docs]</a>    <span class="k">def</span> <span class="nf">generate_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">pyexlatex.logic.builder</span> <span class="k">import</span> <span class="n">_build</span>
+<div class="viewcode-block" id="VerticalFillMixin.vertically_space_content"><a class="viewcode-back" href="../../../../api/pyexlatex.models.lists.html#pyexlatex.models.lists.base.VerticalFillMixin.vertically_space_content">[docs]</a>    <span class="k">def</span> <span class="nf">vertically_space_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">):</span>
         <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -60,7 +59,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertical_fill</span><span class="p">:</span>
             <span class="n">output</span> <span class="o">=</span> <span class="n">output</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># strip final vertical fill, only fill inbetween items</span>
 
-        <span class="k">return</span> <span class="n">_build</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">output</span></div></div>
 
 
 <div class="viewcode-block" id="ListBase"><a class="viewcode-back" href="../../../../api/pyexlatex.models.lists.html#pyexlatex.models.lists.base.ListBase">[docs]</a><span class="k">class</span> <span class="nc">ListBase</span><span class="p">(</span><span class="n">VerticalFillMixin</span><span class="p">,</span> <span class="n">ContainerItem</span><span class="p">,</span> <span class="n">Item</span><span class="p">,</span> <span class="n">ReprMixin</span><span class="p">):</span>
@@ -73,7 +72,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vertical_fill</span> <span class="o">=</span> <span class="n">vertical_fill</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_data_from_content</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_content</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertically_space_content</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
         <span class="n">env_modifier_overlay</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;[</span><span class="si">{overlay}</span><span class="s1">]&#39;</span> <span class="k">if</span> <span class="n">overlay</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">env_modifiers</span><span class="o">=</span><span class="n">env_modifier_overlay</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
 

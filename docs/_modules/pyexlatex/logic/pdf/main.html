@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.logic.pdf.main &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.logic.pdf.main &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_paramlinks.css" />
@@ -44,7 +44,7 @@
 
 <div class="viewcode-block" id="document_to_pdf_and_move"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.pdf.html#pyexlatex.logic.pdf.main.document_to_pdf_and_move">[docs]</a><span class="k">def</span> <span class="nf">document_to_pdf_and_move</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="n">outfolder</span><span class="p">,</span> <span class="n">image_paths</span><span class="p">:</span> <span class="n">StrListOrNone</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">outname</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">as_document</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                              <span class="n">move_folder_name</span><span class="o">=</span><span class="s1">&#39;Figures&#39;</span><span class="p">,</span> <span class="n">image_binaries</span><span class="p">:</span> <span class="n">BytesListOrNone</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                             <span class="n">run_bibtex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+                             <span class="n">run_bibtex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">date_time_move</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 
     <span class="c1"># Create tex file</span>
     <span class="n">outname_tex</span> <span class="o">=</span> <span class="n">outname</span> <span class="o">+</span> <span class="s1">&#39;.tex&#39;</span>
@@ -60,6 +60,10 @@
         <span class="n">outname_pdf</span> <span class="o">=</span> <span class="n">outname</span> <span class="o">+</span> <span class="s1">&#39;.pdf&#39;</span>
         <span class="n">outpath_pdf</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outfolder</span><span class="p">,</span> <span class="n">outname_pdf</span><span class="p">))</span>
         <span class="n">latex_str_to_pdf_file</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">document</span><span class="p">),</span> <span class="n">outpath_pdf</span><span class="p">,</span> <span class="n">texinputs</span><span class="o">=</span><span class="n">tex_inputs</span><span class="p">,</span> <span class="n">run_bibtex</span><span class="o">=</span><span class="n">run_bibtex</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">date_time_move</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Handle date/time move functionality</span>
     <span class="n">new_outfolder</span> <span class="o">=</span> <span class="n">date_time_move_latex</span><span class="p">(</span><span class="n">outname</span><span class="p">,</span> <span class="n">outfolder</span><span class="p">,</span> <span class="n">folder_name</span><span class="o">=</span><span class="n">move_folder_name</span><span class="p">)</span> <span class="c1">#move table into appropriate date/number folder</span>
 
     <span class="k">if</span> <span class="n">image_paths</span> <span class="ow">and</span> <span class="n">new_outfolder</span><span class="p">:</span>

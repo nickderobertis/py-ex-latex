@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.texgen.replacements.replacer &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.texgen.replacements.replacer &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_paramlinks.css" />
@@ -66,23 +66,24 @@
         <span class="n">previous_letter</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
         <span class="n">escaped_until_character</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># blank string when not in an escaped block</span>
         <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">string</span><span class="p">:</span>
+            <span class="n">letter_is_escaped</span> <span class="o">=</span> <span class="n">previous_letter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">escape_next_character_characters</span>
             <span class="n">wipe_replacement</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># wipe unless told not to by the loop</span>
             <span class="n">output_letter</span> <span class="o">=</span> <span class="n">letter</span>
             <span class="n">possible_replacement</span> <span class="o">+=</span> <span class="n">letter</span>
 
             <span class="c1"># Check if we&#39;re in an escaped block</span>
             <span class="k">if</span> <span class="n">escaped_until_character</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">possible_replacement</span> <span class="o">==</span> <span class="n">escaped_until_character</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">possible_replacement</span> <span class="o">==</span> <span class="n">escaped_until_character</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">letter_is_escaped</span><span class="p">:</span>
                     <span class="c1"># End of escaped block</span>
                     <span class="n">escaped_until_character</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-            <span class="k">elif</span> <span class="n">possible_replacement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">escape_until_same_next_character_characters</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">possible_replacement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">escape_until_same_next_character_characters</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">letter_is_escaped</span><span class="p">:</span>
                 <span class="c1"># escaped block is starting</span>
                 <span class="n">escaped_until_character</span> <span class="o">=</span> <span class="n">possible_replacement</span>
                 <span class="n">replacing</span> <span class="o">=</span> <span class="kc">False</span>
 
             <span class="c1"># automatically is skipped if longer than one letter, so won&#39;t enter while replacing</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">possible_replacement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_letters</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">escaped_until_character</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">previous_letter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">escape_next_character_characters</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">letter_is_escaped</span><span class="p">:</span>
                     <span class="c1"># Escape character. No need to replace. Start over</span>
                     <span class="n">replacing</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="k">else</span><span class="p">:</span>

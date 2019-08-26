@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.equation &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.models.equation &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css" />
@@ -40,6 +40,9 @@
 <span class="kn">from</span> <span class="nn">pyexlatex.logic.format</span> <span class="k">import</span> <span class="n">eq</span> <span class="k">as</span> <span class="n">format_eq</span>
 
 <div class="viewcode-block" id="Equation"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.equation.Equation">[docs]</a><span class="k">class</span> <span class="nc">Equation</span><span class="p">(</span><span class="n">IsSpecificClassMixin</span><span class="p">,</span> <span class="n">IsLatexItemMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pass sympy or string equations to have them rendered in LaTeX.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;equation&#39;</span>
 
 <div class="viewcode-block" id="Equation.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.equation.Equation.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eq</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Eq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">str_eq</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>

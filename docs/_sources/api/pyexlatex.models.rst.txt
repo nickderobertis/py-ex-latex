@@ -11,10 +11,8 @@ Subpackages
    pyexlatex.models.control
    pyexlatex.models.credits
    pyexlatex.models.format
-   pyexlatex.models.graphics
    pyexlatex.models.lists
    pyexlatex.models.page
-   pyexlatex.models.presentation
    pyexlatex.models.references
    pyexlatex.models.section
    pyexlatex.models.sizes
@@ -91,6 +89,14 @@ pyexlatex.models.footnote module
 --------------------------------
 
 .. automodule:: pyexlatex.models.footnote
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.hyperlinks module
+----------------------------------
+
+.. automodule:: pyexlatex.models.hyperlinks
    :members:
    :undoc-members:
    :show-inheritance:

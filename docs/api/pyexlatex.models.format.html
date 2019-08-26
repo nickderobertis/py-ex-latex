@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.format package &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.models.format package &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_paramlinks.css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="pyexlatex.models.graphics package" href="pyexlatex.models.graphics.html" />
+    <link rel="next" title="pyexlatex.models.format.code package" href="pyexlatex.models.format.code.html" />
     <link rel="prev" title="pyexlatex.models.credits.institution package" href="pyexlatex.models.credits.institution.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -35,6 +35,32 @@
             
   <div class="section" id="pyexlatex-models-format-package">
 <h1>pyexlatex.models.format package<a class="headerlink" href="#pyexlatex-models-format-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.format.code.html">pyexlatex.models.format.code package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.code.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.code.html#module-pyexlatex.models.format.code.minted">pyexlatex.models.format.code.minted module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.code.html#module-pyexlatex.models.format.code.python">pyexlatex.models.format.code.python module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.code.html#module-pyexlatex.models.format.code">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.format.text.html">pyexlatex.models.format.text package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.text.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.bold">pyexlatex.models.format.text.bold module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.color">pyexlatex.models.format.text.color module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.italics">pyexlatex.models.format.text.italics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.linespacing">pyexlatex.models.format.text.linespacing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.monospace">pyexlatex.models.format.text.monospace module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.text">pyexlatex.models.format.text.text module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.underline">pyexlatex.models.format.text.underline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -43,7 +69,7 @@
 <dl class="class">
 <dt id="pyexlatex.models.format.adjustbox.AdjustBox">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.format.adjustbox.</code><code class="sig-name descname">AdjustBox</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">adjust_options</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/adjustbox.html#AdjustBox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.adjustbox.AdjustBox" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaMixin" title="pyexlatex.models.section.base.TextAreaMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaMixin</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.Item" title="pyexlatex.models.item.Item"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.Item</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaBase" title="pyexlatex.models.section.base.TextAreaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaBase</span></code></a></p>
 <dl class="method">
 <dt id="pyexlatex.models.format.adjustbox.AdjustBox.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">adjust_options</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/adjustbox.html#AdjustBox.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.adjustbox.AdjustBox.__init__" title="Permalink to this definition">¶</a></dt>
@@ -64,26 +90,6 @@
 </dd>
 </dl>
 </dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-pyexlatex.models.format.and_">
-<span id="pyexlatex-models-format-and-module"></span><h2>pyexlatex.models.format.and_ module<a class="headerlink" href="#module-pyexlatex.models.format.and_" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.format.and_.And">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.format.and_.</code><code class="sig-name descname">And</code><a class="reference internal" href="../_modules/pyexlatex/models/format/and_.html#And"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.and_.And" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.NoOptionsNoContentsItem" title="pyexlatex.models.item.NoOptionsNoContentsItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.NoOptionsNoContentsItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.format.and_.And.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/and_.html#And.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.and_.And.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.format.and_.And.name">
-<code class="sig-name descname">name</code><em class="property"> = 'and'</em><a class="headerlink" href="#pyexlatex.models.format.and_.And.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
@@ -126,42 +132,40 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-pyexlatex.models.format.linespacing">
-<span id="pyexlatex-models-format-linespacing-module"></span><h2>pyexlatex.models.format.linespacing module<a class="headerlink" href="#module-pyexlatex.models.format.linespacing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyexlatex.models.format.centering">
+<span id="pyexlatex-models-format-centering-module"></span><h2>pyexlatex.models.format.centering module<a class="headerlink" href="#module-pyexlatex.models.format.centering" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="pyexlatex.models.format.linespacing.LineSpacing">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.format.linespacing.</code><code class="sig-name descname">LineSpacing</code><span class="sig-paren">(</span><em class="sig-param">line_spacing</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/linespacing.html#LineSpacing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.linespacing.LineSpacing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.mixins.IsSpecificClassMixin" title="pyexlatex.models.mixins.IsSpecificClassMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.mixins.IsSpecificClassMixin</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.IsLatexItemMixin" title="pyexlatex.models.item.IsLatexItemMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.IsLatexItemMixin</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.mixins.StringAdditionMixin" title="pyexlatex.models.mixins.StringAdditionMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.mixins.StringAdditionMixin</span></code></a></p>
+<dt id="pyexlatex.models.format.centering.Center">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.format.centering.</code><code class="sig-name descname">Center</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/centering.html#Center"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.centering.Center" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaBase" title="pyexlatex.models.section.base.TextAreaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaBase</span></code></a></p>
 <dl class="method">
-<dt id="pyexlatex.models.format.linespacing.LineSpacing.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">line_spacing</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/linespacing.html#LineSpacing.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.linespacing.LineSpacing.__init__" title="Permalink to this definition">¶</a></dt>
+<dt id="pyexlatex.models.format.centering.Center.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/centering.html#Center.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.centering.Center.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pyexlatex.models.format.linespacing.LineSpacing.name">
-<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#pyexlatex.models.format.linespacing.LineSpacing.name" title="Permalink to this definition">¶</a></dt>
+<dl class="attribute">
+<dt id="pyexlatex.models.format.centering.Center.name">
+<code class="sig-name descname">name</code><em class="property"> = 'center'</em><a class="headerlink" href="#pyexlatex.models.format.centering.Center.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="function">
-<dt id="pyexlatex.models.format.linespacing.latex_line_spacing_from_logical_line_spacing">
-<code class="sig-prename descclassname">pyexlatex.models.format.linespacing.</code><code class="sig-name descname">latex_line_spacing_from_logical_line_spacing</code><span class="sig-paren">(</span><em class="sig-param">line_spacing</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/linespacing.html#latex_line_spacing_from_logical_line_spacing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.linespacing.latex_line_spacing_from_logical_line_spacing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Latex for some reason has 1.65 as double line spacing, 1.325 as one and a half
-line spacing, and 1 as single spacing. Take an input on a normal scale (2 is
-double spaced, 1 is single space, 1.5 is one and a half spacing, and so on), and
-convert to the latex scale.
-Args:</p>
-<blockquote>
-<div><p>line_spacing:</p>
-</div></blockquote>
-<p>Returns:</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
-</dd>
-</dl>
+<dl class="class">
+<dt id="pyexlatex.models.format.centering.Centering">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.format.centering.</code><code class="sig-name descname">Centering</code><span class="sig-paren">(</span><em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/centering.html#Centering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.centering.Centering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.NoOptionsNoContentsItem" title="pyexlatex.models.item.NoOptionsNoContentsItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.NoOptionsNoContentsItem</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.format.centering.Centering.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/centering.html#Centering.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.centering.Centering.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.format.centering.Centering.name">
+<code class="sig-name descname">name</code><em class="property"> = 'centering'</em><a class="headerlink" href="#pyexlatex.models.format.centering.Centering.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -171,7 +175,7 @@ Args:</p>
 <dt id="pyexlatex.models.format.raw.Raw">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.format.raw.</code><code class="sig-name descname">Raw</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/raw.html#Raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.raw.Raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.mixins.IsSpecificClassMixin" title="pyexlatex.models.mixins.IsSpecificClassMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.mixins.IsSpecificClassMixin</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.IsLatexItemMixin" title="pyexlatex.models.item.IsLatexItemMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.IsLatexItemMixin</span></code></a></p>
-<p>don’t replace latex characters in this block</p>
+<p>Don’t replace latex characters in this blocks such as or %, useful for adding latex commands or comments manually.</p>
 <dl class="method">
 <dt id="pyexlatex.models.format.raw.Raw.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/raw.html#Raw.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.raw.Raw.__init__" title="Permalink to this definition">¶</a></dt>
@@ -217,72 +221,13 @@ subsection=r’Alph{subsection}’</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-pyexlatex.models.format.text">
-<span id="pyexlatex-models-format-text-module"></span><h2>pyexlatex.models.format.text module<a class="headerlink" href="#module-pyexlatex.models.format.text" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.format.text.Text">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.format.text.</code><code class="sig-name descname">Text</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">modifiers=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text.html#Text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.text.Text" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.format.text.Text.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">modifiers=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text.html#Text.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.text.Text.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.format.text.Text.name">
-<code class="sig-name descname">name</code><em class="property"> = 'text'</em><a class="headerlink" href="#pyexlatex.models.format.text.Text.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</div>
-<div class="section" id="module-pyexlatex.models.format.textcolor">
-<span id="pyexlatex-models-format-textcolor-module"></span><h2>pyexlatex.models.format.textcolor module<a class="headerlink" href="#module-pyexlatex.models.format.textcolor" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.format.textcolor.TextColor">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.format.textcolor.</code><code class="sig-name descname">TextColor</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">color</em>, <em class="sig-param">opacity=1.0</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/textcolor.html#TextColor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.textcolor.TextColor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.MultiOptionSimpleItem" title="pyexlatex.models.item.MultiOptionSimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.MultiOptionSimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.format.textcolor.TextColor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">color</em>, <em class="sig-param">opacity=1.0</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/textcolor.html#TextColor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.textcolor.TextColor.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.models.format.textcolor.TextColor.color_str">
-<em class="property">property </em><code class="sig-name descname">color_str</code><a class="headerlink" href="#pyexlatex.models.format.textcolor.TextColor.color_str" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.format.textcolor.TextColor.name">
-<code class="sig-name descname">name</code><em class="property"> = 'textcolor'</em><a class="headerlink" href="#pyexlatex.models.format.textcolor.TextColor.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.models.format.textcolor.TextColor.opacity_str">
-<em class="property">property </em><code class="sig-name descname">opacity_str</code><a class="headerlink" href="#pyexlatex.models.format.textcolor.TextColor.opacity_str" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</div>
 <div class="section" id="module-pyexlatex.models.format.vfill">
 <span id="pyexlatex-models-format-vfill-module"></span><h2>pyexlatex.models.format.vfill module<a class="headerlink" href="#module-pyexlatex.models.format.vfill" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pyexlatex.models.format.vfill.VFill">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.format.vfill.</code><code class="sig-name descname">VFill</code><a class="reference internal" href="../_modules/pyexlatex/models/format/vfill.html#VFill"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.vfill.VFill" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.NoOptionsNoContentsItem" title="pyexlatex.models.item.NoOptionsNoContentsItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.NoOptionsNoContentsItem</span></code></a></p>
+<p>Vertical fill, put between items to put spacing between them.</p>
 <dl class="method">
 <dt id="pyexlatex.models.format.vfill.VFill.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/vfill.html#VFill.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.vfill.VFill.__init__" title="Permalink to this definition">¶</a></dt>
@@ -318,6 +263,8 @@ subsection=r’Alph{subsection}’</p>
 <li class="toctree-l2 current"><a class="reference internal" href="pyexlatex.html">pyexlatex package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="pyexlatex.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a><ul class="current">
 <li class="toctree-l5 current"><a class="reference internal" href="pyexlatex.models.html#subpackages">Subpackages</a><ul class="current">
@@ -326,23 +273,23 @@ subsection=r’Alph{subsection}’</p>
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.control.html">pyexlatex.models.control package</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.credits.html">pyexlatex.models.credits package</a></li>
 <li class="toctree-l6 current"><a class="current reference internal" href="#">pyexlatex.models.format package</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="pyexlatex.models.format.code.html">pyexlatex.models.format.code package</a></li>
+<li class="toctree-l8"><a class="reference internal" href="pyexlatex.models.format.text.html">pyexlatex.models.format.text package</a></li>
+</ul>
+</li>
 <li class="toctree-l7"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#module-pyexlatex.models.format.adjustbox">pyexlatex.models.format.adjustbox module</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#module-pyexlatex.models.format.and_">pyexlatex.models.format.and_ module</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#module-pyexlatex.models.format.breaks">pyexlatex.models.format.breaks module</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#module-pyexlatex.models.format.linespacing">pyexlatex.models.format.linespacing module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#module-pyexlatex.models.format.centering">pyexlatex.models.format.centering module</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#module-pyexlatex.models.format.raw">pyexlatex.models.format.raw module</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#module-pyexlatex.models.format.sectionnum">pyexlatex.models.format.sectionnum module</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#module-pyexlatex.models.format.text">pyexlatex.models.format.text module</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#module-pyexlatex.models.format.textcolor">pyexlatex.models.format.textcolor module</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#module-pyexlatex.models.format.vfill">pyexlatex.models.format.vfill module</a></li>
 <li class="toctree-l7"><a class="reference internal" href="#module-pyexlatex.models.format">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.graphics.html">pyexlatex.models.graphics package</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.lists.html">pyexlatex.models.lists package</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.page.html">pyexlatex.models.page package</a></li>
-<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.presentation.html">pyexlatex.models.presentation package</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.references.html">pyexlatex.models.references package</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.section.html">pyexlatex.models.section package</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.sizes.html">pyexlatex.models.sizes package</a></li>
@@ -359,6 +306,7 @@ subsection=r’Alph{subsection}’</p>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.environment">pyexlatex.models.environment module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.equation">pyexlatex.models.equation module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.footnote">pyexlatex.models.footnote module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.hyperlinks">pyexlatex.models.hyperlinks module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.item">pyexlatex.models.item module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.label">pyexlatex.models.label module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.landscape">pyexlatex.models.landscape module</a></li>
@@ -368,6 +316,7 @@ subsection=r’Alph{subsection}’</p>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.table.html">pyexlatex.table package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texgen.html">pyexlatex.texgen package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texparser.html">pyexlatex.texparser package</a></li>
@@ -375,8 +324,8 @@ subsection=r’Alph{subsection}’</p>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.df">pyexlatex.df module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.equations">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-contents">Module contents</a></li>
 </ul>
@@ -392,7 +341,7 @@ subsection=r’Alph{subsection}’</p>
   <li><a href="pyexlatex.html">pyexlatex package</a><ul>
   <li><a href="pyexlatex.models.html">pyexlatex.models package</a><ul>
       <li>Previous: <a href="pyexlatex.models.credits.institution.html" title="previous chapter">pyexlatex.models.credits.institution package</a></li>
-      <li>Next: <a href="pyexlatex.models.graphics.html" title="next chapter">pyexlatex.models.graphics package</a></li>
+      <li>Next: <a href="pyexlatex.models.format.code.html" title="next chapter">pyexlatex.models.format.code package</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

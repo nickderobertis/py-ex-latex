@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.references.citations &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.models.references.citations &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_paramlinks.css" />
@@ -37,6 +37,9 @@
 
 
 <div class="viewcode-block" id="Cite"><a class="viewcode-back" href="../../../../api/pyexlatex.models.references.html#pyexlatex.models.references.citations.Cite">[docs]</a><span class="k">class</span> <span class="nc">Cite</span><span class="p">(</span><span class="n">SimpleItem</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Basic citation command, creates a reference to a document included in the bibliography.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;cite&#39;</span>
 
 <div class="viewcode-block" id="Cite.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.models.references.html#pyexlatex.models.references.citations.Cite.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_accessor</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
@@ -52,10 +55,18 @@
 
 
 <div class="viewcode-block" id="CiteT"><a class="viewcode-back" href="../../../../api/pyexlatex.models.references.html#pyexlatex.models.references.citations.CiteT">[docs]</a><span class="k">class</span> <span class="nc">CiteT</span><span class="p">(</span><span class="n">NatBibCiteBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    In text citation command, creates an in text (without parentheses) reference to a document</span>
+<span class="sd">    included in the bibliography.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;citet&#39;</span></div>
 
 
 <div class="viewcode-block" id="CiteP"><a class="viewcode-back" href="../../../../api/pyexlatex.models.references.html#pyexlatex.models.references.citations.CiteP">[docs]</a><span class="k">class</span> <span class="nc">CiteP</span><span class="p">(</span><span class="n">NatBibCiteBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Paragraph citation command, creates a paragraph (with parentheses) reference to a document</span>
+<span class="sd">    included in the bibliography.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;citep&#39;</span></div>
 </pre></div>
 

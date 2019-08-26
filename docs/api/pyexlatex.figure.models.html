@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.figure.models package &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.figure.models package &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_paramlinks.css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="pyexlatex.logic package" href="pyexlatex.logic.html" />
+    <link rel="next" title="pyexlatex.graphics package" href="pyexlatex.graphics.html" />
     <link rel="prev" title="pyexlatex.figure package" href="pyexlatex.figure.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -116,11 +116,15 @@ landscape:</p>
 <span id="pyexlatex-figure-models-graphic-module"></span><h2>pyexlatex.figure.models.graphic module<a class="headerlink" href="#module-pyexlatex.figure.models.graphic" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pyexlatex.figure.models.graphic.Graphic">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.figure.models.graphic.</code><code class="sig-name descname">Graphic</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">width=1.0</em>, <em class="sig-param">cache=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/graphic.html#Graphic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.figure.models.graphic.</code><code class="sig-name descname">Graphic</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">width=1.0</em>, <em class="sig-param">cache=True</em>, <em class="sig-param">options=None</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/graphic.html#Graphic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<p>Basic class for including graphics.</p>
+<p>In most documents, a Figure would be used to give more structure to the graphic. This class will literally just
+include the image with no other structure. It is typically more useful in presentations where the structure
+is already being provided.</p>
 <dl class="method">
 <dt id="pyexlatex.figure.models.graphic.Graphic.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">width=1.0</em>, <em class="sig-param">cache=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/graphic.html#Graphic.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic.__init__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">width=1.0</em>, <em class="sig-param">cache=True</em>, <em class="sig-param">options=None</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/graphic.html#Graphic.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><dl>
 <dt>Args:</dt><dd><p>filepath:
 width: if a float is passed, is interpreted as a fraction of line width. if a str is passed, will be passed</p>
@@ -138,6 +142,21 @@ width: if a float is passed, is interpreted as a fraction of line width. if a st
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.figure.models.graphic.Graphic.name">
+<code class="sig-name descname">name</code><em class="property"> = 'includegraphics'</em><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.figure.models.graphic.Graphic.options_str">
+<em class="property">property </em><code class="sig-name descname">options_str</code><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic.options_str" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -214,8 +233,11 @@ width: if a float is passed, is interpreted as a fraction of line width. if a st
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.figure.html#module-pyexlatex.figure">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.table.html">pyexlatex.table package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texgen.html">pyexlatex.texgen package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texparser.html">pyexlatex.texparser package</a></li>
@@ -223,8 +245,8 @@ width: if a float is passed, is interpreted as a fraction of line width. if a st
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.df">pyexlatex.df module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.equations">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-contents">Module contents</a></li>
 </ul>
@@ -240,7 +262,7 @@ width: if a float is passed, is interpreted as a fraction of line width. if a st
   <li><a href="pyexlatex.html">pyexlatex package</a><ul>
   <li><a href="pyexlatex.figure.html">pyexlatex.figure package</a><ul>
       <li>Previous: <a href="pyexlatex.figure.html" title="previous chapter">pyexlatex.figure package</a></li>
-      <li>Next: <a href="pyexlatex.logic.html" title="next chapter">pyexlatex.logic package</a></li>
+      <li>Next: <a href="pyexlatex.graphics.html" title="next chapter">pyexlatex.graphics package</a></li>
   </ul></li>
   </ul></li>
   </ul></li>

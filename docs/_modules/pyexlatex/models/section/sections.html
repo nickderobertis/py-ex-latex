@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.section.sections &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.models.section.sections &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_paramlinks.css" />
@@ -37,16 +37,25 @@
 
 
 <div class="viewcode-block" id="SubSubSection"><a class="viewcode-back" href="../../../../api/pyexlatex.models.section.html#pyexlatex.models.section.appendix.SubSubSection">[docs]</a><span class="k">class</span> <span class="nc">SubSubSection</span><span class="p">(</span><span class="n">SectionBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A part of a subsection, the third largest section type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;subsubsection&#39;</span>
     <span class="n">next_level_down_class</span> <span class="o">=</span> <span class="n">Paragraph</span></div>
 
 
 <div class="viewcode-block" id="SubSection"><a class="viewcode-back" href="../../../../api/pyexlatex.models.section.html#pyexlatex.models.section.appendix.SubSection">[docs]</a><span class="k">class</span> <span class="nc">SubSection</span><span class="p">(</span><span class="n">SectionBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A part of a section, the second largest section type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;subsection&#39;</span>
     <span class="n">next_level_down_class</span> <span class="o">=</span> <span class="n">SubSubSection</span></div>
 
 
 <div class="viewcode-block" id="Section"><a class="viewcode-back" href="../../../../api/pyexlatex.models.section.html#pyexlatex.models.section.appendix.Section">[docs]</a><span class="k">class</span> <span class="nc">Section</span><span class="p">(</span><span class="n">SectionBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A section of the document, the largest section type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;section&#39;</span>
     <span class="n">next_level_down_class</span> <span class="o">=</span> <span class="n">SubSection</span></div>
 

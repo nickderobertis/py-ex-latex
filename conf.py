@@ -5,7 +5,7 @@
 PACKAGE_NAME = 'pyexlatex'
 
 # Package version in the format (major, minor, release)
-PACKAGE_VERSION_TUPLE = (0, 4, 0)
+PACKAGE_VERSION_TUPLE = (0, 4, 1)
 
 # Short description of the package
 PACKAGE_SHORT_DESCRIPTION = 'Python Extends LaTeX - A High-Level Python API for Creating Latex Documents'
@@ -55,7 +55,8 @@ PACKAGE_INSTALL_REQUIRES = [
     'latex',
     'future',
     'sympy',
-    'shutilwhich'
+    'shutilwhich',
+    'bibtexparser'
 ]
 
 # Sphinx executes all the import statements as it generates the documentation. To avoid having to install all

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.section package &#8212; pyexlatex 0.3.0 documentation</title>
+    <title>pyexlatex.models.section package &#8212; pyexlatex 0.4.1 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_paramlinks.css" />
@@ -64,6 +64,7 @@
 <dt id="pyexlatex.models.section.appendix.Appendix">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.section.appendix.</code><code class="sig-name descname">Appendix</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/section/appendix.html#Appendix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.section.appendix.Appendix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.section.base.TextAreaBase" title="pyexlatex.models.section.base.TextAreaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaBase</span></code></a></p>
+<p>Content to be placed at the end, separate from the main document.</p>
 <dl class="method">
 <dt id="pyexlatex.models.section.appendix.Appendix.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/section/appendix.html#Appendix.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.section.appendix.Appendix.__init__" title="Permalink to this definition">¶</a></dt>
@@ -186,6 +187,7 @@
 <dt id="pyexlatex.models.section.paragraphs.Paragraph">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.section.paragraphs.</code><code class="sig-name descname">Paragraph</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">title=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/section/paragraphs.html#Paragraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.section.paragraphs.Paragraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.section.base.ParagraphBase" title="pyexlatex.models.section.base.ParagraphBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.ParagraphBase</span></code></a></p>
+<p>A paragraph, the second smallest section block.</p>
 <dl class="attribute">
 <dt id="pyexlatex.models.section.paragraphs.Paragraph.name">
 <code class="sig-name descname">name</code><em class="property"> = 'paragraph'</em><a class="headerlink" href="#pyexlatex.models.section.paragraphs.Paragraph.name" title="Permalink to this definition">¶</a></dt>
@@ -203,6 +205,7 @@
 <dt id="pyexlatex.models.section.paragraphs.SubParagraph">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.section.paragraphs.</code><code class="sig-name descname">SubParagraph</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">title=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/section/paragraphs.html#SubParagraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.section.paragraphs.SubParagraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.section.base.ParagraphBase" title="pyexlatex.models.section.base.ParagraphBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.ParagraphBase</span></code></a></p>
+<p>Part of a paragraph, the smallest section block.</p>
 <dl class="attribute">
 <dt id="pyexlatex.models.section.paragraphs.SubParagraph.name">
 <code class="sig-name descname">name</code><em class="property"> = 'subparagraph'</em><a class="headerlink" href="#pyexlatex.models.section.paragraphs.SubParagraph.name" title="Permalink to this definition">¶</a></dt>
@@ -217,6 +220,7 @@
 <dt id="pyexlatex.models.section.sections.Section">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.section.sections.</code><code class="sig-name descname">Section</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">title</em>, <em class="sig-param">short_title=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/section/sections.html#Section"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.section.sections.Section" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.section.base.SectionBase" title="pyexlatex.models.section.base.SectionBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.SectionBase</span></code></a></p>
+<p>A section of the document, the largest section type.</p>
 <dl class="attribute">
 <dt id="pyexlatex.models.section.sections.Section.name">
 <code class="sig-name descname">name</code><em class="property"> = 'section'</em><a class="headerlink" href="#pyexlatex.models.section.sections.Section.name" title="Permalink to this definition">¶</a></dt>
@@ -234,6 +238,7 @@
 <dt id="pyexlatex.models.section.sections.SubSection">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.section.sections.</code><code class="sig-name descname">SubSection</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">title</em>, <em class="sig-param">short_title=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/section/sections.html#SubSection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.section.sections.SubSection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.section.base.SectionBase" title="pyexlatex.models.section.base.SectionBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.SectionBase</span></code></a></p>
+<p>A part of a section, the second largest section type.</p>
 <dl class="attribute">
 <dt id="pyexlatex.models.section.sections.SubSection.name">
 <code class="sig-name descname">name</code><em class="property"> = 'subsection'</em><a class="headerlink" href="#pyexlatex.models.section.sections.SubSection.name" title="Permalink to this definition">¶</a></dt>
@@ -251,6 +256,7 @@
 <dt id="pyexlatex.models.section.sections.SubSubSection">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.section.sections.</code><code class="sig-name descname">SubSubSection</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">title</em>, <em class="sig-param">short_title=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/section/sections.html#SubSubSection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.section.sections.SubSubSection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.section.base.SectionBase" title="pyexlatex.models.section.base.SectionBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.SectionBase</span></code></a></p>
+<p>A part of a subsection, the third largest section type.</p>
 <dl class="attribute">
 <dt id="pyexlatex.models.section.sections.SubSubSection.name">
 <code class="sig-name descname">name</code><em class="property"> = 'subsubsection'</em><a class="headerlink" href="#pyexlatex.models.section.sections.SubSubSection.name" title="Permalink to this definition">¶</a></dt>
@@ -286,6 +292,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="pyexlatex.html">pyexlatex package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="pyexlatex.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a><ul class="current">
 <li class="toctree-l5 current"><a class="reference internal" href="pyexlatex.models.html#subpackages">Subpackages</a><ul class="current">
@@ -294,10 +302,8 @@
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.control.html">pyexlatex.models.control package</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.credits.html">pyexlatex.models.credits package</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.format.html">pyexlatex.models.format package</a></li>
-<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.graphics.html">pyexlatex.models.graphics package</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.lists.html">pyexlatex.models.lists package</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.page.html">pyexlatex.models.page package</a></li>
-<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.presentation.html">pyexlatex.models.presentation package</a></li>
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.references.html">pyexlatex.models.references package</a></li>
 <li class="toctree-l6 current"><a class="current reference internal" href="#">pyexlatex.models.section package</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#submodules">Submodules</a></li>
@@ -323,6 +329,7 @@
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.environment">pyexlatex.models.environment module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.equation">pyexlatex.models.equation module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.footnote">pyexlatex.models.footnote module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.hyperlinks">pyexlatex.models.hyperlinks module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.item">pyexlatex.models.item module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.label">pyexlatex.models.label module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.landscape">pyexlatex.models.landscape module</a></li>
@@ -332,6 +339,7 @@
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.table.html">pyexlatex.table package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texgen.html">pyexlatex.texgen package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texparser.html">pyexlatex.texparser package</a></li>
@@ -339,8 +347,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.df">pyexlatex.df module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.equations">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-contents">Module contents</a></li>
 </ul>

@@ -1,0 +1,38 @@
+pyexlatex.graphics package
+==========================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.graphics.flowcharts
+   pyexlatex.graphics.tikz
+
+Submodules
+----------
+
+pyexlatex.graphics.arrow module
+-------------------------------
+
+.. automodule:: pyexlatex.graphics.arrow
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.graphics.rectangle module
+-----------------------------------
+
+.. automodule:: pyexlatex.graphics.rectangle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.graphics
+   :members:
+   :undoc-members:
+   :show-inheritance:

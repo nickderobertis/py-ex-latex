@@ -1,0 +1,33 @@
+pyexlatex.presentation.beamer package
+=====================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.presentation.beamer.columns
+   pyexlatex.presentation.beamer.frame
+   pyexlatex.presentation.beamer.overlay
+   pyexlatex.presentation.beamer.templates
+   pyexlatex.presentation.beamer.theme
+
+Submodules
+----------
+
+pyexlatex.presentation.beamer.block module
+------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.block
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.presentation.beamer
+   :members:
+   :undoc-members:
+   :show-inheritance:

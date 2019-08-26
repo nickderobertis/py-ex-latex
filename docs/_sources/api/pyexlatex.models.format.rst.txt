@@ -1,6 +1,14 @@
 pyexlatex.models.format package
 ===============================
 
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.models.format.code
+   pyexlatex.models.format.text
+
 Submodules
 ----------
 
@@ -8,14 +16,6 @@ pyexlatex.models.format.adjustbox module
 ----------------------------------------
 
 .. automodule:: pyexlatex.models.format.adjustbox
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-pyexlatex.models.format.and\_ module
-------------------------------------
-
-.. automodule:: pyexlatex.models.format.and_
    :members:
    :undoc-members:
    :show-inheritance:
@@ -28,10 +28,10 @@ pyexlatex.models.format.breaks module
    :undoc-members:
    :show-inheritance:
 
-pyexlatex.models.format.linespacing module
-------------------------------------------
+pyexlatex.models.format.centering module
+----------------------------------------
 
-.. automodule:: pyexlatex.models.format.linespacing
+.. automodule:: pyexlatex.models.format.centering
    :members:
    :undoc-members:
    :show-inheritance:
@@ -48,22 +48,6 @@ pyexlatex.models.format.sectionnum module
 -----------------------------------------
 
 .. automodule:: pyexlatex.models.format.sectionnum
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-pyexlatex.models.format.text module
------------------------------------
-
-.. automodule:: pyexlatex.models.format.text
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-pyexlatex.models.format.textcolor module
-----------------------------------------
-
-.. automodule:: pyexlatex.models.format.textcolor
    :members:
    :undoc-members:
    :show-inheritance:

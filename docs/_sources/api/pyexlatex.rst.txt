@@ -7,8 +7,11 @@ Subpackages
 .. toctree::
 
    pyexlatex.figure
+   pyexlatex.graphics
+   pyexlatex.layouts
    pyexlatex.logic
    pyexlatex.models
+   pyexlatex.presentation
    pyexlatex.table
    pyexlatex.texgen
    pyexlatex.texparser
