@@ -1,5 +1,5 @@
 from typing import Sequence
-from pyexlatex.models.layouts.base import LayoutBase
+from pyexlatex.layouts.base import LayoutBase
 from pyexlatex.presentation.beamer import Columns
 from pyexlatex.presentation.beamer import Column
 

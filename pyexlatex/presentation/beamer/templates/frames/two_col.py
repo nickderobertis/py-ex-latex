@@ -5,7 +5,7 @@ from pyexlatex.models.format.vfill import VFill
 from pyexlatex.presentation.beamer import DimRevealMixin
 from pyexlatex.models.sizes.textheight import TextHeight
 from pyexlatex.models.format.centering import Centering
-from pyexlatex.models.layouts.multicol import MultiCol
+from pyexlatex.layouts.multicol import MultiCol
 
 
 class TwoColumnFrame(GridFrame):

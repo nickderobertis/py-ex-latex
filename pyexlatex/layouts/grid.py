@@ -1,7 +1,7 @@
 from typing import Sequence, Any, List, Tuple
 from pyexlatex.presentation.beamer import Column
 from pyexlatex.presentation.beamer import Columns
-from pyexlatex.models.layouts.base import LayoutBase
+from pyexlatex.layouts.base import LayoutBase
 
 
 class CellLayout(LayoutBase):

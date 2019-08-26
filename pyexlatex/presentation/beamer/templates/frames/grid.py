@@ -1,6 +1,6 @@
 from typing import Sequence, Any, Tuple
 from pyexlatex.presentation.beamer import Frame
-from pyexlatex.models.layouts.grid import CellLayout, GridLayout
+from pyexlatex.layouts import CellLayout, GridLayout
 
 
 class CellFrame(Frame):
