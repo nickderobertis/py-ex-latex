@@ -12,6 +12,7 @@ class Rectangle(Shape):
 
     def __init__(self, width: int, height: int, contents: Optional = None,
                  offset: Tuple[int, int] = (0, 0), content_position: str = 'center',
+                 content_offset: Optional[float] = None,
                  shape_options: Optional[Sequence[str]] = None,
                  text_options: Optional[Sequence[str]] = None,
                  overlay: Optional['Overlay'] = None):
@@ -23,6 +24,7 @@ class Rectangle(Shape):
         super().__init__(
             contents=contents,
             content_position=content_position,
+            content_offset=content_offset,
             shape_options=shape_options,
             text_options=text_options,
             overlay=overlay,

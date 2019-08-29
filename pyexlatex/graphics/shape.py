@@ -20,8 +20,10 @@ class Shape(TextAreaMixin, ItemBase):
 
     def __init__(self, shape_options: Optional[Sequence[str]] = None, text_options: Optional[Sequence[str]] = None,
                  offset: Tuple[int, int] = (0, 0),
-                 contents: Optional = None, content_position: str = 'center', **kwargs):
+                 contents: Optional = None, content_position: str = 'center', content_offset: Optional[float] = None,
+                 **kwargs):
         self.content_position = content_position.lower()
+        self.content_offset = content_offset
         shape_options = self._get_list_copy_from_list_or_none(shape_options)
         text_options = self._get_list_copy_from_list_or_none(text_options)
         shape_options.extend([
@@ -56,6 +58,7 @@ class Shape(TextAreaMixin, ItemBase):
 
     def _validate(self):
         self._validate_position()
+        self._validate_offset()
 
     def _validate_position(self):
         allowed_positions = (
@@ -69,6 +72,10 @@ class Shape(TextAreaMixin, ItemBase):
             raise ValueError(f'could not use content_position {self.content_position}, '
                              f'pass one of {", ".join(allowed_positions)}')
 
+    def _validate_offset(self):
+        if self.content_offset is not None and self.content_position == 'center':
+            raise ValueError('cannot pass content_offset when content_position is center')
+
     def _get_text_placement(self) -> Union[Right, Left, Below, Above]:
         """
         Need to place the text beside the line, not on the line. E.g. placing on bottom, we want the text
@@ -77,13 +84,13 @@ class Shape(TextAreaMixin, ItemBase):
         :return:
         """
         if self.content_position == 'right':
-            return Left()
+            return Left(by=self.content_offset, combined_direction=False)
         elif self.content_position == 'left':
-            return Right()
+            return Right(by=self.content_offset, combined_direction=False)
         elif self.content_position == 'top':
-            return Below()
+            return Below(by=self.content_offset, combined_direction=False)
         elif self.content_position == 'bottom':
-            return Above()
+            return Above(by=self.content_offset, combined_direction=False)
         else:
             raise ValueError(f'could not determine text placement from {self.content_position}')
 
