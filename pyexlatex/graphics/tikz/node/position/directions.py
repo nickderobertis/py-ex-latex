@@ -15,11 +15,22 @@ class DirectionBase(ItemBase):
     is_vertical_direction = None
 
     def __init__(self, direction: Optional['DirectionBase'] = None, of: Optional['Node'] = None,
-                 by: Optional[int] = None):
+                 by: Optional[float] = None, combined_direction: bool = True):
+        """
+
+        :param direction:
+        :param of:
+        :param by:
+        :param combined_direction: In some usages of directions, they are specified together, e.g.
+            above right=2cm and 3cm. In other usages, they are specified separately, e.g. above=2cm, right=3cm.
+            When combined_direction=True, will use the former style, and when False will use the latter style
+        """
         self.child_direction = direction
         self.of = of
         self.by = by
+        self.combined_direction = combined_direction
         self._validate()
+        self._set_vertical_and_horizontal_by()
 
         self.init_data()
         self.data.packages.extend([
@@ -51,25 +62,106 @@ class DirectionBase(ItemBase):
         else:
             vertical_name = self.child_direction.name
             horizontal_name = self.name
-        return f'{vertical_name} {horizontal_name}{self.of_str}'
+
+        if self.has_combined_direction:
+            return f'{vertical_name} {horizontal_name}{self.of_str}'
+
+        # Handle non-combined direction
+
+        return f'{vertical_name}{self.vertical_of_str}, {horizontal_name}{self.horizontal_of_str}'
+
+    @property
+    def has_combined_direction(self) -> bool:
+        if self.child_direction is None:
+            return self.combined_direction
+
+        if not self.combined_direction or not self.child_direction.combined_direction:
+            # Having False in either parent or child means entire is treated as False, since True is the default
+            return False
+
+        return True
 
     @property
     def of_str(self) -> str:
         if self.of is None and (self.child_direction is None or self.child_direction.of is None):
-            return ''
+            if not self.by_str:
+                return ''
+            else:
+                return f'={self.by_str}'
 
-        label = None
+        return f'={self.by_str}of {self.of_label}'
+
+    @property
+    def vertical_of_str(self) -> Optional[str]:
+        if self.has_combined_direction:
+            return None
+
+        if self.of is None and (self.child_direction is None or self.child_direction.of is None):
+            if not self.vertical_by_str:
+                return ''
+            else:
+                return f'={self.vertical_by_str}'
+
+        return f'={self.vertical_by_str}of {self.of_label}'
+
+    @property
+    def horizontal_of_str(self) -> Optional[str]:
+        if self.has_combined_direction:
+            return None
+
+        if self.of is None and (self.child_direction is None or self.child_direction.of is None):
+            if not self.horizontal_by_str:
+                return ''
+            else:
+                return f'={self.horizontal_by_str}'
+
+        return f'={self.horizontal_by_str}of {self.of_label}'
+
+    @property
+    def of_label(self) -> Optional[str]:
+        if self.of is None and (self.child_direction is None or self.child_direction.of is None):
+            return None
+
         if self.of is not None:
             label = self.of.label
         else:
             label = self.child_direction.of.label
+        return label
 
-        return f'={self.by_str}of {label}'
 
     @property
     def by_str(self) -> str:
         if self.by is None and (self.child_direction is None or self.child_direction.by is None):
             return ''
+
+        out_str = ''
+        if self.vertical_by is not None:
+            out_str += self.vertical_by_str
+        if self.horizontal_by is not None:
+            out_str += self.horizontal_by_str
+
+        return out_str
+
+    @property
+    def vertical_by_str(self) -> Optional[str]:
+        if self.vertical_by is None:
+            return None
+        return f'{self.vertical_by}cm '
+
+    @property
+    def horizontal_by_str(self) -> Optional[str]:
+        if self.horizontal_by is None:
+            return None
+        horizontal_str = f'{self.horizontal_by}cm '
+        if self.has_combined_direction:
+            horizontal_str = 'and ' + horizontal_str
+        return horizontal_str
+
+    def _set_vertical_and_horizontal_by(self):
+        if self.by is None and (self.child_direction is None or self.child_direction.by is None):
+            self.vertical_by = None
+            self.horizontal_by = None
+            return
 
         vertical_by, horizontal_by = None, None
         if _is_vertical_direction_and_has_by(self):
@@ -82,13 +174,8 @@ class DirectionBase(ItemBase):
         elif self.child_direction is not None and _is_horizontal_direction_and_has_by(self.child_direction):
             horizontal_by = self.child_direction.by
 
-        out_str = ''
-        if vertical_by is not None:
-            out_str += f'{vertical_by} '
-        if horizontal_by is not None:
-            out_str += f'and {horizontal_by} '
-
-        return out_str
+        self.vertical_by = vertical_by
+        self.horizontal_by = horizontal_by
 
     def __str__(self) -> str:
         return self.full_direction
