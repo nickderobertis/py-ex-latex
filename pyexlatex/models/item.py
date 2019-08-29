@@ -25,7 +25,7 @@ class DataItem:
             self.data = DocumentSetupData()
 
 
-class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin, EqOnAttrsMixin, EqHashMixin):
+class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin, EqHashMixin, EqOnAttrsMixin):
     """
     Base class for all latex generating classes
     
