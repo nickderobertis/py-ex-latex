@@ -172,11 +172,8 @@ class Document(DocumentBase):
         else:
             self.has_title_page = False
 
-        # combine content into a single str
-        content = _build(content)
-
         if landscape:
-            content = Landscape().wrap(str(content))
+            content = Landscape().wrap(content)
 
         super().__init__(content, packages=all_packages, pre_env_contents=pre_env_contents)
 
