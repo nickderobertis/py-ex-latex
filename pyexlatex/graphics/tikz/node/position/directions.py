@@ -55,7 +55,7 @@ class DirectionBase(ItemBase):
 
     @property
     def of_str(self) -> str:
-        if self.of is None and self.child_direction.of is None:
+        if self.of is None and (self.child_direction is None or self.child_direction.of is None):
             return ''
 
         label = None

@@ -1,11 +1,12 @@
 import uuid
-from typing import Tuple, Optional, Sequence, TYPE_CHECKING
+from typing import Tuple, Optional, Sequence, Union, TYPE_CHECKING
 if TYPE_CHECKING:
     from pyexlatex.presentation.beamer.overlay import Overlay
 
 from pyexlatex.graphics.tikz.item import TikZItem
 from pyexlatex.graphics.tikz.node.position.position import NodePosition
 from pyexlatex.logic.format.contents import format_contents
+from pyexlatex.graphics.tikz.node.position.directions import DirectionBase
 
 
 class Node(TikZItem):
@@ -13,7 +14,7 @@ class Node(TikZItem):
     Represents a location in a graphic, but can also have a style and text, e.g. rectangle filled with text
     """
 
-    def __init__(self, contents: Optional = None, location: Optional[Tuple[int, int]] = None,
+    def __init__(self, contents: Optional = None, location: Optional[Union[Tuple[int, int], DirectionBase, str]] = None,
                  label: Optional[str] = None,
                  options: Optional[Sequence[str]] = None,
                  overlay: Optional['Overlay'] = None):

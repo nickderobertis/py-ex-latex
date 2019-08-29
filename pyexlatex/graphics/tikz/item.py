@@ -25,7 +25,8 @@ class TikZItem(TextAreaMixin, ItemBase):
     def options_str(self) -> str:
         if self.options is None:
             return ''
-        return self._wrap_with_bracket(', '.join(self.options))
+        str_options = [str(option) for option in self.options]
+        return self._wrap_with_bracket(', '.join(str_options))
 
 
 

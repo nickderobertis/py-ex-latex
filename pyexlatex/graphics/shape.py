@@ -1,16 +1,116 @@
-from typing import Sequence, Tuple, Optional, TYPE_CHECKING
+from typing import Sequence, Tuple, Optional, Union, List, TYPE_CHECKING
 if TYPE_CHECKING:
     from pyexlatex.presentation.beamer.overlay import Overlay
 from pyexlatex.graphics.tikz.node.node import Node
+from pyexlatex.models.item import ItemBase
+from pyexlatex.graphics.tikz.node.position.directions import (
+    Above,
+    Below,
+    Right,
+    Left
+)
+from pyexlatex.models.section.base import TextAreaMixin
 
 
-class Shape(Node):
+class Shape(TextAreaMixin, ItemBase):
+    """
+    Base class for creating individual shape classes, not intended to be used directly.
+    """
     shape_name = '<Do not use Shape directly, set shape_name in subclass>'
 
-    def __init__(self, options: Optional[Sequence[str]] = None, offset: Tuple[int, int] = (0, 0), **kwargs):
+    def __init__(self, options: Optional[Sequence[str]] = None, offset: Tuple[int, int] = (0, 0),
+                 contents: Optional = None, content_position: str = 'center', **kwargs):
+        self.content_position = content_position.lower()
         options = self._get_list_copy_from_list_or_none(options)
         options.extend([
             self.shape_name,
             'draw'
         ])
-        super().__init__(options=options, location=offset, **kwargs)
+        self._validate()
+        if self.content_position == 'center':
+            # pass contents to shape node itself, as shape node is already at center
+            shape_contents = contents
+        else:
+            shape_contents = None
+        self.shape_node = Node(options=options, location=offset, contents=shape_contents, **kwargs)
+
+        if self.content_position != 'center' and contents is not None:
+            # Need to create a second node for placing text other than in center
+            self.text_node = Node(
+                options=[self._get_text_placement()],
+                location=self._get_text_node_location(),
+                contents=contents
+            )
+        else:
+            self.text_node = None
+
+        ItemBase.__init__(self, **kwargs)
+
+        contents = self._get_contents()
+        self.add_data_from_content(contents)
+        self.contents = self.format_contents(contents)
+
+    def _validate(self):
+        self._validate_position()
+
+    def _validate_position(self):
+        allowed_positions = (
+            'center',
+            'right',
+            'left',
+            'top',
+            'bottom'
+        )
+        if self.content_position not in allowed_positions:
+            raise ValueError(f'could not use content_position {self.content_position}, '
+                             f'pass one of {", ".join(allowed_positions)}')
+
+    def _get_text_placement(self) -> Union[Right, Left, Below, Above]:
+        """
+        Need to place the text beside the line, not on the line. E.g. placing on bottom, we want the text
+        above the bottom line, not on the bottom line
+
+        :return:
+        """
+        if self.content_position == 'right':
+            return Left()
+        elif self.content_position == 'left':
+            return Right()
+        elif self.content_position == 'top':
+            return Below()
+        elif self.content_position == 'bottom':
+            return Above()
+        else:
+            raise ValueError(f'could not determine text placement from {self.content_position}')
+
+    def _get_shape_anchor(self) -> str:
+        """
+        Side of the shape to anchor on for text
+        """
+        if self.content_position == 'right':
+            return 'east'
+        elif self.content_position == 'left':
+            return 'west'
+        elif self.content_position == 'top':
+            return 'north'
+        elif self.content_position == 'bottom':
+            return 'south'
+        else:
+            raise ValueError(f'could not determine shape anchor from {self.content_position}')
+
+    def _get_text_node_location(self) -> str:
+        return f'{self.shape_node.label}.{self._get_shape_anchor()}'
+
+    def _get_contents(self) -> List[Node]:
+        possible_contents = [
+            self.shape_node,
+            self.text_node
+        ]
+        contents = [content for content in possible_contents if content is not None]
+        return contents
+
+    def __str__(self):
+        if isinstance(self.contents, str):
+            return self.contents
+        from pyexlatex.logic.builder import _build
+        return _build(self.contents)

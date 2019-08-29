@@ -11,7 +11,7 @@ class Rectangle(Shape):
     shape_name = 'rectangle'
 
     def __init__(self, width: int, height: int, contents: Optional = None,
-                 offset: Tuple[int, int] = (0, 0),
+                 offset: Tuple[int, int] = (0, 0), content_position: str = 'center',
                  options: Optional[Sequence[str]] = None,
                  overlay: Optional['Overlay'] = None):
         self.size = (width, height)
@@ -19,7 +19,13 @@ class Rectangle(Shape):
         options = self._get_list_copy_from_list_or_none(options)
         options.extend(self.get_size_options())
 
-        super().__init__(contents=contents, options=options, overlay=overlay, offset=offset)
+        super().__init__(
+            contents=contents,
+            content_position=content_position,
+            options=options,
+            overlay=overlay,
+            offset=offset
+        )
 
     def get_size_options(self) -> List[str]:
         return [
