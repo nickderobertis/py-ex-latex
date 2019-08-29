@@ -1,4 +1,4 @@
-from typing import List, Optional, Sequence
+from typing import List, Optional, Sequence, Union
 from pyexlatex.models.documentitem import DocumentItem
 from pyexlatex.models.package import Package
 from mixins.repr import ReprMixin
@@ -7,11 +7,14 @@ from pyexlatex.models.references.bibtex.base import BibTexEntryBase
 
 
 class UniqueDataList(list):
+    """
+    A list where the items are always unique.
+    """
 
     def __init__(self, iterable):
         if iterable is None:
             iterable = []
-        return super().__init__(iterable)
+        super().__init__(iterable)
 
     def append(self, value):
         if value is None:
@@ -27,6 +30,41 @@ class UniqueDataList(list):
         if not new_items:
             return
         return super().extend(new_items)
+
+
+class UniquePackagesList(UniqueDataList):
+    """
+    A unique data list that allows passing of just a string to represent a package
+    """
+
+    def __init__(self, packages: Optional[List[Union[Package, str]]] = None):
+        if packages is None:
+            packages = []
+
+        packages = self._as_packages(packages)
+
+        super().__init__(packages)
+
+    def _as_package(self, package: Union[Package, str]):
+        if isinstance(package, str):
+            return Package(package)
+
+        return package
+
+    def _as_packages(self, packages: Optional[List[Union[Package, str]]] = None):
+        return [self._as_package(pack) for pack in packages]
+
+    def append(self, package: Union[Package, str]):
+        if package is None:
+            return
+        package = self._as_package(package)
+        super().append(package)
+
+    def extend(self, packages: Optional[List[Union[Package, str]]] = None):
+        if packages is None:
+            return
+        packages = self._as_packages(packages)
+        super().extend(packages)
 
 
 class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):
@@ -63,7 +101,7 @@ class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):
         self.binaries = UniqueDataList(binaries)
         self.begin_document_items = UniqueDataList(begin_document_items)
         self.end_document_items = UniqueDataList(end_document_items)
-        self.packages = UniqueDataList(packages)
+        self.packages = UniquePackagesList(packages)
         self.source_paths = UniqueDataList(source_paths)
         self.references = UniqueDataList(references)
 
