@@ -7,22 +7,43 @@ from pyexlatex.models.credits.institution.institute import Institutes
 class Author(SimpleItem):
     name = 'author'
 
-    def __init__(self, authors: Union[str, Sequence[str]], short_author: Optional[str] = None,
+    def __init__(self, authors: Union[str, Sequence[str]], short_author: Optional[str] = 'auto',
                  institutions: Optional[Sequence[Sequence[str]]] = None, short_institution: Optional[str] = None):
+        """
+
+        :param authors:
+        :param short_author: pass short name for author, 'auto' to automatically use first author as short author,
+            or None for there to be no short name
+        :param institutions:
+        :param short_institution:
+        """
         if isinstance(authors, str):
             authors = [authors]
         self.authors = authors
-        self.short_author = short_author if short_author is not None else authors[0]
+        self.short_author = short_author
         self.institutions = institutions
         self.short_institution = short_institution
         self._validate()
         self.institution_nums = []
         self._setup_institutions()
+        self.content = self._get_content()
 
-        super().__init__(self.name, self.content, pre_modifiers=self._wrap_with_bracket(self.short_author))
+        super().__init__(self.name, self.content, pre_modifiers=self._short_author_modifiers_str)
 
     @property
-    def content(self):
+    def _short_author_modifiers_str(self) -> Optional[str]:
+        if self.short_author is None:
+            return None
+
+        if self.short_author.lower() == 'auto':
+            short_author = self.authors[0]
+        else:
+            short_author = self.short_author
+
+        return self._wrap_with_bracket(short_author)
+
+
+    def _get_content(self):
         if self.institutions is None:
             return self.authors
 

@@ -12,9 +12,9 @@ class TitlePage(DocumentItem):
 
         contents = [
             Title(title) if title is not None else None,
-            Author(author) if author is not None else None,
+            Author(author, short_author=None) if author is not None else None,
             Date(date) if date is not None else Date(),
-            _maketitle_str(),
+            _maketitle_str() if title is not None else None,
             Abstract(abstract) if abstract is not None else None
         ]
 
