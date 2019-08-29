@@ -1,5 +1,6 @@
 from typing import Optional, Sequence, Union
 from pyexlatex.models.item import Item
+from pyexlatex.models.containeritem import ContainerItem
 from mixins.repr import ReprMixin
 from pyexlatex.table.models.panels.collection import PanelCollection
 from pyexlatex.table.models.texgen.alignment import ColumnsAlignment
@@ -63,7 +64,7 @@ class ThreePartTable(Item, ReprMixin):
 
         return cls(tabular, caption=caption, *args, **kwargs)
 
-class Table(Item, ReprMixin):
+class Table(ContainerItem, Item, ReprMixin):
     name = 'table'
     repr_cols = ['caption']
 
@@ -80,7 +81,7 @@ class Table(Item, ReprMixin):
 
         content = LineBreak().join(valid_items)
 
-        super().__init__(self.name, content)
+        Item.__init__(self, self.name, content)
 
     def __str__(self):
         content_with_env = super().__str__()
@@ -114,7 +115,10 @@ class Table(Item, ReprMixin):
             below_text=table.below_text,
             label=Label(table.label) if table.label else None
         )
-        return cls(three_part_table, *args, landscape=table.landscape, **kwargs)
+        obj = cls(three_part_table, *args, landscape=table.landscape, **kwargs)
+        obj.add_data_from_content(table)
+        return obj
+
 
 
 class LTable(Table):
@@ -147,4 +151,6 @@ class TableDocument(Document):
         from pyexlatex.table.models.table.table import Table as TableModel
         table: TableModel
         tex_table = Table.from_table_model(table, *args, **kwargs)
-        return cls(tex_table, *args, **kwargs)
+        obj = cls(tex_table, *args, **kwargs)
+        obj.add_data_from_content(table)
+        return obj
