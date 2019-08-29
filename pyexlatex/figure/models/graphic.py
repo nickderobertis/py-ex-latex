@@ -44,13 +44,14 @@ class Graphic(SimpleItem):
             self.name,
             self.source_paths[0],
             pre_modifiers=self.options_str,
-            overlay=overlay
+            overlay=overlay,
+            format_content=False
         )
 
 
 
     def __repr__(self):
-        return f'<Graphic({self.filepaths[0]}, width={self.width})>'
+        return f'<Graphic({self.filepath}, width={self.width})>'
 
 
     def _set_path(self, filepath: str):
@@ -69,6 +70,14 @@ class Graphic(SimpleItem):
     @property
     def filepaths(self) -> List[str]:
         return [os.path.sep.join(self._filepath_parts)]
+
+    @property
+    def filepath(self) -> str:
+        return self.filepaths[0]
+
+    @property
+    def source_path(self) -> str:
+        return self.source_paths[0]
 
     @property
     def width_str(self) -> str:
