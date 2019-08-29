@@ -18,11 +18,13 @@ class Shape(TextAreaMixin, ItemBase):
     """
     shape_name = '<Do not use Shape directly, set shape_name in subclass>'
 
-    def __init__(self, options: Optional[Sequence[str]] = None, offset: Tuple[int, int] = (0, 0),
+    def __init__(self, shape_options: Optional[Sequence[str]] = None, text_options: Optional[Sequence[str]] = None,
+                 offset: Tuple[int, int] = (0, 0),
                  contents: Optional = None, content_position: str = 'center', **kwargs):
         self.content_position = content_position.lower()
-        options = self._get_list_copy_from_list_or_none(options)
-        options.extend([
+        shape_options = self._get_list_copy_from_list_or_none(shape_options)
+        text_options = self._get_list_copy_from_list_or_none(text_options)
+        shape_options.extend([
             self.shape_name,
             'draw'
         ])
@@ -30,14 +32,16 @@ class Shape(TextAreaMixin, ItemBase):
         if self.content_position == 'center':
             # pass contents to shape node itself, as shape node is already at center
             shape_contents = contents
+            shape_options.extend(text_options)
         else:
             shape_contents = None
-        self.shape_node = Node(options=options, location=offset, contents=shape_contents, **kwargs)
+        self.shape_node = Node(options=shape_options, location=offset, contents=shape_contents, **kwargs)
 
         if self.content_position != 'center' and contents is not None:
             # Need to create a second node for placing text other than in center
+            text_options.append(self._get_text_placement())
             self.text_node = Node(
-                options=[self._get_text_placement()],
+                options=text_options,
                 location=self._get_text_node_location(),
                 contents=contents
             )
@@ -114,3 +118,7 @@ class Shape(TextAreaMixin, ItemBase):
             return self.contents
         from pyexlatex.logic.builder import _build
         return _build(self.contents)
+
+    @property
+    def label(self) -> str:
+        return self.shape_node.label

@@ -12,17 +12,19 @@ class Rectangle(Shape):
 
     def __init__(self, width: int, height: int, contents: Optional = None,
                  offset: Tuple[int, int] = (0, 0), content_position: str = 'center',
-                 options: Optional[Sequence[str]] = None,
+                 shape_options: Optional[Sequence[str]] = None,
+                 text_options: Optional[Sequence[str]] = None,
                  overlay: Optional['Overlay'] = None):
         self.size = (width, height)
         self.offset = offset
-        options = self._get_list_copy_from_list_or_none(options)
-        options.extend(self.get_size_options())
+        shape_options = self._get_list_copy_from_list_or_none(shape_options)
+        shape_options.extend(self.get_size_options())
 
         super().__init__(
             contents=contents,
             content_position=content_position,
-            options=options,
+            shape_options=shape_options,
+            text_options=text_options,
             overlay=overlay,
             offset=offset
         )
