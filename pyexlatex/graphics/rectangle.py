@@ -1,25 +1,28 @@
-from typing import Sequence, Tuple, Optional, TYPE_CHECKING
+from typing import Sequence, Tuple, Optional, List, TYPE_CHECKING
 if TYPE_CHECKING:
     from pyexlatex.presentation.beamer.overlay import Overlay
-from pyexlatex.graphics.tikz.path import SpecificPath
+from pyexlatex.graphics.shape import Shape
 
 
-class Rectangle(SpecificPath):
+class Rectangle(Shape):
     """
     Draws a rectangle.
     """
-    draw_type = 'rectangle'
-    path_type = 'draw'
+    shape_name = 'rectangle'
 
-    def __init__(self, width: int, height: int, offset: Tuple[int, int] = (0, 0),
+    def __init__(self, width: int, height: int, contents: Optional = None,
+                 offset: Tuple[int, int] = (0, 0),
                  options: Optional[Sequence[str]] = None,
                  overlay: Optional['Overlay'] = None):
         self.size = (width, height)
         self.offset = offset
-        super().__init__(self.get_points(), options=options, overlay=overlay)
+        options = self._get_list_copy_from_list_or_none(options)
+        options.extend(self.get_size_options())
 
-    def get_points(self) -> Tuple[Tuple[int, int], Tuple[int, int]]:
-        return (
-            self.offset,
-            (self.size[0] + self.offset[0], self.size[1] + self.offset[1])
-        )
+        super().__init__(contents=contents, options=options, overlay=overlay, offset=offset)
+
+    def get_size_options(self) -> List[str]:
+        return [
+            f'minimum width={self.size[0]}cm',
+            f'minimum height={self.size[1]}cm',
+        ]
