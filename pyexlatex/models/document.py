@@ -123,8 +123,8 @@ class Document(DocumentBase):
                  floats_at_end_options: str = 'nolists',
                  document_type: str = 'article', font_size: Optional[float] = None,
                  num_columns: Optional[int] = None, line_spacing: Optional[float] = None,
-                 tables_relative_font_size: int = 0, figures_relative_font_size: int = 0):
-        from pyexlatex.logic.builder import _build
+                 tables_relative_font_size: int = 0, figures_relative_font_size: int = 0,
+                 page_style: str = 'fancy'):
         from pyexlatex.models.title.page import TitlePage
 
         all_packages = self.construct_packages(
@@ -158,7 +158,7 @@ class Document(DocumentBase):
 
         possible_extra_pre_env_contents = [
             *section_num_styles,
-            PageStyle('fancy'),
+            PageStyle(page_style),
 
             # header is there by default. add remove header lines if page_header=False
             remove_header if not page_header else None,
