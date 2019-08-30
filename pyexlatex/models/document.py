@@ -197,7 +197,7 @@ class Document(DocumentBase):
             packages.append(Package('floatrow'))
             if tables_relative_font_size:
                 declared_font = DeclareFloatFont(tables_relative_font_size)
-                float_setup_str = f'font={declared_font.size_def.name},cappostion=top'
+                float_setup_str = f'font={declared_font.size_def.name},capposition=top'
                 packages.extend([
                     declared_font,
                     FloatSetup('table', float_setup_str),
@@ -205,7 +205,7 @@ class Document(DocumentBase):
                 ])
             if figures_relative_font_size:
                 declared_font = DeclareFloatFont(figures_relative_font_size)
-                float_setup_str = f'font={declared_font.size_def.name},cappostion=top'
+                float_setup_str = f'font={declared_font.size_def.name},capposition=top'
                 packages.extend([
                     declared_font,
                     FloatSetup('figure', float_setup_str),
