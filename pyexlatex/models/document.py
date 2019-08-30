@@ -1,4 +1,4 @@
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Union
 from copy import deepcopy
 
 from pyexlatex.models.environment import Environment
@@ -115,7 +115,7 @@ class Document(DocumentBase):
     name = 'document'
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
-                 title: str=None, author: str=None, date: str=None, abstract: str=None,
+                 title: str=None, authors: Optional[Union[List[str], str]] = None, date: str=None, abstract: str=None,
                  skip_title_page: bool=False,
                  page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in', page_header: bool=False,
                  page_numbers: bool=True, appendix_modifier_str: Optional[str] = 'page',
@@ -145,6 +145,10 @@ class Document(DocumentBase):
 
         if isinstance(content, (Item, str)):
             content = [content]
+        if authors is None:
+            authors = []
+        if isinstance(authors, (Item, str)):
+            authors = [authors]
 
         self.document_class_obj = DocumentClass(
                 document_type=document_type,
@@ -165,8 +169,8 @@ class Document(DocumentBase):
 
         pre_env_contents = [item for item in possible_extra_pre_env_contents if item is not None]
 
-        if not skip_title_page and _should_create_title_page(title=title, author=author, date=date, abstract=abstract):
-            title_page = TitlePage(title=title, author=author, date=date, abstract=abstract)
+        if not skip_title_page and _should_create_title_page(title=title, authors=authors, date=date, abstract=abstract):
+            title_page = TitlePage(title=title, authors=authors, date=date, abstract=abstract)
             content.insert(0, title_page)
             self.has_title_page = True
         else:
@@ -230,10 +234,11 @@ class Document(DocumentBase):
         return packages
 
 
-def _should_create_title_page(title: str = None, author: str = None, date: str = None, abstract: str = None):
+def _should_create_title_page(title: str = None, authors: Optional[List[str]] = None, date: str = None,
+                              abstract: str = None):
     return any([
         title is not None,
-        author is not None,
+        authors is not None and authors != [],
         date is not None,
         abstract is not None
     ])
