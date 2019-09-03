@@ -1,26 +1,29 @@
+from typing import Optional
 from pyexlatex.typing import ListOrDictOrItem, StrListOrNone, AnyItem
 from pyexlatex.logic.extract.docitems import is_latex_item
 
 
-def get_attr_from_items_or_collection(content: ListOrDictOrItem, attr: str, unique: bool = False) -> StrListOrNone:
+def get_attr_from_items_or_collection(content: ListOrDictOrItem, attr: str, unique: bool = False,
+                                      collected_attr_values: Optional[list] = None) -> StrListOrNone:
     if unique:
         extend_func = _extend_with_items_not_in_list
     else:
         extend_func = _extend
-    collected_attr_values = []
+
+    if collected_attr_values is None:
+        collected_attr_values = []
+        
     if isinstance(content, (list, tuple)):
         for item in content:
-            if _is_item_and_has_attr(item, attr):
-                extend_func(collected_attr_values, _get_from_item_or_item_data(item, attr))
+            get_attr_from_items_or_collection(item, attr, unique=unique, collected_attr_values=collected_attr_values)
     elif isinstance(content, dict):
         for name, item in content.items():
-            if _is_item_and_has_attr(item, attr):
-                extend_func(collected_attr_values, _get_from_item_or_item_data(item, attr))
+            get_attr_from_items_or_collection(item, attr, unique=unique, collected_attr_values=collected_attr_values)
     elif is_latex_item(content):
         if _is_item_and_has_attr(content, attr):
             extend_func(collected_attr_values, _get_from_item_or_item_data(content, attr))
 
-    if collected_attr_values == []:
+    if not collected_attr_values:
         return None
 
     return collected_attr_values
