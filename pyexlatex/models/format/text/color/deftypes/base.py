@@ -7,6 +7,10 @@ from pyexlatex.models.item import MultiOptionSimpleItem
 class ColorDefinition(MultiOptionSimpleItem):
     definition_type = None
     name = 'definecolor'
+    equal_attrs = [
+        'color_content',
+        'color_name'
+    ]
 
     def __init__(self, color_content: str, color_name: Optional[str] = None):
         if color_name is None:
