@@ -29,3 +29,4 @@ from pyexlatex.models.page.header import Header
 from pyexlatex.models.page.number import ThisPageNumber
 from pyexlatex.models.format.vspace import VSpace
 from pyexlatex.models.format.paragraphindent import ParagraphIndent
+from pyexlatex.models.format.hline import HLine
