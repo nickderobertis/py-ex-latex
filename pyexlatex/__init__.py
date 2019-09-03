@@ -25,4 +25,5 @@ from pyexlatex.figure.models.graphic import Graphic
 from pyexlatex.models.format.vfill import VFill
 from pyexlatex.models.hyperlinks import Hyperlink
 from pyexlatex.models.package import Package
+from pyexlatex.models.page.header import Header
 from pyexlatex.models.page.number import ThisPageNumber
