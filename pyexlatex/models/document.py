@@ -1,4 +1,4 @@
-from typing import List, Optional, Dict, Union
+from typing import List, Optional, Dict, Union, Sequence
 from copy import deepcopy
 
 from pyexlatex.models.environment import Environment
@@ -20,6 +20,7 @@ from pyexlatex.models.commands.endfloat import DeclareDelayedFloatFlavor
 from pyexlatex.models.format.text.linespacing import LineSpacing
 from pyexlatex.models.commands.floatrow import DeclareFloatFont, FloatSetup
 from pyexlatex.models.containeritem import ContainerItem
+from pyexlatex.models.page.header import Header
 
 
 class DocumentEnvironment(Environment):
@@ -36,7 +37,6 @@ class DocumentBase(ContainerItem, Item):
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
                  pre_env_contents: Optional[ItemOrListOfItems] = None):
         from pyexlatex.logic.builder import build, _build
-
         self.add_data_from_content(content)
 
         if packages is not None:
@@ -124,7 +124,7 @@ class Document(DocumentBase):
                  document_type: str = 'article', font_size: Optional[float] = None,
                  num_columns: Optional[int] = None, line_spacing: Optional[float] = None,
                  tables_relative_font_size: int = 0, figures_relative_font_size: int = 0,
-                 page_style: str = 'fancy'):
+                 page_style: str = 'fancy', custom_headers: Optional[Sequence[Header]] = None):
         from pyexlatex.models.title.page import TitlePage
 
         all_packages = self.construct_packages(
@@ -147,6 +147,8 @@ class Document(DocumentBase):
             content = [content]
         if authors is None:
             authors = []
+        if custom_headers is None:
+            custom_headers = []
         if isinstance(authors, (Item, str)):
             authors = [authors]
 
@@ -161,7 +163,8 @@ class Document(DocumentBase):
             PageStyle(page_style),
 
             # header is there by default. add remove header lines if page_header=False
-            remove_header if not page_header else None,
+            remove_header if not page_header and not custom_headers else None,
+            *custom_headers,
 
             # add right page numbers. if not, use blank center footer to clear default page numbers in center footer
             right_aligned_page_numbers if page_numbers else CenterFooter('')
