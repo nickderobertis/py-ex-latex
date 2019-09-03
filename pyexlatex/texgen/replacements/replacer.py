@@ -1,10 +1,11 @@
 from typing import Dict, List
 
-latex_escape_character = '\\' # literal \
-latex_replacement_items = ['%', '&', '_', '#']
+latex_escape_begin_character = '\\' # literal \
+latex_escape_end_characters = '{}'
+latex_replacement_items = ['%', '&', '_', '#', '^']
 latex_block_escape_characters = ['$']
 replacement_dict = {
-        latex_replacement_item: latex_escape_character + latex_replacement_item \
+        latex_replacement_item: latex_escape_begin_character + latex_replacement_item + latex_escape_end_characters
         for latex_replacement_item in latex_replacement_items
     }
 
@@ -146,6 +147,6 @@ def _extract_replacements_where_letter_matches_index_n(n: int, letter: str, dict
 
 latex_replacer = Replacer(
     replacement_dict,
-    escape_next_character_characters=[latex_escape_character],
+    escape_next_character_characters=[latex_escape_begin_character],
     escape_until_same_next_character_characters=latex_block_escape_characters
 )
