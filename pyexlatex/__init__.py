@@ -14,7 +14,7 @@ from pyexlatex.models.references.bibtex.misc import BibTexMisc
 from pyexlatex.models.references.bibtex.manual import BibTexManual
 from pyexlatex.models.references.bibliography import Bibliography
 from pyexlatex.models.references.citations import Cite, CiteP, CiteT
-from pyexlatex.models.format.text.color import TextColor
+from pyexlatex.models.format.text.color.main import TextColor
 from pyexlatex.models.format.text.monospace import Monospace
 from pyexlatex.models.format.text.underline import Underline
 from pyexlatex.models.format.text.bold import Bold
@@ -30,3 +30,5 @@ from pyexlatex.models.page.number import ThisPageNumber
 from pyexlatex.models.format.vspace import VSpace
 from pyexlatex.models.format.paragraphindent import ParagraphIndent
 from pyexlatex.models.format.hline import HLine
+from pyexlatex.models.format.text.color.deftypes.rgb import RGB
+from pyexlatex.models.format.text.color.deftypes.hex import Hex
