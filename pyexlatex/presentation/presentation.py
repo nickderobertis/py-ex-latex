@@ -1,4 +1,4 @@
-from typing import List, Optional, Sequence
+from typing import List, Optional, Sequence, Union
 from copy import deepcopy
 from pyexlatex.models.document import DocumentBase
 from pyexlatex.typing import ItemOrListOfItems
@@ -20,7 +20,8 @@ class Presentation(DocumentBase):
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
                  pre_env_contents: Optional[ItemOrListOfItems] = None,
-                 title: Optional[str] = None, author: Optional[str] = None, date: Optional[str] = None,
+                 title: Optional[str] = None, authors: Optional[Union[str, Sequence[str]]] = None,
+                 date: Optional[str] = None,
                  short_title: Optional[str] = None, subtitle: Optional[str] = None, short_author: Optional[str] = None,
                  institutions: Optional[Sequence[Sequence[str]]] = None, short_institution: Optional[str] = None,
                  font_size: Optional[float] = 11, theme: str = 'Madrid', backend: str = 'beamer',
@@ -60,10 +61,10 @@ class Presentation(DocumentBase):
                 )
             )
 
-            if should_create_title_frame(title, author, date, subtitle, institutions):
+            if should_create_title_frame(title, authors, date, subtitle, institutions):
                 self.title_frame = TitleFrame(
                     title=title,
-                    author=author,
+                    authors=authors,
                     date=date,
                     short_title=short_title,
                     subtitle=subtitle,
