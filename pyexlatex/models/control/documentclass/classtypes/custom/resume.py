@@ -19,6 +19,7 @@ RESUME_DEFINITION = r"""
 %
 % Created by Trey Hunner and modified by www.LaTeXTemplates.com
 %
+% Updated by Nick DeRobertis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \ProvidesClass{resume}[2010/07/10 v0.9 Resume class]
@@ -47,13 +48,15 @@ RESUME_DEFINITION = r"""
 
 % \address command can be used to set the first, second, and third address (last 2 optional)
 \def \address #1{
+  \@ifundefined{@addressone}{
+    \def \@addressone {#1}
+  }{
   \@ifundefined{@addresstwo}{
-    \def \@addresstwo {#1}
+  \def \@addresstwo {#1}
   }{
-  \@ifundefined{@addressthree}{
-  \def \@addressthree {#1}
-  }{
-     \def \@addressone {#1}
+     \@ifundefined{@addressthree}{
+      \def \@addressthree {#1}
+    }{}
   }}
 }
 
