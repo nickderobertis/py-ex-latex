@@ -104,12 +104,6 @@ RESUME_DEFINITION = r"""
   \MakeUppercase{\bf #1} % Section title
   \sectionlineskip
   \hrule % Horizontal line
-  \begin{list}{}{ % List for each individual item in the section
-    \setlength{\leftmargin}{1.5em} % Margin within the section
-  }
-  \item[]
-}{
-  \end{list}
 }
 
 %----------------------------------------------------------------------------------------
@@ -120,7 +114,7 @@ RESUME_DEFINITION = r"""
  {\bf #1} \hfill {#2} % Bold company name and date on the right
  \ifthenelse{\equal{#3}{}}{}{ % If the third argument is not specified, don't print the job title and location line
   \\
-  {\em #3} \hfill {\em #4} % Italic job title and location
+  {\em #3} \hfill {\em #4} \\[-12pt] % Italic job title and location
   }\smallskip
   \begin{list}{$\cdot$}{\leftmargin=0em} % \cdot used for bullets, no indentation
    \itemsep -0.5em \vspace{-0.5em} % Compress items in list together for aesthetics
