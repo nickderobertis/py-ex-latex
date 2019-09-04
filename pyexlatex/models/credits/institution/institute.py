@@ -1,7 +1,7 @@
 from typing import Optional, Sequence, List, Union
 from pyexlatex.models.item import SimpleItem, ItemBase
 from pyexlatex.models.credits.institution.inst import Inst
-from pyexlatex.models.format.breaks import OutputLineBreak
+from pyexlatex.models.format.breaks import TableLineBreak
 from pyexlatex.models.control.and_ import And
 
 
@@ -66,7 +66,7 @@ class Institution(ItemBase):
     def __str__(self) -> str:
         from pyexlatex.logic.builder import _build
         inst = Inst(self.num)
-        inst_output = OutputLineBreak().join(self.institution_lines)
+        inst_output = TableLineBreak().join(self.institution_lines)
         return _build([
             inst,
             inst_output
