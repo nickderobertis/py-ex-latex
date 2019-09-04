@@ -38,6 +38,7 @@ class DocumentBase(ContainerItem, Item):
                  pre_env_contents: Optional[ItemOrListOfItems] = None):
         from pyexlatex.logic.builder import build, _build
         self.add_data_from_content(content)
+        self.add_data_from_content(self.document_class_obj)
 
         if packages is not None:
             self.data.packages.extend(packages)
@@ -153,11 +154,10 @@ class Document(DocumentBase):
             authors = [authors]
 
         self.document_class_obj = DocumentClass(
-                document_type=document_type,
-                font_size=font_size,
-                num_columns=num_columns
-            )
-        self.add_data_from_content(self.document_class_obj)
+            document_type=document_type,
+            font_size=font_size,
+            num_columns=num_columns
+        )
 
         possible_extra_pre_env_contents = [
             *section_num_styles,

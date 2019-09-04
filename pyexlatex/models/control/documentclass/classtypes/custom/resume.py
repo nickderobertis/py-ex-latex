@@ -96,7 +96,7 @@ RESUME_DEFINITION = r"""
 %----------------------------------------------------------------------------------------
 
 % Defines the ResumeSection environment for the large sections within the CV
-\newenvironment{ResumeSection}[1]{ % 1 input argument - section name
+\renewenvironment{section}[1]{ % 1 input argument - section name
   \sectionskip
   \MakeUppercase{\bf #1} % Section title
   \sectionlineskip
@@ -113,7 +113,7 @@ RESUME_DEFINITION = r"""
 %	WORK EXPERIENCE FORMATTING
 %----------------------------------------------------------------------------------------
 
-\newenvironment{Employment}[4]{ % 4 input arguments - company name, year(s) employed, job title and location
+\newenvironment{employment}[4]{ % 4 input arguments - company name, year(s) employed, job title and location
  {\bf #1} \hfill {#2} % Bold company name and date on the right
  \ifthenelse{\equal{#3}{}}{}{ % If the third argument is not specified, don't print the job title and location line
   \\

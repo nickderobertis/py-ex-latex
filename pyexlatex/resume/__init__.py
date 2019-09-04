@@ -1,0 +1,1 @@
+from pyexlatex.resume.resume import Resume
