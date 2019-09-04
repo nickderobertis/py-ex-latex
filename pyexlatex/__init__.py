@@ -32,3 +32,4 @@ from pyexlatex.models.format.paragraphindent import ParagraphIndent
 from pyexlatex.models.format.hline import HLine
 from pyexlatex.models.format.text.color.deftypes.rgb import RGB
 from pyexlatex.models.format.text.color.deftypes.hex import Hex
+from pyexlatex.models.template import Template
