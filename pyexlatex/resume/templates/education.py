@@ -23,7 +23,8 @@ class Education(pl.Template):
             pl.OutputLineBreak(),
             pl.Italics(self.degree),
             pl.HFill(),
-            self.school_location
+            self.school_location,
+            pl.OutputLineBreak(size_adjustment='-10pt')
         ]
         items = [item for item in possible_items if item is not None]
         return items
