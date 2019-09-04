@@ -4,7 +4,7 @@ from pyexlatex.models.format.adjustbox import AdjustBox
 from pyexlatex.models.sizes.textwidth import TextWidth
 from pyexlatex.models.sizes.textheight import TextHeight
 from pyexlatex.figure.models.graphic import Graphic
-from pyexlatex.models.format.vfill import VFill
+from pyexlatex.models.format.fills import VFill
 from pyexlatex.models.format.centering import Center
 
 

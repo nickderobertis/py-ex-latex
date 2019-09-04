@@ -5,7 +5,7 @@ from pyexlatex.models.item import Item
 from mixins.repr import ReprMixin
 from pyexlatex.models.lists.item import ListItem
 from pyexlatex.models.containeritem import ContainerItem
-from pyexlatex.models.format.vfill import VFill
+from pyexlatex.models.format.fills import VFill
 
 ListItemDefinition = Union[str, ListItem]
 
