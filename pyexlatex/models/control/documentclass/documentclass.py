@@ -1,13 +1,18 @@
 from typing import Optional, Sequence
+
 from pyexlatex.models.item import SimpleItem
+from pyexlatex.models.containeritem import ContainerItem
+from pyexlatex.models.control.documentclass.classtypes.manager import DocumentClassTypesManager
 
 
-class DocumentClass(SimpleItem):
+class DocumentClass(ContainerItem, SimpleItem):
     name = 'documentclass'
 
     def __init__(self, document_type: str = 'article', font_size: Optional[float] = 11,
                  num_columns: Optional[int] = None, options: Optional[Sequence[str]] = None):
-        self.document_type = document_type
+        manager = DocumentClassTypesManager()
+        self.document_type = manager.get_class_type_by_name(document_type)
+        self.add_data_from_content(self.document_type)
         self.font_size = font_size
         self.num_columns = num_columns
         self.options = options

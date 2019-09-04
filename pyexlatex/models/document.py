@@ -3,7 +3,7 @@ from copy import deepcopy
 
 from pyexlatex.models.environment import Environment
 from pyexlatex.models.item import Item, ItemBase
-from pyexlatex.models.control.documentclass import DocumentClass
+from pyexlatex.models.control.documentclass.documentclass import DocumentClass
 from pyexlatex.models.package import Package
 from pyexlatex.texgen.packages import default_packages
 from pyexlatex.models.page.style import PageStyle
@@ -157,6 +157,7 @@ class Document(DocumentBase):
                 font_size=font_size,
                 num_columns=num_columns
             )
+        self.add_data_from_content(self.document_class_obj)
 
         possible_extra_pre_env_contents = [
             *section_num_styles,

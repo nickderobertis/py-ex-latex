@@ -3,7 +3,7 @@ from copy import deepcopy
 from pyexlatex.models.document import DocumentBase
 from pyexlatex.typing import ItemOrListOfItems
 from pyexlatex.models.package import Package
-from pyexlatex.models.control.documentclass import DocumentClass
+from pyexlatex.models.control.documentclass.documentclass import DocumentClass
 from pyexlatex.models.control.mode import Mode
 from pyexlatex.presentation.beamer.theme.usetheme import UseTheme
 from pyexlatex.models.title.frame import TitleFrame, should_create_title_frame
