@@ -4,6 +4,7 @@ if TYPE_CHECKING:
 from pyexlatex.models.commands.begin import Begin
 from pyexlatex.models.commands.end import End
 
+
 class Environment:
 
     def __init__(self, name, modifiers: Optional[str] = None, overlay: Optional['Overlay'] = None):
