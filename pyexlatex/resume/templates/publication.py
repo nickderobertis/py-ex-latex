@@ -6,7 +6,7 @@ from pyexlatex.models.format.hangindent import HangIndent
 
 class Publication(pl.Template):
 
-    def __init__(self, title: str, co_authors: Optional[Sequence[str]], journal_info: Optional[str] = None,
+    def __init__(self, title: str, co_authors: Optional[Sequence[str]] = None, journal_info: Optional[str] = None,
                  href: Optional[str] = None, extra_info: Optional[str] = None):
         self.title = title
         self.co_authors = co_authors
