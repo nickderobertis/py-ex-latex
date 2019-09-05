@@ -2,6 +2,7 @@ from typing import Optional, Sequence, List, Tuple, Union, TYPE_CHECKING
 if TYPE_CHECKING:
     from pyexlatex.presentation.beamer.overlay import Overlay
     from pyexlatex.graphics.tikz import Node
+    from pyexlatex.graphics.shape import Shape
 from pyexlatex.graphics.tikz.item import TikZItem
 
 PATH_TYPES = (
@@ -61,6 +62,9 @@ class Path(TikZItem):
             if hasattr(location, 'is_Node') and location.is_Node:
                 location: 'Node'
                 locations.append(f'({location.label})')
+            elif hasattr(location, 'shape_node'):
+                location: 'Shape'
+                locations.append(f'({location.shape_node.label})')
             else:
                 location: Tuple[float, float]
                 locations.append(str(location))
