@@ -7,6 +7,7 @@ BUILTIN_CLASS_TYPE_NAMES = [
     'book',
     'proc',
     'slides',
+    'beamer',
 ]
 
 BUILTIN_CLASS_TYPES = {style_str: DocumentClassType(style_str) for style_str in BUILTIN_CLASS_TYPE_NAMES}
