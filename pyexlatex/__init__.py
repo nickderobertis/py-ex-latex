@@ -1,3 +1,8 @@
+"""
+Create LaTeX documents using only Python. Rather than building a direct Python API to LaTeX, this package
+has its own, simpler API to creating documents. It is focused on creating professional-looking documents
+with little styling effort.
+"""
 from pyexlatex.models.document import Document
 from pyexlatex.models.equation import Equation
 from pyexlatex.models.section.paragraphs import Paragraph, SubParagraph
