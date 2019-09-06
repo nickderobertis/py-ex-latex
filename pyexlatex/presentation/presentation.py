@@ -9,6 +9,7 @@ from pyexlatex.presentation.beamer.theme.usetheme import UseTheme
 from pyexlatex.models.title.frame import TitleFrame, should_create_title_frame
 from pyexlatex.models.item import ItemBase
 from pyexlatex.presentation.beamer.templates.lists.dim_reveal_items import eliminate_dim_reveal
+from pyexlatex.models.hyperlinks import eliminate_hyperref
 
 
 class Presentation(DocumentBase):
@@ -52,6 +53,11 @@ class Presentation(DocumentBase):
         )
 
         if backend == 'beamer':
+            # Remove hyperref package if added, as may conflict with beamer which already loads it
+            # TODO: restructure, this seems very slow. Instead, remove from packages after they are finalized
+            # TODO: in DocumentBase. Will need to add a hook to DocumentBase to optionally remove packages
+            eliminate_hyperref(content)
+
             # TODO: add support for custom theming, not just passing main theme str
             styles = [UseTheme(theme)]
             self.data.packages.append(

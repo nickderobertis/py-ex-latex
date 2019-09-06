@@ -2,6 +2,7 @@ from typing import Optional
 from pyexlatex.models.item import MultiOptionSimpleItem
 from pyexlatex.models.section.base import TextAreaMixin
 from pyexlatex.models.package import Package
+from pyexlatex.models.documentsetup import NoPackageWithNameException
 
 
 class Hyperlink(TextAreaMixin, MultiOptionSimpleItem):
@@ -28,3 +29,19 @@ class Hyperlink(TextAreaMixin, MultiOptionSimpleItem):
         )
 
         MultiOptionSimpleItem.__init__(self, self.name, *options, **kwargs)
+
+
+def eliminate_hyperref(content):
+    """
+    Eliminates hidelinks option from nested content. Modifies in place.
+    """
+    if hasattr(content, 'content'):
+        eliminate_hyperref(content.content)
+    if hasattr(content, 'contents'):
+        eliminate_hyperref(content.contents)
+    if isinstance(content, (list, tuple)):
+        [eliminate_hyperref(c) for c in content]
+    try:
+        content.data.packages.delete_by_name('hyperref')
+    except (NoPackageWithNameException, AttributeError):
+        pass
