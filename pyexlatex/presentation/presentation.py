@@ -1,4 +1,6 @@
-from typing import List, Optional, Sequence, Union
+from typing import List, Optional, Sequence, Union, TYPE_CHECKING
+if TYPE_CHECKING:
+    from pyexlatex.models.documentsetup import DocumentSetupData
 from copy import deepcopy
 from pyexlatex.models.document import DocumentBase
 from pyexlatex.typing import ItemOrListOfItems
@@ -9,6 +11,7 @@ from pyexlatex.presentation.beamer.theme.usetheme import UseTheme
 from pyexlatex.models.title.frame import TitleFrame, should_create_title_frame
 from pyexlatex.models.item import ItemBase
 from pyexlatex.presentation.beamer.templates.lists.dim_reveal_items import eliminate_dim_reveal
+from pyexlatex.exc import NoPackageWithNameException
 
 
 class Presentation(DocumentBase):
@@ -52,6 +55,14 @@ class Presentation(DocumentBase):
         )
 
         if backend == 'beamer':
+            # Remove hyperref package if added, as may conflict with beamer which already loads it
+            def remove_hyperref(data: 'DocumentSetupData') -> None:
+                try:
+                    data.packages.delete_by_name('hyperref')
+                except NoPackageWithNameException:
+                    pass
+            data_cleanup_func = remove_hyperref
+
             # TODO: add support for custom theming, not just passing main theme str
             styles = [UseTheme(theme)]
             self.data.packages.append(
@@ -73,8 +84,15 @@ class Presentation(DocumentBase):
                     short_institution=short_institution
                 )
                 content.insert(0, self.title_frame)
+        else:
+            data_cleanup_func = None
 
-        super().__init__(content, packages=packages, pre_env_contents=pre_env_contents)
+        super().__init__(
+            content,
+            packages=packages,
+            pre_env_contents=pre_env_contents,
+            data_cleanup_func=data_cleanup_func
+        )
 
 
 def elimate_overlays(content):

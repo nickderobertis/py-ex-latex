@@ -1,4 +1,6 @@
 from typing import List, Optional, Sequence, Union
+
+from pyexlatex.exc import NoPackageWithNameException
 from pyexlatex.models.documentitem import DocumentItem
 from pyexlatex.models.package import Package
 from mixins.repr import ReprMixin
@@ -65,6 +67,26 @@ class UniquePackagesList(UniqueDataList):
             return
         packages = self._as_packages(packages)
         super().extend(packages)
+
+    def get_by_name(self, name: str):
+        for package in self:
+            if package.matches_name(name):
+                return package
+        raise NoPackageWithNameException(name)
+
+    def delete_by_name(self, name: str):
+        new_packages = []
+        for package in self:
+            if not hasattr(package, 'matches_name'):
+                # Got something other than a package
+                # TODO: think about how to delete non-packages from packages
+                new_packages.append(package)  # No way to check if name matches, so just keep it
+            elif not package.matches_name(name):
+                new_packages.append(package)
+        if len(new_packages) == len(self):
+            raise NoPackageWithNameException(name)
+
+        super().__init__(new_packages)
 
 
 class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):

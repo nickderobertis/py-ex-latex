@@ -1,4 +1,4 @@
-from typing import List, Optional, Dict, Union, Sequence
+from typing import List, Optional, Dict, Union, Sequence, Callable
 from copy import deepcopy
 
 from pyexlatex.models.environment import Environment
@@ -35,7 +35,15 @@ class DocumentBase(ContainerItem, Item):
     document_class_obj = None
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
-                 pre_env_contents: Optional[ItemOrListOfItems] = None):
+                 pre_env_contents: Optional[ItemOrListOfItems] = None, data_cleanup_func: Optional[Callable] = None):
+        """
+
+        :param content:
+        :param packages:
+        :param pre_env_contents:
+        :param data_cleanup_func: should accept DocumentSetupData and modify it in place. This is called just before
+            using the data.
+        """
         from pyexlatex.logic.builder import build, _build
         self.add_data_from_content(content)
         self.add_data_from_content(self.document_class_obj)
@@ -52,6 +60,9 @@ class DocumentBase(ContainerItem, Item):
 
         if pre_env_contents is None:
             pre_env_contents = []
+
+        if data_cleanup_func:
+            data_cleanup_func(self.data)
 
         possible_pre_env_contents = [
             self.document_class_obj,
