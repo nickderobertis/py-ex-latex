@@ -17,7 +17,8 @@ class Resume(DocumentBase):
                  pre_env_contents: Optional[ItemOrListOfItems] = None,
                  name: Optional[str] = None, contact_lines: Optional[Sequence[Union[str, Sequence[str]]]] = None,
                  font_size: Optional[float] = 11,
-                 page_modifier_str: Optional[str]='left=0.75in,top=0.6in,right=0.75in,bottom=0.6in',):
+                 page_modifier_str: Optional[str]='left=0.75in,top=0.6in,right=0.75in,bottom=0.6in',
+                 authors: Optional[Union[str, Sequence[str]]] = None):
 
         self.init_data()
 
@@ -28,6 +29,8 @@ class Resume(DocumentBase):
 
         if pre_env_contents is None:
             pre_env_contents = []
+
+        name = self._get_name(name, authors)
 
         if name is not None:
             pre_env_contents.append(
@@ -44,3 +47,21 @@ class Resume(DocumentBase):
             self.data.packages.append(Package('geometry', modifier_str=page_modifier_str))
 
         super().__init__(content, packages=packages, pre_env_contents=pre_env_contents)
+
+    def _get_name(self, name: Optional[str] = None, authors: Optional[Union[str, Sequence[str]]] = None):
+        if authors is None:
+            return name
+        elif name is None:
+            # Authors is passed, name is not
+            if isinstance(authors, (list, tuple)):
+                authors = authors[0]
+            return authors
+
+        # Both name and author passed
+
+        if name == authors:
+            return name
+
+        # Name and author are not the same
+        raise ValueError(f'got different name and authors, not clear which to use. name: {name}, authors: {authors}')
+
