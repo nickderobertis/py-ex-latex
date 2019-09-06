@@ -66,6 +66,27 @@ class UniquePackagesList(UniqueDataList):
         packages = self._as_packages(packages)
         super().extend(packages)
 
+    def get_by_name(self, name: str):
+        for package in self:
+            if package.matches_name(name):
+                return package
+        raise NoPackageWithNameException(name)
+
+    def delete_by_name(self, name: str):
+        new_packages = []
+        for package in self:
+            if not package.matches_name(name):
+                new_packages.append(package)
+        if len(new_packages) == len(self):
+            raise NoPackageWithNameException(name)
+
+        super().__init__(new_packages)
+
+
+
+class NoPackageWithNameException(Exception):
+    pass
+
 
 class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):
     repr_cols = [
