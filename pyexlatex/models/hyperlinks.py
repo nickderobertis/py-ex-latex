@@ -22,7 +22,9 @@ class Hyperlink(TextAreaMixin, MultiOptionSimpleItem):
 
         self.add_data_from_content(content)
         self.data.packages.append(
-            Package('hyperref')
+            # TODO: determine how to pass option hidelinks and also use beamer at the same time. Getting an option clash
+            # TODO: error.
+            Package('hyperref', modifier_str='hidelinks')
         )
 
         MultiOptionSimpleItem.__init__(self, self.name, *options, **kwargs)
