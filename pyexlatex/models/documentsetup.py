@@ -96,7 +96,8 @@ class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):
         'end_document_items',
         'packages',
         'source_paths',
-        'references'
+        'references',
+        'flags'
     ]
     ignore_attrs = [
         'ignore_attrs',
@@ -112,13 +113,15 @@ class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):
         'end_document_items',
         'packages',
         'source_paths',
-        'references'
+        'references',
+        'flags'
     ]
 
     def __init__(self, filepaths: Optional[List[str]] = None, binaries: Optional[List[bytes]] = None, 
                  begin_document_items: Optional[List[DocumentItem]] = None, 
                  end_document_items: Optional[List[DocumentItem]] = None, packages: Optional[List[Package]] = None,
-                 source_paths: Optional[List[str]] = None, references: Optional[Sequence[BibTexEntryBase]] = None):
+                 source_paths: Optional[List[str]] = None, references: Optional[Sequence[BibTexEntryBase]] = None,
+                 flags: Optional[List[str]] = None):
         self.filepaths = UniqueDataList(filepaths)
         self.binaries = UniqueDataList(binaries)
         self.begin_document_items = UniqueDataList(begin_document_items)
@@ -126,6 +129,7 @@ class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):
         self.packages = UniquePackagesList(packages)
         self.source_paths = UniqueDataList(source_paths)
         self.references = UniqueDataList(references)
+        self.flags = UniqueDataList(flags)
 
     @property
     def attrs(self) -> List[str]:
