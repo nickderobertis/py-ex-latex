@@ -22,8 +22,10 @@ class SpacedBase(Template):
         else:
             orig_content = self.orig_content
 
+        orig_valid_content = [item for item in orig_content if item is not None]
+
         contents = []
-        for content in orig_content:
+        for content in orig_valid_content:
             contents.extend([
                 content,
                 self.spacer
