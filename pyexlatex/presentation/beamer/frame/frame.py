@@ -3,6 +3,7 @@ from copy import deepcopy
 from pyexlatex.models import Item
 from pyexlatex.models.section.base import TextAreaBase
 from pyexlatex.presentation.beamer.frame.title import FrameTitle
+from pyexlatex.constants.flags import HAS_MINTED
 
 
 class Frame(TextAreaBase):
@@ -21,8 +22,27 @@ class Frame(TextAreaBase):
         if self.title is not None:
             content.insert(0, FrameTitle(title))
 
+        self.add_data_from_content(content)
+
         self.content = content
-        # TODO: evaluate whether fragile can be passed for all frames and what the performance hit is. If cannot, then
-        # TODO: must determine from contents whether fragile should be passed. Will require adding boolean data types
-        # TODO: to item data
-        super().__init__(self.name, self.content, label=label, env_modifiers='[fragile]', **kwargs)
+        super().__init__(self.name, self.content, label=label, env_modifiers=self._get_env_modifiers(), **kwargs)
+
+    @property
+    def is_fragile(self) -> bool:
+        if HAS_MINTED in self.data.flags:
+            # Minted package requires using fragile frames
+            return True
+
+        return False
+
+    def _get_env_modifiers(self) -> str:
+        modifiers = []
+        if self.is_fragile:
+            modifiers.append('fragile')
+        # Add any other fragile conditions here
+
+        if not modifiers:
+            return ''
+
+        modifiers = ', '.join(modifiers)
+        return self._wrap_with_bracket(modifiers)
