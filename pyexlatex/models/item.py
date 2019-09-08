@@ -1,6 +1,7 @@
-from typing import Optional, TYPE_CHECKING
+from typing import Optional, Union, TYPE_CHECKING
 if TYPE_CHECKING:
     from pyexlatex.presentation.beamer.overlay import Overlay
+    from pyexlatex.models.package import Package
 from copy import deepcopy
 from mixins.attrequals import EqOnAttrsMixin, EqHashMixin
 from pyexlatex.models.mixins import StringAdditionMixin, IsSpecificClassMixin
@@ -23,6 +24,10 @@ class DataItem:
         from pyexlatex.models.documentsetup import DocumentSetupData
         if not hasattr(self, 'data'):
             self.data = DocumentSetupData()
+
+    def add_package(self, package: Union[str, 'Package']):
+        self.init_data()
+        self.data.packages.append(package)
 
 
 class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin, EqHashMixin, EqOnAttrsMixin):
