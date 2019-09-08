@@ -1,11 +1,11 @@
-from typing import Optional, Sequence, Union
+from typing import Optional, Sequence, Union, List
 import pyexlatex as pl
-from pyexlatex.logic.format.and_join import join_with_commas_and_and
+from pyexlatex.logic.format.and_join import join_with_commas_and_and_output_list
 from pyexlatex.models.format.hangindent import HangIndent
 
 
 class Publication(pl.Template):
-    SPACE_BETWEEN_ADJUSTMENT = '-8pt'
+    SPACE_BETWEEN_ADJUSTMENT = 0.2
 
     def __init__(self, title: str, co_authors: Optional[Sequence[str]] = None, journal_info: Optional[str] = None,
                  href: Optional[str] = None, extra_info: Optional[str] = None, prevent_page_break: bool = True):
@@ -26,7 +26,7 @@ class Publication(pl.Template):
             pl.Italics(self.journal_info) if self.journal_info is not None else None,
             self._with_coauthors,
             self.extra_info,
-            pl.OutputLineBreak(size_adjustment=self.SPACE_BETWEEN_ADJUSTMENT)
+            pl.VSpace(self.SPACE_BETWEEN_ADJUSTMENT)
         ]
         items = [item for item in possible_items if item is not None]
         if self.prevent_page_break:
@@ -54,8 +54,8 @@ class Publication(pl.Template):
 
 
     @property
-    def _with_coauthors(self) -> Optional[str]:
+    def _with_coauthors(self) -> Optional[List[str]]:
         if self.co_authors is None:
             return None
 
-        return f' with {join_with_commas_and_and(self.co_authors)}'
+        return [' with ', *join_with_commas_and_and_output_list(self.co_authors)]
