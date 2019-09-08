@@ -38,5 +38,6 @@ from pyexlatex.models.format.hline import HLine
 from pyexlatex.models.format.text.color.deftypes.rgb import RGB
 from pyexlatex.models.format.text.color.deftypes.hex import Hex
 from pyexlatex.models.template import Template
+from pyexlatex.models.environmenttemplate import EnvironmentTemplate
 from pyexlatex.models.format.breaks import OutputLineBreak
 from pyexlatex.models.latex import LaTeX
