@@ -5,14 +5,16 @@ from pyexlatex.models.format.hangindent import HangIndent
 
 
 class Publication(pl.Template):
+    SPACE_BETWEEN_ADJUSTMENT = '-8pt'
 
     def __init__(self, title: str, co_authors: Optional[Sequence[str]] = None, journal_info: Optional[str] = None,
-                 href: Optional[str] = None, extra_info: Optional[str] = None):
+                 href: Optional[str] = None, extra_info: Optional[str] = None, prevent_page_break: bool = True):
         self.title = title
         self.co_authors = co_authors
         self.journal_info = journal_info
         self.href = href
         self.extra_info = extra_info
+        self.prevent_page_break = prevent_page_break
 
         self.contents = self._get_contents()
         super().__init__()
@@ -23,9 +25,12 @@ class Publication(pl.Template):
             self._title_str,
             pl.Italics(self.journal_info) if self.journal_info is not None else None,
             self._with_coauthors,
-            self.extra_info
+            self.extra_info,
+            pl.OutputLineBreak(size_adjustment=self.SPACE_BETWEEN_ADJUSTMENT)
         ]
         items = [item for item in possible_items if item is not None]
+        if self.prevent_page_break:
+            items = pl.NoPageBreak(items)
         return items
 
     @property
