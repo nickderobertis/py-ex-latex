@@ -32,6 +32,10 @@ RESUME_DEFINITION = r"""
 
 \pagestyle{empty} % Suppress page numbers
 
+% Required for avoiding page breaks immediately after section titles
+\usepackage{needspace}
+\usepackage[explicit,pagestyles]{titlesec}
+
 %----------------------------------------------------------------------------------------
 %	HEADINGS COMMANDS: Commands for printing name and address
 %----------------------------------------------------------------------------------------
@@ -100,6 +104,7 @@ RESUME_DEFINITION = r"""
 
 % Defines the ResumeSection environment for the large sections within the CV
 \renewenvironment{section}[1]{ % 1 input argument - section name
+  \needspace{10\baselineskip}
   \sectionskip
   \MakeUppercase{\bf #1} % Section title
   \sectionlineskip
