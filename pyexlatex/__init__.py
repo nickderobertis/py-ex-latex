@@ -42,3 +42,4 @@ from pyexlatex.models.environmenttemplate import EnvironmentTemplate
 from pyexlatex.models.format.breaks import OutputLineBreak
 from pyexlatex.models.latex import LaTeX
 from pyexlatex.models.format.nopagebreak import NoPageBreak
+from pyexlatex.models.format.nolinebreak import NoLineBreak
