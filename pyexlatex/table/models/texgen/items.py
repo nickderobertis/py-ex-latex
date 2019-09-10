@@ -28,24 +28,21 @@ class Tabular(Item, ReprMixin):
     name = 'tabular'
     repr_cols = ['align']
 
-    def __init__(self, panel_collection: PanelCollection, align: ColumnsAlignment=None,
-                 mid_rules=True):
-        self.align = align if align is not None else ColumnsAlignment(num_columns=panel_collection.num_columns)
-        self.panel_collection = panel_collection
-
-        content = build_tabular_content_from_panel_collection(panel_collection, mid_rule=mid_rules)
-
-        super().__init__(self.name, content, env_modifiers=f'{{{self.align}}}')
+    def __init__(self, content, align: ColumnsAlignment=None):
+        if not isinstance(content, (list, tuple)):
+            content = [content]
+        self.align = align if align is not None else ColumnsAlignment(num_columns=len(content[0]))
+        super().__init__(self.name, content, env_modifiers=self._wrap_with_braces(str(self.align)))
 
     @classmethod
-    def from_df(cls, df: pd.DataFrame, align_strs: Optional[Sequence[str]] = None, num_columns: Optional[int] = None):
-        aligns = [ColumnAlignment(a_str) for a_str in align_strs]
-        alignment = ColumnsAlignment(aligns, num_columns=num_columns)
-        panel_collection = PanelCollection.from_list_of_lists_of_dfs([[df]])
-        return cls(
-            panel_collection,
-            alignment
-        )
+    def from_panel_collection(cls, panel_collection: PanelCollection, align: ColumnsAlignment=None,
+                 mid_rules=True):
+        align = align if align is not None else ColumnsAlignment(num_columns=panel_collection.num_columns)
+        obj = cls([[0]], align=align)  # dummy content
+        obj.panel_collection = panel_collection
+        obj.contents = build_tabular_content_from_panel_collection(panel_collection, mid_rule=mid_rules)
+
+        return obj
 
 
 class ThreePartTable(Item, ReprMixin):
@@ -68,7 +65,7 @@ class ThreePartTable(Item, ReprMixin):
 
     @classmethod
     def from_panel_collection(cls, panel_collection: PanelCollection, *args, tabular_kwargs={}, **kwargs):
-        tabular = Tabular(panel_collection, **tabular_kwargs)
+        tabular = Tabular.from_panel_collection(panel_collection, **tabular_kwargs)
 
         if panel_collection.name is not None:
             caption = Caption(panel_collection.name)
@@ -116,7 +113,7 @@ class Table(ContainerItem, Item, ReprMixin):
     def from_table_model(cls, table, *args, **kwargs):
         from pyexlatex.table.models.table.table import Table as TableModel
         table: TableModel
-        tabular = Tabular(
+        tabular = Tabular.from_panel_collection(
             table.panels,
             align=table.align,
             mid_rules=table.mid_rules
