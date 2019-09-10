@@ -1,9 +1,10 @@
 from typing import Optional, Sequence, Union
+import pandas as pd
 from pyexlatex.models.item import Item
 from pyexlatex.models.containeritem import ContainerItem
 from mixins.repr import ReprMixin
 from pyexlatex.table.models.panels.collection import PanelCollection
-from pyexlatex.table.models.texgen.alignment import ColumnsAlignment
+from pyexlatex.table.models.texgen.alignment import ColumnsAlignment, ColumnAlignment
 from pyexlatex.table.logic.table.build import build_tabular_content_from_panel_collection
 from pyexlatex.models.caption import Caption
 from pyexlatex.models.format.breaks import LineBreak
@@ -22,6 +23,7 @@ class TableNotes(TextAreaBase, ReprMixin):
     def __init__(self, contents: Union[str, Sequence[str]]):
         super().__init__(self.name, contents, env_modifiers=f'[para, flushleft]')
 
+
 class Tabular(Item, ReprMixin):
     name = 'tabular'
     repr_cols = ['align']
@@ -34,6 +36,17 @@ class Tabular(Item, ReprMixin):
         content = build_tabular_content_from_panel_collection(panel_collection, mid_rule=mid_rules)
 
         super().__init__(self.name, content, env_modifiers=f'{{{self.align}}}')
+
+    @classmethod
+    def from_df(cls, df: pd.DataFrame, align_strs: Optional[Sequence[str]] = None, num_columns: Optional[int] = None):
+        aligns = [ColumnAlignment(a_str) for a_str in align_strs]
+        alignment = ColumnsAlignment(aligns, num_columns=num_columns)
+        panel_collection = PanelCollection.from_list_of_lists_of_dfs([[df]])
+        return cls(
+            panel_collection,
+            alignment
+        )
+
 
 class ThreePartTable(Item, ReprMixin):
     name = 'threeparttable'
