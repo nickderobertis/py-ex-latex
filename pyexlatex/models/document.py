@@ -20,6 +20,7 @@ from pyexlatex.models.format.text.linespacing import LineSpacing
 from pyexlatex.models.commands.floatrow import DeclareFloatFont, FloatSetup
 from pyexlatex.models.containeritem import ContainerItem
 from pyexlatex.models.page.header import Header
+from pyexlatex.models.control.setcounter import SetCounter
 
 
 class DocumentEnvironment(Environment):
@@ -135,7 +136,8 @@ class Document(DocumentBase):
                  document_type: str = 'article', font_size: Optional[float] = None,
                  num_columns: Optional[int] = None, line_spacing: Optional[float] = None,
                  tables_relative_font_size: int = 0, figures_relative_font_size: int = 0,
-                 page_style: str = 'fancy', custom_headers: Optional[Sequence[Header]] = None):
+                 page_style: str = 'fancy', custom_headers: Optional[Sequence[Header]] = None,
+                 remove_section_numbering: bool = False):
         from pyexlatex.models.title.page import TitlePage
 
         all_packages = self.construct_packages(
@@ -171,6 +173,7 @@ class Document(DocumentBase):
 
         possible_extra_pre_env_contents = [
             *section_num_styles,
+            SetCounter('secnumdepth', 0) if remove_section_numbering else None,
             PageStyle(page_style),
 
             # header is there by default. add remove header lines if page_header=False
