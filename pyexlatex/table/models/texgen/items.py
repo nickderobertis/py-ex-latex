@@ -1,16 +1,16 @@
 from typing import Optional, Sequence, Union
+import pandas as pd
 from pyexlatex.models.item import Item
 from pyexlatex.models.containeritem import ContainerItem
 from mixins.repr import ReprMixin
 from pyexlatex.table.models.panels.collection import PanelCollection
-from pyexlatex.table.models.texgen.alignment import ColumnsAlignment
+from pyexlatex.table.models.texgen.alignment import ColumnsAlignment, ColumnAlignment
 from pyexlatex.table.logic.table.build import build_tabular_content_from_panel_collection
 from pyexlatex.models.caption import Caption
 from pyexlatex.models.format.breaks import LineBreak
 from pyexlatex.texgen import _centering_str
 from pyexlatex.models.document import Document
 from pyexlatex.models.package import Package
-from pyexlatex.table.models.texgen.packages import default_packages
 from pyexlatex.models.landscape import Landscape
 from pyexlatex.models.label import Label
 from pyexlatex.models.section.base import TextAreaBase
@@ -22,18 +22,27 @@ class TableNotes(TextAreaBase, ReprMixin):
     def __init__(self, contents: Union[str, Sequence[str]]):
         super().__init__(self.name, contents, env_modifiers=f'[para, flushleft]')
 
+
 class Tabular(Item, ReprMixin):
     name = 'tabular'
     repr_cols = ['align']
 
-    def __init__(self, panel_collection: PanelCollection, align: ColumnsAlignment=None,
+    def __init__(self, content, align: ColumnsAlignment=None):
+        if not isinstance(content, (list, tuple)):
+            content = [content]
+        self.align = align if align is not None else ColumnsAlignment(num_columns=len(content[0]))
+        super().__init__(self.name, content, env_modifiers=self._wrap_with_braces(str(self.align)))
+
+    @classmethod
+    def from_panel_collection(cls, panel_collection: PanelCollection, align: ColumnsAlignment=None,
                  mid_rules=True):
-        self.align = align if align is not None else ColumnsAlignment(num_columns=panel_collection.num_columns)
-        self.panel_collection = panel_collection
+        align = align if align is not None else ColumnsAlignment(num_columns=panel_collection.num_columns)
+        obj = cls([[0]], align=align)  # dummy content
+        obj.panel_collection = panel_collection
+        obj.contents = build_tabular_content_from_panel_collection(panel_collection, mid_rule=mid_rules)
 
-        content = build_tabular_content_from_panel_collection(panel_collection, mid_rule=mid_rules)
+        return obj
 
-        super().__init__(self.name, content, env_modifiers=f'{{{self.align}}}')
 
 class ThreePartTable(Item, ReprMixin):
     name = 'threeparttable'
@@ -55,7 +64,7 @@ class ThreePartTable(Item, ReprMixin):
 
     @classmethod
     def from_panel_collection(cls, panel_collection: PanelCollection, *args, tabular_kwargs={}, **kwargs):
-        tabular = Tabular(panel_collection, **tabular_kwargs)
+        tabular = Tabular.from_panel_collection(panel_collection, **tabular_kwargs)
 
         if panel_collection.name is not None:
             caption = Caption(panel_collection.name)
@@ -103,7 +112,7 @@ class Table(ContainerItem, Item, ReprMixin):
     def from_table_model(cls, table, *args, **kwargs):
         from pyexlatex.table.models.table.table import Table as TableModel
         table: TableModel
-        tabular = Tabular(
+        tabular = Tabular.from_panel_collection(
             table.panels,
             align=table.align,
             mid_rules=table.mid_rules
@@ -128,6 +137,8 @@ class LTable(Table):
 class TableDocument(Document):
 
     def __init__(self, content: Table, packages: [Package]=None, landscape: bool=False):
+        from pyexlatex.table.models.texgen.packages import default_packages
+
         if packages is None:
             packages = []
 
