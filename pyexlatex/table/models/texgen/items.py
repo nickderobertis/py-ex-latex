@@ -11,7 +11,6 @@ from pyexlatex.models.format.breaks import LineBreak
 from pyexlatex.texgen import _centering_str
 from pyexlatex.models.document import Document
 from pyexlatex.models.package import Package
-from pyexlatex.table.models.texgen.packages import default_packages
 from pyexlatex.models.landscape import Landscape
 from pyexlatex.models.label import Label
 from pyexlatex.models.section.base import TextAreaBase
@@ -138,6 +137,8 @@ class LTable(Table):
 class TableDocument(Document):
 
     def __init__(self, content: Table, packages: [Package]=None, landscape: bool=False):
+        from pyexlatex.table.models.texgen.packages import default_packages
+
         if packages is None:
             packages = []
 

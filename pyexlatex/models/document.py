@@ -5,7 +5,6 @@ from pyexlatex.models.environment import Environment
 from pyexlatex.models.item import Item, ItemBase
 from pyexlatex.models.control.documentclass.documentclass import DocumentClass
 from pyexlatex.models.package import Package
-from pyexlatex.texgen.packages import default_packages
 from pyexlatex.models.page.style import PageStyle
 from pyexlatex.models.landscape import Landscape
 from pyexlatex.logic.pdf.main import document_to_pdf_and_move, latex_str_to_pdf_obj_with_sources
@@ -205,6 +204,8 @@ class Document(DocumentBase):
                            floats_at_end: bool = False, floats_at_end_options: str = 'nolists',
                            line_spacing: Optional[float] = None,
                            tables_relative_font_size: int = 0, figures_relative_font_size: int = 0) -> List[Package]:
+        from pyexlatex.texgen.packages import default_packages
+
         if packages is None:
             packages = default_packages.copy()
 
