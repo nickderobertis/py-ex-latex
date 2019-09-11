@@ -4,7 +4,6 @@ from copy import deepcopy
 from pyexlatex.table.models.table.row import Row
 from pyexlatex.logic.tools import _max_len_or_zero
 from mixins.repr import ReprMixin
-from pyexlatex.models.format.breaks import TableLineBreak
 
 
 class TableSection(ReprMixin):
@@ -26,10 +25,8 @@ class TableSection(ReprMixin):
         return len(self.rows)
 
     def __str__(self) -> str:
-        from pyexlatex.logic.builder import _build
-        table_row_break = TableLineBreak(self.break_size_adjustment)
-        output_lines = [str(row) + str(table_row_break) for row in self.rows]
-        return _build(output_lines)
+        from pyexlatex.table.logic.table.build import _build_tabular_str_from_rows_and_lines
+        return _build_tabular_str_from_rows_and_lines(self.rows, self.break_size_adjustment)
 
     def __add__(self, other):
         # import here to avoid circular imports
