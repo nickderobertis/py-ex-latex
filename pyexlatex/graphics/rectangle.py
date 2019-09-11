@@ -15,9 +15,10 @@ class Rectangle(Shape):
                  content_offset: Optional[float] = None,
                  shape_options: Optional[Sequence[str]] = None,
                  text_options: Optional[Sequence[str]] = None,
-                 overlay: Optional['Overlay'] = None):
+                 overlay: Optional['Overlay'] = None, unit: str = 'cm'):
         self.size = (width, height)
         self.offset = offset
+        self.unit = unit
         shape_options = self._get_list_copy_from_list_or_none(shape_options)
         shape_options.extend(self.get_size_options())
 
@@ -33,6 +34,6 @@ class Rectangle(Shape):
 
     def get_size_options(self) -> List[str]:
         return [
-            f'minimum width={self.size[0]}cm',
-            f'minimum height={self.size[1]}cm',
+            f'minimum width={self.size[0]}{self.unit}',
+            f'minimum height={self.size[1]}{self.unit}',
         ]

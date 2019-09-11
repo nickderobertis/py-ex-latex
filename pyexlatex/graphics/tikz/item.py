@@ -5,7 +5,21 @@ from pyexlatex.presentation.beamer.overlay.overlay import Overlay
 from pyexlatex.presentation.beamer.overlay.commands.uncover import Uncover
 
 
-class TikZItem(TextAreaMixin, ItemBase):
+class TikzOptionHandler:
+    options = None
+
+    @property
+    def options_str(self) -> str:
+        if self.options is None:
+            return ''
+        str_options = [str(option) for option in self.options]
+        return self._wrap_with_bracket(', '.join(str_options))
+
+    def _wrap_with_bracket(self, to_wrap: str):
+        raise NotImplementedError('must also subclass ItemBase')
+
+
+class TikZItem(TextAreaMixin, ItemBase, TikzOptionHandler):
 
     def __init__(self, name, contents, options: Optional[Sequence[str]] = None,
                  overlay: Optional['Overlay'] = None):
@@ -21,12 +35,7 @@ class TikZItem(TextAreaMixin, ItemBase):
             item_str = Uncover(item_str, overlay=self.overlay)
         return item_str
 
-    @property
-    def options_str(self) -> str:
-        if self.options is None:
-            return ''
-        str_options = [str(option) for option in self.options]
-        return self._wrap_with_bracket(', '.join(str_options))
+
 
 
 
