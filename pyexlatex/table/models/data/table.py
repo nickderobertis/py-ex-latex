@@ -252,15 +252,13 @@ def _create_header_label_collection_list(extra_header: LabelClassOrStrs, values_
             underline_arg = None
         return [LabelCollection.from_str_list(extra_header, underline=underline_arg)]
 
-    if isinstance(extra_header, str):
-        # create multicolumn label
-        label = Label(extra_header, span=values_table.num_columns)
-        # set underline
-        if underline:
-            underline_arg = 0  # place an underline under the singular label
-        else:
-            underline_arg = None  # no underline
-        return [LabelCollection([label], underline=underline_arg)]
+    # Got a string or latex item
 
-    raise ValueError(f'expected LabelTable, LabelCollection, list of strs, or str for extra header. '
-                     f'got {extra_header} of type {type(extra_header)}')
+    # create multicolumn label
+    label = Label(extra_header, span=values_table.num_columns)
+    # set underline
+    if underline:
+        underline_arg = 0  # place an underline under the singular label
+    else:
+        underline_arg = None  # no underline
+    return [LabelCollection([label], underline=underline_arg)]
