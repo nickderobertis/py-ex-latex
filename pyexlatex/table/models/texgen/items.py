@@ -34,6 +34,9 @@ class Tabular(Item, ReprMixin):
         self.align = align if align is not None else ColumnsAlignment(
             num_columns=Tabular._get_num_columns_from_content(content)
         )
+        # TODO: really this should be cmidrule and others that require booktabs, but need to get all nested table
+        # TODO: structure aggregating data.
+        self.add_package('booktabs')
         super().__init__(self.name, content, env_modifiers=self._wrap_with_braces(str(self.align)))
 
     @classmethod
