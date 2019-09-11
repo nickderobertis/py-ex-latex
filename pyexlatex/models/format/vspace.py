@@ -7,5 +7,7 @@ class VSpace(SimpleItem):
     """
     name = 'vspace'
 
-    def __init__(self, height: float = 0.5):
-        super().__init__(self.name, contents=f'{height}cm')
+    def __init__(self, height: float = 0.5, units: str = 'cm'):
+        self.height = height
+        self.units = units
+        super().__init__(self.name, contents=f'{height}{units}')
