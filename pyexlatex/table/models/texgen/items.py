@@ -14,6 +14,7 @@ from pyexlatex.models.package import Package
 from pyexlatex.models.landscape import Landscape
 from pyexlatex.models.label import Label
 from pyexlatex.models.section.base import TextAreaBase
+from pyexlatex.table.models.data.table import DataTable
 
 
 class TableNotes(TextAreaBase, ReprMixin):
@@ -27,14 +28,16 @@ class Tabular(Item, ReprMixin):
     name = 'tabular'
     repr_cols = ['align']
 
-    def __init__(self, content, align: ColumnsAlignment=None):
+    def __init__(self, content, align: Optional[ColumnsAlignment] = None):
         if not isinstance(content, (list, tuple)):
             content = [content]
-        self.align = align if align is not None else ColumnsAlignment(num_columns=len(content[0]))
+        self.align = align if align is not None else ColumnsAlignment(
+            num_columns=Tabular._get_num_columns_from_content(content)
+        )
         super().__init__(self.name, content, env_modifiers=self._wrap_with_braces(str(self.align)))
 
     @classmethod
-    def from_panel_collection(cls, panel_collection: PanelCollection, align: ColumnsAlignment=None,
+    def from_panel_collection(cls, panel_collection: PanelCollection, align: Optional[ColumnsAlignment] = None,
                  mid_rules=True):
         align = align if align is not None else ColumnsAlignment(num_columns=panel_collection.num_columns)
         obj = cls([[0]], align=align)  # dummy content
@@ -42,6 +45,24 @@ class Tabular(Item, ReprMixin):
         obj.contents = build_tabular_content_from_panel_collection(panel_collection, mid_rule=mid_rules)
 
         return obj
+
+    @classmethod
+    def from_df(cls, df: pd.DataFrame, align: Optional[ColumnsAlignment] = None, **dt_from_df_kwargs):
+        dt = DataTable.from_df(df, **dt_from_df_kwargs)
+        return cls(dt, align=align)
+
+    @staticmethod
+    def _get_num_columns_from_content(content) -> int:
+        # Content should be made a list before this function. Get first or only content back
+        reference_content = content[0]
+
+        # Try to get from num_columns attribute if it exists
+        num_columns = getattr(reference_content, 'num_columns', None)
+        if num_columns is not None:
+            return num_columns
+
+        # Otherwise, try to take the length of the first passed content
+        return len(reference_content)
 
 
 class ThreePartTable(Item, ReprMixin):
