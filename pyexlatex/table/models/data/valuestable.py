@@ -1,17 +1,14 @@
-from typing import Optional
+from typing import Optional, Sequence
 from pandas import DataFrame
 from pyexlatex.table.models.data.row import DataRow
 from pyexlatex.table.models.data.dataitem import DataItem
 from pyexlatex.table.models.table.section import TableSection
-from pyexlatex.models.format.breaks import TableLineBreak
-
 
 
 class ValuesTable(TableSection):
 
-    def __init__(self, rows: [DataRow], break_size_adjustment: Optional[str] = None):
-        self.break_size_adjustment = break_size_adjustment
-        super().__init__(rows)
+    def __init__(self, rows: Sequence[DataRow], break_size_adjustment: Optional[str] = None):
+        super().__init__(rows, break_size_adjustment)
 
     @classmethod
     def from_df(cls, df):
@@ -41,12 +38,6 @@ class ValuesTable(TableSection):
             return ValuesTable(table_section.rows)
         else:
             return table_section
-
-    def __str__(self) -> str:
-        from pyexlatex.logic.builder import _build
-        table_row_break = TableLineBreak(self.break_size_adjustment)
-        output_lines = [str(row) + str(table_row_break) for row in self.rows]
-        return _build(output_lines)
 
     def __repr__(self):
         return f'<ValuesTable(shape=({len(self.rows)} , {self.num_columns}))>'

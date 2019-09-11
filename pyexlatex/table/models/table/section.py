@@ -1,14 +1,17 @@
+from typing import Optional, Sequence
 from copy import deepcopy
 
 from pyexlatex.table.models.table.row import Row
 from pyexlatex.logic.tools import _max_len_or_zero
 from mixins.repr import ReprMixin
+from pyexlatex.models.format.breaks import TableLineBreak
 
 
 class TableSection(ReprMixin):
     repr_cols = ['rows']
 
-    def __init__(self, rows: [Row]):
+    def __init__(self, rows: Sequence[Row], break_size_adjustment: Optional[str] = None):
+        self.break_size_adjustment = break_size_adjustment
         self.rows = rows
 
     def __iter__(self):
@@ -21,6 +24,12 @@ class TableSection(ReprMixin):
     @property
     def length(self):
         return len(self.rows)
+
+    def __str__(self) -> str:
+        from pyexlatex.logic.builder import _build
+        table_row_break = TableLineBreak(self.break_size_adjustment)
+        output_lines = [str(row) + str(table_row_break) for row in self.rows]
+        return _build(output_lines)
 
     def __add__(self, other):
         # import here to avoid circular imports
