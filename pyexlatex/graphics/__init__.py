@@ -5,3 +5,4 @@ from pyexlatex.graphics.tikz.node.node import Node
 from pyexlatex.graphics.arrow import Arrow
 from pyexlatex.graphics.flowcharts.linear import LinearFlowchart
 from pyexlatex.graphics.rectangle import Rectangle
+from pyexlatex.graphics.modified_picture import ModifiedPicture
