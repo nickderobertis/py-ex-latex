@@ -137,7 +137,8 @@ class Document(DocumentBase):
                  num_columns: Optional[int] = None, line_spacing: Optional[float] = None,
                  tables_relative_font_size: int = 0, figures_relative_font_size: int = 0,
                  page_style: str = 'fancy', custom_headers: Optional[Sequence[Header]] = None,
-                 remove_section_numbering: bool = False):
+                 remove_section_numbering: bool = False, separate_abstract_page: bool = False,
+                 extra_title_page_lines: Optional[Sequence] = None, empty_title_page_style: bool = False):
         from pyexlatex.models.title.page import TitlePage
 
         all_packages = self.construct_packages(
@@ -187,7 +188,15 @@ class Document(DocumentBase):
         pre_env_contents = [item for item in possible_extra_pre_env_contents if item is not None]
 
         if not skip_title_page and _should_create_title_page(title=title, authors=authors, date=date, abstract=abstract):
-            title_page = TitlePage(title=title, authors=authors, date=date, abstract=abstract)
+            title_page = TitlePage(
+                title=title,
+                authors=authors,
+                date=date,
+                abstract=abstract,
+                separate_abstract_page=separate_abstract_page,
+                extra_lines=extra_title_page_lines,
+                empty_page_style=empty_title_page_style
+            )
             content.insert(0, title_page)
             self.has_title_page = True
         else:
