@@ -1,3 +1,4 @@
+from typing import Optional, Sequence
 from copy import deepcopy
 
 from pyexlatex.table.models.table.row import Row
@@ -8,7 +9,8 @@ from mixins.repr import ReprMixin
 class TableSection(ReprMixin):
     repr_cols = ['rows']
 
-    def __init__(self, rows: [Row]):
+    def __init__(self, rows: Sequence[Row], break_size_adjustment: Optional[str] = None):
+        self.break_size_adjustment = break_size_adjustment
         self.rows = rows
 
     def __iter__(self):
@@ -21,6 +23,10 @@ class TableSection(ReprMixin):
     @property
     def length(self):
         return len(self.rows)
+
+    def __str__(self) -> str:
+        from pyexlatex.table.logic.table.build import _build_tabular_str_from_rows_and_lines
+        return _build_tabular_str_from_rows_and_lines(self.rows, self.break_size_adjustment)
 
     def __add__(self, other):
         # import here to avoid circular imports
