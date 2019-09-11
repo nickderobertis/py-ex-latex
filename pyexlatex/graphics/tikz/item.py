@@ -30,9 +30,8 @@ class TikZItem(TextAreaMixin, ItemBase, TikzOptionHandler):
         super().__init__(name, contents)
 
     def __str__(self):
-        item_str = fr'\{self.name} {self.options_str} {self.contents};'
-        if self.overlay:
-            item_str = Uncover(item_str, overlay=self.overlay)
+        overlay = self.overlay if self.overlay is not None else ""
+        item_str = fr'\{self.name}{overlay} {self.options_str} {self.contents};'
         return item_str
 
 
