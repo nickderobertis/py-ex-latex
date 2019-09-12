@@ -18,5 +18,5 @@ from pyexlatex.presentation.beamer.templates.frames.dim_reveal import DimRevealL
 from pyexlatex.presentation.beamer.templates.frames.graphic import (
     GraphicFrame,
     MultiGraphicFrame,
-    adjust_to_full_size,
 )
+from pyexlatex.logic.format.sizing import adjust_to_full_size_and_center
