@@ -12,7 +12,7 @@ from pyexlatex.models.lists.unordered import UnorderedList
 from pyexlatex.models.lists.ordered import OrderedList
 from pyexlatex.models.format.raw import Raw
 from pyexlatex.models.format.text.text import Text
-from pyexlatex.models.ref import Ref
+from pyexlatex.models.ref import Ref, NameRef
 from pyexlatex.models.footnote import Footnote
 from pyexlatex.models.references.bibtex.article import BibTexArticle
 from pyexlatex.models.references.bibtex.misc import BibTexMisc
