@@ -4,10 +4,8 @@ if TYPE_CHECKING:
 from pyexlatex.models.item import Item
 from mixins.repr import ReprMixin
 from pyexlatex.models.lists.item import ListItem
-from pyexlatex.models.containeritem import ContainerItem
+from pyexlatex.models.section.base import TextAreaMixin
 from pyexlatex.models.format.fills import VFill
-
-ListItemDefinition = Union[str, ListItem]
 
 
 class VerticalFillMixin:
@@ -16,7 +14,7 @@ class VerticalFillMixin:
     def vertically_space_content(self, items):
         output = []
         for item in items:
-            if isinstance(item, str):
+            if not _item_is_list_or_list_base(item):
                 output.append(ListItem(item))
             else:
                 output.append(item)
@@ -28,11 +26,11 @@ class VerticalFillMixin:
         return output
 
 
-class ListBase(VerticalFillMixin, ContainerItem, Item, ReprMixin):
+class ListBase(TextAreaMixin, VerticalFillMixin, Item, ReprMixin):
     name = 'list'
     repr_cols = ['contents']
 
-    def __init__(self, items: Sequence[ListItemDefinition], overlay: Optional['Overlay'] = None,
+    def __init__(self, items: Sequence, overlay: Optional['Overlay'] = None,
                  vertical_fill: bool = False, **kwargs):
         self.items = items
         self.overlay = overlay
@@ -41,5 +39,14 @@ class ListBase(VerticalFillMixin, ContainerItem, Item, ReprMixin):
         self.content = self.vertically_space_content(items)
         env_modifier_overlay = f'[{overlay}]' if overlay is not None else None
         super().__init__(self.name, self.content, env_modifiers=env_modifier_overlay, **kwargs)
+
+
+def _item_is_list_or_list_base(item) -> bool:
+    if hasattr(item, 'is_ListItem') and item.is_ListItem:
+        return True
+    if hasattr(item, 'is_ListBase') and item.is_ListBase:
+        return True
+
+    return False
 
 

@@ -15,6 +15,7 @@ class DimAndRevealListItem(ListItem):
 
     Use DimAndRevealListItems to construct.
     """
+    is_ListItem = True  # so that passing within lists will treat as a list item
 
     def __init__(self, contents, dim: bool = True, opacity: float = 0.3, **kwargs):
         self.dim = dim
@@ -45,6 +46,7 @@ class DimAndRevealListItems(VerticalFillMixin, ContainerItem, ItemBase):
     Pass to a list class such as OrderedList or UnorderedList
     """
     name = '<dim and reveal container, should not enter latex output>'
+    is_ListBase = True  # so that passing within lists will treat as a list
 
     def __init__(self, contents: Sequence, dim_last_item: bool = False, opacity: float = 0.3,
                  vertical_fill: bool = False, dim_earlier_items: bool = True, **item_kwargs):
