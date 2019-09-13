@@ -216,7 +216,7 @@ class Document(DocumentBase):
                            floats_at_end: bool = False, floats_at_end_options: str = 'nolists',
                            line_spacing: Optional[float] = None,
                            tables_relative_font_size: int = 0, figures_relative_font_size: int = 0) -> List[Package]:
-        from pyexlatex.texgen.packages import default_packages
+        from pyexlatex.texgen.packages.default import default_packages
 
         if packages is None:
             packages = default_packages.copy()
