@@ -2,12 +2,17 @@ from typing import Dict, List
 
 latex_escape_begin_character = '\\' # literal \
 latex_escape_end_characters = '{}'
-latex_replacement_items = ['%', '&', '_', '#', '^']
+latex_replacement_no_end_character_items = ['%', '&', '_', '#', '^']
+latex_replacement_with_end_character_items = ['^']
 latex_block_escape_characters = ['$']
 replacement_dict = {
-        latex_replacement_item: latex_escape_begin_character + latex_replacement_item + latex_escape_end_characters
-        for latex_replacement_item in latex_replacement_items
+        latex_replacement_item: latex_escape_begin_character + latex_replacement_item
+        for latex_replacement_item in latex_replacement_no_end_character_items
     }
+replacement_dict.update({
+        latex_replacement_item: latex_escape_begin_character + latex_replacement_item + latex_escape_end_characters
+        for latex_replacement_item in latex_replacement_with_end_character_items
+})
 
 class Replacer:
 
