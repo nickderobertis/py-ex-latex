@@ -28,7 +28,7 @@ class Node(TikZItem):
         if self.location.relative_location:
             options.append(str(self.location))
 
-        super().__init__(self.get_name(), self.content_str, options=options, overlay=overlay)
+        super().__init__(self.get_name(), self.content, options=options, overlay=overlay)
 
     def get_name(self) -> str:
         if self.content is None:
@@ -43,8 +43,12 @@ class Node(TikZItem):
 
         return str(self.location)
 
-
     @property
     def content_str(self) -> str:
         text = self._empty_str_if_none(self._wrap_with_braces(self.content))
         return f'({self.label}) {self.absolute_location_str} {text}'
+
+    def __str__(self):
+        overlay = self.overlay if self.overlay is not None else ""
+        item_str = fr'\{self.name}{overlay} {self.options_str} {self.content_str};'
+        return item_str
