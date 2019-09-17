@@ -14,7 +14,7 @@ class VerticalFillMixin:
     def vertically_space_content(self, items):
         output = []
         for item in items:
-            if not _item_is_list_or_list_base(item):
+            if not _can_be_included_directly_in_list(item):
                 output.append(ListItem(item))
             else:
                 output.append(item)
@@ -39,6 +39,12 @@ class ListBase(TextAreaMixin, VerticalFillMixin, Item, ReprMixin):
         self.content = self.vertically_space_content(items)
         env_modifier_overlay = f'[{overlay}]' if overlay is not None else None
         super().__init__(self.name, self.content, env_modifiers=env_modifier_overlay, **kwargs)
+
+
+def _can_be_included_directly_in_list(item) -> bool:
+    if hasattr(item, 'is_SetCounter') and item.is_SetCounter:
+        return True
+    return _item_is_list_or_list_base(item)
 
 
 def _item_is_list_or_list_base(item) -> bool:
