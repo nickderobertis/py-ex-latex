@@ -31,24 +31,29 @@ class BasicTwoColumnFrame(Frame):
 
 class TwoGraphicBase:
 
-    def __init__(self, content, graphic_filepaths: Sequence[str], graphics_on_right: bool = True, **frame_kwargs):
+    def __init__(self, content, graphics: Sequence, graphics_on_right: bool = True, **frame_kwargs):
         self.content = content
-        self.graphic_filepaths = graphic_filepaths
+        self.graphics = graphics
         self.graphics_on_right = graphics_on_right
         super().__init__(self.left_content, self.right_content, **frame_kwargs)
 
     @property
     def graphic_contents(self) -> List[Union[Graphic, VFill]]:
         graphic_contents = [Centering(), VFill()]
-        for filepath in self.graphic_filepaths:
-            graphic_contents.append(Graphic(
-                filepath,
-                width=0.9,
-                options=[
-                    f'height={self.graphic_height}',
-                    'keepaspectratio'
-                ]
-            ))
+        for filepath_or_graphic in self.graphics:
+            if isinstance(filepath_or_graphic, str):
+                # Got filepath, need to make graphic
+                graphic_contents.append(Graphic(
+                    filepath_or_graphic,
+                    width=0.9,
+                    options=[
+                        f'height={self.graphic_height}',
+                        'keepaspectratio'
+                    ]
+                ))
+            else:
+                # Got a Graphic, TikZPicture, etc.
+                graphic_contents.append(filepath_or_graphic)
             graphic_contents.append(VFill())
         graphic_contents.append(VFill())
 
@@ -73,12 +78,12 @@ class TwoGraphicBase:
         """
         Total amount of padding between images as a fraction of text height
         """
-        return (len(self.graphic_filepaths) - 1) * 0.20
+        return (len(self.graphics) - 1) * 0.20
 
     @property
     def graphic_height(self) -> str:
         total_area = 1 - self.graphic_spacing
-        per_graphic = total_area / len(self.graphic_filepaths)
+        per_graphic = total_area / len(self.graphics)
         return f'{per_graphic}{TextHeight()}'
 
 
@@ -98,11 +103,11 @@ class BasicTwoColumnGraphicFrame(TwoGraphicBase, BasicTwoColumnFrame):
 
 class TwoColumnGraphicDimRevealBase(DimRevealMixin):
 
-    def __init__(self, content: Sequence[str], graphic_filepaths: Sequence[str],
+    def __init__(self, content: Sequence[str], graphics: Sequence,
                  graphics_on_right: bool = True, ordered_list: bool = False,
                  **frame_kwargs):
         super().__init__(content, ordered_list=ordered_list,
-                         graphic_filepaths=graphic_filepaths, graphics_on_right=graphics_on_right,
+                         graphics=graphics, graphics_on_right=graphics_on_right,
                          **frame_kwargs)
 
 
