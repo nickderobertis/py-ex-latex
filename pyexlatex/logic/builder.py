@@ -30,5 +30,7 @@ def build(content):
     elif isinstance(content, (list, tuple)):
         built = _build([build(c) for c in content])
         return built
+    elif content is None:
+        return ''
     else:
         return str(content)
