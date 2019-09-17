@@ -68,6 +68,9 @@ class Path(TikZItem):
             else:
                 location: Tuple[float, float]
                 locations.append(str(location))
+        if len(locations) == 1:
+            # Got a single point draw path, such as circle
+            return f'{locations[0]} {self.draw_type}'
         return self.draw_join_str.join(locations)
 
 
