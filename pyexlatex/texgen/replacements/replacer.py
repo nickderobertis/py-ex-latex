@@ -2,7 +2,7 @@ from typing import Dict, List
 
 latex_escape_begin_character = '\\' # literal \
 latex_escape_end_characters = '{}'
-latex_replacement_no_end_character_items = ['%', '&', '_', '#', '^', '{', '}']
+latex_replacement_no_end_character_items = ['%', '&', '_', '#', '^']
 latex_replacement_with_end_character_items = ['^']
 latex_block_escape_characters = ['$']
 replacement_dict = {
