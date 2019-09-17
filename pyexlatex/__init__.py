@@ -4,6 +4,7 @@ has its own, simpler API to creating documents. It is focused on creating profes
 with little styling effort.
 """
 from pyexlatex.models.document import Document
+from pyexlatex.models.standalone import Standalone
 from pyexlatex.models.equation import Equation
 from pyexlatex.models.section.paragraphs import Paragraph, SubParagraph
 from pyexlatex.models.section.sections import Section, SubSection, SubSubSection

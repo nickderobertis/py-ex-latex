@@ -8,7 +8,7 @@ from pyexlatex.models.control.documentclass.classtypes.manager import DocumentCl
 class DocumentClass(ContainerItem, SimpleItem):
     name = 'documentclass'
 
-    def __init__(self, document_type: str = 'article', font_size: Optional[float] = 11,
+    def __init__(self, document_type: str = 'article', font_size: Optional[float] = None,
                  num_columns: Optional[int] = None, options: Optional[Sequence[str]] = None):
         manager = DocumentClassTypesManager()
         self.document_type = manager.get_class_type_by_name(document_type)
