@@ -13,7 +13,7 @@ LATEX_SIZES = [
     'Huge'
 ]
 
-class Size(NoOptionsNoContentsItem):
+class TextSize(NoOptionsNoContentsItem):
 
     def __init__(self, relative_size_int: int):
         """

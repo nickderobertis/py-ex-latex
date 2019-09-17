@@ -11,7 +11,7 @@ from pyexlatex.models.control.group import Group
 from pyexlatex.models.control.setlength import SetLength
 from pyexlatex.models.control.setcounter import SetCounter
 from pyexlatex.models.format.text.bold import Bold
-from pyexlatex.models.sizes.textsizes import Size
+from pyexlatex.models.sizes.textsizes import TextSize
 from pyexlatex.models.format.centering import Center
 from pyexlatex.models.control.newpage import PageBreak
 from pyexlatex.models.page.style import ThisPageStyle
@@ -108,7 +108,7 @@ class CustomTitlePage(Template):
     def _title_block(self) -> Group:
         main_contents = [
             SetLength(BaselineSkip(), '40pt'),
-            Size(self.title_relative_size),
+            TextSize(self.title_relative_size),
             Bold(self.title)
         ]
         return Group(Center(main_contents))
