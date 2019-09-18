@@ -72,6 +72,7 @@ class Publication(pl.Template):
         return [
             '',  # separate paragraph
             Justifying(),  # return to justifying on both sides
-            self.description
+            self.description,
+            pl.VSpace(0.2)  # extra spacing looks good when description is included
         ]
 
