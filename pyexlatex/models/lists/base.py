@@ -44,6 +44,8 @@ class ListBase(TextAreaMixin, VerticalFillMixin, Item, ReprMixin):
 def _can_be_included_directly_in_list(item) -> bool:
     if hasattr(item, 'is_SetCounter') and item.is_SetCounter:
         return True
+    if hasattr(item, 'is_Raw') and item.is_Raw:
+        return True
     return _item_is_list_or_list_base(item)
 
 
