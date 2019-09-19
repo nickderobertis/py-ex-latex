@@ -24,19 +24,19 @@ class TableNotes(TextAreaBase, ReprMixin):
         super().__init__(self.name, contents, env_modifiers=f'[para, flushleft]')
 
 
-class Tabular(Item, ReprMixin):
+class Tabular(ContainerItem, Item, ReprMixin):
     name = 'tabular'
     repr_cols = ['align']
 
-    def __init__(self, content, align: Optional[ColumnsAlignment] = None):
+    def __init__(self, content, align: Optional[Union[ColumnsAlignment, str]] = None):
         if not isinstance(content, (list, tuple)):
             content = [content]
-        self.align = align if align is not None else ColumnsAlignment(
-            num_columns=Tabular._get_num_columns_from_content(content)
-        )
+        self.align = self._get_columns_alignment_from_passed_align(content, align)
+
         # TODO: really this should be cmidrule and others that require booktabs, but need to get all nested table
         # TODO: structure aggregating data.
         self.add_package('booktabs')
+        self.add_data_from_content(self.align)
         super().__init__(self.name, content, env_modifiers=self._wrap_with_braces(str(self.align)))
 
     @classmethod
@@ -66,6 +66,19 @@ class Tabular(Item, ReprMixin):
 
         # Otherwise, try to take the length of the first passed content
         return len(reference_content)
+
+    def _get_columns_alignment_from_passed_align(self, content,
+                                                 align: Optional[Union[ColumnsAlignment, str]] = None
+                                                 ) -> ColumnsAlignment:
+        if align is None:
+            return ColumnsAlignment(
+                num_columns=Tabular._get_num_columns_from_content(content)
+            )
+        elif isinstance(align, str):
+            return ColumnsAlignment.from_alignment_str(align)
+        else:
+            # Assumed to be passed ColumnsAlignment or something else that will directly work in its place
+            return align
 
 
 class ThreePartTable(Item, ReprMixin):

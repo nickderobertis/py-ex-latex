@@ -1,13 +1,16 @@
 import re
 
 from mixins.repr import ReprMixin
+from pyexlatex.models.item import ItemBase
+from pyexlatex.models.containeritem import ContainerItem
+from pyexlatex.texgen.packages.columntypes import ColumnTypesPackage
 
 
-class ColumnAlignment(ReprMixin):
+class ColumnAlignment(ReprMixin, ItemBase):
     repr_cols = ['align']
 
     def __init__(self, align_str: str):
-        ColumnAlignment._validate_align_str(align_str)
+        self._validate_align_str(align_str)
         self.align = align_str
 
     def __str__(self):
@@ -19,23 +22,29 @@ class ColumnAlignment(ReprMixin):
     def __radd__(self, other):
         return other.align + self.align
 
-    @staticmethod
-    def _validate_align_str(align_str):
-        basic_pattern = re.compile(r'[lcr]')
+    def _validate_align_str(self, align_str):
+        basic_pattern = re.compile(r'[lcr|]')
         length_pattern = re.compile(r'[LCRD]\{[\d\w\s.]+\}')
 
         basic_match = basic_pattern.fullmatch(align_str)
         length_match = length_pattern.fullmatch(align_str)
 
+        if length_match:
+            self._add_requirements_for_length_match()
+
         if not (basic_match or length_match):
-            raise ValueError(f'expected alignment of l, c, r, L{{size}}, C{{size}}, R{{size}}, or D{{size}}. Got {align_str}')
+            raise ValueError(f'expected alignment of l, c, r, |, L{{size}}, C{{size}}, R{{size}}, or D{{size}}. Got {align_str}')
+
+    def _add_requirements_for_length_match(self):
+        self.add_package(ColumnTypesPackage())
 
 
-class ColumnsAlignment(ReprMixin):
+class ColumnsAlignment(ReprMixin, ContainerItem):
     repr_cols = ['aligns']
 
     def __init__(self, aligns: [ColumnAlignment]= None, num_columns: int=None):
         self.aligns = ColumnsAlignment._get_aligns(aligns, num_columns)
+        self.add_data_from_content(self.aligns)
 
     def __str__(self):
         return ''.join(str(align) for align in self.aligns)
@@ -76,7 +85,7 @@ class ColumnsAlignment(ReprMixin):
 
 
 def _full_align_str_to_align_str_list(align_str: str):
-    split_letters = ['l', 'c', 'r', 'L', 'C', 'R']
+    split_letters = ['l', 'c', 'r', '|', 'L', 'C', 'R']
     out_list = []
     collected_letters = ''
     split = True
