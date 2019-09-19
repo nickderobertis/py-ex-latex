@@ -6,6 +6,7 @@ from mixins.repr import ReprMixin
 from pyexlatex.models.lists.item import ListItem
 from pyexlatex.models.section.base import TextAreaMixin
 from pyexlatex.models.format.fills import VFill
+from pyexlatex.logic.type_check import item_is_in_allowed_type_strs
 
 
 class VerticalFillMixin:
@@ -14,7 +15,7 @@ class VerticalFillMixin:
     def vertically_space_content(self, items):
         output = []
         for item in items:
-            if not _can_be_included_directly_in_list(item):
+            if not can_be_included_directly_in_list(item):
                 output.append(ListItem(item))
             else:
                 output.append(item)
@@ -41,20 +42,31 @@ class ListBase(TextAreaMixin, VerticalFillMixin, Item, ReprMixin):
         super().__init__(self.name, self.content, env_modifiers=env_modifier_overlay, **kwargs)
 
 
-def _can_be_included_directly_in_list(item) -> bool:
-    if hasattr(item, 'is_SetCounter') and item.is_SetCounter:
-        return True
-    if hasattr(item, 'is_Raw') and item.is_Raw:
-        return True
-    return _item_is_list_or_list_base(item)
-
-
-def _item_is_list_or_list_base(item) -> bool:
-    if hasattr(item, 'is_ListItem') and item.is_ListItem:
-        return True
-    if hasattr(item, 'is_ListBase') and item.is_ListBase:
-        return True
+def can_be_included_directly_in_list(item) -> bool:
+    check_funcs = [
+        _can_be_included_directly_in_list_but_is_not_list,
+        _item_is_list_or_list_base
+    ]
+    for func in check_funcs:
+        if func(item):
+            return True
 
     return False
 
+
+def _can_be_included_directly_in_list_but_is_not_list(item) -> bool:
+    allowed_values = [
+        'SetCounter',
+        'Raw',
+        'TextSize'
+    ]
+    return item_is_in_allowed_type_strs(item, allowed_values)
+
+
+def _item_is_list_or_list_base(item) -> bool:
+    allowed_values = [
+        'ListItem',
+        'ListBase'
+    ]
+    return item_is_in_allowed_type_strs(item, allowed_values)
 
