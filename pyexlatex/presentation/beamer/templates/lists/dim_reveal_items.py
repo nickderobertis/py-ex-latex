@@ -7,6 +7,7 @@ from pyexlatex.presentation.beamer.overlay.until_end import UntilEnd
 from pyexlatex.presentation.beamer.overlay.next import NextWithIncrement, NextWithoutIncrement
 from pyexlatex.models.containeritem import ContainerItem
 from pyexlatex.models.item import ItemBase
+from pyexlatex.models.lists.base import can_be_included_directly_in_list
 
 
 class DimAndRevealListItem(ListItem):
@@ -60,14 +61,20 @@ class DimAndRevealListItems(VerticalFillMixin, ContainerItem, ItemBase):
         self.contents = self._get_contents()
 
     def _get_contents(self) -> List[DimAndRevealListItem]:
-        output = [
-            DimAndRevealListItem(
-                item,
-                opacity=self.opacity,
-                dim=self.dim_earlier_items,
-                **self.item_kwargs
-            ) for item in self.orig_contents
-        ]
+        output = []
+        for item in self.orig_contents:
+            if can_be_included_directly_in_list(item):
+                output.append(item)
+            else:
+                output.append(
+                    DimAndRevealListItem(
+                        item,
+                        opacity=self.opacity,
+                        dim=self.dim_earlier_items,
+                        **self.item_kwargs
+                    )
+                )
+
         if not self.dim_last_item:
             output[-1] = DimAndRevealListItem(
                 self.orig_contents[-1], dim=False, opacity=self.opacity, **self.item_kwargs
