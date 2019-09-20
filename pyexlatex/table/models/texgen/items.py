@@ -81,7 +81,7 @@ class Tabular(ContainerItem, Item, ReprMixin):
             return align
 
 
-class ThreePartTable(Item, ReprMixin):
+class ThreePartTable(TextAreaBase, ReprMixin):
     name = 'threeparttable'
     repr_cols = ['caption']
 
@@ -94,9 +94,8 @@ class ThreePartTable(Item, ReprMixin):
             below_text,
             label
         ]
-        valid_items = [item for item in items if item is not None]
+        content = [item for item in items if item is not None]
 
-        content = LineBreak().join(valid_items)
         super().__init__(self.name, content)
 
     @classmethod
@@ -110,7 +109,7 @@ class ThreePartTable(Item, ReprMixin):
 
         return cls(tabular, caption=caption, *args, **kwargs)
 
-class Table(ContainerItem, Item, ReprMixin):
+class Table(TextAreaBase, ReprMixin):
     name = 'table'
     repr_cols = ['caption']
 
@@ -123,11 +122,9 @@ class Table(ContainerItem, Item, ReprMixin):
             three_part_table
         ]
 
-        valid_items = [item for item in items if item is not None]
+        content = [item for item in items if item is not None]
 
-        content = LineBreak().join(valid_items)
-
-        Item.__init__(self, self.name, content)
+        super().__init__(self.name, content)
 
     def __str__(self):
         content_with_env = super().__str__()
