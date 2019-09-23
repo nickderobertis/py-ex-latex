@@ -2,18 +2,20 @@ from typing import Optional
 from pyexlatex.models.item import Item
 from pyexlatex.models.containeritem import ContainerItem
 from pyexlatex.models.lists.item import ListItem
+from pyexlatex.models.format.nopagebreak import NoPageBreak
 
 
 class Employment(ContainerItem, Item):
     name = 'employment'
 
     def __init__(self, contents, company_name: str, employed_dates: str, job_title: str, location: str,
-                 extra_contents: Optional = None):
+                 extra_contents: Optional = None, prevent_page_break: bool = True):
         self.company_name = company_name
         self.employed_dates = employed_dates
         self.job_title = job_title
         self.location = location
         self.extra_contents = extra_contents
+        self.prevent_page_break = prevent_page_break
 
         self.add_data_from_content([
             contents,
@@ -31,6 +33,9 @@ class Employment(ContainerItem, Item):
 
         if extra_contents is not None:
             contents.append(extra_contents)
+
+        if self.prevent_page_break:
+            contents = NoPageBreak(contents)
 
         super().__init__(
             self.name,
