@@ -3,6 +3,7 @@ from pyexlatex.layouts.base import LayoutBase
 from pyexlatex.presentation.beamer.columns.column import Column
 from pyexlatex.presentation.beamer.columns.columns import Columns
 
+# TODO: move MultiCol to presentation as is only valid in beamer (verify this)
 
 class MultiCol(LayoutBase):
     """
