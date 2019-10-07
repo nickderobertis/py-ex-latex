@@ -71,7 +71,7 @@ class DocumentBase(ContainerItem, Item):
             *pre_env_contents
         ]
 
-        self.pre_env_contents = _build([item for item in possible_pre_env_contents if item is not None])
+        self.pre_env_contents = build([item for item in possible_pre_env_contents if item is not None])
 
         content.extend(self.data.end_document_items)
 
