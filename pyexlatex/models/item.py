@@ -190,13 +190,14 @@ class EqualsItem(ItemBase):
 
 class NoOptionsNoContentsItem(ItemBase):
 
-    def __init__(self, name, overlay: Optional['Overlay'] = None):
+    def __init__(self, name, overlay: Optional['Overlay'] = None, modifiers: Optional[str] = None):
         self.name = name
         self.overlay = overlay
+        self.modifiers = modifiers
         super().__init__()
 
     def __repr__(self):
         return f'<{self.name.title()}>'
 
     def __str__(self):
-        return no_options_no_contents_str(self.name, overlay=self.overlay)
+        return no_options_no_contents_str(self.name, overlay=self.overlay, modifiers=self.modifiers)
