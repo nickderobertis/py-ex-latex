@@ -1,4 +1,7 @@
 from typing import List, Optional, Sequence, Union, TYPE_CHECKING
+
+from pyexlatex.presentation.beamer.control.navigation import AddNavigationHeader
+
 if TYPE_CHECKING:
     from pyexlatex.models.documentsetup import DocumentSetupData
 from copy import deepcopy
@@ -28,7 +31,7 @@ class Presentation(DocumentBase):
                  short_title: Optional[str] = None, subtitle: Optional[str] = None, short_author: Optional[str] = None,
                  institutions: Optional[Sequence[Sequence[str]]] = None, short_institution: Optional[str] = None,
                  font_size: Optional[float] = 11, theme: str = 'Madrid', backend: str = 'beamer',
-                 handouts: bool = False):
+                 nav_header: bool = False, handouts: bool = False):
 
         self.init_data()
         self.title_frame = None
@@ -37,6 +40,11 @@ class Presentation(DocumentBase):
             content = [content]
         else:
             content = deepcopy(content)  # don't overwrite existing content
+
+        if pre_env_contents is None:
+            pre_env_contents = []
+        elif isinstance(pre_env_contents, (ItemBase, str)):
+            pre_env_contents = [pre_env_contents]
 
         if backend != 'beamer':
             raise NotImplementedError('only beamer backend is currently supported for Presentation')
@@ -84,6 +92,10 @@ class Presentation(DocumentBase):
                     short_institution=short_institution
                 )
                 content.insert(0, self.title_frame)
+
+            if nav_header:
+                pre_env_contents.append(AddNavigationHeader())
+
         else:
             data_cleanup_func = None
 
