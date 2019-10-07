@@ -167,6 +167,10 @@ class Table(TextAreaBase, ReprMixin):
 class LTable(Table):
     name = 'ltable'
 
+    def __str__(self):
+        # Skip landscape wrapping being done in Table as it is already handled by ltable definition
+        return TextAreaBase.__str__(self)
+
 
 class TableDocument(Document):
 
