@@ -4,10 +4,10 @@ from pyexlatex.models.item import Item
 from pyexlatex.models.containeritem import ContainerItem
 from mixins.repr import ReprMixin
 from pyexlatex.table.models.panels.collection import PanelCollection
-from pyexlatex.table.models.texgen.alignment import ColumnsAlignment, ColumnAlignment
+from pyexlatex.table.models.texgen.tabularbase import BaseTabular
+from pyexlatex.table.models.texgen.alignment import ColumnsAlignment
 from pyexlatex.table.logic.table.build import build_tabular_content_from_panel_collection
 from pyexlatex.models.caption import Caption
-from pyexlatex.models.format.breaks import LineBreak
 from pyexlatex.texgen import _centering_str
 from pyexlatex.models.document import Document
 from pyexlatex.models.package import Package
@@ -24,7 +24,7 @@ class TableNotes(TextAreaBase, ReprMixin):
         super().__init__(self.name, contents, env_modifiers=f'[para, flushleft]')
 
 
-class Tabular(ContainerItem, Item, ReprMixin):
+class Tabular(ContainerItem, Item, ReprMixin, BaseTabular):
     name = 'tabular'
     repr_cols = ['align']
 
@@ -53,32 +53,6 @@ class Tabular(ContainerItem, Item, ReprMixin):
     def from_df(cls, df: pd.DataFrame, align: Optional[ColumnsAlignment] = None, **dt_from_df_kwargs):
         dt = DataTable.from_df(df, **dt_from_df_kwargs)
         return cls(dt, align=align)
-
-    @staticmethod
-    def _get_num_columns_from_content(content) -> int:
-        # Content should be made a list before this function. Get first or only content back
-        reference_content = content[0]
-
-        # Try to get from num_columns attribute if it exists
-        num_columns = getattr(reference_content, 'num_columns', None)
-        if num_columns is not None:
-            return num_columns
-
-        # Otherwise, try to take the length of the first passed content
-        return len(reference_content)
-
-    def _get_columns_alignment_from_passed_align(self, content,
-                                                 align: Optional[Union[ColumnsAlignment, str]] = None
-                                                 ) -> ColumnsAlignment:
-        if align is None:
-            return ColumnsAlignment(
-                num_columns=Tabular._get_num_columns_from_content(content)
-            )
-        elif isinstance(align, str):
-            return ColumnsAlignment.from_alignment_str(align)
-        else:
-            # Assumed to be passed ColumnsAlignment or something else that will directly work in its place
-            return align
 
 
 class ThreePartTable(TextAreaBase, ReprMixin):

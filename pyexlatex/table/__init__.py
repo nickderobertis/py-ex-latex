@@ -9,3 +9,4 @@ from pyexlatex.table.models.texgen.alignment import ColumnAlignment, ColumnsAlig
 from pyexlatex.table.models.texgen.lines import TopRule, MidRule, BottomRule, TableLineSegment
 from pyexlatex.table.models.labels.multicolumn import MultiColumn
 from pyexlatex.models.format.breaks import TableLineBreak
+from pyexlatex.table.models.texgen.tabularstar import TabularStar
