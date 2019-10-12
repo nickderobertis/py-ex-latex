@@ -209,12 +209,14 @@ class Figure(ContainerItem, Item):
             item_is_subfigure = False
             orig_graphic = self.subfigures[0]
 
+        orig_width = self.subfigures[0].width
+
         # Elevate caption of sub-figure if there is no figure caption
         if self.caption is None and item_is_subfigure:
             self.caption = self.subfigures[0].caption
 
-        # update width to whole page
-        graphic = Graphic(orig_graphic.filepaths[0], width=r'1.1\paperwidth')
+        # update width to original width
+        graphic = Graphic(orig_graphic.filepaths[0], width=orig_width)
 
         # need to turn off centering to cover whole page
         self.centering = False
