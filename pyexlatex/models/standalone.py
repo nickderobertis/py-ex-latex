@@ -1,4 +1,4 @@
-from typing import List, Optional, Sequence
+from typing import List, Optional, Sequence, Callable
 from pyexlatex.models.document import DocumentBase
 from pyexlatex.typing import ItemOrListOfItems
 from pyexlatex.models.package import Package
@@ -14,7 +14,8 @@ class Standalone(DocumentBase):
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package] = None,
                  pre_env_contents: Optional[ItemOrListOfItems] = None,
-                 font_size: Optional[float] = None, doc_class_options: Optional[Sequence[str]] = None):
+                 font_size: Optional[float] = None, doc_class_options: Optional[Sequence[str]] = None,
+                 pre_output_func: Optional[Callable] = None):
 
         self.document_class_obj = DocumentClass(
             document_type='standalone',
@@ -26,6 +27,7 @@ class Standalone(DocumentBase):
             content,
             packages=packages,
             pre_env_contents=pre_env_contents,
+            pre_output_func=pre_output_func,
         )
 
 

@@ -35,7 +35,8 @@ class DocumentBase(ContainerItem, Item):
     document_class_obj = None
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
-                 pre_env_contents: Optional[ItemOrListOfItems] = None, data_cleanup_func: Optional[Callable] = None):
+                 pre_env_contents: Optional[ItemOrListOfItems] = None, data_cleanup_func: Optional[Callable] = None,
+                 pre_output_func: Optional[Callable] = None):
         """
 
         :param content:
@@ -43,6 +44,9 @@ class DocumentBase(ContainerItem, Item):
         :param pre_env_contents:
         :param data_cleanup_func: should accept DocumentSetupData and modify it in place. This is called just before
             using the data.
+        :param pre_output_func: function which modifies the latex string before outputting it. The function should
+            accepts a single argument which is a string of the entire latex contents, and it should return a string
+            which will be used as the latex contents for output.
         """
         from pyexlatex.logic.builder import build, _build
         self.add_data_from_content(content)
@@ -81,6 +85,9 @@ class DocumentBase(ContainerItem, Item):
         content = deepcopy(content)  # don't overwrite original objects
         # combine content into a single str
         content = build(content)
+
+        if pre_output_func:
+            content = pre_output_func(content)
 
         super().__init__(self.name, content, pre_env_contents=self.pre_env_contents)
 
@@ -122,7 +129,7 @@ class DocumentBase(ContainerItem, Item):
 
 class Document(DocumentBase):
     """
-    Main class used for creating latex documents, use for all except presentations.
+    Main class used for creating latex documents.
     """
     name = 'document'
 
@@ -138,7 +145,8 @@ class Document(DocumentBase):
                  tables_relative_font_size: int = 0, figures_relative_font_size: int = 0,
                  page_style: str = 'fancy', custom_headers: Optional[Sequence[Header]] = None,
                  remove_section_numbering: bool = False, separate_abstract_page: bool = False,
-                 extra_title_page_lines: Optional[Sequence] = None, empty_title_page_style: bool = False):
+                 extra_title_page_lines: Optional[Sequence] = None, empty_title_page_style: bool = False,
+                 pre_output_func: Optional[Callable] = None):
         from pyexlatex.models.title.page import TitlePage
 
         all_packages = self.construct_packages(
@@ -205,7 +213,12 @@ class Document(DocumentBase):
         if landscape:
             content = Landscape().wrap(content)
 
-        super().__init__(content, packages=all_packages, pre_env_contents=pre_env_contents)
+        super().__init__(
+            content,
+            packages=all_packages,
+            pre_env_contents=pre_env_contents,
+            pre_output_func=pre_output_func
+        )
 
     def __repr__(self):
         return f'<Document>'

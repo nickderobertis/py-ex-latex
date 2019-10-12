@@ -1,4 +1,4 @@
-from typing import List, Optional, Sequence, Union, TYPE_CHECKING
+from typing import List, Optional, Sequence, Union, TYPE_CHECKING, Callable
 
 from pyexlatex.presentation.beamer.control.navigation import AddNavigationHeader
 from pyexlatex.presentation.beamer.templates.control.tocsection import TableOfContentsAtBeginSection
@@ -32,7 +32,8 @@ class Presentation(DocumentBase):
                  short_title: Optional[str] = None, subtitle: Optional[str] = None, short_author: Optional[str] = None,
                  institutions: Optional[Sequence[Sequence[str]]] = None, short_institution: Optional[str] = None,
                  font_size: Optional[float] = 11, theme: str = 'Madrid', backend: str = 'beamer',
-                 nav_header: bool = False, toc_sections: bool = False, handouts: bool = False):
+                 nav_header: bool = False, toc_sections: bool = False, handouts: bool = False,
+                 pre_output_func: Optional[Callable] = None):
 
         self.init_data()
         self.title_frame = None
@@ -107,7 +108,8 @@ class Presentation(DocumentBase):
             content,
             packages=packages,
             pre_env_contents=pre_env_contents,
-            data_cleanup_func=data_cleanup_func
+            data_cleanup_func=data_cleanup_func,
+            pre_output_func=pre_output_func
         )
 
 

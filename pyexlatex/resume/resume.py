@@ -1,4 +1,4 @@
-from typing import List, Optional, Sequence, Union
+from typing import List, Optional, Sequence, Union, Callable
 from pyexlatex.models.document import DocumentBase
 from pyexlatex.typing import ItemOrListOfItems
 from pyexlatex.models.package import Package
@@ -18,7 +18,7 @@ class Resume(DocumentBase):
                  name: Optional[str] = None, contact_lines: Optional[Sequence[Union[str, Sequence[str]]]] = None,
                  font_size: Optional[float] = 11,
                  page_modifier_str: Optional[str]='left=0.75in,top=0.6in,right=0.75in,bottom=0.6in',
-                 authors: Optional[Union[str, Sequence[str]]] = None):
+                 authors: Optional[Union[str, Sequence[str]]] = None, pre_output_func: Optional[Callable] = None):
 
         self.init_data()
 
@@ -46,7 +46,12 @@ class Resume(DocumentBase):
             # Set margins, body size, etc. with geometry package
             self.data.packages.append(Package('geometry', modifier_str=page_modifier_str))
 
-        super().__init__(content, packages=packages, pre_env_contents=pre_env_contents)
+        super().__init__(
+            content,
+            packages=packages,
+            pre_env_contents=pre_env_contents,
+            pre_output_func=pre_output_func,
+        )
 
     def _get_name(self, name: Optional[str] = None, authors: Optional[Union[str, Sequence[str]]] = None):
         if authors is None:
