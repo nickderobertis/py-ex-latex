@@ -83,6 +83,8 @@ class DocumentBase(ContainerItem, Item):
 
 
         content = deepcopy(content)  # don't overwrite original objects
+        # combine content into a single str
+        content = build(content)
 
         if pre_output_func:
             content = pre_output_func(content)
