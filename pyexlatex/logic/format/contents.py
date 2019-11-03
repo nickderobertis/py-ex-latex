@@ -1,9 +1,14 @@
+from copy import deepcopy
 
 
 def format_contents(contents) -> str:
-    from pyexlatex.logic.builder import _build
+    from pyexlatex.logic.builder import _build, build
+
     if isinstance(contents, (list, tuple)):
-        return _build([_format_content(c) for c in contents])
+        contents = [_format_content(c) for c in contents]
+        contents = deepcopy(contents)
+        contents = build(contents)
+        return _build(contents)
 
     return _format_content(contents)
 

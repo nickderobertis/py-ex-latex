@@ -102,10 +102,14 @@ class Item(ItemBase):
         return f'<Item(name={self.env.name}, contents={self.contents})>'
 
     def __str__(self):
-        from pyexlatex.logic.builder import _build
+        from pyexlatex.logic.builder import _build, build
+
+        contents = deepcopy(self.contents)
+        contents = build(contents)
+
         possible_items = [
             self.pre_env_contents,
-            self.env.wrap(str(self.contents)),
+            self.env.wrap(str(contents)),
             self.post_env_contents
         ]
         items = [item for item in possible_items if item]
