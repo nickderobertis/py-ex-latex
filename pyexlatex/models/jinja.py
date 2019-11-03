@@ -1,6 +1,6 @@
 import re
 from functools import partial
-from typing import Sequence, List, Any
+from typing import Sequence, List, Any, Callable
 
 from jinja2 import Environment, Template
 
@@ -81,29 +81,18 @@ class JinjaEnvironment(Environment):
                 self.filters[latex_class_name] = this_class_factory
 
     def from_string(self, *args, **kwargs):
-        # Set current global data store for adding data during filters
-        data_store = _set_data_store_to_temporary_object()
-
-        # Create object in usual jinja way
-        actual_template = super().from_string(*args, **kwargs)
-
-        # Add data to newly created object
-        actual_template.data = data_store.data
-
-        return actual_template
+        return _template_factory(
+            super().from_string,
+            *args,
+            **kwargs
+        )
 
     def _load_template(self, *args, **kwargs):
-        # Set current global data store for adding data during filters
-        data_store = _set_data_store_to_temporary_object()
-
-        # Create object in usual jinja way
-        actual_template = super()._load_template(*args, **kwargs)
-
-        # Add data to newly created object
-        actual_template.data = data_store.data
-
-        return actual_template
-
+        return _template_factory(
+            super()._load_template,
+            *args,
+            **kwargs
+        )
 
 
 def _set_data_store_to_temporary_object():
@@ -119,4 +108,27 @@ def _set_data_store_to_temporary_object():
 def _set_data_store_to_object(obj: Any):
     global current_template_data_store
     current_template_data_store = obj
+
+
+def _template_factory(factory_func: Callable, *args, **kwargs) -> JinjaTemplate:
+    """
+    Handles creating jinja template complete with pyexlatex data.
+
+    Manages a temporary global data store so that jinja filters can add to that data store, then after creating
+    the template, the data is added to the template.
+
+    :param factory_func: function which should return a Template
+    :param args: passed to factory_func
+    :param kwargs: passed to factory_func
+    """
+    # Set current global data store for adding data during filters
+    data_store = _set_data_store_to_temporary_object()
+
+    # Create object in usual jinja way
+    actual_template = factory_func(*args, **kwargs)
+
+    # Add data to newly created object
+    actual_template.data = data_store.data
+
+    return actual_template
 
