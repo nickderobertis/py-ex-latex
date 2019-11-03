@@ -52,6 +52,22 @@ pyexlatex.table.models.texgen.packages module
    :undoc-members:
    :show-inheritance:
 
+pyexlatex.table.models.texgen.tabularbase module
+------------------------------------------------
+
+.. automodule:: pyexlatex.table.models.texgen.tabularbase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.table.models.texgen.tabularstar module
+------------------------------------------------
+
+.. automodule:: pyexlatex.table.models.texgen.tabularstar
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 Module contents
 ---------------

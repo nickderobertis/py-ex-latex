@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.commands.endfloat &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.models.commands.endfloat &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_paramlinks.css" />
@@ -37,6 +37,11 @@
 
 <div class="viewcode-block" id="DeclareDelayedFloatFlavor"><a class="viewcode-back" href="../../../../api/pyexlatex.models.commands.html#pyexlatex.models.commands.endfloat.DeclareDelayedFloatFlavor">[docs]</a><span class="k">class</span> <span class="nc">DeclareDelayedFloatFlavor</span><span class="p">(</span><span class="n">MultiOptionSimpleItem</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;DeclareDelayedFloatFlavor&#39;</span>
+    <span class="n">equal_attrs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;target_environment&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;treat_as_environment&#39;</span>
+    <span class="p">]</span>
 
 <div class="viewcode-block" id="DeclareDelayedFloatFlavor.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.models.commands.html#pyexlatex.models.commands.endfloat.DeclareDelayedFloatFlavor.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_environment</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">treat_as_environment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;table&#39;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target_environment</span> <span class="o">=</span> <span class="n">target_environment</span>

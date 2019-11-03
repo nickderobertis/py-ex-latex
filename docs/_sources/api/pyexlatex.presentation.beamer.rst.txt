@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
 
    pyexlatex.presentation.beamer.columns
+   pyexlatex.presentation.beamer.control
    pyexlatex.presentation.beamer.frame
    pyexlatex.presentation.beamer.overlay
    pyexlatex.presentation.beamer.templates
@@ -19,6 +20,22 @@ pyexlatex.presentation.beamer.block module
 ------------------------------------------
 
 .. automodule:: pyexlatex.presentation.beamer.block
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.presentation.beamer.colorbox module
+---------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.colorbox
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.presentation.beamer.toc module
+----------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.toc
    :members:
    :undoc-members:
    :show-inheritance:

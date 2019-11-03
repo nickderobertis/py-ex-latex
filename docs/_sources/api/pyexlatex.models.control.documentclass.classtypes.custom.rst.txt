@@ -1,0 +1,22 @@
+pyexlatex.models.control.documentclass.classtypes.custom package
+================================================================
+
+Submodules
+----------
+
+pyexlatex.models.control.documentclass.classtypes.custom.resume module
+----------------------------------------------------------------------
+
+.. automodule:: pyexlatex.models.control.documentclass.classtypes.custom.resume
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.control.documentclass.classtypes.custom
+   :members:
+   :undoc-members:
+   :show-inheritance:

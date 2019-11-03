@@ -1,0 +1,38 @@
+pyexlatex.models.format.text.color.deftypes package
+===================================================
+
+Submodules
+----------
+
+pyexlatex.models.format.text.color.deftypes.base module
+-------------------------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.color.deftypes.base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.text.color.deftypes.hex module
+------------------------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.color.deftypes.hex
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.text.color.deftypes.rgb module
+------------------------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.color.deftypes.rgb
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.format.text.color.deftypes
+   :members:
+   :undoc-members:
+   :show-inheritance:

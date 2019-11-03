@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.item &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.models.item &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css" />
@@ -32,9 +32,10 @@
           <div class="body" role="main">
             
   <h1>Source code for pyexlatex.models.item</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">pyexlatex.presentation.beamer.overlay</span> <span class="k">import</span> <span class="n">Overlay</span>
+    <span class="kn">from</span> <span class="nn">pyexlatex.models.package</span> <span class="k">import</span> <span class="n">Package</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">mixins.attrequals</span> <span class="k">import</span> <span class="n">EqOnAttrsMixin</span><span class="p">,</span> <span class="n">EqHashMixin</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.mixins</span> <span class="k">import</span> <span class="n">StringAdditionMixin</span><span class="p">,</span> <span class="n">IsSpecificClassMixin</span>
@@ -56,10 +57,14 @@
 <div class="viewcode-block" id="DataItem.init_data"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.DataItem.init_data">[docs]</a>    <span class="k">def</span> <span class="nf">init_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">pyexlatex.models.documentsetup</span> <span class="k">import</span> <span class="n">DocumentSetupData</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">DocumentSetupData</span><span class="p">()</span></div></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">DocumentSetupData</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="DataItem.add_package"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.DataItem.add_package">[docs]</a>    <span class="k">def</span> <span class="nf">add_package</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">package</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;Package&#39;</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_data</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">package</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="ItemBase"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.ItemBase">[docs]</a><span class="k">class</span> <span class="nc">ItemBase</span><span class="p">(</span><span class="n">DataItem</span><span class="p">,</span> <span class="n">IsSpecificClassMixin</span><span class="p">,</span> <span class="n">IsLatexItemMixin</span><span class="p">,</span> <span class="n">StringAdditionMixin</span><span class="p">,</span> <span class="n">EqOnAttrsMixin</span><span class="p">,</span> <span class="n">EqHashMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="ItemBase"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.ItemBase">[docs]</a><span class="k">class</span> <span class="nc">ItemBase</span><span class="p">(</span><span class="n">DataItem</span><span class="p">,</span> <span class="n">IsSpecificClassMixin</span><span class="p">,</span> <span class="n">IsLatexItemMixin</span><span class="p">,</span> <span class="n">StringAdditionMixin</span><span class="p">,</span> <span class="n">EqHashMixin</span><span class="p">,</span> <span class="n">EqOnAttrsMixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for all latex generating classes</span>
 <span class="sd">    </span>
@@ -219,16 +224,17 @@
 
 <div class="viewcode-block" id="NoOptionsNoContentsItem"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.NoOptionsNoContentsItem">[docs]</a><span class="k">class</span> <span class="nc">NoOptionsNoContentsItem</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
 
-<div class="viewcode-block" id="NoOptionsNoContentsItem.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.NoOptionsNoContentsItem.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="NoOptionsNoContentsItem.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.NoOptionsNoContentsItem.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">modifiers</span> <span class="o">=</span> <span class="n">modifiers</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;&lt;{self.name.title()}&gt;&#39;</span>
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">no_options_no_contents_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlay</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">no_options_no_contents_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlay</span><span class="p">,</span> <span class="n">modifiers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modifiers</span><span class="p">)</span></div>
 </pre></div>
 
           </div>

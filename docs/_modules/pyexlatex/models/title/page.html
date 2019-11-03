@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.title.page &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.models.title.page &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_paramlinks.css" />
@@ -32,32 +32,150 @@
           <div class="body" role="main">
             
   <h1>Source code for pyexlatex.models.title.page</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pyexlatex.models.documentitem</span> <span class="k">import</span> <span class="n">DocumentItem</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.template</span> <span class="k">import</span> <span class="n">Template</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.title.title</span> <span class="k">import</span> <span class="n">Title</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.credits.author</span> <span class="k">import</span> <span class="n">Author</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.date</span> <span class="k">import</span> <span class="n">Date</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.section.abstract</span> <span class="k">import</span> <span class="n">Abstract</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.texgen</span> <span class="k">import</span> <span class="n">_maketitle_str</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.logic.format.and_join</span> <span class="k">import</span> <span class="n">join_with_commas_and_and</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.sizes.baselineskip</span> <span class="k">import</span> <span class="n">BaselineSkip</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.control.group</span> <span class="k">import</span> <span class="n">Group</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.control.setlength</span> <span class="k">import</span> <span class="n">SetLength</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.control.setcounter</span> <span class="k">import</span> <span class="n">SetCounter</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.format.text.bold</span> <span class="k">import</span> <span class="n">Bold</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.sizes.textsizes</span> <span class="k">import</span> <span class="n">TextSize</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.format.centering</span> <span class="k">import</span> <span class="n">Center</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.control.newpage</span> <span class="k">import</span> <span class="n">PageBreak</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.page.style</span> <span class="k">import</span> <span class="n">ThisPageStyle</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.format.vspace</span> <span class="k">import</span> <span class="n">VSpace</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.format.hspace</span> <span class="k">import</span> <span class="n">HSpace</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.format.breaks</span> <span class="k">import</span> <span class="n">LineBreak</span>
 
-<div class="viewcode-block" id="TitlePage"><a class="viewcode-back" href="../../../../api/pyexlatex.models.title.html#pyexlatex.models.title.page.TitlePage">[docs]</a><span class="k">class</span> <span class="nc">TitlePage</span><span class="p">(</span><span class="n">DocumentItem</span><span class="p">):</span>
 
-<div class="viewcode-block" id="TitlePage.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.models.title.html#pyexlatex.models.title.page.TitlePage.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">author</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">abstract</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">pyexlatex.logic.builder</span> <span class="k">import</span> <span class="n">_build</span>
+<div class="viewcode-block" id="TitlePage"><a class="viewcode-back" href="../../../../api/pyexlatex.models.title.html#pyexlatex.models.title.page.TitlePage">[docs]</a><span class="k">class</span> <span class="nc">TitlePage</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TitlePage.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.models.title.html#pyexlatex.models.title.page.TitlePage.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">authors</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">abstract</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">separate_abstract_page</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">extra_lines</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">empty_page_style</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">empty_page_style</span> <span class="o">=</span> <span class="n">empty_page_style</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+
+        <span class="k">if</span> <span class="n">authors</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">author</span> <span class="o">=</span> <span class="n">join_with_commas_and_and</span><span class="p">(</span><span class="n">authors</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">author</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">contents</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">Title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span> <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">Author</span><span class="p">(</span><span class="n">author</span><span class="p">)</span> <span class="k">if</span> <span class="n">author</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_title_obj</span><span class="p">,</span>
+            <span class="n">Author</span><span class="p">(</span><span class="n">author</span><span class="p">,</span> <span class="n">short_author</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="k">if</span> <span class="n">author</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">Date</span><span class="p">(</span><span class="n">date</span><span class="p">)</span> <span class="k">if</span> <span class="n">date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Date</span><span class="p">(),</span>
-            <span class="n">_maketitle_str</span><span class="p">(),</span>
-            <span class="n">Abstract</span><span class="p">(</span><span class="n">abstract</span><span class="p">)</span> <span class="k">if</span> <span class="n">abstract</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="n">_maketitle_str</span><span class="p">()</span> <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">ThisPageStyle</span><span class="p">(</span><span class="s1">&#39;empty&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">empty_page_style</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">Abstract</span><span class="p">(</span><span class="n">abstract</span><span class="p">)</span> <span class="k">if</span> <span class="n">abstract</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">separate_abstract_page</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">extra_lines</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">separate_abstract_page</span><span class="p">:</span>
+            <span class="n">contents</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">extra_lines</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">separate_abstract_page</span> <span class="ow">and</span> <span class="n">abstract</span><span class="p">:</span>
+            <span class="n">contents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">CustomTitlePage</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">abstract</span><span class="p">,</span> <span class="n">extra_lines</span><span class="o">=</span><span class="n">extra_lines</span><span class="p">,</span> <span class="n">next_page_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="p">[</span><span class="n">content</span> <span class="k">for</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">contents</span> <span class="k">if</span> <span class="n">content</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_output</span> <span class="o">=</span> <span class="n">_build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
-    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output</span></div>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_title_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Title</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">title</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">empty_page_style</span><span class="p">:</span>
+            <span class="c1"># Empty page style strips away bold title, bring it back manually</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="n">Bold</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">Title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CustomTitlePage"><a class="viewcode-back" href="../../../../api/pyexlatex.models.title.html#pyexlatex.models.title.page.CustomTitlePage">[docs]</a><span class="k">class</span> <span class="nc">CustomTitlePage</span><span class="p">(</span><span class="n">Template</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Title page which is not created using \maketitle, instead it is created manually and so may be included at</span>
+<span class="sd">    any point in a document, and there may be multiple.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CustomTitlePage.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.models.title.html#pyexlatex.models.title.page.CustomTitlePage.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">abstract</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">title_relative_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+                 <span class="n">gap_after_title_pt</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">35</span><span class="p">,</span> <span class="n">extra_lines</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">next_page_number</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">abstract</span> <span class="o">=</span> <span class="n">abstract</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title_relative_size</span> <span class="o">=</span> <span class="n">title_relative_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gap_after_title</span> <span class="o">=</span> <span class="n">gap_after_title_pt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines</span> <span class="o">=</span> <span class="n">extra_lines</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next_page_number</span> <span class="o">=</span> <span class="n">next_page_number</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_contents</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_contents</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">PageBreak</span><span class="p">(),</span>
+            <span class="n">ThisPageStyle</span><span class="p">(</span><span class="s1">&#39;empty&#39;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_title_block</span><span class="p">,</span>
+            <span class="n">VSpace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gap_after_title</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">),</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">abstract</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">contents</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_abstract_block</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">contents</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_extra_lines_block</span><span class="p">)</span>
+        <span class="n">contents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">PageBreak</span><span class="p">())</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_page_number</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">contents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SetCounter</span><span class="p">(</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">contents</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_title_block</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span><span class="p">:</span>
+        <span class="n">main_contents</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">SetLength</span><span class="p">(</span><span class="n">BaselineSkip</span><span class="p">(),</span> <span class="s1">&#39;40pt&#39;</span><span class="p">),</span>
+            <span class="n">TextSize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title_relative_size</span><span class="p">),</span>
+            <span class="n">Bold</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="k">return</span> <span class="n">Group</span><span class="p">(</span><span class="n">Center</span><span class="p">(</span><span class="n">main_contents</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_abstract_block</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">abstract</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">abstract_title</span> <span class="o">=</span> <span class="n">Center</span><span class="p">(</span><span class="n">Bold</span><span class="p">(</span><span class="s1">&#39;Abstract&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">abstract_title</span><span class="p">,</span>
+            <span class="n">VSpace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;pt&#39;</span><span class="p">),</span>
+            <span class="n">HSpace</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;em&#39;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">abstract</span>
+        <span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_extra_lines_block</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="p">[</span><span class="n">VSpace</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;pt&#39;</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">extra_lines</span><span class="p">:</span>
+            <span class="n">contents</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+                <span class="n">line</span><span class="p">,</span>
+                <span class="n">LineBreak</span><span class="p">(),</span>
+            <span class="p">])</span>
+        <span class="k">return</span> <span class="n">contents</span></div>
+
+
+
+
+
+
 </pre></div>
 
           </div>

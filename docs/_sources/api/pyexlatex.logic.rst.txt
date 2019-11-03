@@ -29,6 +29,14 @@ pyexlatex.logic.tools module
    :undoc-members:
    :show-inheritance:
 
+pyexlatex.logic.type\_check module
+----------------------------------
+
+.. automodule:: pyexlatex.logic.type_check
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 Module contents
 ---------------

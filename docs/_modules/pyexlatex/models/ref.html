@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.ref &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.models.ref &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css" />
@@ -37,11 +37,22 @@
 
 <div class="viewcode-block" id="Ref"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.ref.Ref">[docs]</a><span class="k">class</span> <span class="nc">Ref</span><span class="p">(</span><span class="n">SimpleItem</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Pass a label to create an in text reference to that label.</span>
+<span class="sd">    Pass a label to create an in text reference to that label. Will display the number of the section in the text.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ref&#39;</span>
 
 <div class="viewcode-block" id="Ref.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.ref.Ref.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="NameRef"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.ref.NameRef">[docs]</a><span class="k">class</span> <span class="nc">NameRef</span><span class="p">(</span><span class="n">SimpleItem</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Pass a label to create an in text reference to that label. Will display the name of the section in the text.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;nameref&#39;</span>
+
+<div class="viewcode-block" id="NameRef.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.ref.NameRef.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_package</span><span class="p">(</span><span class="s1">&#39;nameref&#39;</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span></div></div>
 </pre></div>
 

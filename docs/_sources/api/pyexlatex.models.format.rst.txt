@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
 
    pyexlatex.models.format.code
+   pyexlatex.models.format.paragraph
    pyexlatex.models.format.text
 
 Submodules
@@ -36,10 +37,90 @@ pyexlatex.models.format.centering module
    :undoc-members:
    :show-inheritance:
 
+pyexlatex.models.format.fills module
+------------------------------------
+
+.. automodule:: pyexlatex.models.format.fills
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.hangindent module
+-----------------------------------------
+
+.. automodule:: pyexlatex.models.format.hangindent
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.hline module
+------------------------------------
+
+.. automodule:: pyexlatex.models.format.hline
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.hspace module
+-------------------------------------
+
+.. automodule:: pyexlatex.models.format.hspace
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.join module
+-----------------------------------
+
+.. automodule:: pyexlatex.models.format.join
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.noindent module
+---------------------------------------
+
+.. automodule:: pyexlatex.models.format.noindent
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.nolinebreak module
+------------------------------------------
+
+.. automodule:: pyexlatex.models.format.nolinebreak
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.nopagebreak module
+------------------------------------------
+
+.. automodule:: pyexlatex.models.format.nopagebreak
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.paragraphindent module
+----------------------------------------------
+
+.. automodule:: pyexlatex.models.format.paragraphindent
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyexlatex.models.format.raw module
 ----------------------------------
 
 .. automodule:: pyexlatex.models.format.raw
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.rule module
+-----------------------------------
+
+.. automodule:: pyexlatex.models.format.rule
    :members:
    :undoc-members:
    :show-inheritance:
@@ -52,10 +133,10 @@ pyexlatex.models.format.sectionnum module
    :undoc-members:
    :show-inheritance:
 
-pyexlatex.models.format.vfill module
-------------------------------------
+pyexlatex.models.format.vspace module
+-------------------------------------
 
-.. automodule:: pyexlatex.models.format.vfill
+.. automodule:: pyexlatex.models.format.vspace
    :members:
    :undoc-members:
    :show-inheritance:

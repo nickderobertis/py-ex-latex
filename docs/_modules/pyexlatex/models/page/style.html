@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.page.style &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.models.page.style &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_paramlinks.css" />
@@ -36,9 +36,22 @@
 
 
 <div class="viewcode-block" id="PageStyle"><a class="viewcode-back" href="../../../../api/pyexlatex.models.page.html#pyexlatex.models.page.style.PageStyle">[docs]</a><span class="k">class</span> <span class="nc">PageStyle</span><span class="p">(</span><span class="n">SimpleItem</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sets style of the pages for the entire document.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;pagestyle&#39;</span>
 
 <div class="viewcode-block" id="PageStyle.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.models.page.html#pyexlatex.models.page.style.PageStyle.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ThisPageStyle"><a class="viewcode-back" href="../../../../api/pyexlatex.models.page.html#pyexlatex.models.page.style.ThisPageStyle">[docs]</a><span class="k">class</span> <span class="nc">ThisPageStyle</span><span class="p">(</span><span class="n">SimpleItem</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sets style of the current page in a document.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;thispagestyle&#39;</span>
+
+<div class="viewcode-block" id="ThisPageStyle.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.models.page.html#pyexlatex.models.page.style.ThisPageStyle.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span></div></div>
 </pre></div>
 

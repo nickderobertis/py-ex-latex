@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.hyperlinks &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.models.hyperlinks &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css" />
@@ -36,6 +36,7 @@
 <span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="k">import</span> <span class="n">MultiOptionSimpleItem</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.section.base</span> <span class="k">import</span> <span class="n">TextAreaMixin</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.package</span> <span class="k">import</span> <span class="n">Package</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.exc</span> <span class="k">import</span> <span class="n">NoPackageWithNameException</span>
 
 
 <div class="viewcode-block" id="Hyperlink"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.hyperlinks.Hyperlink">[docs]</a><span class="k">class</span> <span class="nc">Hyperlink</span><span class="p">(</span><span class="n">TextAreaMixin</span><span class="p">,</span> <span class="n">MultiOptionSimpleItem</span><span class="p">):</span>
@@ -56,7 +57,9 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_data_from_content</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="n">Package</span><span class="p">(</span><span class="s1">&#39;hyperref&#39;</span><span class="p">)</span>
+            <span class="c1"># TODO: think about passing options. Difficult because mutliple Hyperlinks could be constructed with</span>
+            <span class="c1"># TODO: different options, then not clear which to take.</span>
+            <span class="n">Package</span><span class="p">(</span><span class="s1">&#39;hyperref&#39;</span><span class="p">,</span> <span class="n">modifier_str</span><span class="o">=</span><span class="s1">&#39;hidelinks&#39;</span><span class="p">)</span>
         <span class="p">)</span>
 
         <span class="n">MultiOptionSimpleItem</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">options</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>

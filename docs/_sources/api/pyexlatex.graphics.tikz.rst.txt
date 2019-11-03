@@ -43,6 +43,14 @@ pyexlatex.graphics.tikz.picture module
    :undoc-members:
    :show-inheritance:
 
+pyexlatex.graphics.tikz.scope module
+------------------------------------
+
+.. automodule:: pyexlatex.graphics.tikz.scope
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 Module contents
 ---------------

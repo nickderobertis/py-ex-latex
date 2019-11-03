@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.logic package &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.logic package &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_paramlinks.css" />
@@ -51,8 +51,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pyexlatex.logic.format.html">pyexlatex.logic.format package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.format.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.format.html#module-pyexlatex.logic.format.and_join">pyexlatex.logic.format.and_join module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.format.html#module-pyexlatex.logic.format.contents">pyexlatex.logic.format.contents module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.format.html#module-pyexlatex.logic.format.eq">pyexlatex.logic.format.eq module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.format.html#pyexlatex-logic-format-sizing-module">pyexlatex.logic.format.sizing module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.format.html#module-pyexlatex.logic.format">Module contents</a></li>
 </ul>
 </li>
@@ -112,7 +114,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.pdf.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.pdf.html#module-pyexlatex.logic.pdf.fileops">pyexlatex.logic.pdf.fileops module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.pdf.html#module-pyexlatex.logic.pdf.main">pyexlatex.logic.pdf.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.pdf.html#pyexlatex-logic-pdf-main-module">pyexlatex.logic.pdf.main module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.logic.pdf.html#module-pyexlatex.logic.pdf">Module contents</a></li>
 </ul>
 </li>
@@ -138,6 +140,19 @@
 <div class="section" id="module-pyexlatex.logic.tools">
 <span id="pyexlatex-logic-tools-module"></span><h2>pyexlatex.logic.tools module<a class="headerlink" href="#module-pyexlatex.logic.tools" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="module-pyexlatex.logic.type_check">
+<span id="pyexlatex-logic-type-check-module"></span><h2>pyexlatex.logic.type_check module<a class="headerlink" href="#module-pyexlatex.logic.type_check" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyexlatex.logic.type_check.item_is_in_allowed_type_strs">
+<code class="sig-prename descclassname">pyexlatex.logic.type_check.</code><code class="sig-name descname">item_is_in_allowed_type_strs</code><span class="sig-paren">(</span><em class="sig-param">item</em>, <em class="sig-param">allowed_values</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/type_check.html#item_is_in_allowed_type_strs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.type_check.item_is_in_allowed_type_strs" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
 <div class="section" id="module-pyexlatex.logic">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyexlatex.logic" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -158,6 +173,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyexlatex</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="pyexlatex.html">pyexlatex package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="pyexlatex.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.constants.html">pyexlatex.constants package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
@@ -171,11 +187,13 @@
 <li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-pyexlatex.logic.builder">pyexlatex.logic.builder module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-pyexlatex.logic.tools">pyexlatex.logic.tools module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-pyexlatex.logic.type_check">pyexlatex.logic.type_check module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-pyexlatex.logic">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.resume.html">pyexlatex.resume package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.table.html">pyexlatex.table package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texgen.html">pyexlatex.texgen package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texparser.html">pyexlatex.texparser package</a></li>
@@ -185,6 +203,7 @@
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.exc">pyexlatex.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-contents">Module contents</a></li>
 </ul>

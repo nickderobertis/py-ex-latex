@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.credits package &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.models.credits package &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_paramlinks.css" />
@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.models.credits.institution package" href="pyexlatex.models.credits.institution.html" />
-    <link rel="prev" title="pyexlatex.models.control package" href="pyexlatex.models.control.html" />
+    <link rel="prev" title="pyexlatex.models.control.documentclass.classtypes.custom package" href="pyexlatex.models.control.documentclass.classtypes.custom.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -56,18 +56,23 @@
 <span id="pyexlatex-models-credits-author-module"></span><h2>pyexlatex.models.credits.author module<a class="headerlink" href="#module-pyexlatex.models.credits.author" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pyexlatex.models.credits.author.Author">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.credits.author.</code><code class="sig-name descname">Author</code><span class="sig-paren">(</span><em class="sig-param">authors</em>, <em class="sig-param">short_author=None</em>, <em class="sig-param">institutions=None</em>, <em class="sig-param">short_institution=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/credits/author.html#Author"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.credits.author.Author" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.credits.author.</code><code class="sig-name descname">Author</code><span class="sig-paren">(</span><em class="sig-param">authors</em>, <em class="sig-param">short_author='auto'</em>, <em class="sig-param">institutions=None</em>, <em class="sig-param">short_institution=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/credits/author.html#Author"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.credits.author.Author" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
 <dl class="method">
 <dt id="pyexlatex.models.credits.author.Author.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">authors</em>, <em class="sig-param">short_author=None</em>, <em class="sig-param">institutions=None</em>, <em class="sig-param">short_institution=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/credits/author.html#Author.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.credits.author.Author.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">authors</em>, <em class="sig-param">short_author='auto'</em>, <em class="sig-param">institutions=None</em>, <em class="sig-param">short_institution=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/credits/author.html#Author.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.credits.author.Author.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="pyexlatex.models.credits.author.Author.params.authors"></span><strong>authors</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.models.credits.author.Author.params.authors">¶</a> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]) – </p></li>
+<li><p><span class="target" id="pyexlatex.models.credits.author.Author.params.short_author"></span><strong>short_author</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.models.credits.author.Author.params.short_author">¶</a> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – pass short name for author, ‘auto’ to automatically use first author as short author,
+or None for there to be no short name</p></li>
+<li><p><span class="target" id="pyexlatex.models.credits.author.Author.params.institutions"></span><strong>institutions</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.models.credits.author.Author.params.institutions">¶</a> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]]) – </p></li>
+<li><p><span class="target" id="pyexlatex.models.credits.author.Author.params.short_institution"></span><strong>short_institution</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.models.credits.author.Author.params.short_institution">¶</a> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.models.credits.author.Author.content">
-<em class="property">property </em><code class="sig-name descname">content</code><a class="headerlink" href="#pyexlatex.models.credits.author.Author.content" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="attribute">
 <dt id="pyexlatex.models.credits.author.Author.name">
@@ -97,6 +102,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyexlatex</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="pyexlatex.html">pyexlatex package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="pyexlatex.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.constants.html">pyexlatex.constants package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
@@ -133,19 +139,24 @@
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.documentitem">pyexlatex.models.documentitem module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.documentsetup">pyexlatex.models.documentsetup module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.environment">pyexlatex.models.environment module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.environmenttemplate">pyexlatex.models.environmenttemplate module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.equation">pyexlatex.models.equation module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.footnote">pyexlatex.models.footnote module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.hyperlinks">pyexlatex.models.hyperlinks module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.item">pyexlatex.models.item module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.label">pyexlatex.models.label module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.landscape">pyexlatex.models.landscape module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.latex">pyexlatex.models.latex module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.mixins">pyexlatex.models.mixins module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.package">pyexlatex.models.package module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.ref">pyexlatex.models.ref module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#pyexlatex-models-standalone-module">pyexlatex.models.standalone module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models.template">pyexlatex.models.template module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.html#module-pyexlatex.models">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.resume.html">pyexlatex.resume package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.table.html">pyexlatex.table package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texgen.html">pyexlatex.texgen package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texparser.html">pyexlatex.texparser package</a></li>
@@ -155,6 +166,7 @@
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.exc">pyexlatex.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-contents">Module contents</a></li>
 </ul>
@@ -169,7 +181,7 @@
   <li><a href="modules.html">pyexlatex</a><ul>
   <li><a href="pyexlatex.html">pyexlatex package</a><ul>
   <li><a href="pyexlatex.models.html">pyexlatex.models package</a><ul>
-      <li>Previous: <a href="pyexlatex.models.control.html" title="previous chapter">pyexlatex.models.control package</a></li>
+      <li>Previous: <a href="pyexlatex.models.control.documentclass.classtypes.custom.html" title="previous chapter">pyexlatex.models.control.documentclass.classtypes.custom package</a></li>
       <li>Next: <a href="pyexlatex.models.credits.institution.html" title="next chapter">pyexlatex.models.credits.institution package</a></li>
   </ul></li>
   </ul></li>

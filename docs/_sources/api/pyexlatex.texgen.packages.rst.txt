@@ -12,6 +12,14 @@ pyexlatex.texgen.packages.columntypes module
    :undoc-members:
    :show-inheritance:
 
+pyexlatex.texgen.packages.default module
+----------------------------------------
+
+.. automodule:: pyexlatex.texgen.packages.default
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 Module contents
 ---------------

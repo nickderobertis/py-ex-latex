@@ -1,6 +1,13 @@
 pyexlatex.models.control package
 ================================
 
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.models.control.documentclass
+
 Submodules
 ----------
 
@@ -8,14 +15,6 @@ pyexlatex.models.control.and\_ module
 -------------------------------------
 
 .. automodule:: pyexlatex.models.control.and_
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-pyexlatex.models.control.documentclass module
----------------------------------------------
-
-.. automodule:: pyexlatex.models.control.documentclass
    :members:
    :undoc-members:
    :show-inheritance:
@@ -36,6 +35,14 @@ pyexlatex.models.control.filecontents module
    :undoc-members:
    :show-inheritance:
 
+pyexlatex.models.control.group module
+-------------------------------------
+
+.. automodule:: pyexlatex.models.control.group
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyexlatex.models.control.maxdeadcycles module
 ---------------------------------------------
 
@@ -48,6 +55,46 @@ pyexlatex.models.control.mode module
 ------------------------------------
 
 .. automodule:: pyexlatex.models.control.mode
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.control.newcounter module
+------------------------------------------
+
+.. automodule:: pyexlatex.models.control.newcounter
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.control.newpage module
+---------------------------------------
+
+.. automodule:: pyexlatex.models.control.newpage
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.control.setcounter module
+------------------------------------------
+
+.. automodule:: pyexlatex.models.control.setcounter
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.control.setlength module
+-----------------------------------------
+
+.. automodule:: pyexlatex.models.control.setlength
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.control.value module
+-------------------------------------
+
+.. automodule:: pyexlatex.models.control.value
    :members:
    :undoc-members:
    :show-inheritance:

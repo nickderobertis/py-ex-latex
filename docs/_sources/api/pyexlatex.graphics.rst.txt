@@ -20,10 +20,26 @@ pyexlatex.graphics.arrow module
    :undoc-members:
    :show-inheritance:
 
+pyexlatex.graphics.modified\_picture module
+-------------------------------------------
+
+.. automodule:: pyexlatex.graphics.modified_picture
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyexlatex.graphics.rectangle module
 -----------------------------------
 
 .. automodule:: pyexlatex.graphics.rectangle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.graphics.shape module
+-------------------------------
+
+.. automodule:: pyexlatex.graphics.shape
    :members:
    :undoc-members:
    :show-inheritance:

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.texgen &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.texgen &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_paramlinks.css" />
@@ -47,9 +47,11 @@
 
     <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;[</span><span class="si">{modifiers}</span><span class="s1">]&#39;</span>
 
-<div class="viewcode-block" id="no_options_no_contents_str"><a class="viewcode-back" href="../../api/pyexlatex.texgen.html#pyexlatex.texgen.no_options_no_contents_str">[docs]</a><span class="k">def</span> <span class="nf">no_options_no_contents_str</span><span class="p">(</span><span class="n">item_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="no_options_no_contents_str"><a class="viewcode-back" href="../../api/pyexlatex.texgen.html#pyexlatex.texgen.no_options_no_contents_str">[docs]</a><span class="k">def</span> <span class="nf">no_options_no_contents_str</span><span class="p">(</span><span class="n">item_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                               <span class="n">modifiers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay</span> <span class="k">if</span> <span class="n">overlay</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">rf</span><span class="s1">&#39;\</span><span class="si">{item_name}{overlay}</span><span class="s1">&#39;</span></div>
+    <span class="n">modifiers</span> <span class="o">=</span> <span class="n">modifiers</span> <span class="k">if</span> <span class="n">modifiers</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">rf</span><span class="s1">&#39;\</span><span class="si">{item_name}{overlay}{modifiers}</span><span class="s1">&#39;</span></div>
 
 
 <span class="k">def</span> <span class="nf">_no_braces_item_str</span><span class="p">(</span><span class="n">item_name</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>

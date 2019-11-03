@@ -1,6 +1,13 @@
 pyexlatex.models.format.text package
 ====================================
 
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.models.format.text.color
+
 Submodules
 ----------
 
@@ -8,14 +15,6 @@ pyexlatex.models.format.text.bold module
 ----------------------------------------
 
 .. automodule:: pyexlatex.models.format.text.bold
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-pyexlatex.models.format.text.color module
------------------------------------------
-
-.. automodule:: pyexlatex.models.format.text.color
    :members:
    :undoc-members:
    :show-inheritance:
@@ -40,6 +39,22 @@ pyexlatex.models.format.text.monospace module
 ---------------------------------------------
 
 .. automodule:: pyexlatex.models.format.text.monospace
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.text.nohyphens module
+---------------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.nohyphens
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.text.smallcaps module
+---------------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.smallcaps
    :members:
    :undoc-members:
    :show-inheritance:

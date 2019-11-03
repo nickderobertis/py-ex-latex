@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.table.models.labels package &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.table.models.labels package &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_paramlinks.css" />
@@ -38,268 +38,23 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-pyexlatex.table.models.labels.collection">
-<span id="pyexlatex-table-models-labels-collection-module"></span><h2>pyexlatex.table.models.labels.collection module<a class="headerlink" href="#module-pyexlatex.table.models.labels.collection" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.table.models.labels.collection.LabelCollection">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.labels.collection.</code><code class="sig-name descname">LabelCollection</code><span class="sig-paren">(</span><em class="sig-param">values</em>, <em class="sig-param">underline=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/collection.html#LabelCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.collection.LabelCollection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.table.models.table.html#pyexlatex.table.models.table.rowbase.RowBase" title="pyexlatex.table.models.table.rowbase.RowBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.table.rowbase.RowBase</span></code></a></p>
-<p>Represents one row of labels. Use to construct a LabelTable to apply to a DataTable.</p>
-<p>Main usage is LabelCollection.from_str_list</p>
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.collection.LabelCollection.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">values</em>, <em class="sig-param">underline=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/collection.html#LabelCollection.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.collection.LabelCollection.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="pyexlatex.table.models.labels.collection.LabelCollection.params.values"></span><strong>values</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.labels.collection.LabelCollection.params.values">¶</a> (<em>[</em><em>&lt;class 'pyexlatex.table.models.labels.label.Label'&gt;</em><em>]</em>) – </p></li>
-<li><p><span class="target" id="pyexlatex.table.models.labels.collection.LabelCollection.params.underline"></span><strong>underline</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.labels.collection.LabelCollection.params.underline">¶</a> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">None</span></code>]) – int, str, or None, pass index or label to underline, pass a str range, e.g. ‘2-5’ for a
-range of labels to underline, pass space separated indices as a str, e.g. ‘0 2’ for
-separated underlines, or a combination, e.g. ‘2-5 8’</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.collection.LabelCollection.from_str_list">
-<em class="property">classmethod </em><code class="sig-name descname">from_str_list</code><span class="sig-paren">(</span><em class="sig-param">str_list</em>, <em class="sig-param">underline=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/collection.html#LabelCollection.from_str_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.collection.LabelCollection.from_str_list" title="Permalink to this definition">¶</a></dt>
-<dd><dl>
-<dt>Args:</dt><dd><p>str_list:
-underline: int, str, or None, pass index or label to underline, pass a str range, e.g. ‘2-5’ for a</p>
-<blockquote>
-<div><p>range of labels to underline, pass space separated indices as a str, e.g. ‘0 2’ for
-separated underlines, or a combination, e.g. ‘2-5 8’</p>
-</div></blockquote>
-</dd>
-</dl>
-<p>Returns:</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pyexlatex.table.models.labels.collection.LabelCollection" title="pyexlatex.table.models.labels.collection.LabelCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">LabelCollection</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.collection.LabelCollection.matches">
-<code class="sig-name descname">matches</code><span class="sig-paren">(</span><em class="sig-param">other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/collection.html#LabelCollection.matches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.collection.LabelCollection.matches" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compare on the basis of having same values, rather than same instance
-Use regular equality to test if same instance
-:param _sphinx_paramlinks_pyexlatex.table.models.labels.collection.LabelCollection.matches.other:
-:return:</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.collection.LabelCollection.pad">
-<code class="sig-name descname">pad</code><span class="sig-paren">(</span><em class="sig-param">length</em>, <em class="sig-param">direction='right'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/collection.html#LabelCollection.pad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.collection.LabelCollection.pad" title="Permalink to this definition">¶</a></dt>
-<dd><p>Expand row out to the right or left with blanks, until it is length passed
-:type _sphinx_paramlinks_pyexlatex.table.models.labels.collection.LabelCollection.pad.length: <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>
-:param _sphinx_paramlinks_pyexlatex.table.models.labels.collection.LabelCollection.pad.length:
-:return:</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.collection.LabelCollection.parse_unknown_type">
-<em class="property">classmethod </em><code class="sig-name descname">parse_unknown_type</code><span class="sig-paren">(</span><em class="sig-param">unknown_type</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/collection.html#LabelCollection.parse_unknown_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.collection.LabelCollection.parse_unknown_type" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pyexlatex.table.models.labels.collection.LabelCollection" title="pyexlatex.table.models.labels.collection.LabelCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">LabelCollection</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.labels.collection.LabelCollection.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['values', 'underlines']</em><a class="headerlink" href="#pyexlatex.table.models.labels.collection.LabelCollection.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.collection.LabelCollection.shift_underlines">
-<code class="sig-name descname">shift_underlines</code><span class="sig-paren">(</span><em class="sig-param">shift</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/collection.html#LabelCollection.shift_underlines"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.collection.LabelCollection.shift_underlines" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="pyexlatex-table-models-labels-collection-module">
+<h2>pyexlatex.table.models.labels.collection module<a class="headerlink" href="#pyexlatex-table-models-labels-collection-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-pyexlatex.table.models.labels.label">
-<span id="pyexlatex-table-models-labels-label-module"></span><h2>pyexlatex.table.models.labels.label module<a class="headerlink" href="#module-pyexlatex.table.models.labels.label" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.table.models.labels.label.Label">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.labels.label.</code><code class="sig-name descname">Label</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">span=1</em>, <em class="sig-param">align='c'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/label.html#Label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.label.Label" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code>, <a class="reference internal" href="pyexlatex.table.models.mixins.addvalues.html#pyexlatex.table.models.mixins.addvalues.row.RowAddMixin" title="pyexlatex.table.models.mixins.addvalues.row.RowAddMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.mixins.addvalues.row.RowAddMixin</span></code></a></p>
-<p>Only necessary to use if need to set span or alignment manually. Can construct LabelCollection objects from Labels.</p>
-<p>Useful for constructing custom multicolumn labels.</p>
-<p>&gt;&gt;&gt;import pyexlatex.table as lt
-&gt;&gt;&gt;data_table = lt.DataTable.from_df(some_df)
-&gt;&gt;&gt;label = lt.Label(‘Long label’, span=5, align=’r’)
-&gt;&gt;&gt;long_label_collection = lt.LabelCollection([label], underline=’1-5’)
-&gt;&gt;&gt;
-&gt;&gt;&gt;data_table.column_labels.insert(long_label_collection, 0)</p>
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.label.Label.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">span=1</em>, <em class="sig-param">align='c'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/label.html#Label.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.label.Label.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.labels.label.Label.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['value', 'span']</em><a class="headerlink" href="#pyexlatex.table.models.labels.label.Label.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="pyexlatex-table-models-labels-label-module">
+<h2>pyexlatex.table.models.labels.label module<a class="headerlink" href="#pyexlatex-table-models-labels-label-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-pyexlatex.table.models.labels.multicolumn">
-<span id="pyexlatex-table-models-labels-multicolumn-module"></span><h2>pyexlatex.table.models.labels.multicolumn module<a class="headerlink" href="#module-pyexlatex.table.models.labels.multicolumn" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.table.models.labels.multicolumn.MultiColumn">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.labels.multicolumn.</code><code class="sig-name descname">MultiColumn</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">span</em>, <em class="sig-param">align='c'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/multicolumn.html#MultiColumn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.multicolumn.MultiColumn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.MultiOptionSimpleItem" title="pyexlatex.models.item.MultiOptionSimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.MultiOptionSimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.multicolumn.MultiColumn.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">span</em>, <em class="sig-param">align='c'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/multicolumn.html#MultiColumn.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.multicolumn.MultiColumn.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.labels.multicolumn.MultiColumn.name">
-<code class="sig-name descname">name</code><em class="property"> = 'multicolumn'</em><a class="headerlink" href="#pyexlatex.table.models.labels.multicolumn.MultiColumn.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="pyexlatex-table-models-labels-multicolumn-module">
+<h2>pyexlatex.table.models.labels.multicolumn module<a class="headerlink" href="#pyexlatex-table-models-labels-multicolumn-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-pyexlatex.table.models.labels.row">
-<span id="pyexlatex-table-models-labels-row-module"></span><h2>pyexlatex.table.models.labels.row module<a class="headerlink" href="#module-pyexlatex.table.models.labels.row" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.table.models.labels.row.LabelRow">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.labels.row.</code><code class="sig-name descname">LabelRow</code><span class="sig-paren">(</span><em class="sig-param">values</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/row.html#LabelRow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.row.LabelRow" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.table.models.table.html#pyexlatex.table.models.table.row.Row" title="pyexlatex.table.models.table.row.Row"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.table.row.Row</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.row.LabelRow.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">values</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/row.html#LabelRow.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.row.LabelRow.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.row.LabelRow.length">
-<em class="property">property </em><code class="sig-name descname">length</code><a class="headerlink" href="#pyexlatex.table.models.labels.row.LabelRow.length" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.labels.row.LabelRow.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['values', 'length']</em><a class="headerlink" href="#pyexlatex.table.models.labels.row.LabelRow.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="pyexlatex-table-models-labels-row-module">
+<h2>pyexlatex.table.models.labels.row module<a class="headerlink" href="#pyexlatex-table-models-labels-row-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-pyexlatex.table.models.labels.table">
-<span id="pyexlatex-table-models-labels-table-module"></span><h2>pyexlatex.table.models.labels.table module<a class="headerlink" href="#module-pyexlatex.table.models.labels.table" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.table.models.labels.table.LabelTable">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.labels.table.</code><code class="sig-name descname">LabelTable</code><span class="sig-paren">(</span><em class="sig-param">label_collections</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/table.html#LabelTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.table.models.table.html#pyexlatex.table.models.table.section.TableSection" title="pyexlatex.table.models.table.section.TableSection"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.table.section.TableSection</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
-<p>A set of label rows to apply to a DataTable.</p>
-<p>Example:</p>
-<p>&gt;&gt;&gt;import pyexlatex.table as lt
-&gt;&gt;&gt;data_table = lt.DataTable.from_df(some_df)
-&gt;&gt;&gt;col_label_table = lt.LabelTable.from_list_of_lists([[‘One header’],[‘More’,’Headers’]])
-&gt;&gt;&gt;row_label_table = lt.LabelTable.from_list_of_lists([[‘Some’,’Row’,’Labels’]]).T
-&gt;&gt;&gt;data_table.column_labels = col_label_table</p>
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.T">
-<em class="property">property </em><code class="sig-name descname">T</code><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.T" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">label_collections</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/table.html#LabelTable.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.append">
-<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param">item</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/table.html#LabelTable.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.append" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.contains">
-<code class="sig-name descname">contains</code><span class="sig-paren">(</span><em class="sig-param">item</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/table.html#LabelTable.contains"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.contains" title="Permalink to this definition">¶</a></dt>
-<dd><p>Note: use to compare strings inside LabelCollections. Use label_collection in LabelTable to compare objects
-:param _sphinx_paramlinks_pyexlatex.table.models.labels.table.LabelTable.contains.item:
-:return:</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.from_df_index">
-<em class="property">classmethod </em><code class="sig-name descname">from_df_index</code><span class="sig-paren">(</span><em class="sig-param">df_columns</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/table.html#LabelTable.from_df_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.from_df_index" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.from_list_of_lists">
-<em class="property">classmethod </em><code class="sig-name descname">from_list_of_lists</code><span class="sig-paren">(</span><em class="sig-param">list_of_lists</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/table.html#LabelTable.from_list_of_lists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.from_list_of_lists" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.insert">
-<code class="sig-name descname">insert</code><span class="sig-paren">(</span><em class="sig-param">item</em>, <em class="sig-param">index</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/table.html#LabelTable.insert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.insert" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.is_empty">
-<em class="property">property </em><code class="sig-name descname">is_empty</code><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.is_empty" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.label_collections">
-<em class="property">property </em><code class="sig-name descname">label_collections</code><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.label_collections" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.length">
-<em class="property">property </em><code class="sig-name descname">length</code><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.length" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.matches">
-<code class="sig-name descname">matches</code><span class="sig-paren">(</span><em class="sig-param">other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/table.html#LabelTable.matches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.matches" title="Permalink to this definition">¶</a></dt>
-<dd><p>Note: use to compare strings inside LabelTables. Use regular equality comparison to compare objects
-:param _sphinx_paramlinks_pyexlatex.table.models.labels.table.LabelTable.matches.other:
-:return:</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.pad">
-<code class="sig-name descname">pad</code><span class="sig-paren">(</span><em class="sig-param">length</em>, <em class="sig-param">direction='right'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/table.html#LabelTable.pad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.pad" title="Permalink to this definition">¶</a></dt>
-<dd><p>Expand table out to the right or left with blanks, until it is length passed (apply to every row)
-:type _sphinx_paramlinks_pyexlatex.table.models.labels.table.LabelTable.pad.length: <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>
-:param _sphinx_paramlinks_pyexlatex.table.models.labels.table.LabelTable.pad.length:
-:param _sphinx_paramlinks_pyexlatex.table.models.labels.table.LabelTable.pad.direction:
-:return:</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.remove">
-<code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param">item</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/labels/table.html#LabelTable.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.remove" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['label_collections']</em><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.labels.table.LabelTable.rows">
-<em class="property">property </em><code class="sig-name descname">rows</code><a class="headerlink" href="#pyexlatex.table.models.labels.table.LabelTable.rows" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<div class="section" id="pyexlatex-table-models-labels-table-module">
+<h2>pyexlatex.table.models.labels.table module<a class="headerlink" href="#pyexlatex-table-models-labels-table-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-pyexlatex.table.models.labels">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyexlatex.table.models.labels" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-contents">
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -318,12 +73,14 @@ Use regular equality to test if same instance
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyexlatex</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="pyexlatex.html">pyexlatex package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="pyexlatex.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.constants.html">pyexlatex.constants package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.resume.html">pyexlatex.resume package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.table.html">pyexlatex.table package</a><ul class="current">
 <li class="toctree-l5 current"><a class="reference internal" href="pyexlatex.table.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l6"><a class="reference internal" href="pyexlatex.table.logic.html">pyexlatex.table.logic package</a></li>
@@ -332,12 +89,12 @@ Use regular equality to test if same instance
 <li class="toctree-l8"><a class="reference internal" href="pyexlatex.table.models.data.html">pyexlatex.table.models.data package</a></li>
 <li class="toctree-l8 current"><a class="current reference internal" href="#">pyexlatex.table.models.labels package</a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#module-pyexlatex.table.models.labels.collection">pyexlatex.table.models.labels.collection module</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#module-pyexlatex.table.models.labels.label">pyexlatex.table.models.labels.label module</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#module-pyexlatex.table.models.labels.multicolumn">pyexlatex.table.models.labels.multicolumn module</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#module-pyexlatex.table.models.labels.row">pyexlatex.table.models.labels.row module</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#module-pyexlatex.table.models.labels.table">pyexlatex.table.models.labels.table module</a></li>
-<li class="toctree-l9"><a class="reference internal" href="#module-pyexlatex.table.models.labels">Module contents</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#pyexlatex-table-models-labels-collection-module">pyexlatex.table.models.labels.collection module</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#pyexlatex-table-models-labels-label-module">pyexlatex.table.models.labels.label module</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#pyexlatex-table-models-labels-multicolumn-module">pyexlatex.table.models.labels.multicolumn module</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#pyexlatex-table-models-labels-row-module">pyexlatex.table.models.labels.row module</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#pyexlatex-table-models-labels-table-module">pyexlatex.table.models.labels.table module</a></li>
+<li class="toctree-l9"><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="pyexlatex.table.models.mixins.html">pyexlatex.table.models.mixins package</a></li>
@@ -348,13 +105,13 @@ Use regular equality to test if same instance
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="pyexlatex.table.models.html#submodules">Submodules</a></li>
-<li class="toctree-l7"><a class="reference internal" href="pyexlatex.table.models.html#module-pyexlatex.table.models.interfaces">pyexlatex.table.models.interfaces module</a></li>
-<li class="toctree-l7"><a class="reference internal" href="pyexlatex.table.models.html#module-pyexlatex.table.models">Module contents</a></li>
+<li class="toctree-l7"><a class="reference internal" href="pyexlatex.table.models.html#pyexlatex-table-models-interfaces-module">pyexlatex.table.models.interfaces module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="pyexlatex.table.models.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="pyexlatex.table.html#module-pyexlatex.table">Module contents</a></li>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.table.html#module-contents">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texgen.html">pyexlatex.texgen package</a></li>
@@ -365,6 +122,7 @@ Use regular equality to test if same instance
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.exc">pyexlatex.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-contents">Module contents</a></li>
 </ul>

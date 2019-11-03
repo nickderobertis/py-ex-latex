@@ -28,6 +28,14 @@ pyexlatex.layouts.multicol module
    :undoc-members:
    :show-inheritance:
 
+pyexlatex.layouts.spaced module
+-------------------------------
+
+.. automodule:: pyexlatex.layouts.spaced
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 Module contents
 ---------------

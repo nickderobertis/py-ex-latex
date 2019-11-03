@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.texgen.replacements.replacer &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.texgen.replacements.replacer &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx_paramlinks.css" />
@@ -34,13 +34,19 @@
   <h1>Source code for pyexlatex.texgen.replacements.replacer</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
 
-<span class="n">latex_escape_character</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span> <span class="c1"># literal \</span>
-<span class="n">latex_replacement_items</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;%&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">]</span>
+<span class="n">latex_escape_begin_character</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span> <span class="c1"># literal \</span>
+<span class="n">latex_escape_end_characters</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span>
+<span class="n">latex_replacement_no_end_character_items</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;%&#39;</span><span class="p">,</span> <span class="s1">&#39;&amp;&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;#&#39;</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">]</span>
+<span class="n">latex_replacement_with_end_character_items</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;^&#39;</span><span class="p">]</span>
 <span class="n">latex_block_escape_characters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$&#39;</span><span class="p">]</span>
 <span class="n">replacement_dict</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">latex_replacement_item</span><span class="p">:</span> <span class="n">latex_escape_character</span> <span class="o">+</span> <span class="n">latex_replacement_item</span> \
-        <span class="k">for</span> <span class="n">latex_replacement_item</span> <span class="ow">in</span> <span class="n">latex_replacement_items</span>
+        <span class="n">latex_replacement_item</span><span class="p">:</span> <span class="n">latex_escape_begin_character</span> <span class="o">+</span> <span class="n">latex_replacement_item</span>
+        <span class="k">for</span> <span class="n">latex_replacement_item</span> <span class="ow">in</span> <span class="n">latex_replacement_no_end_character_items</span>
     <span class="p">}</span>
+<span class="n">replacement_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+        <span class="n">latex_replacement_item</span><span class="p">:</span> <span class="n">latex_escape_begin_character</span> <span class="o">+</span> <span class="n">latex_replacement_item</span> <span class="o">+</span> <span class="n">latex_escape_end_characters</span>
+        <span class="k">for</span> <span class="n">latex_replacement_item</span> <span class="ow">in</span> <span class="n">latex_replacement_with_end_character_items</span>
+<span class="p">})</span>
 
 <div class="viewcode-block" id="Replacer"><a class="viewcode-back" href="../../../../api/pyexlatex.texgen.replacements.html#pyexlatex.texgen.replacements.replacer.Replacer">[docs]</a><span class="k">class</span> <span class="nc">Replacer</span><span class="p">:</span>
 
@@ -180,7 +186,7 @@
 
 <span class="n">latex_replacer</span> <span class="o">=</span> <span class="n">Replacer</span><span class="p">(</span>
     <span class="n">replacement_dict</span><span class="p">,</span>
-    <span class="n">escape_next_character_characters</span><span class="o">=</span><span class="p">[</span><span class="n">latex_escape_character</span><span class="p">],</span>
+    <span class="n">escape_next_character_characters</span><span class="o">=</span><span class="p">[</span><span class="n">latex_escape_begin_character</span><span class="p">],</span>
     <span class="n">escape_until_same_next_character_characters</span><span class="o">=</span><span class="n">latex_block_escape_characters</span>
 <span class="p">)</span>
 </pre></div>

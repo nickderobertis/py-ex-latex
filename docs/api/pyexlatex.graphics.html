@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.graphics package &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.graphics package &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_paramlinks.css" />
@@ -70,6 +70,7 @@
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.graphics.tikz.html#pyexlatex-graphics-tikz-library-module">pyexlatex.graphics.tikz.library module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.graphics.tikz.html#pyexlatex-graphics-tikz-path-module">pyexlatex.graphics.tikz.path module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.graphics.tikz.html#pyexlatex-graphics-tikz-picture-module">pyexlatex.graphics.tikz.picture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.graphics.tikz.html#pyexlatex-graphics-tikz-scope-module">pyexlatex.graphics.tikz.scope module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.graphics.tikz.html#module-contents">Module contents</a></li>
 </ul>
 </li>
@@ -82,8 +83,14 @@
 <div class="section" id="pyexlatex-graphics-arrow-module">
 <h2>pyexlatex.graphics.arrow module<a class="headerlink" href="#pyexlatex-graphics-arrow-module" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="pyexlatex-graphics-modified-picture-module">
+<h2>pyexlatex.graphics.modified_picture module<a class="headerlink" href="#pyexlatex-graphics-modified-picture-module" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="pyexlatex-graphics-rectangle-module">
 <h2>pyexlatex.graphics.rectangle module<a class="headerlink" href="#pyexlatex-graphics-rectangle-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="pyexlatex-graphics-shape-module">
+<h2>pyexlatex.graphics.shape module<a class="headerlink" href="#pyexlatex-graphics-shape-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-contents">
 <h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
@@ -105,6 +112,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyexlatex</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="pyexlatex.html">pyexlatex package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="pyexlatex.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.constants.html">pyexlatex.constants package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">pyexlatex.graphics package</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
@@ -114,7 +122,9 @@
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#pyexlatex-graphics-arrow-module">pyexlatex.graphics.arrow module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyexlatex-graphics-modified-picture-module">pyexlatex.graphics.modified_picture module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#pyexlatex-graphics-rectangle-module">pyexlatex.graphics.rectangle module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyexlatex-graphics-shape-module">pyexlatex.graphics.shape module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-contents">Module contents</a></li>
 </ul>
 </li>
@@ -122,6 +132,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.resume.html">pyexlatex.resume package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.table.html">pyexlatex.table package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texgen.html">pyexlatex.texgen package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.texparser.html">pyexlatex.texparser package</a></li>
@@ -131,6 +142,7 @@
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.exc">pyexlatex.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-contents">Module contents</a></li>
 </ul>

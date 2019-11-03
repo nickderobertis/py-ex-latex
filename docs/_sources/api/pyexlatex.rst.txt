@@ -6,12 +6,14 @@ Subpackages
 
 .. toctree::
 
+   pyexlatex.constants
    pyexlatex.figure
    pyexlatex.graphics
    pyexlatex.layouts
    pyexlatex.logic
    pyexlatex.models
    pyexlatex.presentation
+   pyexlatex.resume
    pyexlatex.table
    pyexlatex.texgen
    pyexlatex.texparser
@@ -32,6 +34,14 @@ pyexlatex.equations module
 --------------------------
 
 .. automodule:: pyexlatex.equations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.exc module
+--------------------
+
+.. automodule:: pyexlatex.exc
    :members:
    :undoc-members:
    :show-inheritance:

@@ -4,10 +4,26 @@ pyexlatex.models.sizes package
 Submodules
 ----------
 
+pyexlatex.models.sizes.baselineskip module
+------------------------------------------
+
+.. automodule:: pyexlatex.models.sizes.baselineskip
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyexlatex.models.sizes.linewidth module
 ---------------------------------------
 
 .. automodule:: pyexlatex.models.sizes.linewidth
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.sizes.paperwidth module
+----------------------------------------
+
+.. automodule:: pyexlatex.models.sizes.paperwidth
    :members:
    :undoc-members:
    :show-inheritance:

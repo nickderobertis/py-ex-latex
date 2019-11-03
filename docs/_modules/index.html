@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Overview: module code &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>Overview: module code &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_paramlinks.css" />
@@ -33,14 +33,13 @@
             
   <h1>All modules for which code is available</h1>
 <ul><li><a href="builtins.html">builtins</a></li>
-<li><a href="pyexlatex/figure/models/figure.html">pyexlatex.figure.models.figure</a></li>
-<li><a href="pyexlatex/figure/models/graphic.html">pyexlatex.figure.models.graphic</a></li>
-<li><a href="pyexlatex/figure/models/subfigure.html">pyexlatex.figure.models.subfigure</a></li>
+<li><a href="pyexlatex/exc.html">pyexlatex.exc</a></li>
 <li><a href="pyexlatex/logic/builder.html">pyexlatex.logic.builder</a></li>
 <li><a href="pyexlatex/logic/extract/by_attr.html">pyexlatex.logic.extract.by_attr</a></li>
 <li><a href="pyexlatex/logic/extract/by_type.html">pyexlatex.logic.extract.by_type</a></li>
 <li><a href="pyexlatex/logic/extract/docitems.html">pyexlatex.logic.extract.docitems</a></li>
 <li><a href="pyexlatex/logic/extract/get.html">pyexlatex.logic.extract.get</a></li>
+<li><a href="pyexlatex/logic/format/and_join.html">pyexlatex.logic.format.and_join</a></li>
 <li><a href="pyexlatex/logic/format/contents.html">pyexlatex.logic.format.contents</a></li>
 <li><a href="pyexlatex/logic/format/eq.html">pyexlatex.logic.format.eq</a></li>
 <li><a href="pyexlatex/logic/pdf/api/builders/lualatex.html">pyexlatex.logic.pdf.api.builders.lualatex</a></li>
@@ -53,7 +52,7 @@
 <li><a href="pyexlatex/logic/pdf/errors/models/error.html">pyexlatex.logic.pdf.errors.models.error</a></li>
 <li><a href="pyexlatex/logic/pdf/errors/models/error_collection.html">pyexlatex.logic.pdf.errors.models.error_collection</a></li>
 <li><a href="pyexlatex/logic/pdf/errors/models/exception_manager.html">pyexlatex.logic.pdf.errors.models.exception_manager</a></li>
-<li><a href="pyexlatex/logic/pdf/main.html">pyexlatex.logic.pdf.main</a></li>
+<li><a href="pyexlatex/logic/type_check.html">pyexlatex.logic.type_check</a></li>
 <li><a href="pyexlatex/models/boxes/base.html">pyexlatex.models.boxes.base</a></li>
 <li><a href="pyexlatex/models/boxes/vbox.html">pyexlatex.models.boxes.vbox</a></li>
 <li><a href="pyexlatex/models/caption.html">pyexlatex.models.caption</a></li>
@@ -65,11 +64,17 @@
 <li><a href="pyexlatex/models/commands/renewcommand.html">pyexlatex.models.commands.renewcommand</a></li>
 <li><a href="pyexlatex/models/containeritem.html">pyexlatex.models.containeritem</a></li>
 <li><a href="pyexlatex/models/control/and_.html">pyexlatex.models.control.and_</a></li>
-<li><a href="pyexlatex/models/control/documentclass.html">pyexlatex.models.control.documentclass</a></li>
+<li><a href="pyexlatex/models/control/documentclass/classtypes/documentclasstype.html">pyexlatex.models.control.documentclass.classtypes.documentclasstype</a></li>
 <li><a href="pyexlatex/models/control/extrafloats.html">pyexlatex.models.control.extrafloats</a></li>
 <li><a href="pyexlatex/models/control/filecontents.html">pyexlatex.models.control.filecontents</a></li>
+<li><a href="pyexlatex/models/control/group.html">pyexlatex.models.control.group</a></li>
 <li><a href="pyexlatex/models/control/maxdeadcycles.html">pyexlatex.models.control.maxdeadcycles</a></li>
 <li><a href="pyexlatex/models/control/mode.html">pyexlatex.models.control.mode</a></li>
+<li><a href="pyexlatex/models/control/newcounter.html">pyexlatex.models.control.newcounter</a></li>
+<li><a href="pyexlatex/models/control/newpage.html">pyexlatex.models.control.newpage</a></li>
+<li><a href="pyexlatex/models/control/setcounter.html">pyexlatex.models.control.setcounter</a></li>
+<li><a href="pyexlatex/models/control/setlength.html">pyexlatex.models.control.setlength</a></li>
+<li><a href="pyexlatex/models/control/value.html">pyexlatex.models.control.value</a></li>
 <li><a href="pyexlatex/models/credits/author.html">pyexlatex.models.credits.author</a></li>
 <li><a href="pyexlatex/models/credits/institution/inst.html">pyexlatex.models.credits.institution.inst</a></li>
 <li><a href="pyexlatex/models/credits/institution/institute.html">pyexlatex.models.credits.institution.institute</a></li>
@@ -77,27 +82,46 @@
 <li><a href="pyexlatex/models/documentitem.html">pyexlatex.models.documentitem</a></li>
 <li><a href="pyexlatex/models/documentsetup.html">pyexlatex.models.documentsetup</a></li>
 <li><a href="pyexlatex/models/environment.html">pyexlatex.models.environment</a></li>
+<li><a href="pyexlatex/models/environmenttemplate.html">pyexlatex.models.environmenttemplate</a></li>
 <li><a href="pyexlatex/models/equation.html">pyexlatex.models.equation</a></li>
 <li><a href="pyexlatex/models/footnote.html">pyexlatex.models.footnote</a></li>
 <li><a href="pyexlatex/models/format/adjustbox.html">pyexlatex.models.format.adjustbox</a></li>
 <li><a href="pyexlatex/models/format/breaks.html">pyexlatex.models.format.breaks</a></li>
 <li><a href="pyexlatex/models/format/centering.html">pyexlatex.models.format.centering</a></li>
-<li><a href="pyexlatex/models/format/code/minted.html">pyexlatex.models.format.code.minted</a></li>
-<li><a href="pyexlatex/models/format/code/python.html">pyexlatex.models.format.code.python</a></li>
+<li><a href="pyexlatex/models/format/fills.html">pyexlatex.models.format.fills</a></li>
+<li><a href="pyexlatex/models/format/hangindent.html">pyexlatex.models.format.hangindent</a></li>
+<li><a href="pyexlatex/models/format/hline.html">pyexlatex.models.format.hline</a></li>
+<li><a href="pyexlatex/models/format/hspace.html">pyexlatex.models.format.hspace</a></li>
+<li><a href="pyexlatex/models/format/join.html">pyexlatex.models.format.join</a></li>
+<li><a href="pyexlatex/models/format/noindent.html">pyexlatex.models.format.noindent</a></li>
+<li><a href="pyexlatex/models/format/nolinebreak.html">pyexlatex.models.format.nolinebreak</a></li>
+<li><a href="pyexlatex/models/format/nopagebreak.html">pyexlatex.models.format.nopagebreak</a></li>
+<li><a href="pyexlatex/models/format/paragraph/justifying.html">pyexlatex.models.format.paragraph.justifying</a></li>
+<li><a href="pyexlatex/models/format/paragraph/multicol.html">pyexlatex.models.format.paragraph.multicol</a></li>
+<li><a href="pyexlatex/models/format/paragraph/raggedright.html">pyexlatex.models.format.paragraph.raggedright</a></li>
+<li><a href="pyexlatex/models/format/paragraph/sloppy.html">pyexlatex.models.format.paragraph.sloppy</a></li>
+<li><a href="pyexlatex/models/format/paragraphindent.html">pyexlatex.models.format.paragraphindent</a></li>
 <li><a href="pyexlatex/models/format/raw.html">pyexlatex.models.format.raw</a></li>
+<li><a href="pyexlatex/models/format/rule.html">pyexlatex.models.format.rule</a></li>
 <li><a href="pyexlatex/models/format/sectionnum.html">pyexlatex.models.format.sectionnum</a></li>
 <li><a href="pyexlatex/models/format/text/bold.html">pyexlatex.models.format.text.bold</a></li>
-<li><a href="pyexlatex/models/format/text/color.html">pyexlatex.models.format.text.color</a></li>
+<li><a href="pyexlatex/models/format/text/color/deftypes/base.html">pyexlatex.models.format.text.color.deftypes.base</a></li>
+<li><a href="pyexlatex/models/format/text/color/deftypes/hex.html">pyexlatex.models.format.text.color.deftypes.hex</a></li>
+<li><a href="pyexlatex/models/format/text/color/deftypes/rgb.html">pyexlatex.models.format.text.color.deftypes.rgb</a></li>
+<li><a href="pyexlatex/models/format/text/color/main.html">pyexlatex.models.format.text.color.main</a></li>
 <li><a href="pyexlatex/models/format/text/italics.html">pyexlatex.models.format.text.italics</a></li>
 <li><a href="pyexlatex/models/format/text/linespacing.html">pyexlatex.models.format.text.linespacing</a></li>
 <li><a href="pyexlatex/models/format/text/monospace.html">pyexlatex.models.format.text.monospace</a></li>
+<li><a href="pyexlatex/models/format/text/nohyphens.html">pyexlatex.models.format.text.nohyphens</a></li>
+<li><a href="pyexlatex/models/format/text/smallcaps.html">pyexlatex.models.format.text.smallcaps</a></li>
 <li><a href="pyexlatex/models/format/text/text.html">pyexlatex.models.format.text.text</a></li>
 <li><a href="pyexlatex/models/format/text/underline.html">pyexlatex.models.format.text.underline</a></li>
-<li><a href="pyexlatex/models/format/vfill.html">pyexlatex.models.format.vfill</a></li>
+<li><a href="pyexlatex/models/format/vspace.html">pyexlatex.models.format.vspace</a></li>
 <li><a href="pyexlatex/models/hyperlinks.html">pyexlatex.models.hyperlinks</a></li>
 <li><a href="pyexlatex/models/item.html">pyexlatex.models.item</a></li>
 <li><a href="pyexlatex/models/label.html">pyexlatex.models.label</a></li>
 <li><a href="pyexlatex/models/landscape.html">pyexlatex.models.landscape</a></li>
+<li><a href="pyexlatex/models/latex.html">pyexlatex.models.latex</a></li>
 <li><a href="pyexlatex/models/lists/base.html">pyexlatex.models.lists.base</a></li>
 <li><a href="pyexlatex/models/lists/item.html">pyexlatex.models.lists.item</a></li>
 <li><a href="pyexlatex/models/lists/ordered.html">pyexlatex.models.lists.ordered</a></li>
@@ -121,51 +145,21 @@
 <li><a href="pyexlatex/models/section/base.html">pyexlatex.models.section.base</a></li>
 <li><a href="pyexlatex/models/section/paragraphs.html">pyexlatex.models.section.paragraphs</a></li>
 <li><a href="pyexlatex/models/section/sections.html">pyexlatex.models.section.sections</a></li>
+<li><a href="pyexlatex/models/sizes/baselineskip.html">pyexlatex.models.sizes.baselineskip</a></li>
 <li><a href="pyexlatex/models/sizes/linewidth.html">pyexlatex.models.sizes.linewidth</a></li>
+<li><a href="pyexlatex/models/sizes/paperwidth.html">pyexlatex.models.sizes.paperwidth</a></li>
 <li><a href="pyexlatex/models/sizes/textheight.html">pyexlatex.models.sizes.textheight</a></li>
 <li><a href="pyexlatex/models/sizes/textsizes.html">pyexlatex.models.sizes.textsizes</a></li>
 <li><a href="pyexlatex/models/sizes/textwidth.html">pyexlatex.models.sizes.textwidth</a></li>
+<li><a href="pyexlatex/models/template.html">pyexlatex.models.template</a></li>
 <li><a href="pyexlatex/models/title/framepage.html">pyexlatex.models.title.framepage</a></li>
 <li><a href="pyexlatex/models/title/page.html">pyexlatex.models.title.page</a></li>
 <li><a href="pyexlatex/models/title/subtitle.html">pyexlatex.models.title.subtitle</a></li>
 <li><a href="pyexlatex/models/title/title.html">pyexlatex.models.title.title</a></li>
-<li><a href="pyexlatex/table/logic/panels/combine.html">pyexlatex.table.logic.panels.combine</a></li>
-<li><a href="pyexlatex/table/logic/panels/letters.html">pyexlatex.table.logic.panels.letters</a></li>
-<li><a href="pyexlatex/table/logic/table/build.html">pyexlatex.table.logic.table.build</a></li>
-<li><a href="pyexlatex/table/models/data/dataitem.html">pyexlatex.table.models.data.dataitem</a></li>
-<li><a href="pyexlatex/table/models/data/row.html">pyexlatex.table.models.data.row</a></li>
-<li><a href="pyexlatex/table/models/data/table.html">pyexlatex.table.models.data.table</a></li>
-<li><a href="pyexlatex/table/models/data/valuestable.html">pyexlatex.table.models.data.valuestable</a></li>
-<li><a href="pyexlatex/table/models/labels/collection.html">pyexlatex.table.models.labels.collection</a></li>
-<li><a href="pyexlatex/table/models/labels/label.html">pyexlatex.table.models.labels.label</a></li>
-<li><a href="pyexlatex/table/models/labels/multicolumn.html">pyexlatex.table.models.labels.multicolumn</a></li>
-<li><a href="pyexlatex/table/models/labels/row.html">pyexlatex.table.models.labels.row</a></li>
-<li><a href="pyexlatex/table/models/labels/table.html">pyexlatex.table.models.labels.table</a></li>
-<li><a href="pyexlatex/table/models/mixins/addvalues/ampersand.html">pyexlatex.table.models.mixins.addvalues.ampersand</a></li>
-<li><a href="pyexlatex/table/models/mixins/addvalues/row.html">pyexlatex.table.models.mixins.addvalues.row</a></li>
-<li><a href="pyexlatex/table/models/panels/collection.html">pyexlatex.table.models.panels.collection</a></li>
-<li><a href="pyexlatex/table/models/panels/grid.html">pyexlatex.table.models.panels.grid</a></li>
-<li><a href="pyexlatex/table/models/panels/panel.html">pyexlatex.table.models.panels.panel</a></li>
-<li><a href="pyexlatex/table/models/spacing/cell.html">pyexlatex.table.models.spacing.cell</a></li>
-<li><a href="pyexlatex/table/models/spacing/columntable.html">pyexlatex.table.models.spacing.columntable</a></li>
-<li><a href="pyexlatex/table/models/spacing/rowtable.html">pyexlatex.table.models.spacing.rowtable</a></li>
-<li><a href="pyexlatex/table/models/table/caption.html">pyexlatex.table.models.table.caption</a></li>
-<li><a href="pyexlatex/table/models/table/row.html">pyexlatex.table.models.table.row</a></li>
-<li><a href="pyexlatex/table/models/table/rowbase.html">pyexlatex.table.models.table.rowbase</a></li>
-<li><a href="pyexlatex/table/models/table/section.html">pyexlatex.table.models.table.section</a></li>
-<li><a href="pyexlatex/table/models/table/table.html">pyexlatex.table.models.table.table</a></li>
-<li><a href="pyexlatex/table/models/texgen/alignment.html">pyexlatex.table.models.texgen.alignment</a></li>
-<li><a href="pyexlatex/table/models/texgen/environments.html">pyexlatex.table.models.texgen.environments</a></li>
-<li><a href="pyexlatex/table/models/texgen/lines.html">pyexlatex.table.models.texgen.lines</a></li>
-<li><a href="pyexlatex/table/models/texgen/newcolumntype.html">pyexlatex.table.models.texgen.newcolumntype</a></li>
 <li><a href="pyexlatex/texgen.html">pyexlatex.texgen</a></li>
-<ul><li><a href="pyexlatex/texgen/packages/columntypes.html">pyexlatex.texgen.packages.columntypes</a></li>
-<li><a href="pyexlatex/texgen/replacements/file.html">pyexlatex.texgen.replacements.file</a></li>
+<ul><li><a href="pyexlatex/texgen/replacements/file.html">pyexlatex.texgen.replacements.file</a></li>
 <li><a href="pyexlatex/texgen/replacements/filename.html">pyexlatex.texgen.replacements.filename</a></li>
 <li><a href="pyexlatex/texgen/replacements/replacer.html">pyexlatex.texgen.replacements.replacer</a></li>
-</ul><li><a href="pyexlatex/texparser/references/bibtex/extract.html">pyexlatex.texparser.references.bibtex.extract</a></li>
-<li><a href="pyexlatex/tools.html">pyexlatex.tools</a></li>
-<ul><li><a href="pyexlatex/tools/fileops.html">pyexlatex.tools.fileops</a></li>
 </ul></ul>
 
           </div>

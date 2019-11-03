@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>pyexlatex.models.package &#8212; pyexlatex 0.4.1 documentation</title>
+    <title>pyexlatex.models.package &#8212; pyexlatex 0.9.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx_paramlinks.css" />
@@ -33,12 +33,14 @@
             
   <h1>Source code for pyexlatex.models.package</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">pyexlatex.texgen</span> <span class="k">import</span> <span class="n">_usepackage_str</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="k">import</span> <span class="n">ItemBase</span>
 
 
-<div class="viewcode-block" id="Package"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.package.Package">[docs]</a><span class="k">class</span> <span class="nc">Package</span><span class="p">:</span>
+<div class="viewcode-block" id="Package"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.package.Package">[docs]</a><span class="k">class</span> <span class="nc">Package</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Represents LaTeX \usepackage{}, pass to Document if any custom LaTeX packages are needed.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">equal_attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;modifier_str&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="Package.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.package.Package.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">modifier_str</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
@@ -49,12 +51,6 @@
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">_usepackage_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modifier_str</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modifier_str</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">modifier_str</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">modifier_str</span><span class="p">))</span>
 
 <div class="viewcode-block" id="Package.matches_name"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.package.Package.matches_name">[docs]</a>    <span class="k">def</span> <span class="nf">matches_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span></div></div>

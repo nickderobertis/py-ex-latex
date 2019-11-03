@@ -12,6 +12,14 @@ pyexlatex.presentation.beamer.theme.setcolor module
    :undoc-members:
    :show-inheritance:
 
+pyexlatex.presentation.beamer.theme.settemplate module
+------------------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.theme.settemplate
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyexlatex.presentation.beamer.theme.usetheme module
 ---------------------------------------------------
 
