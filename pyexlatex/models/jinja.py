@@ -80,25 +80,17 @@ class JinjaEnvironment(Environment):
                 this_class_factory = partial(class_factory, latex_class)
                 self.filters[latex_class_name] = this_class_factory
 
-    def from_string(self, source, globals=None, template_class=None):
-        """Load a template from a string.  This parses the source given and
-        returns a :class:`Template` object.
-        """
-        globals = self.make_globals(globals)
-        cls = template_class or self.template_class
-
+    def from_string(self, *args, **kwargs):
+        # Set current global data store for adding data during filters
         data_store = _set_data_store_to_temporary_object()
 
-        # Original Jinja compile. Also runs filters on strings, etc, putting data into data_store due to globals
-        compiled = self.compile(source)
+        # Create object in usual jinja way
+        actual_template = super().from_string(*args, **kwargs)
 
-        # Create the object in the original Jinja way
-        obj = cls.from_code(self, compiled, globals, None)
+        # Add data to newly created object
+        actual_template.data = data_store.data
 
-        # Add the data from the temporary template
-        obj.data = data_store.data
-
-        return obj
+        return actual_template
 
     def _load_template(self, *args, **kwargs):
         # Set current global data store for adding data during filters
