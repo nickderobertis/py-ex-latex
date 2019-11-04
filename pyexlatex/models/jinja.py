@@ -9,6 +9,7 @@ from pyexlatex.models.containeritem import ContainerItem
 from pyexlatex.models.datastore import DataStore
 from pyexlatex.models.documentsetup import DocumentSetupData
 from pyexlatex.models.item import ItemBase
+from pyexlatex.texgen.replacements.file import general_latex_replacements
 
 UPPER_PATTERN = re.compile('[A-Z]')
 
@@ -55,7 +56,7 @@ class DataString(ItemBase):
         self.data = data
 
     def __str__(self):
-        return self.content
+        return general_latex_replacements(self.content)
 
 
 class JinjaEnvironment(Environment):
