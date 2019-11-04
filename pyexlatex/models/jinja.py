@@ -28,6 +28,15 @@ def get_capitalized_items(items: Sequence[str]) -> List[str]:
 
 
 class JinjaTemplate(Template, ContainerItem):
+    """
+    A jinja Template but with pyexlatex models as built-in filters and handling extracting pyexlatex data
+
+    Examples:
+
+        >>> import pyexlatex as pl
+        >>> str(pl.JinjaTemplate('{{ my_var | Italics }}').render(my_var='woo'))
+        '\\textit{woo}'
+    """
 
     def __new__(cls, source, **kwargs):
         env = JinjaEnvironment(**kwargs)
@@ -77,6 +86,21 @@ class DataString(ItemBase):
 
 
 class JinjaEnvironment(Environment):
+    """
+    A jinja Environment but with pyexlatex models as built in filters and handling extracting pyexlatex data
+
+    Examples:
+
+        >>> import pyexlatex as pl
+        >>> from jinja2 import DictLoader
+        >>> env = pl.JinjaEnvironment(
+        >>>     loader=DictLoader({'my_temp': '{{ my_var | Italics }}'})
+        >>> )
+        >>> temp = env.get_template('my_temp')
+        >>> str(temp.render(my_var='woo'))
+        '\\textit{woo}'
+
+    """
     template_class = JinjaTemplate
 
     def __init__(self, *args, **kwargs):
