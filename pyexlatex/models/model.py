@@ -77,7 +77,6 @@ class Model(Template):
         ]
         full_exclude = always_exclude_attrs + self.exclude_attrs
         attrs = [item for item in dir(self) if item not in full_exclude and not item.startswith('_')]
-        print(f'Got attrs {attrs}')
         return {attr: getattr(self, attr) for attr in attrs}
 
 

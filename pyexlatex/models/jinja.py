@@ -1,10 +1,10 @@
 import re
+from copy import deepcopy
 from functools import partial
 from typing import Sequence, List, Any, Callable
 
 from jinja2 import Environment, Template
 
-from pyexlatex import Raw, Section
 from pyexlatex.models.containeritem import ContainerItem
 from pyexlatex.models.datastore import DataStore
 from pyexlatex.models.documentsetup import DocumentSetupData
@@ -45,6 +45,23 @@ class JinjaTemplate(Template, ContainerItem):
 
         string = super().render(*args, **kwargs)
         return DataString(string, self.data)
+
+    def __deepcopy__(self, memo):
+        # TODO: may be able to remove once https://github.com/pallets/jinja/issues/758 is resolved
+        # Boilerplate deepcopy
+        cls = self.__class__
+
+        # The one modification to boilerplate deepcopy, originally cls and not object
+        # Create instance without using JinjaTemplate.__new__
+        # This is the way it is being done in Template._from_namespace and it avoids an error during
+        # deepcopy that source is not defined
+        result = object.__new__(cls)
+
+        # Continue boilerplate deepcopy
+        memo[id(self)] = result
+        for k, v in self.__dict__.items():
+            setattr(result, k, deepcopy(v, memo))
+        return result
 
 
 
