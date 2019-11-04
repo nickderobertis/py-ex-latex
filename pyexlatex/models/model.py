@@ -8,6 +8,35 @@ from pyexlatex.models.template import Template
 
 
 class Model(Template):
+    """
+    A data model combined with a Jinja template.
+
+    Passes any class variables and methods to template to render the output string.
+    Subclass this class to create your own data models for templates.
+
+    Set exclude_attrs class variable as a list of strings of any attributes which should not be
+    passed to the template.
+
+    Examples:
+
+        >>> import pyexlatex as pl
+        >>> template_str = "{{ my_var | Bold }} {{ my_link }} {{ my_text }}"
+        >>>
+        >>> class MyModel(pl.Model):
+        >>>     my_var = 'woo'
+        >>>     my_link = pl.Hyperlink('https://www.google.com', 'Link!!!!')
+        >>>
+        >>>     def __init__(self, my_text: str, *args, **kwargs):
+        >>>         self.my_text = my_text
+        >>>         super().__init__(*args, **kwargs)
+        >>>
+        >>> model = MyModel('stuff', template_str=template_str)
+        >>> str(model)
+        '\\textbf{woo} \\href{https://www.google.com}{Link!!!!} stuff '
+
+
+
+    """
     # Additional attributes to exclude adding to template variables
     exclude_attrs = []
 
