@@ -8,7 +8,7 @@ def format_contents(contents) -> str:
         contents = [_format_content(c) for c in contents]
         contents = deepcopy(contents)
         contents = build(contents)
-        return _build(contents)
+        return contents
 
     return _format_content(contents)
 
