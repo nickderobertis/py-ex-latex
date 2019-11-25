@@ -5,7 +5,7 @@ if TYPE_CHECKING:
 
 from pyexlatex.figure.models.subfigure import Subfigure, Graphic
 from pyexlatex.models.documentitem import DocumentItem
-from pyexlatex.models import Item
+from pyexlatex.models.item import Item
 from pyexlatex.models.caption import Caption
 from pyexlatex.models.label import Label
 from pyexlatex.models.landscape import Landscape

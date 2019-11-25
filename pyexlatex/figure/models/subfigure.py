@@ -2,7 +2,7 @@ import re
 from typing import Tuple
 
 from pyexlatex.figure.models.graphic import Graphic
-from pyexlatex.models import Item
+from pyexlatex.models.item import Item
 from pyexlatex.models.caption import Caption
 from pyexlatex.models.label import Label
 from pyexlatex.logic.builder import build_figure_content

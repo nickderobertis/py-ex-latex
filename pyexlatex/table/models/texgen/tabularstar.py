@@ -2,7 +2,7 @@ from typing import Optional, Union
 
 from mixins.repr import ReprMixin
 
-from pyexlatex.models import Item
+from pyexlatex.models.item import Item
 from pyexlatex.models.containeritem import ContainerItem
 from pyexlatex.models.sizes.textwidth import TextWidth
 from pyexlatex.table import ColumnsAlignment

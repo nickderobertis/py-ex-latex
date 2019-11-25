@@ -1,6 +1,6 @@
 from typing import Optional
 from copy import deepcopy
-from pyexlatex.models import Item
+from pyexlatex.models.item import Item
 from pyexlatex.models.section.base import TextAreaBase
 from pyexlatex.presentation.beamer.frame.title import FrameTitle
 from pyexlatex.constants.flags import HAS_MINTED
