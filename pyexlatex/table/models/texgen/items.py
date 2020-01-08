@@ -32,10 +32,7 @@ class Tabular(ContainerItem, Item, ReprMixin, BaseTabular):
         if not isinstance(content, (list, tuple)):
             content = [content]
         self.align = self._get_columns_alignment_from_passed_align(content, align)
-
-        # TODO: really this should be cmidrule and others that require booktabs, but need to get all nested table
-        # TODO: structure aggregating data.
-        self.add_package('booktabs')
+        self.add_package('booktabs')  # Remove this once booktabs is added in cmidrule and others
         self.add_data_from_content(self.align)
         super().__init__(self.name, content, env_modifiers=self._wrap_with_braces(str(self.align)))
 

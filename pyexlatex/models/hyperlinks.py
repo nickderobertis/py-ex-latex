@@ -24,8 +24,10 @@ class Hyperlink(TextAreaMixin, MultiOptionSimpleItem):
 
         self.add_data_from_content(content)
         self.data.packages.append(
-            # TODO: think about passing options. Difficult because mutliple Hyperlinks could be constructed with
-            # TODO: different options, then not clear which to take.
+            # TODO: Figure out way to have different options for different hyperlinks
+            #
+            # Think about passing options. Difficult because mutliple Hyperlinks could be constructed with
+            # different options, then not clear which to take.
             Package('hyperref', modifier_str='hidelinks')
         )
 

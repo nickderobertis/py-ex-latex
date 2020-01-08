@@ -84,7 +84,9 @@ class LuaLatexBuilder:
                                               stdin=open(os.devnull, 'r'),
                                               stdout=open(os.devnull, 'w'), )
                         except CalledProcessError as e:
-                            # TODO: parse log file, raise proper exception
+                            # TODO: better handling for LaTeX exceptions
+                            #
+                            # Parse log file, raise proper exception
                             with open(base_fn + '.blg', 'r') as f:
                                 log_contents = f.read()
                             raise Exception(log_contents)

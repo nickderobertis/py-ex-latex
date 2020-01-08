@@ -1,4 +1,3 @@
-# TODO: refactor to simplify
 from pyexlatex.logic.extract.tools import _is_collection
 
 

@@ -27,8 +27,9 @@ class TabularStar(ContainerItem, Item, ReprMixin, BaseTabular):
         self.width = width
         self.fill_between = fill_between
 
-        # TODO: really this should be cmidrule and others that require booktabs, but need to get all nested table
-        # TODO: structure aggregating data.
+        # TODO: move booktabs requirement to cmidrule and others, not TabularStar and Tabular
+        #
+        # Need to get all nested table structure aggregating data to do this.
         self.add_package('booktabs')
         self.add_data_from_content(self.align)
         super().__init__(self.name, content, env_modifiers=self._modifier_str)
@@ -41,6 +42,6 @@ class TabularStar(ContainerItem, Item, ReprMixin, BaseTabular):
     def _align_str(self) -> str:
         base_str = str(self.align)
         if self.fill_between:
-            # TODO: make models for this
+            # TODO: make models for extracolsep and fill
             base_str = r'@{\extracolsep{\fill}}' + base_str
         return self._wrap_with_braces(base_str)  # type: ignore

@@ -56,7 +56,10 @@ class JinjaTemplate(Template, ContainerItem):
         return DataString(string, self.data)
 
     def __deepcopy__(self, memo):
-        # TODO: may be able to remove once https://github.com/pallets/jinja/issues/758 is resolved
+        # TODO: Simplify Jinja template integration
+        #
+        # may be able to remove the __deepcopy__ method once https://github.com/pallets/jinja/issues/758 is resolved
+
         # Boilerplate deepcopy
         cls = self.__class__
 
