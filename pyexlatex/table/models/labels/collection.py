@@ -1,4 +1,4 @@
-from typing import Union, Iterable
+from typing import Union, Iterable, List
 import re
 from copy import deepcopy
 
@@ -16,7 +16,7 @@ class LabelCollection(RowBase):
     """
     repr_cols = ['values', 'underlines']
 
-    def __init__(self, values: [Label], underline: Union[int, str]=None):
+    def __init__(self, values: List[Label], underline: Union[int, str]=None):
         """
 
         :param values:
@@ -52,7 +52,7 @@ class LabelCollection(RowBase):
         return True
 
     @classmethod
-    def from_str_list(cls, str_list: [str], underline: Union[int, str]=None) -> 'LabelCollection':
+    def from_str_list(cls, str_list: List[str], underline: Union[int, str]=None) -> 'LabelCollection':
         """
 
         Args:
@@ -78,8 +78,8 @@ class LabelCollection(RowBase):
         else:
             raise ValueError(f'unable to parse type {type(unknown_type)} into label collection')
 
-    def _convert_label_indices_to_column_indices(self, label_indices: [int]):
-        column_indices = []
+    def _convert_label_indices_to_column_indices(self, label_indices: List[int]):
+        column_indices: List[int] = []
         position = 0
         for i, value in enumerate(self.values):
             begin_position = position
@@ -162,7 +162,7 @@ def _convert_underline_to_label_index_list(underline: Union[int, str]=None):
         return [underline]
 
     # underline is str
-    int_list = []
+    int_list: List[int] = []
     for part in underline.split():
         # handle each space separated part. if just a range, will only be one part
         # check if is range like '3-5'

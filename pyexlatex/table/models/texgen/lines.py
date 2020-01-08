@@ -1,4 +1,5 @@
 from copy import deepcopy
+from typing import List
 
 from pyexlatex.texgen import _toprule_str, _midrule_str, _bottomrule_str, _cmidrule_str
 from pyexlatex.models.mixins import StringAdditionMixin
@@ -48,7 +49,8 @@ class TableLineSegment(StringAdditionMixin, ReprMixin, RowAddMixin):
         :return:
         """
         self.col_from += shift
-        self.col_to += shift
+        if self.col_to is not None:
+            self.col_to += shift
 
     @property
     def _range_str(self):
@@ -66,7 +68,7 @@ class TableLineSegment(StringAdditionMixin, ReprMixin, RowAddMixin):
         return TableLineOfSegments
 
     @classmethod
-    def from_list_of_ints(cls, int_list: [int]):
+    def from_list_of_ints(cls, int_list: List[int]):
         if len(int_list) == 1:
             return cls(int_list[0])
         else:
@@ -79,7 +81,7 @@ class TableLineSegment(StringAdditionMixin, ReprMixin, RowAddMixin):
 class TableLineOfSegments(RowAddMixin, TableLine):
     repr_cols = ['values', 'num_columns']
 
-    def __init__(self, segments: [TableLineSegment], num_columns: int=None):
+    def __init__(self, segments: List[TableLineSegment], num_columns: int=None):
         self.values = segments
         self.num_columns = num_columns
 
@@ -149,13 +151,14 @@ class TableLineOfSegments(RowAddMixin, TableLine):
         return TableLineOfSegments
 
     @classmethod
-    def from_list_of_ints(cls, int_list: [int], num_columns: int=None):
+    def from_list_of_ints(cls, int_list: List[int], num_columns: int=None):
         if len(int_list) == 1:
             return cls([TableLineSegment(int_list[0])])
 
         # create ranges out of consecutive ints. Add segments with either ranges or individual ints
         segments = []
         current_range = []
+        last_int: int
         for i, int_ in enumerate(int_list):
             if i != 0:
                 # now have int and last int for all loops
