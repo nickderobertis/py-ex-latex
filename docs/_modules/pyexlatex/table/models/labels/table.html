@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyexlatex.table.models.labels.table &#8212; pyexlatex 0.4.1 documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx_paramlinks.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyexlatex.table.models.labels.table</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pandas.core.indexes.base</span> <span class="k">import</span> <span class="n">Index</span> <span class="k">as</span> <span class="n">PandasIndex</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">zip_longest</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">pyexlatex.logic.tools</span> <span class="k">import</span> <span class="n">_max_len_or_zero</span>
+<span class="kn">from</span> <span class="nn">mixins.repr</span> <span class="k">import</span> <span class="n">ReprMixin</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.labels.collection</span> <span class="k">import</span> <span class="n">LabelCollection</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.labels.row</span> <span class="k">import</span> <span class="n">LabelRow</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.table.section</span> <span class="k">import</span> <span class="n">TableSection</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.texgen.lines</span> <span class="k">import</span> <span class="n">TableLineSegment</span><span class="p">,</span> <span class="n">TableLineOfSegments</span>
+
+
+<div class="viewcode-block" id="LabelTable"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable">[docs]</a><span class="k">class</span> <span class="nc">LabelTable</span><span class="p">(</span><span class="n">TableSection</span><span class="p">,</span> <span class="n">ReprMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A set of label rows to apply to a DataTable.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    &gt;&gt;&gt;import pyexlatex.table as lt</span>
+<span class="sd">    &gt;&gt;&gt;data_table = lt.DataTable.from_df(some_df)</span>
+<span class="sd">    &gt;&gt;&gt;col_label_table = lt.LabelTable.from_list_of_lists([[&#39;One header&#39;],[&#39;More&#39;,&#39;Headers&#39;]])</span>
+<span class="sd">    &gt;&gt;&gt;row_label_table = lt.LabelTable.from_list_of_lists([[&#39;Some&#39;,&#39;Row&#39;,&#39;Labels&#39;]]).T</span>
+<span class="sd">    &gt;&gt;&gt;data_table.column_labels = col_label_table</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">repr_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;label_collections&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="LabelTable.__init__"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_collections</span><span class="p">:</span> <span class="p">[</span><span class="n">LabelCollection</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span> <span class="o">=</span> <span class="n">label_collections</span></div>
+
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="c1"># Import here to avoid circular imports</span>
+        <span class="kn">from</span> <span class="nn">pyexlatex.table.models.data.table</span> <span class="k">import</span> <span class="n">DataTable</span>
+        <span class="kn">from</span> <span class="nn">pyexlatex.table.models.spacing.columntable</span> <span class="k">import</span> <span class="n">ColumnPadTable</span>
+
+        <span class="c1"># Return a DataTable if just adding labels to an existing DataTable</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DataTable</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">other</span><span class="o">.</span><span class="n">row_labels</span><span class="p">:</span>
+            <span class="n">values_table</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">values_table</span>
+            <span class="n">column_labels</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">column_labels</span>
+            <span class="n">row_labels</span> <span class="o">=</span> <span class="bp">self</span>
+
+            <span class="k">return</span> <span class="n">DataTable</span><span class="p">(</span>
+                <span class="n">values_table</span><span class="o">=</span><span class="n">values_table</span><span class="p">,</span>
+                <span class="n">column_labels</span><span class="o">=</span><span class="n">column_labels</span><span class="p">,</span>
+                <span class="n">row_labels</span><span class="o">=</span><span class="n">row_labels</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ColumnPadTable</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_columns</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">collection</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">collection</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_label_rows</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span>
+
+    <span class="k">def</span> <span class="nf">_create_label_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">len_rows</span> <span class="o">=</span> <span class="n">_max_len_or_zero</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span><span class="p">)</span>
+
+        <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">label_collection</span><span class="p">:</span> <span class="n">LabelCollection</span>
+        <span class="k">for</span> <span class="n">label_collection</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span><span class="p">:</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">LabelRow</span><span class="p">(</span><span class="n">label_collection</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">label_collection</span><span class="o">.</span><span class="n">underlines</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">TableLineOfSegments</span><span class="o">.</span><span class="n">from_list_of_ints</span><span class="p">(</span><span class="n">label_collection</span><span class="o">.</span><span class="n">underlines</span><span class="p">,</span> <span class="n">num_columns</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">label_collection</span><span class="p">))</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">rows</span>
+
+    <span class="c1"># Following property/setter exist to recreate rows if user overrides labels</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">label_collections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label_collections</span>
+
+    <span class="nd">@label_collections</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">label_collections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_collections</span><span class="p">:</span> <span class="p">[</span><span class="n">LabelCollection</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_label_collections</span> <span class="o">=</span> <span class="n">label_collections</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_recreate_rows_if_created</span><span class="p">()</span>
+
+<div class="viewcode-block" id="LabelTable.from_list_of_lists"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable.from_list_of_lists">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_list_of_lists</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">list_of_lists</span><span class="p">:</span> <span class="p">[[</span><span class="nb">str</span><span class="p">]]):</span>
+        <span class="n">label_collections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">label_list</span> <span class="ow">in</span> <span class="n">list_of_lists</span><span class="p">:</span>
+            <span class="n">label_collections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">LabelCollection</span><span class="o">.</span><span class="n">from_str_list</span><span class="p">(</span><span class="n">label_list</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">label_collections</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LabelTable.from_df_index"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable.from_df_index">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_df_index</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">df_columns</span><span class="p">:</span> <span class="n">PandasIndex</span><span class="p">):</span>
+        <span class="n">column_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df_columns</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_list_of_lists</span><span class="p">([</span><span class="n">column_list</span><span class="p">])</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+<div class="viewcode-block" id="LabelTable.remove"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">T</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">LabelTable</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">LabelCollection</span><span class="p">,</span> <span class="n">zip_longest</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span><span class="p">))))</span>
+
+<div class="viewcode-block" id="LabelTable.matches"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable.matches">[docs]</a>    <span class="k">def</span> <span class="nf">matches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Note: use to compare strings inside LabelTables. Use regular equality comparison to compare objects</span>
+<span class="sd">        :param other:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">LabelTable</span><span class="p">):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;LabelTable.matches() called on type {type(other)}. Will always return False&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">max_rows</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">label_collections</span><span class="p">))</span>
+
+        <span class="c1"># Go through all label collections, calling LabelCollection.matches, and returning False if any don&#39;t match</span>
+        <span class="k">for</span> <span class="n">n_row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_rows</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span><span class="p">[</span><span class="n">n_row</span><span class="p">]</span><span class="o">.</span><span class="n">matches</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">label_collections</span><span class="p">[</span><span class="n">n_row</span><span class="p">]):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="c1"># made it through loop, so all were matching</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="LabelTable.contains"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable.contains">[docs]</a>    <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Note: use to compare strings inside LabelCollections. Use label_collection in LabelTable to compare objects</span>
+<span class="sd">        :param item:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="n">LabelCollection</span><span class="p">)):</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;LabelTable.contains() called on type {type(item)}. Will always return False&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">item</span><span class="p">:</span> <span class="n">LabelCollection</span> <span class="o">=</span> <span class="n">LabelCollection</span><span class="o">.</span><span class="n">parse_unknown_type</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+        <span class="n">label_collection</span><span class="p">:</span> <span class="n">LabelCollection</span>
+        <span class="k">for</span> <span class="n">label_collection</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">label_collection</span><span class="o">.</span><span class="n">matches</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">True</span> <span class="c1"># as soon as one match, return true</span>
+
+        <span class="c1"># went through all label collections without a match. no match</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="LabelTable.pad"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable.pad">[docs]</a>    <span class="k">def</span> <span class="nf">pad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Expand table out to the right or left with blanks, until it is length passed (apply to every row)</span>
+<span class="sd">        :param length:</span>
+<span class="sd">        :param direction:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="p">[</span><span class="n">collection</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">)</span> <span class="k">for</span> <span class="n">collection</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="LabelTable.append"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable.append">[docs]</a>    <span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="n">item</span><span class="p">:</span> <span class="n">LabelCollection</span> <span class="o">=</span> <span class="n">LabelCollection</span><span class="o">.</span><span class="n">parse_unknown_type</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+        <span class="c1"># add rather than append directly to activate setter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span> <span class="o">+</span> <span class="p">[</span><span class="n">item</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="LabelTable.insert"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable.insert">[docs]</a>    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="n">item</span><span class="p">:</span> <span class="n">LabelCollection</span> <span class="o">=</span> <span class="n">LabelCollection</span><span class="o">.</span><span class="n">parse_unknown_type</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+        <span class="c1"># add rather than append directly to activate setter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label_collections</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../api/modules.html">pyexlatex</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick DeRobertis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

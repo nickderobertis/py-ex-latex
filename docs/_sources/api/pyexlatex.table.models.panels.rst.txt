@@ -1,0 +1,38 @@
+pyexlatex.table.models.panels package
+=====================================
+
+Submodules
+----------
+
+pyexlatex.table.models.panels.collection module
+-----------------------------------------------
+
+.. automodule:: pyexlatex.table.models.panels.collection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.table.models.panels.grid module
+-----------------------------------------
+
+.. automodule:: pyexlatex.table.models.panels.grid
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.table.models.panels.panel module
+------------------------------------------
+
+.. automodule:: pyexlatex.table.models.panels.panel
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.table.models.panels
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,29 @@
+pyexlatex.models.control.documentclass package
+==============================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.models.control.documentclass.classtypes
+
+Submodules
+----------
+
+pyexlatex.models.control.documentclass.documentclass module
+-----------------------------------------------------------
+
+.. automodule:: pyexlatex.models.control.documentclass.documentclass
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.control.documentclass
+   :members:
+   :undoc-members:
+   :show-inheritance:

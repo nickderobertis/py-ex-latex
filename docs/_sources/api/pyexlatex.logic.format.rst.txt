@@ -1,0 +1,46 @@
+pyexlatex.logic.format package
+==============================
+
+Submodules
+----------
+
+pyexlatex.logic.format.and\_join module
+---------------------------------------
+
+.. automodule:: pyexlatex.logic.format.and_join
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.format.contents module
+--------------------------------------
+
+.. automodule:: pyexlatex.logic.format.contents
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.format.eq module
+--------------------------------
+
+.. automodule:: pyexlatex.logic.format.eq
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.format.sizing module
+------------------------------------
+
+.. automodule:: pyexlatex.logic.format.sizing
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.logic.format
+   :members:
+   :undoc-members:
+   :show-inheritance:

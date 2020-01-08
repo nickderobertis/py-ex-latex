@@ -1,0 +1,64 @@
+pyexlatex package
+=================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.constants
+   pyexlatex.figure
+   pyexlatex.graphics
+   pyexlatex.layouts
+   pyexlatex.logic
+   pyexlatex.models
+   pyexlatex.presentation
+   pyexlatex.resume
+   pyexlatex.table
+   pyexlatex.texgen
+   pyexlatex.texparser
+   pyexlatex.tools
+
+Submodules
+----------
+
+pyexlatex.df module
+-------------------
+
+.. automodule:: pyexlatex.df
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.equations module
+--------------------------
+
+.. automodule:: pyexlatex.equations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.exc module
+--------------------
+
+.. automodule:: pyexlatex.exc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.typing module
+-----------------------
+
+.. automodule:: pyexlatex.typing
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex
+   :members:
+   :undoc-members:
+   :show-inheritance:

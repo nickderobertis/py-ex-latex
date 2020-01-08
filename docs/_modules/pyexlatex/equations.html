@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyexlatex.equations &#8212; pyexlatex 0.3.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_paramlinks.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyexlatex.equations</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">pyexlatex.tools</span> <span class="k">import</span> <span class="n">date_time_move_latex</span>
+
+
+<div class="viewcode-block" id="latex_equations_to_pdf"><a class="viewcode-back" href="../../api/pyexlatex.html#pyexlatex.equations.latex_equations_to_pdf">[docs]</a><span class="k">def</span> <span class="nf">latex_equations_to_pdf</span><span class="p">(</span><span class="n">latex_list</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Equations&#39;</span><span class="p">,</span> <span class="n">below_text</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                           <span class="n">math_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">text_size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">para_space</span><span class="o">=</span><span class="s1">&#39;1em&#39;</span><span class="p">,</span>
+                          <span class="n">inline</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">as_document</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">script_size</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">math_size</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">scriptscript_size</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">math_size</span> <span class="o">*</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">text_size</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span> <span class="c1">#latex allowed font sizes</span>
+
+    <span class="k">if</span> <span class="n">inline</span><span class="p">:</span>
+        <span class="n">surround_char_beg</span> <span class="o">=</span> <span class="s1">&#39;$&#39;</span>
+        <span class="n">surround_char_end</span> <span class="o">=</span> <span class="s1">&#39;$&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">surround_char_beg</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\begin</span><span class="si">{dmath}</span><span class="s1">&#39;</span>
+        <span class="n">surround_char_end</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\end</span><span class="si">{dmath}</span><span class="s1">&#39;</span>
+
+    <span class="c1"># Header and footer are needed to create a standalone document using the equations.</span>
+    <span class="c1"># If as_document=False, header and footer will not be used.</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;\documentclass[</span><span class="si">{}</span><span class="s1"> pt]{{extarticle}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">text_size</span><span class="p">),</span>
+               <span class="c1">#First size is text size, second is math size, third is script size,</span>
+               <span class="c1">#fourth is scriptscript size</span>
+               <span class="sa">r</span><span class="s1">&#39;\DeclareMathSizes{{</span><span class="si">{0}</span><span class="s1">}}{{</span><span class="si">{1}</span><span class="s1">}}{{</span><span class="si">{2}</span><span class="s1">}}{{</span><span class="si">{3}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">text_size</span><span class="p">,</span> <span class="n">math_size</span><span class="p">,</span> <span class="n">script_size</span><span class="p">,</span> <span class="n">scriptscript_size</span><span class="p">),</span>
+               <span class="sa">r</span><span class="s1">&#39;\usepackage</span><span class="si">{amsmath}</span><span class="s1">&#39;</span><span class="p">,</span>
+               <span class="sa">r</span><span class="s1">&#39;\usepackage</span><span class="si">{breqn}</span><span class="s1">&#39;</span><span class="p">,</span>
+               <span class="sa">r</span><span class="s1">&#39;\usepackage[margin=0.3in]</span><span class="si">{geometry}</span><span class="s1">&#39;</span><span class="p">,</span>
+              <span class="sa">r</span><span class="s1">&#39;\author{Nick DeRobertis}&#39;</span> <span class="p">,</span><span class="sa">r</span><span class="s1">&#39;\begin</span><span class="si">{document}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\setlength{{\parskip}}{{</span><span class="si">{}</span><span class="s1">}}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">para_space</span><span class="p">)]</span>
+    <span class="n">footers</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s1">&#39;\end</span><span class="si">{document}</span><span class="s1">&#39;</span><span class="p">]</span>
+
+    <span class="n">name_tex</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;.tex&#39;</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">name_tex</span><span class="p">)</span>
+
+    <span class="c1"># Actually write to file</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">as_document</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">surround_char_beg</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">+</span> <span class="n">surround_char_end</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">latex_list</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">below_text</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">below_text</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">as_document</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">footers</span><span class="p">))</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+    <span class="c1"># Only create pdf if we are creating a standalone document</span>
+    <span class="k">if</span> <span class="n">as_document</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;pdflatex &#39;</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="n">name_tex</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span> <span class="c1">#create pdf</span>
+    <span class="n">date_time_move_latex</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="s1">&#39;Equations&#39;</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/modules.html">pyexlatex</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick DeRobertis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

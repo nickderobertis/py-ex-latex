@@ -1,0 +1,77 @@
+pyexlatex.models.references.bibtex package
+==========================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.models.references.bibtex.style
+
+Submodules
+----------
+
+pyexlatex.models.references.bibtex.addresource module
+-----------------------------------------------------
+
+.. automodule:: pyexlatex.models.references.bibtex.addresource
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.references.bibtex.article module
+-------------------------------------------------
+
+.. automodule:: pyexlatex.models.references.bibtex.article
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.references.bibtex.base module
+----------------------------------------------
+
+.. automodule:: pyexlatex.models.references.bibtex.base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.references.bibtex.generic module
+-------------------------------------------------
+
+.. automodule:: pyexlatex.models.references.bibtex.generic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.references.bibtex.manual module
+------------------------------------------------
+
+.. automodule:: pyexlatex.models.references.bibtex.manual
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.references.bibtex.misc module
+----------------------------------------------
+
+.. automodule:: pyexlatex.models.references.bibtex.misc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.references.bibtex.printbib module
+--------------------------------------------------
+
+.. automodule:: pyexlatex.models.references.bibtex.printbib
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.references.bibtex
+   :members:
+   :undoc-members:
+   :show-inheritance:

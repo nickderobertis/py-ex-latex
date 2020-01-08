@@ -1,0 +1,38 @@
+pyexlatex.table.models.spacing package
+======================================
+
+Submodules
+----------
+
+pyexlatex.table.models.spacing.cell module
+------------------------------------------
+
+.. automodule:: pyexlatex.table.models.spacing.cell
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.table.models.spacing.columntable module
+-------------------------------------------------
+
+.. automodule:: pyexlatex.table.models.spacing.columntable
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.table.models.spacing.rowtable module
+----------------------------------------------
+
+.. automodule:: pyexlatex.table.models.spacing.rowtable
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.table.models.spacing
+   :members:
+   :undoc-members:
+   :show-inheritance:

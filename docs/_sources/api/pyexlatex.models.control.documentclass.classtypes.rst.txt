@@ -1,0 +1,45 @@
+pyexlatex.models.control.documentclass.classtypes package
+=========================================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.models.control.documentclass.classtypes.custom
+
+Submodules
+----------
+
+pyexlatex.models.control.documentclass.classtypes.builtin\_classes module
+-------------------------------------------------------------------------
+
+.. automodule:: pyexlatex.models.control.documentclass.classtypes.builtin_classes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.control.documentclass.classtypes.documentclasstype module
+--------------------------------------------------------------------------
+
+.. automodule:: pyexlatex.models.control.documentclass.classtypes.documentclasstype
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.control.documentclass.classtypes.manager module
+----------------------------------------------------------------
+
+.. automodule:: pyexlatex.models.control.documentclass.classtypes.manager
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.control.documentclass.classtypes
+   :members:
+   :undoc-members:
+   :show-inheritance:

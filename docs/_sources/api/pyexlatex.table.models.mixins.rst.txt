@@ -1,0 +1,17 @@
+pyexlatex.table.models.mixins package
+=====================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.table.models.mixins.addvalues
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.table.models.mixins
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,22 @@
+pyexlatex.constants package
+===========================
+
+Submodules
+----------
+
+pyexlatex.constants.flags module
+--------------------------------
+
+.. automodule:: pyexlatex.constants.flags
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.constants
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,54 @@
+pyexlatex.resume.templates package
+==================================
+
+Submodules
+----------
+
+pyexlatex.resume.templates.award module
+---------------------------------------
+
+.. automodule:: pyexlatex.resume.templates.award
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.resume.templates.education module
+-------------------------------------------
+
+.. automodule:: pyexlatex.resume.templates.education
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.resume.templates.publication module
+---------------------------------------------
+
+.. automodule:: pyexlatex.resume.templates.publication
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.resume.templates.reference module
+-------------------------------------------
+
+.. automodule:: pyexlatex.resume.templates.reference
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.resume.templates.section module
+-----------------------------------------
+
+.. automodule:: pyexlatex.resume.templates.section
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.resume.templates
+   :members:
+   :undoc-members:
+   :show-inheritance:

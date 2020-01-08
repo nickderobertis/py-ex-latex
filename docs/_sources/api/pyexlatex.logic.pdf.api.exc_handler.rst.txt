@@ -1,0 +1,29 @@
+pyexlatex.logic.pdf.api.exc\_handler package
+============================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.logic.pdf.api.exc_handler.prepend
+
+Submodules
+----------
+
+pyexlatex.logic.pdf.api.exc\_handler.main module
+------------------------------------------------
+
+.. automodule:: pyexlatex.logic.pdf.api.exc_handler.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.logic.pdf.api.exc_handler
+   :members:
+   :undoc-members:
+   :show-inheritance:

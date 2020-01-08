@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>pyexlatex.table.models.data.table &#8212; pyexlatex 0.4.1 documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx_paramlinks.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for pyexlatex.table.models.data.table</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.interfaces</span> <span class="k">import</span> <span class="n">LabelClassOrStrs</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.logic.tools</span> <span class="k">import</span> <span class="n">_add_if_not_none</span>
+<span class="kn">from</span> <span class="nn">mixins.repr</span> <span class="k">import</span> <span class="n">ReprMixin</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.data.valuestable</span> <span class="k">import</span> <span class="n">ValuesTable</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.labels.label</span> <span class="k">import</span> <span class="n">Label</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.labels.table</span> <span class="k">import</span> <span class="n">LabelTable</span><span class="p">,</span> <span class="n">LabelCollection</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.spacing.columntable</span> <span class="k">import</span> <span class="n">ColumnPadTable</span><span class="p">,</span> <span class="n">CellSpacer</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.models.table.section</span> <span class="k">import</span> <span class="n">TableSection</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.table.logic.panels.topleft</span> <span class="k">import</span> <span class="n">_set_top_left_corner_labels</span>
+
+<div class="viewcode-block" id="DataTable"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.data.html#pyexlatex.table.models.data.table.DataTable">[docs]</a><span class="k">class</span> <span class="nc">DataTable</span><span class="p">(</span><span class="n">TableSection</span><span class="p">,</span> <span class="n">ReprMixin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a subsection in a panel, but tracks row and column labels, which may be consolidated when</span>
+<span class="sd">    assembled into Panels then a Table</span>
+
+<span class="sd">    Use DataTable.from_df to create a DataTable from a pandas DataFrame.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">repr_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;values_table&#39;</span><span class="p">,</span> <span class="s1">&#39;column_labels&#39;</span><span class="p">,</span> <span class="s1">&#39;row_labels&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="DataTable.__init__"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.data.html#pyexlatex.table.models.data.table.DataTable.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values_table</span><span class="p">:</span> <span class="n">ValuesTable</span><span class="p">,</span> <span class="n">column_labels</span><span class="p">:</span> <span class="n">LabelTable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">row_labels</span><span class="p">:</span> <span class="n">LabelTable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">top_left_corner_labels</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Label</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values_table</span> <span class="o">=</span> <span class="n">values_table</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">column_labels</span> <span class="o">=</span> <span class="n">column_labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">row_labels</span> <span class="o">=</span> <span class="n">row_labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top_left_corner_labels</span> <span class="o">=</span> <span class="n">_set_top_left_corner_labels</span><span class="p">(</span><span class="n">top_left_corner_labels</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">should_add_top_left</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">has_column_labels</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">has_row_labels</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DataTable</span><span class="p">):</span>
+            <span class="n">row_labels_match</span> <span class="o">=</span> <span class="n">_determine_match</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">row_labels</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">row_labels</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">row_labels_match</span> <span class="ow">or</span> <span class="n">other</span><span class="o">.</span><span class="n">row_labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># if right table has same or None row labels, eliminate right row labels. Just add values</span>
+                <span class="n">values_table</span> <span class="o">=</span> <span class="n">_add_if_not_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values_table</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">values_table</span><span class="p">)</span>
+                <span class="n">column_labels</span> <span class="o">=</span> <span class="n">_add_if_not_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">column_labels</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">column_labels</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># if right table has unique row labels, absorb them into middle of values table</span>
+                <span class="n">values_table</span> <span class="o">=</span> <span class="n">_add_if_not_none</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">values_table</span><span class="p">,</span>
+                    <span class="n">ValuesTable</span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">row_labels</span><span class="o">.</span><span class="n">rows</span><span class="p">),</span>
+                    <span class="n">other</span><span class="o">.</span><span class="n">values_table</span>
+                <span class="p">)</span>
+                <span class="n">column_labels</span> <span class="o">=</span> <span class="n">_add_if_not_none</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">column_labels</span><span class="p">,</span>
+                    <span class="n">other</span><span class="o">.</span><span class="n">top_left_corner_labels</span><span class="p">,</span>
+                    <span class="n">other</span><span class="o">.</span><span class="n">column_labels</span>
+                <span class="p">)</span>
+
+            <span class="n">row_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_labels</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ColumnPadTable</span><span class="p">):</span>
+            <span class="n">values_table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values_table</span> <span class="o">+</span> <span class="n">other</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">values_table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="n">column_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_labels</span> <span class="o">+</span> <span class="n">other</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="n">row_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_labels</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">TableSection</span><span class="p">):</span>
+            <span class="n">values_table</span> <span class="o">=</span> <span class="n">_add_if_not_none</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values_table</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+            <span class="n">column_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_labels</span>
+            <span class="n">row_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_labels</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;must add DataTable or TableSection to type {type(self)}. Got type {type(other)}&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">DataTable</span><span class="p">(</span>
+            <span class="n">values_table</span><span class="o">=</span><span class="n">values_table</span><span class="p">,</span>
+            <span class="n">column_labels</span><span class="o">=</span><span class="n">column_labels</span><span class="p">,</span>
+            <span class="n">row_labels</span><span class="o">=</span><span class="n">row_labels</span><span class="p">,</span>
+            <span class="n">top_left_corner_labels</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">top_left_corner_labels</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_rows</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rows</span>
+
+    <span class="c1"># Following properties/setters exist to recreate rows if user overrides values table or labels</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">column_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_column_labels</span>
+
+    <span class="nd">@column_labels</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">column_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="n">LabelTable</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_column_labels</span> <span class="o">=</span> <span class="n">labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_recreate_rows_if_created</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_column_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">column_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_labels</span><span class="o">.</span><span class="n">is_empty</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">row_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_row_labels</span>
+
+    <span class="nd">@row_labels</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">row_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="n">LabelTable</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_row_labels</span> <span class="o">=</span> <span class="n">labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_recreate_rows_if_created</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">has_row_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">row_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">row_labels</span><span class="o">.</span><span class="n">is_empty</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">values_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_values_table</span>
+
+    <span class="nd">@values_table</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">values_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="n">ValuesTable</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_values_table</span> <span class="o">=</span> <span class="n">table</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_recreate_rows_if_created</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_create_rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_column_labels</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">should_add_top_left</span><span class="p">:</span>
+                <span class="n">column_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top_left_corner_labels</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_labels</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">column_labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_labels</span>
+            <span class="n">rows</span> <span class="o">+=</span> <span class="n">column_labels</span><span class="o">.</span><span class="n">rows</span>
+
+        <span class="c1"># need to add row labels inline with values table</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_row_labels</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">row_labels</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values_table</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">label_row</span><span class="p">,</span> <span class="n">value_row</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">row_labels</span><span class="o">.</span><span class="n">rows</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values_table</span><span class="o">.</span><span class="n">rows</span><span class="p">):</span>
+                <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_row</span> <span class="o">+</span> <span class="n">value_row</span><span class="p">)</span>
+        <span class="c1"># no row labels, add values rows as they are</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rows</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values_table</span><span class="o">.</span><span class="n">rows</span>
+
+        <span class="k">return</span> <span class="n">rows</span>
+
+<div class="viewcode-block" id="DataTable.from_df"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.data.html#pyexlatex.table.models.data.table.DataTable.from_df">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_df</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">include_columns</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">include_index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">extra_header</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">extra_header_underline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">top_left_corner_labels</span><span class="p">:</span> <span class="n">LabelClassOrStrs</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Use for the most fine-grained control in creating tables. Construct DataTables from</span>
+<span class="sd">        pandas DataFrames, modify labels as needed, assemble them into Panels, then create a latex Table with</span>
+<span class="sd">        Table.from_panel_list.</span>
+
+<span class="sd">        :param df:</span>
+<span class="sd">        :param include_columns:</span>
+<span class="sd">        :param include_index:</span>
+<span class="sd">        :param extra_header: extra headers to place over the existing column labels (or over values if</span>
+<span class="sd">                             there are no column labels). Useful when placing multiple DataTables horizontally</span>
+<span class="sd">                             in a Panel. If a str is passed, str will become a multicolumn header for the entire</span>
+<span class="sd">                             DataTable. If a list of as many strs as there are columns is passed, these</span>
+<span class="sd">                             will be placed above any existing column labels. LabelTable and LabelCollection objects</span>
+<span class="sd">                             may also be passed for more control. When those objects are passed, the extra_header_underline</span>
+<span class="sd">                             argument is ignored.</span>
+<span class="sd">        :param extra_header_underline: whether to add an underline under the extra header, if the extre header</span>
+<span class="sd">                                       was passed</span>
+<span class="sd">        :param top_left_corner_labels: additional labels to place in the top left corner. pass a single string</span>
+<span class="sd">                                       or a list of strings for convenience. a list of strings will be create labels</span>
+<span class="sd">                                       which span the gap horizontally and go downwards, one label per row. pass</span>
+<span class="sd">                                       LabelCollection or LabelTable for more control.</span>
+<span class="sd">        :param kwargs: DataTable kwargs</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">values_table</span> <span class="o">=</span> <span class="n">ValuesTable</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">include_columns</span><span class="p">:</span>
+            <span class="n">column_label_table</span> <span class="o">=</span> <span class="n">LabelTable</span><span class="o">.</span><span class="n">from_df_index</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">column_label_table</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">include_index</span><span class="p">:</span>
+            <span class="n">row_label_table</span> <span class="o">=</span> <span class="n">LabelTable</span><span class="o">.</span><span class="n">from_df_index</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">row_label_table</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">dt</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">values_table</span><span class="p">,</span>
+            <span class="n">column_labels</span><span class="o">=</span><span class="n">column_label_table</span><span class="p">,</span>
+            <span class="n">row_labels</span><span class="o">=</span><span class="n">row_label_table</span><span class="p">,</span>
+            <span class="n">top_left_corner_labels</span><span class="o">=</span><span class="n">top_left_corner_labels</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">extra_header</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="n">header</span> <span class="o">=</span> <span class="n">_create_header_label_collection_list</span><span class="p">(</span><span class="n">extra_header</span><span class="p">,</span> <span class="n">values_table</span><span class="p">,</span> <span class="n">extra_header_underline</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">include_columns</span><span class="p">:</span>
+                <span class="c1"># add to existing</span>
+                <span class="n">header</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span> <span class="c1"># need to insert end first, so they end up in original order</span>
+                <span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">column_labels</span><span class="o">.</span><span class="n">label_collections</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">label_collection</span><span class="p">)</span> <span class="k">for</span> <span class="n">label_collection</span> <span class="ow">in</span> <span class="n">header</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># create column labels as extra header</span>
+                <span class="n">dt</span><span class="o">.</span><span class="n">column_labels</span> <span class="o">=</span> <span class="n">LabelTable</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">include_index</span><span class="p">:</span>  <span class="c1"># need to add to top left</span>
+                <span class="n">num_spacers</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+
+                <span class="c1"># top left has one by default. if there were already columns, that top left is used up by the columns</span>
+                <span class="c1"># and we need to add more. if there are not columns, then this one existing top left can be used</span>
+                <span class="c1"># for the new header</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">include_columns</span><span class="p">:</span>
+                    <span class="n">num_spacers</span> <span class="o">-=</span> <span class="mi">1</span>
+
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_spacers</span><span class="p">):</span>
+                    <span class="n">dt</span><span class="o">.</span><span class="n">top_left_corner_labels</span><span class="o">.</span><span class="n">label_collections</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">LabelCollection</span><span class="o">.</span><span class="n">from_str_list</span><span class="p">([</span><span class="s1">&#39; &#39;</span><span class="p">]))</span>
+
+            <span class="c1"># add spacer to top left corner labels to match new row of headers</span>
+            <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">include_columns</span><span class="p">)</span> <span class="ow">and</span> <span class="n">include_index</span><span class="p">:</span>
+                <span class="c1"># header becomes new columns, have to add top left as if there were columns</span>
+                <span class="n">dt</span><span class="o">.</span><span class="n">should_add_top_left</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+        <span class="k">return</span> <span class="n">dt</span></div></div>
+
+<span class="k">def</span> <span class="nf">_determine_match</span><span class="p">(</span><span class="n">labels1</span><span class="p">:</span> <span class="n">LabelTable</span><span class="p">,</span> <span class="n">labels2</span><span class="p">:</span> <span class="n">LabelTable</span><span class="p">):</span>
+    <span class="c1"># handle equality for None</span>
+    <span class="k">if</span> <span class="n">labels1</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">labels2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">elif</span> <span class="n">labels2</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># labels 1 must not be None here</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># here, both are not None</span>
+    <span class="k">return</span> <span class="n">labels1</span><span class="o">.</span><span class="n">matches</span><span class="p">(</span><span class="n">labels2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_create_header_label_collection_list</span><span class="p">(</span><span class="n">extra_header</span><span class="p">:</span> <span class="n">LabelClassOrStrs</span><span class="p">,</span> <span class="n">values_table</span><span class="p">:</span> <span class="n">ValuesTable</span><span class="p">,</span>
+                                         <span class="n">underline</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">LabelCollection</span><span class="p">]:</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">extra_header</span><span class="p">,</span> <span class="n">LabelTable</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">extra_header</span><span class="o">.</span><span class="n">label_collections</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">extra_header</span><span class="p">,</span> <span class="n">LabelCollection</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">extra_header</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">extra_header</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">extra_header</span><span class="p">)</span> <span class="o">!=</span> <span class="n">values_table</span><span class="o">.</span><span class="n">num_columns</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;passed extra header has {len(extra_header)} columns, while table has &#39;</span>
+                             <span class="n">f</span><span class="s1">&#39;</span><span class="si">{values_table.num_columns}</span><span class="s1"> columns&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">underline</span><span class="p">:</span>
+            <span class="n">underline_arg</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;0-{len(extra_header) - 1}&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">underline_arg</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">LabelCollection</span><span class="o">.</span><span class="n">from_str_list</span><span class="p">(</span><span class="n">extra_header</span><span class="p">,</span> <span class="n">underline</span><span class="o">=</span><span class="n">underline_arg</span><span class="p">)]</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">extra_header</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># create multicolumn label</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">extra_header</span><span class="p">,</span> <span class="n">span</span><span class="o">=</span><span class="n">values_table</span><span class="o">.</span><span class="n">num_columns</span><span class="p">)</span>
+        <span class="c1"># set underline</span>
+        <span class="k">if</span> <span class="n">underline</span><span class="p">:</span>
+            <span class="n">underline_arg</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># place an underline under the singular label</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">underline_arg</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># no underline</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">LabelCollection</span><span class="p">([</span><span class="n">label</span><span class="p">],</span> <span class="n">underline</span><span class="o">=</span><span class="n">underline_arg</span><span class="p">)]</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;expected LabelTable, LabelCollection, list of strs, or str for extra header. &#39;</span>
+                     <span class="n">f</span><span class="s1">&#39;got </span><span class="si">{extra_header}</span><span class="s1"> of type {type(extra_header)}&#39;</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../api/modules.html">pyexlatex</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Nick DeRobertis.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

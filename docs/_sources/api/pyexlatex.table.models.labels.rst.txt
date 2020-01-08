@@ -1,0 +1,54 @@
+pyexlatex.table.models.labels package
+=====================================
+
+Submodules
+----------
+
+pyexlatex.table.models.labels.collection module
+-----------------------------------------------
+
+.. automodule:: pyexlatex.table.models.labels.collection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.table.models.labels.label module
+------------------------------------------
+
+.. automodule:: pyexlatex.table.models.labels.label
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.table.models.labels.multicolumn module
+------------------------------------------------
+
+.. automodule:: pyexlatex.table.models.labels.multicolumn
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.table.models.labels.row module
+----------------------------------------
+
+.. automodule:: pyexlatex.table.models.labels.row
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.table.models.labels.table module
+------------------------------------------
+
+.. automodule:: pyexlatex.table.models.labels.table
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.table.models.labels
+   :members:
+   :undoc-members:
+   :show-inheritance:

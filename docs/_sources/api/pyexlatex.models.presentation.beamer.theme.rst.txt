@@ -1,0 +1,22 @@
+pyexlatex.models.presentation.beamer.theme package
+==================================================
+
+Submodules
+----------
+
+pyexlatex.models.presentation.beamer.theme.usetheme module
+----------------------------------------------------------
+
+.. automodule:: pyexlatex.models.presentation.beamer.theme.usetheme
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: pyexlatex.models.presentation.beamer.theme
+   :members:
+   :undoc-members:
+   :show-inheritance:
