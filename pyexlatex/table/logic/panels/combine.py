@@ -1,4 +1,6 @@
 import copy
+from collections import Sequence
+from typing import List
 
 from pyexlatex.table.models.panels.grid import GridShape
 from pyexlatex.table.models.labels.table import LabelTable
@@ -30,9 +32,9 @@ def common_row_labels(grid: GridShape, use_object_equality=True, enforce_label_o
     )
 
 
-def _selected_common_labels_for_axis(grid: GridShape, selections: [int]=[0], axis: int=0, use_object_equality=True,
+def _selected_common_labels_for_axis(grid: GridShape, selections: Sequence[int]=(0,), axis: int=0, use_object_equality=True,
                                      enforce_label_order=True):
-    common_label_tables: [LabelTable] = []
+    common_label_tables: List[LabelTable] = []
     for i in selections:
         common_label_tables.append(
             _common_labels(
@@ -62,7 +64,7 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
 
     label_attr = _get_label_attr(axis=axis)
 
-    label_tables: [LabelTable] = [getattr(section, label_attr, None) for section in subgrid]
+    label_tables: List[LabelTable] = [getattr(section, label_attr, None) for section in subgrid]
 
     # first labels missing, no consolidation to be done, consolidated labels are None
     if label_tables[0] is None:
@@ -97,8 +99,8 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
 
     return common_label_table
 
-def remove_label_collections_from_grid(grid: GridShape, column_labels: [LabelTable]=None,
-                                       row_labels: [LabelTable]=None, use_object_equality=True):
+def remove_label_collections_from_grid(grid: GridShape, column_labels: List[LabelTable] = None,
+                                       row_labels: List[LabelTable] = None, use_object_equality=True):
     for row in grid:
         for section in row:
             if column_labels is not None:

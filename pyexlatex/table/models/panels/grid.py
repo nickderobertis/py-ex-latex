@@ -1,3 +1,5 @@
+from typing import List
+
 import numpy as np
 
 from pyexlatex.table.models.table.section import TableSection
@@ -7,7 +9,7 @@ from mixins.repr import ReprMixin
 class PanelGrid(ReprMixin):
     repr_cols = ['sections', 'shape']
 
-    def __new__(cls, sections: [TableSection], shape: tuple=None):
+    def __new__(cls, sections: List[TableSection], shape: tuple=None):
         index_arr = index_array(sections, shape)
         return GridShape.__new__(GridShape, index_arr)
 
@@ -28,7 +30,7 @@ class GridShape(np.ndarray):
         if obj is None: return
         self.info = getattr(obj, 'info', None)
 
-def index_array(sections: [TableSection], shape: tuple=None):
+def index_array(sections: List[TableSection], shape: tuple=None):
     if shape is None:
     # default is one column, as many rows as sections
         if sections:

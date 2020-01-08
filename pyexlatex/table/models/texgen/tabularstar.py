@@ -1,4 +1,4 @@
-from typing import Optional, Union
+from typing import Optional, Union, Any
 
 from mixins.repr import ReprMixin
 
@@ -16,7 +16,7 @@ class TabularStar(ContainerItem, Item, ReprMixin, BaseTabular):
     name = 'tabular*'
     repr_cols = ['align']
 
-    def __init__(self, content, align: Optional[Union[ColumnsAlignment, str]] = None, width: Optional = None,
+    def __init__(self, content, align: Optional[Union[ColumnsAlignment, str]] = None, width: Optional[Any] = None,
                  fill_between: bool = True):
         if not isinstance(content, (list, tuple)):
             content = [content]
@@ -35,7 +35,7 @@ class TabularStar(ContainerItem, Item, ReprMixin, BaseTabular):
 
     @property
     def _modifier_str(self) -> str:
-        return self._wrap_with_braces(self.width) + self._align_str
+        return self._wrap_with_braces(self.width) + self._align_str  # type: ignore
 
     @property
     def _align_str(self) -> str:
@@ -43,4 +43,4 @@ class TabularStar(ContainerItem, Item, ReprMixin, BaseTabular):
         if self.fill_between:
             # TODO: make models for this
             base_str = r'@{\extracolsep{\fill}}' + base_str
-        return self._wrap_with_braces(base_str)
+        return self._wrap_with_braces(base_str)  # type: ignore

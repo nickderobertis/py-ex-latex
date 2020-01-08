@@ -1,4 +1,4 @@
-from typing import Optional, Sequence, Union
+from typing import Optional, Sequence, Union, List
 import pandas as pd
 from pyexlatex.models.item import Item
 from pyexlatex.models.containeritem import ContainerItem
@@ -76,12 +76,13 @@ class ThreePartTable(TextAreaBase, ReprMixin):
     def from_panel_collection(cls, panel_collection: PanelCollection, *args, tabular_kwargs={}, **kwargs):
         tabular = Tabular.from_panel_collection(panel_collection, **tabular_kwargs)
 
+        caption: Optional[Caption]
         if panel_collection.name is not None:
             caption = Caption(panel_collection.name)
         else:
             caption = None
 
-        return cls(tabular, caption=caption, *args, **kwargs)
+        return cls(tabular, caption=caption, **kwargs)
 
 class Table(TextAreaBase, ReprMixin):
     name = 'table'
@@ -148,7 +149,7 @@ class LTable(Table):
 
 class TableDocument(Document):
 
-    def __init__(self, content: Table, packages: [Package]=None, landscape: bool=False):
+    def __init__(self, content: Table, packages: List[Package]=None, landscape: bool=False):
         from pyexlatex.table.models.texgen.packages import default_packages
 
         if packages is None:

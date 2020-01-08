@@ -1,4 +1,4 @@
-from typing import Union, AnyStr, List
+from typing import Union, AnyStr, List, Optional
 
 import numpy as np
 import pandas as pd
@@ -25,8 +25,9 @@ class PanelCollection(ReprMixin):
 
     """
     repr_cols = ['name', 'panels']
+    _num_columns: int
 
-    def __init__(self, panels: [Panel], label_consolidation: str='object', enforce_label_order=True,
+    def __init__(self, panels: List[Panel], label_consolidation: str='object', enforce_label_order=True,
                  top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr]=None,
                  pad_rows: int=1, pad_columns: int=1, name: str=None):
         """
@@ -241,7 +242,7 @@ class PanelCollection(ReprMixin):
         self._rows = self._create_panel_rows() # need to recreate rows with new grid
 
 
-    def _add_column_labels(self, column_labels: [LabelTable]):
+    def _add_column_labels(self, column_labels: List[LabelTable]):
         assert len(column_labels) == self.grid.shape[1]
 
         if all(table.is_empty for table in column_labels):
@@ -257,7 +258,7 @@ class PanelCollection(ReprMixin):
         # Combine label PanelGrid and existing PanelGrid
         self._grid = np.concatenate([column_label_grid, self._grid]).view(GridShape)
 
-    def _add_row_labels(self, row_labels: [LabelTable]):
+    def _add_row_labels(self, row_labels: List[LabelTable]):
         assert len(row_labels) == self.grid.shape[0]
 
         if all(table.is_empty for table in row_labels):
@@ -274,8 +275,8 @@ class PanelCollection(ReprMixin):
         self._grid = np.concatenate([row_label_grid, self._grid], axis=1).view(GridShape)
 
     @classmethod
-    def from_list_of_lists_of_dfs(cls, df_list_of_lists: [[pd.DataFrame]],
-                                  panel_names: [str]=None, *args,
+    def from_list_of_lists_of_dfs(cls, df_list_of_lists: List[List[pd.DataFrame]],
+                                  panel_names: List[str] = None, *args,
                                   panel_kwargs={},
                                   data_table_kwargs={}, **kwargs):
         """
@@ -316,7 +317,6 @@ class PanelCollection(ReprMixin):
 
         return cls(
             panels,
-            *args,
             label_consolidation=label_consolidation,
             **kwargs
         )
@@ -325,13 +325,13 @@ class PanelCollection(ReprMixin):
         from pyexlatex.table.logic.table.build import build_tabular_content_from_panel_collection
         return build_tabular_content_from_panel_collection(self, mid_rule=mid_rule)
 
-def _panel_name_or_none(panel_names: [str], index: int):
+def _panel_name_or_none(panel_names: Optional[List[str]], index: int):
     if panel_names is not None:
         return panel_names[index]
     else:
         return None
 
-def _validate_panel_names(panel_names: [str], df_list_of_lists: [[pd.DataFrame]]):
+def _validate_panel_names(panel_names: Optional[List[str]], df_list_of_lists: List[List[pd.DataFrame]]):
     if panel_names is None:
         return
 

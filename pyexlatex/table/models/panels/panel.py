@@ -1,3 +1,5 @@
+from typing import List
+
 import pandas as pd
 
 from pyexlatex.logic.tools import _max_len_or_zero
@@ -22,7 +24,7 @@ class Panel(ReprMixin):
         self.name = name
 
     @classmethod
-    def from_data_tables(cls, data_table_list: [DataTable], shape: tuple=None, name: str=None):
+    def from_data_tables(cls, data_table_list: List[DataTable], shape: tuple=None, name: str=None):
         """
 
         :param data_table_list: list of pyexlatex.table.DataTable
@@ -45,7 +47,7 @@ class Panel(ReprMixin):
         return cls.from_data_tables([data_table], name=name)
 
     @classmethod
-    def from_df_list(cls, df_list: [pd.DataFrame], shape: tuple=None, name: str=None, include_columns=True,
+    def from_df_list(cls, df_list: List[pd.DataFrame], shape: tuple=None, name: str=None, include_columns=True,
                      include_index=False, data_table_kwargs={}):
         """
 
