@@ -9,7 +9,7 @@ simpler API to creating documents.
 
 ## Links
 
-See the example 
-[generated documentation here.](
+See the 
+[documentation here.](
 https://whoopnip.github.io/py-ex-latex/
 )

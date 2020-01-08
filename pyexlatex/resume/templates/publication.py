@@ -1,4 +1,4 @@
-from typing import Optional, Sequence, Union, List
+from typing import Optional, Sequence, Union, List, Any
 import pyexlatex as pl
 from pyexlatex.logic.format.and_join import join_with_commas_and_and_output_list
 from pyexlatex.models.format.hangindent import HangIndent
@@ -10,7 +10,7 @@ class Publication(pl.Template):
 
     def __init__(self, title: str, co_authors: Optional[Sequence[str]] = None, journal_info: Optional[str] = None,
                  href: Optional[str] = None, extra_info: Optional[str] = None, prevent_page_break: bool = True,
-                 description: Optional = None):
+                 description: Optional[Any] = None):
         self.title = title
         self.co_authors = co_authors
         self.journal_info = journal_info

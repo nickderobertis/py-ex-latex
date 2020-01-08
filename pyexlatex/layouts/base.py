@@ -1,9 +1,11 @@
+from typing import Any
+
 from pyexlatex.models.item import ItemBase
 from pyexlatex.models.section.base import TextAreaMixin
 
 
 class LayoutBase(TextAreaMixin, ItemBase):
-    content = None  # should be overridden in the subclass
+    content: Any = None  # should be overridden in the subclass
 
     def __init__(self, content, **kwargs):
         super().__init__(None, content, **kwargs)

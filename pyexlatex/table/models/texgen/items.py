@@ -1,4 +1,4 @@
-from typing import Optional, Sequence, Union
+from typing import Optional, Sequence, Union, List
 import pandas as pd
 from pyexlatex.models.item import Item
 from pyexlatex.models.containeritem import ContainerItem
@@ -32,10 +32,7 @@ class Tabular(ContainerItem, Item, ReprMixin, BaseTabular):
         if not isinstance(content, (list, tuple)):
             content = [content]
         self.align = self._get_columns_alignment_from_passed_align(content, align)
-
-        # TODO: really this should be cmidrule and others that require booktabs, but need to get all nested table
-        # TODO: structure aggregating data.
-        self.add_package('booktabs')
+        self.add_package('booktabs')  # Remove this once booktabs is added in cmidrule and others
         self.add_data_from_content(self.align)
         super().__init__(self.name, content, env_modifiers=self._wrap_with_braces(str(self.align)))
 
@@ -76,12 +73,13 @@ class ThreePartTable(TextAreaBase, ReprMixin):
     def from_panel_collection(cls, panel_collection: PanelCollection, *args, tabular_kwargs={}, **kwargs):
         tabular = Tabular.from_panel_collection(panel_collection, **tabular_kwargs)
 
+        caption: Optional[Caption]
         if panel_collection.name is not None:
             caption = Caption(panel_collection.name)
         else:
             caption = None
 
-        return cls(tabular, caption=caption, *args, **kwargs)
+        return cls(tabular, caption=caption, **kwargs)
 
 class Table(TextAreaBase, ReprMixin):
     name = 'table'
@@ -148,7 +146,7 @@ class LTable(Table):
 
 class TableDocument(Document):
 
-    def __init__(self, content: Table, packages: [Package]=None, landscape: bool=False):
+    def __init__(self, content: Table, packages: List[Package]=None, landscape: bool=False):
         from pyexlatex.table.models.texgen.packages import default_packages
 
         if packages is None:

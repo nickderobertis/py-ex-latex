@@ -1,6 +1,8 @@
 from typing import Iterable, Any
 
-# TODO: refactor to simplify
+# TODO: refactor extract logic to simplify
+#
+# logic.extract.by_attr and logic.extract.by_type are very similar, could be refactored
 
 class CouldNotExtractObjsWithAttrException(Exception):
     pass

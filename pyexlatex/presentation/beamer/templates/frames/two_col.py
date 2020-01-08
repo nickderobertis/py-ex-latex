@@ -1,4 +1,6 @@
-from typing import Sequence, List, Union
+from typing import Sequence, List, TYPE_CHECKING
+if TYPE_CHECKING:
+    from pyexlatex.models.item import ItemBase
 from pyexlatex.presentation.beamer.templates.frames.grid import GridFrame, Frame
 from pyexlatex.figure.models.graphic import Graphic
 from pyexlatex.models.format.fills import VFill
@@ -35,10 +37,11 @@ class TwoGraphicBase:
         self.content = content
         self.graphics = graphics
         self.graphics_on_right = graphics_on_right
-        super().__init__(self.left_content, self.right_content, **frame_kwargs)
+        super().__init__(self.left_content, self.right_content, **frame_kwargs)  # type: ignore
 
     @property
-    def graphic_contents(self) -> List[Union[Graphic, VFill]]:
+    def graphic_contents(self) -> List['ItemBase']:
+        graphic_contents: List['ItemBase']
         graphic_contents = [Centering(), VFill()]
         for filepath_or_graphic in self.graphics:
             if isinstance(filepath_or_graphic, str):

@@ -23,7 +23,7 @@ class DataTable(TableSection, ReprMixin):
     repr_cols = ['values_table', 'column_labels', 'row_labels']
 
     def __init__(self, values_table: ValuesTable, column_labels: LabelTable=None, row_labels: LabelTable=None,
-                 top_left_corner_labels: Union[Label, str] = None, break_size_adjustment: Optional[str] = None):
+                 top_left_corner_labels: LabelClassOrStrs = None, break_size_adjustment: Optional[str] = None):
         self.values_table = values_table
         self.column_labels = column_labels
         self.row_labels = row_labels
@@ -246,19 +246,23 @@ def _create_header_label_collection_list(extra_header: LabelClassOrStrs, values_
         if len(extra_header) != values_table.num_columns:
             raise ValueError(f'passed extra header has {len(extra_header)} columns, while table has '
                              f'{values_table.num_columns} columns')
+
+        underline_str_arg: Optional[str]
         if underline:
-            underline_arg = f'0-{len(extra_header) - 1}'
+            underline_str_arg = f'0-{len(extra_header) - 1}'
         else:
-            underline_arg = None
-        return [LabelCollection.from_str_list(extra_header, underline=underline_arg)]
+            underline_str_arg = None
+        return [LabelCollection.from_str_list(extra_header, underline=underline_str_arg)]
 
     # Got a string or latex item
 
     # create multicolumn label
     label = Label(extra_header, span=values_table.num_columns)
+
     # set underline
+    underline_int_arg: Optional[int]
     if underline:
-        underline_arg = 0  # place an underline under the singular label
+        underline_int_arg = 0  # place an underline under the singular label
     else:
-        underline_arg = None  # no underline
-    return [LabelCollection([label], underline=underline_arg)]
+        underline_int_arg = None  # no underline
+    return [LabelCollection([label], underline=underline_int_arg)]

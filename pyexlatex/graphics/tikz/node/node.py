@@ -1,7 +1,8 @@
 import uuid
-from typing import Tuple, Optional, Sequence, Union, TYPE_CHECKING
+from typing import Tuple, Optional, Union, TYPE_CHECKING, Any, List
+
 if TYPE_CHECKING:
-    from pyexlatex.presentation.beamer.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay.overlay import Overlay
 
 from pyexlatex.graphics.tikz.item import TikZItem
 from pyexlatex.graphics.tikz.node.position.position import NodePosition
@@ -13,16 +14,17 @@ class Node(TikZItem):
     """
     Represents a location in a graphic, but can also have a style and text, e.g. rectangle filled with text
     """
+    label: Optional[str]
 
-    def __init__(self, contents: Optional = None, location: Optional[Union[Tuple[int, int], DirectionBase, str]] = None,
+    def __init__(self, contents: Optional[Any] = None, location: Optional[Union[Tuple[int, int], DirectionBase, str]] = None,
                  label: Optional[str] = None,
-                 options: Optional[Sequence[str]] = None,
+                 options: Optional[List[str]] = None,
                  overlay: Optional['Overlay'] = None):
         self.add_data_from_content(location)
         self.location = NodePosition(location)
         self.add_data_from_content(contents)
         self.content = format_contents(contents)
-        self.label = label if label is not None else uuid.uuid4()
+        self.label = label if label is not None else str(uuid.uuid4())
 
         options = self._get_list_copy_from_list_or_none(options)
         if self.location.relative_location:

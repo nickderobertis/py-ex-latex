@@ -1,4 +1,5 @@
 import re
+from typing import List
 
 from mixins.repr import ReprMixin
 from pyexlatex.models.item import ItemBase
@@ -42,7 +43,7 @@ class ColumnAlignment(ReprMixin, ItemBase):
 class ColumnsAlignment(ReprMixin, ContainerItem):
     repr_cols = ['aligns']
 
-    def __init__(self, aligns: [ColumnAlignment]= None, num_columns: int=None):
+    def __init__(self, aligns: List[ColumnAlignment] = None, num_columns: int=None):
         self.aligns = ColumnsAlignment._get_aligns(aligns, num_columns)
         self.add_data_from_content(self.aligns)
 
@@ -54,7 +55,7 @@ class ColumnsAlignment(ReprMixin, ContainerItem):
             yield align
 
     @staticmethod
-    def _get_aligns(aligns: [ColumnAlignment]= None, num_columns: int=None):
+    def _get_aligns(aligns: List[ColumnAlignment] = None, num_columns: int=None):
         if aligns is None and num_columns is None:
             raise ValueError('must pass aligns or num columns')
 
@@ -65,6 +66,10 @@ class ColumnsAlignment(ReprMixin, ContainerItem):
         # if we don't know how many columns, must assume passed number of aligns is correct
         if num_columns is None:
             return aligns
+
+        # Shouldn't hit this block, but needed for typing
+        if aligns is None:
+            raise ValueError('must pass aligns or num columns')
 
         # number of alignments matches number of columns. no extra processing needed
         if len(aligns) == num_columns:

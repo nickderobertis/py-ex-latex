@@ -1,7 +1,9 @@
 from pyexlatex.models.mixins import StringAdditionMixin
 from pyexlatex.models.format.breaks import LineBreak
 
-# TODO: more flexible. Currently just passes full strings
+# TODO: Make new column types more flexible.
+#
+# Currently just passes full strings
 
 class NewColumnTypes(StringAdditionMixin):
 

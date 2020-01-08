@@ -1,7 +1,8 @@
-from typing import Sequence, Tuple, Optional, Union, TYPE_CHECKING
+from typing import Sequence, Tuple, Optional, Union, TYPE_CHECKING, List
+
 if TYPE_CHECKING:
-    from pyexlatex.presentation.beamer.overlay import Overlay
-    from pyexlatex.graphics.tikz import Node
+    from pyexlatex.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.graphics.tikz.node.node import Node
 from pyexlatex.graphics.tikz.path import SpecificPath
 
 
@@ -14,7 +15,7 @@ class Arrow(SpecificPath):
 
     def __init__(self, from_: Union[Tuple[int, int], 'Node'], to: Union[Tuple[int, int], 'Node'],
                  double_sided: bool = False,
-                 options: Optional[Sequence[str]] = None,
+                 options: Optional[List[str]] = None,
                  overlay: Optional['Overlay'] = None):
         self.from_ = from_
         self.to = to

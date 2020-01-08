@@ -18,7 +18,7 @@ class DimAndRevealListItem(ListItem):
     """
     is_ListItem = True  # so that passing within lists will treat as a list item
 
-    def __init__(self, contents, dim: bool = True, opacity: float = 0.3, **kwargs):
+    def __init__(self, contents, dim: bool = True, opacity: float = 0.3):
         self.dim = dim
         dim_ov = Overlay([UntilEnd(NextWithoutIncrement(1))])
         next_ov = Overlay([UntilEnd(NextWithIncrement())])
@@ -26,7 +26,7 @@ class DimAndRevealListItem(ListItem):
         if dim:
             contents = TextColor(contents, 'black', opacity=opacity, overlay=dim_ov)
 
-        super().__init__(contents, overlay=next_ov, **kwargs)
+        super().__init__(contents, overlay=next_ov)
 
     def convert_to_regular_item(self):
         if self.dim:
@@ -50,12 +50,11 @@ class DimAndRevealListItems(VerticalFillMixin, ContainerItem, ItemBase):
     is_ListBase = True  # so that passing within lists will treat as a list
 
     def __init__(self, contents: Sequence, dim_last_item: bool = False, opacity: float = 0.3,
-                 vertical_fill: bool = False, dim_earlier_items: bool = True, **item_kwargs):
+                 vertical_fill: bool = False, dim_earlier_items: bool = True):
         self.orig_contents = contents
         self.dim_last_item = dim_last_item
         self.dim_earlier_items = dim_earlier_items
         self.opacity = opacity
-        self.item_kwargs = item_kwargs
         self.vertical_fill = vertical_fill
         self.add_data_from_content(contents)
         self.contents = self._get_contents()
@@ -71,13 +70,12 @@ class DimAndRevealListItems(VerticalFillMixin, ContainerItem, ItemBase):
                         item,
                         opacity=self.opacity,
                         dim=self.dim_earlier_items,
-                        **self.item_kwargs
                     )
                 )
 
         if not self.dim_last_item:
             output[-1] = DimAndRevealListItem(
-                self.orig_contents[-1], dim=False, opacity=self.opacity, **self.item_kwargs
+                self.orig_contents[-1], dim=False, opacity=self.opacity
             )
         output = self.vertically_space_content(output)
 

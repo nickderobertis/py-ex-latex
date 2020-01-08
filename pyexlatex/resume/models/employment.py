@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Any
 from pyexlatex.models.item import Item
 from pyexlatex.models.containeritem import ContainerItem
 from pyexlatex.models.lists.item import ListItem
@@ -9,7 +9,7 @@ class Employment(ContainerItem, Item):
     name = 'employment'
 
     def __init__(self, contents, company_name: str, employed_dates: str, job_title: str, location: str,
-                 extra_contents: Optional = None, prevent_page_break: bool = True):
+                 extra_contents: Optional[Any] = None, prevent_page_break: bool = True):
         self.company_name = company_name
         self.employed_dates = employed_dates
         self.job_title = job_title

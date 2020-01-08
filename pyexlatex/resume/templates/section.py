@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union, List
 import pyexlatex as pl
 from pyexlatex.models.format.paragraph.multicol import MultiColumn
 
@@ -8,7 +8,7 @@ class SpacedSection(pl.Template):
     A section which appropriately spaces content for a resume.
     """
 
-    def __init__(self, contents, title: Optional[str] = None, end_adjustment: float = -0.2,
+    def __init__(self, contents, title: str, end_adjustment: float = -0.2,
                  num_cols: int = 1):
         self.end_adjustment = end_adjustment
         self.num_cols = num_cols
@@ -16,7 +16,7 @@ class SpacedSection(pl.Template):
         if not isinstance(contents, (list, tuple)):
             contents = [contents]
 
-        all_contents = [pl.VSpace(0.2)]
+        all_contents: Union[List[Union[pl.VSpace, str]], MultiColumn] = [pl.VSpace(0.2)]
         for content in contents:
             all_contents.append(content)
             all_contents.append('')

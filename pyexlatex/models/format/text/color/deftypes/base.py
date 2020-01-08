@@ -5,7 +5,7 @@ from pyexlatex.models.item import MultiOptionSimpleItem
 
 
 class ColorDefinition(MultiOptionSimpleItem):
-    definition_type = None
+    definition_type: Optional[str] = None
     name = 'definecolor'
     equal_attrs = [
         'color_content',

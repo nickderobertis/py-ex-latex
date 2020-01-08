@@ -103,7 +103,7 @@ def csv_to_raw_latex(infile, csvstring=False, missing_rep=" - ", formatstr='{:.3
     for i, line in enumerate(miss_csv_list):
         line_string = ''
         for j, item in enumerate(line):
-            if j is not 0: #don't put an & before the first item in line
+            if j != 0: #don't put an & before the first item in line
                 line_string += ' & '
             #LaTeX character fixes
             if skipfix:
@@ -126,7 +126,7 @@ def csv_to_raw_latex(infile, csvstring=False, missing_rep=" - ", formatstr='{:.3
             item = item.replace('\n','')
             line_string += item
         line_string += " \\\ \n"
-        if i is 0: #on the first line, remove quotes from names
+        if i == 0: #on the first line, remove quotes from names
             line_string = line_string.replace('''"''','') #strip out quotes
         latex_list.append(line_string)
 

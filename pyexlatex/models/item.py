@@ -1,6 +1,7 @@
-from typing import Optional, Union, TYPE_CHECKING
+from typing import Optional, Union, TYPE_CHECKING, overload
+
 if TYPE_CHECKING:
-    from pyexlatex.presentation.beamer.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay.overlay import Overlay
     from pyexlatex.models.package import Package
 from copy import deepcopy
 from mixins.attrequals import EqOnAttrsMixin, EqHashMixin
@@ -43,8 +44,15 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
         self.init_data()
         super().__init__()
 
-    def _wrap_with(self, item: Optional[str], begin_wrap: str, end_wrap: str,
-                   format_contents: bool = True) -> Optional[str]:
+    @overload
+    def _wrap_with(self, item: str, begin_wrap: str, end_wrap: str,
+                   format_contents: bool = True) -> str:
+        ...
+    @overload
+    def _wrap_with(self, item: None, begin_wrap: str, end_wrap: str,
+                   format_contents: bool = True) -> None:
+        ...
+    def _wrap_with(self, item, begin_wrap, end_wrap, format_contents=True):
         if format_contents:
             fmt = self._format_content
         else:
@@ -55,10 +63,22 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
 
         return f'{begin_wrap}{fmt(item)}{end_wrap}'
 
-    def _wrap_with_bracket(self, item: Optional[str]) -> Optional[str]:
+    @overload
+    def _wrap_with_bracket(self, item: str) -> str:
+        ...
+    @overload
+    def _wrap_with_bracket(self, item: None) -> None:
+        ...
+    def _wrap_with_bracket(self, item):
         return self._wrap_with(item, '[', ']')
 
-    def _wrap_with_braces(self, item: Optional[str]) -> Optional[str]:
+    @overload
+    def _wrap_with_braces(self, item: str) -> str:
+        ...
+    @overload
+    def _wrap_with_braces(self, item: None) -> None:
+        ...
+    def _wrap_with_braces(self, item):
         return self._wrap_with(item, '{', '}')
 
     @staticmethod
@@ -71,7 +91,7 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
         return fmt(content)
 
     @staticmethod
-    def _get_list_copy_from_list_or_none(list_or_none: Optional[list]):
+    def _get_list_copy_from_list_or_none(list_or_none: Optional[list]) -> list:
         if list_or_none is None:
             return []
         return deepcopy(list_or_none)

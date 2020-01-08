@@ -1,6 +1,6 @@
 from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from pyexlatex.graphics.tikz import Node
+    from pyexlatex.graphics.tikz.node.node import Node
 from pyexlatex.models.item import ItemBase
 from pyexlatex.models.package import Package
 from pyexlatex.graphics.tikz.library import TikZLibrary
@@ -12,7 +12,7 @@ class DirectionBase(ItemBase):
     """
 
     name = '<invalid, do not use DirectionBase directly>'
-    is_vertical_direction = None
+    is_vertical_direction: Optional[bool] = None
 
     def __init__(self, direction: Optional['DirectionBase'] = None, of: Optional['Node'] = None,
                  by: Optional[float] = None, combined_direction: bool = True):
@@ -124,8 +124,11 @@ class DirectionBase(ItemBase):
 
         if self.of is not None:
             label = self.of.label
-        else:
+        elif self.child_direction is not None and self.child_direction.of is not None:
             label = self.child_direction.of.label
+        else:
+            return None
+
         return label
 
 
@@ -135,9 +138,9 @@ class DirectionBase(ItemBase):
             return ''
 
         out_str = ''
-        if self.vertical_by is not None:
+        if self.vertical_by_str is not None:
             out_str += self.vertical_by_str
-        if self.horizontal_by is not None:
+        if self.horizontal_by_str is not None:
             out_str += self.horizontal_by_str
 
         return out_str
@@ -222,8 +225,12 @@ class Left(HorizontalDirection):
 
 
 def _is_vertical_direction_and_has_by(direction: 'DirectionBase') -> bool:
+    if direction.is_vertical_direction is None:
+        return False
     return direction.is_vertical_direction and direction.by is not None
 
 
 def _is_horizontal_direction_and_has_by(direction: 'DirectionBase') -> bool:
+    if direction.is_vertical_direction is None:
+        return False
     return not direction.is_vertical_direction and direction.by is not None

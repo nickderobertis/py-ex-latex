@@ -4,10 +4,11 @@ from pyexlatex.models.item import (
     IsSpecificClassMixin,
     IsLatexItemMixin,
     _basic_item_str,
-    _multi_option_item_str
+    _multi_option_item_str,
+    ItemBase
 )
 
-class LineSpacing(IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin):
+class LineSpacing(ItemBase):
 
     def __init__(self, line_spacing: float):
         self.logical_line_spacing = line_spacing

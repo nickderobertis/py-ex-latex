@@ -19,9 +19,7 @@ class ModifiedPicture(Template):
         super().__init__()
 
     def _get_graphic(self) -> Union[Graphic, TikZPicture]:
-        if hasattr(self.picture, 'is_TikZPicture') and self.picture.is_TikZPicture:
-            return self.picture
-        if hasattr(self.picture, 'is_Graphic') and self.picture.is_Graphic:
+        if isinstance(self.picture, (TikZPicture, Graphic)):
             return self.picture
 
         # Assuming str of filepath was passed
@@ -32,7 +30,7 @@ class ModifiedPicture(Template):
         image_node = Node(self._get_graphic(), options=['anchor=south west'])
 
         if self.add_grid:
-            # TODO: use models
+            # TODO: use models in drawing help lines grid
             draw_items = [
                 r'\draw[help lines,xstep=.1,ystep=.1] (0,0) grid (1,1);',
                 r'\foreach \x in {0,1,...,9} { \node [anchor=north] at (\x/10,0) {0.\x}; }',

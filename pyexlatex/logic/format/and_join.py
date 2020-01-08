@@ -1,4 +1,4 @@
-from typing import Sequence, List
+from typing import Sequence, List, Union
 from pyexlatex.models.format.join import Joined
 
 
@@ -27,7 +27,7 @@ def join_with_commas_and_and_output_list(items: Sequence[str]) -> List[str]:
         return [items[0], ' and ', items[1]]
 
     # Length 3+, handled the same, commas for all and also and on the last join
-    out_list = []
+    out_list: List[Union[str, Joined]] = []
     for item in items[:-1]:
         out_list.append(Joined([item, ', ']))
     out_list[-1] = Joined([items[-2], ', and '])  # remove comma after last item added, replace with comma and and

@@ -1,6 +1,7 @@
-from typing import Sequence, Tuple, Optional, Union, List, TYPE_CHECKING
+from typing import Sequence, Tuple, Optional, Union, List, TYPE_CHECKING, Any
+
 if TYPE_CHECKING:
-    from pyexlatex.presentation.beamer.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay.overlay import Overlay
 from pyexlatex.graphics.tikz.node.node import Node
 from pyexlatex.models.item import ItemBase
 from pyexlatex.graphics.tikz.node.position.directions import (
@@ -17,10 +18,11 @@ class Shape(TextAreaMixin, ItemBase):
     Base class for creating individual shape classes, not intended to be used directly.
     """
     shape_name = '<Do not use Shape directly, set shape_name in subclass>'
+    text_node: Optional[Node]
 
-    def __init__(self, shape_options: Optional[Sequence[str]] = None, text_options: Optional[Sequence[str]] = None,
+    def __init__(self, shape_options: Optional[List[str]] = None, text_options: Optional[List[str]] = None,
                  offset: Tuple[int, int] = (0, 0),
-                 contents: Optional = None, content_position: str = 'center', content_offset: Optional[float] = None,
+                 contents: Optional[Any] = None, content_position: str = 'center', content_offset: Optional[float] = None,
                  **kwargs):
         self.content_position = content_position.lower()
         self.content_offset = content_offset
@@ -127,5 +129,5 @@ class Shape(TextAreaMixin, ItemBase):
         return _build(self.contents)
 
     @property
-    def label(self) -> str:
+    def label(self) -> Optional[str]:
         return self.shape_node.label

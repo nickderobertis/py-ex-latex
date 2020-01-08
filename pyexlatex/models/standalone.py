@@ -14,7 +14,7 @@ class Standalone(DocumentBase):
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package] = None,
                  pre_env_contents: Optional[ItemOrListOfItems] = None,
-                 font_size: Optional[float] = None, doc_class_options: Optional[Sequence[str]] = None,
+                 font_size: Optional[float] = None, doc_class_options: Optional[List[str]] = None,
                  pre_output_func: Optional[Callable] = None):
 
         self.document_class_obj = DocumentClass(

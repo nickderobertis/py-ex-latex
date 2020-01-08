@@ -3,8 +3,10 @@ from pyexlatex.models.section.base import TextAreaMixin
 from pyexlatex.models.item import SimpleItem
 
 
-# TODO: update all of this after getting a better understanding of how boxes work and the syntax.
-# TODO: see: https://en.wikibooks.org/wiki/LaTeX/Boxes
+# TODO: better implementation of LaTeX boxes
+#
+# Update all of this after getting a better understanding of how boxes work and the syntax.
+# See: https://en.wikibooks.org/wiki/LaTeX/Boxes
 class BoxBase(TextAreaMixin, SimpleItem):
     name = '<unimplemented, do not use BoxBase directly, use a subclass>'
 

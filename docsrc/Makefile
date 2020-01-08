@@ -15,16 +15,21 @@ help:
 .PHONY: help Makefile
 
 autodoc:
-	@sphinx-apidoc -o ./source/api "../$(SPHINXPROJ)"
+	@sphinx-apidoc -M -o ./source/api -t ./apidoc/templates "../$(SPHINXPROJ)"
 
 cleandoc:
 	@rm -rf ./source/api
 	@rm -rf ./source/stubs
 	@rm -rf ./build
+	@rm -rf ./source/auto_examples
+	@rm -rf ../_examples
+	@rm -rf ./source/binder/requirements.txt
 
 github:
-	@make doctest
 	@make cleandoc
+	@./binder_requirements.sh
+	@./nb-examples.sh
+	@make doctest
 	@make autodoc
 	@make html
 	@cp -a build/html/. ../docs

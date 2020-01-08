@@ -17,4 +17,4 @@ _direct_default_packages = [
     Package('fontenc', modifier_str='T1'),  # allows printing of > and <
 ]
 
-default_packages = [Package(package_str) for package_str in _default_package_strs] + _direct_default_packages
+default_packages = [Package(package_str) for package_str in _default_package_strs] + _direct_default_packages  # type: ignore

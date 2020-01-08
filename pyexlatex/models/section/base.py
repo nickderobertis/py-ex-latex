@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Type
 from pyexlatex.models.item import Item
 from mixins.repr import ReprMixin
 from pyexlatex.logic.format.contents import format_contents as fmt
@@ -13,7 +13,7 @@ class TextAreaMixin(ContainerItem):
     Mixin for extracting data from content then formatting it, regardless of the data type passed
     """
     name = 'textarea'
-    next_level_down_class = None  # once subclassed, will be overridden with the next level down text area class
+    next_level_down_class: Optional[Type['TextAreaBase']] = None  # once subclassed, will be overridden with the next level down text area class
 
     def __init__(self, name, contents, label: Optional[str] = None, **kwargs):
         self.add_data_from_content(contents)

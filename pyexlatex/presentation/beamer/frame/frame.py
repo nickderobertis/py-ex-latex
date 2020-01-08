@@ -20,7 +20,7 @@ class Frame(TextAreaBase):
             content = deepcopy(content)  # don't modify content inplace
 
         if self.title is not None:
-            content.insert(0, FrameTitle(title))
+            content.insert(0, FrameTitle(self.title))
 
         self.add_data_from_content(content)
 
@@ -44,5 +44,5 @@ class Frame(TextAreaBase):
         if not modifiers:
             return ''
 
-        modifiers = ', '.join(modifiers)
-        return self._wrap_with_bracket(modifiers)
+        modifiers_str = ', '.join(modifiers)
+        return self._wrap_with_bracket(modifiers_str)

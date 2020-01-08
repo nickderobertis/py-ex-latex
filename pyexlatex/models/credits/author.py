@@ -1,4 +1,4 @@
-from typing import Optional, Sequence, Union
+from typing import Optional, Sequence, Union, List
 from pyexlatex.models.item import SimpleItem
 from pyexlatex.models.credits.institution.inst import Inst
 from pyexlatex.models.credits.institution.institute import Institutes
@@ -6,6 +6,7 @@ from pyexlatex.models.credits.institution.institute import Institutes
 
 class Author(SimpleItem):
     name = 'author'
+    institution_nums: List[int]
 
     def __init__(self, authors: Union[str, Sequence[str]], short_author: Optional[str] = 'auto',
                  institutions: Optional[Sequence[Sequence[str]]] = None, short_institution: Optional[str] = None):

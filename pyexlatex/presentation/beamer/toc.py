@@ -11,6 +11,8 @@ class TableOfContents(NoOptionsNoContentsItem):
         super().__init__(self.name, modifiers=self.options_str, **kwargs)
 
     @property
-    def options_str(self) -> str:
+    def options_str(self) -> Optional[str]:
+        if self.options is None:
+            return None
         options_str = ', '.join(self.options)
         return self._wrap_with_bracket(options_str)

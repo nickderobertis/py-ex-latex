@@ -29,6 +29,7 @@ class TitlePage(Template):
         self.empty_page_style = empty_page_style
         self.title = title
 
+        author: Optional[str]
         if authors is not None:
             author = join_with_commas_and_and(authors)
         else:
@@ -75,7 +76,7 @@ class CustomTitlePage(Template):
     any point in a document, and there may be multiple.
     """
 
-    def __init__(self, title: str, abstract: Optional[str] = None, title_relative_size: int = 3,
+    def __init__(self, title: Optional[str], abstract: Optional[str] = None, title_relative_size: int = 3,
                  gap_after_title_pt: int = 35, extra_lines: Optional[Sequence] = None,
                  next_page_number: Optional[int] = None):
         self.title = title

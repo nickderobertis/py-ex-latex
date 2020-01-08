@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List
 from pyexlatex.texgen import bibtex_str
 from pyexlatex.models.documentitem import DocumentItem
 from mixins.repr import ReprMixin
@@ -7,8 +7,8 @@ class BibTexEntryBase(DocumentItem, ReprMixin):
     is_BibTexEntry = True
     item_type = 'notimplemented'
     repr_cols = ['item_accessor', 'fields']
-    required_attrs = []
-    optional_attrs = []
+    required_attrs: List[str] = []
+    optional_attrs: List[str] = []
 
     def __init__(self, item_accessor: str):
         self.item_accessor = item_accessor

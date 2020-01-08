@@ -1,6 +1,6 @@
 from typing import List, Union, Sequence, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from pyexlatex.presentation.beamer.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay.overlay import Overlay
 import posixpath
 import os
 
@@ -18,7 +18,7 @@ class Graphic(SimpleItem):
     """
     name = 'includegraphics'
 
-    def __init__(self, filepath, width: Union[str, float] = 1.0, cache: bool = True, options: Sequence[str] = None,
+    def __init__(self, filepath, width: Union[str, float] = 1.0, cache: bool = True, options: List[str] = None,
                  overlay: Optional['Overlay'] = None):
         """
 

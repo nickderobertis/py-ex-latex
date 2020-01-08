@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, List, Sequence
 
 from pyexlatex.table.models.panels.collection import PanelCollection
 from pyexlatex.table.models.table.row import Row
@@ -6,7 +6,7 @@ from pyexlatex.table.models.texgen.lines import TopRule, MidRule, BottomRule, Ta
 from pyexlatex.models.format.breaks import TableLineBreak, LineBreak
 
 def build_tabular_content_from_panel_collection(panel_collection: PanelCollection, mid_rule=True):
-    rows: [Row, TableLine] = _build_tabular_rows_from_panel_collection(
+    rows: List[Union[Row, TableLine]] = _build_tabular_rows_from_panel_collection(
         panel_collection=panel_collection,
         mid_rule=mid_rule
     )
@@ -18,7 +18,7 @@ def build_tabular_content_from_panel_collection(panel_collection: PanelCollectio
 
 
 def _build_tabular_rows_from_panel_collection(panel_collection: PanelCollection, mid_rule=True):
-    rows: [Row, TableLine] = [TopRule()]
+    rows: List[Union[Row, TableLine]] = [TopRule()]
     panels = list(panel_collection.iterpanels())
     for i, panel in enumerate(panels):
         rows += panel.rows
@@ -34,7 +34,7 @@ def _build_tabular_rows_from_panel_collection(panel_collection: PanelCollection,
     return rows
 
 
-def _build_tabular_str_from_rows_and_lines(rows_and_lines: [Row, TableLine], break_size_adjustment: str=None):
+def _build_tabular_str_from_rows_and_lines(rows_and_lines: Sequence[Union[Row, TableLine]], break_size_adjustment: str=None):
     output_str = ''
     for i, row_or_line in enumerate(rows_and_lines):
         end = _get_break_by_type_of_instance(row_or_line, break_size_adjustment=break_size_adjustment)

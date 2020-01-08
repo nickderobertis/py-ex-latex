@@ -1,4 +1,4 @@
-from typing import Optional, Sequence
+from typing import Optional, List
 
 from pyexlatex.models.item import SimpleItem
 from pyexlatex.models.containeritem import ContainerItem
@@ -9,7 +9,7 @@ class DocumentClass(ContainerItem, SimpleItem):
     name = 'documentclass'
 
     def __init__(self, document_type: str = 'article', font_size: Optional[float] = None,
-                 num_columns: Optional[int] = None, options: Optional[Sequence[str]] = None):
+                 num_columns: Optional[int] = None, options: Optional[List[str]] = None):
         manager = DocumentClassTypesManager()
         self.document_type = manager.get_class_type_by_name(document_type)
         self.add_data_from_content(self.document_type)
@@ -27,7 +27,10 @@ class DocumentClass(ContainerItem, SimpleItem):
             options.append(self._num_columns_str)
 
         options_str = ', '.join(options)
-        return self._wrap_with_bracket(options_str)
+        result = self._wrap_with_bracket(options_str)
+        if result is None:  # for type checking, shouldn't actually hit here
+            return ''
+        return result
 
     def _validate(self):
         if self.font_size is not None:

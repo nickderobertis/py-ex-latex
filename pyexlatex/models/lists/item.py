@@ -1,6 +1,6 @@
 from typing import Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from pyexlatex.presentation.beamer.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay.overlay import Overlay
 from pyexlatex.models.item import NoBracesItem
 from pyexlatex.models.section.base import TextAreaMixin
 from mixins.repr import ReprMixin

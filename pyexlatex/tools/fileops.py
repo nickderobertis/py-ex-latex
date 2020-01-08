@@ -29,8 +29,9 @@ def remove_if_exists(filepath: str, retries: int = 3, sleep_time: float = 0.1):
     )
 
 
-def move_all_if_exists(inpaths: Iterable[str], outfolder: str):
-    [move_if_exists(inpath, outfolder) for inpath in inpaths]
+def move_all_if_exists(inpaths: Iterable[str], outfolder: str) -> None:
+    for inpath in inpaths:
+        move_if_exists(inpath, outfolder)
 
 
 def _run_func_handling_file_modify_exceptions(func: Callable, filepath: str, *args,

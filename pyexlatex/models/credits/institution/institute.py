@@ -1,4 +1,4 @@
-from typing import Optional, Sequence, List, Union
+from typing import Optional, Sequence, List, Union, Dict
 from pyexlatex.models.item import SimpleItem, ItemBase
 from pyexlatex.models.credits.institution.inst import Inst
 from pyexlatex.models.format.breaks import TableLineBreak
@@ -32,7 +32,7 @@ class Institutes(SimpleItem):
     def content_objs(self) -> List[Union['Institution', And]]:
         # Eliminate duplicates in institutions, displaying unique ordered institutions
         count = 0
-        counted_institutions = {}
+        counted_institutions: Dict[Sequence[str], int] = {}
         for inst_lines in self.institutions:
             inst_lines = tuple(inst_lines)
             if inst_lines not in counted_institutions:

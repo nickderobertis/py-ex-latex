@@ -1,10 +1,10 @@
 from typing import Union, List, Tuple, Dict, Optional
 
-from pyexlatex.models.item import Item
+from pyexlatex.models.item import Item, ItemBase
 from pyexlatex.models.documentitem import DocumentItem
 
-AnyItem = Union[Item, DocumentItem]
-ListOfItems = List[AnyItem]
+AnyItem = ItemBase
+ListOfItems = List[ItemBase]
 DictOfItems = Dict[str, AnyItem]
 ListOrDictOfItems = Union[ListOfItems, DictOfItems]
 ListOrDictOrItem = Union[ListOrDictOfItems, AnyItem]

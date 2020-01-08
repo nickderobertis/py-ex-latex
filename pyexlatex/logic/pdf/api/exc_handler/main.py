@@ -40,6 +40,9 @@ class APIExceptionHandler:
         )
 
         # TODO: handle other exceptions
+        #
+        # Not actually sure what this is for looking back at the code, but upon closer review
+        # perhaps some additional exception handling will be needed.
 
         if len(unhandled_exceptions) == len(self.exceptions):
             # was not able to handle any exceptions, so retrying would be of no use

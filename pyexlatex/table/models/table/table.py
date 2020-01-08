@@ -1,4 +1,4 @@
-from typing import Union, AnyStr, List, TYPE_CHECKING, Optional
+from typing import Union, AnyStr, List, TYPE_CHECKING, Optional, Dict
 import pandas as pd
 
 if TYPE_CHECKING:
@@ -24,6 +24,7 @@ class Table(DocumentItem, ReprMixin):
     but for more control, construct Panel objects and use Table.from_panel_list
     """
     repr_cols = ['caption', 'above_text', 'panels', 'below_text']
+    _align: Union['ColumnsAlignment', str]
 
     def __init__(self, panels: PanelCollection, caption: str=None, above_text: str=None, below_text: str=None,
                  align: str = None, mid_rules=True, landscape=False, label: Optional[str] = None):
@@ -56,8 +57,9 @@ class Table(DocumentItem, ReprMixin):
         from pyexlatex.logic.builder import build
         tex_obj = self.tex_obj(as_document=False)
 
-        # TODO: restructure lt module so that it works like others where items are tex generators
-        # TODO: until then, need to manually call build as it won't carry through to the separate tex generator
+        # TODO: restructure table module so that it works like others where items are tex generators
+        #
+        # Until then, need to manually call build as it won't carry through to the separate tex generator
         build(tex_obj)
 
         return str(tex_obj)
@@ -97,7 +99,7 @@ class Table(DocumentItem, ReprMixin):
         )
 
     @classmethod
-    def from_panel_list(cls, panels: [Panel], label_consolidation: str='object', enforce_label_order=True,
+    def from_panel_list(cls, panels: List[Panel], label_consolidation: str='object', enforce_label_order=True,
                         top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
                         pad_rows: int=1, pad_columns: int=1, caption: str=None, above_text: str=None,
                         below_text: str=None, align: str = None, mid_rules=True, landscape=False,
@@ -155,8 +157,8 @@ class Table(DocumentItem, ReprMixin):
         )
 
     @classmethod
-    def from_list_of_lists_of_dfs(cls, df_list_of_lists: [[pd.DataFrame]],
-                                  panel_names: [str]=None, shape: tuple=None,
+    def from_list_of_lists_of_dfs(cls, df_list_of_lists: List[List[pd.DataFrame]],
+                                  panel_names: List[str]=None, shape: tuple=None,
                                   include_columns=True, include_index=False,
                                   label_consolidation: str = 'str', enforce_label_order=True,
                                   top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
@@ -240,7 +242,7 @@ class Table(DocumentItem, ReprMixin):
         )
 
     @classmethod
-    def from_panel_name_df_dict(cls, panel_name_df_dict: {str: pd.DataFrame},
+    def from_panel_name_df_dict(cls, panel_name_df_dict: Dict[str, pd.DataFrame],
                                 include_columns=True, include_index=False,
                                 label_consolidation: str = 'str', enforce_label_order=True,
                                 top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
@@ -342,6 +344,6 @@ class Table(DocumentItem, ReprMixin):
 
 
 def _set_above_text(above_text):
-    # TODO: handle above text
+    # TODO: handle above text in tables
     if above_text is not None:
         raise NotImplementedError('will add above text in a future release')

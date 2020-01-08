@@ -15,6 +15,8 @@ replacement_dict.update({
 })
 
 class Replacer:
+    _first_letters: List[str]
+    _unique_full_first_letter_replacements: Dict[str, str]
 
     def __init__(self, replacement_dict: Dict[str, str], escape_next_character_characters: List[str]=None,
                  escape_until_same_next_character_characters: List[str]=None):
@@ -28,8 +30,16 @@ class Replacer:
                 character, until this same character is seen again, characters should not be replaced
         """
         self.replacement_dict = replacement_dict
-        self.escape_next_character_characters = escape_next_character_characters
-        self.escape_until_same_next_character_characters = escape_until_same_next_character_characters
+
+        if escape_next_character_characters is None:
+            self.escape_next_character_characters = []
+        else:
+            self.escape_next_character_characters = escape_next_character_characters
+
+        if escape_until_same_next_character_characters is None:
+            self.escape_until_same_next_character_characters = []
+        else:
+            self.escape_until_same_next_character_characters = escape_until_same_next_character_characters
 
     def replace(self, string: str) -> str:
         possible_replacement = ''
