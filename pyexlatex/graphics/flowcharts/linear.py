@@ -1,4 +1,4 @@
-from typing import Sequence, Union, Optional, List
+from typing import Sequence, Union, Optional, List, cast
 from copy import deepcopy
 from pyexlatex.models.item import ItemBase
 from pyexlatex.models.containeritem import ContainerItem
@@ -42,21 +42,21 @@ class LinearFlowchart(ContainerItem, ItemBase):
     def _get_nodes(self) -> List[Node]:
         out_nodes = []
         for i, item in enumerate(self.steps):
-            if hasattr(item, 'is_Node') and item.is_Node:
-                item: Node
+            if hasattr(item, 'is_Node') and item.is_Node:  # type: ignore
+                node_item: Node = cast(Node, item)
                 if i == 0:
-                    out_nodes.append(item)
+                    out_nodes.append(node_item)
                     continue
                 # If beyond the first element, need to create a new node with the same info, but with
                 # position relative to the last element
                 new_node = Node(
-                    contents=item.content,
+                    contents=node_item.content,
                     location=self.direction(of=out_nodes[i - 1]),
-                    label=item.label,
-                    options=item.options,
-                    overlay=item.overlay
+                    label=node_item.label,
+                    options=node_item.options,
+                    overlay=node_item.overlay
                 )
-                new_node.add_data_from_content(item)
+                new_node.add_data_from_content(node_item)
                 out_nodes.append(
                     new_node
                 )

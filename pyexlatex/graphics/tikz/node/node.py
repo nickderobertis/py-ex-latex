@@ -13,6 +13,7 @@ class Node(TikZItem):
     """
     Represents a location in a graphic, but can also have a style and text, e.g. rectangle filled with text
     """
+    label: Optional[str]
 
     def __init__(self, contents: Optional = None, location: Optional[Union[Tuple[int, int], DirectionBase, str]] = None,
                  label: Optional[str] = None,
