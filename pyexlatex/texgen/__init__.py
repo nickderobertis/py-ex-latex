@@ -1,6 +1,6 @@
 from typing import Dict, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
-    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay import Overlay
 
 
 def _include_graphics_str(filepath, width=r'\linewidth'):
@@ -13,9 +13,11 @@ def _bracket_modifier_str(modifiers: Optional[str] = None) -> str:
 
     return f'[{modifiers}]'
 
-def no_options_no_contents_str(item_name: str, overlay: Optional['Overlay'] = None) -> str:
+def no_options_no_contents_str(item_name: str, overlay: Optional['Overlay'] = None,
+                               modifiers: Optional[str] = None) -> str:
     overlay = overlay if overlay is not None else ""
-    return rf'\{item_name}{overlay}'
+    modifiers = modifiers if modifiers is not None else ""
+    return rf'\{item_name}{overlay}{modifiers}'
 
 
 def _no_braces_item_str(item_name, contents, overlay: Optional['Overlay'] = None) -> str:

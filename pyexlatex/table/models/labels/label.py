@@ -35,7 +35,7 @@ class Label(ReprMixin, RowAddMixin):
         if len(self) == 1:
             return str(latex_valid_value)
         else:
-            return str(MultiColumn(latex_valid_value, span=self.span, align=self.align))
+            return str(MultiColumn(latex_valid_value, span=self.span, align=self.align, add_table_line_break=False))
 
     def __len__(self):
         return self.span

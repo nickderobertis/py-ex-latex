@@ -10,7 +10,7 @@ from pyexlatex.typing import BytesListOrNone, StrList, BytesList, StrListOrNone
 
 def document_to_pdf_and_move(document, outfolder, image_paths: StrListOrNone = None, outname='figure', as_document=True,
                              move_folder_name='Figures', image_binaries: BytesListOrNone = None,
-                             run_bibtex: bool = False):
+                             run_bibtex: bool = False, date_time_move: bool = False):
 
     # Create tex file
     outname_tex = outname + '.tex'
@@ -26,6 +26,10 @@ def document_to_pdf_and_move(document, outfolder, image_paths: StrListOrNone = N
         outname_pdf = outname + '.pdf'
         outpath_pdf = os.path.abspath(os.path.join(outfolder, outname_pdf))
         latex_str_to_pdf_file(str(document), outpath_pdf, texinputs=tex_inputs, run_bibtex=run_bibtex)
+    if not date_time_move:
+        return
+
+    # Handle date/time move functionality
     new_outfolder = date_time_move_latex(outname, outfolder, folder_name=move_folder_name) #move table into appropriate date/number folder
 
     if image_paths and new_outfolder:

@@ -1,4 +1,6 @@
-from typing import List, Optional, Sequence
+from typing import List, Optional, Sequence, Union
+
+from pyexlatex.exc import NoPackageWithNameException
 from pyexlatex.models.documentitem import DocumentItem
 from pyexlatex.models.package import Package
 from mixins.repr import ReprMixin
@@ -7,11 +9,14 @@ from pyexlatex.models.references.bibtex.base import BibTexEntryBase
 
 
 class UniqueDataList(list):
+    """
+    A list where the items are always unique.
+    """
 
     def __init__(self, iterable):
         if iterable is None:
             iterable = []
-        return super().__init__(iterable)
+        super().__init__(iterable)
 
     def append(self, value):
         if value is None:
@@ -29,6 +34,61 @@ class UniqueDataList(list):
         return super().extend(new_items)
 
 
+class UniquePackagesList(UniqueDataList):
+    """
+    A unique data list that allows passing of just a string to represent a package
+    """
+
+    def __init__(self, packages: Optional[List[Union[Package, str]]] = None):
+        if packages is None:
+            packages = []
+
+        packages = self._as_packages(packages)
+
+        super().__init__(packages)
+
+    def _as_package(self, package: Union[Package, str]):
+        if isinstance(package, str):
+            return Package(package)
+
+        return package
+
+    def _as_packages(self, packages: Optional[List[Union[Package, str]]] = None):
+        return [self._as_package(pack) for pack in packages]
+
+    def append(self, package: Union[Package, str]):
+        if package is None:
+            return
+        package = self._as_package(package)
+        super().append(package)
+
+    def extend(self, packages: Optional[List[Union[Package, str]]] = None):
+        if packages is None:
+            return
+        packages = self._as_packages(packages)
+        super().extend(packages)
+
+    def get_by_name(self, name: str):
+        for package in self:
+            if package.matches_name(name):
+                return package
+        raise NoPackageWithNameException(name)
+
+    def delete_by_name(self, name: str):
+        new_packages = []
+        for package in self:
+            if not hasattr(package, 'matches_name'):
+                # Got something other than a package
+                # TODO: think about how to delete non-packages from packages
+                new_packages.append(package)  # No way to check if name matches, so just keep it
+            elif not package.matches_name(name):
+                new_packages.append(package)
+        if len(new_packages) == len(self):
+            raise NoPackageWithNameException(name)
+
+        super().__init__(new_packages)
+
+
 class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):
     repr_cols = [
         'filepaths',
@@ -36,7 +96,8 @@ class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):
         'end_document_items',
         'packages',
         'source_paths',
-        'references'
+        'references',
+        'flags'
     ]
     ignore_attrs = [
         'ignore_attrs',
@@ -52,20 +113,23 @@ class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):
         'end_document_items',
         'packages',
         'source_paths',
-        'references'
+        'references',
+        'flags'
     ]
 
     def __init__(self, filepaths: Optional[List[str]] = None, binaries: Optional[List[bytes]] = None, 
                  begin_document_items: Optional[List[DocumentItem]] = None, 
                  end_document_items: Optional[List[DocumentItem]] = None, packages: Optional[List[Package]] = None,
-                 source_paths: Optional[List[str]] = None, references: Optional[Sequence[BibTexEntryBase]] = None):
+                 source_paths: Optional[List[str]] = None, references: Optional[Sequence[BibTexEntryBase]] = None,
+                 flags: Optional[List[str]] = None):
         self.filepaths = UniqueDataList(filepaths)
         self.binaries = UniqueDataList(binaries)
         self.begin_document_items = UniqueDataList(begin_document_items)
         self.end_document_items = UniqueDataList(end_document_items)
-        self.packages = UniqueDataList(packages)
+        self.packages = UniquePackagesList(packages)
         self.source_paths = UniqueDataList(source_paths)
         self.references = UniqueDataList(references)
+        self.flags = UniqueDataList(flags)
 
     @property
     def attrs(self) -> List[str]:

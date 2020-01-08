@@ -1,15 +1,17 @@
 import os
-from typing import Union, List, Dict, Any
+from typing import Union, List, Dict, Any, TYPE_CHECKING
+if TYPE_CHECKING:
+    from matplotlib.pyplot import Axes, Figure as PltFigure
 
 from pyexlatex.figure.models.subfigure import Subfigure, Graphic
 from pyexlatex.models.documentitem import DocumentItem
-from pyexlatex.models import Item
+from pyexlatex.models.item import Item
 from pyexlatex.models.caption import Caption
 from pyexlatex.models.label import Label
 from pyexlatex.models.landscape import Landscape
 from pyexlatex.logic.builder import build_figure_content
 from pyexlatex.texgen.replacements.filename import latex_filename_replacements
-from matplotlib.pyplot import Axes, Figure as PltFigure
+
 from pyexlatex.models.commands.newenvironment import NewEnvironment
 from pyexlatex.models.commands.begin import Begin
 from pyexlatex.models.commands.end import End
@@ -18,7 +20,7 @@ from pyexlatex.models.containeritem import ContainerItem
 
 SubfigureOrGraphic = Union[Subfigure, Graphic]
 SubfiguresOrGraphics = List[SubfigureOrGraphic]
-PltFigureOrAxes = Union[Axes, PltFigure]
+PltFigureOrAxes = Union['Axes', 'PltFigure']
 PltFigureOrAxesNameDict = Dict[str, PltFigureOrAxes]
 
 class Figure(ContainerItem, Item):
@@ -207,12 +209,14 @@ class Figure(ContainerItem, Item):
             item_is_subfigure = False
             orig_graphic = self.subfigures[0]
 
+        orig_width = self.subfigures[0].width
+
         # Elevate caption of sub-figure if there is no figure caption
         if self.caption is None and item_is_subfigure:
             self.caption = self.subfigures[0].caption
 
-        # update width to whole page
-        graphic = Graphic(orig_graphic.filepaths[0], width=r'1.1\paperwidth')
+        # update width to original width
+        graphic = Graphic(orig_graphic.filepaths[0], width=orig_width)
 
         # need to turn off centering to cover whole page
         self.centering = False
@@ -220,7 +224,7 @@ class Figure(ContainerItem, Item):
         self.subfigures = [graphic]
 
 
-def _get_plt_figure_from_axes_or_figure(plt_axes_or_fig: PltFigureOrAxes) -> PltFigure:
+def _get_plt_figure_from_axes_or_figure(plt_axes_or_fig: PltFigureOrAxes) -> 'PltFigure':
     # Both axes and figure have the get_figure method, however for the figure, it will return None
     possible_figure = plt_axes_or_fig.get_figure()
     if possible_figure is None:

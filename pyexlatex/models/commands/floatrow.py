@@ -1,11 +1,11 @@
 from pyexlatex.models.item import MultiOptionSimpleItem, SimpleItem
-from pyexlatex.models.sizes.textsizes import Size
+from pyexlatex.models.sizes.textsizes import TextSize
 
 class DeclareFloatFont(MultiOptionSimpleItem):
     name = 'DeclareFloatFont'
 
     def __init__(self, relative_size_int: int):
-        self.size_def = Size(relative_size_int)
+        self.size_def = TextSize(relative_size_int)
         super().__init__(self.name, self.size_def.name, self.size_def)
 
 

@@ -53,9 +53,20 @@ class Table(DocumentItem, ReprMixin):
         self.set_begin_document_items(landscape)
 
     def __str__(self):
-        return self.to_tex(as_document=False)
+        from pyexlatex.logic.builder import build
+        tex_obj = self.tex_obj(as_document=False)
+
+        # TODO: restructure lt module so that it works like others where items are tex generators
+        # TODO: until then, need to manually call build as it won't carry through to the separate tex generator
+        build(tex_obj)
+
+        return str(tex_obj)
 
     def to_tex(self, as_document=True):
+        tex_generator = self.tex_obj(as_document=as_document)
+        return str(tex_generator)
+
+    def tex_obj(self, as_document=True):
         from pyexlatex.table.models.texgen.items import TableDocument, Table as TexTable, LTable
         if as_document:
             class_factory = TableDocument.from_table_model
@@ -66,7 +77,7 @@ class Table(DocumentItem, ReprMixin):
                 class_factory = TexTable.from_table_model
 
         tex_generator = class_factory(self)
-        return str(tex_generator)
+        return tex_generator
 
     def to_pdf_and_move(self, outfolder, outname=None,
                               move_folder_name='Tables', as_document=True):

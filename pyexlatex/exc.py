@@ -1,0 +1,2 @@
+class NoPackageWithNameException(Exception):
+    pass

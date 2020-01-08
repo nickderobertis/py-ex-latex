@@ -1,4 +1,4 @@
-from typing import Union, List
+from typing import Union, List, Optional
 
 import pandas as pd
 
@@ -12,6 +12,7 @@ from pyexlatex.table.models.spacing.columntable import ColumnPadTable, CellSpace
 from pyexlatex.table.models.table.section import TableSection
 from pyexlatex.table.logic.panels.topleft import _set_top_left_corner_labels
 
+
 class DataTable(TableSection, ReprMixin):
     """
     Represents a subsection in a panel, but tracks row and column labels, which may be consolidated when
@@ -22,11 +23,12 @@ class DataTable(TableSection, ReprMixin):
     repr_cols = ['values_table', 'column_labels', 'row_labels']
 
     def __init__(self, values_table: ValuesTable, column_labels: LabelTable=None, row_labels: LabelTable=None,
-                 top_left_corner_labels: Union[Label, str] = None):
+                 top_left_corner_labels: Union[Label, str] = None, break_size_adjustment: Optional[str] = None):
         self.values_table = values_table
         self.column_labels = column_labels
         self.row_labels = row_labels
         self.top_left_corner_labels = _set_top_left_corner_labels(top_left_corner_labels)
+        self.break_size_adjustment = break_size_adjustment
 
         self.should_add_top_left = (self.has_column_labels) and (self.has_row_labels)
 
@@ -250,15 +252,13 @@ def _create_header_label_collection_list(extra_header: LabelClassOrStrs, values_
             underline_arg = None
         return [LabelCollection.from_str_list(extra_header, underline=underline_arg)]
 
-    if isinstance(extra_header, str):
-        # create multicolumn label
-        label = Label(extra_header, span=values_table.num_columns)
-        # set underline
-        if underline:
-            underline_arg = 0  # place an underline under the singular label
-        else:
-            underline_arg = None  # no underline
-        return [LabelCollection([label], underline=underline_arg)]
+    # Got a string or latex item
 
-    raise ValueError(f'expected LabelTable, LabelCollection, list of strs, or str for extra header. '
-                     f'got {extra_header} of type {type(extra_header)}')
+    # create multicolumn label
+    label = Label(extra_header, span=values_table.num_columns)
+    # set underline
+    if underline:
+        underline_arg = 0  # place an underline under the singular label
+    else:
+        underline_arg = None  # no underline
+    return [LabelCollection([label], underline=underline_arg)]

@@ -1,8 +1,8 @@
 from typing import Optional, Sequence, List, Union
 from pyexlatex.models.item import SimpleItem, ItemBase
 from pyexlatex.models.credits.institution.inst import Inst
-from pyexlatex.models.format.breaks import OutputLineBreak
-from pyexlatex.models.format.and_ import And
+from pyexlatex.models.format.breaks import TableLineBreak
+from pyexlatex.models.control.and_ import And
 
 
 class Institutes(SimpleItem):
@@ -23,7 +23,6 @@ class Institutes(SimpleItem):
     name = 'institute'
 
     def __init__(self, institutions: Sequence[Sequence[str]], short_institution: Optional[str] = None):
-        from pyexlatex.logic.builder import _build
         self.institutions = institutions
         self.short_institution = short_institution
 
@@ -55,6 +54,10 @@ class Institution(ItemBase):
         Faculty of Physics\\
         Very Famous University
     """
+    equal_attrs = [
+        'institution_lines',
+        'num'
+    ]
 
     def __init__(self, institution_lines: Sequence[str], num: int):
         self.institution_lines = institution_lines
@@ -63,7 +66,7 @@ class Institution(ItemBase):
     def __str__(self) -> str:
         from pyexlatex.logic.builder import _build
         inst = Inst(self.num)
-        inst_output = OutputLineBreak().join(self.institution_lines)
+        inst_output = TableLineBreak().join(self.institution_lines)
         return _build([
             inst,
             inst_output

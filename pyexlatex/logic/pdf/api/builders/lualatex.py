@@ -47,7 +47,7 @@ class LuaLatexBuilder:
             aux_fn = base_fn + '.aux'
             args = [self.lualatex, '-interaction=batchmode',
                     '-halt-on-error',
-                    '-no-shell-escape', '-file-line-error',
+                    '-shell-escape', '-file-line-error',
                     tmp.name]
 
             # create environment

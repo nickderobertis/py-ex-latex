@@ -1,3 +1,4 @@
+from typing import Optional
 from pandas.core.indexes.base import Index as PandasIndex
 from itertools import zip_longest
 import warnings
@@ -24,8 +25,9 @@ class LabelTable(TableSection, ReprMixin):
     """
     repr_cols = ['label_collections']
 
-    def __init__(self, label_collections: [LabelCollection]):
+    def __init__(self, label_collections: [LabelCollection], break_size_adjustment: Optional[str] = None):
         self.label_collections = label_collections
+        self.break_size_adjustment = break_size_adjustment
 
     def __add__(self, other):
         # Import here to avoid circular imports

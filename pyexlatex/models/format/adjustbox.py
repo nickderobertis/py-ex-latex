@@ -1,10 +1,9 @@
 from typing import Sequence
-from pyexlatex.models.item import Item
-from pyexlatex.models.section.base import TextAreaMixin
+from pyexlatex.models.section.base import TextAreaBase
 from pyexlatex.models.package import Package
 
 
-class AdjustBox(TextAreaMixin, Item):
+class AdjustBox(TextAreaBase):
     name = 'adjustbox'
 
     def __init__(self, contents, adjust_options: Sequence[str]):

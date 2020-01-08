@@ -1,10 +1,10 @@
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Union, Sequence, Callable
+from copy import deepcopy
 
 from pyexlatex.models.environment import Environment
 from pyexlatex.models.item import Item, ItemBase
-from pyexlatex.models.control.documentclass import DocumentClass
+from pyexlatex.models.control.documentclass.documentclass import DocumentClass
 from pyexlatex.models.package import Package
-from pyexlatex.texgen.packages import default_packages
 from pyexlatex.models.page.style import PageStyle
 from pyexlatex.models.landscape import Landscape
 from pyexlatex.logic.pdf.main import document_to_pdf_and_move, latex_str_to_pdf_obj_with_sources
@@ -16,9 +16,11 @@ from pyexlatex.models.page.footer import CenterFooter
 from pyexlatex.models.format.sectionnum import SectionNumberingFormatter
 from pyexlatex.typing import AnyItem, ItemOrListOfItems, ItemAndPreEnvContents
 from pyexlatex.models.commands.endfloat import DeclareDelayedFloatFlavor
-from pyexlatex.models.format.linespacing import LineSpacing
+from pyexlatex.models.format.text.linespacing import LineSpacing
 from pyexlatex.models.commands.floatrow import DeclareFloatFont, FloatSetup
 from pyexlatex.models.containeritem import ContainerItem
+from pyexlatex.models.page.header import Header
+from pyexlatex.models.control.setcounter import SetCounter
 
 
 class DocumentEnvironment(Environment):
@@ -33,10 +35,22 @@ class DocumentBase(ContainerItem, Item):
     document_class_obj = None
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
-                 pre_env_contents: Optional[ItemOrListOfItems] = None):
-        from pyexlatex.logic.builder import _build
+                 pre_env_contents: Optional[ItemOrListOfItems] = None, data_cleanup_func: Optional[Callable] = None,
+                 pre_output_func: Optional[Callable] = None):
+        """
 
+        :param content:
+        :param packages:
+        :param pre_env_contents:
+        :param data_cleanup_func: should accept DocumentSetupData and modify it in place. This is called just before
+            using the data.
+        :param pre_output_func: function which modifies the latex string before outputting it. The function should
+            accepts a single argument which is a string of the entire latex contents, and it should return a string
+            which will be used as the latex contents for output.
+        """
+        from pyexlatex.logic.builder import build, _build
         self.add_data_from_content(content)
+        self.add_data_from_content(self.document_class_obj)
 
         if packages is not None:
             self.data.packages.extend(packages)
@@ -51,6 +65,9 @@ class DocumentBase(ContainerItem, Item):
         if pre_env_contents is None:
             pre_env_contents = []
 
+        if data_cleanup_func:
+            data_cleanup_func(self.data)
+
         possible_pre_env_contents = [
             self.document_class_obj,
             *self.data.begin_document_items,
@@ -58,14 +75,19 @@ class DocumentBase(ContainerItem, Item):
             *pre_env_contents
         ]
 
-        self.pre_env_contents = _build([item for item in possible_pre_env_contents if item is not None])
+        self.pre_env_contents = build([item for item in possible_pre_env_contents if item is not None])
 
         content.extend(self.data.end_document_items)
 
         self.contents = content
 
+
+        content = deepcopy(content)  # don't overwrite original objects
         # combine content into a single str
-        content = _build(content)
+        content = build(content)
+
+        if pre_output_func:
+            content = pre_output_func(content)
 
         super().__init__(self.name, content, pre_env_contents=self.pre_env_contents)
 
@@ -79,8 +101,9 @@ class DocumentBase(ContainerItem, Item):
             run_bibtex=self.has_references
         ).readb()
 
-    def to_pdf_and_move(self, outfolder, outname='document',
-                              move_folder_name='Tables', as_document=True):
+    def to_pdf(self, outfolder, outname='document',
+               move_folder_name='Tables', as_document=True,
+               date_time_move: bool = False):
         tex = str(self)
 
         outname = latex_filename_replacements(outname)
@@ -93,7 +116,8 @@ class DocumentBase(ContainerItem, Item):
             move_folder_name=move_folder_name,
             as_document=as_document,
             image_binaries=self.data.binaries,
-            run_bibtex=self.has_references
+            run_bibtex=self.has_references,
+            date_time_move=date_time_move
         )
 
     @classmethod
@@ -104,10 +128,13 @@ class DocumentBase(ContainerItem, Item):
 
 
 class Document(DocumentBase):
+    """
+    Main class used for creating latex documents.
+    """
     name = 'document'
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
-                 title: str=None, author: str=None, date: str=None, abstract: str=None,
+                 title: str=None, authors: Optional[Union[List[str], str]] = None, date: str=None, abstract: str=None,
                  skip_title_page: bool=False,
                  page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in', page_header: bool=False,
                  page_numbers: bool=True, appendix_modifier_str: Optional[str] = 'page',
@@ -115,8 +142,11 @@ class Document(DocumentBase):
                  floats_at_end_options: str = 'nolists',
                  document_type: str = 'article', font_size: Optional[float] = None,
                  num_columns: Optional[int] = None, line_spacing: Optional[float] = None,
-                 tables_relative_font_size: int = 0, figures_relative_font_size: int = 0):
-        from pyexlatex.logic.builder import _build
+                 tables_relative_font_size: int = 0, figures_relative_font_size: int = 0,
+                 page_style: str = 'fancy', custom_headers: Optional[Sequence[Header]] = None,
+                 remove_section_numbering: bool = False, separate_abstract_page: bool = False,
+                 extra_title_page_lines: Optional[Sequence] = None, empty_title_page_style: bool = False,
+                 pre_output_func: Optional[Callable] = None):
         from pyexlatex.models.title.page import TitlePage
 
         all_packages = self.construct_packages(
@@ -137,19 +167,27 @@ class Document(DocumentBase):
 
         if isinstance(content, (Item, str)):
             content = [content]
+        if authors is None:
+            authors = []
+        if custom_headers is None:
+            custom_headers = []
+        if isinstance(authors, (Item, str)):
+            authors = [authors]
 
         self.document_class_obj = DocumentClass(
-                document_type=document_type,
-                font_size=font_size,
-                num_columns=num_columns
-            )
+            document_type=document_type,
+            font_size=font_size,
+            num_columns=num_columns
+        )
 
         possible_extra_pre_env_contents = [
             *section_num_styles,
-            PageStyle('fancy'),
+            SetCounter('secnumdepth', 0) if remove_section_numbering else None,
+            PageStyle(page_style),
 
             # header is there by default. add remove header lines if page_header=False
-            remove_header if not page_header else None,
+            remove_header if not page_header and not custom_headers else None,
+            *custom_headers,
 
             # add right page numbers. if not, use blank center footer to clear default page numbers in center footer
             right_aligned_page_numbers if page_numbers else CenterFooter('')
@@ -157,20 +195,30 @@ class Document(DocumentBase):
 
         pre_env_contents = [item for item in possible_extra_pre_env_contents if item is not None]
 
-        if not skip_title_page and _should_create_title_page(title=title, author=author, date=date, abstract=abstract):
-            title_page = TitlePage(title=title, author=author, date=date, abstract=abstract)
+        if not skip_title_page and _should_create_title_page(title=title, authors=authors, date=date, abstract=abstract):
+            title_page = TitlePage(
+                title=title,
+                authors=authors,
+                date=date,
+                abstract=abstract,
+                separate_abstract_page=separate_abstract_page,
+                extra_lines=extra_title_page_lines,
+                empty_page_style=empty_title_page_style
+            )
             content.insert(0, title_page)
             self.has_title_page = True
         else:
             self.has_title_page = False
 
-        # combine content into a single str
-        content = _build(content)
-
         if landscape:
-            content = Landscape().wrap(str(content))
+            content = Landscape().wrap(content)
 
-        super().__init__(content, packages=all_packages, pre_env_contents=pre_env_contents)
+        super().__init__(
+            content,
+            packages=all_packages,
+            pre_env_contents=pre_env_contents,
+            pre_output_func=pre_output_func
+        )
 
     def __repr__(self):
         return f'<Document>'
@@ -181,6 +229,8 @@ class Document(DocumentBase):
                            floats_at_end: bool = False, floats_at_end_options: str = 'nolists',
                            line_spacing: Optional[float] = None,
                            tables_relative_font_size: int = 0, figures_relative_font_size: int = 0) -> List[Package]:
+        from pyexlatex.texgen.packages.default import default_packages
+
         if packages is None:
             packages = default_packages.copy()
 
@@ -192,7 +242,7 @@ class Document(DocumentBase):
             packages.append(Package('floatrow'))
             if tables_relative_font_size:
                 declared_font = DeclareFloatFont(tables_relative_font_size)
-                float_setup_str = f'font={declared_font.size_def.name},cappostion=top'
+                float_setup_str = f'font={declared_font.size_def.name},capposition=top'
                 packages.extend([
                     declared_font,
                     FloatSetup('table', float_setup_str),
@@ -200,7 +250,7 @@ class Document(DocumentBase):
                 ])
             if figures_relative_font_size:
                 declared_font = DeclareFloatFont(figures_relative_font_size)
-                float_setup_str = f'font={declared_font.size_def.name},cappostion=top'
+                float_setup_str = f'font={declared_font.size_def.name},capposition=top'
                 packages.extend([
                     declared_font,
                     FloatSetup('figure', float_setup_str),
@@ -225,10 +275,11 @@ class Document(DocumentBase):
         return packages
 
 
-def _should_create_title_page(title: str = None, author: str = None, date: str = None, abstract: str = None):
+def _should_create_title_page(title: str = None, authors: Optional[List[str]] = None, date: str = None,
+                              abstract: str = None):
     return any([
         title is not None,
-        author is not None,
+        authors is not None and authors != [],
         date is not None,
         abstract is not None
     ])

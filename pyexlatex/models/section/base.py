@@ -20,22 +20,24 @@ class TextAreaMixin(ContainerItem):
         contents = self.format_contents(contents)
         if label is not None:
             label = Label(label)
-            contents = _build([contents, label])
+            if not isinstance(contents, (list, tuple)):
+                contents = [contents]
+            contents = contents + [label]
         self.contents = contents
         super().__init__(name, contents, **kwargs)
 
     def format_contents(self, contents):
         if isinstance(contents, (list, tuple)):
-            return _build([self.format_contents(c) for c in contents])
+            return [self.format_contents(c) for c in contents]
         elif isinstance(contents, dict):
             if self.next_level_down_class is None:
                 raise ValueError(f'cannot parse dict as have no next_level_down_class in {self.__class__.name}')
             subcontents = []
             for title, content in contents.items():
                 subcontents.append(
-                    str(self.next_level_down_class(content, title=title))
+                    self.next_level_down_class(content, title=title)
                 )
-            return _build(subcontents)
+            return subcontents
         else:
             # Not an iterable
             return self._format_content(contents)
@@ -48,7 +50,7 @@ class TextAreaMixin(ContainerItem):
             # Class is responsible for formatting. This may be a latex class or some
             # other harmless conversion such as int. It may also be an issue if the __str__
             # method of the class is not valid latex
-            return str(content)
+            return content
 
 
 class TextAreaBase(TextAreaMixin, Item, ReprMixin):

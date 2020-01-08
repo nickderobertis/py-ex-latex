@@ -1,8 +1,10 @@
-from typing import Optional, TYPE_CHECKING
+from typing import Optional, Union, TYPE_CHECKING
 if TYPE_CHECKING:
-    from pyexlatex.models.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay import Overlay
+    from pyexlatex.models.package import Package
+from copy import deepcopy
 from mixins.attrequals import EqOnAttrsMixin, EqHashMixin
-from pyexlatex.models.mixins import StringAdditionMixin, IsSpecificClassMixin, StringEqMixin
+from pyexlatex.models.mixins import StringAdditionMixin, IsSpecificClassMixin
 from pyexlatex.texgen import (
     _basic_item_str,
     _multi_option_item_str,
@@ -23,8 +25,12 @@ class DataItem:
         if not hasattr(self, 'data'):
             self.data = DocumentSetupData()
 
+    def add_package(self, package: Union[str, 'Package']):
+        self.init_data()
+        self.data.packages.append(package)
 
-class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin, EqOnAttrsMixin, EqHashMixin):
+
+class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionMixin, EqHashMixin, EqOnAttrsMixin):
     """
     Base class for all latex generating classes
     
@@ -64,6 +70,12 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
         from pyexlatex.logic.format.contents import format_contents as fmt
         return fmt(content)
 
+    @staticmethod
+    def _get_list_copy_from_list_or_none(list_or_none: Optional[list]):
+        if list_or_none is None:
+            return []
+        return deepcopy(list_or_none)
+
 
 
 
@@ -76,22 +88,28 @@ class Item(ItemBase):
         'env'
     ]
 
-    def __init__(self, name, contents, pre_env_contents=None, post_env_contents=None, env_modifiers=None):
-        from pyexlatex.models import Environment
-        self.env = Environment(name, modifiers=env_modifiers)
+    def __init__(self, name, contents, pre_env_contents=None, post_env_contents=None, env_modifiers=None,
+                 overlay: Optional['Overlay'] = None):
+        from pyexlatex.models.environment import Environment
+        self.env = Environment(name, modifiers=env_modifiers, overlay=overlay)
         self.contents = contents
         self.pre_env_contents = pre_env_contents
         self.post_env_contents = post_env_contents
+        self.overlay = overlay
         super().__init__()
 
     def __repr__(self):
         return f'<Item(name={self.env.name}, contents={self.contents})>'
 
     def __str__(self):
-        from pyexlatex.logic.builder import _build
+        from pyexlatex.logic.builder import _build, build
+
+        contents = deepcopy(self.contents)
+        contents = build(contents)
+
         possible_items = [
             self.pre_env_contents,
-            self.env.wrap(str(self.contents)),
+            self.env.wrap(str(contents)),
             self.post_env_contents
         ]
         items = [item for item in possible_items if item]
@@ -176,13 +194,14 @@ class EqualsItem(ItemBase):
 
 class NoOptionsNoContentsItem(ItemBase):
 
-    def __init__(self, name, overlay: Optional['Overlay'] = None):
+    def __init__(self, name, overlay: Optional['Overlay'] = None, modifiers: Optional[str] = None):
         self.name = name
         self.overlay = overlay
+        self.modifiers = modifiers
         super().__init__()
 
     def __repr__(self):
         return f'<{self.name.title()}>'
 
     def __str__(self):
-        return no_options_no_contents_str(self.name, overlay=self.overlay)
+        return no_options_no_contents_str(self.name, overlay=self.overlay, modifiers=self.modifiers)

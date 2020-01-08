@@ -3,6 +3,9 @@ from pyexlatex.models.references.bibtex.base import BibTexEntryBase
 
 
 class BibTexManual(BibTexEntryBase):
+    """
+    Biblography document which is a manual.
+    """
     item_type = 'manual'
     required_attrs = ['title']
     optional_attrs = ['author', 'organization', 'address', 'edition', 'month', 'year', 'note']

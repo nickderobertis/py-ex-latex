@@ -1,6 +1,6 @@
 from typing import Union, List, Tuple, Dict, Optional
 
-from pyexlatex.models import Item
+from pyexlatex.models.item import Item
 from pyexlatex.models.documentitem import DocumentItem
 
 AnyItem = Union[Item, DocumentItem]
