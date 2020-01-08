@@ -27,18 +27,23 @@ class Resume(DocumentBase):
             font_size=font_size,
         )
 
+        from pyexlatex.models.item import ItemBase
         if pre_env_contents is None:
-            pre_env_contents = []
+            pre_env_contents_list = []
+        elif isinstance(pre_env_contents, (ItemBase, str)):
+            pre_env_contents_list = [pre_env_contents]
+        else:
+            pre_env_contents_list = pre_env_contents  # type: ignore
 
         name = self._get_name(name, authors)
 
         if name is not None:
-            pre_env_contents.append(
+            pre_env_contents_list.append(
                 Name(name)
             )
 
         if contact_lines is not None:
-            pre_env_contents.extend(
+            pre_env_contents_list.extend(
                 [ContactLine(contact_info) for contact_info in contact_lines]
             )
 
@@ -49,7 +54,7 @@ class Resume(DocumentBase):
         super().__init__(
             content,
             packages=packages,
-            pre_env_contents=pre_env_contents,
+            pre_env_contents=pre_env_contents_list,
             pre_output_func=pre_output_func,
         )
 
