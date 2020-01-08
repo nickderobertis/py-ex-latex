@@ -84,9 +84,10 @@ class Figure(ContainerItem, Item):
         from pyexlatex.logic.pdf.main import document_to_pdf_and_move
         from pyexlatex.models.document import Document
 
-        to_output: Figure = self
+        to_output: Union[Figure, Document]
+        to_output = self  # Figure
         if as_document:
-            to_output: Document = self.as_document(
+            to_output = self.as_document(  # Document
                 landscape=landscape if self.landscape == False else False  # don't apply landscape twice
             )
 

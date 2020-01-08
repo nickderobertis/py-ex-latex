@@ -1,3 +1,5 @@
+from typing import Union, List
+
 from pyexlatex.models.package import Package
 
 simple_package_strs = [
@@ -11,7 +13,7 @@ simple_package_strs = [
 ]
 simple_packages = [Package(str_) for str_ in simple_package_strs]
 
-direct_packages = [
+direct_packages: List[Package] = [
     
 ]
 
