@@ -13,5 +13,7 @@ class BeamerColorBox(TextAreaBase):
 
     @property
     def modifier_str(self) -> str:
+        if self.options is None:
+            return self._wrap_with_braces(self.color)
         options_str = ', '.join(self.options)
         return f'[{options_str}]{{{self.color}}}'
