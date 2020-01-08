@@ -2,10 +2,10 @@
 # Sphinx configuration is in the docsrc folder
 
 # Main package name
-PACKAGE_NAME = 'py_qs_example'
+PACKAGE_NAME = 'pyexlatex'
 
 # Name of Repo
-REPO_NAME = 'pypi-sphinx-quickstart'
+REPO_NAME = 'py-ex-latex'
 
 # Github username of the user which owns the repo
 REPO_USERNAME = 'whoopnip'
@@ -20,7 +20,7 @@ REPO_MAINTAINERS = [
 PACKAGE_VERSION_TUPLE = (0, 1, 19)
 
 # Short description of the package
-PACKAGE_SHORT_DESCRIPTION = 'Python package PyPi Sphinx quickstart example app'
+PACKAGE_SHORT_DESCRIPTION = 'Python Extends LaTeX - A High-Level Python API for Creating Latex Documents'
 
 # Long description of the package for PyPI
 # Set to 'auto' to use README.md as the PyPI description
@@ -31,7 +31,7 @@ PACKAGE_DESCRIPTION = 'auto'
 PACKAGE_AUTHOR = "Nick DeRobertis"
 
 # Author email
-PACKAGE_AUTHOR_EMAIL = 'mail@example.com'
+PACKAGE_AUTHOR_EMAIL = 'whoopnip@gmail.com'
 
 # Name of license for package
 PACKAGE_LICENSE = 'MIT'
@@ -59,13 +59,23 @@ PACKAGE_INSTALL_REQUIRES = [
     # e.g.
     # 'package',
     # 'otherpackage>=1,<2'
+    'mixins',
+    'pandas',
+    'tempdir',
+    'data',
+    'latex',
+    'future',
+    'sympy',
+    'shutilwhich',
+    'bibtexparser',
+    'Jinja2'
 ]
 
 # Add any third party packages you use in requirements for optional features of your package here
 # Keys should be name of the optional feature and values are lists of required packages
 # E.g. {'feature1': ['pandas', 'numpy'], 'feature2': ['matplotlib']}
 OPTIONAL_PACKAGE_INSTALL_REQUIRES = {
-    'plot': ['matplotlib']
+
 }
 
 # Packages added to Binder environment so that examples can be executed in Binder
@@ -101,7 +111,7 @@ SCRIPTS = []
 # Optional Google Analytics tracking ID for documentation
 # Go to https://analytics.google.com/ and set it up for your documentation URL
 # Set to None or empty string to not use this
-GOOGLE_ANALYTICS_TRACKING_ID = 'UA-153687598-1'
+GOOGLE_ANALYTICS_TRACKING_ID = 'UA-155734278-1'
 
 PACKAGE_URLS = {
     'Code': f'https://github.com/{REPO_USERNAME}/{REPO_NAME}',
@@ -110,7 +120,7 @@ PACKAGE_URLS = {
 
 # Does not affect anything about the current package. Simply used for tracking when this repo was created off
 # of the quickstart template, so it is easier to bring over new changes to the template.
-_TEMPLATE_VERSION_TUPLE = (0, 4, 0)
+_TEMPLATE_VERSION_TUPLE = (0, 5, 3)
 
 if __name__ == '__main__':
     # Store config as environment variables
