@@ -54,6 +54,8 @@ class UniquePackagesList(UniqueDataList):
         return package
 
     def _as_packages(self, packages: Optional[List[Union[Package, str]]] = None):
+        if packages is None:
+            return packages
         return [self._as_package(pack) for pack in packages]
 
     def append(self, package: Union[Package, str]):
@@ -62,7 +64,7 @@ class UniquePackagesList(UniqueDataList):
         package = self._as_package(package)
         super().append(package)
 
-    def extend(self, packages: Optional[List[Union[Package, str]]] = None):
+    def extend(self, packages: Optional[List[Union[Package, str]]] = None):  # type: ignore
         if packages is None:
             return
         packages = self._as_packages(packages)
@@ -119,7 +121,7 @@ class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):
 
     def __init__(self, filepaths: Optional[List[str]] = None, binaries: Optional[List[bytes]] = None, 
                  begin_document_items: Optional[List[DocumentItem]] = None, 
-                 end_document_items: Optional[List[DocumentItem]] = None, packages: Optional[List[Package]] = None,
+                 end_document_items: Optional[List[DocumentItem]] = None, packages: Optional[List[Union[Package, str]]] = None,
                  source_paths: Optional[List[str]] = None, references: Optional[Sequence[BibTexEntryBase]] = None,
                  flags: Optional[List[str]] = None):
         self.filepaths = UniqueDataList(filepaths)

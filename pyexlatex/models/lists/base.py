@@ -1,6 +1,6 @@
 from typing import Optional, Union, Sequence, TYPE_CHECKING
 if TYPE_CHECKING:
-    from pyexlatex.presentation.beamer.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay.overlay import Overlay
 from pyexlatex.models.item import Item
 from mixins.repr import ReprMixin
 from pyexlatex.models.lists.item import ListItem

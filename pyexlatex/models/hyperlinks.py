@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Any, Sequence
 from pyexlatex.models.item import MultiOptionSimpleItem
 from pyexlatex.models.section.base import TextAreaMixin
 from pyexlatex.models.package import Package
@@ -10,10 +10,11 @@ class Hyperlink(TextAreaMixin, MultiOptionSimpleItem):
     Create links to urls, with or without displaying text instead of the link.
     """
 
-    def __init__(self, href: str, content: Optional = None, **kwargs):
+    def __init__(self, href: str, content: Optional[Any] = None, **kwargs):
         self.href = href
         self.content = content
 
+        options: Sequence[Any]
         if content is None:
             self.name = 'url'
             options = (href,)

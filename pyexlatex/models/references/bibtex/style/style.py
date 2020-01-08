@@ -18,7 +18,7 @@ class Style(BibliographyStyle):
         self.style_definition = style_definition
         
         self.init_data()
-        if style_definition is not None:
+        if self.style_definition is not None:
             self.data.filepaths.append(self.style_filename)
             self.data.binaries.append(bytes(self.style_definition, 'utf8'))
 

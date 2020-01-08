@@ -9,7 +9,7 @@ class DocumentClassType(ItemBase):
         self.definition = definition
 
         self.init_data()
-        if definition is not None:
+        if self.definition is not None:
             self.data.filepaths.append(self.class_filename)
             self.data.binaries.append(bytes(self.definition, 'utf8'))
 

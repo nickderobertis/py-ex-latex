@@ -1,4 +1,4 @@
-from typing import Optional, Any, Dict
+from typing import Optional, Any, Dict, List
 import os
 
 from jinja2 import FileSystemLoader
@@ -38,7 +38,7 @@ class Model(Template):
 
     """
     # Additional attributes to exclude adding to template variables
-    exclude_attrs = []
+    exclude_attrs: List[str] = []
 
     def __init__(self, template_str: Optional[str] = None, template_path: Optional[str] = None,
                  environment: Optional[JinjaEnvironment] = None):

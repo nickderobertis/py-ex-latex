@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Any
 from pyexlatex.models.item import ItemBase
 from pyexlatex.texgen import no_options_no_contents_str
 from mixins.repr import ReprMixin
@@ -10,7 +10,7 @@ class Mode(ItemBase, ReprMixin):
         'contents'
     ]
 
-    def __init__(self, mode_type: str = 'presentation', contents: Optional = None):
+    def __init__(self, mode_type: str = 'presentation', contents: Optional[Any] = None):
         self.mode_type = mode_type
         self.contents = contents
         super().__init__()

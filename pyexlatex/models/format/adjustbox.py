@@ -15,5 +15,7 @@ class AdjustBox(TextAreaBase):
     @property
     def options_str(self) -> str:
         base_str = ', '.join(self.adjust_options)
-        return self._wrap_with_braces(base_str)
-
+        result = self._wrap_with_bracket(base_str)
+        if result is None:  # for type checking, shouldn't actually hit here
+            return ''
+        return result

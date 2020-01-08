@@ -60,7 +60,9 @@ class DocumentBase(ContainerItem, Item):
             self.has_references = True
 
         if isinstance(content, (ItemBase, str)):
-            content = [content]
+            content_list = [content]
+        else:
+            content_list = content  # type: ignore
 
         if pre_env_contents is None:
             pre_env_contents = []
@@ -68,7 +70,7 @@ class DocumentBase(ContainerItem, Item):
         if data_cleanup_func:
             data_cleanup_func(self.data)
 
-        possible_pre_env_contents = [
+        possible_pre_env_contents = [  # type: ignore
             self.document_class_obj,
             *self.data.begin_document_items,
             *[str(package) for package in self.data.packages],
@@ -77,19 +79,19 @@ class DocumentBase(ContainerItem, Item):
 
         self.pre_env_contents = build([item for item in possible_pre_env_contents if item is not None])
 
-        content.extend(self.data.end_document_items)
+        content_list.extend(self.data.end_document_items)
 
-        self.contents = content
+        self.contents = content_list
 
 
-        content = deepcopy(content)  # don't overwrite original objects
+        content_list = deepcopy(content_list)  # don't overwrite original objects
         # combine content into a single str
-        content = build(content)
+        content_list = build(content_list)
 
         if pre_output_func:
-            content = pre_output_func(content)
+            content_list = pre_output_func(content_list)
 
-        super().__init__(self.name, content, pre_env_contents=self.pre_env_contents)
+        super().__init__(self.name, content_list, pre_env_contents=self.pre_env_contents)
 
     def _repr_pdf_(self):
         tex = str(self)
@@ -166,7 +168,9 @@ class Document(DocumentBase):
         section_num_styles = SectionNumberingFormatter.list_from_string_format_dict(section_numbering_styles)
 
         if isinstance(content, (Item, str)):
-            content = [content]
+            content_list = [content]
+        else:
+            content_list = content  # type: ignore
         if authors is None:
             authors = []
         if custom_headers is None:
@@ -205,16 +209,16 @@ class Document(DocumentBase):
                 extra_lines=extra_title_page_lines,
                 empty_page_style=empty_title_page_style
             )
-            content.insert(0, title_page)
+            content_list.insert(0, title_page)
             self.has_title_page = True
         else:
             self.has_title_page = False
 
         if landscape:
-            content = Landscape().wrap(content)
+            content_list = Landscape().wrap(content_list)
 
         super().__init__(
-            content,
+            content_list,
             packages=all_packages,
             pre_env_contents=pre_env_contents,
             pre_output_func=pre_output_func
@@ -222,6 +226,7 @@ class Document(DocumentBase):
 
     def __repr__(self):
         return f'<Document>'
+
 
     def construct_packages(self, packages: List[Package]=None,
                            page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in',
@@ -231,19 +236,22 @@ class Document(DocumentBase):
                            tables_relative_font_size: int = 0, figures_relative_font_size: int = 0) -> List[Package]:
         from pyexlatex.texgen.packages.default import default_packages
 
+        all_packages: List[ItemBase]
         if packages is None:
-            packages = default_packages.copy()
+            all_packages = default_packages.copy()
+        else:
+            all_packages = deepcopy(packages)
 
         if page_modifier_str is not None:
             # Set margins, body size, etc. with geometry package
-            packages.append(Package('geometry', modifier_str=page_modifier_str))
+            all_packages.append(Package('geometry', modifier_str=page_modifier_str))
 
         if tables_relative_font_size or figures_relative_font_size:
-            packages.append(Package('floatrow'))
+            all_packages.append(Package('floatrow'))
             if tables_relative_font_size:
                 declared_font = DeclareFloatFont(tables_relative_font_size)
                 float_setup_str = f'font={declared_font.size_def.name},capposition=top'
-                packages.extend([
+                all_packages.extend([
                     declared_font,
                     FloatSetup('table', float_setup_str),
                     # FloatSetup('ltable', float_setup_str)
@@ -251,28 +259,28 @@ class Document(DocumentBase):
             if figures_relative_font_size:
                 declared_font = DeclareFloatFont(figures_relative_font_size)
                 float_setup_str = f'font={declared_font.size_def.name},capposition=top'
-                packages.extend([
+                all_packages.extend([
                     declared_font,
                     FloatSetup('figure', float_setup_str),
                     # FloatSetup('lfigure', float_setup_str)
                 ])
 
         if floats_at_end:
-            packages.extend([
+            all_packages.extend([
                 Package('endfloat', modifier_str=floats_at_end_options if floats_at_end_options else None),
                 DeclareDelayedFloatFlavor('ltable', 'table'),  # treat custom environment ltable (landscape table) as table
                 DeclareDelayedFloatFlavor('lfigure', 'figure') # treat custom environment lfigure (landscape figure) as figure
             ])
 
         if line_spacing:
-            packages.extend([
+            all_packages.extend([
                 Package('setspace'),
                 LineSpacing(line_spacing)
             ])
 
-        packages.append(Package('appendix', modifier_str=appendix_modifier_str))
+        all_packages.append(Package('appendix', modifier_str=appendix_modifier_str))
 
-        return packages
+        return all_packages
 
 
 def _should_create_title_page(title: str = None, authors: Optional[List[str]] = None, date: str = None,

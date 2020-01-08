@@ -8,7 +8,7 @@ class BibTexEntry(BibTexEntryBase):
         self.fields = fields_dict
         super().__init__(self.item_accessor)
 
-    @BibTexEntryBase.fields.setter
+    @BibTexEntryBase.fields.setter  # type: ignore
     def fields(self, fields_dict: Dict[str, str]):
         rename_items = {
             'ENTRYTYPE': 'item_type',
