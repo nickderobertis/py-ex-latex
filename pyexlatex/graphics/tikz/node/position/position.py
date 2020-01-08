@@ -26,3 +26,5 @@ class NodePosition:
 
         if self.relative_location:
             return str(self.location)
+
+        raise ValueError(f'could not determine string position from {self}')
