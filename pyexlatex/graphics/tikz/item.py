@@ -1,4 +1,4 @@
-from typing import Sequence, Optional
+from typing import Sequence, Optional, List
 from pyexlatex.models.item import ItemBase
 from pyexlatex.models.section.base import TextAreaMixin
 from pyexlatex.presentation.beamer.overlay.overlay import Overlay
@@ -6,7 +6,7 @@ from pyexlatex.presentation.beamer.overlay.commands.uncover import Uncover
 
 
 class TikzOptionHandler:
-    options = None
+    options: Optional[Sequence[str]] = None
 
     @property
     def options_str(self) -> str:
@@ -20,8 +20,9 @@ class TikzOptionHandler:
 
 
 class TikZItem(TextAreaMixin, ItemBase, TikzOptionHandler):
+    options: Optional[List[str]]
 
-    def __init__(self, name, contents, options: Optional[Sequence[str]] = None,
+    def __init__(self, name, contents, options: Optional[List[str]] = None,
                  overlay: Optional['Overlay'] = None):
         self.contents = contents
         self.options = options

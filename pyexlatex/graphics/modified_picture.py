@@ -19,9 +19,7 @@ class ModifiedPicture(Template):
         super().__init__()
 
     def _get_graphic(self) -> Union[Graphic, TikZPicture]:
-        if hasattr(self.picture, 'is_TikZPicture') and self.picture.is_TikZPicture:
-            return self.picture
-        if hasattr(self.picture, 'is_Graphic') and self.picture.is_Graphic:
+        if isinstance(self.picture, (TikZPicture, Graphic)):
             return self.picture
 
         # Assuming str of filepath was passed

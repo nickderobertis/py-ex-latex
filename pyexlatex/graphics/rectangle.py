@@ -1,6 +1,7 @@
-from typing import Sequence, Tuple, Optional, List, TYPE_CHECKING
+from typing import Sequence, Tuple, Optional, List, TYPE_CHECKING, Any
+
 if TYPE_CHECKING:
-    from pyexlatex.presentation.beamer.overlay import Overlay
+    from pyexlatex.presentation.beamer.overlay.overlay import Overlay
 from pyexlatex.graphics.shape import Shape
 
 
@@ -10,11 +11,11 @@ class Rectangle(Shape):
     """
     shape_name = 'rectangle'
 
-    def __init__(self, width: int, height: int, contents: Optional = None,
+    def __init__(self, width: int, height: int, contents: Optional[Any] = None,
                  offset: Tuple[int, int] = (0, 0), content_position: str = 'center',
                  content_offset: Optional[float] = None,
-                 shape_options: Optional[Sequence[str]] = None,
-                 text_options: Optional[Sequence[str]] = None,
+                 shape_options: Optional[List[str]] = None,
+                 text_options: Optional[List[str]] = None,
                  overlay: Optional['Overlay'] = None, unit: str = 'cm'):
         self.size = (width, height)
         self.offset = offset

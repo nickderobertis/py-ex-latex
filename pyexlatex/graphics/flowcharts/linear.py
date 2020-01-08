@@ -14,7 +14,7 @@ class LinearFlowchart(ContainerItem, ItemBase):
     """
 
     def __init__(self, steps: Sequence[Union[Node, str]], horizontal: bool = True,
-                 node_options: Optional[Sequence[str]] = None):
+                 node_options: Optional[List[str]] = None):
         self.steps = steps
         self.horizontal = horizontal
         self.node_options = node_options

@@ -1,7 +1,7 @@
 from typing import Optional, Sequence, List, Tuple, Union, TYPE_CHECKING
 if TYPE_CHECKING:
-    from pyexlatex.presentation.beamer.overlay import Overlay
-    from pyexlatex.graphics.tikz import Node
+    from pyexlatex.presentation.beamer.overlay.overlay import Overlay
+    from pyexlatex.graphics.tikz.node.node import Node
     from pyexlatex.graphics.shape import Shape
 from pyexlatex.graphics.tikz.item import TikZItem
 
@@ -24,9 +24,9 @@ class Path(TikZItem):
     name = 'path'
 
 
-    def __init__(self, path_type: str, points: Sequence[Union[Tuple[float, float], 'Node']],
+    def __init__(self, path_type: str, points: Sequence[Union[Tuple[float, float], 'Node', 'Shape']],
                  draw_type: str = '--',
-                 options: Optional[Sequence[str]] = None,
+                 options: Optional[List[str]] = None,
                  overlay: Optional['Overlay'] = None):
         self.points = points
         self.draw_type = draw_type
@@ -57,16 +57,16 @@ class Path(TikZItem):
 
     @property
     def path_str(self) -> str:
+        from pyexlatex.graphics.tikz.node.node import Node
+        from pyexlatex.graphics.shape import Shape
         locations: List[str] = []
         for location in self.points:
-            if hasattr(location, 'is_Node') and location.is_Node:
-                location: 'Node'
+            if isinstance(location, Node):
                 locations.append(f'({location.label})')
-            elif hasattr(location, 'shape_node'):
-                location: 'Shape'
+            elif isinstance(location, Shape):
                 locations.append(f'({location.shape_node.label})')
             else:
-                location: Tuple[float, float]
+                # location: Tuple[float, float]
                 locations.append(str(location))
         if len(locations) == 1:
             # Got a single point draw path, such as circle
@@ -82,4 +82,4 @@ class SpecificPath(Path):
     path_type = '<invalid, do not use SpecificPath directly>'
 
     def __init__(self, points: Sequence[Tuple[float, float]], *args, **kwargs):
-        super().__init__(self.path_type, points, *args, draw_type=self.draw_type, **kwargs)
+        super().__init__(self.path_type, points, draw_type=self.draw_type, **kwargs)
