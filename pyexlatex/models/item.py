@@ -71,7 +71,7 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
         return fmt(content)
 
     @staticmethod
-    def _get_list_copy_from_list_or_none(list_or_none: Optional[list]):
+    def _get_list_copy_from_list_or_none(list_or_none: Optional[list]) -> list:
         if list_or_none is None:
             return []
         return deepcopy(list_or_none)
