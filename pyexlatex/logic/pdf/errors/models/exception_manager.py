@@ -1,4 +1,5 @@
-from typing import List, Dict, TYPE_CHECKING
+from typing import List, Dict, TYPE_CHECKING, Type
+
 if TYPE_CHECKING:
     from pyexlatex.logic.pdf.errors.exc import LatexException
 from pyexlatex.logic.pdf.errors.models.error import LatexError
@@ -8,12 +9,12 @@ from latex.exc import LatexBuildError
 
 class LatexExceptionManager:
 
-    def __init__(self, exceptions: List[type]):
+    def __init__(self, exceptions: List[Type['LatexException']]):
         self.exceptions_list = exceptions
         self.exceptions = self._create_map()
         self.match_strs = [key for key in self.exceptions.keys()]
 
-    def _create_map(self) -> Dict[str, 'LatexException']:
+    def _create_map(self) -> Dict[str, Type['LatexException']]:
         exception_map = {}
         for exc in self.exceptions_list:
             exception_map[exc._match_str] = exc

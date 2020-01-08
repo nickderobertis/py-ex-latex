@@ -1,4 +1,5 @@
 from typing import Optional
+
 from pyexlatex.typing import ListOrDictOrItem, StrListOrNone, AnyItem
 from pyexlatex.logic.extract.docitems import is_latex_item
 
@@ -37,16 +38,19 @@ def _get_from_item_or_item_data(item: AnyItem, attr: str):
     if hasattr(item, attr):
         return getattr(item, attr)
 
-    return getattr(item.data, attr)
+    if hasattr(item, 'data'):
+        return getattr(item.data, attr)
+
+    raise ValueError(f'Could not get {attr} from {item} or .data of that object')
     
 
-def _extend_with_items_not_in_list(orig_list: list, extend_with: list) -> list:
+def _extend_with_items_not_in_list(orig_list: list, extend_with: list) -> None:
     for item in extend_with:
         if item not in orig_list:
             orig_list.append(item)
 
 
-def _extend(orig_list: list, extend_with: list) -> list:
+def _extend(orig_list: list, extend_with: list) -> None:
     orig_list.extend(extend_with)
 
 

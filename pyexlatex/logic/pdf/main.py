@@ -1,4 +1,6 @@
 import os
+from typing import List, Optional
+
 from tempdir import TempDir
 
 from pyexlatex.tools import date_time_move_latex
@@ -77,7 +79,8 @@ def latex_str_to_pdf_obj_with_sources(latex_str: str, image_paths: StrListOrNone
 
 
 def output_sources_return_tex_input_paths(outfolder: str, image_paths: StrListOrNone = None,
-                                          image_binaries: BytesListOrNone = None):
+                                          image_binaries: BytesListOrNone = None) -> Optional[List[str]]:
+    tex_inputs: Optional[List[str]]
     if image_paths:
         # Copy first time for creation of pdf
         sources_tempfolder = os.path.join(outfolder, 'Sources')

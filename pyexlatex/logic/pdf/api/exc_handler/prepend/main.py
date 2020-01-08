@@ -42,7 +42,7 @@ def get_data_to_handle_prepend_exception(exception: LatexException, prepend_kwar
         return max_dead_cycles, prepend_kwarg_dict
 
 
-def get_prepend_kwarg_dict(prepend_kwarg_dict: PrependKwargsDict = None) -> PrependKwargsDict:
+def get_prepend_kwarg_dict(prepend_kwarg_dict: PrependKwargsDict = None) -> Dict[str, Any]:
     if prepend_kwarg_dict is None:
         prepend_kwarg_dict = {}
 
