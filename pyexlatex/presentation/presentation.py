@@ -13,7 +13,7 @@ from pyexlatex.models.control.documentclass.documentclass import DocumentClass
 from pyexlatex.models.control.mode import Mode
 from pyexlatex.presentation.beamer.theme.usetheme import UseTheme
 from pyexlatex.models.title.frame import TitleFrame, should_create_title_frame
-from pyexlatex.models.item import ItemBase
+from pyexlatex.models.item import ItemBase, Item
 from pyexlatex.presentation.beamer.templates.lists.dim_reveal_items import eliminate_dim_reveal
 from pyexlatex.exc import NoPackageWithNameException
 
@@ -38,23 +38,30 @@ class Presentation(DocumentBase):
         self.init_data()
         self.title_frame = None
 
+        from pyexlatex.models.documentitem import DocumentItem
+        content_list: List[Union[Item, DocumentItem]]
         if isinstance(content, (ItemBase, str)):
-            content = [content]
+            content_list = [content]
         else:
-            content = deepcopy(content)  # don't overwrite existing content
+            # don't overwrite existing content
+            content_list = deepcopy(content)  # type: ignore
 
+        pre_env_contents_list: List[Union[Item, DocumentItem]]
         if pre_env_contents is None:
-            pre_env_contents = []
+            pre_env_contents_list = []
         elif isinstance(pre_env_contents, (ItemBase, str)):
-            pre_env_contents = [pre_env_contents]
+            pre_env_contents_list = [pre_env_contents]
+        else:
+            pre_env_contents_list = pre_env_contents  # type: ignore
 
         if backend != 'beamer':
             raise NotImplementedError('only beamer backend is currently supported for Presentation')
 
+        doc_class_options: Optional[List[str]]
         if handouts:
             doc_class_options = ['handout']
-            elimate_overlays(content)
-            eliminate_dim_reveal(content)
+            elimate_overlays(content_list)
+            eliminate_dim_reveal(content_list)
         else:
             doc_class_options = None
 
@@ -64,6 +71,7 @@ class Presentation(DocumentBase):
             options=doc_class_options
         )
 
+        data_cleanup_func: Optional[Callable[[DocumentSetupData], None]]
         if backend == 'beamer':
             # Remove hyperref package if added, as may conflict with beamer which already loads it
             def remove_hyperref(data: 'DocumentSetupData') -> None:
@@ -93,21 +101,21 @@ class Presentation(DocumentBase):
                     institutions=institutions,
                     short_institution=short_institution
                 )
-                content.insert(0, self.title_frame)
+                content_list.insert(0, self.title_frame)
 
             if nav_header:
-                pre_env_contents.append(AddNavigationHeader())
+                pre_env_contents_list.append(AddNavigationHeader())
 
             if toc_sections:
-                pre_env_contents.append(TableOfContentsAtBeginSection())
+                pre_env_contents_list.append(TableOfContentsAtBeginSection())
 
         else:
             data_cleanup_func = None
 
         super().__init__(
-            content,
+            content_list,
             packages=packages,
-            pre_env_contents=pre_env_contents,
+            pre_env_contents=pre_env_contents_list,
             data_cleanup_func=data_cleanup_func,
             pre_output_func=pre_output_func
         )

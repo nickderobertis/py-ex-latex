@@ -32,7 +32,7 @@ class DocumentEnvironment(Environment):
 
 class DocumentBase(ContainerItem, Item):
     name = '<invalid, do not use DocumentBase directly>'
-    document_class_obj = None
+    document_class_obj: Optional['DocumentClass'] = None
 
     def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
                  pre_env_contents: Optional[ItemOrListOfItems] = None, data_cleanup_func: Optional[Callable] = None,
