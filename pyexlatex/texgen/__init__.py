@@ -15,15 +15,15 @@ def _bracket_modifier_str(modifiers: Optional[str] = None) -> str:
 
 def no_options_no_contents_str(item_name: str, overlay: Optional['Overlay'] = None,
                                modifiers: Optional[str] = None) -> str:
-    overlay = overlay if overlay is not None else ""
+    overlay_str = str(overlay) if overlay is not None else ""
     modifiers = modifiers if modifiers is not None else ""
-    return rf'\{item_name}{overlay}{modifiers}'
+    return rf'\{item_name}{overlay_str}{modifiers}'
 
 
 def _no_braces_item_str(item_name, contents, overlay: Optional['Overlay'] = None) -> str:
     from pyexlatex.logic.format.contents import format_contents
-    overlay = overlay if overlay is not None else ""
-    return rf'\{item_name}{overlay} {format_contents(contents)}'
+    overlay_str = str(overlay) if overlay is not None else ""
+    return rf'\{item_name}{overlay_str} {format_contents(contents)}'
 
 
 def _basic_item_str(item_name, contents, modifiers: Optional[str] = None, pre_modifiers: Optional[str] = None,
@@ -31,19 +31,19 @@ def _basic_item_str(item_name, contents, modifiers: Optional[str] = None, pre_mo
     from pyexlatex.logic.format.contents import format_contents
     pre_modifiers = pre_modifiers if pre_modifiers is not None else ""
     modifiers = modifiers if modifiers is not None else ""
-    overlay = overlay if overlay is not None else ""
+    overlay_str = str(overlay) if overlay is not None else ""
 
     if format_content:
         contents = format_contents(contents)
 
-    return rf'\{item_name}{overlay}{pre_modifiers}{{{contents}}}{modifiers}'
+    return rf'\{item_name}{overlay_str}{pre_modifiers}{{{contents}}}{modifiers}'
 
 
 def _multi_option_item_str(item_name, *options, overlay: Optional['Overlay'] = None):
     from pyexlatex.logic.format.contents import format_contents
-    overlay = overlay if overlay is not None else ""
+    overlay_str = str(overlay) if overlay is not None else ""
     options_str = ''.join([f'{{{format_contents(str(option))}}}' for option in options])
-    return rf'\{item_name}{overlay}{options_str}'
+    return rf'\{item_name}{overlay_str}{options_str}'
 
 
 def item_equals_str(item_name, contents):
