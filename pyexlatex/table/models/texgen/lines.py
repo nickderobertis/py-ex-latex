@@ -158,7 +158,7 @@ class TableLineOfSegments(RowAddMixin, TableLine):
         # create ranges out of consecutive ints. Add segments with either ranges or individual ints
         segments = []
         current_range = []
-        last_int: int
+        last_int: int = 0
         for i, int_ in enumerate(int_list):
             if i != 0:
                 # now have int and last int for all loops
