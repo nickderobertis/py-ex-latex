@@ -1,6 +1,6 @@
 {
     "template": "https://github.com/whoopnip/cookiecutter-pypi-sphinx",
-    "commit": "64d176edd6791972af7c691aa1d97f953f901168",
+    "commit": "e0feefa30fdc1bac640e1a1ef79c0ab5b564ae74",
     "context": {
         "cookiecutter": {
             "package_name": "pyexlatex",
