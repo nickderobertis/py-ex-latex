@@ -81,7 +81,7 @@ class UniquePackagesList(UniqueDataList):
         for package in self:
             if not hasattr(package, 'matches_name'):
                 # Got something other than a package
-                # TODO: think about how to delete non-packages from packages
+                # TODO [$5e1f14481abd6b00071ba795]: think about how to delete non-packages from packages
                 new_packages.append(package)  # No way to check if name matches, so just keep it
             elif not package.matches_name(name):
                 new_packages.append(package)

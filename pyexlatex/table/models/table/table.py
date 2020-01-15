@@ -57,7 +57,7 @@ class Table(DocumentItem, ReprMixin):
         from pyexlatex.logic.builder import build
         tex_obj = self.tex_obj(as_document=False)
 
-        # TODO: restructure table module so that it works like others where items are tex generators
+        # TODO [$5e1f14481abd6b00071ba79a]: restructure table module so that it works like others where items are tex generators
         #
         # Until then, need to manually call build as it won't carry through to the separate tex generator
         build(tex_obj)
@@ -344,6 +344,6 @@ class Table(DocumentItem, ReprMixin):
 
 
 def _set_above_text(above_text):
-    # TODO: handle above text in tables
+    # TODO [$5e1f14481abd6b00071ba79b]: handle above text in tables
     if above_text is not None:
         raise NotImplementedError('will add above text in a future release')

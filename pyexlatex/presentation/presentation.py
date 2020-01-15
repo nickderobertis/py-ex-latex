@@ -81,7 +81,7 @@ class Presentation(DocumentBase):
                     pass
             data_cleanup_func = remove_hyperref
 
-            # TODO: add support for custom presentation theming, not just passing main theme str
+            # TODO [$5e1f14481abd6b00071ba799]: add support for custom presentation theming, not just passing main theme str
             styles = [UseTheme(theme)]
             self.data.packages.append(
                 Mode(

@@ -30,7 +30,7 @@ class ModifiedPicture(Template):
         image_node = Node(self._get_graphic(), options=['anchor=south west'])
 
         if self.add_grid:
-            # TODO: use models in drawing help lines grid
+            # TODO [$5e1f14481abd6b00071ba78c]: use models in drawing help lines grid
             draw_items = [
                 r'\draw[help lines,xstep=.1,ystep=.1] (0,0) grid (1,1);',
                 r'\foreach \x in {0,1,...,9} { \node [anchor=north] at (\x/10,0) {0.\x}; }',

@@ -60,7 +60,7 @@ class CellLayout(LayoutBase):
         With the standard Madrid header and footer, 0.8\textheight is about the full area with a bit of padding on
         top and bottom. Therefore passing 0.5 should be rescaled to 50% of the available area, or 0.4\textheight
         """
-        # TODO: better handling for beamer themes in CellLayout
+        # TODO [$5e1f14481abd6b00071ba78d]: better handling for beamer themes in CellLayout
         #
         # Available area will be different by theme.
         available_area = 0.8
@@ -77,7 +77,7 @@ class CellLayout(LayoutBase):
 
         Returns:
         """
-        # TODO: figure out how available area changes based on number of columns for CellLayout
+        # TODO [$5e1f14481abd6b00071ba78e]: figure out how available area changes based on number of columns for CellLayout
         #
         # Defaulting to doing nothing now, assuming full area always in CellLayout
         available_area = 1

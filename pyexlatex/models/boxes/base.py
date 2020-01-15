@@ -3,7 +3,7 @@ from pyexlatex.models.section.base import TextAreaMixin
 from pyexlatex.models.item import SimpleItem
 
 
-# TODO: better implementation of LaTeX boxes
+# TODO [$5e1f14481abd6b00071ba793]: better implementation of LaTeX boxes
 #
 # Update all of this after getting a better understanding of how boxes work and the syntax.
 # See: https://en.wikibooks.org/wiki/LaTeX/Boxes

@@ -125,7 +125,7 @@ class Figure(ContainerItem, Item):
 
         """
 
-        # TODO: for Figure, add possibility of passing grid shape rather than actual position str
+        # TODO [$5e1f14481abd6b00071ba78b]: for Figure, add possibility of passing grid shape rather than actual position str
 
         if position_str_name_dict is None:
             position_str_name_dict = {}
