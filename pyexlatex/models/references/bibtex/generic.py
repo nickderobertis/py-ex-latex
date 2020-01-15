@@ -21,7 +21,7 @@ class BibTexEntry(BibTexEntryBase):
             else:
                 self_attr = attr
             setattr(self, self_attr, value)
-            # TODO [$5e1f14481abd6b00071ba798]: improve BibTexEntry fields property
+            # TODO [#16]: improve BibTexEntry fields property
             #
             # Come up with cleaner way to get added to fields output property
             if self_attr not in skip_fields_items:

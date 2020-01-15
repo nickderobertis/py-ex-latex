@@ -39,7 +39,7 @@ class APIExceptionHandler:
             self.exceptions, self.prepend_kwargs_dict, self.prepend_items_dict
         )
 
-        # TODO [$5e1f14481abd6b00071ba792]: handle other exceptions
+        # TODO [#10]: handle other exceptions
         #
         # Not actually sure what this is for looking back at the code, but upon closer review
         # perhaps some additional exception handling will be needed.

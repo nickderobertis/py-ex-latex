@@ -1,6 +1,6 @@
 from typing import Iterable, Any
 
-# TODO [$5e1f14481abd6b00071ba790]: refactor extract logic to simplify
+# TODO [#8]: refactor extract logic to simplify
 #
 # logic.extract.by_attr and logic.extract.by_type are very similar, could be refactored
 
