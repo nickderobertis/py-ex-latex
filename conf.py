@@ -120,7 +120,7 @@ PACKAGE_URLS = {
 
 # Does not affect anything about the current package. Simply used for tracking when this repo was created off
 # of the quickstart template, so it is easier to bring over new changes to the template.
-_TEMPLATE_VERSION_TUPLE = (0, 5, 3)
+_TEMPLATE_VERSION_TUPLE = (0, 5, 4)
 
 if __name__ == '__main__':
     # Store config as environment variables
