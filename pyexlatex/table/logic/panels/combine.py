@@ -1,6 +1,5 @@
 import copy
-from collections import Sequence
-from typing import List
+from typing import List, Sequence
 
 from pyexlatex.table.models.panels.grid import GridShape
 from pyexlatex.table.models.labels.table import LabelTable
