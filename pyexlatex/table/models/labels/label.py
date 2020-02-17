@@ -1,6 +1,6 @@
 from mixins.repr import ReprMixin
 from pyexlatex.table.models.mixins.addvalues.row import RowAddMixin
-from pyexlatex.table.models.labels.multicolumn import MultiColumn
+from pyexlatex.table.models.labels.multicolumnlabel import MultiColumnLabel
 from pyexlatex.texgen.replacements.file import general_latex_replacements
 
 
@@ -35,7 +35,7 @@ class Label(ReprMixin, RowAddMixin):
         if len(self) == 1:
             return str(latex_valid_value)
         else:
-            return str(MultiColumn(latex_valid_value, span=self.span, align=self.align, add_table_line_break=False))
+            return str(MultiColumnLabel(latex_valid_value, span=self.span, align=self.align, add_table_line_break=False))
 
     def __len__(self):
         return self.span

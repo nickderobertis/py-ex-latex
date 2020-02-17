@@ -103,7 +103,7 @@ Tables
       pyexlatex.table.models.texgen.lines.MidRule
       pyexlatex.table.models.texgen.lines.BottomRule
       pyexlatex.table.models.texgen.lines.TableLineSegment
-      pyexlatex.table.models.labels.multicolumn.MultiColumn
+      pyexlatex.table.models.labels.multicolumnlabel.MultiColumnLabel
       pyexlatex.models.format.breaks.TableLineBreak
       pyexlatex.table.models.texgen.tabularstar.TabularStar
 

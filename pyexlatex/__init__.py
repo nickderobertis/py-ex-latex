@@ -62,7 +62,7 @@ from pyexlatex.table.models.texgen.items import Tabular
 from pyexlatex.table.models.data.valuestable import ValuesTable
 from pyexlatex.table.models.texgen.alignment import ColumnAlignment, ColumnsAlignment
 from pyexlatex.table.models.texgen.lines import TopRule, MidRule, BottomRule, TableLineSegment
-from pyexlatex.table.models.labels.multicolumn import MultiColumn
+from pyexlatex.table.models.labels.multicolumnlabel import MultiColumnLabel
 from pyexlatex.models.format.breaks import TableLineBreak
 from pyexlatex.table.models.texgen.tabularstar import TabularStar
 

@@ -1,7 +1,7 @@
 from pyexlatex.models.item import MultiOptionSimpleItem
 
 
-class MultiColumn(MultiOptionSimpleItem):
+class MultiColumnLabel(MultiOptionSimpleItem):
     name = 'multicolumn'
 
     def __init__(self, contents: str, span: int, align: str='c', add_table_line_break: bool = True):
