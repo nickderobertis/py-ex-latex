@@ -178,6 +178,8 @@ class Document(DocumentBase):
         if isinstance(authors, (Item, str)):
             authors = [authors]
 
+        content_list = deepcopy(content_list)  # don't overwrite original objects
+
         self.document_class_obj = DocumentClass(
             document_type=document_type,
             font_size=font_size,
