@@ -13,3 +13,7 @@ See the
 [documentation here.](
 https://nickderobertis.github.io/py-ex-latex/
 )
+
+## Author
+
+Created by Nick DeRobertis. MIT License.
