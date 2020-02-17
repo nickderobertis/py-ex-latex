@@ -45,7 +45,7 @@ class ValuesTable(TableSection):
 
 
 def _build_latex_str_list_from_df(df: DataFrame):
-    # TODO: remvove setting of max col width once pandas does this by default for to_latex
+    # TODO [$5e4acb683141f40007f72f9e]: remvove setting of max col width once pandas does this by default for to_latex
     #
     # See https://github.com/pandas-dev/pandas/issues/6491
     max_length = int(df.applymap(lambda x: len(str(x))).max().max() + 1)
