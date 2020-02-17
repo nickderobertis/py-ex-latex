@@ -1,0 +1,27 @@
+pyexlatex.texgen.packages package
+=================================
+
+.. automodule:: pyexlatex.texgen.packages
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.texgen.packages.columntypes module
+--------------------------------------------
+
+.. automodule:: pyexlatex.texgen.packages.columntypes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.texgen.packages.default module
+----------------------------------------
+
+.. automodule:: pyexlatex.texgen.packages.default
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

@@ -1,0 +1,27 @@
+pyexlatex.models.boxes package
+==============================
+
+.. automodule:: pyexlatex.models.boxes
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.models.boxes.base module
+----------------------------------
+
+.. automodule:: pyexlatex.models.boxes.base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.boxes.vbox module
+----------------------------------
+
+.. automodule:: pyexlatex.models.boxes.vbox
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

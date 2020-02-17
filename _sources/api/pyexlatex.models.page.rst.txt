@@ -1,0 +1,43 @@
+pyexlatex.models.page package
+=============================
+
+.. automodule:: pyexlatex.models.page
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.models.page.footer module
+-----------------------------------
+
+.. automodule:: pyexlatex.models.page.footer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.page.header module
+-----------------------------------
+
+.. automodule:: pyexlatex.models.page.header
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.page.number module
+-----------------------------------
+
+.. automodule:: pyexlatex.models.page.number
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.page.style module
+----------------------------------
+
+.. automodule:: pyexlatex.models.page.style
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

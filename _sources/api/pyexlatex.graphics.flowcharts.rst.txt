@@ -1,0 +1,19 @@
+pyexlatex.graphics.flowcharts package
+=====================================
+
+.. automodule:: pyexlatex.graphics.flowcharts
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.graphics.flowcharts.linear module
+-------------------------------------------
+
+.. automodule:: pyexlatex.graphics.flowcharts.linear
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

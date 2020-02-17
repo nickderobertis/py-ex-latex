@@ -1,0 +1,26 @@
+pyexlatex.presentation package
+==============================
+
+.. automodule:: pyexlatex.presentation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.presentation.beamer
+
+Submodules
+----------
+
+pyexlatex.presentation.presentation module
+------------------------------------------
+
+.. automodule:: pyexlatex.presentation.presentation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

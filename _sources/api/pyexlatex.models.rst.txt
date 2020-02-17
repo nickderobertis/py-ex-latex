@@ -1,0 +1,212 @@
+pyexlatex.models package
+========================
+
+.. automodule:: pyexlatex.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.models.boxes
+   pyexlatex.models.commands
+   pyexlatex.models.control
+   pyexlatex.models.credits
+   pyexlatex.models.format
+   pyexlatex.models.lists
+   pyexlatex.models.page
+   pyexlatex.models.references
+   pyexlatex.models.section
+   pyexlatex.models.sizes
+   pyexlatex.models.title
+
+Submodules
+----------
+
+pyexlatex.models.caption module
+-------------------------------
+
+.. automodule:: pyexlatex.models.caption
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.containeritem module
+-------------------------------------
+
+.. automodule:: pyexlatex.models.containeritem
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.datastore module
+---------------------------------
+
+.. automodule:: pyexlatex.models.datastore
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.date module
+----------------------------
+
+.. automodule:: pyexlatex.models.date
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.document module
+--------------------------------
+
+.. automodule:: pyexlatex.models.document
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.documentitem module
+------------------------------------
+
+.. automodule:: pyexlatex.models.documentitem
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.documentsetup module
+-------------------------------------
+
+.. automodule:: pyexlatex.models.documentsetup
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.environment module
+-----------------------------------
+
+.. automodule:: pyexlatex.models.environment
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.environmenttemplate module
+-------------------------------------------
+
+.. automodule:: pyexlatex.models.environmenttemplate
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.equation module
+--------------------------------
+
+.. automodule:: pyexlatex.models.equation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.footnote module
+--------------------------------
+
+.. automodule:: pyexlatex.models.footnote
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.hyperlinks module
+----------------------------------
+
+.. automodule:: pyexlatex.models.hyperlinks
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.item module
+----------------------------
+
+.. automodule:: pyexlatex.models.item
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.jinja module
+-----------------------------
+
+.. automodule:: pyexlatex.models.jinja
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.label module
+-----------------------------
+
+.. automodule:: pyexlatex.models.label
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.landscape module
+---------------------------------
+
+.. automodule:: pyexlatex.models.landscape
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.latex module
+-----------------------------
+
+.. automodule:: pyexlatex.models.latex
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.mixins module
+------------------------------
+
+.. automodule:: pyexlatex.models.mixins
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.model module
+-----------------------------
+
+.. automodule:: pyexlatex.models.model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.package module
+-------------------------------
+
+.. automodule:: pyexlatex.models.package
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.ref module
+---------------------------
+
+.. automodule:: pyexlatex.models.ref
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.standalone module
+----------------------------------
+
+.. automodule:: pyexlatex.models.standalone
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.template module
+--------------------------------
+
+.. automodule:: pyexlatex.models.template
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

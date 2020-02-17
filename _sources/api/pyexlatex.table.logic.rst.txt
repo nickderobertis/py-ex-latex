@@ -1,0 +1,27 @@
+pyexlatex.table.logic package
+=============================
+
+.. automodule:: pyexlatex.table.logic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.table.logic.panels
+   pyexlatex.table.logic.table
+
+Submodules
+----------
+
+pyexlatex.table.logic.pdf module
+--------------------------------
+
+.. automodule:: pyexlatex.table.logic.pdf
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

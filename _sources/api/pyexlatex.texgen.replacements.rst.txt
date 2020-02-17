@@ -1,0 +1,35 @@
+pyexlatex.texgen.replacements package
+=====================================
+
+.. automodule:: pyexlatex.texgen.replacements
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.texgen.replacements.file module
+-----------------------------------------
+
+.. automodule:: pyexlatex.texgen.replacements.file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.texgen.replacements.filename module
+---------------------------------------------
+
+.. automodule:: pyexlatex.texgen.replacements.filename
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.texgen.replacements.replacer module
+---------------------------------------------
+
+.. automodule:: pyexlatex.texgen.replacements.replacer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

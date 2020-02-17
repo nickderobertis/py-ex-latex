@@ -1,0 +1,19 @@
+pyexlatex.tools package
+=======================
+
+.. automodule:: pyexlatex.tools
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.tools.fileops module
+------------------------------
+
+.. automodule:: pyexlatex.tools.fileops
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

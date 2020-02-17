@@ -1,0 +1,15 @@
+pyexlatex.texgen package
+========================
+
+.. automodule:: pyexlatex.texgen
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.texgen.packages
+   pyexlatex.texgen.replacements

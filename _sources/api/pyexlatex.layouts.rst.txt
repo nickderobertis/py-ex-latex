@@ -1,0 +1,43 @@
+pyexlatex.layouts package
+=========================
+
+.. automodule:: pyexlatex.layouts
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.layouts.base module
+-----------------------------
+
+.. automodule:: pyexlatex.layouts.base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.layouts.grid module
+-----------------------------
+
+.. automodule:: pyexlatex.layouts.grid
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.layouts.multicol module
+---------------------------------
+
+.. automodule:: pyexlatex.layouts.multicol
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.layouts.spaced module
+-------------------------------
+
+.. automodule:: pyexlatex.layouts.spaced
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

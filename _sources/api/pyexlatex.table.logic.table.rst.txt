@@ -1,0 +1,19 @@
+pyexlatex.table.logic.table package
+===================================
+
+.. automodule:: pyexlatex.table.logic.table
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.table.logic.table.build module
+----------------------------------------
+
+.. automodule:: pyexlatex.table.logic.table.build
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

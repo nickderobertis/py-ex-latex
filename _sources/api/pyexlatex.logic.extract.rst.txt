@@ -1,0 +1,51 @@
+pyexlatex.logic.extract package
+===============================
+
+.. automodule:: pyexlatex.logic.extract
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.logic.extract.by\_attr module
+---------------------------------------
+
+.. automodule:: pyexlatex.logic.extract.by_attr
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.extract.by\_type module
+---------------------------------------
+
+.. automodule:: pyexlatex.logic.extract.by_type
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.extract.docitems module
+---------------------------------------
+
+.. automodule:: pyexlatex.logic.extract.docitems
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.extract.get module
+----------------------------------
+
+.. automodule:: pyexlatex.logic.extract.get
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.extract.tools module
+------------------------------------
+
+.. automodule:: pyexlatex.logic.extract.tools
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

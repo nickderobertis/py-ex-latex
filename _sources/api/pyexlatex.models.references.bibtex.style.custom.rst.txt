@@ -1,0 +1,19 @@
+pyexlatex.models.references.bibtex.style.custom package
+=======================================================
+
+.. automodule:: pyexlatex.models.references.bibtex.style.custom
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.models.references.bibtex.style.custom.jof module
+----------------------------------------------------------
+
+.. automodule:: pyexlatex.models.references.bibtex.style.custom.jof
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

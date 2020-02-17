@@ -1,0 +1,19 @@
+pyexlatex.presentation.beamer.templates.lists package
+=====================================================
+
+.. automodule:: pyexlatex.presentation.beamer.templates.lists
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.presentation.beamer.templates.lists.dim\_reveal\_items module
+-----------------------------------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.templates.lists.dim_reveal_items
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

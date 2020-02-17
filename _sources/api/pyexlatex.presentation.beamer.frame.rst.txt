@@ -1,0 +1,27 @@
+pyexlatex.presentation.beamer.frame package
+===========================================
+
+.. automodule:: pyexlatex.presentation.beamer.frame
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.presentation.beamer.frame.frame module
+------------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.frame.frame
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.presentation.beamer.frame.title module
+------------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.frame.title
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

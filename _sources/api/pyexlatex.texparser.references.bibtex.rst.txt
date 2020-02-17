@@ -1,0 +1,19 @@
+pyexlatex.texparser.references.bibtex package
+=============================================
+
+.. automodule:: pyexlatex.texparser.references.bibtex
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.texparser.references.bibtex.extract module
+----------------------------------------------------
+
+.. automodule:: pyexlatex.texparser.references.bibtex.extract
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

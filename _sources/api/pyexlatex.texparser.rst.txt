@@ -1,0 +1,26 @@
+pyexlatex.texparser package
+===========================
+
+.. automodule:: pyexlatex.texparser
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.texparser.references
+
+Submodules
+----------
+
+pyexlatex.texparser.clean module
+--------------------------------
+
+.. automodule:: pyexlatex.texparser.clean
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

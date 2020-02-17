@@ -1,0 +1,27 @@
+pyexlatex.table.models.mixins.addvalues package
+===============================================
+
+.. automodule:: pyexlatex.table.models.mixins.addvalues
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.table.models.mixins.addvalues.ampersand module
+--------------------------------------------------------
+
+.. automodule:: pyexlatex.table.models.mixins.addvalues.ampersand
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.table.models.mixins.addvalues.row module
+--------------------------------------------------
+
+.. automodule:: pyexlatex.table.models.mixins.addvalues.row
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

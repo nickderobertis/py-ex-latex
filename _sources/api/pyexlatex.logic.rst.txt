@@ -1,0 +1,44 @@
+pyexlatex.logic package
+=======================
+
+.. automodule:: pyexlatex.logic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.logic.extract
+   pyexlatex.logic.format
+   pyexlatex.logic.pdf
+
+Submodules
+----------
+
+pyexlatex.logic.builder module
+------------------------------
+
+.. automodule:: pyexlatex.logic.builder
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.tools module
+----------------------------
+
+.. automodule:: pyexlatex.logic.tools
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.type\_check module
+----------------------------------
+
+.. automodule:: pyexlatex.logic.type_check
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

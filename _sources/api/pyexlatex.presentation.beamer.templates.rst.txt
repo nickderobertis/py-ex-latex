@@ -1,0 +1,28 @@
+pyexlatex.presentation.beamer.templates package
+===============================================
+
+.. automodule:: pyexlatex.presentation.beamer.templates
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.presentation.beamer.templates.control
+   pyexlatex.presentation.beamer.templates.frames
+   pyexlatex.presentation.beamer.templates.lists
+
+Submodules
+----------
+
+pyexlatex.presentation.beamer.templates.presentationappendix module
+-------------------------------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.templates.presentationappendix
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

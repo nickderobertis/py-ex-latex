@@ -1,0 +1,27 @@
+pyexlatex.resume package
+========================
+
+.. automodule:: pyexlatex.resume
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.resume.models
+   pyexlatex.resume.templates
+
+Submodules
+----------
+
+pyexlatex.resume.resume module
+------------------------------
+
+.. automodule:: pyexlatex.resume.resume
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

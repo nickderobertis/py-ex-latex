@@ -1,0 +1,35 @@
+pyexlatex.table.logic.panels package
+====================================
+
+.. automodule:: pyexlatex.table.logic.panels
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.table.logic.panels.combine module
+-------------------------------------------
+
+.. automodule:: pyexlatex.table.logic.panels.combine
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.table.logic.panels.letters module
+-------------------------------------------
+
+.. automodule:: pyexlatex.table.logic.panels.letters
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.table.logic.panels.topleft module
+-------------------------------------------
+
+.. automodule:: pyexlatex.table.logic.panels.topleft
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

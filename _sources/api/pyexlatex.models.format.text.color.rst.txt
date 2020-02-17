@@ -1,0 +1,26 @@
+pyexlatex.models.format.text.color package
+==========================================
+
+.. automodule:: pyexlatex.models.format.text.color
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.models.format.text.color.deftypes
+
+Submodules
+----------
+
+pyexlatex.models.format.text.color.main module
+----------------------------------------------
+
+.. automodule:: pyexlatex.models.format.text.color.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

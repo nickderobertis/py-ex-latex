@@ -1,0 +1,34 @@
+pyexlatex.figure package
+========================
+
+.. automodule:: pyexlatex.figure
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.figure.models
+
+Submodules
+----------
+
+pyexlatex.figure.packages module
+--------------------------------
+
+.. automodule:: pyexlatex.figure.packages
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.figure.pdf module
+---------------------------
+
+.. automodule:: pyexlatex.figure.pdf
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

@@ -1,0 +1,42 @@
+pyexlatex.models.references.bibtex.style package
+================================================
+
+.. automodule:: pyexlatex.models.references.bibtex.style
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.models.references.bibtex.style.custom
+
+Submodules
+----------
+
+pyexlatex.models.references.bibtex.style.builtin\_styles module
+---------------------------------------------------------------
+
+.. automodule:: pyexlatex.models.references.bibtex.style.builtin_styles
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.references.bibtex.style.manager module
+-------------------------------------------------------
+
+.. automodule:: pyexlatex.models.references.bibtex.style.manager
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.references.bibtex.style.style module
+-----------------------------------------------------
+
+.. automodule:: pyexlatex.models.references.bibtex.style.style
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

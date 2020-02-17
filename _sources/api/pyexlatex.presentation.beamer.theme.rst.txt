@@ -1,0 +1,35 @@
+pyexlatex.presentation.beamer.theme package
+===========================================
+
+.. automodule:: pyexlatex.presentation.beamer.theme
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.presentation.beamer.theme.setcolor module
+---------------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.theme.setcolor
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.presentation.beamer.theme.settemplate module
+------------------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.theme.settemplate
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.presentation.beamer.theme.usetheme module
+---------------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.theme.usetheme
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

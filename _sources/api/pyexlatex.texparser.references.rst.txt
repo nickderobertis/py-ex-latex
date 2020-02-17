@@ -1,0 +1,14 @@
+pyexlatex.texparser.references package
+======================================
+
+.. automodule:: pyexlatex.texparser.references
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.texparser.references.bibtex

@@ -1,0 +1,35 @@
+pyexlatex.resume.models package
+===============================
+
+.. automodule:: pyexlatex.resume.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.resume.models.contactline module
+------------------------------------------
+
+.. automodule:: pyexlatex.resume.models.contactline
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.resume.models.employment module
+-----------------------------------------
+
+.. automodule:: pyexlatex.resume.models.employment
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.resume.models.name module
+-----------------------------------
+
+.. automodule:: pyexlatex.resume.models.name
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

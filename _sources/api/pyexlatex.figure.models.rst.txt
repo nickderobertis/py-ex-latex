@@ -1,0 +1,35 @@
+pyexlatex.figure.models package
+===============================
+
+.. automodule:: pyexlatex.figure.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.figure.models.figure module
+-------------------------------------
+
+.. automodule:: pyexlatex.figure.models.figure
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.figure.models.graphic module
+--------------------------------------
+
+.. automodule:: pyexlatex.figure.models.graphic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.figure.models.subfigure module
+----------------------------------------
+
+.. automodule:: pyexlatex.figure.models.subfigure
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

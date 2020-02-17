@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyexlatex.models.lists package &mdash; pyexlatex 0.10.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script >var copybuttonSkipText = '>>> ';</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyexlatex.models.page package" href="pyexlatex.models.page.html" />
+    <link rel="prev" title="pyexlatex.models.format.text.color.deftypes package" href="pyexlatex.models.format.text.color.deftypes.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> pyexlatex
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.10.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyexlatex</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyexlatex.html">pyexlatex package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyexlatex.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.constants.html">pyexlatex.constants package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.resume.html">pyexlatex.resume package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.table.html">pyexlatex.table package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.texgen.html">pyexlatex.texgen package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.texparser.html">pyexlatex.texparser package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.tools.html">pyexlatex.tools package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.exc">pyexlatex.exc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyexlatex</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">pyexlatex</a> &raquo;</li>
+        
+          <li><a href="pyexlatex.html">pyexlatex package</a> &raquo;</li>
+        
+          <li><a href="pyexlatex.models.html">pyexlatex.models package</a> &raquo;</li>
+        
+      <li>pyexlatex.models.lists package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/pyexlatex.models.lists.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyexlatex.models.lists">
+<span id="pyexlatex-models-lists-package"></span><h1>pyexlatex.models.lists package<a class="headerlink" href="#module-pyexlatex.models.lists" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyexlatex.models.lists.base">
+<span id="pyexlatex-models-lists-base-module"></span><h2>pyexlatex.models.lists.base module<a class="headerlink" href="#module-pyexlatex.models.lists.base" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.lists.base.ListBase">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.lists.base.</code><code class="sig-name descname">ListBase</code><span class="sig-paren">(</span><em class="sig-param">items</em>, <em class="sig-param">overlay=None</em>, <em class="sig-param">vertical_fill=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/lists/base.html#ListBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.lists.base.ListBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaMixin" title="pyexlatex.models.section.base.TextAreaMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaMixin</span></code></a>, <a class="reference internal" href="#pyexlatex.models.lists.base.VerticalFillMixin" title="pyexlatex.models.lists.base.VerticalFillMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.lists.base.VerticalFillMixin</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.Item" title="pyexlatex.models.item.Item"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.Item</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
+<dl class="method">
+<dt id="pyexlatex.models.lists.base.ListBase.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">items</em>, <em class="sig-param">overlay=None</em>, <em class="sig-param">vertical_fill=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/lists/base.html#ListBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.lists.base.ListBase.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.lists.base.ListBase.name">
+<code class="sig-name descname">name</code><em class="property"> = 'list'</em><a class="headerlink" href="#pyexlatex.models.lists.base.ListBase.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.lists.base.ListBase.repr_cols">
+<code class="sig-name descname">repr_cols</code><em class="property"> = ['contents']</em><a class="headerlink" href="#pyexlatex.models.lists.base.ListBase.repr_cols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.lists.base.VerticalFillMixin">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.lists.base.</code><code class="sig-name descname">VerticalFillMixin</code><a class="reference internal" href="../_modules/pyexlatex/models/lists/base.html#VerticalFillMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.lists.base.VerticalFillMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="attribute">
+<dt id="pyexlatex.models.lists.base.VerticalFillMixin.vertical_fill">
+<code class="sig-name descname">vertical_fill</code><em class="property"> = False</em><a class="headerlink" href="#pyexlatex.models.lists.base.VerticalFillMixin.vertical_fill" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.lists.base.VerticalFillMixin.vertically_space_content">
+<code class="sig-name descname">vertically_space_content</code><span class="sig-paren">(</span><em class="sig-param">items</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/lists/base.html#VerticalFillMixin.vertically_space_content"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.lists.base.VerticalFillMixin.vertically_space_content" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pyexlatex.models.lists.base.can_be_included_directly_in_list">
+<code class="sig-prename descclassname">pyexlatex.models.lists.base.</code><code class="sig-name descname">can_be_included_directly_in_list</code><span class="sig-paren">(</span><em class="sig-param">item</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/lists/base.html#can_be_included_directly_in_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.lists.base.can_be_included_directly_in_list" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.lists.item">
+<span id="pyexlatex-models-lists-item-module"></span><h2>pyexlatex.models.lists.item module<a class="headerlink" href="#module-pyexlatex.models.lists.item" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.lists.item.ListItem">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.lists.item.</code><code class="sig-name descname">ListItem</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/lists/item.html#ListItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.lists.item.ListItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaMixin" title="pyexlatex.models.section.base.TextAreaMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaMixin</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.NoBracesItem" title="pyexlatex.models.item.NoBracesItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.NoBracesItem</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
+<dl class="method">
+<dt id="pyexlatex.models.lists.item.ListItem.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/lists/item.html#ListItem.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.lists.item.ListItem.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.lists.item.ListItem.name">
+<code class="sig-name descname">name</code><em class="property"> = 'item'</em><a class="headerlink" href="#pyexlatex.models.lists.item.ListItem.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.lists.item.ListItem.repr_cols">
+<code class="sig-name descname">repr_cols</code><em class="property"> = ['contents']</em><a class="headerlink" href="#pyexlatex.models.lists.item.ListItem.repr_cols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.lists.ordered">
+<span id="pyexlatex-models-lists-ordered-module"></span><h2>pyexlatex.models.lists.ordered module<a class="headerlink" href="#module-pyexlatex.models.lists.ordered" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.lists.ordered.OrderedList">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.lists.ordered.</code><code class="sig-name descname">OrderedList</code><span class="sig-paren">(</span><em class="sig-param">items</em>, <em class="sig-param">initial_number=1</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/lists/ordered.html#OrderedList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.lists.ordered.OrderedList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.lists.base.ListBase" title="pyexlatex.models.lists.base.ListBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.lists.base.ListBase</span></code></a></p>
+<p>Numbered, ordered items.</p>
+<dl class="method">
+<dt id="pyexlatex.models.lists.ordered.OrderedList.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">items</em>, <em class="sig-param">initial_number=1</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/lists/ordered.html#OrderedList.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.lists.ordered.OrderedList.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.lists.ordered.OrderedList.is_ListBase">
+<code class="sig-name descname">is_ListBase</code><em class="property"> = True</em><a class="headerlink" href="#pyexlatex.models.lists.ordered.OrderedList.is_ListBase" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.lists.ordered.OrderedList.name">
+<code class="sig-name descname">name</code><em class="property"> = 'enumerate'</em><a class="headerlink" href="#pyexlatex.models.lists.ordered.OrderedList.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.lists.unordered">
+<span id="pyexlatex-models-lists-unordered-module"></span><h2>pyexlatex.models.lists.unordered module<a class="headerlink" href="#module-pyexlatex.models.lists.unordered" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.lists.unordered.UnorderedList">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.lists.unordered.</code><code class="sig-name descname">UnorderedList</code><span class="sig-paren">(</span><em class="sig-param">items</em>, <em class="sig-param">overlay=None</em>, <em class="sig-param">vertical_fill=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/lists/unordered.html#UnorderedList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.lists.unordered.UnorderedList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.lists.base.ListBase" title="pyexlatex.models.lists.base.ListBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.lists.base.ListBase</span></code></a></p>
+<p>Bullet point items.</p>
+<dl class="attribute">
+<dt id="pyexlatex.models.lists.unordered.UnorderedList.is_ListBase">
+<code class="sig-name descname">is_ListBase</code><em class="property"> = True</em><a class="headerlink" href="#pyexlatex.models.lists.unordered.UnorderedList.is_ListBase" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.lists.unordered.UnorderedList.name">
+<code class="sig-name descname">name</code><em class="property"> = 'itemize'</em><a class="headerlink" href="#pyexlatex.models.lists.unordered.UnorderedList.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyexlatex.models.page.html" class="btn btn-neutral float-right" title="pyexlatex.models.page package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyexlatex.models.format.text.color.deftypes.html" class="btn btn-neutral float-left" title="pyexlatex.models.format.text.color.deftypes package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Nick DeRobertis
+
+    </p>
+  </div>
+    
+    
+      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-155734278-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

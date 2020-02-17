@@ -1,0 +1,19 @@
+pyexlatex.presentation.beamer.templates.control package
+=======================================================
+
+.. automodule:: pyexlatex.presentation.beamer.templates.control
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.presentation.beamer.templates.control.tocsection module
+-----------------------------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.templates.control.tocsection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

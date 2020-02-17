@@ -1,0 +1,1241 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyexlatex.models package &mdash; pyexlatex 0.10.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script >var copybuttonSkipText = '>>> ';</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyexlatex.models.boxes package" href="pyexlatex.models.boxes.html" />
+    <link rel="prev" title="pyexlatex.logic.pdf.errors.models package" href="pyexlatex.logic.pdf.errors.models.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> pyexlatex
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.10.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyexlatex</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pyexlatex.html">pyexlatex package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pyexlatex.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.constants.html">pyexlatex.constants package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pyexlatex.models package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.resume.html">pyexlatex.resume package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.table.html">pyexlatex.table package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.texgen.html">pyexlatex.texgen package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.texparser.html">pyexlatex.texparser package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.tools.html">pyexlatex.tools package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.exc">pyexlatex.exc module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyexlatex</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">pyexlatex</a> &raquo;</li>
+        
+          <li><a href="pyexlatex.html">pyexlatex package</a> &raquo;</li>
+        
+      <li>pyexlatex.models package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/pyexlatex.models.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pyexlatex.models">
+<span id="pyexlatex-models-package"></span><h1>pyexlatex.models package<a class="headerlink" href="#module-pyexlatex.models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.boxes.html">pyexlatex.models.boxes package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.boxes.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.boxes.html#module-pyexlatex.models.boxes.base">pyexlatex.models.boxes.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.boxes.html#module-pyexlatex.models.boxes.vbox">pyexlatex.models.boxes.vbox module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.commands.html">pyexlatex.models.commands package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.commands.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.commands.html#module-pyexlatex.models.commands.begin">pyexlatex.models.commands.begin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.commands.html#module-pyexlatex.models.commands.end">pyexlatex.models.commands.end module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.commands.html#module-pyexlatex.models.commands.endfloat">pyexlatex.models.commands.endfloat module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.commands.html#pyexlatex-models-commands-floatrow-module">pyexlatex.models.commands.floatrow module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.commands.html#module-pyexlatex.models.commands.newenvironment">pyexlatex.models.commands.newenvironment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.commands.html#module-pyexlatex.models.commands.renewcommand">pyexlatex.models.commands.renewcommand module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.control.html">pyexlatex.models.control package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.models.control.documentclass.html">pyexlatex.models.control.documentclass package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.control.documentclass.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.control.documentclass.classtypes.html">pyexlatex.models.control.documentclass.classtypes package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.control.documentclass.classtypes.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="pyexlatex.models.control.documentclass.classtypes.custom.html">pyexlatex.models.control.documentclass.classtypes.custom package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="pyexlatex.models.control.documentclass.classtypes.custom.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="pyexlatex.models.control.documentclass.classtypes.custom.html#pyexlatex-models-control-documentclass-classtypes-custom-resume-module">pyexlatex.models.control.documentclass.classtypes.custom.resume module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.control.documentclass.classtypes.html#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.control.documentclass.classtypes.html#pyexlatex-models-control-documentclass-classtypes-builtin-classes-module">pyexlatex.models.control.documentclass.classtypes.builtin_classes module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.control.documentclass.classtypes.html#module-pyexlatex.models.control.documentclass.classtypes.documentclasstype">pyexlatex.models.control.documentclass.classtypes.documentclasstype module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.control.documentclass.classtypes.html#pyexlatex-models-control-documentclass-classtypes-manager-module">pyexlatex.models.control.documentclass.classtypes.manager module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.control.documentclass.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.control.documentclass.html#pyexlatex-models-control-documentclass-documentclass-module">pyexlatex.models.control.documentclass.documentclass module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#module-pyexlatex.models.control.and_">pyexlatex.models.control.and_ module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#module-pyexlatex.models.control.extrafloats">pyexlatex.models.control.extrafloats module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#module-pyexlatex.models.control.filecontents">pyexlatex.models.control.filecontents module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#module-pyexlatex.models.control.group">pyexlatex.models.control.group module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#module-pyexlatex.models.control.maxdeadcycles">pyexlatex.models.control.maxdeadcycles module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#module-pyexlatex.models.control.mode">pyexlatex.models.control.mode module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#module-pyexlatex.models.control.newcounter">pyexlatex.models.control.newcounter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#module-pyexlatex.models.control.newpage">pyexlatex.models.control.newpage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#module-pyexlatex.models.control.setcounter">pyexlatex.models.control.setcounter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#module-pyexlatex.models.control.setlength">pyexlatex.models.control.setlength module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.control.html#module-pyexlatex.models.control.value">pyexlatex.models.control.value module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.credits.html">pyexlatex.models.credits package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.credits.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.models.credits.institution.html">pyexlatex.models.credits.institution package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.credits.institution.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.credits.institution.html#module-pyexlatex.models.credits.institution.inst">pyexlatex.models.credits.institution.inst module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.credits.institution.html#module-pyexlatex.models.credits.institution.institute">pyexlatex.models.credits.institution.institute module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.credits.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.credits.html#pyexlatex-models-credits-author-module">pyexlatex.models.credits.author module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.format.html">pyexlatex.models.format package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.models.format.code.html">pyexlatex.models.format.code package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.code.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.code.html#pyexlatex-models-format-code-minted-module">pyexlatex.models.format.code.minted module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.code.html#pyexlatex-models-format-code-python-module">pyexlatex.models.format.code.python module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.models.format.paragraph.html">pyexlatex.models.format.paragraph package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.paragraph.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.paragraph.html#module-pyexlatex.models.format.paragraph.justifying">pyexlatex.models.format.paragraph.justifying module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.paragraph.html#module-pyexlatex.models.format.paragraph.multicol">pyexlatex.models.format.paragraph.multicol module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.paragraph.html#module-pyexlatex.models.format.paragraph.raggedright">pyexlatex.models.format.paragraph.raggedright module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.paragraph.html#module-pyexlatex.models.format.paragraph.sloppy">pyexlatex.models.format.paragraph.sloppy module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.models.format.text.html">pyexlatex.models.format.text package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.text.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.format.text.color.html">pyexlatex.models.format.text.color package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.format.text.color.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="pyexlatex.models.format.text.color.deftypes.html">pyexlatex.models.format.text.color.deftypes package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="pyexlatex.models.format.text.color.deftypes.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="pyexlatex.models.format.text.color.deftypes.html#module-pyexlatex.models.format.text.color.deftypes.base">pyexlatex.models.format.text.color.deftypes.base module</a></li>
+<li class="toctree-l8"><a class="reference internal" href="pyexlatex.models.format.text.color.deftypes.html#module-pyexlatex.models.format.text.color.deftypes.hex">pyexlatex.models.format.text.color.deftypes.hex module</a></li>
+<li class="toctree-l8"><a class="reference internal" href="pyexlatex.models.format.text.color.deftypes.html#module-pyexlatex.models.format.text.color.deftypes.rgb">pyexlatex.models.format.text.color.deftypes.rgb module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.format.text.color.html#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.format.text.color.html#module-pyexlatex.models.format.text.color.main">pyexlatex.models.format.text.color.main module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.text.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.bold">pyexlatex.models.format.text.bold module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.italics">pyexlatex.models.format.text.italics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.linespacing">pyexlatex.models.format.text.linespacing module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.monospace">pyexlatex.models.format.text.monospace module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.nohyphens">pyexlatex.models.format.text.nohyphens module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.smallcaps">pyexlatex.models.format.text.smallcaps module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.text">pyexlatex.models.format.text.text module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.format.text.html#module-pyexlatex.models.format.text.underline">pyexlatex.models.format.text.underline module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.adjustbox">pyexlatex.models.format.adjustbox module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.breaks">pyexlatex.models.format.breaks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.centering">pyexlatex.models.format.centering module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.fills">pyexlatex.models.format.fills module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.hangindent">pyexlatex.models.format.hangindent module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.hline">pyexlatex.models.format.hline module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.hspace">pyexlatex.models.format.hspace module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.join">pyexlatex.models.format.join module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.noindent">pyexlatex.models.format.noindent module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#pyexlatex-models-format-nolinebreak-module">pyexlatex.models.format.nolinebreak module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.nopagebreak">pyexlatex.models.format.nopagebreak module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.paragraphindent">pyexlatex.models.format.paragraphindent module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.raw">pyexlatex.models.format.raw module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.rule">pyexlatex.models.format.rule module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.sectionnum">pyexlatex.models.format.sectionnum module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.format.html#module-pyexlatex.models.format.vspace">pyexlatex.models.format.vspace module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.lists.html">pyexlatex.models.lists package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.lists.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.lists.html#module-pyexlatex.models.lists.base">pyexlatex.models.lists.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.lists.html#module-pyexlatex.models.lists.item">pyexlatex.models.lists.item module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.lists.html#module-pyexlatex.models.lists.ordered">pyexlatex.models.lists.ordered module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.lists.html#module-pyexlatex.models.lists.unordered">pyexlatex.models.lists.unordered module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.page.html">pyexlatex.models.page package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.page.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.page.html#module-pyexlatex.models.page.footer">pyexlatex.models.page.footer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.page.html#pyexlatex-models-page-header-module">pyexlatex.models.page.header module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.page.html#pyexlatex-models-page-number-module">pyexlatex.models.page.number module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.page.html#module-pyexlatex.models.page.style">pyexlatex.models.page.style module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.references.html">pyexlatex.models.references package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.references.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.models.references.bibtex.html">pyexlatex.models.references.bibtex package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.references.bibtex.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="pyexlatex.models.references.bibtex.style.html">pyexlatex.models.references.bibtex.style package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.references.bibtex.style.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="pyexlatex.models.references.bibtex.style.custom.html">pyexlatex.models.references.bibtex.style.custom package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="pyexlatex.models.references.bibtex.style.custom.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="pyexlatex.models.references.bibtex.style.custom.html#pyexlatex-models-references-bibtex-style-custom-jof-module">pyexlatex.models.references.bibtex.style.custom.jof module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.references.bibtex.style.html#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.references.bibtex.style.html#pyexlatex-models-references-bibtex-style-builtin-styles-module">pyexlatex.models.references.bibtex.style.builtin_styles module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.references.bibtex.style.html#pyexlatex-models-references-bibtex-style-manager-module">pyexlatex.models.references.bibtex.style.manager module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="pyexlatex.models.references.bibtex.style.html#module-pyexlatex.models.references.bibtex.style.style">pyexlatex.models.references.bibtex.style.style module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.references.bibtex.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.references.bibtex.html#module-pyexlatex.models.references.bibtex.addresource">pyexlatex.models.references.bibtex.addresource module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.references.bibtex.html#module-pyexlatex.models.references.bibtex.article">pyexlatex.models.references.bibtex.article module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.references.bibtex.html#module-pyexlatex.models.references.bibtex.base">pyexlatex.models.references.bibtex.base module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.references.bibtex.html#module-pyexlatex.models.references.bibtex.generic">pyexlatex.models.references.bibtex.generic module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.references.bibtex.html#module-pyexlatex.models.references.bibtex.manual">pyexlatex.models.references.bibtex.manual module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.references.bibtex.html#module-pyexlatex.models.references.bibtex.misc">pyexlatex.models.references.bibtex.misc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.references.bibtex.html#module-pyexlatex.models.references.bibtex.printbib">pyexlatex.models.references.bibtex.printbib module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.references.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.references.html#pyexlatex-models-references-bibliography-module">pyexlatex.models.references.bibliography module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.references.html#module-pyexlatex.models.references.citations">pyexlatex.models.references.citations module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.section.html">pyexlatex.models.section package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.section.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.section.html#module-pyexlatex.models.section.abstract">pyexlatex.models.section.abstract module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.section.html#module-pyexlatex.models.section.appendix">pyexlatex.models.section.appendix module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.section.html#module-pyexlatex.models.section.base">pyexlatex.models.section.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.section.html#module-pyexlatex.models.section.paragraphs">pyexlatex.models.section.paragraphs module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.section.html#module-pyexlatex.models.section.sections">pyexlatex.models.section.sections module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.sizes.html">pyexlatex.models.sizes package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.sizes.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.sizes.html#module-pyexlatex.models.sizes.baselineskip">pyexlatex.models.sizes.baselineskip module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.sizes.html#module-pyexlatex.models.sizes.linewidth">pyexlatex.models.sizes.linewidth module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.sizes.html#module-pyexlatex.models.sizes.paperwidth">pyexlatex.models.sizes.paperwidth module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.sizes.html#module-pyexlatex.models.sizes.textheight">pyexlatex.models.sizes.textheight module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.sizes.html#module-pyexlatex.models.sizes.textsizes">pyexlatex.models.sizes.textsizes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.sizes.html#module-pyexlatex.models.sizes.textwidth">pyexlatex.models.sizes.textwidth module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.models.title.html">pyexlatex.models.title package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.title.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.title.html#pyexlatex-models-title-frame-module">pyexlatex.models.title.frame module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.title.html#module-pyexlatex.models.title.framepage">pyexlatex.models.title.framepage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.title.html#module-pyexlatex.models.title.page">pyexlatex.models.title.page module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.title.html#module-pyexlatex.models.title.subtitle">pyexlatex.models.title.subtitle module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.models.title.html#module-pyexlatex.models.title.title">pyexlatex.models.title.title module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyexlatex.models.caption">
+<span id="pyexlatex-models-caption-module"></span><h2>pyexlatex.models.caption module<a class="headerlink" href="#module-pyexlatex.models.caption" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.caption.Caption">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.caption.</code><code class="sig-name descname">Caption</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/caption.html#Caption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.caption.Caption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.caption.Caption.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/caption.html#Caption.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.caption.Caption.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.caption.Caption.name">
+<code class="sig-name descname">name</code><em class="property"> = 'caption'</em><a class="headerlink" href="#pyexlatex.models.caption.Caption.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.containeritem">
+<span id="pyexlatex-models-containeritem-module"></span><h2>pyexlatex.models.containeritem module<a class="headerlink" href="#module-pyexlatex.models.containeritem" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.containeritem.ContainerItem">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.containeritem.</code><code class="sig-name descname">ContainerItem</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">content</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/containeritem.html#ContainerItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.containeritem.ContainerItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.documentitem.DocumentItem" title="pyexlatex.models.documentitem.DocumentItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.documentitem.DocumentItem</span></code></a></p>
+<p>Inherit to be able to include LaTeX objects inside LaTeX objects</p>
+<dl class="method">
+<dt id="pyexlatex.models.containeritem.ContainerItem.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">content</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/containeritem.html#ContainerItem.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.containeritem.ContainerItem.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.containeritem.ContainerItem.add_data_from_content">
+<code class="sig-name descname">add_data_from_content</code><span class="sig-paren">(</span><em class="sig-param">content</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/containeritem.html#ContainerItem.add_data_from_content"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.containeritem.ContainerItem.add_data_from_content" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.containeritem.ContainerItem.init_data">
+<code class="sig-name descname">init_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/containeritem.html#ContainerItem.init_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.containeritem.ContainerItem.init_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.datastore">
+<span id="pyexlatex-models-datastore-module"></span><h2>pyexlatex.models.datastore module<a class="headerlink" href="#module-pyexlatex.models.datastore" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.datastore.DataStore">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.datastore.</code><code class="sig-name descname">DataStore</code><span class="sig-paren">(</span><em class="sig-param">content=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/datastore.html#DataStore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.datastore.DataStore" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.containeritem.ContainerItem" title="pyexlatex.models.containeritem.ContainerItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.containeritem.ContainerItem</span></code></a>, <a class="reference internal" href="#pyexlatex.models.documentitem.DocumentItem" title="pyexlatex.models.documentitem.DocumentItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.documentitem.DocumentItem</span></code></a></p>
+<p>Holds LaTeX item data and can be included directly in documents. Mainly for internal use.</p>
+<dl class="method">
+<dt id="pyexlatex.models.datastore.DataStore.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/datastore.html#DataStore.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.datastore.DataStore.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.date">
+<span id="pyexlatex-models-date-module"></span><h2>pyexlatex.models.date module<a class="headerlink" href="#module-pyexlatex.models.date" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.date.Date">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.date.</code><code class="sig-name descname">Date</code><span class="sig-paren">(</span><em class="sig-param">contents=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/date.html#Date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.date.Date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.date.Date.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/date.html#Date.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.date.Date.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.date.Date.name">
+<code class="sig-name descname">name</code><em class="property"> = 'date'</em><a class="headerlink" href="#pyexlatex.models.date.Date.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pyexlatex-models-document-module">
+<h2>pyexlatex.models.document module<a class="headerlink" href="#pyexlatex-models-document-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyexlatex.models.documentitem">
+<span id="pyexlatex-models-documentitem-module"></span><h2>pyexlatex.models.documentitem module<a class="headerlink" href="#module-pyexlatex.models.documentitem" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.documentitem.DocumentItem">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.documentitem.</code><code class="sig-name descname">DocumentItem</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentitem.html#DocumentItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentitem.DocumentItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.mixins.IsSpecificClassMixin" title="pyexlatex.models.mixins.IsSpecificClassMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.mixins.IsSpecificClassMixin</span></code></a>, <a class="reference internal" href="#pyexlatex.models.item.IsLatexItemMixin" title="pyexlatex.models.item.IsLatexItemMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.IsLatexItemMixin</span></code></a></p>
+<p>Used for differentiating which items can be directly included in a document</p>
+<dl class="attribute">
+<dt id="pyexlatex.models.documentitem.DocumentItem.is_DocumentItem">
+<code class="sig-name descname">is_DocumentItem</code><em class="property"> = True</em><a class="headerlink" href="#pyexlatex.models.documentitem.DocumentItem.is_DocumentItem" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.documentsetup">
+<span id="pyexlatex-models-documentsetup-module"></span><h2>pyexlatex.models.documentsetup module<a class="headerlink" href="#module-pyexlatex.models.documentsetup" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.documentsetup.DocumentSetupData">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.documentsetup.</code><code class="sig-name descname">DocumentSetupData</code><span class="sig-paren">(</span><em class="sig-param">filepaths=None</em>, <em class="sig-param">binaries=None</em>, <em class="sig-param">begin_document_items=None</em>, <em class="sig-param">end_document_items=None</em>, <em class="sig-param">packages=None</em>, <em class="sig-param">source_paths=None</em>, <em class="sig-param">references=None</em>, <em class="sig-param">flags=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentsetup.html#DocumentSetupData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentsetup.DocumentSetupData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.attrequals.EqOnAttrsMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.attrequals.EqHashMixin</span></code></p>
+<dl class="method">
+<dt id="pyexlatex.models.documentsetup.DocumentSetupData.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">filepaths=None</em>, <em class="sig-param">binaries=None</em>, <em class="sig-param">begin_document_items=None</em>, <em class="sig-param">end_document_items=None</em>, <em class="sig-param">packages=None</em>, <em class="sig-param">source_paths=None</em>, <em class="sig-param">references=None</em>, <em class="sig-param">flags=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentsetup.html#DocumentSetupData.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentsetup.DocumentSetupData.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.documentsetup.DocumentSetupData.attrs">
+<em class="property">property </em><code class="sig-name descname">attrs</code><a class="headerlink" href="#pyexlatex.models.documentsetup.DocumentSetupData.attrs" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.documentsetup.DocumentSetupData.equal_attrs">
+<code class="sig-name descname">equal_attrs</code><em class="property"> = ['filepaths', 'binaries', 'begin_document_items', 'end_document_items', 'packages', 'source_paths', 'references', 'flags']</em><a class="headerlink" href="#pyexlatex.models.documentsetup.DocumentSetupData.equal_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.documentsetup.DocumentSetupData.ignore_attrs">
+<code class="sig-name descname">ignore_attrs</code><em class="property"> = ['ignore_attrs', 'repr_cols', 'attrs', 'readable_repr', 'equal_attrs']</em><a class="headerlink" href="#pyexlatex.models.documentsetup.DocumentSetupData.ignore_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.documentsetup.DocumentSetupData.repr_cols">
+<code class="sig-name descname">repr_cols</code><em class="property"> = ['filepaths', 'begin_document_items', 'end_document_items', 'packages', 'source_paths', 'references', 'flags']</em><a class="headerlink" href="#pyexlatex.models.documentsetup.DocumentSetupData.repr_cols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.documentsetup.UniqueDataList">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.documentsetup.</code><code class="sig-name descname">UniqueDataList</code><span class="sig-paren">(</span><em class="sig-param">iterable</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentsetup.html#UniqueDataList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentsetup.UniqueDataList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+<p>A list where the items are always unique.</p>
+<dl class="method">
+<dt id="pyexlatex.models.documentsetup.UniqueDataList.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">iterable</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentsetup.html#UniqueDataList.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentsetup.UniqueDataList.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.documentsetup.UniqueDataList.append">
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentsetup.html#UniqueDataList.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentsetup.UniqueDataList.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append object to the end of the list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.documentsetup.UniqueDataList.extend">
+<code class="sig-name descname">extend</code><span class="sig-paren">(</span><em class="sig-param">iterable</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentsetup.html#UniqueDataList.extend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentsetup.UniqueDataList.extend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend list by appending elements from the iterable.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.documentsetup.UniquePackagesList">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.documentsetup.</code><code class="sig-name descname">UniquePackagesList</code><span class="sig-paren">(</span><em class="sig-param">packages=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentsetup.html#UniquePackagesList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentsetup.UniquePackagesList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.documentsetup.UniqueDataList" title="pyexlatex.models.documentsetup.UniqueDataList"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.documentsetup.UniqueDataList</span></code></a></p>
+<p>A unique data list that allows passing of just a string to represent a package</p>
+<dl class="method">
+<dt id="pyexlatex.models.documentsetup.UniquePackagesList.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">packages=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentsetup.html#UniquePackagesList.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentsetup.UniquePackagesList.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.documentsetup.UniquePackagesList.append">
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><em class="sig-param">package</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentsetup.html#UniquePackagesList.append"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentsetup.UniquePackagesList.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append object to the end of the list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.documentsetup.UniquePackagesList.delete_by_name">
+<code class="sig-name descname">delete_by_name</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentsetup.html#UniquePackagesList.delete_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentsetup.UniquePackagesList.delete_by_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.documentsetup.UniquePackagesList.extend">
+<code class="sig-name descname">extend</code><span class="sig-paren">(</span><em class="sig-param">packages=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentsetup.html#UniquePackagesList.extend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentsetup.UniquePackagesList.extend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend list by appending elements from the iterable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.documentsetup.UniquePackagesList.get_by_name">
+<code class="sig-name descname">get_by_name</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/documentsetup.html#UniquePackagesList.get_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.documentsetup.UniquePackagesList.get_by_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.environment">
+<span id="pyexlatex-models-environment-module"></span><h2>pyexlatex.models.environment module<a class="headerlink" href="#module-pyexlatex.models.environment" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.environment.Environment">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.environment.</code><code class="sig-name descname">Environment</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">modifiers=None</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/environment.html#Environment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.environment.Environment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.environment.Environment.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">modifiers=None</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/environment.html#Environment.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.environment.Environment.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.environment.Environment.wrap">
+<code class="sig-name descname">wrap</code><span class="sig-paren">(</span><em class="sig-param">other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/environment.html#Environment.wrap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.environment.Environment.wrap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.environmenttemplate">
+<span id="pyexlatex-models-environmenttemplate-module"></span><h2>pyexlatex.models.environmenttemplate module<a class="headerlink" href="#module-pyexlatex.models.environmenttemplate" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.environmenttemplate.EnvironmentTemplate">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.environmenttemplate.</code><code class="sig-name descname">EnvironmentTemplate</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/environmenttemplate.html#EnvironmentTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.environmenttemplate.EnvironmentTemplate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaMixin" title="pyexlatex.models.section.base.TextAreaMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaMixin</span></code></a>, <a class="reference internal" href="#pyexlatex.models.item.Item" title="pyexlatex.models.item.Item"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.Item</span></code></a></p>
+<blockquote>
+<div><p>Base class which makes it easy to create new environment types.</p>
+<p>Examples:
+&gt;&gt;&gt; import pyexlatex as pl
+&gt;&gt;&gt; class BoldEnvironment(pl.EnvironmentTemplate):
+&gt;&gt;&gt;     name = ‘myenv’
+&gt;&gt;&gt;     begin_def = r’f’
+&gt;&gt;&gt;     end_def = ‘’
+&gt;&gt;&gt;
+&gt;&gt;&gt; print(pl.Document(BoldEnvironment(‘woo’)))
+documentclass[]{article}</p>
+</div></blockquote>
+<dl class="simple">
+<dt>ewenvironment{myenv}{f}{}</dt><dd><p>…
+egin{document}
+egin{myenv}
+woo
+end{myenv}
+end{document}</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pyexlatex.models.environmenttemplate.EnvironmentTemplate.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/environmenttemplate.html#EnvironmentTemplate.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.environmenttemplate.EnvironmentTemplate.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.environmenttemplate.EnvironmentTemplate.begin_def">
+<code class="sig-name descname">begin_def</code><em class="property"> = ''</em><a class="headerlink" href="#pyexlatex.models.environmenttemplate.EnvironmentTemplate.begin_def" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.environmenttemplate.EnvironmentTemplate.end_def">
+<code class="sig-name descname">end_def</code><em class="property"> = ''</em><a class="headerlink" href="#pyexlatex.models.environmenttemplate.EnvironmentTemplate.end_def" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.equation">
+<span id="pyexlatex-models-equation-module"></span><h2>pyexlatex.models.equation module<a class="headerlink" href="#module-pyexlatex.models.equation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.equation.Equation">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.equation.</code><code class="sig-name descname">Equation</code><span class="sig-paren">(</span><em class="sig-param">eq=None</em>, <em class="sig-param">str_eq=None</em>, <em class="sig-param">inline=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/equation.html#Equation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.equation.Equation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.mixins.IsSpecificClassMixin" title="pyexlatex.models.mixins.IsSpecificClassMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.mixins.IsSpecificClassMixin</span></code></a>, <a class="reference internal" href="#pyexlatex.models.item.IsLatexItemMixin" title="pyexlatex.models.item.IsLatexItemMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.IsLatexItemMixin</span></code></a></p>
+<p>Pass sympy or string equations to have them rendered in LaTeX.</p>
+<dl class="method">
+<dt id="pyexlatex.models.equation.Equation.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">eq=None</em>, <em class="sig-param">str_eq=None</em>, <em class="sig-param">inline=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/equation.html#Equation.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.equation.Equation.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.equation.Equation.eq_str">
+<em class="property">property </em><code class="sig-name descname">eq_str</code><a class="headerlink" href="#pyexlatex.models.equation.Equation.eq_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.equation.Equation.formatted_eq">
+<em class="property">property </em><code class="sig-name descname">formatted_eq</code><a class="headerlink" href="#pyexlatex.models.equation.Equation.formatted_eq" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.equation.Equation.name">
+<code class="sig-name descname">name</code><em class="property"> = 'equation'</em><a class="headerlink" href="#pyexlatex.models.equation.Equation.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.footnote">
+<span id="pyexlatex-models-footnote-module"></span><h2>pyexlatex.models.footnote module<a class="headerlink" href="#module-pyexlatex.models.footnote" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.footnote.Footnote">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.footnote.</code><code class="sig-name descname">Footnote</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/footnote.html#Footnote"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.footnote.Footnote" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<p>Creates a footnote at the bottom of the page, with a mark next to where the object itself is placed to
+reference the footnote.</p>
+<dl class="method">
+<dt id="pyexlatex.models.footnote.Footnote.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/footnote.html#Footnote.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.footnote.Footnote.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.footnote.Footnote.name">
+<code class="sig-name descname">name</code><em class="property"> = 'footnote'</em><a class="headerlink" href="#pyexlatex.models.footnote.Footnote.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.hyperlinks">
+<span id="pyexlatex-models-hyperlinks-module"></span><h2>pyexlatex.models.hyperlinks module<a class="headerlink" href="#module-pyexlatex.models.hyperlinks" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.hyperlinks.Hyperlink">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.hyperlinks.</code><code class="sig-name descname">Hyperlink</code><span class="sig-paren">(</span><em class="sig-param">href</em>, <em class="sig-param">content=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/hyperlinks.html#Hyperlink"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.hyperlinks.Hyperlink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaMixin" title="pyexlatex.models.section.base.TextAreaMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaMixin</span></code></a>, <a class="reference internal" href="#pyexlatex.models.item.MultiOptionSimpleItem" title="pyexlatex.models.item.MultiOptionSimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.MultiOptionSimpleItem</span></code></a></p>
+<p>Create links to urls, with or without displaying text instead of the link.</p>
+<dl class="method">
+<dt id="pyexlatex.models.hyperlinks.Hyperlink.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">href</em>, <em class="sig-param">content=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/hyperlinks.html#Hyperlink.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.hyperlinks.Hyperlink.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.item">
+<span id="pyexlatex-models-item-module"></span><h2>pyexlatex.models.item module<a class="headerlink" href="#module-pyexlatex.models.item" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.item.DataItem">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.item.</code><code class="sig-name descname">DataItem</code><a class="reference internal" href="../_modules/pyexlatex/models/item.html#DataItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.DataItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.item.DataItem.add_package">
+<code class="sig-name descname">add_package</code><span class="sig-paren">(</span><em class="sig-param">package</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#DataItem.add_package"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.DataItem.add_package" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.item.DataItem.init_data">
+<code class="sig-name descname">init_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#DataItem.init_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.DataItem.init_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.item.EqualsItem">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.item.</code><code class="sig-name descname">EqualsItem</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#EqualsItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.EqualsItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.item.EqualsItem.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#EqualsItem.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.EqualsItem.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.item.IsLatexItemMixin">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.item.</code><code class="sig-name descname">IsLatexItemMixin</code><a class="reference internal" href="../_modules/pyexlatex/models/item.html#IsLatexItemMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.IsLatexItemMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="attribute">
+<dt id="pyexlatex.models.item.IsLatexItemMixin.is_LatexItem">
+<code class="sig-name descname">is_LatexItem</code><em class="property"> = True</em><a class="headerlink" href="#pyexlatex.models.item.IsLatexItemMixin.is_LatexItem" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.item.Item">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.item.</code><code class="sig-name descname">Item</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">contents</em>, <em class="sig-param">pre_env_contents=None</em>, <em class="sig-param">post_env_contents=None</em>, <em class="sig-param">env_modifiers=None</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#Item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.Item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.item.Item.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">contents</em>, <em class="sig-param">pre_env_contents=None</em>, <em class="sig-param">post_env_contents=None</em>, <em class="sig-param">env_modifiers=None</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#Item.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.Item.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.item.Item.equal_attrs">
+<code class="sig-name descname">equal_attrs</code><em class="property"> = ['contents', 'pre_env_contents', 'post_env_contents', 'data', 'env']</em><a class="headerlink" href="#pyexlatex.models.item.Item.equal_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.item.ItemBase">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.item.</code><code class="sig-name descname">ItemBase</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#ItemBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.ItemBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.DataItem" title="pyexlatex.models.item.DataItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.DataItem</span></code></a>, <a class="reference internal" href="#pyexlatex.models.mixins.IsSpecificClassMixin" title="pyexlatex.models.mixins.IsSpecificClassMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.mixins.IsSpecificClassMixin</span></code></a>, <a class="reference internal" href="#pyexlatex.models.item.IsLatexItemMixin" title="pyexlatex.models.item.IsLatexItemMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.IsLatexItemMixin</span></code></a>, <a class="reference internal" href="#pyexlatex.models.mixins.StringAdditionMixin" title="pyexlatex.models.mixins.StringAdditionMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.mixins.StringAdditionMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.attrequals.EqHashMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.attrequals.EqOnAttrsMixin</span></code></p>
+<p>Base class for all latex generating classes</p>
+<p>Note: Does not pass any args to super call, so do not put another class below this one expecting args to
+be passed</p>
+<dl class="method">
+<dt id="pyexlatex.models.item.ItemBase.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#ItemBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.ItemBase.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.item.MultiOptionSimpleItem">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.item.</code><code class="sig-name descname">MultiOptionSimpleItem</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">*options</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#MultiOptionSimpleItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.MultiOptionSimpleItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.item.MultiOptionSimpleItem.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">*options</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#MultiOptionSimpleItem.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.MultiOptionSimpleItem.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.item.NoBracesItem">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.item.</code><code class="sig-name descname">NoBracesItem</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">contents</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#NoBracesItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.NoBracesItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.item.NoBracesItem.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">contents</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#NoBracesItem.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.NoBracesItem.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.item.NoOptionsNoContentsItem">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.item.</code><code class="sig-name descname">NoOptionsNoContentsItem</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">overlay=None</em>, <em class="sig-param">modifiers=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#NoOptionsNoContentsItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.NoOptionsNoContentsItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.item.NoOptionsNoContentsItem.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">overlay=None</em>, <em class="sig-param">modifiers=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#NoOptionsNoContentsItem.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.NoOptionsNoContentsItem.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.item.SimpleItem">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.item.</code><code class="sig-name descname">SimpleItem</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">contents</em>, <em class="sig-param">modifiers=None</em>, <em class="sig-param">pre_modifiers=None</em>, <em class="sig-param">overlay=None</em>, <em class="sig-param">format_content=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#SimpleItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.SimpleItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.item.SimpleItem.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">contents</em>, <em class="sig-param">modifiers=None</em>, <em class="sig-param">pre_modifiers=None</em>, <em class="sig-param">overlay=None</em>, <em class="sig-param">format_content=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/item.html#SimpleItem.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.item.SimpleItem.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.item.SimpleItem.equal_attrs">
+<code class="sig-name descname">equal_attrs</code><em class="property"> = ['contents', 'pre_env_contents', 'post_env_contents', 'data']</em><a class="headerlink" href="#pyexlatex.models.item.SimpleItem.equal_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pyexlatex-models-jinja-module">
+<h2>pyexlatex.models.jinja module<a class="headerlink" href="#pyexlatex-models-jinja-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyexlatex.models.label">
+<span id="pyexlatex-models-label-module"></span><h2>pyexlatex.models.label module<a class="headerlink" href="#module-pyexlatex.models.label" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.label.Label">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.label.</code><code class="sig-name descname">Label</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/label.html#Label"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.label.Label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.label.Label.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/label.html#Label.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.label.Label.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.label.Label.name">
+<code class="sig-name descname">name</code><em class="property"> = 'label'</em><a class="headerlink" href="#pyexlatex.models.label.Label.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.landscape">
+<span id="pyexlatex-models-landscape-module"></span><h2>pyexlatex.models.landscape module<a class="headerlink" href="#module-pyexlatex.models.landscape" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.landscape.Landscape">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.landscape.</code><code class="sig-name descname">Landscape</code><a class="reference internal" href="../_modules/pyexlatex/models/landscape.html#Landscape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.landscape.Landscape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.environment.Environment" title="pyexlatex.models.environment.Environment"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.environment.Environment</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.landscape.Landscape.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/landscape.html#Landscape.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.landscape.Landscape.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.landscape.Landscape.name">
+<code class="sig-name descname">name</code><em class="property"> = 'landscape'</em><a class="headerlink" href="#pyexlatex.models.landscape.Landscape.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.latex">
+<span id="pyexlatex-models-latex-module"></span><h2>pyexlatex.models.latex module<a class="headerlink" href="#module-pyexlatex.models.latex" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.latex.LaTeX">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.latex.</code><code class="sig-name descname">LaTeX</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/latex.html#LaTeX"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.latex.LaTeX" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.latex.LaTeX.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/latex.html#LaTeX.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.latex.LaTeX.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.latex.LaTeX.name">
+<code class="sig-name descname">name</code><em class="property"> = 'LaTeX'</em><a class="headerlink" href="#pyexlatex.models.latex.LaTeX.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.mixins">
+<span id="pyexlatex-models-mixins-module"></span><h2>pyexlatex.models.mixins module<a class="headerlink" href="#module-pyexlatex.models.mixins" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.mixins.IsSpecificClassMixin">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.mixins.</code><code class="sig-name descname">IsSpecificClassMixin</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/mixins.html#IsSpecificClassMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.mixins.IsSpecificClassMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>creates attribute is_ClassName (with whatever class name)</p>
+<p>be sure to put this mixin first among multiple classes</p>
+<dl class="method">
+<dt id="pyexlatex.models.mixins.IsSpecificClassMixin.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/mixins.html#IsSpecificClassMixin.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.mixins.IsSpecificClassMixin.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.mixins.StringAdditionMixin">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.mixins.</code><code class="sig-name descname">StringAdditionMixin</code><a class="reference internal" href="../_modules/pyexlatex/models/mixins.html#StringAdditionMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.mixins.StringAdditionMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.mixins.StringAdditionMixin.join">
+<code class="sig-name descname">join</code><span class="sig-paren">(</span><em class="sig-param">iterable</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/mixins.html#StringAdditionMixin.join"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.mixins.StringAdditionMixin.join" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.mixins.StringEqMixin">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.mixins.</code><code class="sig-name descname">StringEqMixin</code><a class="reference internal" href="../_modules/pyexlatex/models/mixins.html#StringEqMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.mixins.StringEqMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.model">
+<span id="pyexlatex-models-model-module"></span><h2>pyexlatex.models.model module<a class="headerlink" href="#module-pyexlatex.models.model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.model.Model">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.model.</code><code class="sig-name descname">Model</code><span class="sig-paren">(</span><em class="sig-param">template_str=None</em>, <em class="sig-param">template_path=None</em>, <em class="sig-param">environment=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/model.html#Model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.model.Model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.template.Template" title="pyexlatex.models.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.template.Template</span></code></a></p>
+<p>A data model combined with a Jinja template.</p>
+<p>Passes any class variables and methods to template to render the output string.
+Subclass this class to create your own data models for templates.</p>
+<p>Set exclude_attrs class variable as a list of strings of any attributes which should not be
+passed to the template.</p>
+<p>Examples:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyexlatex</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">template_str</span> <span class="o">=</span> <span class="s2">&quot;{{ my_var | Bold }} {{ my_link }} {{ my_text }}&quot;</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MyModel</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">my_var</span> <span class="o">=</span> <span class="s1">&#39;woo&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">my_link</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Hyperlink</span><span class="p">(</span><span class="s1">&#39;https://www.google.com&#39;</span><span class="p">,</span> <span class="s1">&#39;Link!!!!&#39;</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">my_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="bp">self</span><span class="o">.</span><span class="n">my_text</span> <span class="o">=</span> <span class="n">my_text</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">MyModel</span><span class="p">(</span><span class="s1">&#39;stuff&#39;</span><span class="p">,</span> <span class="n">template_str</span><span class="o">=</span><span class="n">template_str</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="go">&#39;\textbf{woo} \href{https://www.google.com}{Link!!!!} stuff &#39;</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pyexlatex.models.model.Model.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">template_str=None</em>, <em class="sig-param">template_path=None</em>, <em class="sig-param">environment=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/model.html#Model.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.model.Model.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.model.Model.environment">
+<em class="property">property </em><code class="sig-name descname">environment</code><a class="headerlink" href="#pyexlatex.models.model.Model.environment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.model.Model.exclude_attrs">
+<code class="sig-name descname">exclude_attrs</code><em class="property">: List[str]</em><em class="property"> = []</em><a class="headerlink" href="#pyexlatex.models.model.Model.exclude_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.model.Model.render_dict">
+<em class="property">property </em><code class="sig-name descname">render_dict</code><a class="headerlink" href="#pyexlatex.models.model.Model.render_dict" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.model.Model.template">
+<em class="property">property </em><code class="sig-name descname">template</code><a class="headerlink" href="#pyexlatex.models.model.Model.template" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">JinjaTemplate</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.package">
+<span id="pyexlatex-models-package-module"></span><h2>pyexlatex.models.package module<a class="headerlink" href="#module-pyexlatex.models.package" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.package.Package">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.package.</code><code class="sig-name descname">Package</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">modifier_str=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/package.html#Package"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.package.Package" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
+<p>Represents LaTeX usepackage{}, pass to Document if any custom LaTeX packages are needed.</p>
+<dl class="method">
+<dt id="pyexlatex.models.package.Package.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">modifier_str=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/package.html#Package.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.package.Package.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.package.Package.equal_attrs">
+<code class="sig-name descname">equal_attrs</code><em class="property"> = ['name', 'modifier_str']</em><a class="headerlink" href="#pyexlatex.models.package.Package.equal_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.models.package.Package.matches_name">
+<code class="sig-name descname">matches_name</code><span class="sig-paren">(</span><em class="sig-param">other</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/package.html#Package.matches_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.package.Package.matches_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyexlatex.models.ref">
+<span id="pyexlatex-models-ref-module"></span><h2>pyexlatex.models.ref module<a class="headerlink" href="#module-pyexlatex.models.ref" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.ref.NameRef">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.ref.</code><code class="sig-name descname">NameRef</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/ref.html#NameRef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.ref.NameRef" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<p>Pass a label to create an in text reference to that label. Will display the name of the section in the text.</p>
+<dl class="method">
+<dt id="pyexlatex.models.ref.NameRef.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/ref.html#NameRef.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.ref.NameRef.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.ref.NameRef.name">
+<code class="sig-name descname">name</code><em class="property"> = 'nameref'</em><a class="headerlink" href="#pyexlatex.models.ref.NameRef.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.ref.Ref">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.ref.</code><code class="sig-name descname">Ref</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/ref.html#Ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.ref.Ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<p>Pass a label to create an in text reference to that label. Will display the number of the section in the text.</p>
+<dl class="method">
+<dt id="pyexlatex.models.ref.Ref.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/ref.html#Ref.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.ref.Ref.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.ref.Ref.name">
+<code class="sig-name descname">name</code><em class="property"> = 'ref'</em><a class="headerlink" href="#pyexlatex.models.ref.Ref.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pyexlatex-models-standalone-module">
+<h2>pyexlatex.models.standalone module<a class="headerlink" href="#pyexlatex-models-standalone-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyexlatex.models.template">
+<span id="pyexlatex-models-template-module"></span><h2>pyexlatex.models.template module<a class="headerlink" href="#module-pyexlatex.models.template" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="pyexlatex.models.template.ContentParseException">
+<em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.models.template.</code><code class="sig-name descname">ContentParseException</code><a class="reference internal" href="../_modules/pyexlatex/models/template.html#ContentParseException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.template.ContentParseException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.template.Template">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.template.</code><code class="sig-name descname">Template</code><a class="reference internal" href="../_modules/pyexlatex/models/template.html#Template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.template.Template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaMixin" title="pyexlatex.models.section.base.TextAreaMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaMixin</span></code></a>, <a class="reference internal" href="#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
+<p>Base class for creating custom Pyexlatex templates.</p>
+<p>To use, simply subclass Template, then in __init__, set the attribute .contents, and call super().__init__().
+The .contents attribute should be set to a string, pyexlatex object, or iterable of those.</p>
+<p>Examples:</p>
+<p>Contents can be a Pyexlatex object or string:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyexlatex</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">BoldUnderline</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Template</span><span class="p">):</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Bold</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Underline</span><span class="p">(</span><span class="n">contents</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">BoldUnderline</span><span class="p">(</span><span class="s1">&#39;woo&#39;</span><span class="p">))</span>
+<span class="go">\textbf{\underline{woo}}</span>
+</pre></div>
+</div>
+<p>Contents can also be an iterable of strings or Pyexlatex objects</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyexlatex</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">BoldAndUnderline</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">Template</span><span class="p">):</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bold_contents</span><span class="p">,</span> <span class="n">underline_contents</span><span class="p">,</span> <span class="o">*</span><span class="n">other_contents</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">pl</span><span class="o">.</span><span class="n">Bold</span><span class="p">(</span><span class="n">bold_contents</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="n">pl</span><span class="o">.</span><span class="n">Underline</span><span class="p">(</span><span class="n">underline_contents</span><span class="p">),</span>
+<span class="gp">&gt;&gt;&gt; </span>            <span class="o">*</span><span class="n">other_contents</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">BoldAndUnderline</span><span class="p">(</span><span class="s1">&#39;woo bold&#39;</span><span class="p">,</span> <span class="s1">&#39;woo underline&#39;</span><span class="p">,</span> <span class="s1">&#39;something&#39;</span><span class="p">))</span>
+<span class="go">\textbf{woo bold}</span>
+<span class="go">\underline{woo underline}</span>
+<span class="go">something</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pyexlatex.models.template.Template.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/template.html#Template.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.template.Template.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pyexlatex.models.boxes.html" class="btn btn-neutral float-right" title="pyexlatex.models.boxes package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pyexlatex.logic.pdf.errors.models.html" class="btn btn-neutral float-left" title="pyexlatex.logic.pdf.errors.models package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Nick DeRobertis
+
+    </p>
+  </div>
+    
+    
+      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-155734278-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

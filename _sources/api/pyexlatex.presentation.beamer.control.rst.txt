@@ -1,0 +1,27 @@
+pyexlatex.presentation.beamer.control package
+=============================================
+
+.. automodule:: pyexlatex.presentation.beamer.control
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.presentation.beamer.control.atbeginsection module
+-----------------------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.control.atbeginsection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.presentation.beamer.control.navigation module
+-------------------------------------------------------
+
+.. automodule:: pyexlatex.presentation.beamer.control.navigation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

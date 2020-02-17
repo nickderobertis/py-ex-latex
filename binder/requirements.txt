@@ -1,0 +1,11 @@
+pandas
+shutilwhich
+data
+sympy
+future
+Jinja2
+bibtexparser
+latex
+tempdir
+pyexlatex
+mixins

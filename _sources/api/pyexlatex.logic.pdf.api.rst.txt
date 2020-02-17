@@ -1,0 +1,27 @@
+pyexlatex.logic.pdf.api package
+===============================
+
+.. automodule:: pyexlatex.logic.pdf.api
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.logic.pdf.api.builders
+   pyexlatex.logic.pdf.api.exc_handler
+
+Submodules
+----------
+
+pyexlatex.logic.pdf.api.main module
+-----------------------------------
+
+.. automodule:: pyexlatex.logic.pdf.api.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

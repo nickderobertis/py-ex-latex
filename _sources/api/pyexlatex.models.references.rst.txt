@@ -1,0 +1,34 @@
+pyexlatex.models.references package
+===================================
+
+.. automodule:: pyexlatex.models.references
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.models.references.bibtex
+
+Submodules
+----------
+
+pyexlatex.models.references.bibliography module
+-----------------------------------------------
+
+.. automodule:: pyexlatex.models.references.bibliography
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.references.citations module
+--------------------------------------------
+
+.. automodule:: pyexlatex.models.references.citations
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

@@ -1,0 +1,43 @@
+pyexlatex.models.format.paragraph package
+=========================================
+
+.. automodule:: pyexlatex.models.format.paragraph
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.models.format.paragraph.justifying module
+---------------------------------------------------
+
+.. automodule:: pyexlatex.models.format.paragraph.justifying
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.paragraph.multicol module
+-------------------------------------------------
+
+.. automodule:: pyexlatex.models.format.paragraph.multicol
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.paragraph.raggedright module
+----------------------------------------------------
+
+.. automodule:: pyexlatex.models.format.paragraph.raggedright
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.models.format.paragraph.sloppy module
+-----------------------------------------------
+
+.. automodule:: pyexlatex.models.format.paragraph.sloppy
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

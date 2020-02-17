@@ -1,0 +1,15 @@
+pyexlatex.table package
+=======================
+
+.. automodule:: pyexlatex.table
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.table.logic
+   pyexlatex.table.models

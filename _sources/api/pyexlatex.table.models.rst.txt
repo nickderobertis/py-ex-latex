@@ -1,0 +1,32 @@
+pyexlatex.table.models package
+==============================
+
+.. automodule:: pyexlatex.table.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.table.models.data
+   pyexlatex.table.models.labels
+   pyexlatex.table.models.mixins
+   pyexlatex.table.models.panels
+   pyexlatex.table.models.spacing
+   pyexlatex.table.models.table
+   pyexlatex.table.models.texgen
+
+Submodules
+----------
+
+pyexlatex.table.models.interfaces module
+----------------------------------------
+
+.. automodule:: pyexlatex.table.models.interfaces
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
