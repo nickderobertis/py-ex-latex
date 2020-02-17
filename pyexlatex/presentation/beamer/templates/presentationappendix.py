@@ -12,7 +12,7 @@ class _Appendix(NoOptionsNoContentsItem):
         super().__init__(self.name, **kwargs)
 
 
-class Appendix(Template):
+class PresentationAppendix(Template):
 
     def __init__(self, content):
         if not isinstance(content, (list, tuple)):

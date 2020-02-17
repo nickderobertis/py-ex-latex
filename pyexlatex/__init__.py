@@ -91,7 +91,7 @@ from pyexlatex.presentation.beamer.templates.frames.graphic import (
     MultiGraphicFrame,
 )
 from pyexlatex.logic.format.sizing import adjust_to_full_size_and_center
-from pyexlatex.presentation.beamer.templates.appendix import Appendix as PresentationAppendix
+from pyexlatex.presentation.beamer.templates.presentationappendix import PresentationAppendix
 
 from pyexlatex.layouts.grid import CellLayout, GridLayout
 from pyexlatex.layouts.multicol import MultiCol

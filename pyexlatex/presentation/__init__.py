@@ -20,4 +20,4 @@ from pyexlatex.presentation.beamer.templates.frames.graphic import (
     MultiGraphicFrame,
 )
 from pyexlatex.logic.format.sizing import adjust_to_full_size_and_center
-from pyexlatex.presentation.beamer.templates.appendix import Appendix
+from pyexlatex.presentation.beamer.templates.appendix import PresentationAppendix
