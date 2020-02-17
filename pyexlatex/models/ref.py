@@ -1,4 +1,5 @@
 from pyexlatex.models.item import SimpleItem
+from pyexlatex.models.label import Label
 
 
 class Ref(SimpleItem):
@@ -8,6 +9,9 @@ class Ref(SimpleItem):
     name = 'ref'
 
     def __init__(self, contents):
+        if isinstance(contents, Label):
+            # Get string out of label object
+            contents = contents.contents
         super().__init__(self.name, contents)
 
 

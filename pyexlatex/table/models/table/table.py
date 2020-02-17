@@ -1,6 +1,7 @@
 from typing import Union, AnyStr, List, TYPE_CHECKING, Optional, Dict
 import pandas as pd
 
+
 if TYPE_CHECKING:
     from pyexlatex.table.models.texgen.items import ColumnsAlignment
 
@@ -15,7 +16,7 @@ from pyexlatex.models.commands.newenvironment import NewEnvironment
 from pyexlatex.models.commands.begin import Begin
 from pyexlatex.models.commands.end import End
 from pyexlatex.models.documentsetup import DocumentSetupData
-
+from pyexlatex.models.label import Label
 
 
 class Table(DocumentItem, ReprMixin):
@@ -49,7 +50,7 @@ class Table(DocumentItem, ReprMixin):
         self.align = align
         self.mid_rules = mid_rules
         self.landscape = landscape
-        self.label = label
+        self.label = Label(label) if label else None
         self.data = DocumentSetupData()
         self.set_begin_document_items(landscape)
 

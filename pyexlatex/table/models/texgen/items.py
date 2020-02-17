@@ -128,7 +128,7 @@ class Table(TextAreaBase, ReprMixin):
             tabular,
             caption=table.caption,
             below_text=table.below_text,
-            label=Label(table.label) if table.label else None
+            label=table.label
         )
         obj = cls(three_part_table, *args, landscape=table.landscape, **kwargs)
         obj.add_data_from_content(table)
