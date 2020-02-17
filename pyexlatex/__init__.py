@@ -52,3 +52,49 @@ from pyexlatex.models.control.group import Group
 from pyexlatex.models.sizes.textsizes import TextSize
 from pyexlatex.models.jinja import JinjaEnvironment, JinjaTemplate
 from pyexlatex.models.model import Model
+
+from pyexlatex.table.models.panels import Panel
+from pyexlatex.table.models.data.table import DataTable
+from pyexlatex.table.models.labels.table import LabelCollection, LabelTable
+from pyexlatex.table.models.labels.label import Label
+from pyexlatex.table.models.table.table import Table
+from pyexlatex.table.models.texgen.items import Tabular
+from pyexlatex.table.models.data.valuestable import ValuesTable
+from pyexlatex.table.models.texgen.alignment import ColumnAlignment, ColumnsAlignment
+from pyexlatex.table.models.texgen.lines import TopRule, MidRule, BottomRule, TableLineSegment
+from pyexlatex.table.models.labels.multicolumn import MultiColumn
+from pyexlatex.models.format.breaks import TableLineBreak
+from pyexlatex.table.models.texgen.tabularstar import TabularStar
+
+from pyexlatex.figure.models.figure import Figure
+from pyexlatex.figure.models.subfigure import Subfigure
+
+from pyexlatex.presentation.beamer.overlay.overlay import Overlay
+from pyexlatex.presentation.beamer.overlay.range import Range
+from pyexlatex.presentation.beamer.overlay.next import NextWithIncrement, NextWithoutIncrement
+from pyexlatex.presentation.beamer.overlay.until_end import UntilEnd
+from pyexlatex.presentation.beamer.frame.frame import Frame
+from pyexlatex.presentation.beamer.block import Block, AlertBlock, ExamplesBlock
+from pyexlatex.presentation.presentation import Presentation
+from pyexlatex.presentation.beamer.templates.frames.grid import GridFrame
+from pyexlatex.presentation.beamer.templates.lists.dim_reveal_items import DimAndRevealListItems, DimAndRevealListItem
+from pyexlatex.presentation.beamer.templates.frames.two_col import (
+    TwoColumnGraphicDimRevealFrame,
+    TwoColumnGraphicFrame,
+    BasicTwoColumnGraphicFrame,
+    BasicTwoColumnFrame,
+    TwoColumnFrame
+)
+from pyexlatex.presentation.beamer.templates.frames.dim_reveal import DimRevealListFrame
+from pyexlatex.presentation.beamer.templates.frames.graphic import (
+    GraphicFrame,
+    MultiGraphicFrame,
+)
+from pyexlatex.logic.format.sizing import adjust_to_full_size_and_center
+from pyexlatex.presentation.beamer.templates.appendix import Appendix as PresentationAppendix
+
+from pyexlatex.layouts.grid import CellLayout, GridLayout
+from pyexlatex.layouts.multicol import MultiCol
+from pyexlatex.layouts.spaced import VerticallySpaced, HorizontallySpaced
+from pyexlatex.models.format.paragraph.multicol import MultiColumn
+
