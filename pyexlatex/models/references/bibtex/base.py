@@ -2,11 +2,13 @@ from typing import Dict, List
 from pyexlatex.texgen import bibtex_str
 from pyexlatex.models.documentitem import DocumentItem
 from mixins.repr import ReprMixin
+from mixins.attrequals import EqOnAttrsMixin
 
-class BibTexEntryBase(DocumentItem, ReprMixin):
+class BibTexEntryBase(DocumentItem, EqOnAttrsMixin, ReprMixin):
     is_BibTexEntry = True
     item_type = 'notimplemented'
     repr_cols = ['item_accessor', 'fields']
+    equal_attrs = ['item_accessor', 'fields']
     required_attrs: List[str] = []
     optional_attrs: List[str] = []
 
