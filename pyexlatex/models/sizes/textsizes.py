@@ -14,14 +14,16 @@ LATEX_SIZES = [
 ]
 
 class TextSize(NoOptionsNoContentsItem):
+    """
+    Resize text in this group by a relative size.
+    """
 
     def __init__(self, relative_size_int: int):
         """
-
-        Args:
-            relative_size_int: 0 gets the normal font size, negative numbers get smaller sizes, positive numbers get
+        :param relative_size_int: 0 gets the normal font size, negative numbers get smaller sizes, positive numbers get
             larger sizes. Range is from -4 to 5
         """
+
         self.relative_size_int = relative_size_int
         self._validate()
         self.name = latex_size_str_for_relative_size_int(self.relative_size_int)

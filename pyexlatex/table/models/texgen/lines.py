@@ -11,22 +11,34 @@ class TableLine(StringAdditionMixin, ReprMixin):
         pass
 
 class TopRule(TableLine):
+    """
+    A line which can be added on the top of a table
+    """
 
     def __str__(self):
         return _toprule_str()
 
 
 class MidRule(TableLine):
+    """
+    A line which can be added in the middle of a table
+    """
 
     def __str__(self):
         return _midrule_str()
 
 class BottomRule(TableLine):
+    """
+    A line which can be added at the bottom of a table
+    """
 
     def __str__(self):
         return _bottomrule_str()
 
 class TableLineSegment(StringAdditionMixin, ReprMixin, RowAddMixin):
+    """
+    A table line which does not need to stretch to the full length of the table
+    """
     repr_cols = ['col_from', 'col_to']
 
     def __init__(self, col_from: int, col_to: int=None, align: str='lr'):

@@ -2,6 +2,9 @@ from pyexlatex.models.item import MultiOptionSimpleItem
 
 
 class MultiColumnLabel(MultiOptionSimpleItem):
+    """
+    A label which spans multiple columns in a table
+    """
     name = 'multicolumn'
 
     def __init__(self, contents: str, span: int, align: str='c', add_table_line_break: bool = True):

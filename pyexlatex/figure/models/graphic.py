@@ -10,7 +10,7 @@ from pyexlatex.models.sizes.textwidth import TextWidth
 
 class Graphic(SimpleItem):
     """
-    Basic class for including graphics.
+    Basic class for including graphics, just the image with no structure.
 
     In most documents, a Figure would be used to give more structure to the graphic. This class will literally just
     include the image with no other structure. It is typically more useful in presentations where the structure
@@ -22,11 +22,12 @@ class Graphic(SimpleItem):
                  overlay: Optional['Overlay'] = None):
         """
 
-        Args:
-            filepath:
-            width: if a float is passed, is interpreted as a fraction of line width. if a str is passed, will be passed
-                into latex directly
-            cache:
+        :param filepath:
+        :param width: if a float is passed, is interpreted as a fraction of line width. if a str is passed, will be passed
+            into latex directly
+        :param cache:
+        :param options:
+        :param overlay: beamer overlay
         """
         self._set_path(filepath)
         self.width = width

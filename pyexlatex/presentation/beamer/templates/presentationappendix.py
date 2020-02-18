@@ -13,6 +13,9 @@ class _Appendix(NoOptionsNoContentsItem):
 
 
 class PresentationAppendix(Template):
+    """
+    Appendix to be used in a beamer presentation
+    """
 
     def __init__(self, content):
         if not isinstance(content, (list, tuple)):

@@ -2,6 +2,9 @@ from pyexlatex.models.section.base import TextAreaBase
 
 
 class MultiColumn(TextAreaBase):
+    """
+    Layout multiple columns in a text area
+    """
     name = 'multicols'
 
     def __init__(self, content, num_cols: int = 2, **kwargs):

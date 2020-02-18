@@ -15,6 +15,9 @@ class LineBreak(Break):
 
 
 class TableLineBreak(Break, ReprMixin):
+    """
+    A line break character to be used in LaTeX tables
+    """
     repr_cols = ['size_adjustment']
 
     def __init__(self, size_adjustment: str=None):
@@ -25,6 +28,9 @@ class TableLineBreak(Break, ReprMixin):
 
 
 class OutputLineBreak(Break, ReprMixin):
+    """
+    Create an intentional line break in text
+    """
     repr_cols = ['size_adjustment']
 
     def __init__(self, size_adjustment: str=None):

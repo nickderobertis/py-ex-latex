@@ -1,6 +1,6 @@
-from typing import Union, Optional, TYPE_CHECKING
-if TYPE_CHECKING:
-    from sympy import Eq
+from typing import Union, Optional
+from sympy import Eq
+
 from pyexlatex.models.item import IsLatexItemMixin
 from pyexlatex.models.mixins import IsSpecificClassMixin
 from pyexlatex.logic.format import eq as format_eq
@@ -11,7 +11,7 @@ class Equation(IsSpecificClassMixin, IsLatexItemMixin):
     """
     name = 'equation'
 
-    def __init__(self, eq: Optional['Eq'] = None, str_eq: Optional[str] = None,
+    def __init__(self, eq: Optional[Eq] = None, str_eq: Optional[str] = None,
                  inline: bool = True):
         self._validate(eq, str_eq)
         self.eq_str = eq if eq else str_eq
@@ -28,7 +28,7 @@ class Equation(IsSpecificClassMixin, IsLatexItemMixin):
         else:
             return format_eq.offset(self.eq_str)
 
-    def _validate(self, eq: Optional['Eq'] = None, str_eq: Optional[str] = None):
+    def _validate(self, eq: Optional[Eq] = None, str_eq: Optional[str] = None):
         if eq is None and str_eq is None:
             raise ValueError('must pass one of eq or str_eq')
         if eq is not None and str_eq is not None:
@@ -40,7 +40,7 @@ class Equation(IsSpecificClassMixin, IsLatexItemMixin):
         return self._eq_str
 
     @eq_str.setter
-    def eq_str(self, value: Union['Eq', str]):
+    def eq_str(self, value: Union[Eq, str]):
         if isinstance(value, str):
             # already formatted
             self._eq_str = value
