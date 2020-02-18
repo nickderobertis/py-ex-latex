@@ -25,6 +25,9 @@ class TableNotes(TextAreaBase, ReprMixin):
 
 
 class Tabular(ContainerItem, Item, ReprMixin, BaseTabular):
+    """
+    The main part of a LaTeX table which contains the rows and columns.
+    """
     name = 'tabular'
     repr_cols = ['align']
 

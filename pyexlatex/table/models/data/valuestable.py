@@ -7,6 +7,9 @@ from pyexlatex.table.models.table.section import TableSection
 
 
 class ValuesTable(TableSection):
+    """
+    Python interface for a part of a table containing rows and columns with values
+    """
 
     def __init__(self, rows: Sequence[DataRow], break_size_adjustment: Optional[str] = None):
         super().__init__(rows, break_size_adjustment)

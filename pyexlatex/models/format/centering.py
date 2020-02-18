@@ -13,6 +13,9 @@ class Centering(NoOptionsNoContentsItem):
 
 
 class Center(TextAreaBase):
+    """
+    Align the passed contents to the center of the container
+    """
     name = 'center'
 
     def __init__(self, content, **kwargs):

@@ -3,6 +3,9 @@ from pyexlatex.models.format.text.color.deftypes.base import ColorDefinition
 
 
 class RGB(ColorDefinition):
+    """
+    Define a color using an RGB code, such as RGB(33, 173, 42)
+    """
     definition_type = 'RGB'
 
     def __init__(self, red: int = 255, green: int = 255, blue: int = 255, color_name: Optional[str] = None):

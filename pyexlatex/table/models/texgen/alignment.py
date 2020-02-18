@@ -8,6 +8,9 @@ from pyexlatex.texgen.packages.columntypes import ColumnTypesPackage
 
 
 class ColumnAlignment(ReprMixin, ItemBase):
+    """
+    Alignment of a single column in a table
+    """
     repr_cols = ['align']
 
     def __init__(self, align_str: str):
@@ -41,6 +44,9 @@ class ColumnAlignment(ReprMixin, ItemBase):
 
 
 class ColumnsAlignment(ReprMixin, ContainerItem):
+    """
+    A set of column alignments, usually for the whole table
+    """
     repr_cols = ['aligns']
 
     def __init__(self, aligns: List[ColumnAlignment] = None, num_columns: int=None):

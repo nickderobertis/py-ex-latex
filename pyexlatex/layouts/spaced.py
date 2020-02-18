@@ -48,12 +48,28 @@ class SpacedBase(Template):
 
 
 class VerticallySpaced(SpacedBase):
+    """
+    Inserts vertical spacing between items until they fill the content area
+    """
 
     def __init__(self, content, pad_ends: bool = False):
+        """
+
+        :param content:
+        :param pad_ends: whether to add spacing outside the content as well
+        """
         super().__init__(content, vertically_space=True, pad_ends=pad_ends)
 
 
 class HorizontallySpaced(SpacedBase):
+    """
+    Inserts horiztonal spacing between items until they fill the content area
+    """
 
     def __init__(self, content, pad_ends: bool = False):
+        """
+
+        :param content:
+        :param pad_ends: whether to add spacing outside the content as well
+        """
         super().__init__(content, vertically_space=False, pad_ends=pad_ends)
