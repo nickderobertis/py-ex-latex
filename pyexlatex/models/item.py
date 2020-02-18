@@ -21,9 +21,12 @@ class IsLatexItemMixin:
 
 
 class DataItem:
+    _data_has_been_initialized = False
+
     def init_data(self):
         from pyexlatex.models.documentsetup import DocumentSetupData
-        if not hasattr(self, 'data'):
+        if not self._data_has_been_initialized:
+            self._data_has_been_initialized = True
             self.data = DocumentSetupData()
 
     def add_package(self, package: Union[str, 'Package']):
