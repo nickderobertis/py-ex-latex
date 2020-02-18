@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.references.bibtex package &mdash; pyexlatex 0.10.4 documentation</title>
+  <title>pyexlatex.models.references.bibtex package &mdash; pyexlatex 0.10.5 documentation</title>
   
 
   
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.10.4
+                0.10.5
               </div>
             
           
@@ -279,12 +279,17 @@
 <dl class="class">
 <dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.bibtex.base.</code><code class="sig-name descname">BibTexEntryBase</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/base.html#BibTexEntryBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.documentitem.DocumentItem" title="pyexlatex.models.documentitem.DocumentItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.documentitem.DocumentItem</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.documentitem.DocumentItem" title="pyexlatex.models.documentitem.DocumentItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.documentitem.DocumentItem</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.attrequals.EqOnAttrsMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
 <dl class="method">
 <dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/base.html#BibTexEntryBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase.equal_attrs">
+<code class="sig-name descname">equal_attrs</code><em class="property"> = ['item_accessor', 'fields']</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase.equal_attrs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase.fields">
