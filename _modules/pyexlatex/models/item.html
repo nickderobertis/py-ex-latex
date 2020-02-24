@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.item &mdash; pyexlatex 0.10.5 documentation</title>
+  <title>pyexlatex.models.item &mdash; pyexlatex 0.10.6 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.10.5
+                0.10.6
               </div>
             
           
@@ -183,9 +183,12 @@
 
 
 <div class="viewcode-block" id="DataItem"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.DataItem">[docs]</a><span class="k">class</span> <span class="nc">DataItem</span><span class="p">:</span>
+    <span class="n">_data_has_been_initialized</span> <span class="o">=</span> <span class="kc">False</span>
+
 <div class="viewcode-block" id="DataItem.init_data"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.DataItem.init_data">[docs]</a>    <span class="k">def</span> <span class="nf">init_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">pyexlatex.models.documentsetup</span> <span class="kn">import</span> <span class="n">DocumentSetupData</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_has_been_initialized</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data_has_been_initialized</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">DocumentSetupData</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="DataItem.add_package"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.DataItem.add_package">[docs]</a>    <span class="k">def</span> <span class="nf">add_package</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">package</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;Package&#39;</span><span class="p">]):</span>

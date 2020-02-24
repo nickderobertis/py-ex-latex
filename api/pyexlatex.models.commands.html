@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.commands package &mdash; pyexlatex 0.10.5 documentation</title>
+  <title>pyexlatex.models.commands package &mdash; pyexlatex 0.10.6 documentation</title>
   
 
   
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.10.5
+                0.10.6
               </div>
             
           
@@ -115,8 +115,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.df">pyexlatex.df module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.equations">pyexlatex.equations module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.exc">pyexlatex.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
 </ul>
@@ -264,8 +264,42 @@
 </dd></dl>
 
 </div>
-<div class="section" id="pyexlatex-models-commands-floatrow-module">
-<h2>pyexlatex.models.commands.floatrow module<a class="headerlink" href="#pyexlatex-models-commands-floatrow-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyexlatex.models.commands.floatrow">
+<span id="pyexlatex-models-commands-floatrow-module"></span><h2>pyexlatex.models.commands.floatrow module<a class="headerlink" href="#module-pyexlatex.models.commands.floatrow" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.models.commands.floatrow.DeclareFloatFont">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.commands.floatrow.</code><code class="sig-name descname">DeclareFloatFont</code><span class="sig-paren">(</span><em class="sig-param">relative_size_int</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/floatrow.html#DeclareFloatFont"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.floatrow.DeclareFloatFont" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.MultiOptionSimpleItem" title="pyexlatex.models.item.MultiOptionSimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.MultiOptionSimpleItem</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.commands.floatrow.DeclareFloatFont.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">relative_size_int</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/floatrow.html#DeclareFloatFont.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.floatrow.DeclareFloatFont.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.commands.floatrow.DeclareFloatFont.name">
+<code class="sig-name descname">name</code><em class="property"> = 'DeclareFloatFont'</em><a class="headerlink" href="#pyexlatex.models.commands.floatrow.DeclareFloatFont.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.models.commands.floatrow.FloatSetup">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.commands.floatrow.</code><code class="sig-name descname">FloatSetup</code><span class="sig-paren">(</span><em class="sig-param">targeted_float</em>, <em class="sig-param">options</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/floatrow.html#FloatSetup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.floatrow.FloatSetup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.models.commands.floatrow.FloatSetup.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">targeted_float</em>, <em class="sig-param">options</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/floatrow.html#FloatSetup.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.floatrow.FloatSetup.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.models.commands.floatrow.FloatSetup.name">
+<code class="sig-name descname">name</code><em class="property"> = 'floatsetup'</em><a class="headerlink" href="#pyexlatex.models.commands.floatrow.FloatSetup.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-pyexlatex.models.commands.newenvironment">
 <span id="pyexlatex-models-commands-newenvironment-module"></span><h2>pyexlatex.models.commands.newenvironment module<a class="headerlink" href="#module-pyexlatex.models.commands.newenvironment" title="Permalink to this headline">¶</a></h2>

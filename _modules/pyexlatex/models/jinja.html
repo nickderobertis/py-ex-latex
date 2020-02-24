@@ -1,0 +1,397 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyexlatex.models.jinja &mdash; pyexlatex 0.10.6 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script >var copybuttonSkipText = '>>> ';</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/sphinx_paramlinks.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> pyexlatex
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.10.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">pyexlatex</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyexlatex</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyexlatex.models.jinja</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyexlatex.models.jinja</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
+
+<span class="kn">from</span> <span class="nn">jinja2</span> <span class="kn">import</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">Template</span>
+
+<span class="kn">from</span> <span class="nn">pyexlatex.models.containeritem</span> <span class="kn">import</span> <span class="n">ContainerItem</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.datastore</span> <span class="kn">import</span> <span class="n">DataStore</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.documentsetup</span> <span class="kn">import</span> <span class="n">DocumentSetupData</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="kn">import</span> <span class="n">ItemBase</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.texgen.replacements.file</span> <span class="kn">import</span> <span class="n">general_latex_replacements</span>
+
+<span class="n">UPPER_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;[A-Z]&#39;</span><span class="p">)</span>
+
+<span class="n">current_template_data_store</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="class_factory"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.jinja.class_factory">[docs]</a><span class="k">def</span> <span class="nf">class_factory</span><span class="p">(</span><span class="n">latex_class</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">item</span> <span class="o">=</span> <span class="n">latex_class</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">current_template_data_store</span>
+    <span class="n">current_template_data_store</span><span class="o">.</span><span class="n">add_data_from_content</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_capitalized_items"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.jinja.get_capitalized_items">[docs]</a><span class="k">def</span> <span class="nf">get_capitalized_items</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">items</span> <span class="k">if</span> <span class="n">UPPER_PATTERN</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span></div>
+
+
+<div class="viewcode-block" id="JinjaTemplate"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.jinja.JinjaTemplate">[docs]</a><span class="k">class</span> <span class="nc">JinjaTemplate</span><span class="p">(</span><span class="n">Template</span><span class="p">,</span> <span class="n">ContainerItem</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A jinja Template but with pyexlatex models as built-in filters and handling extracting pyexlatex data</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; import pyexlatex as pl</span>
+<span class="sd">        &gt;&gt;&gt; str(pl.JinjaTemplate(&#39;{{ my_var | Italics }}&#39;).render(my_var=&#39;woo&#39;))</span>
+<span class="sd">        &#39;\\textit{woo}&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="n">JinjaEnvironment</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">env</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">template_class</span><span class="o">=</span><span class="bp">cls</span><span class="p">)</span>
+
+<div class="viewcode-block" id="JinjaTemplate.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.jinja.JinjaTemplate.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="JinjaTemplate.render"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.jinja.JinjaTemplate.render">[docs]</a>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">format_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_data_from_content</span><span class="p">(</span><span class="n">format_dict</span><span class="p">)</span>
+
+        <span class="c1"># Set as current global template for adding data during filters</span>
+        <span class="n">_set_data_store_to_object</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="n">string</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">DataString</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+        <span class="c1"># TODO [#15]: Simplify Jinja template integration</span>
+        <span class="c1">#</span>
+        <span class="c1"># may be able to remove the __deepcopy__ method once https://github.com/pallets/jinja/issues/758 is resolved</span>
+
+        <span class="c1"># Boilerplate deepcopy</span>
+        <span class="bp">cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span>
+
+        <span class="c1"># The one modification to boilerplate deepcopy, originally cls and not object</span>
+        <span class="c1"># Create instance without using JinjaTemplate.__new__</span>
+        <span class="c1"># This is the way it is being done in Template._from_namespace and it avoids an error during</span>
+        <span class="c1"># deepcopy that source is not defined</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+
+        <span class="c1"># Continue boilerplate deepcopy</span>
+        <span class="n">memo</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)]</span> <span class="o">=</span> <span class="n">result</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">memo</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+
+<div class="viewcode-block" id="DataString"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.jinja.DataString">[docs]</a><span class="k">class</span> <span class="nc">DataString</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="DataString.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.jinja.DataString.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">DocumentSetupData</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span></div>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">general_latex_replacements</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="JinjaEnvironment"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.jinja.JinjaEnvironment">[docs]</a><span class="k">class</span> <span class="nc">JinjaEnvironment</span><span class="p">(</span><span class="n">Environment</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A jinja Environment but with pyexlatex models as built in filters and handling extracting pyexlatex data</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; import pyexlatex as pl</span>
+<span class="sd">        &gt;&gt;&gt; from jinja2 import DictLoader</span>
+<span class="sd">        &gt;&gt;&gt; env = pl.JinjaEnvironment(</span>
+<span class="sd">        &gt;&gt;&gt;     loader=DictLoader({&#39;my_temp&#39;: &#39;{{ my_var | Italics }}&#39;})</span>
+<span class="sd">        &gt;&gt;&gt; )</span>
+<span class="sd">        &gt;&gt;&gt; temp = env.get_template(&#39;my_temp&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; str(temp.render(my_var=&#39;woo&#39;))</span>
+<span class="sd">        &#39;\\textit{woo}&#39;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">template_class</span> <span class="o">=</span> <span class="n">JinjaTemplate</span>
+
+<div class="viewcode-block" id="JinjaEnvironment.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.jinja.JinjaEnvironment.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_filters</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_add_filters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">pyexlatex</span> <span class="k">as</span> <span class="nn">pl</span>
+        <span class="kn">import</span> <span class="nn">pyexlatex.table</span> <span class="k">as</span> <span class="nn">lt</span>
+        <span class="kn">import</span> <span class="nn">pyexlatex.presentation</span> <span class="k">as</span> <span class="nn">lp</span>
+        <span class="kn">import</span> <span class="nn">pyexlatex.graphics</span> <span class="k">as</span> <span class="nn">lg</span>
+        <span class="kn">import</span> <span class="nn">pyexlatex.layouts</span> <span class="k">as</span> <span class="nn">ll</span>
+        <span class="kn">import</span> <span class="nn">pyexlatex.figure</span> <span class="k">as</span> <span class="nn">lf</span>
+
+        <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="p">[</span><span class="n">pl</span><span class="p">,</span> <span class="n">lt</span><span class="p">,</span> <span class="n">lp</span><span class="p">,</span> <span class="n">lg</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">lf</span><span class="p">]:</span>
+            <span class="n">latex_class_names</span> <span class="o">=</span> <span class="n">get_capitalized_items</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">module</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">latex_class_name</span> <span class="ow">in</span> <span class="n">latex_class_names</span><span class="p">:</span>
+                <span class="n">latex_class</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">latex_class_name</span><span class="p">)</span>
+                <span class="n">this_class_factory</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">class_factory</span><span class="p">,</span> <span class="n">latex_class</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="n">latex_class_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">this_class_factory</span>
+
+<div class="viewcode-block" id="JinjaEnvironment.from_string"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.jinja.JinjaEnvironment.from_string">[docs]</a>    <span class="k">def</span> <span class="nf">from_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_template_factory</span><span class="p">(</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">from_string</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_load_template</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_template_factory</span><span class="p">(</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_load_template</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_set_data_store_to_temporary_object</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Capture data by using a temporary object</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">temp_obj</span> <span class="o">=</span> <span class="n">DataStore</span><span class="p">()</span>
+    <span class="n">_set_data_store_to_object</span><span class="p">(</span><span class="n">temp_obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">temp_obj</span>
+
+
+<span class="k">def</span> <span class="nf">_set_data_store_to_object</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">current_template_data_store</span>
+    <span class="n">current_template_data_store</span> <span class="o">=</span> <span class="n">obj</span>
+
+
+<span class="k">def</span> <span class="nf">_template_factory</span><span class="p">(</span><span class="n">factory_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JinjaTemplate</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Handles creating jinja template complete with pyexlatex data.</span>
+
+<span class="sd">    Manages a temporary global data store so that jinja filters can add to that data store, then after creating</span>
+<span class="sd">    the template, the data is added to the template.</span>
+
+<span class="sd">    :param factory_func: function which should return a Template</span>
+<span class="sd">    :param args: passed to factory_func</span>
+<span class="sd">    :param kwargs: passed to factory_func</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Set current global data store for adding data during filters</span>
+    <span class="n">data_store</span> <span class="o">=</span> <span class="n">_set_data_store_to_temporary_object</span><span class="p">()</span>
+
+    <span class="c1"># Create object in usual jinja way</span>
+    <span class="n">actual_template</span> <span class="o">=</span> <span class="n">factory_func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># Add data to newly created object</span>
+    <span class="n">actual_template</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data_store</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="k">return</span> <span class="n">actual_template</span>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Nick DeRobertis
+
+    </p>
+  </div>
+    
+    
+      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-155734278-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

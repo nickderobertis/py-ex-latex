@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.tools package &mdash; pyexlatex 0.10.5 documentation</title>
+  <title>pyexlatex.tools package &mdash; pyexlatex 0.10.6 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.10.5
+                0.10.6
               </div>
             
           
@@ -114,8 +114,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.df">pyexlatex.df module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.equations">pyexlatex.equations module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.exc">pyexlatex.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
 </ul>
@@ -191,13 +191,78 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pyexlatex-tools-package">
-<h1>pyexlatex.tools package<a class="headerlink" href="#pyexlatex-tools-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-pyexlatex.tools">
+<span id="pyexlatex-tools-package"></span><h1>pyexlatex.tools package<a class="headerlink" href="#module-pyexlatex.tools" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="pyexlatex.tools.csv_to_raw_latex">
+<code class="sig-prename descclassname">pyexlatex.tools.</code><code class="sig-name descname">csv_to_raw_latex</code><span class="sig-paren">(</span><em class="sig-param">infile</em>, <em class="sig-param">csvstring=False</em>, <em class="sig-param">missing_rep=' - '</em>, <em class="sig-param">formatstr='{:.3f}'</em>, <em class="sig-param">skipfix=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools.html#csv_to_raw_latex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.csv_to_raw_latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a CSV text file and converts it to a LaTeX formatted list, with each line of the LaTeX
+file as an item in the list.</p>
+<dl class="simple">
+<dt>Required options:</dt><dd><p>infile: Full file path of CSV (include r before quotes)</p>
+</dd>
+<dt>Optional options:</dt><dd><p>csvstring: True to pass a CSV string to infile rather than load from file
+missing_rep: Representation for missing numbers, default ” - ”
+formatstr: Python string for number formatting, for example ‘{:.3f}’ with quotes
+skipfix: String or list of strings of fixes to skip, options are [‘&amp;’,’%’,’_’]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyexlatex.tools.date_time_move_latex">
+<code class="sig-prename descclassname">pyexlatex.tools.</code><code class="sig-name descname">date_time_move_latex</code><span class="sig-paren">(</span><em class="sig-param">tablename</em>, <em class="sig-param">filepath</em>, <em class="sig-param">folder_name='Tables'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools.html#date_time_move_latex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.date_time_move_latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a LaTeX tex and PDF after the PDF’s been created by pdflatex and moves it into a table
+folder with the date, checking if the table was just previously created. If it’s the same as
+before, it just deletes the file.</p>
+<dl class="simple">
+<dt>Required arguments:</dt><dd><p>tablename: operating system name of the table, without extensions
+filepath: full filepath of table, without table name. put r before quotes as follows: r’C:UsersFolder’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyexlatex.tools.replace_missing_csv">
+<code class="sig-prename descclassname">pyexlatex.tools.</code><code class="sig-name descname">replace_missing_csv</code><span class="sig-paren">(</span><em class="sig-param">csv_list</em>, <em class="sig-param">missing_rep</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools.html#replace_missing_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.replace_missing_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces missing items in a CSV with a given missing representation string.</p>
+</dd></dl>
+
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="pyexlatex-tools-fileops-module">
-<h2>pyexlatex.tools.fileops module<a class="headerlink" href="#pyexlatex-tools-fileops-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyexlatex.tools.fileops">
+<span id="pyexlatex-tools-fileops-module"></span><h2>pyexlatex.tools.fileops module<a class="headerlink" href="#module-pyexlatex.tools.fileops" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyexlatex.tools.fileops.move_all_if_exists">
+<code class="sig-prename descclassname">pyexlatex.tools.fileops.</code><code class="sig-name descname">move_all_if_exists</code><span class="sig-paren">(</span><em class="sig-param">inpaths</em>, <em class="sig-param">outfolder</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools/fileops.html#move_all_if_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.fileops.move_all_if_exists" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyexlatex.tools.fileops.move_if_exists">
+<code class="sig-prename descclassname">pyexlatex.tools.fileops.</code><code class="sig-name descname">move_if_exists</code><span class="sig-paren">(</span><em class="sig-param">inpath</em>, <em class="sig-param">outpath</em>, <em class="sig-param">retries=3</em>, <em class="sig-param">sleep_time=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools/fileops.html#move_if_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.fileops.move_if_exists" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyexlatex.tools.fileops.remove_all_if_exist">
+<code class="sig-prename descclassname">pyexlatex.tools.fileops.</code><code class="sig-name descname">remove_all_if_exist</code><span class="sig-paren">(</span><em class="sig-param">filepaths</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools/fileops.html#remove_all_if_exist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.fileops.remove_all_if_exist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyexlatex.tools.fileops.remove_if_exists">
+<code class="sig-prename descclassname">pyexlatex.tools.fileops.</code><code class="sig-name descname">remove_if_exists</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">retries=3</em>, <em class="sig-param">sleep_time=0.1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/tools/fileops.html#remove_if_exists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.tools.fileops.remove_if_exists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 </div>
 

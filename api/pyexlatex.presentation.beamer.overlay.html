@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.presentation.beamer.overlay package &mdash; pyexlatex 0.10.5 documentation</title>
+  <title>pyexlatex.presentation.beamer.overlay package &mdash; pyexlatex 0.10.6 documentation</title>
   
 
   
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                0.10.5
+                0.10.6
               </div>
             
           
@@ -115,8 +115,8 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-df-module">pyexlatex.df module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#pyexlatex-equations-module">pyexlatex.equations module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.df">pyexlatex.df module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.equations">pyexlatex.equations module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.exc">pyexlatex.exc module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pyexlatex.html#module-pyexlatex.typing">pyexlatex.typing module</a></li>
 </ul>
@@ -196,15 +196,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pyexlatex-presentation-beamer-overlay-package">
-<h1>pyexlatex.presentation.beamer.overlay package<a class="headerlink" href="#pyexlatex-presentation-beamer-overlay-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-pyexlatex.presentation.beamer.overlay">
+<span id="pyexlatex-presentation-beamer-overlay-package"></span><h1>pyexlatex.presentation.beamer.overlay package<a class="headerlink" href="#module-pyexlatex.presentation.beamer.overlay" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="pyexlatex.presentation.beamer.overlay.commands.html">pyexlatex.presentation.beamer.overlay.commands package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.presentation.beamer.overlay.commands.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pyexlatex.presentation.beamer.overlay.commands.html#pyexlatex-presentation-beamer-overlay-commands-uncover-module">pyexlatex.presentation.beamer.overlay.commands.uncover module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.presentation.beamer.overlay.commands.html#module-pyexlatex.presentation.beamer.overlay.commands.uncover">pyexlatex.presentation.beamer.overlay.commands.uncover module</a></li>
 </ul>
 </li>
 </ul>
@@ -213,23 +213,139 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="pyexlatex-presentation-beamer-overlay-next-module">
-<h2>pyexlatex.presentation.beamer.overlay.next module<a class="headerlink" href="#pyexlatex-presentation-beamer-overlay-next-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyexlatex.presentation.beamer.overlay.next">
+<span id="pyexlatex-presentation-beamer-overlay-next-module"></span><h2>pyexlatex.presentation.beamer.overlay.next module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.overlay.next" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.presentation.beamer.overlay.next.NextBase">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.overlay.next.</code><code class="sig-name descname">NextBase</code><span class="sig-paren">(</span><em class="sig-param">offset=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/next.html#NextBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.next.NextBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.overlay.overlay_param.OverlayParameter" title="pyexlatex.presentation.beamer.overlay.overlay_param.OverlayParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.overlay.overlay_param.OverlayParameter</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.presentation.beamer.overlay.next.NextBase.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">offset=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/next.html#NextBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.next.NextBase.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.presentation.beamer.overlay.next.NextBase.next_char">
+<code class="sig-name descname">next_char</code><em class="property"> = '&lt;invalid, use subclass, not NextBase directly&gt;'</em><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.next.NextBase.next_char" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.presentation.beamer.overlay.next.NextWithIncrement">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.overlay.next.</code><code class="sig-name descname">NextWithIncrement</code><span class="sig-paren">(</span><em class="sig-param">offset=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/next.html#NextWithIncrement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.next.NextWithIncrement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.overlay.next.NextBase" title="pyexlatex.presentation.beamer.overlay.next.NextBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.overlay.next.NextBase</span></code></a></p>
+<p>Option to be passed to Overlay which makes object appear on the next slide of the frame, and creates an additional
+slide</p>
+<dl class="attribute">
+<dt id="pyexlatex.presentation.beamer.overlay.next.NextWithIncrement.next_char">
+<code class="sig-name descname">next_char</code><em class="property"> = '+'</em><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.next.NextWithIncrement.next_char" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyexlatex.presentation.beamer.overlay.next.NextWithoutIncrement">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.overlay.next.</code><code class="sig-name descname">NextWithoutIncrement</code><span class="sig-paren">(</span><em class="sig-param">offset=0</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/next.html#NextWithoutIncrement"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.next.NextWithoutIncrement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.overlay.next.NextBase" title="pyexlatex.presentation.beamer.overlay.next.NextBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.overlay.next.NextBase</span></code></a></p>
+<p>Option to be passed to Overlay which makes object appear on the next slide of the frame, and does not creates
+an additional slide</p>
+<dl class="attribute">
+<dt id="pyexlatex.presentation.beamer.overlay.next.NextWithoutIncrement.next_char">
+<code class="sig-name descname">next_char</code><em class="property"> = '.'</em><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.next.NextWithoutIncrement.next_char" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="pyexlatex-presentation-beamer-overlay-offset-module">
-<h2>pyexlatex.presentation.beamer.overlay.offset module<a class="headerlink" href="#pyexlatex-presentation-beamer-overlay-offset-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyexlatex.presentation.beamer.overlay.offset">
+<span id="pyexlatex-presentation-beamer-overlay-offset-module"></span><h2>pyexlatex.presentation.beamer.overlay.offset module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.overlay.offset" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.presentation.beamer.overlay.offset.Offset">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.overlay.offset.</code><code class="sig-name descname">Offset</code><span class="sig-paren">(</span><em class="sig-param">offset</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/offset.html#Offset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.offset.Offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="pyexlatex.presentation.beamer.overlay.offset.Offset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">offset</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/offset.html#Offset.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.offset.Offset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="pyexlatex-presentation-beamer-overlay-overlay-module">
-<h2>pyexlatex.presentation.beamer.overlay.overlay module<a class="headerlink" href="#pyexlatex-presentation-beamer-overlay-overlay-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyexlatex.presentation.beamer.overlay.overlay">
+<span id="pyexlatex-presentation-beamer-overlay-overlay-module"></span><h2>pyexlatex.presentation.beamer.overlay.overlay module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.overlay.overlay" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.presentation.beamer.overlay.overlay.Overlay">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.overlay.overlay.</code><code class="sig-name descname">Overlay</code><span class="sig-paren">(</span><em class="sig-param">overlay_options</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/overlay.html#Overlay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.overlay.Overlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Creates an effect on a frame such as appearing on a later frame.</p>
+<dl class="method">
+<dt id="pyexlatex.presentation.beamer.overlay.overlay.Overlay.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">overlay_options</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/overlay.html#Overlay.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.overlay.Overlay.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyexlatex.presentation.beamer.overlay.overlay.Overlay.overlay_options_str">
+<em class="property">property </em><code class="sig-name descname">overlay_options_str</code><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.overlay.Overlay.overlay_options_str" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="pyexlatex-presentation-beamer-overlay-overlay-param-module">
-<h2>pyexlatex.presentation.beamer.overlay.overlay_param module<a class="headerlink" href="#pyexlatex-presentation-beamer-overlay-overlay-param-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyexlatex.presentation.beamer.overlay.overlay_param">
+<span id="pyexlatex-presentation-beamer-overlay-overlay-param-module"></span><h2>pyexlatex.presentation.beamer.overlay.overlay_param module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.overlay.overlay_param" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.presentation.beamer.overlay.overlay_param.OverlayParameter">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.overlay.overlay_param.</code><code class="sig-name descname">OverlayParameter</code><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/overlay_param.html#OverlayParameter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.overlay_param.OverlayParameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd></dl>
+
 </div>
-<div class="section" id="pyexlatex-presentation-beamer-overlay-range-module">
-<h2>pyexlatex.presentation.beamer.overlay.range module<a class="headerlink" href="#pyexlatex-presentation-beamer-overlay-range-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyexlatex.presentation.beamer.overlay.range">
+<span id="pyexlatex-presentation-beamer-overlay-range-module"></span><h2>pyexlatex.presentation.beamer.overlay.range module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.overlay.range" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.presentation.beamer.overlay.range.Range">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.overlay.range.</code><code class="sig-name descname">Range</code><span class="sig-paren">(</span><em class="sig-param">low</em>, <em class="sig-param">high</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/range.html#Range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.range.Range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code>, <a class="reference internal" href="#pyexlatex.presentation.beamer.overlay.overlay_param.OverlayParameter" title="pyexlatex.presentation.beamer.overlay.overlay_param.OverlayParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.overlay.overlay_param.OverlayParameter</span></code></a></p>
+<p>Option to be passed to Overlay which says object should exist on the frame on a certain range of slides
+e.g. slide 1-3 of the frame.</p>
+<dl class="method">
+<dt id="pyexlatex.presentation.beamer.overlay.range.Range.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">low</em>, <em class="sig-param">high</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/range.html#Range.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.range.Range.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="pyexlatex.presentation.beamer.overlay.range.Range.repr_cols">
+<code class="sig-name descname">repr_cols</code><em class="property"> = ['low', 'high']</em><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.range.Range.repr_cols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="pyexlatex-presentation-beamer-overlay-until-end-module">
-<h2>pyexlatex.presentation.beamer.overlay.until_end module<a class="headerlink" href="#pyexlatex-presentation-beamer-overlay-until-end-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-pyexlatex.presentation.beamer.overlay.until_end">
+<span id="pyexlatex-presentation-beamer-overlay-until-end-module"></span><h2>pyexlatex.presentation.beamer.overlay.until_end module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.overlay.until_end" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyexlatex.presentation.beamer.overlay.until_end.UntilEnd">
+<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.overlay.until_end.</code><code class="sig-name descname">UntilEnd</code><span class="sig-paren">(</span><em class="sig-param">content</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/until_end.html#UntilEnd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.until_end.UntilEnd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.overlay.overlay_param.OverlayParameter" title="pyexlatex.presentation.beamer.overlay.overlay_param.OverlayParameter"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.overlay.overlay_param.OverlayParameter</span></code></a></p>
+<p>Option to be passed to Overlay that makes object exist until the end of the frame</p>
+<dl class="method">
+<dt id="pyexlatex.presentation.beamer.overlay.until_end.UntilEnd.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/overlay/until_end.html#UntilEnd.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.overlay.until_end.UntilEnd.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 

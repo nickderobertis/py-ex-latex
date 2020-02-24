@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.logic.format.eq &mdash; pyexlatex 0.10.5 documentation</title>
+  <title>pyexlatex.logic.format.eq &mdash; pyexlatex 0.10.6 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.10.5
+                0.10.6
               </div>
             
           
@@ -160,21 +160,19 @@
            <div itemprop="articleBody">
             
   <h1>Source code for pyexlatex.logic.format.eq</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
-<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Eq</span><span class="p">,</span> <span class="n">Expr</span><span class="p">,</span> <span class="n">Symbol</span>
+<span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Eq</span><span class="p">,</span> <span class="n">Expr</span><span class="p">,</span> <span class="n">Symbol</span>
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">latex</span>
 
 
-<div class="viewcode-block" id="inline"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.inline">[docs]</a><span class="k">def</span> <span class="nf">inline</span><span class="p">(</span><span class="n">eq</span><span class="p">:</span> <span class="s1">&#39;Eq&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="inline"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.inline">[docs]</a><span class="k">def</span> <span class="nf">inline</span><span class="p">(</span><span class="n">eq</span><span class="p">:</span> <span class="n">Eq</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;${latex(eq)}$&#39;</span></div>
 
 
-<div class="viewcode-block" id="offset"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.offset">[docs]</a><span class="k">def</span> <span class="nf">offset</span><span class="p">(</span><span class="n">eq</span><span class="p">:</span> <span class="s1">&#39;Eq&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="offset"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.offset">[docs]</a><span class="k">def</span> <span class="nf">offset</span><span class="p">(</span><span class="n">eq</span><span class="p">:</span> <span class="n">Eq</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">begin{{equation}}</span><span class="se">\n\t</span><span class="s1">{latex(eq)}</span><span class="se">\n\\</span><span class="s1">end{{equation}}&#39;</span></div>
 
 
-<div class="viewcode-block" id="latex_partial"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.latex_partial">[docs]</a><span class="k">def</span> <span class="nf">latex_partial</span><span class="p">(</span><span class="n">expr</span><span class="p">:</span> <span class="s1">&#39;Expr&#39;</span><span class="p">,</span> <span class="n">eq_symbol</span><span class="p">:</span> <span class="s1">&#39;Symbol&#39;</span><span class="p">,</span> <span class="n">wrt_symbol</span><span class="p">:</span> <span class="s1">&#39;Symbol&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="latex_partial"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.latex_partial">[docs]</a><span class="k">def</span> <span class="nf">latex_partial</span><span class="p">(</span><span class="n">expr</span><span class="p">:</span> <span class="n">Expr</span><span class="p">,</span> <span class="n">eq_symbol</span><span class="p">:</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">wrt_symbol</span><span class="p">:</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 
     <span class="n">begin_str</span> <span class="o">=</span> <span class="s1">&#39;$&#39;</span>
     <span class="n">end_str</span> <span class="o">=</span> <span class="s1">&#39;$&#39;</span>

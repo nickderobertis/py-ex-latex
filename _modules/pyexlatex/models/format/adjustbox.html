@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.format.adjustbox &mdash; pyexlatex 0.10.5 documentation</title>
+  <title>pyexlatex.models.format.adjustbox &mdash; pyexlatex 0.10.6 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.10.5
+                0.10.6
               </div>
             
           
@@ -177,7 +177,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">options_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="n">base_str</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adjust_options</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_with_bracket</span><span class="p">(</span><span class="n">base_str</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wrap_with_braces</span><span class="p">(</span><span class="n">base_str</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># for type checking, shouldn&#39;t actually hit here</span>
             <span class="k">return</span> <span class="s1">&#39;&#39;</span>
         <span class="k">return</span> <span class="n">result</span></div>

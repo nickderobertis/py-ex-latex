@@ -1,0 +1,527 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyexlatex.models.document &mdash; pyexlatex 0.10.6 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script >var copybuttonSkipText = '>>> ';</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/sphinx_paramlinks.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> pyexlatex
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.10.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">pyexlatex</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyexlatex</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyexlatex.models.document</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyexlatex.models.document</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+
+<span class="kn">from</span> <span class="nn">pyexlatex.models.environment</span> <span class="kn">import</span> <span class="n">Environment</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="kn">import</span> <span class="n">Item</span><span class="p">,</span> <span class="n">ItemBase</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.control.documentclass.documentclass</span> <span class="kn">import</span> <span class="n">DocumentClass</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.package</span> <span class="kn">import</span> <span class="n">Package</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.page.style</span> <span class="kn">import</span> <span class="n">PageStyle</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.landscape</span> <span class="kn">import</span> <span class="n">Landscape</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.logic.pdf.main</span> <span class="kn">import</span> <span class="n">document_to_pdf_and_move</span><span class="p">,</span> <span class="n">latex_str_to_pdf_obj_with_sources</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.texgen.replacements.filename</span> <span class="kn">import</span> <span class="n">latex_filename_replacements</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.logic.extract.docitems</span> <span class="kn">import</span> <span class="n">extract_document_items_from_ambiguous_collection</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.page.number</span> <span class="kn">import</span> <span class="n">right_aligned_page_numbers</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.page.header</span> <span class="kn">import</span> <span class="n">remove_header</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.page.footer</span> <span class="kn">import</span> <span class="n">CenterFooter</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.format.sectionnum</span> <span class="kn">import</span> <span class="n">SectionNumberingFormatter</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.typing</span> <span class="kn">import</span> <span class="n">AnyItem</span><span class="p">,</span> <span class="n">ItemOrListOfItems</span><span class="p">,</span> <span class="n">ItemAndPreEnvContents</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.commands.endfloat</span> <span class="kn">import</span> <span class="n">DeclareDelayedFloatFlavor</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.format.text.linespacing</span> <span class="kn">import</span> <span class="n">LineSpacing</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.commands.floatrow</span> <span class="kn">import</span> <span class="n">DeclareFloatFont</span><span class="p">,</span> <span class="n">FloatSetup</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.containeritem</span> <span class="kn">import</span> <span class="n">ContainerItem</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.page.header</span> <span class="kn">import</span> <span class="n">Header</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.control.setcounter</span> <span class="kn">import</span> <span class="n">SetCounter</span>
+
+
+<div class="viewcode-block" id="DocumentEnvironment"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.document.DocumentEnvironment">[docs]</a><span class="k">class</span> <span class="nc">DocumentEnvironment</span><span class="p">(</span><span class="n">Environment</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;document&#39;</span>
+
+<div class="viewcode-block" id="DocumentEnvironment.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.document.DocumentEnvironment.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="DocumentBase"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.document.DocumentBase">[docs]</a><span class="k">class</span> <span class="nc">DocumentBase</span><span class="p">(</span><span class="n">ContainerItem</span><span class="p">,</span> <span class="n">Item</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&lt;invalid, do not use DocumentBase directly&gt;&#39;</span>
+    <span class="n">document_class_obj</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;DocumentClass&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="DocumentBase.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.document.DocumentBase.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">ItemOrListOfItems</span><span class="p">,</span> <span class="n">packages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Package</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">pre_env_contents</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ItemOrListOfItems</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">data_cleanup_func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">pre_output_func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param content:</span>
+<span class="sd">        :param packages:</span>
+<span class="sd">        :param pre_env_contents:</span>
+<span class="sd">        :param data_cleanup_func: should accept DocumentSetupData and modify it in place. This is called just before</span>
+<span class="sd">            using the data.</span>
+<span class="sd">        :param pre_output_func: function which modifies the latex string before outputting it. The function should</span>
+<span class="sd">            accepts a single argument which is a string of the entire latex contents, and it should return a string</span>
+<span class="sd">            which will be used as the latex contents for output.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">pyexlatex.logic.builder</span> <span class="kn">import</span> <span class="n">build</span><span class="p">,</span> <span class="n">_build</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_data_from_content</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_data_from_content</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">document_class_obj</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">packages</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">packages</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">has_references</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">references</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">has_references</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="p">(</span><span class="n">ItemBase</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
+            <span class="n">content_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">content</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">content_list</span> <span class="o">=</span> <span class="n">content</span>  <span class="c1"># type: ignore</span>
+
+        <span class="k">if</span> <span class="n">pre_env_contents</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pre_env_contents</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">data_cleanup_func</span><span class="p">:</span>
+            <span class="n">data_cleanup_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="n">possible_pre_env_contents</span> <span class="o">=</span> <span class="p">[</span>  <span class="c1"># type: ignore</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">document_class_obj</span><span class="p">,</span>
+            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">begin_document_items</span><span class="p">,</span>
+            <span class="o">*</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">package</span><span class="p">)</span> <span class="k">for</span> <span class="n">package</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">packages</span><span class="p">],</span>
+            <span class="o">*</span><span class="n">pre_env_contents</span>
+        <span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pre_env_contents</span> <span class="o">=</span> <span class="n">build</span><span class="p">([</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">possible_pre_env_contents</span> <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">])</span>
+
+        <span class="n">content_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">end_document_items</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="n">content_list</span>
+
+
+        <span class="n">content_list</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">content_list</span><span class="p">)</span>  <span class="c1"># don&#39;t overwrite original objects</span>
+        <span class="c1"># combine content into a single str</span>
+        <span class="n">content_list</span> <span class="o">=</span> <span class="n">build</span><span class="p">(</span><span class="n">content_list</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">pre_output_func</span><span class="p">:</span>
+            <span class="n">content_list</span> <span class="o">=</span> <span class="n">pre_output_func</span><span class="p">(</span><span class="n">content_list</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">content_list</span><span class="p">,</span> <span class="n">pre_env_contents</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pre_env_contents</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_repr_pdf_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tex</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">latex_str_to_pdf_obj_with_sources</span><span class="p">(</span>
+            <span class="n">tex</span><span class="p">,</span>
+            <span class="n">image_paths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">filepaths</span><span class="p">,</span>
+            <span class="n">image_binaries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">binaries</span><span class="p">,</span>
+            <span class="n">run_bibtex</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">has_references</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">readb</span><span class="p">()</span>
+
+<div class="viewcode-block" id="DocumentBase.to_pdf"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.document.DocumentBase.to_pdf">[docs]</a>    <span class="k">def</span> <span class="nf">to_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfolder</span><span class="p">,</span> <span class="n">outname</span><span class="o">=</span><span class="s1">&#39;document&#39;</span><span class="p">,</span>
+               <span class="n">move_folder_name</span><span class="o">=</span><span class="s1">&#39;Tables&#39;</span><span class="p">,</span> <span class="n">as_document</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+               <span class="n">date_time_move</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="n">tex</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="n">outname</span> <span class="o">=</span> <span class="n">latex_filename_replacements</span><span class="p">(</span><span class="n">outname</span><span class="p">)</span>
+
+        <span class="n">document_to_pdf_and_move</span><span class="p">(</span>
+            <span class="n">tex</span><span class="p">,</span>
+            <span class="n">outfolder</span><span class="o">=</span><span class="n">outfolder</span><span class="p">,</span>
+            <span class="n">outname</span><span class="o">=</span><span class="n">outname</span><span class="p">,</span>
+            <span class="n">image_paths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">filepaths</span><span class="p">,</span>
+            <span class="n">move_folder_name</span><span class="o">=</span><span class="n">move_folder_name</span><span class="p">,</span>
+            <span class="n">as_document</span><span class="o">=</span><span class="n">as_document</span><span class="p">,</span>
+            <span class="n">image_binaries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">binaries</span><span class="p">,</span>
+            <span class="n">run_bibtex</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">has_references</span><span class="p">,</span>
+            <span class="n">date_time_move</span><span class="o">=</span><span class="n">date_time_move</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="DocumentBase.from_ambiguous_collection"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.document.DocumentBase.from_ambiguous_collection">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_ambiguous_collection</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">collection</span><span class="p">,</span> <span class="o">**</span><span class="n">document_kwargs</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">extract_document_items_from_ambiguous_collection</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="o">**</span><span class="n">document_kwargs</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Document"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.document.Document">[docs]</a><span class="k">class</span> <span class="nc">Document</span><span class="p">(</span><span class="n">DocumentBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main class used for creating latex documents.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;document&#39;</span>
+
+<div class="viewcode-block" id="Document.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.document.Document.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">ItemOrListOfItems</span><span class="p">,</span> <span class="n">packages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Package</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">landscape</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">authors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">abstract</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">skip_title_page</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">page_modifier_str</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;margin=0.8in, bottom=1.2in&#39;</span><span class="p">,</span> <span class="n">page_header</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">page_numbers</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">appendix_modifier_str</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;page&#39;</span><span class="p">,</span>
+                 <span class="n">section_numbering_styles</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">floats_at_end</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">floats_at_end_options</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;nolists&#39;</span><span class="p">,</span>
+                 <span class="n">document_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;article&#39;</span><span class="p">,</span> <span class="n">font_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">num_columns</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">line_spacing</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">tables_relative_font_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">figures_relative_font_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                 <span class="n">page_style</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;fancy&#39;</span><span class="p">,</span> <span class="n">custom_headers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Header</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">remove_section_numbering</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">separate_abstract_page</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">extra_title_page_lines</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">empty_title_page_style</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                 <span class="n">pre_output_func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">pyexlatex.models.title.page</span> <span class="kn">import</span> <span class="n">TitlePage</span>
+
+        <span class="n">all_packages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_packages</span><span class="p">(</span>
+            <span class="n">packages</span><span class="o">=</span><span class="n">packages</span><span class="p">,</span>
+            <span class="n">page_modifier_str</span><span class="o">=</span><span class="n">page_modifier_str</span><span class="p">,</span>
+            <span class="n">appendix_modifier_str</span><span class="o">=</span><span class="n">appendix_modifier_str</span><span class="p">,</span>
+            <span class="n">floats_at_end</span><span class="o">=</span><span class="n">floats_at_end</span><span class="p">,</span>
+            <span class="n">floats_at_end_options</span><span class="o">=</span><span class="n">floats_at_end_options</span><span class="p">,</span>
+            <span class="n">line_spacing</span><span class="o">=</span><span class="n">line_spacing</span><span class="p">,</span>
+            <span class="n">tables_relative_font_size</span><span class="o">=</span><span class="n">tables_relative_font_size</span><span class="p">,</span>
+            <span class="n">figures_relative_font_size</span><span class="o">=</span><span class="n">figures_relative_font_size</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">section_numbering_styles</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">section_numbering_styles</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">section_num_styles</span> <span class="o">=</span> <span class="n">SectionNumberingFormatter</span><span class="o">.</span><span class="n">list_from_string_format_dict</span><span class="p">(</span><span class="n">section_numbering_styles</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="p">(</span><span class="n">Item</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
+            <span class="n">content_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">content</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">content_list</span> <span class="o">=</span> <span class="n">content</span>  <span class="c1"># type: ignore</span>
+        <span class="k">if</span> <span class="n">authors</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">authors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">custom_headers</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">custom_headers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">authors</span><span class="p">,</span> <span class="p">(</span><span class="n">Item</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
+            <span class="n">authors</span> <span class="o">=</span> <span class="p">[</span><span class="n">authors</span><span class="p">]</span>
+
+        <span class="n">content_list</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">content_list</span><span class="p">)</span>  <span class="c1"># don&#39;t overwrite original objects</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">document_class_obj</span> <span class="o">=</span> <span class="n">DocumentClass</span><span class="p">(</span>
+            <span class="n">document_type</span><span class="o">=</span><span class="n">document_type</span><span class="p">,</span>
+            <span class="n">font_size</span><span class="o">=</span><span class="n">font_size</span><span class="p">,</span>
+            <span class="n">num_columns</span><span class="o">=</span><span class="n">num_columns</span>
+        <span class="p">)</span>
+
+        <span class="n">possible_extra_pre_env_contents</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="o">*</span><span class="n">section_num_styles</span><span class="p">,</span>
+            <span class="n">SetCounter</span><span class="p">(</span><span class="s1">&#39;secnumdepth&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">if</span> <span class="n">remove_section_numbering</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">PageStyle</span><span class="p">(</span><span class="n">page_style</span><span class="p">),</span>
+
+            <span class="c1"># header is there by default. add remove header lines if page_header=False</span>
+            <span class="n">remove_header</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">page_header</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">custom_headers</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="o">*</span><span class="n">custom_headers</span><span class="p">,</span>
+
+            <span class="c1"># add right page numbers. if not, use blank center footer to clear default page numbers in center footer</span>
+            <span class="n">right_aligned_page_numbers</span> <span class="k">if</span> <span class="n">page_numbers</span> <span class="k">else</span> <span class="n">CenterFooter</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="n">pre_env_contents</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">possible_extra_pre_env_contents</span> <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">skip_title_page</span> <span class="ow">and</span> <span class="n">_should_create_title_page</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">authors</span><span class="o">=</span><span class="n">authors</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">abstract</span><span class="o">=</span><span class="n">abstract</span><span class="p">):</span>
+            <span class="n">title_page</span> <span class="o">=</span> <span class="n">TitlePage</span><span class="p">(</span>
+                <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+                <span class="n">authors</span><span class="o">=</span><span class="n">authors</span><span class="p">,</span>
+                <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">,</span>
+                <span class="n">abstract</span><span class="o">=</span><span class="n">abstract</span><span class="p">,</span>
+                <span class="n">separate_abstract_page</span><span class="o">=</span><span class="n">separate_abstract_page</span><span class="p">,</span>
+                <span class="n">extra_lines</span><span class="o">=</span><span class="n">extra_title_page_lines</span><span class="p">,</span>
+                <span class="n">empty_page_style</span><span class="o">=</span><span class="n">empty_title_page_style</span>
+            <span class="p">)</span>
+            <span class="n">content_list</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">title_page</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">has_title_page</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">has_title_page</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">landscape</span><span class="p">:</span>
+            <span class="n">content_list</span> <span class="o">=</span> <span class="n">Landscape</span><span class="p">()</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">content_list</span><span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">content_list</span><span class="p">,</span>
+            <span class="n">packages</span><span class="o">=</span><span class="n">all_packages</span><span class="p">,</span>
+            <span class="n">pre_env_contents</span><span class="o">=</span><span class="n">pre_env_contents</span><span class="p">,</span>
+            <span class="n">pre_output_func</span><span class="o">=</span><span class="n">pre_output_func</span>
+        <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;Document&gt;&#39;</span>
+
+
+<div class="viewcode-block" id="Document.construct_packages"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.document.Document.construct_packages">[docs]</a>    <span class="k">def</span> <span class="nf">construct_packages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">packages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Package</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                           <span class="n">page_modifier_str</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;margin=0.8in, bottom=1.2in&#39;</span><span class="p">,</span>
+                           <span class="n">appendix_modifier_str</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;page&#39;</span><span class="p">,</span>
+                           <span class="n">floats_at_end</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">floats_at_end_options</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;nolists&#39;</span><span class="p">,</span>
+                           <span class="n">line_spacing</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                           <span class="n">tables_relative_font_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">figures_relative_font_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Package</span><span class="p">]:</span>
+        <span class="kn">from</span> <span class="nn">pyexlatex.texgen.packages.default</span> <span class="kn">import</span> <span class="n">default_packages</span>
+
+        <span class="n">all_packages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ItemBase</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">packages</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">all_packages</span> <span class="o">=</span> <span class="n">default_packages</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">all_packages</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">packages</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">page_modifier_str</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Set margins, body size, etc. with geometry package</span>
+            <span class="n">all_packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Package</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">modifier_str</span><span class="o">=</span><span class="n">page_modifier_str</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">tables_relative_font_size</span> <span class="ow">or</span> <span class="n">figures_relative_font_size</span><span class="p">:</span>
+            <span class="n">all_packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Package</span><span class="p">(</span><span class="s1">&#39;floatrow&#39;</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">tables_relative_font_size</span><span class="p">:</span>
+                <span class="n">declared_font</span> <span class="o">=</span> <span class="n">DeclareFloatFont</span><span class="p">(</span><span class="n">tables_relative_font_size</span><span class="p">)</span>
+                <span class="n">float_setup_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;font=</span><span class="si">{declared_font.size_def.name}</span><span class="s1">,capposition=top&#39;</span>
+                <span class="n">all_packages</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+                    <span class="n">declared_font</span><span class="p">,</span>
+                    <span class="n">FloatSetup</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="n">float_setup_str</span><span class="p">),</span>
+                    <span class="c1"># FloatSetup(&#39;ltable&#39;, float_setup_str)</span>
+                <span class="p">])</span>
+            <span class="k">if</span> <span class="n">figures_relative_font_size</span><span class="p">:</span>
+                <span class="n">declared_font</span> <span class="o">=</span> <span class="n">DeclareFloatFont</span><span class="p">(</span><span class="n">figures_relative_font_size</span><span class="p">)</span>
+                <span class="n">float_setup_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;font=</span><span class="si">{declared_font.size_def.name}</span><span class="s1">,capposition=top&#39;</span>
+                <span class="n">all_packages</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+                    <span class="n">declared_font</span><span class="p">,</span>
+                    <span class="n">FloatSetup</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">float_setup_str</span><span class="p">),</span>
+                    <span class="c1"># FloatSetup(&#39;lfigure&#39;, float_setup_str)</span>
+                <span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">floats_at_end</span><span class="p">:</span>
+            <span class="n">all_packages</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+                <span class="n">Package</span><span class="p">(</span><span class="s1">&#39;endfloat&#39;</span><span class="p">,</span> <span class="n">modifier_str</span><span class="o">=</span><span class="n">floats_at_end_options</span> <span class="k">if</span> <span class="n">floats_at_end_options</span> <span class="k">else</span> <span class="kc">None</span><span class="p">),</span>
+                <span class="n">DeclareDelayedFloatFlavor</span><span class="p">(</span><span class="s1">&#39;ltable&#39;</span><span class="p">,</span> <span class="s1">&#39;table&#39;</span><span class="p">),</span>  <span class="c1"># treat custom environment ltable (landscape table) as table</span>
+                <span class="n">DeclareDelayedFloatFlavor</span><span class="p">(</span><span class="s1">&#39;lfigure&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">)</span> <span class="c1"># treat custom environment lfigure (landscape figure) as figure</span>
+            <span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">line_spacing</span><span class="p">:</span>
+            <span class="n">all_packages</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
+                <span class="n">Package</span><span class="p">(</span><span class="s1">&#39;setspace&#39;</span><span class="p">),</span>
+                <span class="n">LineSpacing</span><span class="p">(</span><span class="n">line_spacing</span><span class="p">)</span>
+            <span class="p">])</span>
+
+        <span class="n">all_packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Package</span><span class="p">(</span><span class="s1">&#39;appendix&#39;</span><span class="p">,</span> <span class="n">modifier_str</span><span class="o">=</span><span class="n">appendix_modifier_str</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">all_packages</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_should_create_title_page</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">authors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                              <span class="n">abstract</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">any</span><span class="p">([</span>
+        <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">authors</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">authors</span> <span class="o">!=</span> <span class="p">[],</span>
+        <span class="n">date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">abstract</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+    <span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">_content_items_and_collected_pre_env_contents</span><span class="p">():</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;see TODO in _standardize_content_item_for_inclusion_in_document&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_standardize_content_item_for_inclusion_in_document</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="n">AnyItem</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ItemAndPreEnvContents</span><span class="p">:</span>
+
+    <span class="c1"># No extra processing needed if not Document</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Document</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">item</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="c1"># TODO [#12]: remove unneeded function _standardize_content_item_for_inclusion_in_document</span>
+
+    <span class="k">return</span> <span class="n">item</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">pre_env_contents</span>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Nick DeRobertis
+
+    </p>
+  </div>
+    
+    
+      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-155734278-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>
