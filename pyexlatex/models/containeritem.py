@@ -17,8 +17,13 @@ class ContainerItem(DocumentItem):
         aggregate_attributes = self.data.attrs
         for attr in aggregate_attributes:
             data_attr = getattr(self.data, attr)
-            new_values = get_attr_from_items_or_collection(content, attr, unique=True)
-            data_attr.extend(new_values)
+            if attr in self.data.non_unique_attrs:
+                unique = False
+            else:
+                unique = True
+            new_values = get_attr_from_items_or_collection(content, attr, unique=unique)
+            if new_values is not None:
+                data_attr.extend(new_values)
 
     def init_data(self):
         if not hasattr(self, 'data'):
