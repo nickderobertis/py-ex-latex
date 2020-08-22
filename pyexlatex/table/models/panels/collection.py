@@ -74,23 +74,40 @@ class PanelCollection(ReprMixin):
         :rtype:
         """
 
+        # Get lengths of panels, including spacing which is added in pad_grid
+        panel_lengths = [panel.panel_grid.shape[0] * 2 - 1 for panel in self.panels]
         if self.has_column_labels:
-            orig_panel_index = -2
-        else:
-            orig_panel_index = -1
-        name_used = False
+            # First panel will have an additional row at the top if there are column labels
+            panel_lengths[0] += 1
 
-        for row in self.rows:
-            if not row.is_spacer: # don't increment original panel index when going through inserted spacing
-                orig_panel_index += 1
-                name_used = False # need to reset to use name again
-            if orig_panel_index < 0 or name_used or self.panels[orig_panel_index].name is None:
-                # column labels panel, no matching name. Or no name for user supplied panel
+        total_row_idx = 0
+        for panel_idx, panel_length in enumerate(panel_lengths):
+            for row_idx in range(panel_length):
+                row = self.rows[total_row_idx]
+                # if first part of actual panel, below labels, and panel has a name
+                if (
+                        (
+                            # If it's the first panel, and there's column labels, then second row should show name
+                            self.has_column_labels and panel_idx == 0 and row_idx == 1 or
+                            # If it's a later panel, or there's no column labels, first row should show name
+                            (not self.has_column_labels or panel_idx > 0) and row_idx == 0
+                        ) and
+                        # Has to have name to show name
+                        self.panels[panel_idx].name is not None
+                ):
+                    # output with the name
+                    full_name = panel_string(panel_idx) + self.panels[panel_idx].name
+                    yield Panel(PanelGrid([row]), name=full_name)
+                else:
+                    # column labels panel, no matching name. Or no name for user supplied panel
+                    yield Panel(PanelGrid([row]))
+                total_row_idx += 1
+            # If we are in-between panels, not on the last panel
+            if panel_idx + 1 != len(self.panels):
+                # In between panels, there is also a spacer, yield that
+                row = self.rows[total_row_idx]
                 yield Panel(PanelGrid([row]))
-            else: # user passed panel, may have matching name
-                full_name = panel_string(orig_panel_index) + self.panels[orig_panel_index].name
-                yield Panel(PanelGrid([row]), name=full_name)
-                name_used = True # only allow name to be used once
+                total_row_idx += 1
 
     @property
     def rows(self):

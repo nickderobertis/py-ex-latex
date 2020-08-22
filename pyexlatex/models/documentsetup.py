@@ -118,6 +118,9 @@ class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):
         'references',
         'flags'
     ]
+    non_unique_attrs = [
+        'filepaths',
+    ]
 
     def __init__(self, filepaths: Optional[List[str]] = None, binaries: Optional[List[bytes]] = None, 
                  begin_document_items: Optional[List[DocumentItem]] = None, 
@@ -125,7 +128,7 @@ class DocumentSetupData(ReprMixin, EqOnAttrsMixin, EqHashMixin):
                  source_paths: Optional[List[str]] = None, references: Optional[Sequence[BibTexEntryBase]] = None,
                  flags: Optional[List[str]] = None):
         self.filepaths = UniqueDataList(filepaths)
-        self.binaries = UniqueDataList(binaries)
+        self.binaries = [] if binaries is None else binaries
         self.begin_document_items = UniqueDataList(begin_document_items)
         self.end_document_items = UniqueDataList(end_document_items)
         self.packages = UniquePackagesList(packages)
