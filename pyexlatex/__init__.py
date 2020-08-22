@@ -1,7 +1,8 @@
 """
 Create LaTeX documents using only Python. Rather than building a direct Python API to LaTeX, this package
 has its own, simpler API to creating documents. It is focused on creating professional-looking documents
-with little styling effort.
+with little styling effort. It currently supports documents and presentations with an additional
+resume subpackage.
 """
 from pyexlatex.models.document import Document
 from pyexlatex.models.standalone import Standalone
