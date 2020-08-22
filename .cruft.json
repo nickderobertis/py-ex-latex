@@ -1,9 +1,10 @@
 {
     "template": "https://github.com/nickderobertis/cookiecutter-pypi-sphinx",
-    "commit": "b7eab35a0360b489172e7b20ac0dcae23a17a446",
+    "commit": "8d81039ce38bdaf0812c754568d1b6a46941839c",
     "context": {
         "cookiecutter": {
             "package_name": "pyexlatex",
+            "package_directory": "pyexlatex",
             "full_name": "Python Extends LaTeX",
             "repo_name": "py-ex-latex",
             "repo_username": "nickderobertis",
@@ -11,6 +12,7 @@
             "package_author": "Nick DeRobertis",
             "author_email": "whoopnip@gmail.com",
             "google_analytics_id": "UA-155734278-1",
+            "logo_url": "https://nickderobertis.github.io/derobertis-project-logo/_images/pyexlatex.svg",
             "_template": "https://github.com/nickderobertis/cookiecutter-pypi-sphinx"
         }
     }

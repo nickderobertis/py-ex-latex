@@ -1,4 +1,6 @@
-# Python Extends LaTeX
+[![](https://codecov.io/gh/nickderobertis/py-ex-latex/branch/master/graph/badge.svg)](https://codecov.io/gh/nickderobertis/py-ex-latex)
+
+# <img src="https://nickderobertis.github.io/derobertis-project-logo/_images/pyexlatex.svg" height="27px" align="left"></img> py-ex-latex
 
 ## Overview
 

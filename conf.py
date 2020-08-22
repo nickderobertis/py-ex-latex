@@ -4,6 +4,9 @@
 # Main package name
 PACKAGE_NAME = 'pyexlatex'
 
+# Directory name of package
+PACKAGE_DIRECTORY = "pyexlatex"
+
 # Name of Repo
 REPO_NAME = 'py-ex-latex'
 
@@ -17,7 +20,7 @@ REPO_MAINTAINERS = [
 ]
 
 # Package version in the format (major, minor, release)
-PACKAGE_VERSION_TUPLE = (0, 10, 7)
+PACKAGE_VERSION_TUPLE = (0, 10, 8)
 
 # Short description of the package
 PACKAGE_SHORT_DESCRIPTION = 'Python Extends LaTeX - A High-Level Python API for Creating Latex Documents'
@@ -118,9 +121,12 @@ PACKAGE_URLS = {
     'Documentation': f'https://{REPO_USERNAME}.github.io/{REPO_NAME}'
 }
 
+# Url of logo
+PACKAGE_LOGO_URL = "https://nickderobertis.github.io/derobertis-project-logo/_images/pyexlatex.svg"
+
 # Does not affect anything about the current package. Simply used for tracking when this repo was created off
 # of the quickstart template, so it is easier to bring over new changes to the template.
-_TEMPLATE_VERSION_TUPLE = (0, 5, 6)
+_TEMPLATE_VERSION_TUPLE = (0, 7, 0)
 
 if __name__ == '__main__':
     # Store config as environment variables
