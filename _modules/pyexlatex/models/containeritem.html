@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.containeritem &mdash; pyexlatex 0.10.6 documentation</title>
+  <title>pyexlatex.models.containeritem &mdash; pyexlatex 0.10.7 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.10.6
+                0.10.7
               </div>
             
           
@@ -179,8 +179,13 @@
         <span class="n">aggregate_attributes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">attrs</span>
         <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">aggregate_attributes</span><span class="p">:</span>
             <span class="n">data_attr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
-            <span class="n">new_values</span> <span class="o">=</span> <span class="n">get_attr_from_items_or_collection</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="n">data_attr</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">new_values</span><span class="p">)</span></div>
+            <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">non_unique_attrs</span><span class="p">:</span>
+                <span class="n">unique</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">unique</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">new_values</span> <span class="o">=</span> <span class="n">get_attr_from_items_or_collection</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="n">unique</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">new_values</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">data_attr</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">new_values</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ContainerItem.init_data"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.containeritem.ContainerItem.init_data">[docs]</a>    <span class="k">def</span> <span class="nf">init_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">):</span>

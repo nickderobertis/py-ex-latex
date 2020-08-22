@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.table.models.panels.collection &mdash; pyexlatex 0.10.6 documentation</title>
+  <title>pyexlatex.table.models.panels.collection &mdash; pyexlatex 0.10.7 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.10.6
+                0.10.7
               </div>
             
           
@@ -236,23 +236,40 @@
 <span class="sd">        :rtype:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
+        <span class="c1"># Get lengths of panels, including spacing which is added in pad_grid</span>
+        <span class="n">panel_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="n">panel</span><span class="o">.</span><span class="n">panel_grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">panel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">panels</span><span class="p">]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_column_labels</span><span class="p">:</span>
-            <span class="n">orig_panel_index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">orig_panel_index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="n">name_used</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="c1"># First panel will have an additional row at the top if there are column labels</span>
+            <span class="n">panel_lengths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
-        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">row</span><span class="o">.</span><span class="n">is_spacer</span><span class="p">:</span> <span class="c1"># don&#39;t increment original panel index when going through inserted spacing</span>
-                <span class="n">orig_panel_index</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="n">name_used</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># need to reset to use name again</span>
-            <span class="k">if</span> <span class="n">orig_panel_index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">name_used</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">panels</span><span class="p">[</span><span class="n">orig_panel_index</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="c1"># column labels panel, no matching name. Or no name for user supplied panel</span>
+        <span class="n">total_row_idx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">panel_idx</span><span class="p">,</span> <span class="n">panel_length</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">panel_lengths</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">row_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">panel_length</span><span class="p">):</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="n">total_row_idx</span><span class="p">]</span>
+                <span class="c1"># if first part of actual panel, below labels, and panel has a name</span>
+                <span class="k">if</span> <span class="p">(</span>
+                        <span class="p">(</span>
+                            <span class="c1"># If it&#39;s the first panel, and there&#39;s column labels, then second row should show name</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">has_column_labels</span> <span class="ow">and</span> <span class="n">panel_idx</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">row_idx</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span>
+                            <span class="c1"># If it&#39;s a later panel, or there&#39;s no column labels, first row should show name</span>
+                            <span class="p">(</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_column_labels</span> <span class="ow">or</span> <span class="n">panel_idx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="n">row_idx</span> <span class="o">==</span> <span class="mi">0</span>
+                        <span class="p">)</span> <span class="ow">and</span>
+                        <span class="c1"># Has to have name to show name</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">panels</span><span class="p">[</span><span class="n">panel_idx</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="p">):</span>
+                    <span class="c1"># output with the name</span>
+                    <span class="n">full_name</span> <span class="o">=</span> <span class="n">panel_string</span><span class="p">(</span><span class="n">panel_idx</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">panels</span><span class="p">[</span><span class="n">panel_idx</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+                    <span class="k">yield</span> <span class="n">Panel</span><span class="p">(</span><span class="n">PanelGrid</span><span class="p">([</span><span class="n">row</span><span class="p">]),</span> <span class="n">name</span><span class="o">=</span><span class="n">full_name</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># column labels panel, no matching name. Or no name for user supplied panel</span>
+                    <span class="k">yield</span> <span class="n">Panel</span><span class="p">(</span><span class="n">PanelGrid</span><span class="p">([</span><span class="n">row</span><span class="p">]))</span>
+                <span class="n">total_row_idx</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="c1"># If we are in-between panels, not on the last panel</span>
+            <span class="k">if</span> <span class="n">panel_idx</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">panels</span><span class="p">):</span>
+                <span class="c1"># In between panels, there is also a spacer, yield that</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="n">total_row_idx</span><span class="p">]</span>
                 <span class="k">yield</span> <span class="n">Panel</span><span class="p">(</span><span class="n">PanelGrid</span><span class="p">([</span><span class="n">row</span><span class="p">]))</span>
-            <span class="k">else</span><span class="p">:</span> <span class="c1"># user passed panel, may have matching name</span>
-                <span class="n">full_name</span> <span class="o">=</span> <span class="n">panel_string</span><span class="p">(</span><span class="n">orig_panel_index</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">panels</span><span class="p">[</span><span class="n">orig_panel_index</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
-                <span class="k">yield</span> <span class="n">Panel</span><span class="p">(</span><span class="n">PanelGrid</span><span class="p">([</span><span class="n">row</span><span class="p">]),</span> <span class="n">name</span><span class="o">=</span><span class="n">full_name</span><span class="p">)</span>
-                <span class="n">name_used</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># only allow name to be used once</span></div>
+                <span class="n">total_row_idx</span> <span class="o">+=</span> <span class="mi">1</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">rows</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

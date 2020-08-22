@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.documentsetup &mdash; pyexlatex 0.10.6 documentation</title>
+  <title>pyexlatex.models.documentsetup &mdash; pyexlatex 0.10.7 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0.10.6
+                0.10.7
               </div>
             
           
@@ -280,6 +280,9 @@
         <span class="s1">&#39;references&#39;</span><span class="p">,</span>
         <span class="s1">&#39;flags&#39;</span>
     <span class="p">]</span>
+    <span class="n">non_unique_attrs</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;filepaths&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
 
 <div class="viewcode-block" id="DocumentSetupData.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.documentsetup.DocumentSetupData.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepaths</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">binaries</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
                  <span class="n">begin_document_items</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">DocumentItem</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
@@ -287,7 +290,7 @@
                  <span class="n">source_paths</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">references</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">BibTexEntryBase</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">flags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filepaths</span> <span class="o">=</span> <span class="n">UniqueDataList</span><span class="p">(</span><span class="n">filepaths</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">binaries</span> <span class="o">=</span> <span class="n">UniqueDataList</span><span class="p">(</span><span class="n">binaries</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">binaries</span> <span class="o">=</span> <span class="p">[]</span> <span class="k">if</span> <span class="n">binaries</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">binaries</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">begin_document_items</span> <span class="o">=</span> <span class="n">UniqueDataList</span><span class="p">(</span><span class="n">begin_document_items</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">end_document_items</span> <span class="o">=</span> <span class="n">UniqueDataList</span><span class="p">(</span><span class="n">end_document_items</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">packages</span> <span class="o">=</span> <span class="n">UniquePackagesList</span><span class="p">(</span><span class="n">packages</span><span class="p">)</span>
