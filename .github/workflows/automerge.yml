@@ -49,7 +49,7 @@ jobs:
           pipenv run python -m pytest --cov=./ --cov-report=xml
       - name: Static Typing Checks with mypy
         run: |
-          pipenv run mypy $(python name.py)
+          pipenv run mypy $(python directory.py)
   automerge:
     runs-on: ubuntu-latest
     needs: test

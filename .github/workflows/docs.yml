@@ -56,7 +56,7 @@ jobs:
         yml: ./codecov.yml
     - name: Static Typing Checks with mypy
       run: |
-        pipenv run mypy $(python name.py)
+        pipenv run mypy $(python directory.py)
 
   deploy:
     needs: test
