@@ -1,11 +1,11 @@
-tempdir
+pyexlatex
+data
+shutilwhich
 Jinja2
 pandas
-data
-pyexlatex
-shutilwhich
-future
+tempdir
+bibtexparser
 mixins
+future
 sympy
 latex
-bibtexparser
