@@ -1,3 +1,4 @@
+import random
 import uuid
 from typing import Tuple, Optional, Union, TYPE_CHECKING, Any, List
 
@@ -24,7 +25,7 @@ class Node(TikZItem):
         self.location = NodePosition(location)
         self.add_data_from_content(contents)
         self.content = format_contents(contents)
-        self.label = label if label is not None else str(uuid.uuid4())
+        self.label = label if label is not None else str(random_uuid())
 
         options = self._get_list_copy_from_list_or_none(options)
         if self.location.relative_location:
@@ -54,3 +55,7 @@ class Node(TikZItem):
         overlay = self.overlay if self.overlay is not None else ""
         item_str = fr'\{self.name}{overlay} {self.options_str} {self.content_str};'
         return item_str
+
+
+def random_uuid():
+    return uuid.UUID(bytes=bytes(random.getrandbits(8) for _ in range(16)), version=4)
