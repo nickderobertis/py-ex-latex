@@ -3,8 +3,18 @@ from typing import Type
 from pyexlatex import Italics, EnvironmentTemplate, Footnote
 from pyexlatex.letter.letter import Letter
 from pyexlatex.models.environment import Environment
+from pyexlatex.models.format.centering import Centering
 from pyexlatex.models.item import MultiOptionSimpleItem
 from pyexlatex.models.landscape import Landscape
+
+
+class NoOptionsNoContentsItemTest:
+    item_class: Type = Centering
+    tag_name: str = 'centering'
+
+    def test_item(self):
+        content = self.item_class()
+        assert str(content) == '\\' + self.tag_name
 
 
 class SimpleItemTest:
