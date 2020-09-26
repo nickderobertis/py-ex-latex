@@ -12,9 +12,9 @@ from pyexlatex.texgen.replacements.filename import latex_filename_replacements
 from pyexlatex.logic.extract.docitems import extract_document_items_from_ambiguous_collection
 from pyexlatex.models.page.number import right_aligned_page_numbers
 from pyexlatex.models.page.header import remove_header
-from pyexlatex.models.page.footer import CenterFooter
+from pyexlatex.models.page.footer import CenterFooter, Footers
 from pyexlatex.models.format.sectionnum import SectionNumberingFormatter
-from pyexlatex.typing import AnyItem, ItemOrListOfItems, ItemAndPreEnvContents, PyexlatexItems
+from pyexlatex.typing import AnyItem, ItemOrListOfItems, ItemAndPreEnvContents, PyexlatexItems, PyexlatexItem
 from pyexlatex.models.commands.endfloat import DeclareDelayedFloatFlavor
 from pyexlatex.models.format.text.linespacing import LineSpacing
 from pyexlatex.models.commands.floatrow import DeclareFloatFont, FloatSetup
@@ -146,6 +146,7 @@ class Document(DocumentBase):
                  num_columns: Optional[int] = None, line_spacing: Optional[float] = None,
                  tables_relative_font_size: int = 0, figures_relative_font_size: int = 0,
                  page_style: str = 'fancy', custom_headers: Optional[Sequence[Header]] = None,
+                 custom_footers: Optional[Footers] = None,
                  remove_section_numbering: bool = False, separate_abstract_page: bool = False,
                  extra_title_page_lines: Optional[Sequence] = None, empty_title_page_style: bool = False,
                  pre_output_func: Optional[Callable] = None, apply_page_style_to_section_starts: bool = False):
@@ -186,7 +187,7 @@ class Document(DocumentBase):
             num_columns=num_columns
         )
 
-        possible_extra_pre_env_contents = [
+        possible_extra_pre_env_contents: List[Optional[Union[PyexlatexItem, PyexlatexItems]]] = [
             *section_num_styles,
             SetCounter('secnumdepth', 0) if remove_section_numbering else None,
             PageStyle(page_style),
@@ -194,18 +195,28 @@ class Document(DocumentBase):
             remove_header if not page_header and not custom_headers else None,
         ]
 
-        page_style_contents = [
+        if custom_footers:
+            if not isinstance(custom_footers, (list, tuple)):
+                footer_contents = [custom_footers]
+            else:
+                footer_contents = custom_footers  # type: ignore
+        else:
+            footer_contents = [right_aligned_page_numbers if page_numbers else CenterFooter('')]
+
+        page_style_contents: List[Union[PyexlatexItem, PyexlatexItems]] = [
             *custom_headers,
 
             # add right page numbers. if not, use blank center footer to clear default page numbers in center footer
-            right_aligned_page_numbers if page_numbers else CenterFooter('')
+            *footer_contents
         ]
 
         if apply_page_style_to_section_starts:
-            plain_redef = FancyPageStyle(page_style_contents)
+            plain_redef = FancyPageStyle(page_style_contents)  # type: ignore
             page_style_contents.append(plain_redef)
 
-        pre_env_contents = [item for item in possible_extra_pre_env_contents + page_style_contents if item is not None]
+        pre_env_contents = [
+            item for item in possible_extra_pre_env_contents + page_style_contents if item is not None  # type: ignore
+        ]
 
         if not skip_title_page and _should_create_title_page(title=title, authors=authors, date=date, abstract=abstract):
             title_page = TitlePage(
@@ -228,7 +239,7 @@ class Document(DocumentBase):
         super().__init__(
             content_list,
             packages=all_packages,
-            pre_env_contents=pre_env_contents,
+            pre_env_contents=pre_env_contents,  # type: ignore
             pre_output_func=pre_output_func
         )
 

@@ -1,9 +1,10 @@
 import datetime
 
 import pyexlatex as pl
-from pyexlatex import Package
+from pyexlatex import Package, LeftFooter, RightFooter, FooterLine, CenterFooter, ThisPageNumber
 from pyexlatex.models.blindtext import BlindText
 from pyexlatex.models.document import Document
+from pyexlatex.models.page.number import PageReference
 from pyexlatex.texgen.packages.default import default_packages
 
 
@@ -62,6 +63,20 @@ class TestDocument:
     def test_title_page_with_consistent_formatting(self):
         doc = Document([BlindText(), ''] * 10, authors=['Person One', 'Human Two', 'Being Three'], title='My Title', apply_page_style_to_section_starts=True)
         assert str(doc) == '\\documentclass[]{article}\n\\usepackage{blindtext}\n\\usepackage{amsmath}\n\\usepackage{pdflscape}\n\\usepackage{booktabs}\n\\usepackage{array}\n\\usepackage{threeparttable}\n\\usepackage{fancyhdr}\n\\usepackage{lastpage}\n\\usepackage{textcomp}\n\\usepackage{dcolumn}\n\\newcolumntype{L}[1]{>{\\raggedright\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{C}[1]{>{\\centering\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{R}[1]{>{\\raggedleft\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{.}{D{.}{.}{-1}}\n\\usepackage[T1]{fontenc}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{graphicx}\n\\usepackage[margin=0.8in, bottom=1.2in]{geometry}\n\\usepackage[page]{appendix}\n\\pagestyle{fancy}\n\\renewcommand{\\headrulewidth}{0pt}\n\\fancyhead{}\n\\rfoot{Page \\thepage\\  of \\pageref{LastPage}}\n\\cfoot{}\n\\fancypagestyle{plain}{\\rfoot{Page \\thepage\\  of \\pageref{LastPage}}\n\\cfoot{}}\n\\begin{document}\n\\title{My Title}\n\\author{Person One, Human Two, and Being Three}\n\\date{\\today}\n\\maketitle\n\\blindtext\n\n\\blindtext\n\n\\blindtext\n\n\\blindtext\n\n\\blindtext\n\n\\blindtext\n\n\\blindtext\n\n\\blindtext\n\n\\blindtext\n\n\\blindtext\n\n\\end{document}'
+
+    def test_custom_footer(self):
+        doc = Document(
+            'woo',
+            custom_footers=[
+                LeftFooter('stuff'),
+                CenterFooter(''),
+                RightFooter(
+                    ['Page', ThisPageNumber(), '\\', 'of', PageReference('LastPage')]
+                ),
+                FooterLine()
+            ]
+        )
+        assert str(doc) == '\\documentclass[]{article}\n\\usepackage{amsmath}\n\\usepackage{pdflscape}\n\\usepackage{booktabs}\n\\usepackage{array}\n\\usepackage{threeparttable}\n\\usepackage{fancyhdr}\n\\usepackage{lastpage}\n\\usepackage{textcomp}\n\\usepackage{dcolumn}\n\\newcolumntype{L}[1]{>{\\raggedright\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{C}[1]{>{\\centering\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{R}[1]{>{\\raggedleft\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{.}{D{.}{.}{-1}}\n\\usepackage[T1]{fontenc}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{graphicx}\n\\usepackage[margin=0.8in, bottom=1.2in]{geometry}\n\\usepackage[page]{appendix}\n\\pagestyle{fancy}\n\\renewcommand{\\headrulewidth}{0pt}\n\\fancyhead{}\n\\lfoot{stuff}\n\\cfoot{}\n\\rfoot{Page\n\\thepage\n\\\nof\n\\pageref{LastPage}}\n\\renewcommand{\\footrulewidth}{0.4pt}\n\\begin{document}\nwoo\n\\end{document}'
 
     def test_all_options_with_title_page(self):
         doc = Document(

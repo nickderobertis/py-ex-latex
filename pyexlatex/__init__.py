@@ -33,6 +33,7 @@ from pyexlatex.models.format.fills import VFill, HFill
 from pyexlatex.models.hyperlinks import Hyperlink
 from pyexlatex.models.package import Package
 from pyexlatex.models.page.header import Header
+from pyexlatex.models.page.footer import LeftFooter, RightFooter, CenterFooter, FooterLine
 from pyexlatex.models.page.number import ThisPageNumber
 from pyexlatex.models.format.vspace import VSpace
 from pyexlatex.models.format.hspace import HSpace
