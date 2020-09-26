@@ -142,8 +142,10 @@ class Item(ItemBase):
 class SimpleItem(ItemBase):
     equal_attrs = [
         'contents',
-        'pre_env_contents',
-        'post_env_contents',
+        'modifiers',
+        'pre_modifiers',
+        'overlay',
+        'format_content',
         'data'
     ]
 
