@@ -1,9 +1,42 @@
 from typing import Type
 
-from pyexlatex import Italics, EnvironmentTemplate
+from pyexlatex import Italics, EnvironmentTemplate, Footnote
 from pyexlatex.letter.letter import Letter
 from pyexlatex.models.environment import Environment
+from pyexlatex.models.format.centering import Centering
+from pyexlatex.models.item import MultiOptionSimpleItem
 from pyexlatex.models.landscape import Landscape
+
+
+class NoOptionsNoContentsItemTest:
+    item_class: Type = Centering
+    tag_name: str = 'centering'
+
+    def test_item(self):
+        content = self.item_class()
+        assert str(content) == '\\' + self.tag_name
+
+
+class SimpleItemTest:
+    item_class: Type = Footnote
+    tag_name: str = 'footnote'
+
+    def test_item(self):
+        content = self.item_class('woo')
+        assert str(content) == '\\' + self.tag_name + '{woo}'
+
+
+class MultiOptionSimpleItemTest:
+    item_class: Type = MultiOptionSimpleItem
+    tag_name: str = 'footnote'
+
+    def test_one_item(self):
+        content = self.item_class('woo')
+        assert str(content) == '\\' + self.tag_name + '{woo}'
+
+    def test_two_items(self):
+        content = self.item_class('woo', 'yeah')
+        assert str(content) == '\\' + self.tag_name + '{woo}'
 
 
 class TextAreaTest:

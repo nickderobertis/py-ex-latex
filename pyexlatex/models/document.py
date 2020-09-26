@@ -5,7 +5,7 @@ from pyexlatex.models.environment import Environment
 from pyexlatex.models.item import Item, ItemBase
 from pyexlatex.models.control.documentclass.documentclass import DocumentClass
 from pyexlatex.models.package import Package
-from pyexlatex.models.page.style import PageStyle
+from pyexlatex.models.page.style import PageStyle, FancyPageStyle
 from pyexlatex.models.landscape import Landscape
 from pyexlatex.logic.pdf.main import document_to_pdf_and_move, latex_str_to_pdf_obj_with_sources
 from pyexlatex.texgen.replacements.filename import latex_filename_replacements
@@ -14,7 +14,7 @@ from pyexlatex.models.page.number import right_aligned_page_numbers
 from pyexlatex.models.page.header import remove_header
 from pyexlatex.models.page.footer import CenterFooter
 from pyexlatex.models.format.sectionnum import SectionNumberingFormatter
-from pyexlatex.typing import AnyItem, ItemOrListOfItems, ItemAndPreEnvContents
+from pyexlatex.typing import AnyItem, ItemOrListOfItems, ItemAndPreEnvContents, PyexlatexItems
 from pyexlatex.models.commands.endfloat import DeclareDelayedFloatFlavor
 from pyexlatex.models.format.text.linespacing import LineSpacing
 from pyexlatex.models.commands.floatrow import DeclareFloatFont, FloatSetup
@@ -34,7 +34,7 @@ class DocumentBase(ContainerItem, Item):
     name = '<invalid, do not use DocumentBase directly>'
     document_class_obj: Optional['DocumentClass'] = None
 
-    def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
+    def __init__(self, content: PyexlatexItems, packages: List[Package]=None,
                  pre_env_contents: Optional[ItemOrListOfItems] = None, data_cleanup_func: Optional[Callable] = None,
                  pre_output_func: Optional[Callable] = None):
         """
@@ -135,7 +135,7 @@ class Document(DocumentBase):
     """
     name = 'document'
 
-    def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
+    def __init__(self, content: PyexlatexItems, packages: List[Package]=None, landscape=False,
                  title: str=None, authors: Optional[Union[List[str], str]] = None, date: str=None, abstract: str=None,
                  skip_title_page: bool=False,
                  page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in', page_header: bool=False,
@@ -148,7 +148,7 @@ class Document(DocumentBase):
                  page_style: str = 'fancy', custom_headers: Optional[Sequence[Header]] = None,
                  remove_section_numbering: bool = False, separate_abstract_page: bool = False,
                  extra_title_page_lines: Optional[Sequence] = None, empty_title_page_style: bool = False,
-                 pre_output_func: Optional[Callable] = None):
+                 pre_output_func: Optional[Callable] = None, apply_page_style_to_section_starts: bool = False):
         from pyexlatex.models.title.page import TitlePage
 
         all_packages = self.construct_packages(
@@ -190,16 +190,22 @@ class Document(DocumentBase):
             *section_num_styles,
             SetCounter('secnumdepth', 0) if remove_section_numbering else None,
             PageStyle(page_style),
-
             # header is there by default. add remove header lines if page_header=False
             remove_header if not page_header and not custom_headers else None,
+        ]
+
+        page_style_contents = [
             *custom_headers,
 
             # add right page numbers. if not, use blank center footer to clear default page numbers in center footer
             right_aligned_page_numbers if page_numbers else CenterFooter('')
         ]
 
-        pre_env_contents = [item for item in possible_extra_pre_env_contents if item is not None]
+        if apply_page_style_to_section_starts:
+            plain_redef = FancyPageStyle(page_style_contents)
+            page_style_contents.append(plain_redef)
+
+        pre_env_contents = [item for item in possible_extra_pre_env_contents + page_style_contents if item is not None]
 
         if not skip_title_page and _should_create_title_page(title=title, authors=authors, date=date, abstract=abstract):
             title_page = TitlePage(
