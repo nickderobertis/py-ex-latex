@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to Python Extends LaTeX documentation! &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>Welcome to Python Extends LaTeX documentation! &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="_static/language_data.js"></script>
         <script src="_static/clipboard.min.js"></script>
         <script src="_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Getting started with pyexlatex" href="tutorial.html" /> 
@@ -72,7 +73,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -189,13 +190,13 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.document.Document" title="pyexlatex.models.document.Document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Document</span></code></a>(content)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Document</span></code>(content)</p></td>
 <td><p>Main class used for creating latex documents.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.standalone.Standalone" title="pyexlatex.models.standalone.Standalone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Standalone</span></code></a>(content)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Standalone</span></code>(content)</p></td>
 <td><p>The main high-level class for creating one-off graphics, equations, etc.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.presentation.html#pyexlatex.presentation.presentation.Presentation" title="pyexlatex.presentation.presentation.Presentation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation</span></code></a>(content)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation</span></code>(content)</p></td>
 <td><p>The main high-level class for creating presentations, can render presentations as PDF in either a presenter style or a handouts style.</p></td>
 </tr>
 </tbody>
@@ -223,25 +224,25 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.section.html#pyexlatex.models.section.paragraphs.Paragraph" title="pyexlatex.models.section.paragraphs.Paragraph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Paragraph</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Paragraph</span></code>(…)</p></td>
 <td><p>A paragraph, the second smallest section block.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.section.html#pyexlatex.models.section.paragraphs.SubParagraph" title="pyexlatex.models.section.paragraphs.SubParagraph"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubParagraph</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubParagraph</span></code>(…)</p></td>
 <td><p>Part of a paragraph, the smallest section block.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.section.html#pyexlatex.models.section.sections.Section" title="pyexlatex.models.section.sections.Section"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Section</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Section</span></code>(…)</p></td>
 <td><p>A section of the document, the largest section type.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.section.html#pyexlatex.models.section.sections.SubSection" title="pyexlatex.models.section.sections.SubSection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubSection</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubSection</span></code>(…)</p></td>
 <td><p>A part of a section, the second largest section type.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.section.html#pyexlatex.models.section.sections.SubSubSection" title="pyexlatex.models.section.sections.SubSubSection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubSubSection</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubSubSection</span></code>(…)</p></td>
 <td><p>A part of a subsection, the third largest section type.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.section.html#pyexlatex.models.section.appendix.Appendix" title="pyexlatex.models.section.appendix.Appendix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Appendix</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Appendix</span></code>(…)</p></td>
 <td><p>Content to be placed at the end, separate from the main document.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.page.html#pyexlatex.models.page.header.Header" title="pyexlatex.models.page.header.Header"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Header</span></code></a>(contents)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Header</span></code>(contents)</p></td>
 <td><p>Adds a header to a document, aligned to right, center, or left.</p></td>
 </tr>
 </tbody>
@@ -255,46 +256,43 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.text.html#pyexlatex.models.format.text.bold.Bold" title="pyexlatex.models.format.text.bold.Bold"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bold</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bold</span></code>(…)</p></td>
 <td><p>Makes text bold.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.format.text.html#pyexlatex.models.format.text.underline.Underline" title="pyexlatex.models.format.text.underline.Underline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Underline</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Underline</span></code>(…)</p></td>
 <td><p>Adds an underline to text.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.text.html#pyexlatex.models.format.text.italics.Italics" title="pyexlatex.models.format.text.italics.Italics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Italics</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Italics</span></code>(…)</p></td>
 <td><p>Italicizes text.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.sizes.html#pyexlatex.models.sizes.textsizes.TextSize" title="pyexlatex.models.sizes.textsizes.TextSize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextSize</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextSize</span></code>(…)</p></td>
 <td><p>Resize text in this group by a relative size.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.text.color.html#pyexlatex.models.format.text.color.main.TextColor" title="pyexlatex.models.format.text.color.main.TextColor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextColor</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TextColor</span></code>(…)</p></td>
 <td><p>Changes the color of text.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.format.text.html#pyexlatex.models.format.text.monospace.Monospace" title="pyexlatex.models.format.text.monospace.Monospace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Monospace</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Monospace</span></code>(…)</p></td>
 <td><p>Pass text to render it in a monospace font.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.text.html#pyexlatex.models.format.text.smallcaps.SmallCaps" title="pyexlatex.models.format.text.smallcaps.SmallCaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SmallCaps</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">SmallCaps</span></code>(…)</p></td>
 <td><p>Makes text all caps, but with originally capital letters slightly larger than other letters.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.raw.Raw" title="pyexlatex.models.format.raw.Raw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Raw</span></code></a>(contents)</p></td>
 <td><p>Don’t replace latex characters in this blocks such as or %, useful for adding latex commands or comments manually.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Text</span></code></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.footnote.Footnote" title="pyexlatex.models.footnote.Footnote"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Footnote</span></code></a>(contents)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Footnote</span></code>(*args, …)</p></td>
 <td><p>Creates a footnote at the bottom of the page, with a mark next to where the object itself is placed to reference the footnote.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.code.html#pyexlatex.models.format.code.python.Python" title="pyexlatex.models.format.code.python.Python"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Python</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Python</span></code>(…)</p></td>
 <td><p>Renders passed contents as Python code, with syntax highlighting.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.page.html#pyexlatex.models.page.number.ThisPageNumber" title="pyexlatex.models.page.number.ThisPageNumber"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThisPageNumber</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ThisPageNumber</span></code>(…)</p></td>
 <td><p>Gets a reference to the current page number, can be included in headers and more.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.paragraphindent.ParagraphIndent" title="pyexlatex.models.format.paragraphindent.ParagraphIndent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParagraphIndent</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParagraphIndent</span></code>(…)</p></td>
 <td><p>Used for setting paragraph indents, from the left or right.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.latex.LaTeX" title="pyexlatex.models.latex.LaTeX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaTeX</span></code></a>(**kwargs)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LaTeX</span></code>(*args, **kwargs)</p></td>
 <td><p>Displays the string “LaTeX” with special formatting</p></td>
 </tr>
 </tbody>
@@ -308,11 +306,8 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.lists.html#pyexlatex.models.lists.unordered.UnorderedList" title="pyexlatex.models.lists.unordered.UnorderedList"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnorderedList</span></code></a>(items)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnorderedList</span></code>(items)</p></td>
 <td><p>Bullet point items.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrderedList</span></code></p></td>
-<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -325,13 +320,13 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.figure.models.html#pyexlatex.figure.models.figure.Figure" title="pyexlatex.figure.models.figure.Figure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Figure</span></code></a>(subfigures)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Figure</span></code>(subfigures)</p></td>
 <td><p>used for creating latex figures from images.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.figure.models.html#pyexlatex.figure.models.subfigure.Subfigure" title="pyexlatex.figure.models.subfigure.Subfigure"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Subfigure</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Subfigure</span></code>(…)</p></td>
 <td><p>Used for more control over building figures</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.figure.models.html#pyexlatex.figure.models.graphic.Graphic" title="pyexlatex.figure.models.graphic.Graphic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Graphic</span></code></a>(filepath)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Graphic</span></code>(filepath)</p></td>
 <td><p>Basic class for including graphics, just the image with no structure.</p></td>
 </tr>
 </tbody>
@@ -348,52 +343,52 @@
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Panel</span></code>(panel_grid)</p></td>
 <td><p>Represents one section of a table.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.table.models.data.html#pyexlatex.table.models.data.table.DataTable" title="pyexlatex.table.models.data.table.DataTable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataTable</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataTable</span></code>(…)</p></td>
 <td><p>Represents a subsection in a panel, but tracks row and column labels, which may be consolidated when assembled into Panels then a Table</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LabelCollection</span></code>(values)</p></td>
 <td><p>Represents one row of labels.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable" title="pyexlatex.table.models.labels.table.LabelTable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LabelTable</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LabelTable</span></code>(…)</p></td>
 <td><p>A set of label rows to apply to a DataTable.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.label.Label" title="pyexlatex.table.models.labels.label.Label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Label</span></code></a>(value)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Label</span></code>(value)</p></td>
 <td><p>Only necessary to use if need to set span or alignment manually.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.table.models.table.html#pyexlatex.table.models.table.table.Table" title="pyexlatex.table.models.table.table.Table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Table</span></code></a>(panels)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Table</span></code>(panels)</p></td>
 <td><p>An object for creating latex tables.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.items.Tabular" title="pyexlatex.table.models.texgen.items.Tabular"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tabular</span></code></a>(content)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tabular</span></code>(content)</p></td>
 <td><p>The main part of a LaTeX table which contains the rows and columns.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.table.models.data.html#pyexlatex.table.models.data.valuestable.ValuesTable" title="pyexlatex.table.models.data.valuestable.ValuesTable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValuesTable</span></code></a>(rows)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ValuesTable</span></code>(rows)</p></td>
 <td><p>Python interface for a part of a table containing rows and columns with values</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.alignment.ColumnAlignment" title="pyexlatex.table.models.texgen.alignment.ColumnAlignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ColumnAlignment</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ColumnAlignment</span></code>(…)</p></td>
 <td><p>Alignment of a single column in a table</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.alignment.ColumnsAlignment" title="pyexlatex.table.models.texgen.alignment.ColumnsAlignment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ColumnsAlignment</span></code></a>([…])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ColumnsAlignment</span></code>([…])</p></td>
 <td><p>A set of column alignments, usually for the whole table</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TopRule" title="pyexlatex.table.models.texgen.lines.TopRule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TopRule</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TopRule</span></code>(…)</p></td>
 <td><p>A line which can be added on the top of a table</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.MidRule" title="pyexlatex.table.models.texgen.lines.MidRule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MidRule</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MidRule</span></code>(…)</p></td>
 <td><p>A line which can be added in the middle of a table</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.BottomRule" title="pyexlatex.table.models.texgen.lines.BottomRule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BottomRule</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BottomRule</span></code>(…)</p></td>
 <td><p>A line which can be added at the bottom of a table</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.lines.TableLineSegment" title="pyexlatex.table.models.texgen.lines.TableLineSegment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableLineSegment</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableLineSegment</span></code>(…)</p></td>
 <td><p>A table line which does not need to stretch to the full length of the table</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.multicolumnlabel.MultiColumnLabel" title="pyexlatex.table.models.labels.multicolumnlabel.MultiColumnLabel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiColumnLabel</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiColumnLabel</span></code>(…)</p></td>
 <td><p>A label which spans multiple columns in a table</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.breaks.TableLineBreak" title="pyexlatex.models.format.breaks.TableLineBreak"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableLineBreak</span></code></a>([…])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TableLineBreak</span></code>([…])</p></td>
 <td><p>A line break character to be used in LaTeX tables</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.tabularstar.TabularStar" title="pyexlatex.table.models.texgen.tabularstar.TabularStar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularStar</span></code></a>(content)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularStar</span></code>(content)</p></td>
 <td><p>tabular* environment, allows for controlling width.</p></td>
 </tr>
 </tbody>
@@ -407,58 +402,58 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.centering.Center" title="pyexlatex.models.format.centering.Center"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Center</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Center</span></code>(…)</p></td>
 <td><p>Align the passed contents to the center of the container</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.control.html#pyexlatex.models.control.newpage.PageBreak" title="pyexlatex.models.control.newpage.PageBreak"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PageBreak</span></code></a>()</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PageBreak</span></code>(…)</p></td>
 <td><p>Adds a break point where a new page should be started.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.fills.VFill" title="pyexlatex.models.format.fills.VFill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VFill</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">VFill</span></code>(*args, …)</p></td>
 <td><p>Vertical fill, put between items to put vertical spacing between them.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.fills.HFill" title="pyexlatex.models.format.fills.HFill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HFill</span></code></a>()</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HFill</span></code>(*args, …)</p></td>
 <td><p>Horizontal fill, put between items to put horizontal spacing between them.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.vspace.VSpace" title="pyexlatex.models.format.vspace.VSpace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VSpace</span></code></a>([…])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">VSpace</span></code>([…])</p></td>
 <td><p>Manually insert vertical spacing, of a given height.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.hspace.HSpace" title="pyexlatex.models.format.hspace.HSpace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HSpace</span></code></a>([…])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HSpace</span></code>([…])</p></td>
 <td><p>Manually insert horizontal spacing, of a given length.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.hline.HLine" title="pyexlatex.models.format.hline.HLine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HLine</span></code></a>([thickness])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HLine</span></code>([thickness])</p></td>
 <td><p>Draws a horizontal line across the text width.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.breaks.OutputLineBreak" title="pyexlatex.models.format.breaks.OutputLineBreak"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OutputLineBreak</span></code></a>([…])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">OutputLineBreak</span></code>([…])</p></td>
 <td><p>Create an intentional line break in text</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.nopagebreak.NoPageBreak" title="pyexlatex.models.format.nopagebreak.NoPageBreak"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NoPageBreak</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NoPageBreak</span></code>(…)</p></td>
 <td><p>Contents within this environment will not have a page break come in the middle.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.format.html#pyexlatex.models.format.nolinebreak.NoLineBreak" title="pyexlatex.models.format.nolinebreak.NoLineBreak"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NoLineBreak</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NoLineBreak</span></code>(…)</p></td>
 <td><p>Prevents a line break within text, where a hyphen would normally be placed.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.paragraph.html#pyexlatex.models.format.paragraph.justifying.Justifying" title="pyexlatex.models.format.paragraph.justifying.Justifying"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Justifying</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Justifying</span></code>(…)</p></td>
 <td><p>Returns paragraph to the default of justifying text on both left and right.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.control.html#pyexlatex.models.control.group.Group" title="pyexlatex.models.control.group.Group"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Group</span></code></a>(contents)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Group</span></code>(*args, …)</p></td>
 <td><p>Groups together latex items so that “global” commands will only affect the items in a group</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.layouts.html#pyexlatex.layouts.grid.CellLayout" title="pyexlatex.layouts.grid.CellLayout"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CellLayout</span></code></a>(content, …)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CellLayout</span></code>(content, …)</p></td>
 <td><p>Lay content out in a grid where each cell is arbitrarily sized</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.layouts.html#pyexlatex.layouts.grid.GridLayout" title="pyexlatex.layouts.grid.GridLayout"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GridLayout</span></code></a>(content, …)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GridLayout</span></code>(content, …)</p></td>
 <td><p>Evenly spaced grid layout.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.layouts.html#pyexlatex.layouts.multicol.MultiCol" title="pyexlatex.layouts.multicol.MultiCol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiCol</span></code></a>(content, …)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiCol</span></code>(content, …)</p></td>
 <td><p>Multi-column layout that does not make any constraints on vertical sizing.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.layouts.html#pyexlatex.layouts.spaced.VerticallySpaced" title="pyexlatex.layouts.spaced.VerticallySpaced"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VerticallySpaced</span></code></a>(content)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">VerticallySpaced</span></code>(content)</p></td>
 <td><p>Inserts vertical spacing between items until they fill the content area</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.layouts.html#pyexlatex.layouts.spaced.HorizontallySpaced" title="pyexlatex.layouts.spaced.HorizontallySpaced"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HorizontallySpaced</span></code></a>(content)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">HorizontallySpaced</span></code>(content)</p></td>
 <td><p>Inserts horiztonal spacing between items until they fill the content area</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.format.paragraph.html#pyexlatex.models.format.paragraph.multicol.MultiColumn" title="pyexlatex.models.format.paragraph.multicol.MultiColumn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiColumn</span></code></a>(content)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiColumn</span></code>(content)</p></td>
 <td><p>Layout multiple columns in a text area</p></td>
 </tr>
 </tbody>
@@ -472,16 +467,16 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.ref.Ref" title="pyexlatex.models.ref.Ref"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ref</span></code></a>(contents)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ref</span></code>(*args, **kwargs)</p></td>
 <td><p>Pass a label to create an in text reference to that label.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.ref.NameRef" title="pyexlatex.models.ref.NameRef"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NameRef</span></code></a>(contents)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">NameRef</span></code>(*args, **kwargs)</p></td>
 <td><p>Pass a label to create an in text reference to that label.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.label.Label" title="pyexlatex.models.label.Label"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Label</span></code></a>(contents)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Label</span></code>(*args, **kwargs)</p></td>
 <td><p>A label which can later be referred to by Ref</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.hyperlinks.Hyperlink" title="pyexlatex.models.hyperlinks.Hyperlink"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Hyperlink</span></code></a>(href)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Hyperlink</span></code>(href)</p></td>
 <td><p>Create links to urls, with or without displaying text instead of the link.</p></td>
 </tr>
 </tbody>
@@ -495,25 +490,25 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.references.bibtex.html#pyexlatex.models.references.bibtex.article.BibTexArticle" title="pyexlatex.models.references.bibtex.article.BibTexArticle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BibTexArticle</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BibTexArticle</span></code>(…)</p></td>
 <td><p>Biblography document which is an article.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.references.bibtex.html#pyexlatex.models.references.bibtex.misc.BibTexMisc" title="pyexlatex.models.references.bibtex.misc.BibTexMisc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BibTexMisc</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BibTexMisc</span></code>(…)</p></td>
 <td><p>Biblography document which is of miscellaneous type.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.references.bibtex.html#pyexlatex.models.references.bibtex.manual.BibTexManual" title="pyexlatex.models.references.bibtex.manual.BibTexManual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BibTexManual</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BibTexManual</span></code>(…)</p></td>
 <td><p>Biblography document which is a manual.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.references.html#pyexlatex.models.references.bibliography.Bibliography" title="pyexlatex.models.references.bibliography.Bibliography"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bibliography</span></code></a>([…])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bibliography</span></code>([…])</p></td>
 <td><p>High-level class for working with bibliographies in LaTeX.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.references.html#pyexlatex.models.references.citations.Cite" title="pyexlatex.models.references.citations.Cite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cite</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cite</span></code>(…)</p></td>
 <td><p>Basic citation command, creates a reference to a document included in the bibliography.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.references.html#pyexlatex.models.references.citations.CiteP" title="pyexlatex.models.references.citations.CiteP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CiteP</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CiteP</span></code>(…)</p></td>
 <td><p>Paragraph citation command, creates a paragraph (with parentheses) reference to a document included in the bibliography.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.references.html#pyexlatex.models.references.citations.CiteT" title="pyexlatex.models.references.citations.CiteT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CiteT</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CiteT</span></code>(…)</p></td>
 <td><p>In text citation command, creates an in text (without parentheses) reference to a document included in the bibliography.</p></td>
 </tr>
 </tbody>
@@ -527,61 +522,61 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.presentation.html#pyexlatex.presentation.presentation.Presentation" title="pyexlatex.presentation.presentation.Presentation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation</span></code></a>(content)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Presentation</span></code>(content)</p></td>
 <td><p>The main high-level class for creating presentations, can render presentations as PDF in either a presenter style or a handouts style.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.frame.html#pyexlatex.presentation.beamer.frame.frame.Frame" title="pyexlatex.presentation.beamer.frame.frame.Frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Frame</span></code></a>(content)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Frame</span></code>(content)</p></td>
 <td><p>Basic unit for creating a slide in a presentation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.html#pyexlatex.presentation.beamer.block.Block" title="pyexlatex.presentation.beamer.block.Block"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Block</span></code></a>(content)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Block</span></code>(content)</p></td>
 <td><p>Block with an optional header</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.html#pyexlatex.presentation.beamer.block.AlertBlock" title="pyexlatex.presentation.beamer.block.AlertBlock"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlertBlock</span></code></a>(content)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AlertBlock</span></code>(content)</p></td>
 <td><p>Block with an optional header which is red</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.html#pyexlatex.presentation.beamer.block.ExamplesBlock" title="pyexlatex.presentation.beamer.block.ExamplesBlock"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExamplesBlock</span></code></a>(content)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExamplesBlock</span></code>(…)</p></td>
 <td><p>Block which always has the header title “Examples”</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.logic.format.html#pyexlatex.logic.format.sizing.adjust_to_full_size_and_center" title="pyexlatex.logic.format.sizing.adjust_to_full_size_and_center"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjust_to_full_size_and_center</span></code></a>(content)</p></td>
 <td><p>Takes content and adjusts it to 90% text width, 80% text height, but keeping the aspect ratio.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.grid.GridFrame" title="pyexlatex.presentation.beamer.templates.frames.grid.GridFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GridFrame</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GridFrame</span></code>(…)</p></td>
 <td><p>Creates a CellFrame, automatically setting widths and heights as an even split based on the shape of the content passed</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.templates.lists.html#pyexlatex.presentation.beamer.templates.lists.dim_reveal_items.DimAndRevealListItem" title="pyexlatex.presentation.beamer.templates.lists.dim_reveal_items.DimAndRevealListItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimAndRevealListItem</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimAndRevealListItem</span></code>(…)</p></td>
 <td><p>Single list item which reveals on each slide one-by-one and as the next one reveals, the last one dims.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.templates.lists.html#pyexlatex.presentation.beamer.templates.lists.dim_reveal_items.DimAndRevealListItems" title="pyexlatex.presentation.beamer.templates.lists.dim_reveal_items.DimAndRevealListItems"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimAndRevealListItems</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimAndRevealListItems</span></code>(…)</p></td>
 <td><p>List items which reveal on each slide one-by-one and as the next one reveals, the last one dims.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealFrame" title="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoColumnGraphicDimRevealFrame</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoColumnGraphicDimRevealFrame</span></code>(…)</p></td>
 <td><p>A TwoColumnGraphicFrame where the non-graphic column is bulleted or numbered dim and reveal items</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicFrame" title="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoColumnGraphicFrame</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoColumnGraphicFrame</span></code>(…)</p></td>
 <td><p>A GridFrame with graphics on one side and text on the other.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnGraphicFrame" title="pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnGraphicFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BasicTwoColumnGraphicFrame</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BasicTwoColumnGraphicFrame</span></code>(…)</p></td>
 <td><p>Similar to TwoColumnGraphicFrame, but does not put any constraints on vertical sizing</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnFrame" title="pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BasicTwoColumnFrame</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">BasicTwoColumnFrame</span></code>(…)</p></td>
 <td><p>Similar to TwoColumnFrame but does not put any constraints on vertical sizing</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnFrame" title="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoColumnFrame</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoColumnFrame</span></code>(…)</p></td>
 <td><p>Creates a GridFrame, automatically setting widths and heights as an even split based on the shape of the content passed</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealListFrame" title="pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealListFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimRevealListFrame</span></code></a>(content)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">DimRevealListFrame</span></code>(content)</p></td>
 <td><p>A Frame where the content is bulleted or numbered dim and reveal items</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.graphic.GraphicFrame" title="pyexlatex.presentation.beamer.templates.frames.graphic.GraphicFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GraphicFrame</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">GraphicFrame</span></code>(…)</p></td>
 <td><p>Resizes passed graphic to take up entire frame.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame" title="pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiGraphicFrame</span></code></a>(content)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiGraphicFrame</span></code>(content)</p></td>
 <td><p>Resizes each graphic to full width and puts vertical space in between graphics.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.overlay.html#pyexlatex.presentation.beamer.overlay.overlay.Overlay" title="pyexlatex.presentation.beamer.overlay.overlay.Overlay"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Overlay</span></code></a>(…)</p></td>
 <td><p>Creates an effect on a frame such as appearing on a later frame.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.overlay.html#pyexlatex.presentation.beamer.overlay.range.Range" title="pyexlatex.presentation.beamer.overlay.range.Range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code></a>(…)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code>(…)</p></td>
 <td><p>Option to be passed to Overlay which says object should exist on the frame on a certain range of slides e.g.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.overlay.html#pyexlatex.presentation.beamer.overlay.next.NextWithIncrement" title="pyexlatex.presentation.beamer.overlay.next.NextWithIncrement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NextWithIncrement</span></code></a>([…])</p></td>
@@ -593,7 +588,7 @@
 <tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.overlay.html#pyexlatex.presentation.beamer.overlay.until_end.UntilEnd" title="pyexlatex.presentation.beamer.overlay.until_end.UntilEnd"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UntilEnd</span></code></a>(content)</p></td>
 <td><p>Option to be passed to Overlay that makes object exist until the end of the frame</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.presentation.beamer.templates.html#pyexlatex.presentation.beamer.templates.presentationappendix.PresentationAppendix" title="pyexlatex.presentation.beamer.templates.presentationappendix.PresentationAppendix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PresentationAppendix</span></code></a>(content)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PresentationAppendix</span></code>(…)</p></td>
 <td><p>Appendix to be used in a beamer presentation</p></td>
 </tr>
 </tbody>
@@ -607,10 +602,10 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.format.text.color.deftypes.html#pyexlatex.models.format.text.color.deftypes.rgb.RGB" title="pyexlatex.models.format.text.color.deftypes.rgb.RGB"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RGB</span></code></a>([…])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RGB</span></code>([…])</p></td>
 <td><p>Define a color using an RGB code, such as RGB(33, 173, 42)</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.format.text.color.deftypes.html#pyexlatex.models.format.text.color.deftypes.hex.Hex" title="pyexlatex.models.format.text.color.deftypes.hex.Hex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Hex</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Hex</span></code>(…)</p></td>
 <td><p>Define a color using a hex code, such as #21ad2a</p></td>
 </tr>
 </tbody>
@@ -624,19 +619,19 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.template.Template" title="pyexlatex.models.template.Template"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Template</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Template</span></code>(*args, …)</p></td>
 <td><p>Base class for creating custom Pyexlatex templates.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.environmenttemplate.EnvironmentTemplate" title="pyexlatex.models.environmenttemplate.EnvironmentTemplate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EnvironmentTemplate</span></code></a>(…)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">EnvironmentTemplate</span></code>(…)</p></td>
 <td><p>Base class which makes it easy to create new environment types.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.jinja.JinjaEnvironment" title="pyexlatex.models.jinja.JinjaEnvironment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JinjaEnvironment</span></code></a>(…)</p></td>
 <td><p>A jinja Environment but with pyexlatex models as built in filters and handling extracting pyexlatex data</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.jinja.JinjaTemplate" title="pyexlatex.models.jinja.JinjaTemplate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JinjaTemplate</span></code></a>(*args, …)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.jinja.JinjaTemplate" title="pyexlatex.models.jinja.JinjaTemplate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">JinjaTemplate</span></code></a>(source, …)</p></td>
 <td><p>A jinja Template but with pyexlatex models as built-in filters and handling extracting pyexlatex data</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.model.Model" title="pyexlatex.models.model.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a>([template_str, …])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code>([template_str, …])</p></td>
 <td><p>A data model combined with a Jinja template.</p></td>
 </tr>
 </tbody>
@@ -650,7 +645,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pyexlatex.models.html#pyexlatex.models.package.Package" title="pyexlatex.models.package.Package"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Package</span></code></a>(name[, …])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Package</span></code>(*args, **kwargs)</p></td>
 <td><p>Represents LaTeX usepackage{}, pass to Document if any custom LaTeX packages are needed.</p></td>
 </tr>
 </tbody>

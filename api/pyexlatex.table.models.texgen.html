@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.table.models.texgen package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.table.models.texgen package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.texgen package" href="pyexlatex.texgen.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -208,95 +210,54 @@
 </div>
 <div class="section" id="module-pyexlatex.table.models.texgen.alignment">
 <span id="pyexlatex-table-models-texgen-alignment-module"></span><h2>pyexlatex.table.models.texgen.alignment module<a class="headerlink" href="#module-pyexlatex.table.models.texgen.alignment" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.alignment.ColumnAlignment">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.alignment.</code><code class="sig-name descname">ColumnAlignment</code><span class="sig-paren">(</span><em class="sig-param">align_str</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/alignment.html#ColumnAlignment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.alignment.ColumnAlignment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
-<p>Alignment of a single column in a table</p>
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.alignment.ColumnAlignment.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">align_str</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/alignment.html#ColumnAlignment.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.alignment.ColumnAlignment.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.alignment.ColumnAlignment.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['align']</em><a class="headerlink" href="#pyexlatex.table.models.texgen.alignment.ColumnAlignment.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.alignment.ColumnsAlignment">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.alignment.</code><code class="sig-name descname">ColumnsAlignment</code><span class="sig-paren">(</span><em class="sig-param">aligns=None</em>, <em class="sig-param">num_columns=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/alignment.html#ColumnsAlignment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.alignment.ColumnsAlignment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.containeritem.ContainerItem" title="pyexlatex.models.containeritem.ContainerItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.containeritem.ContainerItem</span></code></a></p>
-<p>A set of column alignments, usually for the whole table</p>
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.alignment.ColumnsAlignment.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">aligns=None</em>, <em class="sig-param">num_columns=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/alignment.html#ColumnsAlignment.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.alignment.ColumnsAlignment.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.alignment.ColumnsAlignment.from_alignment_str">
-<em class="property">classmethod </em><code class="sig-name descname">from_alignment_str</code><span class="sig-paren">(</span><em class="sig-param">align_str</em>, <em class="sig-param">num_columns=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/alignment.html#ColumnsAlignment.from_alignment_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.alignment.ColumnsAlignment.from_alignment_str" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.alignment.ColumnsAlignment.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['aligns']</em><a class="headerlink" href="#pyexlatex.table.models.texgen.alignment.ColumnsAlignment.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.table.models.texgen.environments">
 <span id="pyexlatex-table-models-texgen-environments-module"></span><h2>pyexlatex.table.models.texgen.environments module<a class="headerlink" href="#module-pyexlatex.table.models.texgen.environments" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="pyexlatex.table.models.texgen.environments.TableEnvironment">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.environments.</code><code class="sig-name descname">TableEnvironment</code><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/environments.html#TableEnvironment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.environments.TableEnvironment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.environment.Environment" title="pyexlatex.models.environment.Environment"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.environment.Environment</span></code></a></p>
-<dl class="method">
+<dl class="py method">
 <dt id="pyexlatex.table.models.texgen.environments.TableEnvironment.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/environments.html#TableEnvironment.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.environments.TableEnvironment.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="pyexlatex.table.models.texgen.environments.TableEnvironment.name">
 <code class="sig-name descname">name</code><em class="property"> = 'table'</em><a class="headerlink" href="#pyexlatex.table.models.texgen.environments.TableEnvironment.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="pyexlatex.table.models.texgen.environments.TabularEnvironment">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.environments.</code><code class="sig-name descname">TabularEnvironment</code><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/environments.html#TabularEnvironment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.environments.TabularEnvironment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.environment.Environment" title="pyexlatex.models.environment.Environment"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.environment.Environment</span></code></a></p>
-<dl class="method">
+<dl class="py method">
 <dt id="pyexlatex.table.models.texgen.environments.TabularEnvironment.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/environments.html#TabularEnvironment.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.environments.TabularEnvironment.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="pyexlatex.table.models.texgen.environments.TabularEnvironment.name">
 <code class="sig-name descname">name</code><em class="property"> = 'tabular'</em><a class="headerlink" href="#pyexlatex.table.models.texgen.environments.TabularEnvironment.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="pyexlatex.table.models.texgen.environments.ThreePartTableEnvironment">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.environments.</code><code class="sig-name descname">ThreePartTableEnvironment</code><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/environments.html#ThreePartTableEnvironment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.environments.ThreePartTableEnvironment" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.environment.Environment" title="pyexlatex.models.environment.Environment"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.environment.Environment</span></code></a></p>
-<dl class="method">
+<dl class="py method">
 <dt id="pyexlatex.table.models.texgen.environments.ThreePartTableEnvironment.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/environments.html#ThreePartTableEnvironment.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.environments.ThreePartTableEnvironment.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="pyexlatex.table.models.texgen.environments.ThreePartTableEnvironment.name">
 <code class="sig-name descname">name</code><em class="property"> = 'threeparttable'</em><a class="headerlink" href="#pyexlatex.table.models.texgen.environments.ThreePartTableEnvironment.name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -306,289 +267,23 @@
 </div>
 <div class="section" id="module-pyexlatex.table.models.texgen.items">
 <span id="pyexlatex-table-models-texgen-items-module"></span><h2>pyexlatex.table.models.texgen.items module<a class="headerlink" href="#module-pyexlatex.table.models.texgen.items" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.items.LTable">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.items.</code><code class="sig-name descname">LTable</code><span class="sig-paren">(</span><em class="sig-param">three_part_table</em>, <em class="sig-param">centering=True</em>, <em class="sig-param">landscape=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#LTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.LTable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.table.models.texgen.items.Table" title="pyexlatex.table.models.texgen.items.Table"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.texgen.items.Table</span></code></a></p>
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.items.LTable.name">
-<code class="sig-name descname">name</code><em class="property"> = 'ltable'</em><a class="headerlink" href="#pyexlatex.table.models.texgen.items.LTable.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.items.Table">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.items.</code><code class="sig-name descname">Table</code><span class="sig-paren">(</span><em class="sig-param">three_part_table</em>, <em class="sig-param">centering=True</em>, <em class="sig-param">landscape=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#Table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.Table" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaBase" title="pyexlatex.models.section.base.TextAreaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaBase</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.items.Table.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">three_part_table</em>, <em class="sig-param">centering=True</em>, <em class="sig-param">landscape=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#Table.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.Table.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.items.Table.from_panel_collection">
-<em class="property">classmethod </em><code class="sig-name descname">from_panel_collection</code><span class="sig-paren">(</span><em class="sig-param">panel_collection</em>, <em class="sig-param">*args</em>, <em class="sig-param">tabular_kwargs={}</em>, <em class="sig-param">three_part_table_kwargs={}</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#Table.from_panel_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.Table.from_panel_collection" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.items.Table.from_table_model">
-<em class="property">classmethod </em><code class="sig-name descname">from_table_model</code><span class="sig-paren">(</span><em class="sig-param">table</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#Table.from_table_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.Table.from_table_model" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.items.Table.name">
-<code class="sig-name descname">name</code><em class="property"> = 'table'</em><a class="headerlink" href="#pyexlatex.table.models.texgen.items.Table.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.items.Table.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['caption']</em><a class="headerlink" href="#pyexlatex.table.models.texgen.items.Table.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.items.TableDocument">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.items.</code><code class="sig-name descname">TableDocument</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">packages=None</em>, <em class="sig-param">landscape=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#TableDocument"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.TableDocument" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.document.Document" title="pyexlatex.models.document.Document"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.document.Document</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.items.TableDocument.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">packages=None</em>, <em class="sig-param">landscape=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#TableDocument.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.TableDocument.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="pyexlatex.table.models.texgen.items.TableDocument.params.content"></span><strong>content</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.texgen.items.TableDocument.params.content">¶</a> (<a class="reference internal" href="#pyexlatex.table.models.texgen.items.Table" title="pyexlatex.table.models.texgen.items.Table"><code class="xref py py-class docutils literal notranslate"><span class="pre">Table</span></code></a>) – </p></li>
-<li><p><span class="target" id="pyexlatex.table.models.texgen.items.TableDocument.params.packages"></span><strong>packages</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.texgen.items.TableDocument.params.packages">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.package.Package" title="pyexlatex.models.package.Package"><code class="xref py py-class docutils literal notranslate"><span class="pre">Package</span></code></a>]]) – </p></li>
-<li><p><span class="target" id="pyexlatex.table.models.texgen.items.TableDocument.params.pre_env_contents"></span><strong>pre_env_contents</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.texgen.items.TableDocument.params.pre_env_contents">¶</a> – </p></li>
-<li><p><span class="target" id="pyexlatex.table.models.texgen.items.TableDocument.params.data_cleanup_func"></span><strong>data_cleanup_func</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.texgen.items.TableDocument.params.data_cleanup_func">¶</a> – should accept DocumentSetupData and modify it in place. This is called just before
-using the data.</p></li>
-<li><p><span class="target" id="pyexlatex.table.models.texgen.items.TableDocument.params.pre_output_func"></span><strong>pre_output_func</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.texgen.items.TableDocument.params.pre_output_func">¶</a> – function which modifies the latex string before outputting it. The function should
-accepts a single argument which is a string of the entire latex contents, and it should return a string
-which will be used as the latex contents for output.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.items.TableDocument.from_panel_collection">
-<em class="property">classmethod </em><code class="sig-name descname">from_panel_collection</code><span class="sig-paren">(</span><em class="sig-param">panel_collection</em>, <em class="sig-param">*args</em>, <em class="sig-param">tabular_kwargs={}</em>, <em class="sig-param">three_part_table_kwargs={}</em>, <em class="sig-param">table_kwargs={}</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#TableDocument.from_panel_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.TableDocument.from_panel_collection" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.items.TableDocument.from_table_model">
-<em class="property">classmethod </em><code class="sig-name descname">from_table_model</code><span class="sig-paren">(</span><em class="sig-param">table</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#TableDocument.from_table_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.TableDocument.from_table_model" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.items.TableNotes">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.items.</code><code class="sig-name descname">TableNotes</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#TableNotes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.TableNotes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaBase" title="pyexlatex.models.section.base.TextAreaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaBase</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.items.TableNotes.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#TableNotes.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.TableNotes.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.items.TableNotes.name">
-<code class="sig-name descname">name</code><em class="property"> = 'tablenotes'</em><a class="headerlink" href="#pyexlatex.table.models.texgen.items.TableNotes.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.items.Tabular">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.items.</code><code class="sig-name descname">Tabular</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">align=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#Tabular"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.Tabular" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.containeritem.ContainerItem" title="pyexlatex.models.containeritem.ContainerItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.containeritem.ContainerItem</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.Item" title="pyexlatex.models.item.Item"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.Item</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code>, <a class="reference internal" href="#pyexlatex.table.models.texgen.tabularbase.BaseTabular" title="pyexlatex.table.models.texgen.tabularbase.BaseTabular"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.texgen.tabularbase.BaseTabular</span></code></a></p>
-<p>The main part of a LaTeX table which contains the rows and columns.</p>
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.items.Tabular.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">align=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#Tabular.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.Tabular.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.items.Tabular.from_df">
-<em class="property">classmethod </em><code class="sig-name descname">from_df</code><span class="sig-paren">(</span><em class="sig-param">df</em>, <em class="sig-param">align=None</em>, <em class="sig-param">**dt_from_df_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#Tabular.from_df"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.Tabular.from_df" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.items.Tabular.from_panel_collection">
-<em class="property">classmethod </em><code class="sig-name descname">from_panel_collection</code><span class="sig-paren">(</span><em class="sig-param">panel_collection</em>, <em class="sig-param">align=None</em>, <em class="sig-param">mid_rules=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#Tabular.from_panel_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.Tabular.from_panel_collection" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.items.Tabular.name">
-<code class="sig-name descname">name</code><em class="property"> = 'tabular'</em><a class="headerlink" href="#pyexlatex.table.models.texgen.items.Tabular.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.items.Tabular.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['align']</em><a class="headerlink" href="#pyexlatex.table.models.texgen.items.Tabular.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.items.ThreePartTable">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.items.</code><code class="sig-name descname">ThreePartTable</code><span class="sig-paren">(</span><em class="sig-param">table_content</em>, <em class="sig-param">caption=None</em>, <em class="sig-param">below_text=None</em>, <em class="sig-param">label=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#ThreePartTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.ThreePartTable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaBase" title="pyexlatex.models.section.base.TextAreaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaBase</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.items.ThreePartTable.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">table_content</em>, <em class="sig-param">caption=None</em>, <em class="sig-param">below_text=None</em>, <em class="sig-param">label=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#ThreePartTable.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.ThreePartTable.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.items.ThreePartTable.from_panel_collection">
-<em class="property">classmethod </em><code class="sig-name descname">from_panel_collection</code><span class="sig-paren">(</span><em class="sig-param">panel_collection</em>, <em class="sig-param">*args</em>, <em class="sig-param">tabular_kwargs={}</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/items.html#ThreePartTable.from_panel_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.items.ThreePartTable.from_panel_collection" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.items.ThreePartTable.name">
-<code class="sig-name descname">name</code><em class="property"> = 'threeparttable'</em><a class="headerlink" href="#pyexlatex.table.models.texgen.items.ThreePartTable.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.items.ThreePartTable.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['caption']</em><a class="headerlink" href="#pyexlatex.table.models.texgen.items.ThreePartTable.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.table.models.texgen.lines">
 <span id="pyexlatex-table-models-texgen-lines-module"></span><h2>pyexlatex.table.models.texgen.lines module<a class="headerlink" href="#module-pyexlatex.table.models.texgen.lines" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.lines.BottomRule">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.lines.</code><code class="sig-name descname">BottomRule</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#BottomRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.BottomRule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.table.models.texgen.lines.TableLine" title="pyexlatex.table.models.texgen.lines.TableLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.texgen.lines.TableLine</span></code></a></p>
-<p>A line which can be added at the bottom of a table</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.lines.MidRule">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.lines.</code><code class="sig-name descname">MidRule</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#MidRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.MidRule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.table.models.texgen.lines.TableLine" title="pyexlatex.table.models.texgen.lines.TableLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.texgen.lines.TableLine</span></code></a></p>
-<p>A line which can be added in the middle of a table</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.lines.TableLine">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.lines.</code><code class="sig-name descname">TableLine</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#TableLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.mixins.StringAdditionMixin" title="pyexlatex.models.mixins.StringAdditionMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.mixins.StringAdditionMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineOfSegments">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.lines.</code><code class="sig-name descname">TableLineOfSegments</code><span class="sig-paren">(</span><em class="sig-param">segments</em>, <em class="sig-param">num_columns=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#TableLineOfSegments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineOfSegments" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.table.models.mixins.addvalues.html#pyexlatex.table.models.mixins.addvalues.row.RowAddMixin" title="pyexlatex.table.models.mixins.addvalues.row.RowAddMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.mixins.addvalues.row.RowAddMixin</span></code></a>, <a class="reference internal" href="#pyexlatex.table.models.texgen.lines.TableLine" title="pyexlatex.table.models.texgen.lines.TableLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.texgen.lines.TableLine</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineOfSegments.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">segments</em>, <em class="sig-param">num_columns=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#TableLineOfSegments.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineOfSegments.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineOfSegments.from_list_of_ints">
-<em class="property">classmethod </em><code class="sig-name descname">from_list_of_ints</code><span class="sig-paren">(</span><em class="sig-param">int_list</em>, <em class="sig-param">num_columns=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#TableLineOfSegments.from_list_of_ints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineOfSegments.from_list_of_ints" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineOfSegments.is_spacer">
-<em class="property">property </em><code class="sig-name descname">is_spacer</code><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineOfSegments.is_spacer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineOfSegments.num_columns">
-<em class="property">property </em><code class="sig-name descname">num_columns</code><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineOfSegments.num_columns" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineOfSegments.pad">
-<code class="sig-name descname">pad</code><span class="sig-paren">(</span><em class="sig-param">length</em>, <em class="sig-param">direction='right'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#TableLineOfSegments.pad"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineOfSegments.pad" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method is here to avoid errors when adding rows together through TableSection.__add__
-No padding is actually necessary for these rows as they are not in the tabular format,
-these lines only specify the columns which need to be underlined.</p>
-<p>However when padding left, we just need to shift the values rather than creating padding</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineOfSegments.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['values', 'num_columns']</em><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineOfSegments.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineOfSegments.shift">
-<code class="sig-name descname">shift</code><span class="sig-paren">(</span><em class="sig-param">shift</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#TableLineOfSegments.shift"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineOfSegments.shift" title="Permalink to this definition">¶</a></dt>
-<dd><p>Increments col_from and col_to by int for all segments within this line of segments
-:param _sphinx_paramlinks_pyexlatex.table.models.texgen.lines.TableLineOfSegments.shift.shift:
-:return:</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineSegment">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.lines.</code><code class="sig-name descname">TableLineSegment</code><span class="sig-paren">(</span><em class="sig-param">col_from</em>, <em class="sig-param">col_to=None</em>, <em class="sig-param">align='lr'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#TableLineSegment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineSegment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.mixins.StringAdditionMixin" title="pyexlatex.models.mixins.StringAdditionMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.mixins.StringAdditionMixin</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code>, <a class="reference internal" href="pyexlatex.table.models.mixins.addvalues.html#pyexlatex.table.models.mixins.addvalues.row.RowAddMixin" title="pyexlatex.table.models.mixins.addvalues.row.RowAddMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.mixins.addvalues.row.RowAddMixin</span></code></a></p>
-<p>A table line which does not need to stretch to the full length of the table</p>
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineSegment.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">col_from</em>, <em class="sig-param">col_to=None</em>, <em class="sig-param">align='lr'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#TableLineSegment.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineSegment.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineSegment.from_list_of_ints">
-<em class="property">classmethod </em><code class="sig-name descname">from_list_of_ints</code><span class="sig-paren">(</span><em class="sig-param">int_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#TableLineSegment.from_list_of_ints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineSegment.from_list_of_ints" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineSegment.is_spacer">
-<em class="property">property </em><code class="sig-name descname">is_spacer</code><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineSegment.is_spacer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineSegment.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['col_from', 'col_to']</em><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineSegment.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.lines.TableLineSegment.shift">
-<code class="sig-name descname">shift</code><span class="sig-paren">(</span><em class="sig-param">shift</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#TableLineSegment.shift"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TableLineSegment.shift" title="Permalink to this definition">¶</a></dt>
-<dd><p>Increments col_from and col_to by int. Used to shift underlines as tables are combined
-:return:</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.lines.TopRule">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.lines.</code><code class="sig-name descname">TopRule</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/lines.html#TopRule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.lines.TopRule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.table.models.texgen.lines.TableLine" title="pyexlatex.table.models.texgen.lines.TableLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.texgen.lines.TableLine</span></code></a></p>
-<p>A line which can be added on the top of a table</p>
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.table.models.texgen.newcolumntype">
 <span id="pyexlatex-table-models-texgen-newcolumntype-module"></span><h2>pyexlatex.table.models.texgen.newcolumntype module<a class="headerlink" href="#module-pyexlatex.table.models.texgen.newcolumntype" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="pyexlatex.table.models.texgen.newcolumntype.NewColumnType">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.newcolumntype.</code><code class="sig-name descname">NewColumnType</code><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/newcolumntype.html#NewColumnType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.newcolumntype.NewColumnType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="pyexlatex.table.models.texgen.newcolumntype.NewColumnTypes">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.newcolumntype.</code><code class="sig-name descname">NewColumnTypes</code><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/newcolumntype.html#NewColumnTypes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.newcolumntype.NewColumnTypes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.mixins.StringAdditionMixin" title="pyexlatex.models.mixins.StringAdditionMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.mixins.StringAdditionMixin</span></code></a></p>
-<dl class="method">
+<dl class="py method">
 <dt id="pyexlatex.table.models.texgen.newcolumntype.NewColumnTypes.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/newcolumntype.html#NewColumnTypes.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.newcolumntype.NewColumnTypes.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
@@ -602,7 +297,7 @@ these lines only specify the columns which need to be underlined.</p>
 </div>
 <div class="section" id="module-pyexlatex.table.models.texgen.tabularbase">
 <span id="pyexlatex-table-models-texgen-tabularbase-module"></span><h2>pyexlatex.table.models.texgen.tabularbase module<a class="headerlink" href="#module-pyexlatex.table.models.texgen.tabularbase" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="pyexlatex.table.models.texgen.tabularbase.BaseTabular">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.tabularbase.</code><code class="sig-name descname">BaseTabular</code><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/tabularbase.html#BaseTabular"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.tabularbase.BaseTabular" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
@@ -611,29 +306,6 @@ these lines only specify the columns which need to be underlined.</p>
 </div>
 <div class="section" id="module-pyexlatex.table.models.texgen.tabularstar">
 <span id="pyexlatex-table-models-texgen-tabularstar-module"></span><h2>pyexlatex.table.models.texgen.tabularstar module<a class="headerlink" href="#module-pyexlatex.table.models.texgen.tabularstar" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.table.models.texgen.tabularstar.TabularStar">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.texgen.tabularstar.</code><code class="sig-name descname">TabularStar</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">align=None</em>, <em class="sig-param">width=None</em>, <em class="sig-param">fill_between=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/tabularstar.html#TabularStar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.tabularstar.TabularStar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.containeritem.ContainerItem" title="pyexlatex.models.containeritem.ContainerItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.containeritem.ContainerItem</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.Item" title="pyexlatex.models.item.Item"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.Item</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code>, <a class="reference internal" href="#pyexlatex.table.models.texgen.tabularbase.BaseTabular" title="pyexlatex.table.models.texgen.tabularbase.BaseTabular"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.texgen.tabularbase.BaseTabular</span></code></a></p>
-<p>tabular* environment, allows for controlling width. Gives additional column alignment X to fill available area</p>
-<dl class="method">
-<dt id="pyexlatex.table.models.texgen.tabularstar.TabularStar.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">align=None</em>, <em class="sig-param">width=None</em>, <em class="sig-param">fill_between=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/texgen/tabularstar.html#TabularStar.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.texgen.tabularstar.TabularStar.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.tabularstar.TabularStar.name">
-<code class="sig-name descname">name</code><em class="property"> = 'tabular*'</em><a class="headerlink" href="#pyexlatex.table.models.texgen.tabularstar.TabularStar.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.table.models.texgen.tabularstar.TabularStar.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['align']</em><a class="headerlink" href="#pyexlatex.table.models.texgen.tabularstar.TabularStar.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.control.documentclass.classtypes package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.models.control.documentclass.classtypes package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.models.control.documentclass.classtypes.custom package" href="pyexlatex.models.control.documentclass.classtypes.custom.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -225,64 +227,32 @@
 </div>
 <div class="section" id="module-pyexlatex.models.control.documentclass.classtypes.documentclasstype">
 <span id="pyexlatex-models-control-documentclass-classtypes-documentclasstype-module"></span><h2>pyexlatex.models.control.documentclass.classtypes.documentclasstype module<a class="headerlink" href="#module-pyexlatex.models.control.documentclass.classtypes.documentclasstype" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.control.documentclass.classtypes.documentclasstype.DocumentClassType">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.documentclass.classtypes.documentclasstype.</code><code class="sig-name descname">DocumentClassType</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">definition=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/documentclass/classtypes/documentclasstype.html#DocumentClassType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.documentclasstype.DocumentClassType" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.control.documentclass.classtypes.documentclasstype.DocumentClassType.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">definition=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/documentclass/classtypes/documentclasstype.html#DocumentClassType.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.documentclasstype.DocumentClassType.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.models.control.documentclass.classtypes.documentclasstype.DocumentClassType.class_filename">
-<em class="property">property </em><code class="sig-name descname">class_filename</code><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.documentclasstype.DocumentClassType.class_filename" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.models.control.documentclass.classtypes.documentclasstype.DocumentClassType.style_source_name">
-<em class="property">property </em><code class="sig-name descname">style_source_name</code><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.documentclasstype.DocumentClassType.style_source_name" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.control.documentclass.classtypes.manager">
 <span id="pyexlatex-models-control-documentclass-classtypes-manager-module"></span><h2>pyexlatex.models.control.documentclass.classtypes.manager module<a class="headerlink" href="#module-pyexlatex.models.control.documentclass.classtypes.manager" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.documentclass.classtypes.manager.</code><code class="sig-name descname">DocumentClassTypesManager</code><a class="reference internal" href="../_modules/pyexlatex/models/control/documentclass/classtypes/manager.html#DocumentClassTypesManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="method">
+<dl class="py method">
 <dt id="pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/documentclass/classtypes/manager.html#DocumentClassTypesManager.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager.get_class_type_by_name">
-<code class="sig-name descname">get_class_type_by_name</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/documentclass/classtypes/manager.html#DocumentClassTypesManager.get_class_type_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager.get_class_type_by_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_class_type_by_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/documentclass/classtypes/manager.html#DocumentClassTypesManager.get_class_type_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager.get_class_type_by_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pyexlatex.models.control.documentclass.classtypes.documentclasstype.DocumentClassType" title="pyexlatex.models.control.documentclass.classtypes.documentclasstype.DocumentClassType"><code class="xref py py-class docutils literal notranslate"><span class="pre">DocumentClassType</span></code></a></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">DocumentClassType</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager.is_builtin_class_type">
-<code class="sig-name descname">is_builtin_class_type</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/documentclass/classtypes/manager.html#DocumentClassTypesManager.is_builtin_class_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager.is_builtin_class_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">is_builtin_class_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/documentclass/classtypes/manager.html#DocumentClassTypesManager.is_builtin_class_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager.is_builtin_class_type" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
@@ -290,9 +260,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager.is_custom_class_type">
-<code class="sig-name descname">is_custom_class_type</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/documentclass/classtypes/manager.html#DocumentClassTypesManager.is_custom_class_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager.is_custom_class_type" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">is_custom_class_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/documentclass/classtypes/manager.html#DocumentClassTypesManager.is_custom_class_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.manager.DocumentClassTypesManager.is_custom_class_type" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
@@ -302,7 +272,7 @@
 
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="pyexlatex.models.control.documentclass.classtypes.manager.NoSuchDocumentClassTypeException">
 <em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.models.control.documentclass.classtypes.manager.</code><code class="sig-name descname">NoSuchDocumentClassTypeException</code><a class="reference internal" href="../_modules/pyexlatex/models/control/documentclass/classtypes/manager.html#NoSuchDocumentClassTypeException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.documentclass.classtypes.manager.NoSuchDocumentClassTypeException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>

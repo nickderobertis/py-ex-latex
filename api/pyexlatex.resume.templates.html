@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.resume.templates package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.resume.templates package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.table package" href="pyexlatex.table.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -206,100 +208,18 @@
 </div>
 <div class="section" id="module-pyexlatex.resume.templates.award">
 <span id="pyexlatex-resume-templates-award-module"></span><h2>pyexlatex.resume.templates.award module<a class="headerlink" href="#module-pyexlatex.resume.templates.award" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.resume.templates.award.Award">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.resume.templates.award.</code><code class="sig-name descname">Award</code><span class="sig-paren">(</span><em class="sig-param">award_name</em>, <em class="sig-param">received=None</em>, <em class="sig-param">extra_info=None</em>, <em class="sig-param">prevent_page_break=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/resume/templates/award.html#Award"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.resume.templates.award.Award" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.template.Template" title="pyexlatex.models.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.template.Template</span></code></a></p>
-<p>Represents an award or grant in a resume.</p>
-<dl class="attribute">
-<dt id="pyexlatex.resume.templates.award.Award.SPACE_BETWEEN_ADJUSTMENT">
-<code class="sig-name descname">SPACE_BETWEEN_ADJUSTMENT</code><em class="property"> = '-8pt'</em><a class="headerlink" href="#pyexlatex.resume.templates.award.Award.SPACE_BETWEEN_ADJUSTMENT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.resume.templates.award.Award.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">award_name</em>, <em class="sig-param">received=None</em>, <em class="sig-param">extra_info=None</em>, <em class="sig-param">prevent_page_break=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/resume/templates/award.html#Award.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.resume.templates.award.Award.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.resume.templates.education">
 <span id="pyexlatex-resume-templates-education-module"></span><h2>pyexlatex.resume.templates.education module<a class="headerlink" href="#module-pyexlatex.resume.templates.education" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.resume.templates.education.Education">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.resume.templates.education.</code><code class="sig-name descname">Education</code><span class="sig-paren">(</span><em class="sig-param">school</em>, <em class="sig-param">school_location</em>, <em class="sig-param">degree</em>, <em class="sig-param">expected</em>, <em class="sig-param">gpa=None</em>, <em class="sig-param">prevent_page_break=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/resume/templates/education.html#Education"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.resume.templates.education.Education" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.template.Template" title="pyexlatex.models.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.template.Template</span></code></a></p>
-<dl class="attribute">
-<dt id="pyexlatex.resume.templates.education.Education.SPACE_BETWEEN_ADJUSTMENT">
-<code class="sig-name descname">SPACE_BETWEEN_ADJUSTMENT</code><em class="property"> = '-8pt'</em><a class="headerlink" href="#pyexlatex.resume.templates.education.Education.SPACE_BETWEEN_ADJUSTMENT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.resume.templates.education.Education.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">school</em>, <em class="sig-param">school_location</em>, <em class="sig-param">degree</em>, <em class="sig-param">expected</em>, <em class="sig-param">gpa=None</em>, <em class="sig-param">prevent_page_break=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/resume/templates/education.html#Education.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.resume.templates.education.Education.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.resume.templates.publication">
 <span id="pyexlatex-resume-templates-publication-module"></span><h2>pyexlatex.resume.templates.publication module<a class="headerlink" href="#module-pyexlatex.resume.templates.publication" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.resume.templates.publication.Publication">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.resume.templates.publication.</code><code class="sig-name descname">Publication</code><span class="sig-paren">(</span><em class="sig-param">title</em>, <em class="sig-param">co_authors=None</em>, <em class="sig-param">journal_info=None</em>, <em class="sig-param">href=None</em>, <em class="sig-param">extra_info=None</em>, <em class="sig-param">prevent_page_break=True</em>, <em class="sig-param">description=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/resume/templates/publication.html#Publication"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.resume.templates.publication.Publication" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.template.Template" title="pyexlatex.models.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.template.Template</span></code></a></p>
-<dl class="attribute">
-<dt id="pyexlatex.resume.templates.publication.Publication.SPACE_BETWEEN_ADJUSTMENT">
-<code class="sig-name descname">SPACE_BETWEEN_ADJUSTMENT</code><em class="property"> = 0.2</em><a class="headerlink" href="#pyexlatex.resume.templates.publication.Publication.SPACE_BETWEEN_ADJUSTMENT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.resume.templates.publication.Publication.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">title</em>, <em class="sig-param">co_authors=None</em>, <em class="sig-param">journal_info=None</em>, <em class="sig-param">href=None</em>, <em class="sig-param">extra_info=None</em>, <em class="sig-param">prevent_page_break=True</em>, <em class="sig-param">description=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/resume/templates/publication.html#Publication.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.resume.templates.publication.Publication.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.resume.templates.reference">
 <span id="pyexlatex-resume-templates-reference-module"></span><h2>pyexlatex.resume.templates.reference module<a class="headerlink" href="#module-pyexlatex.resume.templates.reference" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.resume.templates.reference.Reference">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.resume.templates.reference.</code><code class="sig-name descname">Reference</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">title_lines=None</em>, <em class="sig-param">company=None</em>, <em class="sig-param">contact_lines=None</em>, <em class="sig-param">email=None</em>, <em class="sig-param">prevent_page_break=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/resume/templates/reference.html#Reference"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.resume.templates.reference.Reference" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.template.Template" title="pyexlatex.models.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.template.Template</span></code></a></p>
-<dl class="attribute">
-<dt id="pyexlatex.resume.templates.reference.Reference.SPACE_BETWEEN_ADJUSTMENT">
-<code class="sig-name descname">SPACE_BETWEEN_ADJUSTMENT</code><em class="property"> = '-8pt'</em><a class="headerlink" href="#pyexlatex.resume.templates.reference.Reference.SPACE_BETWEEN_ADJUSTMENT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.resume.templates.reference.Reference.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">title_lines=None</em>, <em class="sig-param">company=None</em>, <em class="sig-param">contact_lines=None</em>, <em class="sig-param">email=None</em>, <em class="sig-param">prevent_page_break=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/resume/templates/reference.html#Reference.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.resume.templates.reference.Reference.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.resume.templates.section">
 <span id="pyexlatex-resume-templates-section-module"></span><h2>pyexlatex.resume.templates.section module<a class="headerlink" href="#module-pyexlatex.resume.templates.section" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.resume.templates.section.SpacedSection">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.resume.templates.section.</code><code class="sig-name descname">SpacedSection</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">title</em>, <em class="sig-param">end_adjustment=-0.2</em>, <em class="sig-param">num_cols=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/resume/templates/section.html#SpacedSection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.resume.templates.section.SpacedSection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.template.Template" title="pyexlatex.models.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.template.Template</span></code></a></p>
-<p>A section which appropriately spaces content for a resume.</p>
-<dl class="method">
-<dt id="pyexlatex.resume.templates.section.SpacedSection.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">title</em>, <em class="sig-param">end_adjustment=-0.2</em>, <em class="sig-param">num_cols=1</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/resume/templates/section.html#SpacedSection.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.resume.templates.section.SpacedSection.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 

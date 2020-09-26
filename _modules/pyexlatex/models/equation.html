@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.equation &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.models.equation &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../../../_static/language_data.js"></script>
         <script src="../../../_static/clipboard.min.js"></script>
         <script src="../../../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
@@ -71,7 +72,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -179,10 +180,11 @@
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;equation&#39;</span>
 
 <div class="viewcode-block" id="Equation.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.equation.Equation.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eq</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Eq</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">str_eq</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">inline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+                 <span class="n">inline</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">numbered</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate</span><span class="p">(</span><span class="n">eq</span><span class="p">,</span> <span class="n">str_eq</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">eq_str</span> <span class="o">=</span> <span class="n">eq</span> <span class="k">if</span> <span class="n">eq</span> <span class="k">else</span> <span class="n">str_eq</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inline</span> <span class="o">=</span> <span class="n">inline</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numbered</span> <span class="o">=</span> <span class="n">numbered</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -192,8 +194,10 @@
     <span class="k">def</span> <span class="nf">formatted_eq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">inline</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">format_eq</span><span class="o">.</span><span class="n">inline</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eq_str</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">numbered</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">format_eq</span><span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eq_str</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">format_eq</span><span class="o">.</span><span class="n">offset_no_numbering</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eq_str</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eq</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Eq</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">str_eq</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">eq</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">str_eq</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>

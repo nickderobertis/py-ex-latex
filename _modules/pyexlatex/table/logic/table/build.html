@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.table.logic.table.build &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.table.logic.table.build &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../../../../../_static/language_data.js"></script>
         <script src="../../../../../_static/clipboard.min.js"></script>
         <script src="../../../../../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" /> 
 </head>
@@ -71,7 +72,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -205,7 +206,7 @@
     <span class="n">output_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row_or_line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rows_and_lines</span><span class="p">):</span>
         <span class="n">end</span> <span class="o">=</span> <span class="n">_get_break_by_type_of_instance</span><span class="p">(</span><span class="n">row_or_line</span><span class="p">,</span> <span class="n">break_size_adjustment</span><span class="o">=</span><span class="n">break_size_adjustment</span><span class="p">)</span>
-        <span class="n">output_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{row_or_line}{end}</span><span class="s1">&#39;</span>
+        <span class="n">output_str</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">row_or_line</span><span class="si">}{</span><span class="n">end</span><span class="si">}</span><span class="s1">&#39;</span>
     <span class="k">return</span> <span class="n">output_str</span>
 
 
@@ -217,7 +218,7 @@
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">row_or_line</span><span class="p">,</span> <span class="n">Row</span><span class="p">):</span>
         <span class="n">end</span> <span class="o">=</span> <span class="n">table_row_break</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;could not determine type of break for row or line type {type(row_or_line)}&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;could not determine type of break for row or line type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">row_or_line</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">end</span>
 

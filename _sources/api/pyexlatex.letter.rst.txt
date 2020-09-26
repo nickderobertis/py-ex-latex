@@ -1,0 +1,67 @@
+pyexlatex.letter package
+========================
+
+.. automodule:: pyexlatex.letter
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+pyexlatex.letter.closing module
+-------------------------------
+
+.. automodule:: pyexlatex.letter.closing
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.letter.enclosures module
+----------------------------------
+
+.. automodule:: pyexlatex.letter.enclosures
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.letter.letter module
+------------------------------
+
+.. automodule:: pyexlatex.letter.letter
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.letter.letterdocument module
+--------------------------------------
+
+.. automodule:: pyexlatex.letter.letterdocument
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.letter.opening module
+-------------------------------
+
+.. automodule:: pyexlatex.letter.opening
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.letter.ps module
+--------------------------
+
+.. automodule:: pyexlatex.letter.ps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.letter.signature module
+---------------------------------
+
+.. automodule:: pyexlatex.letter.signature
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

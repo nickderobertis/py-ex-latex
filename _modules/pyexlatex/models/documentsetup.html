@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.documentsetup &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.models.documentsetup &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../../../_static/language_data.js"></script>
         <script src="../../../_static/clipboard.min.js"></script>
         <script src="../../../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
@@ -71,7 +72,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -258,7 +259,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">new_packages</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="DocumentSetupData"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.documentsetup.DocumentSetupData">[docs]</a><span class="k">class</span> <span class="nc">DocumentSetupData</span><span class="p">(</span><span class="n">ReprMixin</span><span class="p">,</span> <span class="n">EqOnAttrsMixin</span><span class="p">,</span> <span class="n">EqHashMixin</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DocumentSetupData</span><span class="p">(</span><span class="n">ReprMixin</span><span class="p">,</span> <span class="n">EqOnAttrsMixin</span><span class="p">,</span> <span class="n">EqHashMixin</span><span class="p">):</span>
     <span class="n">repr_cols</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;filepaths&#39;</span><span class="p">,</span>
         <span class="s1">&#39;begin_document_items&#39;</span><span class="p">,</span>
@@ -290,7 +291,7 @@
         <span class="s1">&#39;binaries&#39;</span>
     <span class="p">]</span>
 
-<div class="viewcode-block" id="DocumentSetupData.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.documentsetup.DocumentSetupData.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepaths</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">binaries</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepaths</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">binaries</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
                  <span class="n">begin_document_items</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">DocumentItem</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
                  <span class="n">end_document_items</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">DocumentItem</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">packages</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Package</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">source_paths</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">references</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">BibTexEntryBase</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -302,11 +303,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">packages</span> <span class="o">=</span> <span class="n">UniquePackagesList</span><span class="p">(</span><span class="n">packages</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">source_paths</span> <span class="o">=</span> <span class="n">UniqueDataList</span><span class="p">(</span><span class="n">source_paths</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">references</span> <span class="o">=</span> <span class="n">UniqueDataList</span><span class="p">(</span><span class="n">references</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="n">UniqueDataList</span><span class="p">(</span><span class="n">flags</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flags</span> <span class="o">=</span> <span class="n">UniqueDataList</span><span class="p">(</span><span class="n">flags</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_attrs</span><span class="p">)]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">attr</span> <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">attr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ignore_attrs</span><span class="p">)]</span>
 </pre></div>
 
            </div>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.logic.format.sizing &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.logic.format.sizing &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../../../../_static/language_data.js"></script>
         <script src="../../../../_static/clipboard.min.js"></script>
         <script src="../../../../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
@@ -71,7 +72,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -167,7 +168,7 @@
   <h1>Source code for pyexlatex.logic.format.sizing</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span>
 
-<span class="kn">from</span> <span class="nn">pyexlatex</span> <span class="kn">import</span> <span class="n">Center</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.format.centering</span> <span class="kn">import</span> <span class="n">Center</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.format.adjustbox</span> <span class="kn">import</span> <span class="n">AdjustBox</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.sizes.textheight</span> <span class="kn">import</span> <span class="n">TextHeight</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.sizes.textwidth</span> <span class="kn">import</span> <span class="n">TextWidth</span>
@@ -186,8 +187,8 @@
 <div class="viewcode-block" id="adjust_to_size"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.sizing.adjust_to_size">[docs]</a><span class="k">def</span> <span class="nf">adjust_to_size</span><span class="p">(</span><span class="n">content</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">keep_aspect_ratio</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
                    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdjustBox</span><span class="p">:</span>
     <span class="n">adjust_options</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="sa">f</span><span class="s1">&#39;width=</span><span class="si">{width}</span><span class="s1">{TextWidth()}&#39;</span><span class="p">,</span>
-        <span class="sa">f</span><span class="s1">&#39;height=</span><span class="si">{height}</span><span class="s1">{TextHeight()}&#39;</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s1">&#39;width=</span><span class="si">{</span><span class="n">width</span><span class="si">}{</span><span class="n">TextWidth</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s1">&#39;height=</span><span class="si">{</span><span class="n">height</span><span class="si">}{</span><span class="n">TextHeight</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
     <span class="p">]</span>
     <span class="k">if</span> <span class="n">keep_aspect_ratio</span><span class="p">:</span>
         <span class="n">adjust_options</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;keepaspectratio&#39;</span><span class="p">)</span>

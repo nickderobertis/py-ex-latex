@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.resume package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.resume package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.resume.models package" href="pyexlatex.resume.models.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -227,37 +229,6 @@
 </div>
 <div class="section" id="module-pyexlatex.resume.resume">
 <span id="pyexlatex-resume-resume-module"></span><h2>pyexlatex.resume.resume module<a class="headerlink" href="#module-pyexlatex.resume.resume" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.resume.resume.Resume">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.resume.resume.</code><code class="sig-name descname">Resume</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">packages=None</em>, <em class="sig-param">pre_env_contents=None</em>, <em class="sig-param">name=None</em>, <em class="sig-param">contact_lines=None</em>, <em class="sig-param">font_size=11</em>, <em class="sig-param">page_modifier_str='left=0.75in</em>, <em class="sig-param">top=0.6in</em>, <em class="sig-param">right=0.75in</em>, <em class="sig-param">bottom=0.6in'</em>, <em class="sig-param">authors=None</em>, <em class="sig-param">pre_output_func=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/resume/resume.html#Resume"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.resume.resume.Resume" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.document.DocumentBase" title="pyexlatex.models.document.DocumentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.document.DocumentBase</span></code></a></p>
-<p>The main high-level class for creating resumes</p>
-<dl class="method">
-<dt id="pyexlatex.resume.resume.Resume.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">packages=None</em>, <em class="sig-param">pre_env_contents=None</em>, <em class="sig-param">name=None</em>, <em class="sig-param">contact_lines=None</em>, <em class="sig-param">font_size=11</em>, <em class="sig-param">page_modifier_str='left=0.75in</em>, <em class="sig-param">top=0.6in</em>, <em class="sig-param">right=0.75in</em>, <em class="sig-param">bottom=0.6in'</em>, <em class="sig-param">authors=None</em>, <em class="sig-param">pre_output_func=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/resume/resume.html#Resume.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.resume.resume.Resume.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="pyexlatex.resume.resume.Resume.params.content"></span><strong>content</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.resume.resume.Resume.params.content">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemBase</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemBase</span></code></a>]]) – </p></li>
-<li><p><span class="target" id="pyexlatex.resume.resume.Resume.params.packages"></span><strong>packages</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.resume.resume.Resume.params.packages">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.package.Package" title="pyexlatex.models.package.Package"><code class="xref py py-class docutils literal notranslate"><span class="pre">Package</span></code></a>]]) – </p></li>
-<li><p><span class="target" id="pyexlatex.resume.resume.Resume.params.pre_env_contents"></span><strong>pre_env_contents</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.resume.resume.Resume.params.pre_env_contents">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemBase</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ItemBase</span></code></a>], <code class="docutils literal notranslate"><span class="pre">None</span></code>]) – </p></li>
-<li><p><span class="target" id="pyexlatex.resume.resume.Resume.params.data_cleanup_func"></span><strong>data_cleanup_func</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.resume.resume.Resume.params.data_cleanup_func">¶</a> – should accept DocumentSetupData and modify it in place. This is called just before
-using the data.</p></li>
-<li><p><span class="target" id="pyexlatex.resume.resume.Resume.params.pre_output_func"></span><strong>pre_output_func</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.resume.resume.Resume.params.pre_output_func">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>]) – function which modifies the latex string before outputting it. The function should
-accepts a single argument which is a string of the entire latex contents, and it should return a string
-which will be used as the latex contents for output.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.resume.resume.Resume.name">
-<code class="sig-name descname">name</code><em class="property"> = 'document'</em><a class="headerlink" href="#pyexlatex.resume.resume.Resume.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 

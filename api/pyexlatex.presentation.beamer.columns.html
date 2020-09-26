@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.presentation.beamer.columns package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.presentation.beamer.columns package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.presentation.beamer.control package" href="pyexlatex.presentation.beamer.control.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -208,63 +210,9 @@
 </div>
 <div class="section" id="module-pyexlatex.presentation.beamer.columns.column">
 <span id="pyexlatex-presentation-beamer-columns-column-module"></span><h2>pyexlatex.presentation.beamer.columns.column module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.columns.column" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.presentation.beamer.columns.column.Column">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.columns.column.</code><code class="sig-name descname">Column</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">frac_of_text_width=1.0</em>, <em class="sig-param">frac_of_page_height=0.8</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/columns/column.html#Column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.columns.column.Column" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaBase" title="pyexlatex.models.section.base.TextAreaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaBase</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.presentation.beamer.columns.column.Column.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">frac_of_text_width=1.0</em>, <em class="sig-param">frac_of_page_height=0.8</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/columns/column.html#Column.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.columns.column.Column.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.presentation.beamer.columns.column.Column.name">
-<code class="sig-name descname">name</code><em class="property"> = 'column'</em><a class="headerlink" href="#pyexlatex.presentation.beamer.columns.column.Column.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.presentation.beamer.columns.column.Column.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['contentsfrac_of_text_width', 'frac_of_page_height']</em><a class="headerlink" href="#pyexlatex.presentation.beamer.columns.column.Column.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.presentation.beamer.columns.column.Column.text_width_str">
-<em class="property">property </em><code class="sig-name descname">text_width_str</code><a class="headerlink" href="#pyexlatex.presentation.beamer.columns.column.Column.text_width_str" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.presentation.beamer.columns.columns">
 <span id="pyexlatex-presentation-beamer-columns-columns-module"></span><h2>pyexlatex.presentation.beamer.columns.columns module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.columns.columns" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.presentation.beamer.columns.columns.Columns">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.columns.columns.</code><code class="sig-name descname">Columns</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/columns/columns.html#Columns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.columns.columns.Columns" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaBase" title="pyexlatex.models.section.base.TextAreaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaBase</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.presentation.beamer.columns.columns.Columns.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/columns/columns.html#Columns.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.columns.columns.Columns.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.presentation.beamer.columns.columns.Columns.name">
-<code class="sig-name descname">name</code><em class="property"> = 'columns'</em><a class="headerlink" href="#pyexlatex.presentation.beamer.columns.columns.Columns.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.presentation.beamer.columns.columns.Columns.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['contents']</em><a class="headerlink" href="#pyexlatex.presentation.beamer.columns.columns.Columns.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 

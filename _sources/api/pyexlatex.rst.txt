@@ -15,6 +15,7 @@ Subpackages
    pyexlatex.figure
    pyexlatex.graphics
    pyexlatex.layouts
+   pyexlatex.letter
    pyexlatex.logic
    pyexlatex.models
    pyexlatex.presentation

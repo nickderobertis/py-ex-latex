@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.logic.pdf.errors package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.logic.pdf.errors package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.logic.pdf.errors.models package" href="pyexlatex.logic.pdf.errors.models.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -224,19 +226,19 @@
 <span id="pyexlatex-logic-pdf-errors-exc-module"></span><h2>pyexlatex.logic.pdf.errors.exc module<a class="headerlink" href="#module-pyexlatex.logic.pdf.errors.exc" title="Permalink to this headline">¶</a></h2>
 <p>Add exceptions here and set _match_str to whatever string should match the exception. They will automatically
 be passed to the exception manager</p>
-<dl class="exception">
+<dl class="py exception">
 <dt id="pyexlatex.logic.pdf.errors.exc.LatexException">
 <em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.logic.pdf.errors.exc.</code><code class="sig-name descname">LatexException</code><a class="reference internal" href="../_modules/pyexlatex/logic/pdf/errors/exc.html#LatexException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.pdf.errors.exc.LatexException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="pyexlatex.logic.pdf.errors.exc.OutputLoopConsecutiveDeadCycles">
 <em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.logic.pdf.errors.exc.</code><code class="sig-name descname">OutputLoopConsecutiveDeadCycles</code><a class="reference internal" href="../_modules/pyexlatex/logic/pdf/errors/exc.html#OutputLoopConsecutiveDeadCycles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.pdf.errors.exc.OutputLoopConsecutiveDeadCycles" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyexlatex.logic.pdf.errors.exc.LatexException" title="pyexlatex.logic.pdf.errors.exc.LatexException"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.logic.pdf.errors.exc.LatexException</span></code></a></p>
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="pyexlatex.logic.pdf.errors.exc.TooManyUnprocessedFloatsException">
 <em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.logic.pdf.errors.exc.</code><code class="sig-name descname">TooManyUnprocessedFloatsException</code><a class="reference internal" href="../_modules/pyexlatex/logic/pdf/errors/exc.html#TooManyUnprocessedFloatsException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.pdf.errors.exc.TooManyUnprocessedFloatsException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyexlatex.logic.pdf.errors.exc.LatexException" title="pyexlatex.logic.pdf.errors.exc.LatexException"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.logic.pdf.errors.exc.LatexException</span></code></a></p>

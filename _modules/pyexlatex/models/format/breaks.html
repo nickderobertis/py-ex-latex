@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.format.breaks &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.models.format.breaks &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../../../../_static/language_data.js"></script>
         <script src="../../../../_static/clipboard.min.js"></script>
         <script src="../../../../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
@@ -71,7 +72,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -181,35 +182,35 @@
         <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span></div>
 
 
-<div class="viewcode-block" id="TableLineBreak"><a class="viewcode-back" href="../../../../api/pyexlatex.models.format.html#pyexlatex.models.format.breaks.TableLineBreak">[docs]</a><span class="k">class</span> <span class="nc">TableLineBreak</span><span class="p">(</span><span class="n">Break</span><span class="p">,</span> <span class="n">ReprMixin</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">TableLineBreak</span><span class="p">(</span><span class="n">Break</span><span class="p">,</span> <span class="n">ReprMixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A line break character to be used in LaTeX tables</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">repr_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;size_adjustment&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="TableLineBreak.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.models.format.html#pyexlatex.models.format.breaks.TableLineBreak.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size_adjustment</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">size_adjustment</span> <span class="o">=</span> <span class="n">size_adjustment</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size_adjustment</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size_adjustment</span> <span class="o">=</span> <span class="n">size_adjustment</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">_table_break_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_adjustment</span><span class="p">,</span> <span class="n">add_line_break</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">_table_break_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_adjustment</span><span class="p">,</span> <span class="n">add_line_break</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="OutputLineBreak"><a class="viewcode-back" href="../../../../api/pyexlatex.models.format.html#pyexlatex.models.format.breaks.OutputLineBreak">[docs]</a><span class="k">class</span> <span class="nc">OutputLineBreak</span><span class="p">(</span><span class="n">Break</span><span class="p">,</span> <span class="n">ReprMixin</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">OutputLineBreak</span><span class="p">(</span><span class="n">Break</span><span class="p">,</span> <span class="n">ReprMixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create an intentional line break in text</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">repr_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;size_adjustment&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="OutputLineBreak.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.models.format.html#pyexlatex.models.format.breaks.OutputLineBreak.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size_adjustment</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">size_adjustment</span> <span class="o">=</span> <span class="n">size_adjustment</span></div>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size_adjustment</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size_adjustment</span> <span class="o">=</span> <span class="n">size_adjustment</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">_table_break_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_adjustment</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">_table_break_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size_adjustment</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">_table_break_str</span><span class="p">(</span><span class="n">size_adjustment</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">add_line_break</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">size_adjustment</span><span class="p">:</span>
-        <span class="n">size_adjustment_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{size_adjustment}</span><span class="s1">]&#39;</span>
+        <span class="n">size_adjustment_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">size_adjustment</span><span class="si">}</span><span class="s1">]&#39;</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">size_adjustment_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="n">output_str</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">size_adjustment_str</span>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.constants package" href="pyexlatex.constants.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -199,8 +201,7 @@
 <span id="pyexlatex-package"></span><h1>pyexlatex package<a class="headerlink" href="#module-pyexlatex" title="Permalink to this headline">¶</a></h1>
 <p>Create LaTeX documents using only Python. Rather than building a direct Python API to LaTeX, this package
 has its own, simpler API to creating documents. It is focused on creating professional-looking documents
-with little styling effort. It currently supports documents and presentations with an additional
-resume subpackage.</p>
+with little styling effort. It currently supports documents, presentations, graphics, letters, and resumes.</p>
 <div class="section" id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -274,6 +275,17 @@ resume subpackage.</p>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.layouts.html#module-pyexlatex.layouts.grid">pyexlatex.layouts.grid module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.layouts.html#module-pyexlatex.layouts.multicol">pyexlatex.layouts.multicol module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pyexlatex.layouts.html#module-pyexlatex.layouts.spaced">pyexlatex.layouts.spaced module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.letter.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.letter.html#module-pyexlatex.letter.closing">pyexlatex.letter.closing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.letter.html#module-pyexlatex.letter.enclosures">pyexlatex.letter.enclosures module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.letter.html#module-pyexlatex.letter.letter">pyexlatex.letter.letter module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.letter.html#module-pyexlatex.letter.letterdocument">pyexlatex.letter.letterdocument module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.letter.html#module-pyexlatex.letter.opening">pyexlatex.letter.opening module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.letter.html#module-pyexlatex.letter.ps">pyexlatex.letter.ps module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyexlatex.letter.html#module-pyexlatex.letter.signature">pyexlatex.letter.signature module</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a><ul>
@@ -866,9 +878,9 @@ resume subpackage.</p>
 </div>
 <div class="section" id="module-pyexlatex.df">
 <span id="pyexlatex-df-module"></span><h2>pyexlatex.df module<a class="headerlink" href="#module-pyexlatex.df" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
+<dl class="py function">
 <dt id="pyexlatex.df.df_to_pdf_and_move">
-<code class="sig-prename descclassname">pyexlatex.df.</code><code class="sig-name descname">df_to_pdf_and_move</code><span class="sig-paren">(</span><em class="sig-param">dflist</em>, <em class="sig-param">outfolder</em>, <em class="sig-param">outname='table'</em>, <em class="sig-param">tabular_string=''</em>, <em class="sig-param">string_format=''</em>, <em class="sig-param">above_text=''</em>, <em class="sig-param">below_text=''</em>, <em class="sig-param">font_size=12</em>, <em class="sig-param">caption=''</em>, <em class="sig-param">missing_rep=' - '</em>, <em class="sig-param">landscape=False</em>, <em class="sig-param">panel_names=None</em>, <em class="sig-param">colname_flags=None</em>, <em class="sig-param">as_document=True</em>, <em class="sig-param">outmethod='pandas'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/df.html#df_to_pdf_and_move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.df.df_to_pdf_and_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pyexlatex.df.</code><code class="sig-name descname">df_to_pdf_and_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dflist</span></em>, <em class="sig-param"><span class="n">outfolder</span></em>, <em class="sig-param"><span class="n">outname</span><span class="o">=</span><span class="default_value">'table'</span></em>, <em class="sig-param"><span class="n">tabular_string</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">string_format</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">above_text</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">below_text</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">font_size</span><span class="o">=</span><span class="default_value">12</span></em>, <em class="sig-param"><span class="n">caption</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">missing_rep</span><span class="o">=</span><span class="default_value">' - '</span></em>, <em class="sig-param"><span class="n">landscape</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">panel_names</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">colname_flags</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">as_document</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">outmethod</span><span class="o">=</span><span class="default_value">'pandas'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/df.html#df_to_pdf_and_move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.df.df_to_pdf_and_move" title="Permalink to this definition">¶</a></dt>
 <dd><p>Takes a dataframe or list of dataframes as input and outputs to a LaTeX formatted table with multiple panels,
 creates a PDF, and moves the LaTeX file and PDF to a dated folder.</p>
 <dl>
@@ -915,15 +927,15 @@ itself contains latex expressions.</p>
 </div>
 <div class="section" id="module-pyexlatex.equations">
 <span id="pyexlatex-equations-module"></span><h2>pyexlatex.equations module<a class="headerlink" href="#module-pyexlatex.equations" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
+<dl class="py function">
 <dt id="pyexlatex.equations.latex_equations_to_pdf">
-<code class="sig-prename descclassname">pyexlatex.equations.</code><code class="sig-name descname">latex_equations_to_pdf</code><span class="sig-paren">(</span><em class="sig-param">latex_list</em>, <em class="sig-param">directory</em>, <em class="sig-param">name='Equations'</em>, <em class="sig-param">below_text=None</em>, <em class="sig-param">math_size=18</em>, <em class="sig-param">text_size=14</em>, <em class="sig-param">title=None</em>, <em class="sig-param">para_space='1em'</em>, <em class="sig-param">inline=False</em>, <em class="sig-param">as_document=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/equations.html#latex_equations_to_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.equations.latex_equations_to_pdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pyexlatex.equations.</code><code class="sig-name descname">latex_equations_to_pdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">latex_list</span></em>, <em class="sig-param"><span class="n">directory</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'Equations'</span></em>, <em class="sig-param"><span class="n">below_text</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">math_size</span><span class="o">=</span><span class="default_value">18</span></em>, <em class="sig-param"><span class="n">text_size</span><span class="o">=</span><span class="default_value">14</span></em>, <em class="sig-param"><span class="n">title</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">para_space</span><span class="o">=</span><span class="default_value">'1em'</span></em>, <em class="sig-param"><span class="n">inline</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">as_document</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/equations.html#latex_equations_to_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.equations.latex_equations_to_pdf" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
 <div class="section" id="module-pyexlatex.exc">
 <span id="pyexlatex-exc-module"></span><h2>pyexlatex.exc module<a class="headerlink" href="#module-pyexlatex.exc" title="Permalink to this headline">¶</a></h2>
-<dl class="exception">
+<dl class="py exception">
 <dt id="pyexlatex.exc.NoPackageWithNameException">
 <em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.exc.</code><code class="sig-name descname">NoPackageWithNameException</code><a class="reference internal" href="../_modules/pyexlatex/exc.html#NoPackageWithNameException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.exc.NoPackageWithNameException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.references.bibtex.style package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.models.references.bibtex.style package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.models.references.bibtex.style.custom package" href="pyexlatex.models.references.bibtex.style.custom.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -225,35 +227,35 @@
 </div>
 <div class="section" id="module-pyexlatex.models.references.bibtex.style.manager">
 <span id="pyexlatex-models-references-bibtex-style-manager-module"></span><h2>pyexlatex.models.references.bibtex.style.manager module<a class="headerlink" href="#module-pyexlatex.models.references.bibtex.style.manager" title="Permalink to this headline">¶</a></h2>
-<dl class="exception">
+<dl class="py exception">
 <dt id="pyexlatex.models.references.bibtex.style.manager.NoSuchStyleException">
 <em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.models.references.bibtex.style.manager.</code><code class="sig-name descname">NoSuchStyleException</code><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/manager.html#NoSuchStyleException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.manager.NoSuchStyleException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="pyexlatex.models.references.bibtex.style.manager.StyleManager">
 <em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.bibtex.style.manager.</code><code class="sig-name descname">StyleManager</code><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/manager.html#StyleManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.manager.StyleManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="method">
+<dl class="py method">
 <dt id="pyexlatex.models.references.bibtex.style.manager.StyleManager.__init__">
 <code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/manager.html#StyleManager.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.manager.StyleManager.__init__" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyexlatex.models.references.bibtex.style.manager.StyleManager.get_style_by_name">
-<code class="sig-name descname">get_style_by_name</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/manager.html#StyleManager.get_style_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.manager.StyleManager.get_style_by_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_style_by_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/manager.html#StyleManager.get_style_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.manager.StyleManager.get_style_by_name" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pyexlatex.models.references.bibtex.style.style.Style" title="pyexlatex.models.references.bibtex.style.style.Style"><code class="xref py py-class docutils literal notranslate"><span class="pre">Style</span></code></a></p>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Style</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyexlatex.models.references.bibtex.style.manager.StyleManager.is_builtin_style">
-<code class="sig-name descname">is_builtin_style</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/manager.html#StyleManager.is_builtin_style"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.manager.StyleManager.is_builtin_style" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">is_builtin_style</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/manager.html#StyleManager.is_builtin_style"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.manager.StyleManager.is_builtin_style" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
@@ -261,9 +263,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyexlatex.models.references.bibtex.style.manager.StyleManager.is_custom_style">
-<code class="sig-name descname">is_custom_style</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/manager.html#StyleManager.is_custom_style"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.manager.StyleManager.is_custom_style" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">is_custom_style</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/manager.html#StyleManager.is_custom_style"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.manager.StyleManager.is_custom_style" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
@@ -276,55 +278,6 @@
 </div>
 <div class="section" id="module-pyexlatex.models.references.bibtex.style.style">
 <span id="pyexlatex-models-references-bibtex-style-style-module"></span><h2>pyexlatex.models.references.bibtex.style.style module<a class="headerlink" href="#module-pyexlatex.models.references.bibtex.style.style" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.references.bibtex.style.style.BibliographyStyle">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.bibtex.style.style.</code><code class="sig-name descname">BibliographyStyle</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/style.html#BibliographyStyle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.style.BibliographyStyle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.style.style.BibliographyStyle.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/style.html#BibliographyStyle.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.style.BibliographyStyle.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.style.style.BibliographyStyle.name">
-<code class="sig-name descname">name</code><em class="property"> = 'bibliographystyle'</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.style.BibliographyStyle.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.models.references.bibtex.style.style.Style">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.bibtex.style.style.</code><code class="sig-name descname">Style</code><span class="sig-paren">(</span><em class="sig-param">style_name</em>, <em class="sig-param">style_definition=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/style.html#Style"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.style.Style" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.references.bibtex.style.style.BibliographyStyle" title="pyexlatex.models.references.bibtex.style.style.BibliographyStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.references.bibtex.style.style.BibliographyStyle</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.style.style.Style.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">style_name</em>, <em class="sig-param">style_definition=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/style/style.html#Style.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.style.Style.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.style.style.Style.style_filename">
-<em class="property">property </em><code class="sig-name descname">style_filename</code><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.style.Style.style_filename" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.style.style.Style.style_source_name">
-<em class="property">property </em><code class="sig-name descname">style_source_name</code><a class="headerlink" href="#pyexlatex.models.references.bibtex.style.style.Style.style_source_name" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.references package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.models.references package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.models.references.bibtex package" href="pyexlatex.models.references.bibtex.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -242,79 +244,9 @@
 </div>
 <div class="section" id="module-pyexlatex.models.references.bibliography">
 <span id="pyexlatex-models-references-bibliography-module"></span><h2>pyexlatex.models.references.bibliography module<a class="headerlink" href="#module-pyexlatex.models.references.bibliography" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.references.bibliography.Bibliography">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.bibliography.</code><code class="sig-name descname">Bibliography</code><span class="sig-paren">(</span><em class="sig-param">references=None</em>, <em class="sig-param">style_name='plain'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibliography.html#Bibliography"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibliography.Bibliography" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.containeritem.ContainerItem" title="pyexlatex.models.containeritem.ContainerItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.containeritem.ContainerItem</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
-<p>High-level class for working with bibliographies in LaTeX. Handles style as well as the references.
-Include an instance of this class where you want the bibliography printed.</p>
-<dl class="method">
-<dt id="pyexlatex.models.references.bibliography.Bibliography.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">references=None</em>, <em class="sig-param">style_name='plain'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibliography.html#Bibliography.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibliography.Bibliography.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.references.citations">
 <span id="pyexlatex-models-references-citations-module"></span><h2>pyexlatex.models.references.citations module<a class="headerlink" href="#module-pyexlatex.models.references.citations" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.references.citations.Cite">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.citations.</code><code class="sig-name descname">Cite</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/citations.html#Cite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.citations.Cite" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
-<p>Basic citation command, creates a reference to a document included in the bibliography.</p>
-<dl class="method">
-<dt id="pyexlatex.models.references.citations.Cite.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/citations.html#Cite.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.citations.Cite.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.citations.Cite.name">
-<code class="sig-name descname">name</code><em class="property"> = 'cite'</em><a class="headerlink" href="#pyexlatex.models.references.citations.Cite.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.models.references.citations.CiteP">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.citations.</code><code class="sig-name descname">CiteP</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/citations.html#CiteP"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.citations.CiteP" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.references.citations.NatBibCiteBase" title="pyexlatex.models.references.citations.NatBibCiteBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.references.citations.NatBibCiteBase</span></code></a></p>
-<p>Paragraph citation command, creates a paragraph (with parentheses) reference to a document
-included in the bibliography.</p>
-<dl class="attribute">
-<dt id="pyexlatex.models.references.citations.CiteP.name">
-<code class="sig-name descname">name</code><em class="property"> = 'citep'</em><a class="headerlink" href="#pyexlatex.models.references.citations.CiteP.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.models.references.citations.CiteT">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.citations.</code><code class="sig-name descname">CiteT</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/citations.html#CiteT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.citations.CiteT" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.references.citations.NatBibCiteBase" title="pyexlatex.models.references.citations.NatBibCiteBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.references.citations.NatBibCiteBase</span></code></a></p>
-<p>In text citation command, creates an in text (without parentheses) reference to a document
-included in the bibliography.</p>
-<dl class="attribute">
-<dt id="pyexlatex.models.references.citations.CiteT.name">
-<code class="sig-name descname">name</code><em class="property"> = 'citet'</em><a class="headerlink" href="#pyexlatex.models.references.citations.CiteT.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.models.references.citations.NatBibCiteBase">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.citations.</code><code class="sig-name descname">NatBibCiteBase</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/citations.html#NatBibCiteBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.citations.NatBibCiteBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.references.citations.Cite" title="pyexlatex.models.references.citations.Cite"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.references.citations.Cite</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.references.citations.NatBibCiteBase.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/citations.html#NatBibCiteBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.citations.NatBibCiteBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 

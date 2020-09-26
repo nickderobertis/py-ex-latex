@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.figure.models package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.figure.models package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.graphics package" href="pyexlatex.graphics.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -206,186 +208,15 @@
 </div>
 <div class="section" id="module-pyexlatex.figure.models.figure">
 <span id="pyexlatex-figure-models-figure-module"></span><h2>pyexlatex.figure.models.figure module<a class="headerlink" href="#module-pyexlatex.figure.models.figure" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.figure.models.figure.Figure">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.figure.models.figure.</code><code class="sig-name descname">Figure</code><span class="sig-paren">(</span><em class="sig-param">subfigures</em>, <em class="sig-param">caption=None</em>, <em class="sig-param">label=None</em>, <em class="sig-param">centering=True</em>, <em class="sig-param">position_str=None</em>, <em class="sig-param">landscape=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/figure.html#Figure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.figure.Figure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.containeritem.ContainerItem" title="pyexlatex.models.containeritem.ContainerItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.containeritem.ContainerItem</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.Item" title="pyexlatex.models.item.Item"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.Item</span></code></a></p>
-<p>used for creating latex figures from images. Currently the main usage is the Figure class created with the method
-Figure.from_dict_of_names_and_filepaths. Pass a dictionary where the keys are names for subfigures and the values
-are filepaths where the image for the subfigure is located.</p>
-<dl class="method">
-<dt id="pyexlatex.figure.models.figure.Figure.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">subfigures</em>, <em class="sig-param">caption=None</em>, <em class="sig-param">label=None</em>, <em class="sig-param">centering=True</em>, <em class="sig-param">position_str=None</em>, <em class="sig-param">landscape=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/figure.html#Figure.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.figure.Figure.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.figure.models.figure.Figure.as_document">
-<code class="sig-name descname">as_document</code><span class="sig-paren">(</span><em class="sig-param">landscape=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/figure.html#Figure.as_document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.figure.Figure.as_document" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.figure.models.figure.Figure.from_dict_of_names_and_filepaths">
-<em class="property">classmethod </em><code class="sig-name descname">from_dict_of_names_and_filepaths</code><span class="sig-paren">(</span><em class="sig-param">filepath_name_dict</em>, <em class="sig-param">figure_name=None</em>, <em class="sig-param">position_str_name_dict=None</em>, <em class="sig-param">label=None</em>, <em class="sig-param">centering=True</em>, <em class="sig-param">landscape=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/figure.html#Figure.from_dict_of_names_and_filepaths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.figure.Figure.from_dict_of_names_and_filepaths" title="Permalink to this definition">¶</a></dt>
-<dd><dl>
-<dt>Args:</dt><dd><dl class="simple">
-<dt>filepath_name_dict: dictionary where keys are names of subfigures and values</dt><dd><p>are the filepaths to the images for those subfigures.</p>
-</dd>
-</dl>
-<p>figure_name: name for overall figure
-position_str_name_dict: dictionary where keys are names of subfigures and values</p>
-<blockquote>
-<div><p>are the position strs for those figures, e.g. r’[t]{0.45linewidth}’</p>
-</div></blockquote>
-</dd>
-</dl>
-<p>Returns:</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.figure.models.figure.Figure.from_dict_of_names_and_plt_figures">
-<em class="property">classmethod </em><code class="sig-name descname">from_dict_of_names_and_plt_figures</code><span class="sig-paren">(</span><em class="sig-param">plt_fig_name_dict</em>, <em class="sig-param">sources_outfolder</em>, <em class="sig-param">source_filetype='pdf'</em>, <em class="sig-param">figure_name=None</em>, <em class="sig-param">position_str_name_dict=None</em>, <em class="sig-param">label=None</em>, <em class="sig-param">centering=True</em>, <em class="sig-param">landscape=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/figure.html#Figure.from_dict_of_names_and_plt_figures"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.figure.Figure.from_dict_of_names_and_plt_figures" title="Permalink to this definition">¶</a></dt>
-<dd><dl>
-<dt>Args:</dt><dd><p>plt_fig_name_dict: Key is display name in output figure, value is matplotlib axes or figure
-sources_outfolder: folder to output individual plt figures
-source_filetype: Filetype for individual plt figures. The default is pdf. Use png or another image type if</p>
-<blockquote>
-<div><p>outputting complicated figures or performance may be affected when viewing the pdf.</p>
-</div></blockquote>
-<p>figure_name: name for overall figure
-position_str_name_dict: dictionary where keys are names of subfigures and values</p>
-<blockquote>
-<div><p>are the position strs for those figures, e.g. r’[t]{0.45linewidth}’</p>
-</div></blockquote>
-<p>label:
-centering:
-landscape:</p>
-</dd>
-</dl>
-<p>Returns: Figure</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.figure.models.figure.Figure.name">
-<code class="sig-name descname">name</code><em class="property"> = 'figure'</em><a class="headerlink" href="#pyexlatex.figure.models.figure.Figure.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.figure.models.figure.Figure.to_pdf_and_move">
-<code class="sig-name descname">to_pdf_and_move</code><span class="sig-paren">(</span><em class="sig-param">as_document=True</em>, <em class="sig-param">outfolder=None</em>, <em class="sig-param">outname=None</em>, <em class="sig-param">landscape=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/figure.html#Figure.to_pdf_and_move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.figure.Figure.to_pdf_and_move" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.figure.models.graphic">
 <span id="pyexlatex-figure-models-graphic-module"></span><h2>pyexlatex.figure.models.graphic module<a class="headerlink" href="#module-pyexlatex.figure.models.graphic" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.figure.models.graphic.Graphic">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.figure.models.graphic.</code><code class="sig-name descname">Graphic</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">width=1.0</em>, <em class="sig-param">cache=True</em>, <em class="sig-param">options=None</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/graphic.html#Graphic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
-<p>Basic class for including graphics, just the image with no structure.</p>
-<p>In most documents, a Figure would be used to give more structure to the graphic. This class will literally just
-include the image with no other structure. It is typically more useful in presentations where the structure
-is already being provided.</p>
-<dl class="method">
-<dt id="pyexlatex.figure.models.graphic.Graphic.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">width=1.0</em>, <em class="sig-param">cache=True</em>, <em class="sig-param">options=None</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/graphic.html#Graphic.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="pyexlatex.figure.models.graphic.Graphic.params.filepath"></span><strong>filepath</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.figure.models.graphic.Graphic.params.filepath">¶</a> – </p></li>
-<li><p><span class="target" id="pyexlatex.figure.models.graphic.Graphic.params.width"></span><strong>width</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.figure.models.graphic.Graphic.params.width">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]) – if a float is passed, is interpreted as a fraction of line width. if a str is passed, will be passed
-into latex directly</p></li>
-<li><p><span class="target" id="pyexlatex.figure.models.graphic.Graphic.params.cache"></span><strong>cache</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.figure.models.graphic.Graphic.params.cache">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – </p></li>
-<li><p><span class="target" id="pyexlatex.figure.models.graphic.Graphic.params.options"></span><strong>options</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.figure.models.graphic.Graphic.params.options">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – </p></li>
-<li><p><span class="target" id="pyexlatex.figure.models.graphic.Graphic.params.overlay"></span><strong>overlay</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.figure.models.graphic.Graphic.params.overlay">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ForwardRef" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForwardRef</span></code></a>]) – beamer overlay</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.figure.models.graphic.Graphic.filepath">
-<em class="property">property </em><code class="sig-name descname">filepath</code><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic.filepath" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.figure.models.graphic.Graphic.filepaths">
-<em class="property">property </em><code class="sig-name descname">filepaths</code><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic.filepaths" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.figure.models.graphic.Graphic.name">
-<code class="sig-name descname">name</code><em class="property"> = 'includegraphics'</em><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.figure.models.graphic.Graphic.options_str">
-<em class="property">property </em><code class="sig-name descname">options_str</code><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic.options_str" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.figure.models.graphic.Graphic.source_path">
-<em class="property">property </em><code class="sig-name descname">source_path</code><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic.source_path" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.figure.models.graphic.Graphic.width_str">
-<em class="property">property </em><code class="sig-name descname">width_str</code><a class="headerlink" href="#pyexlatex.figure.models.graphic.Graphic.width_str" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.figure.models.subfigure">
 <span id="pyexlatex-figure-models-subfigure-module"></span><h2>pyexlatex.figure.models.subfigure module<a class="headerlink" href="#module-pyexlatex.figure.models.subfigure" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.figure.models.subfigure.Subfigure">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.figure.models.subfigure.</code><code class="sig-name descname">Subfigure</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">caption=None</em>, <em class="sig-param">label=None</em>, <em class="sig-param">centering=True</em>, <em class="sig-param">position_str='[t]{0.45\\linewidth}'</em>, <em class="sig-param">cache=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/subfigure.html#Subfigure"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.subfigure.Subfigure" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.containeritem.ContainerItem" title="pyexlatex.models.containeritem.ContainerItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.containeritem.ContainerItem</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.Item" title="pyexlatex.models.item.Item"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.Item</span></code></a></p>
-<p>Used for more control over building figures</p>
-<dl class="method">
-<dt id="pyexlatex.figure.models.subfigure.Subfigure.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">caption=None</em>, <em class="sig-param">label=None</em>, <em class="sig-param">centering=True</em>, <em class="sig-param">position_str='[t]{0.45\\linewidth}'</em>, <em class="sig-param">cache=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/subfigure.html#Subfigure.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.subfigure.Subfigure.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.figure.models.subfigure.Subfigure.name">
-<code class="sig-name descname">name</code><em class="property"> = 'subfigure'</em><a class="headerlink" href="#pyexlatex.figure.models.subfigure.Subfigure.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="function">
+<dl class="py function">
 <dt id="pyexlatex.figure.models.subfigure.anchor_and_width_from_position_str">
-<code class="sig-prename descclassname">pyexlatex.figure.models.subfigure.</code><code class="sig-name descname">anchor_and_width_from_position_str</code><span class="sig-paren">(</span><em class="sig-param">position</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/subfigure.html#anchor_and_width_from_position_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.subfigure.anchor_and_width_from_position_str" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pyexlatex.figure.models.subfigure.</code><code class="sig-name descname">anchor_and_width_from_position_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">position</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/figure/models/subfigure.html#anchor_and_width_from_position_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.figure.models.subfigure.anchor_and_width_from_position_str" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>

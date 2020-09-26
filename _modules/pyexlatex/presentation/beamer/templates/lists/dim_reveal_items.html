@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.presentation.beamer.templates.lists.dim_reveal_items &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.presentation.beamer.templates.lists.dim_reveal_items &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../../../../../../_static/language_data.js"></script>
         <script src="../../../../../../_static/clipboard.min.js"></script>
         <script src="../../../../../../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../../search.html" /> 
 </head>
@@ -71,7 +72,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -177,7 +178,7 @@
 <span class="kn">from</span> <span class="nn">pyexlatex.models.lists.base</span> <span class="kn">import</span> <span class="n">can_be_included_directly_in_list</span>
 
 
-<div class="viewcode-block" id="DimAndRevealListItem"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.lists.html#pyexlatex.presentation.beamer.templates.lists.dim_reveal_items.DimAndRevealListItem">[docs]</a><span class="k">class</span> <span class="nc">DimAndRevealListItem</span><span class="p">(</span><span class="n">ListItem</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DimAndRevealListItem</span><span class="p">(</span><span class="n">ListItem</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Single list item which reveals on each slide one-by-one and as the next one reveals, the last one dims.</span>
 
@@ -185,7 +186,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">is_ListItem</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># so that passing within lists will treat as a list item</span>
 
-<div class="viewcode-block" id="DimAndRevealListItem.__init__"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.lists.html#pyexlatex.presentation.beamer.templates.lists.dim_reveal_items.DimAndRevealListItem.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">dim</span>
         <span class="n">dim_ov</span> <span class="o">=</span> <span class="n">Overlay</span><span class="p">([</span><span class="n">UntilEnd</span><span class="p">(</span><span class="n">NextWithoutIncrement</span><span class="p">(</span><span class="mi">1</span><span class="p">))])</span>
         <span class="n">next_ov</span> <span class="o">=</span> <span class="n">Overlay</span><span class="p">([</span><span class="n">UntilEnd</span><span class="p">(</span><span class="n">NextWithIncrement</span><span class="p">())])</span>
@@ -193,9 +194,9 @@
         <span class="k">if</span> <span class="n">dim</span><span class="p">:</span>
             <span class="n">contents</span> <span class="o">=</span> <span class="n">TextColor</span><span class="p">(</span><span class="n">contents</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="n">opacity</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="n">dim_ov</span><span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">contents</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="n">next_ov</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">contents</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="n">next_ov</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DimAndRevealListItem.convert_to_regular_item"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.lists.html#pyexlatex.presentation.beamer.templates.lists.dim_reveal_items.DimAndRevealListItem.convert_to_regular_item">[docs]</a>    <span class="k">def</span> <span class="nf">convert_to_regular_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">convert_to_regular_item</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">:</span>
             <span class="n">contents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">content</span>  <span class="c1"># get from inside TextColor</span>
         <span class="k">else</span><span class="p">:</span>
@@ -204,10 +205,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span> <span class="o">=</span> <span class="n">ListItem</span>
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_DimAndRevealListItem</span>
-        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span></div></div>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span>
 
 
-<div class="viewcode-block" id="DimAndRevealListItems"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.lists.html#pyexlatex.presentation.beamer.templates.lists.dim_reveal_items.DimAndRevealListItems">[docs]</a><span class="k">class</span> <span class="nc">DimAndRevealListItems</span><span class="p">(</span><span class="n">VerticalFillMixin</span><span class="p">,</span> <span class="n">ContainerItem</span><span class="p">,</span> <span class="n">ItemBase</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">DimAndRevealListItems</span><span class="p">(</span><span class="n">VerticalFillMixin</span><span class="p">,</span> <span class="n">ContainerItem</span><span class="p">,</span> <span class="n">ItemBase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    List items which reveal on each slide one-by-one and as the next one reveals, the last one dims.</span>
 
@@ -216,7 +217,7 @@
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&lt;dim and reveal container, should not enter latex output&gt;&#39;</span>
     <span class="n">is_ListBase</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># so that passing within lists will treat as a list</span>
 
-<div class="viewcode-block" id="DimAndRevealListItems.__init__"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.lists.html#pyexlatex.presentation.beamer.templates.lists.dim_reveal_items.DimAndRevealListItems.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">dim_last_item</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">dim_last_item</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
                  <span class="n">vertical_fill</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">dim_earlier_items</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">orig_contents</span> <span class="o">=</span> <span class="n">contents</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dim_last_item</span> <span class="o">=</span> <span class="n">dim_last_item</span>
@@ -224,7 +225,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">opacity</span> <span class="o">=</span> <span class="n">opacity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vertical_fill</span> <span class="o">=</span> <span class="n">vertical_fill</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_data_from_content</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_contents</span><span class="p">()</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_contents</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_get_contents</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">DimAndRevealListItem</span><span class="p">]:</span>
         <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
@@ -252,7 +253,7 @@
         <span class="kn">from</span> <span class="nn">pyexlatex.logic.builder</span> <span class="kn">import</span> <span class="n">_build</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span>
-        <span class="k">return</span> <span class="n">_build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">_build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="eliminate_dim_reveal"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.lists.html#pyexlatex.presentation.beamer.templates.lists.dim_reveal_items.eliminate_dim_reveal">[docs]</a><span class="k">def</span> <span class="nf">eliminate_dim_reveal</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>

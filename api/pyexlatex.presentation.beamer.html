@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.presentation.beamer package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.presentation.beamer package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.presentation.beamer.columns package" href="pyexlatex.presentation.beamer.columns.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -282,125 +284,12 @@
 </div>
 <div class="section" id="module-pyexlatex.presentation.beamer.block">
 <span id="pyexlatex-presentation-beamer-block-module"></span><h2>pyexlatex.presentation.beamer.block module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.block" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.presentation.beamer.block.AlertBlock">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.block.</code><code class="sig-name descname">AlertBlock</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">title=None</em>, <em class="sig-param">text_color=None</em>, <em class="sig-param">header_color=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/block.html#AlertBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.block.AlertBlock" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.block.BlockBase" title="pyexlatex.presentation.beamer.block.BlockBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.block.BlockBase</span></code></a></p>
-<p>Block with an optional header which is red</p>
-<dl class="attribute">
-<dt id="pyexlatex.presentation.beamer.block.AlertBlock.name">
-<code class="sig-name descname">name</code><em class="property"> = 'alertblock'</em><a class="headerlink" href="#pyexlatex.presentation.beamer.block.AlertBlock.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.presentation.beamer.block.Block">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.block.</code><code class="sig-name descname">Block</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">title=None</em>, <em class="sig-param">text_color=None</em>, <em class="sig-param">header_color=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/block.html#Block"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.block.Block" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.block.BlockBase" title="pyexlatex.presentation.beamer.block.BlockBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.block.BlockBase</span></code></a></p>
-<p>Block with an optional header</p>
-<dl class="attribute">
-<dt id="pyexlatex.presentation.beamer.block.Block.name">
-<code class="sig-name descname">name</code><em class="property"> = 'block'</em><a class="headerlink" href="#pyexlatex.presentation.beamer.block.Block.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.presentation.beamer.block.BlockBase">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.block.</code><code class="sig-name descname">BlockBase</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">title=None</em>, <em class="sig-param">text_color=None</em>, <em class="sig-param">header_color=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/block.html#BlockBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.block.BlockBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaBase" title="pyexlatex.models.section.base.TextAreaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaBase</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.presentation.beamer.block.BlockBase.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">title=None</em>, <em class="sig-param">text_color=None</em>, <em class="sig-param">header_color=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/block.html#BlockBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.block.BlockBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.presentation.beamer.block.BlockBase.name">
-<code class="sig-name descname">name</code><em class="property"> = '&lt;invalid, use a subclass, not BlockBase&gt;'</em><a class="headerlink" href="#pyexlatex.presentation.beamer.block.BlockBase.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.presentation.beamer.block.ExamplesBlock">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.block.</code><code class="sig-name descname">ExamplesBlock</code><span class="sig-paren">(</span><em class="sig-param">content</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/block.html#ExamplesBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.block.ExamplesBlock" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.block.BlockBase" title="pyexlatex.presentation.beamer.block.BlockBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.block.BlockBase</span></code></a></p>
-<p>Block which always has the header title “Examples”</p>
-<dl class="method">
-<dt id="pyexlatex.presentation.beamer.block.ExamplesBlock.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/block.html#ExamplesBlock.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.block.ExamplesBlock.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.presentation.beamer.block.ExamplesBlock.name">
-<code class="sig-name descname">name</code><em class="property"> = 'examples'</em><a class="headerlink" href="#pyexlatex.presentation.beamer.block.ExamplesBlock.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.presentation.beamer.colorbox">
 <span id="pyexlatex-presentation-beamer-colorbox-module"></span><h2>pyexlatex.presentation.beamer.colorbox module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.colorbox" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.presentation.beamer.colorbox.BeamerColorBox">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.colorbox.</code><code class="sig-name descname">BeamerColorBox</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">color</em>, <em class="sig-param">options=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/colorbox.html#BeamerColorBox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.colorbox.BeamerColorBox" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaBase" title="pyexlatex.models.section.base.TextAreaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaBase</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.presentation.beamer.colorbox.BeamerColorBox.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">color</em>, <em class="sig-param">options=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/colorbox.html#BeamerColorBox.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.colorbox.BeamerColorBox.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.presentation.beamer.colorbox.BeamerColorBox.modifier_str">
-<em class="property">property </em><code class="sig-name descname">modifier_str</code><a class="headerlink" href="#pyexlatex.presentation.beamer.colorbox.BeamerColorBox.modifier_str" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.presentation.beamer.colorbox.BeamerColorBox.name">
-<code class="sig-name descname">name</code><em class="property"> = 'beamercolorbox'</em><a class="headerlink" href="#pyexlatex.presentation.beamer.colorbox.BeamerColorBox.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.presentation.beamer.toc">
 <span id="pyexlatex-presentation-beamer-toc-module"></span><h2>pyexlatex.presentation.beamer.toc module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.toc" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.presentation.beamer.toc.TableOfContents">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.toc.</code><code class="sig-name descname">TableOfContents</code><span class="sig-paren">(</span><em class="sig-param">options=('currentsection'</em>, <em class="sig-param">)</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/toc.html#TableOfContents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.toc.TableOfContents" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.NoOptionsNoContentsItem" title="pyexlatex.models.item.NoOptionsNoContentsItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.NoOptionsNoContentsItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.presentation.beamer.toc.TableOfContents.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">options=('currentsection'</em>, <em class="sig-param">)</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/toc.html#TableOfContents.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.toc.TableOfContents.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.presentation.beamer.toc.TableOfContents.name">
-<code class="sig-name descname">name</code><em class="property"> = 'tableofcontents'</em><a class="headerlink" href="#pyexlatex.presentation.beamer.toc.TableOfContents.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.presentation.beamer.toc.TableOfContents.options_str">
-<em class="property">property </em><code class="sig-name descname">options_str</code><a class="headerlink" href="#pyexlatex.presentation.beamer.toc.TableOfContents.options_str" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 

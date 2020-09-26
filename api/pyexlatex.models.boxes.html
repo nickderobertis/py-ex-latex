@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.boxes package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.models.boxes package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.models.commands package" href="pyexlatex.models.commands.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -206,37 +208,9 @@
 </div>
 <div class="section" id="module-pyexlatex.models.boxes.base">
 <span id="pyexlatex-models-boxes-base-module"></span><h2>pyexlatex.models.boxes.base module<a class="headerlink" href="#module-pyexlatex.models.boxes.base" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.boxes.base.BoxBase">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.boxes.base.</code><code class="sig-name descname">BoxBase</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">size_str</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/boxes/base.html#BoxBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.boxes.base.BoxBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaMixin" title="pyexlatex.models.section.base.TextAreaMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaMixin</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.boxes.base.BoxBase.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">size_str</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/boxes/base.html#BoxBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.boxes.base.BoxBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.boxes.base.BoxBase.name">
-<code class="sig-name descname">name</code><em class="property"> = '&lt;unimplemented, do not use BoxBase directly, use a subclass&gt;'</em><a class="headerlink" href="#pyexlatex.models.boxes.base.BoxBase.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.boxes.vbox">
 <span id="pyexlatex-models-boxes-vbox-module"></span><h2>pyexlatex.models.boxes.vbox module<a class="headerlink" href="#module-pyexlatex.models.boxes.vbox" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.boxes.vbox.VBox">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.boxes.vbox.</code><code class="sig-name descname">VBox</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">size_str</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/boxes/vbox.html#VBox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.boxes.vbox.VBox" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.boxes.base.BoxBase" title="pyexlatex.models.boxes.base.BoxBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.boxes.base.BoxBase</span></code></a></p>
-<dl class="attribute">
-<dt id="pyexlatex.models.boxes.vbox.VBox.name">
-<code class="sig-name descname">name</code><em class="property"> = 'vbox'</em><a class="headerlink" href="#pyexlatex.models.boxes.vbox.VBox.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 

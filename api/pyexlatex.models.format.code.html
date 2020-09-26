@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.format.code package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.models.format.code package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.models.format.paragraph package" href="pyexlatex.models.format.paragraph.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -208,39 +210,9 @@
 </div>
 <div class="section" id="module-pyexlatex.models.format.code.minted">
 <span id="pyexlatex-models-format-code-minted-module"></span><h2>pyexlatex.models.format.code.minted module<a class="headerlink" href="#module-pyexlatex.models.format.code.minted" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.format.code.minted.Minted">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.format.code.minted.</code><code class="sig-name descname">Minted</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">language</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/code/minted.html#Minted"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.code.minted.Minted" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.Item" title="pyexlatex.models.item.Item"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.Item</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.format.code.minted.Minted.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">language</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/code/minted.html#Minted.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.code.minted.Minted.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.format.code.minted.Minted.name">
-<code class="sig-name descname">name</code><em class="property"> = 'minted'</em><a class="headerlink" href="#pyexlatex.models.format.code.minted.Minted.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.format.code.python">
 <span id="pyexlatex-models-format-code-python-module"></span><h2>pyexlatex.models.format.code.python module<a class="headerlink" href="#module-pyexlatex.models.format.code.python" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.format.code.python.Python">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.format.code.python.</code><code class="sig-name descname">Python</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/code/python.html#Python"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.code.python.Python" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.format.code.minted.Minted" title="pyexlatex.models.format.code.minted.Minted"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.format.code.minted.Minted</span></code></a></p>
-<p>Renders passed contents as Python code, with syntax highlighting.</p>
-<dl class="method">
-<dt id="pyexlatex.models.format.code.python.Python.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/code/python.html#Python.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.code.python.Python.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 

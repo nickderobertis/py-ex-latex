@@ -1,11 +1,11 @@
-data
 latex
-Jinja2
 tempdir
+Jinja2
+pyexlatex
+pandas
+mixins
+data
+future
 sympy
 bibtexparser
-mixins
 shutilwhich
-future
-pandas
-pyexlatex

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.commands package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.models.commands package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.models.control package" href="pyexlatex.models.control.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -206,156 +208,21 @@
 </div>
 <div class="section" id="module-pyexlatex.models.commands.begin">
 <span id="pyexlatex-models-commands-begin-module"></span><h2>pyexlatex.models.commands.begin module<a class="headerlink" href="#module-pyexlatex.models.commands.begin" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.commands.begin.Begin">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.commands.begin.</code><code class="sig-name descname">Begin</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">modifiers=None</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/begin.html#Begin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.begin.Begin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.commands.begin.Begin.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">env</em>, <em class="sig-param">modifiers=None</em>, <em class="sig-param">overlay=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/begin.html#Begin.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.begin.Begin.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.commands.begin.Begin.name">
-<code class="sig-name descname">name</code><em class="property"> = 'begin'</em><a class="headerlink" href="#pyexlatex.models.commands.begin.Begin.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.commands.end">
 <span id="pyexlatex-models-commands-end-module"></span><h2>pyexlatex.models.commands.end module<a class="headerlink" href="#module-pyexlatex.models.commands.end" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.commands.end.End">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.commands.end.</code><code class="sig-name descname">End</code><span class="sig-paren">(</span><em class="sig-param">env</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/end.html#End"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.end.End" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.commands.end.End.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">env</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/end.html#End.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.end.End.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.commands.end.End.name">
-<code class="sig-name descname">name</code><em class="property"> = 'end'</em><a class="headerlink" href="#pyexlatex.models.commands.end.End.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.commands.endfloat">
 <span id="pyexlatex-models-commands-endfloat-module"></span><h2>pyexlatex.models.commands.endfloat module<a class="headerlink" href="#module-pyexlatex.models.commands.endfloat" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.commands.endfloat.DeclareDelayedFloatFlavor">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.commands.endfloat.</code><code class="sig-name descname">DeclareDelayedFloatFlavor</code><span class="sig-paren">(</span><em class="sig-param">target_environment</em>, <em class="sig-param">treat_as_environment='table'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/endfloat.html#DeclareDelayedFloatFlavor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.endfloat.DeclareDelayedFloatFlavor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.MultiOptionSimpleItem" title="pyexlatex.models.item.MultiOptionSimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.MultiOptionSimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.commands.endfloat.DeclareDelayedFloatFlavor.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">target_environment</em>, <em class="sig-param">treat_as_environment='table'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/endfloat.html#DeclareDelayedFloatFlavor.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.endfloat.DeclareDelayedFloatFlavor.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.commands.endfloat.DeclareDelayedFloatFlavor.equal_attrs">
-<code class="sig-name descname">equal_attrs</code><em class="property"> = ['name', 'target_environment', 'treat_as_environment']</em><a class="headerlink" href="#pyexlatex.models.commands.endfloat.DeclareDelayedFloatFlavor.equal_attrs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.commands.endfloat.DeclareDelayedFloatFlavor.name">
-<code class="sig-name descname">name</code><em class="property"> = 'DeclareDelayedFloatFlavor'</em><a class="headerlink" href="#pyexlatex.models.commands.endfloat.DeclareDelayedFloatFlavor.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.commands.floatrow">
 <span id="pyexlatex-models-commands-floatrow-module"></span><h2>pyexlatex.models.commands.floatrow module<a class="headerlink" href="#module-pyexlatex.models.commands.floatrow" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.commands.floatrow.DeclareFloatFont">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.commands.floatrow.</code><code class="sig-name descname">DeclareFloatFont</code><span class="sig-paren">(</span><em class="sig-param">relative_size_int</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/floatrow.html#DeclareFloatFont"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.floatrow.DeclareFloatFont" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.MultiOptionSimpleItem" title="pyexlatex.models.item.MultiOptionSimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.MultiOptionSimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.commands.floatrow.DeclareFloatFont.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">relative_size_int</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/floatrow.html#DeclareFloatFont.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.floatrow.DeclareFloatFont.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.commands.floatrow.DeclareFloatFont.name">
-<code class="sig-name descname">name</code><em class="property"> = 'DeclareFloatFont'</em><a class="headerlink" href="#pyexlatex.models.commands.floatrow.DeclareFloatFont.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.models.commands.floatrow.FloatSetup">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.commands.floatrow.</code><code class="sig-name descname">FloatSetup</code><span class="sig-paren">(</span><em class="sig-param">targeted_float</em>, <em class="sig-param">options</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/floatrow.html#FloatSetup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.floatrow.FloatSetup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.commands.floatrow.FloatSetup.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">targeted_float</em>, <em class="sig-param">options</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/floatrow.html#FloatSetup.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.floatrow.FloatSetup.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.commands.floatrow.FloatSetup.name">
-<code class="sig-name descname">name</code><em class="property"> = 'floatsetup'</em><a class="headerlink" href="#pyexlatex.models.commands.floatrow.FloatSetup.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.commands.newenvironment">
 <span id="pyexlatex-models-commands-newenvironment-module"></span><h2>pyexlatex.models.commands.newenvironment module<a class="headerlink" href="#module-pyexlatex.models.commands.newenvironment" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.commands.newenvironment.NewEnvironment">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.commands.newenvironment.</code><code class="sig-name descname">NewEnvironment</code><span class="sig-paren">(</span><em class="sig-param">env_name</em>, <em class="sig-param">begin_env</em>, <em class="sig-param">end_env</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/newenvironment.html#NewEnvironment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.newenvironment.NewEnvironment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.MultiOptionSimpleItem" title="pyexlatex.models.item.MultiOptionSimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.MultiOptionSimpleItem</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.attrequals.EqOnAttrsWithConversionMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.attrequals.EqHashMixin</span></code></p>
-<dl class="method">
-<dt id="pyexlatex.models.commands.newenvironment.NewEnvironment.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">env_name</em>, <em class="sig-param">begin_env</em>, <em class="sig-param">end_env</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/newenvironment.html#NewEnvironment.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.newenvironment.NewEnvironment.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.commands.newenvironment.NewEnvironment.convert_type">
-<code class="sig-name descname">convert_type</code><a class="headerlink" href="#pyexlatex.models.commands.newenvironment.NewEnvironment.convert_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.str</span></code></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.commands.newenvironment.NewEnvironment.equal_attrs">
-<code class="sig-name descname">equal_attrs</code><em class="property"> = ['env_name', 'begin', 'end']</em><a class="headerlink" href="#pyexlatex.models.commands.newenvironment.NewEnvironment.equal_attrs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.commands.newenvironment.NewEnvironment.name">
-<code class="sig-name descname">name</code><em class="property"> = 'newenvironment'</em><a class="headerlink" href="#pyexlatex.models.commands.newenvironment.NewEnvironment.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.commands.renewcommand">
 <span id="pyexlatex-models-commands-renewcommand-module"></span><h2>pyexlatex.models.commands.renewcommand module<a class="headerlink" href="#module-pyexlatex.models.commands.renewcommand" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.commands.renewcommand.ReNewCommand">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.commands.renewcommand.</code><code class="sig-name descname">ReNewCommand</code><span class="sig-paren">(</span><em class="sig-param">command_name</em>, <em class="sig-param">command_definition</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/renewcommand.html#ReNewCommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.renewcommand.ReNewCommand" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.MultiOptionSimpleItem" title="pyexlatex.models.item.MultiOptionSimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.MultiOptionSimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.commands.renewcommand.ReNewCommand.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">command_name</em>, <em class="sig-param">command_definition</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/commands/renewcommand.html#ReNewCommand.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.commands.renewcommand.ReNewCommand.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.commands.renewcommand.ReNewCommand.name">
-<code class="sig-name descname">name</code><em class="property"> = 'renewcommand'</em><a class="headerlink" href="#pyexlatex.models.commands.renewcommand.ReNewCommand.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 

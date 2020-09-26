@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.format.text.linespacing &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.models.format.text.linespacing &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../../../../../_static/language_data.js"></script>
         <script src="../../../../../_static/clipboard.min.js"></script>
         <script src="../../../../../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" /> 
 </head>
@@ -71,7 +72,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -175,12 +176,12 @@
     <span class="n">ItemBase</span>
 <span class="p">)</span>
 
-<div class="viewcode-block" id="LineSpacing"><a class="viewcode-back" href="../../../../../api/pyexlatex.models.format.text.html#pyexlatex.models.format.text.linespacing.LineSpacing">[docs]</a><span class="k">class</span> <span class="nc">LineSpacing</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">LineSpacing</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
 
-<div class="viewcode-block" id="LineSpacing.__init__"><a class="viewcode-back" href="../../../../../api/pyexlatex.models.format.text.html#pyexlatex.models.format.text.linespacing.LineSpacing.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line_spacing</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line_spacing</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logical_line_spacing</span> <span class="o">=</span> <span class="n">line_spacing</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">latex_line_spacing</span> <span class="o">=</span> <span class="n">latex_line_spacing_from_logical_line_spacing</span><span class="p">(</span><span class="n">line_spacing</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -197,13 +198,13 @@
     <span class="k">def</span> <span class="nf">_options_str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logical_line_spacing</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
             <span class="k">return</span> <span class="s1">&#39;&#39;</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{self.latex_line_spacing}</span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">latex_line_spacing</span><span class="si">}</span><span class="s1">&#39;</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options_str</span>
         <span class="k">if</span> <span class="n">options</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">_basic_item_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">_multi_option_item_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">_multi_option_item_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="latex_line_spacing_from_logical_line_spacing"><a class="viewcode-back" href="../../../../../api/pyexlatex.models.format.text.html#pyexlatex.models.format.text.linespacing.latex_line_spacing_from_logical_line_spacing">[docs]</a><span class="k">def</span> <span class="nf">latex_line_spacing_from_logical_line_spacing</span><span class="p">(</span><span class="n">line_spacing</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>

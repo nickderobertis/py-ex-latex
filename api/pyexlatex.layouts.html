@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.layouts package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.layouts package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,13 +38,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="pyexlatex.logic package" href="pyexlatex.logic.html" />
+    <link rel="next" title="pyexlatex.letter package" href="pyexlatex.letter.html" />
     <link rel="prev" title="pyexlatex.graphics.tikz.node.position package" href="pyexlatex.graphics.tikz.node.position.html" /> 
 </head>
 
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -204,171 +206,15 @@
 </div>
 <div class="section" id="module-pyexlatex.layouts.base">
 <span id="pyexlatex-layouts-base-module"></span><h2>pyexlatex.layouts.base module<a class="headerlink" href="#module-pyexlatex.layouts.base" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.layouts.base.LayoutBase">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.layouts.base.</code><code class="sig-name descname">LayoutBase</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/base.html#LayoutBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.base.LayoutBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaMixin" title="pyexlatex.models.section.base.TextAreaMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaMixin</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.layouts.base.LayoutBase.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/base.html#LayoutBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.base.LayoutBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.layouts.base.LayoutBase.content">
-<code class="sig-name descname">content</code><em class="property">: Any</em><em class="property"> = None</em><a class="headerlink" href="#pyexlatex.layouts.base.LayoutBase.content" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.layouts.grid">
 <span id="pyexlatex-layouts-grid-module"></span><h2>pyexlatex.layouts.grid module<a class="headerlink" href="#module-pyexlatex.layouts.grid" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.layouts.grid.CellLayout">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.layouts.grid.</code><code class="sig-name descname">CellLayout</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">grid_shape</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/grid.html#CellLayout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.grid.CellLayout" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.layouts.base.LayoutBase" title="pyexlatex.layouts.base.LayoutBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.layouts.base.LayoutBase</span></code></a></p>
-<p>Lay content out in a grid where each cell is arbitrarily sized</p>
-<dl class="method">
-<dt id="pyexlatex.layouts.grid.CellLayout.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">grid_shape</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/grid.html#CellLayout.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.grid.CellLayout.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl>
-<dt>Args:</dt><dd><p>content:
-grid_shape: list of list of tuples of (width, height), e.g. [</p>
-<blockquote>
-<div><blockquote>
-<div><p>[(0.3, 0.4), (0.7, 0.4)],
-[(0.3, 0.6), (0.7, 0.6)],</p>
-</div></blockquote>
-<p>] would create a 2x2 grid with 40% of height in the first row, 60% in the second row. 30% width in the
-first column, 70% width in the second column.</p>
-</div></blockquote>
-<p><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs:</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.layouts.grid.GridLayout">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.layouts.grid.</code><code class="sig-name descname">GridLayout</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/grid.html#GridLayout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.grid.GridLayout" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.layouts.grid.CellLayout" title="pyexlatex.layouts.grid.CellLayout"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.layouts.grid.CellLayout</span></code></a></p>
-<p>Evenly spaced grid layout.</p>
-<p>Creates a CellLayout, automatically setting widths and heights as an even split based on the shape
-of the content passed to make a grid</p>
-<dl class="method">
-<dt id="pyexlatex.layouts.grid.GridLayout.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/grid.html#GridLayout.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.grid.GridLayout.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Args:
-content:
-grid_shape: list of list of tuples of (width, height), e.g. [</p>
-<blockquote>
-<div><blockquote>
-<div><p>[(0.3, 0.4), (0.7, 0.4)],
-[(0.3, 0.6), (0.7, 0.6)],</p>
-</div></blockquote>
-<p>] would create a 2x2 grid with 40% of height in the first row, 60% in the second row. 30% width in the
-first column, 70% width in the second column.</p>
-</div></blockquote>
-<p><a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs:</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.layouts.multicol">
 <span id="pyexlatex-layouts-multicol-module"></span><h2>pyexlatex.layouts.multicol module<a class="headerlink" href="#module-pyexlatex.layouts.multicol" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.layouts.multicol.MultiCol">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.layouts.multicol.</code><code class="sig-name descname">MultiCol</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/multicol.html#MultiCol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.multicol.MultiCol" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.layouts.base.LayoutBase" title="pyexlatex.layouts.base.LayoutBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.layouts.base.LayoutBase</span></code></a></p>
-<p>Multi-column layout that does not make any constraints on vertical sizing.</p>
-<dl class="method">
-<dt id="pyexlatex.layouts.multicol.MultiCol.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/multicol.html#MultiCol.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.multicol.MultiCol.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.layouts.multicol.MultiCol.column_width">
-<em class="property">property </em><code class="sig-name descname">column_width</code><a class="headerlink" href="#pyexlatex.layouts.multicol.MultiCol.column_width" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.layouts.spaced">
 <span id="pyexlatex-layouts-spaced-module"></span><h2>pyexlatex.layouts.spaced module<a class="headerlink" href="#module-pyexlatex.layouts.spaced" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.layouts.spaced.HorizontallySpaced">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.layouts.spaced.</code><code class="sig-name descname">HorizontallySpaced</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">pad_ends=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/spaced.html#HorizontallySpaced"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.spaced.HorizontallySpaced" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.layouts.spaced.SpacedBase" title="pyexlatex.layouts.spaced.SpacedBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.layouts.spaced.SpacedBase</span></code></a></p>
-<p>Inserts horiztonal spacing between items until they fill the content area</p>
-<dl class="method">
-<dt id="pyexlatex.layouts.spaced.HorizontallySpaced.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">pad_ends=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/spaced.html#HorizontallySpaced.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.spaced.HorizontallySpaced.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="pyexlatex.layouts.spaced.HorizontallySpaced.params.content"></span><strong>content</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.layouts.spaced.HorizontallySpaced.params.content">¶</a> – </p></li>
-<li><p><span class="target" id="pyexlatex.layouts.spaced.HorizontallySpaced.params.pad_ends"></span><strong>pad_ends</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.layouts.spaced.HorizontallySpaced.params.pad_ends">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – whether to add spacing outside the content as well</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.layouts.spaced.SpacedBase">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.layouts.spaced.</code><code class="sig-name descname">SpacedBase</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">vertically_space</em>, <em class="sig-param">pad_ends</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/spaced.html#SpacedBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.spaced.SpacedBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.template.Template" title="pyexlatex.models.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.template.Template</span></code></a></p>
-<p>Base class for VerticallySpaced and HorizontallySpaced. Handles the logic of adding VFill and HFill between and
-around items.</p>
-<dl class="method">
-<dt id="pyexlatex.layouts.spaced.SpacedBase.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">vertically_space</em>, <em class="sig-param">pad_ends</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/spaced.html#SpacedBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.spaced.SpacedBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.layouts.spaced.SpacedBase.spacer">
-<em class="property">property </em><code class="sig-name descname">spacer</code><a class="headerlink" href="#pyexlatex.layouts.spaced.SpacedBase.spacer" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference internal" href="pyexlatex.models.format.html#pyexlatex.models.format.fills.VFill" title="pyexlatex.models.format.fills.VFill"><code class="xref py py-class docutils literal notranslate"><span class="pre">VFill</span></code></a>, <a class="reference internal" href="pyexlatex.models.format.html#pyexlatex.models.format.fills.HFill" title="pyexlatex.models.format.fills.HFill"><code class="xref py py-class docutils literal notranslate"><span class="pre">HFill</span></code></a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="pyexlatex.layouts.spaced.VerticallySpaced">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.layouts.spaced.</code><code class="sig-name descname">VerticallySpaced</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">pad_ends=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/spaced.html#VerticallySpaced"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.spaced.VerticallySpaced" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.layouts.spaced.SpacedBase" title="pyexlatex.layouts.spaced.SpacedBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.layouts.spaced.SpacedBase</span></code></a></p>
-<p>Inserts vertical spacing between items until they fill the content area</p>
-<dl class="method">
-<dt id="pyexlatex.layouts.spaced.VerticallySpaced.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">content</em>, <em class="sig-param">pad_ends=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/layouts/spaced.html#VerticallySpaced.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.layouts.spaced.VerticallySpaced.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="pyexlatex.layouts.spaced.VerticallySpaced.params.content"></span><strong>content</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.layouts.spaced.VerticallySpaced.params.content">¶</a> – </p></li>
-<li><p><span class="target" id="pyexlatex.layouts.spaced.VerticallySpaced.params.pad_ends"></span><strong>pad_ends</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.layouts.spaced.VerticallySpaced.params.pad_ends">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – whether to add spacing outside the content as well</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 
@@ -380,7 +226,7 @@ around items.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pyexlatex.logic.html" class="btn btn-neutral float-right" title="pyexlatex.logic package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pyexlatex.letter.html" class="btn btn-neutral float-right" title="pyexlatex.letter package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="pyexlatex.graphics.tikz.node.position.html" class="btn btn-neutral float-left" title="pyexlatex.graphics.tikz.node.position package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

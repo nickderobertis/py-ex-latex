@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.references.bibtex package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.models.references.bibtex package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.models.references.bibtex.style package" href="pyexlatex.models.references.bibtex.style.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -230,211 +232,24 @@
 </div>
 <div class="section" id="module-pyexlatex.models.references.bibtex.addresource">
 <span id="pyexlatex-models-references-bibtex-addresource-module"></span><h2>pyexlatex.models.references.bibtex.addresource module<a class="headerlink" href="#module-pyexlatex.models.references.bibtex.addresource" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.references.bibtex.addresource.AddBibResource">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.bibtex.addresource.</code><code class="sig-name descname">AddBibResource</code><span class="sig-paren">(</span><em class="sig-param">bib_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/addresource.html#AddBibResource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.addresource.AddBibResource" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.addresource.AddBibResource.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">bib_path</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/addresource.html#AddBibResource.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.addresource.AddBibResource.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.addresource.AddBibResource.name">
-<code class="sig-name descname">name</code><em class="property"> = 'addbibresource'</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.addresource.AddBibResource.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.references.bibtex.article">
 <span id="pyexlatex-models-references-bibtex-article-module"></span><h2>pyexlatex.models.references.bibtex.article module<a class="headerlink" href="#module-pyexlatex.models.references.bibtex.article" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.references.bibtex.article.BibTexArticle">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.bibtex.article.</code><code class="sig-name descname">BibTexArticle</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em>, <em class="sig-param">author</em>, <em class="sig-param">title</em>, <em class="sig-param">journal</em>, <em class="sig-param">year</em>, <em class="sig-param">volume=None</em>, <em class="sig-param">number=None</em>, <em class="sig-param">pages=None</em>, <em class="sig-param">month=None</em>, <em class="sig-param">note=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/article.html#BibTexArticle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.article.BibTexArticle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase" title="pyexlatex.models.references.bibtex.base.BibTexEntryBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.references.bibtex.base.BibTexEntryBase</span></code></a></p>
-<p>Biblography document which is an article.</p>
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.article.BibTexArticle.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em>, <em class="sig-param">author</em>, <em class="sig-param">title</em>, <em class="sig-param">journal</em>, <em class="sig-param">year</em>, <em class="sig-param">volume=None</em>, <em class="sig-param">number=None</em>, <em class="sig-param">pages=None</em>, <em class="sig-param">month=None</em>, <em class="sig-param">note=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/article.html#BibTexArticle.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.article.BibTexArticle.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.article.BibTexArticle.item_type">
-<code class="sig-name descname">item_type</code><em class="property"> = 'article'</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.article.BibTexArticle.item_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.article.BibTexArticle.optional_attrs">
-<code class="sig-name descname">optional_attrs</code><em class="property">: List[str]</em><em class="property"> = ['volume', 'number', 'pages', 'month', 'note']</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.article.BibTexArticle.optional_attrs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.article.BibTexArticle.required_attrs">
-<code class="sig-name descname">required_attrs</code><em class="property">: List[str]</em><em class="property"> = ['author', 'title', 'journal', 'year']</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.article.BibTexArticle.required_attrs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.references.bibtex.base">
 <span id="pyexlatex-models-references-bibtex-base-module"></span><h2>pyexlatex.models.references.bibtex.base module<a class="headerlink" href="#module-pyexlatex.models.references.bibtex.base" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.bibtex.base.</code><code class="sig-name descname">BibTexEntryBase</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/base.html#BibTexEntryBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.documentitem.DocumentItem" title="pyexlatex.models.documentitem.DocumentItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.documentitem.DocumentItem</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.attrequals.EqOnAttrsMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/base.html#BibTexEntryBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase.equal_attrs">
-<code class="sig-name descname">equal_attrs</code><em class="property"> = ['item_accessor', 'fields']</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase.equal_attrs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase.fields">
-<em class="property">property </em><code class="sig-name descname">fields</code><a class="headerlink" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase.fields" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase.is_BibTexEntry">
-<code class="sig-name descname">is_BibTexEntry</code><em class="property"> = True</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase.is_BibTexEntry" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase.item_type">
-<code class="sig-name descname">item_type</code><em class="property"> = 'notimplemented'</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase.item_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase.optional_attrs">
-<code class="sig-name descname">optional_attrs</code><em class="property">: List[str]</em><em class="property"> = []</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase.optional_attrs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['item_accessor', 'fields']</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.base.BibTexEntryBase.required_attrs">
-<code class="sig-name descname">required_attrs</code><em class="property">: List[str]</em><em class="property"> = []</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase.required_attrs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.references.bibtex.generic">
 <span id="pyexlatex-models-references-bibtex-generic-module"></span><h2>pyexlatex.models.references.bibtex.generic module<a class="headerlink" href="#module-pyexlatex.models.references.bibtex.generic" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.references.bibtex.generic.BibTexEntry">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.bibtex.generic.</code><code class="sig-name descname">BibTexEntry</code><span class="sig-paren">(</span><em class="sig-param">fields_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/generic.html#BibTexEntry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.generic.BibTexEntry" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase" title="pyexlatex.models.references.bibtex.base.BibTexEntryBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.references.bibtex.base.BibTexEntryBase</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.generic.BibTexEntry.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">fields_dict</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/generic.html#BibTexEntry.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.generic.BibTexEntry.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.generic.BibTexEntry.fields">
-<em class="property">property </em><code class="sig-name descname">fields</code><a class="headerlink" href="#pyexlatex.models.references.bibtex.generic.BibTexEntry.fields" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.references.bibtex.manual">
 <span id="pyexlatex-models-references-bibtex-manual-module"></span><h2>pyexlatex.models.references.bibtex.manual module<a class="headerlink" href="#module-pyexlatex.models.references.bibtex.manual" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.references.bibtex.manual.BibTexManual">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.bibtex.manual.</code><code class="sig-name descname">BibTexManual</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em>, <em class="sig-param">title</em>, <em class="sig-param">author=None</em>, <em class="sig-param">organization=None</em>, <em class="sig-param">address=None</em>, <em class="sig-param">edition=None</em>, <em class="sig-param">month=None</em>, <em class="sig-param">year=None</em>, <em class="sig-param">note=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/manual.html#BibTexManual"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.manual.BibTexManual" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase" title="pyexlatex.models.references.bibtex.base.BibTexEntryBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.references.bibtex.base.BibTexEntryBase</span></code></a></p>
-<p>Biblography document which is a manual.</p>
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.manual.BibTexManual.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em>, <em class="sig-param">title</em>, <em class="sig-param">author=None</em>, <em class="sig-param">organization=None</em>, <em class="sig-param">address=None</em>, <em class="sig-param">edition=None</em>, <em class="sig-param">month=None</em>, <em class="sig-param">year=None</em>, <em class="sig-param">note=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/manual.html#BibTexManual.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.manual.BibTexManual.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.manual.BibTexManual.item_type">
-<code class="sig-name descname">item_type</code><em class="property"> = 'manual'</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.manual.BibTexManual.item_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.manual.BibTexManual.optional_attrs">
-<code class="sig-name descname">optional_attrs</code><em class="property">: List[str]</em><em class="property"> = ['author', 'organization', 'address', 'edition', 'month', 'year', 'note']</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.manual.BibTexManual.optional_attrs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.manual.BibTexManual.required_attrs">
-<code class="sig-name descname">required_attrs</code><em class="property">: List[str]</em><em class="property"> = ['title']</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.manual.BibTexManual.required_attrs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.references.bibtex.misc">
 <span id="pyexlatex-models-references-bibtex-misc-module"></span><h2>pyexlatex.models.references.bibtex.misc module<a class="headerlink" href="#module-pyexlatex.models.references.bibtex.misc" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.references.bibtex.misc.BibTexMisc">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.bibtex.misc.</code><code class="sig-name descname">BibTexMisc</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em>, <em class="sig-param">author=None</em>, <em class="sig-param">title=None</em>, <em class="sig-param">howpublished=None</em>, <em class="sig-param">month=None</em>, <em class="sig-param">year=None</em>, <em class="sig-param">note=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/misc.html#BibTexMisc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.misc.BibTexMisc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.models.references.bibtex.base.BibTexEntryBase" title="pyexlatex.models.references.bibtex.base.BibTexEntryBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.references.bibtex.base.BibTexEntryBase</span></code></a></p>
-<p>Biblography document which is of miscellaneous type.</p>
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.misc.BibTexMisc.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">item_accessor</em>, <em class="sig-param">author=None</em>, <em class="sig-param">title=None</em>, <em class="sig-param">howpublished=None</em>, <em class="sig-param">month=None</em>, <em class="sig-param">year=None</em>, <em class="sig-param">note=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/misc.html#BibTexMisc.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.misc.BibTexMisc.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.misc.BibTexMisc.item_type">
-<code class="sig-name descname">item_type</code><em class="property"> = 'misc'</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.misc.BibTexMisc.item_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.misc.BibTexMisc.optional_attrs">
-<code class="sig-name descname">optional_attrs</code><em class="property">: List[str]</em><em class="property"> = ['author', 'title', 'howpublished', 'month', 'year', 'note']</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.misc.BibTexMisc.optional_attrs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.references.bibtex.printbib">
 <span id="pyexlatex-models-references-bibtex-printbib-module"></span><h2>pyexlatex.models.references.bibtex.printbib module<a class="headerlink" href="#module-pyexlatex.models.references.bibtex.printbib" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.references.bibtex.printbib.PrintBibliography">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.references.bibtex.printbib.</code><code class="sig-name descname">PrintBibliography</code><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/printbib.html#PrintBibliography"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.printbib.PrintBibliography" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.NoOptionsNoContentsItem" title="pyexlatex.models.item.NoOptionsNoContentsItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.NoOptionsNoContentsItem</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.documentitem.DocumentItem" title="pyexlatex.models.documentitem.DocumentItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.documentitem.DocumentItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.references.bibtex.printbib.PrintBibliography.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/references/bibtex/printbib.html#PrintBibliography.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.references.bibtex.printbib.PrintBibliography.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.references.bibtex.printbib.PrintBibliography.name">
-<code class="sig-name descname">name</code><em class="property"> = 'printbibliography'</em><a class="headerlink" href="#pyexlatex.models.references.bibtex.printbib.PrintBibliography.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 

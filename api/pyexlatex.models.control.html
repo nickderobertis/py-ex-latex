@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.control package &mdash; pyexlatex 0.10.10 documentation</title>
+  <title>pyexlatex.models.control package &mdash; pyexlatex 0.11.1 documentation</title>
   
 
   
@@ -30,7 +30,6 @@
         <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
-        <script >var copybuttonSkipText = '>>> ';</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -39,10 +38,12 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.models.control.documentclass package" href="pyexlatex.models.control.documentclass.html" />
@@ -73,7 +74,7 @@
             
             
               <div class="version">
-                0.10.10
+                0.11.1
               </div>
             
           
@@ -109,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.figure.html">pyexlatex.figure package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.graphics.html">pyexlatex.graphics package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.layouts.html">pyexlatex.layouts package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pyexlatex.letter.html">pyexlatex.letter package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.logic.html">pyexlatex.logic package</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="pyexlatex.models.html">pyexlatex.models package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pyexlatex.presentation.html">pyexlatex.presentation package</a></li>
@@ -236,226 +238,36 @@
 </div>
 <div class="section" id="module-pyexlatex.models.control.and_">
 <span id="pyexlatex-models-control-and-module"></span><h2>pyexlatex.models.control.and_ module<a class="headerlink" href="#module-pyexlatex.models.control.and_" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.control.and_.And">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.and_.</code><code class="sig-name descname">And</code><a class="reference internal" href="../_modules/pyexlatex/models/control/and_.html#And"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.and_.And" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.NoOptionsNoContentsItem" title="pyexlatex.models.item.NoOptionsNoContentsItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.NoOptionsNoContentsItem</span></code></a></p>
-<p>Used internally for writing multiple institutions.</p>
-<dl class="method">
-<dt id="pyexlatex.models.control.and_.And.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/and_.html#And.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.and_.And.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.control.and_.And.name">
-<code class="sig-name descname">name</code><em class="property"> = 'and'</em><a class="headerlink" href="#pyexlatex.models.control.and_.And.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.control.extrafloats">
 <span id="pyexlatex-models-control-extrafloats-module"></span><h2>pyexlatex.models.control.extrafloats module<a class="headerlink" href="#module-pyexlatex.models.control.extrafloats" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.control.extrafloats.ExtraFloats">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.extrafloats.</code><code class="sig-name descname">ExtraFloats</code><span class="sig-paren">(</span><em class="sig-param">num_extra=1000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/extrafloats.html#ExtraFloats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.extrafloats.ExtraFloats" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.control.extrafloats.ExtraFloats.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">num_extra=1000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/extrafloats.html#ExtraFloats.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.extrafloats.ExtraFloats.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.control.extrafloats.ExtraFloats.name">
-<code class="sig-name descname">name</code><em class="property"> = 'extrafloats'</em><a class="headerlink" href="#pyexlatex.models.control.extrafloats.ExtraFloats.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.control.filecontents">
 <span id="pyexlatex-models-control-filecontents-module"></span><h2>pyexlatex.models.control.filecontents module<a class="headerlink" href="#module-pyexlatex.models.control.filecontents" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.control.filecontents.FileContents">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.filecontents.</code><code class="sig-name descname">FileContents</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/filecontents.html#FileContents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.filecontents.FileContents" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.Item" title="pyexlatex.models.item.Item"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.Item</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.control.filecontents.FileContents.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em>, <em class="sig-param">filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/filecontents.html#FileContents.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.filecontents.FileContents.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.control.filecontents.FileContents.name">
-<code class="sig-name descname">name</code><em class="property"> = 'filecontents'</em><a class="headerlink" href="#pyexlatex.models.control.filecontents.FileContents.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.control.group">
 <span id="pyexlatex-models-control-group-module"></span><h2>pyexlatex.models.control.group module<a class="headerlink" href="#module-pyexlatex.models.control.group" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.control.group.Group">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.group.</code><code class="sig-name descname">Group</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/group.html#Group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.group.Group" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.template.Template" title="pyexlatex.models.template.Template"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.template.Template</span></code></a></p>
-<p>Groups together latex items so that “global” commands will only affect the items in a group</p>
-<dl class="method">
-<dt id="pyexlatex.models.control.group.Group.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">contents</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/group.html#Group.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.group.Group.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.control.maxdeadcycles">
 <span id="pyexlatex-models-control-maxdeadcycles-module"></span><h2>pyexlatex.models.control.maxdeadcycles module<a class="headerlink" href="#module-pyexlatex.models.control.maxdeadcycles" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.control.maxdeadcycles.MaxDeadCycles">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.maxdeadcycles.</code><code class="sig-name descname">MaxDeadCycles</code><span class="sig-paren">(</span><em class="sig-param">num_cycles=200</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/maxdeadcycles.html#MaxDeadCycles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.maxdeadcycles.MaxDeadCycles" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.EqualsItem" title="pyexlatex.models.item.EqualsItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.EqualsItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.control.maxdeadcycles.MaxDeadCycles.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">num_cycles=200</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/maxdeadcycles.html#MaxDeadCycles.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.maxdeadcycles.MaxDeadCycles.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.control.maxdeadcycles.MaxDeadCycles.name">
-<code class="sig-name descname">name</code><em class="property"> = 'maxdeadcycles'</em><a class="headerlink" href="#pyexlatex.models.control.maxdeadcycles.MaxDeadCycles.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.control.mode">
 <span id="pyexlatex-models-control-mode-module"></span><h2>pyexlatex.models.control.mode module<a class="headerlink" href="#module-pyexlatex.models.control.mode" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.control.mode.Mode">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.mode.</code><code class="sig-name descname">Mode</code><span class="sig-paren">(</span><em class="sig-param">mode_type='presentation'</em>, <em class="sig-param">contents=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/mode.html#Mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.mode.Mode" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
-<dl class="method">
-<dt id="pyexlatex.models.control.mode.Mode.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">mode_type='presentation'</em>, <em class="sig-param">contents=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/mode.html#Mode.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.mode.Mode.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.control.mode.Mode.name">
-<code class="sig-name descname">name</code><em class="property"> = 'mode'</em><a class="headerlink" href="#pyexlatex.models.control.mode.Mode.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.control.mode.Mode.repr_cols">
-<code class="sig-name descname">repr_cols</code><em class="property"> = ['mode_type', 'contents']</em><a class="headerlink" href="#pyexlatex.models.control.mode.Mode.repr_cols" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.control.newcounter">
 <span id="pyexlatex-models-control-newcounter-module"></span><h2>pyexlatex.models.control.newcounter module<a class="headerlink" href="#module-pyexlatex.models.control.newcounter" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.control.newcounter.NewCounter">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.newcounter.</code><code class="sig-name descname">NewCounter</code><span class="sig-paren">(</span><em class="sig-param">counter_name</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/newcounter.html#NewCounter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.newcounter.NewCounter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.control.newcounter.NewCounter.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">counter_name</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/newcounter.html#NewCounter.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.newcounter.NewCounter.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.control.newcounter.NewCounter.name">
-<code class="sig-name descname">name</code><em class="property"> = 'newcounter'</em><a class="headerlink" href="#pyexlatex.models.control.newcounter.NewCounter.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.control.newpage">
 <span id="pyexlatex-models-control-newpage-module"></span><h2>pyexlatex.models.control.newpage module<a class="headerlink" href="#module-pyexlatex.models.control.newpage" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.control.newpage.PageBreak">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.newpage.</code><code class="sig-name descname">PageBreak</code><a class="reference internal" href="../_modules/pyexlatex/models/control/newpage.html#PageBreak"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.newpage.PageBreak" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.NoOptionsNoContentsItem" title="pyexlatex.models.item.NoOptionsNoContentsItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.NoOptionsNoContentsItem</span></code></a></p>
-<p>Adds a break point where a new page should be started.</p>
-<dl class="method">
-<dt id="pyexlatex.models.control.newpage.PageBreak.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/newpage.html#PageBreak.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.newpage.PageBreak.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.control.newpage.PageBreak.name">
-<code class="sig-name descname">name</code><em class="property"> = 'newpage'</em><a class="headerlink" href="#pyexlatex.models.control.newpage.PageBreak.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.control.setcounter">
 <span id="pyexlatex-models-control-setcounter-module"></span><h2>pyexlatex.models.control.setcounter module<a class="headerlink" href="#module-pyexlatex.models.control.setcounter" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.control.setcounter.SetCounter">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.setcounter.</code><code class="sig-name descname">SetCounter</code><span class="sig-paren">(</span><em class="sig-param">set_for</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/setcounter.html#SetCounter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.setcounter.SetCounter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.MultiOptionSimpleItem" title="pyexlatex.models.item.MultiOptionSimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.MultiOptionSimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.control.setcounter.SetCounter.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">set_for</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/setcounter.html#SetCounter.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.setcounter.SetCounter.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.control.setcounter.SetCounter.name">
-<code class="sig-name descname">name</code><em class="property"> = 'setcounter'</em><a class="headerlink" href="#pyexlatex.models.control.setcounter.SetCounter.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.control.setlength">
 <span id="pyexlatex-models-control-setlength-module"></span><h2>pyexlatex.models.control.setlength module<a class="headerlink" href="#module-pyexlatex.models.control.setlength" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.control.setlength.SetLength">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.setlength.</code><code class="sig-name descname">SetLength</code><span class="sig-paren">(</span><em class="sig-param">set_for</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/setlength.html#SetLength"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.setlength.SetLength" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.MultiOptionSimpleItem" title="pyexlatex.models.item.MultiOptionSimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.MultiOptionSimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.control.setlength.SetLength.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">set_for</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/setlength.html#SetLength.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.setlength.SetLength.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.control.setlength.SetLength.name">
-<code class="sig-name descname">name</code><em class="property"> = 'setlength'</em><a class="headerlink" href="#pyexlatex.models.control.setlength.SetLength.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-pyexlatex.models.control.value">
 <span id="pyexlatex-models-control-value-module"></span><h2>pyexlatex.models.control.value module<a class="headerlink" href="#module-pyexlatex.models.control.value" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="pyexlatex.models.control.value.Value">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.models.control.value.</code><code class="sig-name descname">Value</code><span class="sig-paren">(</span><em class="sig-param">of</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/value.html#Value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.value.Value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
-<dl class="method">
-<dt id="pyexlatex.models.control.value.Value.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">of</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/control/value.html#Value.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.control.value.Value.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyexlatex.models.control.value.Value.name">
-<code class="sig-name descname">name</code><em class="property"> = 'value'</em><a class="headerlink" href="#pyexlatex.models.control.value.Value.name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 </div>
 
