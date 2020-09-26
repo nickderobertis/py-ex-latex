@@ -37,6 +37,10 @@ class LetterDocument(DocumentBase):
             options=doc_class_options
         )
 
+        self.add_data_from_content(
+            [content, contact_info, to_contact_info, signer_name, salutation, closing, ps, enclosures]
+        )
+
         all_pre_env_contents: List[PyexlatexItems] = []
 
         if contact_info is not None:
