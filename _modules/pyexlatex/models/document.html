@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.document &mdash; pyexlatex 0.11.2 documentation</title>
+  <title>pyexlatex.models.document &mdash; pyexlatex 0.11.3 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.11.2
+                0.11.3
               </div>
             
           
@@ -173,7 +173,7 @@
 <span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="kn">import</span> <span class="n">Item</span><span class="p">,</span> <span class="n">ItemBase</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.control.documentclass.documentclass</span> <span class="kn">import</span> <span class="n">DocumentClass</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.package</span> <span class="kn">import</span> <span class="n">Package</span>
-<span class="kn">from</span> <span class="nn">pyexlatex.models.page.style</span> <span class="kn">import</span> <span class="n">PageStyle</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.page.style</span> <span class="kn">import</span> <span class="n">PageStyle</span><span class="p">,</span> <span class="n">FancyPageStyle</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.landscape</span> <span class="kn">import</span> <span class="n">Landscape</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.logic.pdf.main</span> <span class="kn">import</span> <span class="n">document_to_pdf_and_move</span><span class="p">,</span> <span class="n">latex_str_to_pdf_obj_with_sources</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.texgen.replacements.filename</span> <span class="kn">import</span> <span class="n">latex_filename_replacements</span>
@@ -182,7 +182,7 @@
 <span class="kn">from</span> <span class="nn">pyexlatex.models.page.header</span> <span class="kn">import</span> <span class="n">remove_header</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.page.footer</span> <span class="kn">import</span> <span class="n">CenterFooter</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.format.sectionnum</span> <span class="kn">import</span> <span class="n">SectionNumberingFormatter</span>
-<span class="kn">from</span> <span class="nn">pyexlatex.typing</span> <span class="kn">import</span> <span class="n">AnyItem</span><span class="p">,</span> <span class="n">ItemOrListOfItems</span><span class="p">,</span> <span class="n">ItemAndPreEnvContents</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.typing</span> <span class="kn">import</span> <span class="n">AnyItem</span><span class="p">,</span> <span class="n">ItemOrListOfItems</span><span class="p">,</span> <span class="n">ItemAndPreEnvContents</span><span class="p">,</span> <span class="n">PyexlatexItems</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.commands.endfloat</span> <span class="kn">import</span> <span class="n">DeclareDelayedFloatFlavor</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.format.text.linespacing</span> <span class="kn">import</span> <span class="n">LineSpacing</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.commands.floatrow</span> <span class="kn">import</span> <span class="n">DeclareFloatFont</span><span class="p">,</span> <span class="n">FloatSetup</span>
@@ -202,7 +202,7 @@
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;&lt;invalid, do not use DocumentBase directly&gt;&#39;</span>
     <span class="n">document_class_obj</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;DocumentClass&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">ItemOrListOfItems</span><span class="p">,</span> <span class="n">packages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Package</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">PyexlatexItems</span><span class="p">,</span> <span class="n">packages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Package</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">pre_env_contents</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ItemOrListOfItems</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">data_cleanup_func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">pre_output_func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -303,7 +303,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;document&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">ItemOrListOfItems</span><span class="p">,</span> <span class="n">packages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Package</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">landscape</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">PyexlatexItems</span><span class="p">,</span> <span class="n">packages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Package</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">landscape</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">authors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">date</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">abstract</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">skip_title_page</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">page_modifier_str</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;margin=0.8in, bottom=1.2in&#39;</span><span class="p">,</span> <span class="n">page_header</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -316,7 +316,7 @@
                  <span class="n">page_style</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;fancy&#39;</span><span class="p">,</span> <span class="n">custom_headers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Header</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">remove_section_numbering</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">separate_abstract_page</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                  <span class="n">extra_title_page_lines</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">empty_title_page_style</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                 <span class="n">pre_output_func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+                 <span class="n">pre_output_func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">apply_page_style_to_section_starts</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">pyexlatex.models.title.page</span> <span class="kn">import</span> <span class="n">TitlePage</span>
 
         <span class="n">all_packages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_packages</span><span class="p">(</span>
@@ -358,16 +358,22 @@
             <span class="o">*</span><span class="n">section_num_styles</span><span class="p">,</span>
             <span class="n">SetCounter</span><span class="p">(</span><span class="s1">&#39;secnumdepth&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">if</span> <span class="n">remove_section_numbering</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">PageStyle</span><span class="p">(</span><span class="n">page_style</span><span class="p">),</span>
-
             <span class="c1"># header is there by default. add remove header lines if page_header=False</span>
             <span class="n">remove_header</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">page_header</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">custom_headers</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">]</span>
+
+        <span class="n">page_style_contents</span> <span class="o">=</span> <span class="p">[</span>
             <span class="o">*</span><span class="n">custom_headers</span><span class="p">,</span>
 
             <span class="c1"># add right page numbers. if not, use blank center footer to clear default page numbers in center footer</span>
             <span class="n">right_aligned_page_numbers</span> <span class="k">if</span> <span class="n">page_numbers</span> <span class="k">else</span> <span class="n">CenterFooter</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="p">]</span>
 
-        <span class="n">pre_env_contents</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">possible_extra_pre_env_contents</span> <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">apply_page_style_to_section_starts</span><span class="p">:</span>
+            <span class="n">plain_redef</span> <span class="o">=</span> <span class="n">FancyPageStyle</span><span class="p">(</span><span class="n">page_style_contents</span><span class="p">)</span>
+            <span class="n">page_style_contents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">plain_redef</span><span class="p">)</span>
+
+        <span class="n">pre_env_contents</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">possible_extra_pre_env_contents</span> <span class="o">+</span> <span class="n">page_style_contents</span> <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">skip_title_page</span> <span class="ow">and</span> <span class="n">_should_create_title_page</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">authors</span><span class="o">=</span><span class="n">authors</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="n">date</span><span class="p">,</span> <span class="n">abstract</span><span class="o">=</span><span class="n">abstract</span><span class="p">):</span>
             <span class="n">title_page</span> <span class="o">=</span> <span class="n">TitlePage</span><span class="p">(</span>

@@ -26,6 +26,14 @@ Subpackages
 Submodules
 ----------
 
+pyexlatex.models.blindtext module
+---------------------------------
+
+.. automodule:: pyexlatex.models.blindtext
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyexlatex.models.caption module
 -------------------------------
 
