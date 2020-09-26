@@ -14,7 +14,7 @@ from pyexlatex.models.page.number import right_aligned_page_numbers
 from pyexlatex.models.page.header import remove_header
 from pyexlatex.models.page.footer import CenterFooter
 from pyexlatex.models.format.sectionnum import SectionNumberingFormatter
-from pyexlatex.typing import AnyItem, ItemOrListOfItems, ItemAndPreEnvContents
+from pyexlatex.typing import AnyItem, ItemOrListOfItems, ItemAndPreEnvContents, PyexlatexItems
 from pyexlatex.models.commands.endfloat import DeclareDelayedFloatFlavor
 from pyexlatex.models.format.text.linespacing import LineSpacing
 from pyexlatex.models.commands.floatrow import DeclareFloatFont, FloatSetup
@@ -34,7 +34,7 @@ class DocumentBase(ContainerItem, Item):
     name = '<invalid, do not use DocumentBase directly>'
     document_class_obj: Optional['DocumentClass'] = None
 
-    def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
+    def __init__(self, content: PyexlatexItems, packages: List[Package]=None,
                  pre_env_contents: Optional[ItemOrListOfItems] = None, data_cleanup_func: Optional[Callable] = None,
                  pre_output_func: Optional[Callable] = None):
         """
@@ -135,7 +135,7 @@ class Document(DocumentBase):
     """
     name = 'document'
 
-    def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None, landscape=False,
+    def __init__(self, content: PyexlatexItems, packages: List[Package]=None, landscape=False,
                  title: str=None, authors: Optional[Union[List[str], str]] = None, date: str=None, abstract: str=None,
                  skip_title_page: bool=False,
                  page_modifier_str: Optional[str]='margin=0.8in, bottom=1.2in', page_header: bool=False,
