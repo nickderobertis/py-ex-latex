@@ -5,7 +5,7 @@ from pyexlatex.models.environment import Environment
 from pyexlatex.models.item import Item, ItemBase
 from pyexlatex.models.control.documentclass.documentclass import DocumentClass
 from pyexlatex.models.package import Package
-from pyexlatex.models.page.style import PageStyle
+from pyexlatex.models.page.style import PageStyle, FancyPageStyle
 from pyexlatex.models.landscape import Landscape
 from pyexlatex.logic.pdf.main import document_to_pdf_and_move, latex_str_to_pdf_obj_with_sources
 from pyexlatex.texgen.replacements.filename import latex_filename_replacements
@@ -148,7 +148,7 @@ class Document(DocumentBase):
                  page_style: str = 'fancy', custom_headers: Optional[Sequence[Header]] = None,
                  remove_section_numbering: bool = False, separate_abstract_page: bool = False,
                  extra_title_page_lines: Optional[Sequence] = None, empty_title_page_style: bool = False,
-                 pre_output_func: Optional[Callable] = None):
+                 pre_output_func: Optional[Callable] = None, apply_page_style_to_section_starts: bool = False):
         from pyexlatex.models.title.page import TitlePage
 
         all_packages = self.construct_packages(
@@ -190,16 +190,22 @@ class Document(DocumentBase):
             *section_num_styles,
             SetCounter('secnumdepth', 0) if remove_section_numbering else None,
             PageStyle(page_style),
-
             # header is there by default. add remove header lines if page_header=False
             remove_header if not page_header and not custom_headers else None,
+        ]
+
+        page_style_contents = [
             *custom_headers,
 
             # add right page numbers. if not, use blank center footer to clear default page numbers in center footer
             right_aligned_page_numbers if page_numbers else CenterFooter('')
         ]
 
-        pre_env_contents = [item for item in possible_extra_pre_env_contents if item is not None]
+        if apply_page_style_to_section_starts:
+            plain_redef = FancyPageStyle(page_style_contents)
+            page_style_contents.append(plain_redef)
+
+        pre_env_contents = [item for item in possible_extra_pre_env_contents + page_style_contents if item is not None]
 
         if not skip_title_page and _should_create_title_page(title=title, authors=authors, date=date, abstract=abstract):
             title_page = TitlePage(
