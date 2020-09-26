@@ -1,4 +1,7 @@
-from typing import Optional, Type, TYPE_CHECKING
+from typing import Optional, Type, TYPE_CHECKING, cast
+
+from pyexlatex.typing import PyexlatexItems, PyexlatexItem
+
 if TYPE_CHECKING:
     from pyexlatex.presentation.beamer.overlay.overlay import Overlay
 
@@ -46,6 +49,16 @@ class TextAreaMixin(ContainerItem):
             # Not an iterable
             return self._format_content(contents)
 
+    def format_contents_and_build(self, contents: PyexlatexItems):
+        contents = self.format_contents(contents)
+        return self._build(contents)
+
+    def _build(self, contents: PyexlatexItems) -> PyexlatexItem:
+        if isinstance(contents, (list, tuple)):
+            contents = [self._build(c) for c in contents]
+            return _build(contents)
+        contents = cast(PyexlatexItem, contents)
+        return contents
 
     def _format_content(self, content):
         if isinstance(content, str):
@@ -64,10 +77,7 @@ class EnvironmentTextArea(TextAreaMixin, Environment):
 
     def wrap(self, other):
         self.add_data_from_content(other)
-        contents = self.format_contents(other)
-
-        if isinstance(contents, (list, tuple)):
-            contents = _build(contents)
+        contents = self.format_contents_and_build(other)
 
         return super().wrap(contents)
 

@@ -39,10 +39,15 @@ class TestLetter(EnvironmentTest):
 
 
 class TestLetterDocument:
+    no_options_result = '\\documentclass[]{letter}\n\\longindentation=0pt\n\\begin{document}\n\\begin{letter}{}\n\\opening{Dear Sir or Madam:}\nwoo\n\\closing{Sincerely,}\n\\end{letter}\n\\end{document}'
 
-    def test_no_options(self):
+
+    def test_no_options_str(self):
         doc = LetterDocument('woo')
-        assert str(doc) == '\\documentclass[]{letter}\n\\longindentation=0pt\n\\begin{document}\n\\begin{letter}{}\n\\opening{Dear Sir or Madam:}\nwoo\n\\closing{Sincerely,}\n\\end{letter}\n\\end{document}'
+        assert str(doc) == self.no_options_result
+    def test_no_options_list(self):
+        doc = LetterDocument(['woo'])
+        assert str(doc) == self.no_options_result
 
     def test_all_options(self):
         doc = LetterDocument(
