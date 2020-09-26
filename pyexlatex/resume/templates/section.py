@@ -1,9 +1,10 @@
 from typing import Optional, Union, List
+from pyexlatex.models.template import Template
 import pyexlatex as pl
 from pyexlatex.models.format.paragraph.multicol import MultiColumn
 
 
-class SpacedSection(pl.Template):
+class SpacedSection(Template):
     """
     A section which appropriately spaces content for a resume.
     """

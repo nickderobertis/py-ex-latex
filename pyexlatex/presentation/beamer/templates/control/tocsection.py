@@ -1,4 +1,4 @@
-from pyexlatex import Template
+from pyexlatex.models.template import Template
 from pyexlatex.presentation import Frame
 from pyexlatex.presentation.beamer.control.atbeginsection import AtBeginSection
 from pyexlatex.presentation.beamer.toc import TableOfContents

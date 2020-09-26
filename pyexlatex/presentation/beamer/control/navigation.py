@@ -1,6 +1,6 @@
 from typing import Sequence
 
-from pyexlatex import Template
+from pyexlatex.models.template import Template
 from pyexlatex.models.item import SimpleItem
 from pyexlatex.models.sizes.paperwidth import PaperWidth
 from pyexlatex.presentation.beamer.colorbox import BeamerColorBox
