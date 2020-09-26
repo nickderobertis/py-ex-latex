@@ -1,6 +1,6 @@
-from typing import Union, List, Tuple, Dict, Optional
+from typing import Union, List, Tuple, Dict, Optional, Sequence
 
-from pyexlatex.models.item import Item, ItemBase
+from pyexlatex.models.item import Item, ItemBase, IsLatexItemMixin
 from pyexlatex.models.documentitem import DocumentItem
 
 AnyItem = ItemBase
@@ -14,3 +14,5 @@ StrListOrNone = Union[StrList, None]
 BytesList = List[bytes]
 BytesListOrNone = Optional[BytesList]
 ItemAndPreEnvContents = Tuple[AnyItem, StrListOrNone]
+PyexlatexItem = Union[IsLatexItemMixin, str]
+PyexlatexItems = Union[PyexlatexItem, Sequence[PyexlatexItem]]
