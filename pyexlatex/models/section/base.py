@@ -1,4 +1,8 @@
-from typing import Optional, Type
+from typing import Optional, Type, TYPE_CHECKING
+if TYPE_CHECKING:
+    from pyexlatex.presentation.beamer.overlay.overlay import Overlay
+
+from pyexlatex.models.environment import Environment
 from pyexlatex.models.item import Item
 from mixins.repr import ReprMixin
 from pyexlatex.logic.format.contents import format_contents as fmt
@@ -51,6 +55,21 @@ class TextAreaMixin(ContainerItem):
             # other harmless conversion such as int. It may also be an issue if the __str__
             # method of the class is not valid latex
             return content
+
+
+class EnvironmentTextArea(TextAreaMixin, Environment):
+
+    def __init__(self, name, modifiers: Optional[str] = None, overlay: Optional['Overlay'] = None):
+        Environment.__init__(self, name, modifiers=modifiers, overlay=overlay)
+
+    def wrap(self, other):
+        self.add_data_from_content(other)
+        contents = self.format_contents(other)
+
+        if isinstance(contents, (list, tuple)):
+            contents = _build(contents)
+
+        return super().wrap(contents)
 
 
 class TextAreaBase(TextAreaMixin, Item, ReprMixin):

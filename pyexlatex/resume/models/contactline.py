@@ -2,12 +2,13 @@ from typing import Sequence, Union
 from pyexlatex.models.item import SimpleItem
 from pyexlatex.models.section.base import TextAreaMixin
 from pyexlatex.models.format.breaks import OutputLineBreak
+from pyexlatex.typing import PyexlatexItems
 
 
 class ContactLine(TextAreaMixin, SimpleItem):
     name = 'address'
 
-    def __init__(self, contact_info: Union[str, Sequence[str]]):
+    def __init__(self, contact_info: PyexlatexItems):
         self.contact_info = contact_info
         self.add_data_from_content(contact_info)
 

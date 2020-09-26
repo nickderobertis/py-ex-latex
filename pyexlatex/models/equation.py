@@ -12,10 +12,11 @@ class Equation(IsSpecificClassMixin, IsLatexItemMixin):
     name = 'equation'
 
     def __init__(self, eq: Optional[Eq] = None, str_eq: Optional[str] = None,
-                 inline: bool = True):
+                 inline: bool = True, numbered: bool = True):
         self._validate(eq, str_eq)
         self.eq_str = eq if eq else str_eq
         self.inline = inline
+        self.numbered = numbered
         super().__init__()
 
     def __str__(self):
@@ -25,8 +26,10 @@ class Equation(IsSpecificClassMixin, IsLatexItemMixin):
     def formatted_eq(self):
         if self.inline:
             return format_eq.inline(self.eq_str)
-        else:
+        elif self.numbered:
             return format_eq.offset(self.eq_str)
+        else:
+            return format_eq.offset_no_numbering(self.eq_str)
 
     def _validate(self, eq: Optional[Eq] = None, str_eq: Optional[str] = None):
         if eq is None and str_eq is None:

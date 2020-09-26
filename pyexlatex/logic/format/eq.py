@@ -10,6 +10,10 @@ def offset(eq: Eq) -> str:
     return f'\\begin{{equation}}\n\t{latex(eq)}\n\\end{{equation}}'
 
 
+def offset_no_numbering(eq: Eq) -> str:
+    return f'\n$${latex(eq)}$$\n'
+
+
 def latex_partial(expr: Expr, eq_symbol: Symbol, wrt_symbol: Symbol, offset: bool = False) -> str:
 
     begin_str = '$'

@@ -1,4 +1,4 @@
-from pyexlatex import Template
+from pyexlatex.models.template import Template
 from pyexlatex.models.control.newcounter import NewCounter
 from pyexlatex.models.control.setcounter import SetCounter
 from pyexlatex.models.control.value import Value

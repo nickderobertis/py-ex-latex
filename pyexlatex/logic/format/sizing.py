@@ -1,6 +1,6 @@
 from typing import Any
 
-from pyexlatex import Center
+from pyexlatex.models.format.centering import Center
 from pyexlatex.models.format.adjustbox import AdjustBox
 from pyexlatex.models.sizes.textheight import TextHeight
 from pyexlatex.models.sizes.textwidth import TextWidth

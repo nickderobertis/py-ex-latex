@@ -1,8 +1,11 @@
 from typing import Optional, Union, TYPE_CHECKING, overload
 
+
 if TYPE_CHECKING:
     from pyexlatex.presentation.beamer.overlay.overlay import Overlay
     from pyexlatex.models.package import Package
+    from pyexlatex.typing import PyexlatexItem
+
 from copy import deepcopy
 from mixins.attrequals import EqOnAttrsMixin, EqHashMixin
 from pyexlatex.models.mixins import StringAdditionMixin, IsSpecificClassMixin
@@ -48,7 +51,7 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
         super().__init__()
 
     @overload
-    def _wrap_with(self, item: str, begin_wrap: str, end_wrap: str,
+    def _wrap_with(self, item: 'PyexlatexItem', begin_wrap: str, end_wrap: str,
                    format_contents: bool = True) -> str:
         ...
     @overload
@@ -67,7 +70,7 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
         return f'{begin_wrap}{fmt(item)}{end_wrap}'
 
     @overload
-    def _wrap_with_bracket(self, item: str) -> str:
+    def _wrap_with_bracket(self, item: 'PyexlatexItem') -> str:
         ...
     @overload
     def _wrap_with_bracket(self, item: None) -> None:
@@ -76,7 +79,7 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
         return self._wrap_with(item, '[', ']')
 
     @overload
-    def _wrap_with_braces(self, item: str) -> str:
+    def _wrap_with_braces(self, item: 'PyexlatexItem') -> str:
         ...
     @overload
     def _wrap_with_braces(self, item: None) -> None:
@@ -142,8 +145,10 @@ class Item(ItemBase):
 class SimpleItem(ItemBase):
     equal_attrs = [
         'contents',
-        'pre_env_contents',
-        'post_env_contents',
+        'modifiers',
+        'pre_modifiers',
+        'overlay',
+        'format_content',
         'data'
     ]
 

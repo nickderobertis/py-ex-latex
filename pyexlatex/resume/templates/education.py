@@ -1,8 +1,9 @@
 from typing import Optional
+from pyexlatex.models.template import Template
 import pyexlatex as pl
 
 
-class Education(pl.Template):
+class Education(Template):
     SPACE_BETWEEN_ADJUSTMENT = '-8pt'
 
     def __init__(self, school: str, school_location: str, degree: str, expected: str, gpa: Optional[str] = None,

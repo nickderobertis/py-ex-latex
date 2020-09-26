@@ -1,8 +1,9 @@
 from typing import Optional, Sequence, Union, List
 import pyexlatex as pl
+from pyexlatex.models.template import Template
 
 
-class Reference(pl.Template):
+class Reference(Template):
     SPACE_BETWEEN_ADJUSTMENT = '-8pt'
 
     def __init__(self, name: str, title_lines: Optional[Sequence[str]] = None, company: Optional[str] = None,

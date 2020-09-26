@@ -1,11 +1,14 @@
 from typing import Optional, Sequence, Union, List, Any
 import pyexlatex as pl
+from pyexlatex.models.template import Template
+from pyexlatex.models.format.text.bold import Bold
+from pyexlatex.models.hyperlinks import Hyperlink
 from pyexlatex.logic.format.and_join import join_with_commas_and_and_output_list
 from pyexlatex.models.format.hangindent import HangIndent
 from pyexlatex.models.format.paragraph.justifying import Justifying
 
 
-class Publication(pl.Template):
+class Publication(Template):
     SPACE_BETWEEN_ADJUSTMENT = 0.2
 
     def __init__(self, title: str, co_authors: Optional[Sequence[str]] = None, journal_info: Optional[str] = None,
@@ -38,14 +41,14 @@ class Publication(pl.Template):
         return items
 
     @property
-    def _title_obj(self) -> Union[pl.Bold, pl.Hyperlink]:
+    def _title_obj(self) -> Union[Bold, Hyperlink]:
         if self.href is None:
-            title = pl.Bold(self.title)
+            title = Bold(self.title)
         else:
             # Handle hyperlink
             styled_title = pl.TextColor(self.title, color=pl.RGB(50, 82, 209, color_name='darkblue'))
             styled_title = pl.Underline(styled_title)
-            title = pl.Hyperlink(self.href, styled_title)
+            title = Hyperlink(self.href, styled_title)
             self.add_data_from_content(title)
         return title
 
