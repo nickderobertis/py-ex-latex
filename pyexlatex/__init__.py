@@ -49,6 +49,7 @@ from pyexlatex.models.format.nopagebreak import NoPageBreak
 from pyexlatex.models.format.nolinebreak import NoLineBreak
 from pyexlatex.models.format.paragraph.justifying import Justifying
 from pyexlatex.models.format.centering import Center
+from pyexlatex.models.format.captionsetup import CaptionSetup
 from pyexlatex.models.control.newpage import PageBreak
 from pyexlatex.models.control.group import Group
 from pyexlatex.models.sizes.textsizes import TextSize
