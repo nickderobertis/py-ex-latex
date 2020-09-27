@@ -1,5 +1,4 @@
-from typing import Optional, Union, TYPE_CHECKING, overload
-
+from typing import Optional, Union, TYPE_CHECKING, overload, Dict
 
 if TYPE_CHECKING:
     from pyexlatex.presentation.beamer.overlay.overlay import Overlay
@@ -86,6 +85,10 @@ class ItemBase(DataItem, IsSpecificClassMixin, IsLatexItemMixin, StringAdditionM
         ...
     def _wrap_with_braces(self, item):
         return self._wrap_with(item, '{', '}')
+
+    @staticmethod
+    def _dict_to_options_str(d: Dict[str, 'PyexlatexItem']) -> str:
+        return ','.join([f'{key}={value}' for key, value in d.items()])
 
     @staticmethod
     def _empty_str_if_none(item: Optional[str]) -> str:

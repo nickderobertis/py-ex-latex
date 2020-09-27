@@ -149,8 +149,14 @@ class Document(DocumentBase):
                  custom_footers: Optional[Footers] = None,
                  remove_section_numbering: bool = False, separate_abstract_page: bool = False,
                  extra_title_page_lines: Optional[Sequence] = None, empty_title_page_style: bool = False,
-                 pre_output_func: Optional[Callable] = None, apply_page_style_to_section_starts: bool = False):
+                 pre_output_func: Optional[Callable] = None, apply_page_style_to_section_starts: bool = False,
+                 extra_pre_env_contents: Optional[PyexlatexItems] = None):
         from pyexlatex.models.title.page import TitlePage
+
+        if extra_pre_env_contents is None:
+            extra_pre_env_contents = []
+        elif not isinstance(extra_pre_env_contents, (list, tuple)):
+            extra_pre_env_contents = [extra_pre_env_contents]  # type: ignore
 
         all_packages = self.construct_packages(
             packages=packages,
@@ -217,6 +223,7 @@ class Document(DocumentBase):
         pre_env_contents = [
             item for item in possible_extra_pre_env_contents + page_style_contents if item is not None  # type: ignore
         ]
+        pre_env_contents.extend(extra_pre_env_contents)
 
         if not skip_title_page and _should_create_title_page(title=title, authors=authors, date=date, abstract=abstract):
             title_page = TitlePage(
