@@ -34,6 +34,14 @@ pyexlatex.models.format.breaks module
    :undoc-members:
    :show-inheritance:
 
+pyexlatex.models.format.captionsetup module
+-------------------------------------------
+
+.. automodule:: pyexlatex.models.format.captionsetup
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyexlatex.models.format.centering module
 ----------------------------------------
 
