@@ -1,3 +1,5 @@
+from typing import Sequence
+
 from pyexlatex.logic.output.api.builders.base import BaseBuilder
 
 
@@ -14,5 +16,5 @@ class HTLatexBuilder(BaseBuilder):
     """
     output_extension = 'html'
     default_executable = 'htlatex'
-    pre_file_output_args = tuple()
+    pre_file_output_args: Sequence[str] = tuple()
     post_file_output_args = ('"html,css-in"',)
