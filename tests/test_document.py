@@ -6,6 +6,8 @@ from pyexlatex.models.blindtext import BlindText
 from pyexlatex.models.document import Document
 from pyexlatex.models.page.number import PageReference
 from pyexlatex.texgen.packages.default import default_packages
+from tests.base import INPUT_FILES_DIR, GENERATED_FILES_DIR
+from tests.utils.pdf import compare_pdfs
 
 
 class TestDocument:
@@ -96,3 +98,8 @@ class TestDocument:
         )
 
         assert str(doc) == '\\documentclass[12pt, twocolumn]{article}\n\\usepackage{amsmath}\n\\usepackage{pdflscape}\n\\usepackage{booktabs}\n\\usepackage{array}\n\\usepackage{threeparttable}\n\\usepackage{fancyhdr}\n\\usepackage{lastpage}\n\\usepackage{textcomp}\n\\usepackage{dcolumn}\n\\newcolumntype{L}[1]{>{\\raggedright\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{C}[1]{>{\\centering\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{R}[1]{>{\\raggedleft\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{.}{D{.}{.}{-1}}\n\\usepackage[T1]{fontenc}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{graphicx}\n\\usepackage{hyperref}\n\\usepackage{tikz}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{floatrow}\n\\DeclareFloatFont{small}{\\small}\n\\floatsetup[table]{font=small,capposition=top}\n\\DeclareFloatFont{large}{\\large}\n\\floatsetup[figure]{font=large,capposition=top}\n\\usepackage[nolists]{endfloat}\n\\DeclareDelayedFloatFlavor{ltable}{table}\n\\DeclareDelayedFloatFlavor{lfigure}{figure}\n\\usepackage{setspace}\n\\doublespacing\n\\usepackage[page]{appendix}\n\\renewcommand{\\thesection}{\\Roman{section}}\n\\renewcommand{\\thesubsection}{\\thesection.\\Alph{subsection}}\n\\renewcommand{\\thesubsubsection}{\\thesubsection.\\arabic{subsubsection}}\n\\renewcommand{\\thesubfigure}{\\roman{subfigure}}\n\\setcounter{secnumdepth}{0}\n\\pagestyle{fancy}\n\\lhead{\\textsc{short title}}\n\\rhead{\\textsc{Page \n\\thepage}}\n\\cfoot{}\n\\begin{document}\nwoo\n\n\n\n\\end{document}'
+
+    def test_to_pdf(self):
+        doc = Document('woo')
+        doc.to_pdf(GENERATED_FILES_DIR)
+        compare_pdfs(INPUT_FILES_DIR / 'document.pdf', GENERATED_FILES_DIR / 'document.pdf')

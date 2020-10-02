@@ -1,4 +1,6 @@
+import os
 from typing import Type
+import pathlib
 
 from pyexlatex import Italics, EnvironmentTemplate, Footnote
 from pyexlatex.letter.letter import Letter
@@ -6,6 +8,13 @@ from pyexlatex.models.environment import Environment
 from pyexlatex.models.format.centering import Centering
 from pyexlatex.models.item import MultiOptionSimpleItem
 from pyexlatex.models.landscape import Landscape
+
+TESTS_DIR = pathlib.Path(__file__).parent
+INPUT_FILES_DIR = TESTS_DIR / 'input_files'
+GENERATED_FILES_DIR = TESTS_DIR / 'generated_files'
+
+if not os.path.exists(GENERATED_FILES_DIR):
+    os.makedirs(GENERATED_FILES_DIR)
 
 
 class NoOptionsNoContentsItemTest:
