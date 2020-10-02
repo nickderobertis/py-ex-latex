@@ -1,6 +1,7 @@
 from typing import List, Optional, Dict, Union, Sequence, Callable
 from copy import deepcopy
 
+from pyexlatex.logic.output.api.formats import OutputFormats
 from pyexlatex.models.environment import Environment
 from pyexlatex.models.item import Item, ItemBase
 from pyexlatex.models.control.documentclass.documentclass import DocumentClass
@@ -115,6 +116,26 @@ class DocumentBase(ContainerItem, Item):
             tex,
             outfolder=outfolder,
             outname=outname,
+            image_paths=self.data.filepaths,
+            move_folder_name=move_folder_name,
+            as_document=as_document,
+            image_binaries=self.data.binaries,
+            run_bibtex=self.has_references,
+            date_time_move=date_time_move
+        )
+
+    def to_html(self, outfolder, outname='document',
+                move_folder_name='Tables', as_document=True,
+                date_time_move: bool = False):
+        tex = str(self)
+
+        outname = latex_filename_replacements(outname)
+
+        output_document_and_move(
+            tex,
+            outfolder=outfolder,
+            outname=outname,
+            output_format=OutputFormats.HTML,
             image_paths=self.data.filepaths,
             move_folder_name=move_folder_name,
             as_document=as_document,

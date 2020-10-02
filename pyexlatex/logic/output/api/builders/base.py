@@ -17,12 +17,13 @@ class BaseBuilder:
     The base class for LaTeX file builders
     """
     output_extension: str
-    output_args: Sequence[str] = (
+    pre_file_output_args: Sequence[str] = (
         '-interaction=batchmode',
         '-halt-on-error',
         '-shell-escape',
         '-file-line-error'
     )
+    post_file_output_args: Sequence[str] = tuple()
     default_executable: str
 
     def __init__(self, executable: Optional[str] = None, bibtex: str = 'bibtex', max_runs: int = 15):
@@ -40,7 +41,6 @@ class BaseBuilder:
 
         with TempDir() as tmpdir,\
                 source.temp_saved(suffix='.latex', dir=tmpdir) as tmp:
-
             # close temp file, so other processes can access it also on Windows
             tmp.close()
             called_bibtex = False
@@ -49,7 +49,7 @@ class BaseBuilder:
             base_fn = os.path.splitext(tmp.name)[0]
             output_fn = base_fn + f'.{self.output_extension}'
             aux_fn = base_fn + '.aux'
-            args = [self.executable, *self.output_args, tmp.name]
+            args = [self.executable, *self.pre_file_output_args, tmp.name, *self.post_file_output_args]
 
             # create environment
             newenv = os.environ.copy()

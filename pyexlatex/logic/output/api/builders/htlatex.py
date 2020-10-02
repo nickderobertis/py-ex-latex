@@ -10,8 +10,9 @@ class HTLatexBuilder(BaseBuilder):
     :param executable: The path to the ``htlatex`` binary (will looked up on
                     ``$PATH``).
     :param max_runs: An integer providing an upper limit on the amount of times
-                     ``lualatex`` can be rerun before an exception is thrown.
+                     ``htlatex`` can be rerun before an exception is thrown.
     """
-    output_extension = 'pdf'
+    output_extension = 'html'
     default_executable = 'htlatex'
-
+    pre_file_output_args = tuple()
+    post_file_output_args = ('"html,css-in"',)
