@@ -1,10 +1,10 @@
 from typing import List, Optional, Dict, Any
 import warnings
-from pyexlatex.logic.pdf.errors.exc import (
+from pyexlatex.logic.output.errors.exc import (
     LatexException
 )
-from pyexlatex.logic.pdf.api.exc_handler.prepend.main import handle_prepend_exceptions
-from pyexlatex.logic.pdf.api.exc_handler.prepend.typing import PrependKwargsDict, PrependItemsDict
+from pyexlatex.logic.output.api.exc_handler.prepend.main import handle_prepend_exceptions
+from pyexlatex.logic.output.api.exc_handler.prepend.typing import PrependKwargsDict, PrependItemsDict
 
 
 class APIExceptionHandler:
@@ -21,7 +21,7 @@ class APIExceptionHandler:
         self.latex_kwargs = latex_kwargs
 
     def handle_exceptions(self):
-        from pyexlatex.logic.pdf.api.main import latex_str_to_pdf_obj
+        from pyexlatex.logic.output.api.main import latex_str_to_pdf_obj
         if not self.exceptions:
             # Got LatexBuildError, but could not extract any exceptions from it. Something is going wrong
             # Seems like it might be some intermittent issue, try retrying

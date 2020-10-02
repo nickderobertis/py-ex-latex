@@ -1,12 +1,12 @@
 from typing import Optional, Dict, Any, List, Tuple
-from pyexlatex.logic.pdf.errors.exc import (
+from pyexlatex.logic.output.errors.exc import (
     TooManyUnprocessedFloatsException,
     OutputLoopConsecutiveDeadCycles,
     LatexException
 )
-from pyexlatex.logic.pdf.api.exc_handler.prepend.floats import get_extra_float_and_new_num_floats
-from pyexlatex.logic.pdf.api.exc_handler.prepend.cycles import get_max_dead_cycles_and_new_num_cycles
-from pyexlatex.logic.pdf.api.exc_handler.prepend.typing import PrependItemsDict, PrependKwargsDict
+from pyexlatex.logic.output.api.exc_handler.prepend.floats import get_extra_float_and_new_num_floats
+from pyexlatex.logic.output.api.exc_handler.prepend.cycles import get_max_dead_cycles_and_new_num_cycles
+from pyexlatex.logic.output.api.exc_handler.prepend.typing import PrependItemsDict, PrependKwargsDict
 
 
 def handle_prepend_exceptions(exceptions: List[LatexException], prepend_kwarg_dict: PrependKwargsDict = None,

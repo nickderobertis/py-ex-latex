@@ -1,6 +1,6 @@
 from typing import Optional, Callable, Tuple
 import warnings
-from pyexlatex.logic.pdf.errors.exc import TooManyUnprocessedFloatsException
+from pyexlatex.logic.output.errors.exc import TooManyUnprocessedFloatsException
 from pyexlatex.models.control.extrafloats import ExtraFloats
 
 EXTRA_FLOATS_LIMIT = 10000

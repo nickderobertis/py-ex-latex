@@ -1,7 +1,7 @@
 from typing import List, Dict, Union
 import warnings
 from latex.exc import LatexBuildError
-from pyexlatex.logic.pdf.errors.models.error import LatexError
+from pyexlatex.logic.output.errors.models.error import LatexError
 
 
 class LatexErrorCollection:

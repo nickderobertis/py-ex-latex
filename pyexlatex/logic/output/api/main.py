@@ -3,16 +3,16 @@ import warnings
 from data import Data
 import latex
 from latex.exc import LatexBuildError
-from pyexlatex.logic.pdf.errors.exc import (
+from pyexlatex.logic.output.errors.exc import (
     TooManyUnprocessedFloatsException,
     OutputLoopConsecutiveDeadCycles,
     LatexException,
     exception_manager
 )
-from pyexlatex.logic.pdf.api.exc_handler.main import APIExceptionHandler
-from pyexlatex.logic.pdf.api.exc_handler.prepend.typing import PrependKwargsDict, PrependItemsDict
-from pyexlatex.logic.pdf.api.exc_handler.prepend.main import add_prepend_items_dict_to_latex_str
-from pyexlatex.logic.pdf.api.builders.lualatex import LuaLatexBuilder
+from pyexlatex.logic.output.api.exc_handler.main import APIExceptionHandler
+from pyexlatex.logic.output.api.exc_handler.prepend.typing import PrependKwargsDict, PrependItemsDict
+from pyexlatex.logic.output.api.exc_handler.prepend.main import add_prepend_items_dict_to_latex_str
+from pyexlatex.logic.output.api.builders.lualatex import LuaLatexBuilder
 
 def latex_str_to_pdf_obj(latex_str: str, texinputs: Optional[List[str]] = None, run_bibtex: bool = False,
                          retries_remaining: int = 3,

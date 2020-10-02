@@ -1,4 +1,4 @@
-from pyexlatex.logic.pdf.api.builders.base import BaseBuilder
+from pyexlatex.logic.output.api.builders.base import BaseBuilder
 
 
 class LuaLatexBuilder(BaseBuilder):

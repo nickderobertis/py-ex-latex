@@ -4,9 +4,9 @@ from typing import List, Optional
 from tempdir import TempDir
 
 from pyexlatex.tools import date_time_move_latex
-from pyexlatex.logic.pdf.fileops import _move_if_exists_and_is_needed, _copy_if_needed
+from pyexlatex.logic.output.fileops import _move_if_exists_and_is_needed, _copy_if_needed
 from pyexlatex.texgen.replacements.filename import _latex_valid_basename
-from pyexlatex.logic.pdf.api.main import latex_str_to_pdf_obj
+from pyexlatex.logic.output.api.main import latex_str_to_pdf_obj
 from pyexlatex.typing import BytesListOrNone, StrList, BytesList, StrListOrNone
 
 

@@ -1,6 +1,6 @@
 from typing import Optional, Callable, Tuple
 import warnings
-from pyexlatex.logic.pdf.errors.exc import OutputLoopConsecutiveDeadCycles
+from pyexlatex.logic.output.errors.exc import OutputLoopConsecutiveDeadCycles
 from pyexlatex.models.control.maxdeadcycles import MaxDeadCycles
 
 EXTRA_CYCLES_LIMIT = 1000

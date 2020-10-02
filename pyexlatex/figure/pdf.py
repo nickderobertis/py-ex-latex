@@ -1,7 +1,7 @@
 import posixpath
 
 from pyexlatex.figure.models import Subfigure, Figure
-from pyexlatex.logic.pdf.main import document_to_pdf_and_move
+from pyexlatex.logic.output.main import document_to_pdf_and_move
 from pyexlatex.texgen.replacements.filename import _latex_valid_basename
 from pyexlatex.models.document import Document
 from pyexlatex.models.package import Package

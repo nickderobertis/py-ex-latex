@@ -7,7 +7,7 @@ from pyexlatex.models.control.documentclass.documentclass import DocumentClass
 from pyexlatex.models.package import Package
 from pyexlatex.models.page.style import PageStyle, FancyPageStyle
 from pyexlatex.models.landscape import Landscape
-from pyexlatex.logic.pdf.main import document_to_pdf_and_move, latex_str_to_pdf_obj_with_sources
+from pyexlatex.logic.output.main import document_to_pdf_and_move, latex_str_to_pdf_obj_with_sources
 from pyexlatex.texgen.replacements.filename import latex_filename_replacements
 from pyexlatex.logic.extract.docitems import extract_document_items_from_ambiguous_collection
 from pyexlatex.models.page.number import right_aligned_page_numbers
