@@ -32,6 +32,7 @@ sympy = "*"
 shutilwhich = "*"
 bibtexparser = "*"
 Jinja2 = "*"
+PyMuPDF = "==1.17.3"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
