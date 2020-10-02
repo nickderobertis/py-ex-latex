@@ -34,7 +34,7 @@ class BaseBuilder:
         self.max_runs = max_runs
 
     @data('source')
-    def build_pdf(self, source, texinputs: Optional[List[str]] = None, run_bibtex: bool = False):
+    def build(self, source, texinputs: Optional[List[str]] = None, run_bibtex: bool = False):
         if texinputs is None:
             texinputs = []
 

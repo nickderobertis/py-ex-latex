@@ -7,7 +7,8 @@ from pyexlatex.models.control.documentclass.documentclass import DocumentClass
 from pyexlatex.models.package import Package
 from pyexlatex.models.page.style import PageStyle, FancyPageStyle
 from pyexlatex.models.landscape import Landscape
-from pyexlatex.logic.output.main import document_to_pdf_and_move, latex_str_to_pdf_obj_with_sources
+from pyexlatex.logic.output.main import output_document_and_move
+from pyexlatex.logic.output.to_file import latex_str_to_file_obj_with_sources
 from pyexlatex.texgen.replacements.filename import latex_filename_replacements
 from pyexlatex.logic.extract.docitems import extract_document_items_from_ambiguous_collection
 from pyexlatex.models.page.number import right_aligned_page_numbers
@@ -96,7 +97,7 @@ class DocumentBase(ContainerItem, Item):
     def _repr_pdf_(self):
         tex = str(self)
 
-        return latex_str_to_pdf_obj_with_sources(
+        return latex_str_to_file_obj_with_sources(
             tex,
             image_paths=self.data.filepaths,
             image_binaries=self.data.binaries,
@@ -110,7 +111,7 @@ class DocumentBase(ContainerItem, Item):
 
         outname = latex_filename_replacements(outname)
 
-        document_to_pdf_and_move(
+        output_document_and_move(
             tex,
             outfolder=outfolder,
             outname=outname,

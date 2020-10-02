@@ -9,7 +9,7 @@ from mixins.repr import ReprMixin
 from pyexlatex.table.models.panels.collection import PanelCollection, Panel
 from pyexlatex.table.models.labels.table import LabelTable, LabelCollection
 from pyexlatex.table.models.table.caption import Caption
-from pyexlatex.logic.output.main import document_to_pdf_and_move
+from pyexlatex.logic.output.main import output_document_and_move
 from pyexlatex.texgen.replacements.filename import latex_filename_replacements
 from pyexlatex.models.documentitem import DocumentItem
 from pyexlatex.models.commands.newenvironment import NewEnvironment
@@ -91,7 +91,7 @@ class Table(DocumentItem, ReprMixin):
 
         outname = latex_filename_replacements(outname)
 
-        document_to_pdf_and_move(
+        output_document_and_move(
             tex,
             outfolder=outfolder,
             outname=outname,

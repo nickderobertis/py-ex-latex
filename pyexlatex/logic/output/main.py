@@ -1,16 +1,17 @@
 import os
-from typing import List, Optional
 
-from tempdir import TempDir
-
+from pyexlatex.logic.output.api.formats import OutputFormats
+from pyexlatex.logic.output.to_file import latex_str_to_file
+from pyexlatex.logic.output.sources import output_sources_return_tex_input_paths, \
+    _write_image_paths_and_binaries_to_folder
 from pyexlatex.tools import date_time_move_latex
-from pyexlatex.logic.output.fileops import _move_if_exists_and_is_needed, _copy_if_needed
+from pyexlatex.logic.output.fileops import _move_if_exists_and_is_needed
 from pyexlatex.texgen.replacements.filename import _latex_valid_basename
-from pyexlatex.logic.output.api.main import latex_str_to_pdf_obj
-from pyexlatex.typing import BytesListOrNone, StrList, BytesList, StrListOrNone
+from pyexlatex.typing import BytesListOrNone, StrListOrNone
 
 
-def document_to_pdf_and_move(document, outfolder, image_paths: StrListOrNone = None, outname='figure', as_document=True,
+def output_document_and_move(document, outfolder, output_format: OutputFormats = OutputFormats.PDF,
+                             image_paths: StrListOrNone = None, outname='figure', as_document=True,
                              move_folder_name='Figures', image_binaries: BytesListOrNone = None,
                              run_bibtex: bool = False, date_time_move: bool = False):
 
@@ -25,9 +26,11 @@ def document_to_pdf_and_move(document, outfolder, image_paths: StrListOrNone = N
     )
 
     if as_document:
-        outname_pdf = outname + '.pdf'
-        outpath_pdf = os.path.abspath(os.path.join(outfolder, outname_pdf))
-        latex_str_to_pdf_file(str(document), outpath_pdf, texinputs=tex_inputs, run_bibtex=run_bibtex)
+        outname_final = outname + f'.{output_format.value}'
+        outpath_final = os.path.abspath(os.path.join(outfolder, outname_final))
+        latex_str_to_file(
+            str(document), outpath_final, output_format=output_format, texinputs=tex_inputs, run_bibtex=run_bibtex
+        )
     if not date_time_move:
         return
 
@@ -48,59 +51,3 @@ def document_to_pdf_and_move(document, outfolder, image_paths: StrListOrNone = N
                 os.path.join(sources_outfolder, _latex_valid_basename(filepath))
              )
             for filepath in image_paths]
-
-
-def latex_file_to_pdf(folder: str, filename: str):
-    # create PDF. Need to run twice for last page, as is written to aux file on the first iteration and
-    # aux file is used on the second iteration
-    orig_path = os.getcwd()
-    os.chdir(folder)
-    pdflatex_command = f'pdflatex "{filename}"'
-    [os.system(pdflatex_command) for _ in range(2)]
-    os.chdir(orig_path)
-
-
-def latex_str_to_pdf_file(latex_str: str, filepath: str, texinputs: StrListOrNone = None,
-                          run_bibtex: bool = False):
-    pdf = latex_str_to_pdf_obj(latex_str, texinputs=texinputs, run_bibtex=run_bibtex)
-    pdf.save_to(filepath)
-    return pdf
-
-
-def latex_str_to_pdf_obj_with_sources(latex_str: str, image_paths: StrListOrNone = None,
-                                      image_binaries: BytesListOrNone = None, run_bibtex: bool = False):
-    with TempDir() as tmpdir:
-        tex_inputs = output_sources_return_tex_input_paths(
-            tmpdir, image_paths=image_paths, image_binaries=image_binaries
-        )
-        pdf = latex_str_to_pdf_obj(latex_str, texinputs=tex_inputs, run_bibtex=run_bibtex)
-
-    return pdf
-
-
-def output_sources_return_tex_input_paths(outfolder: str, image_paths: StrListOrNone = None,
-                                          image_binaries: BytesListOrNone = None) -> Optional[List[str]]:
-    tex_inputs: Optional[List[str]]
-    if image_paths:
-        # Copy first time for creation of pdf
-        sources_tempfolder = os.path.join(outfolder, 'Sources')
-        tex_inputs = [os.path.abspath(outfolder), os.path.abspath(sources_tempfolder), '.']
-        if not os.path.exists(sources_tempfolder):
-            os.makedirs(sources_tempfolder)
-        if image_binaries:
-            _write_image_paths_and_binaries_to_folder(sources_tempfolder, image_paths, image_binaries)
-        else:
-            [_copy_if_needed(filepath, os.path.join(sources_tempfolder, _latex_valid_basename(filepath)))
-             for filepath in image_paths]
-    else:
-        tex_inputs = None
-
-    return tex_inputs
-
-def _write_image_paths_and_binaries_to_folder(folder: str, image_paths: StrList, image_binaries: BytesList):
-    if len(image_binaries) != len(image_paths):
-        raise ValueError('must have equal image_binaries and image_path lengths if image_binaries are passed')
-    for filepath, binary in zip(image_paths, image_binaries):
-        image_outpath = os.path.join(folder, _latex_valid_basename(filepath))
-        with open(image_outpath, 'wb') as f:
-            f.write(binary)
