@@ -1,6 +1,7 @@
 import os
 import subprocess
 from subprocess import CalledProcessError
+from typing import Optional, List, Sequence
 
 from future.utils import raise_from
 from data import Data as I
@@ -11,44 +12,44 @@ from tempdir import TempDir
 from latex.exc import LatexBuildError
 
 
-class LuaLatexBuilder:
-    """A simple lualatex based buidler for LaTeX files.
-
-    Builds LaTeX files by copying them to a temporary directly and running
-    ``lualatex`` until the associated ``.aux`` file stops changing.
-
-    .. note:: This may miss changes if ``biblatex`` or other additional tools
-              are used. Usually, the :class:`~latex.build.LatexMkBuilder` will
-              give more reliable results.
-
-    :param lualatex: The path to the ``pdflatex`` binary (will looked up on
-                    ``$PATH``).
-    :param max_runs: An integer providing an upper limit on the amount of times
-                     ``pdflatex`` can be rerun before an exception is thrown.
+class BaseBuilder:
     """
+    The base class for LaTeX file builders
+    """
+    output_extension: str
+    pre_file_output_args: Sequence[str] = (
+        '-interaction=batchmode',
+        '-halt-on-error',
+        '-shell-escape',
+        '-file-line-error'
+    )
+    post_file_output_args: Sequence[str] = tuple()
+    default_executable: str
 
-    def __init__(self, lualatex='lualatex', bibtex: str = 'bibtex', max_runs=15):
-        self.lualatex = lualatex
+    def __init__(self, executable: Optional[str] = None, bibtex: str = 'bibtex', max_runs: int = 15):
+        if executable is None:
+            executable = self.default_executable
+
+        self.executable = executable
         self.bibtex = bibtex
-        self.max_runs = 15
+        self.max_runs = max_runs
 
     @data('source')
-    def build_pdf(self, source, texinputs=[], run_bibtex: bool = False):
+    def build(self, source, texinputs: Optional[List[str]] = None, run_bibtex: bool = False):
+        if texinputs is None:
+            texinputs = []
+
         with TempDir() as tmpdir,\
                 source.temp_saved(suffix='.latex', dir=tmpdir) as tmp:
-
             # close temp file, so other processes can access it also on Windows
             tmp.close()
             called_bibtex = False
 
             # calculate output filename
             base_fn = os.path.splitext(tmp.name)[0]
-            output_fn = base_fn + '.pdf'
+            output_fn = base_fn + f'.{self.output_extension}'
             aux_fn = base_fn + '.aux'
-            args = [self.lualatex, '-interaction=batchmode',
-                    '-halt-on-error',
-                    '-shell-escape', '-file-line-error',
-                    tmp.name]
+            args = [self.executable, *self.pre_file_output_args, tmp.name, *self.post_file_output_args]
 
             # create environment
             newenv = os.environ.copy()
@@ -59,6 +60,7 @@ class LuaLatexBuilder:
             # run until aux file settles
             prev_aux = None
             runs_left = self.max_runs
+            self._pre_compile(tmpdir, base_fn)
             while runs_left:
                 try:
                     subprocess.check_call(args,
@@ -103,4 +105,7 @@ class LuaLatexBuilder:
             return I(open(output_fn, 'rb').read(), encoding=None)
 
     def is_available(self):
-        return bool(which(self.lualatex))
+        return bool(which(self.executable))
+
+    def _pre_compile(self, temp_dir: str, base_file_name: str):
+        pass

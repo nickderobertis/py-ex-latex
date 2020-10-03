@@ -1,7 +1,7 @@
 import posixpath
 
 from pyexlatex.figure.models import Subfigure, Figure
-from pyexlatex.logic.pdf.main import document_to_pdf_and_move
+from pyexlatex.logic.output.main import output_document_and_move
 from pyexlatex.texgen.replacements.filename import _latex_valid_basename
 from pyexlatex.models.document import Document
 from pyexlatex.models.package import Package
@@ -21,7 +21,7 @@ def filepaths_to_pdf_figure_and_move(filepaths,  outfolder, outname='figure', as
         as_document=as_document
     )
 
-    document_to_pdf_and_move(
+    output_document_and_move(
         document_or_figure,
         outfolder,
         image_paths=filepaths,

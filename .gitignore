@@ -69,3 +69,6 @@ _examples
 
 # Scratch files
 Scratch
+
+# Generated files
+tests/generated_files

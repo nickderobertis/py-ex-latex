@@ -1,13 +1,15 @@
 from typing import List, Optional, Dict, Union, Sequence, Callable
 from copy import deepcopy
 
+from pyexlatex.logic.output.api.formats import OutputFormats
 from pyexlatex.models.environment import Environment
 from pyexlatex.models.item import Item, ItemBase
 from pyexlatex.models.control.documentclass.documentclass import DocumentClass
 from pyexlatex.models.package import Package
 from pyexlatex.models.page.style import PageStyle, FancyPageStyle
 from pyexlatex.models.landscape import Landscape
-from pyexlatex.logic.pdf.main import document_to_pdf_and_move, latex_str_to_pdf_obj_with_sources
+from pyexlatex.logic.output.main import output_document_and_move
+from pyexlatex.logic.output.to_file import latex_str_to_file_obj_with_sources
 from pyexlatex.texgen.replacements.filename import latex_filename_replacements
 from pyexlatex.logic.extract.docitems import extract_document_items_from_ambiguous_collection
 from pyexlatex.models.page.number import right_aligned_page_numbers
@@ -96,7 +98,7 @@ class DocumentBase(ContainerItem, Item):
     def _repr_pdf_(self):
         tex = str(self)
 
-        return latex_str_to_pdf_obj_with_sources(
+        return latex_str_to_file_obj_with_sources(
             tex,
             image_paths=self.data.filepaths,
             image_binaries=self.data.binaries,
@@ -110,10 +112,30 @@ class DocumentBase(ContainerItem, Item):
 
         outname = latex_filename_replacements(outname)
 
-        document_to_pdf_and_move(
+        output_document_and_move(
             tex,
             outfolder=outfolder,
             outname=outname,
+            image_paths=self.data.filepaths,
+            move_folder_name=move_folder_name,
+            as_document=as_document,
+            image_binaries=self.data.binaries,
+            run_bibtex=self.has_references,
+            date_time_move=date_time_move
+        )
+
+    def to_html(self, outfolder, outname='document',
+                move_folder_name='Tables', as_document=True,
+                date_time_move: bool = False):
+        tex = str(self)
+
+        outname = latex_filename_replacements(outname)
+
+        output_document_and_move(
+            tex,
+            outfolder=outfolder,
+            outname=outname,
+            output_format=OutputFormats.HTML,
             image_paths=self.data.filepaths,
             move_folder_name=move_folder_name,
             as_document=as_document,

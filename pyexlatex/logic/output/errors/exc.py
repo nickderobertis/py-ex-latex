@@ -4,7 +4,7 @@ be passed to the exception manager
 """
 import sys
 import inspect
-from pyexlatex.logic.pdf.errors.models.exception_manager import LatexExceptionManager
+from pyexlatex.logic.output.errors.models.exception_manager import LatexExceptionManager
 
 
 class LatexException(Exception):

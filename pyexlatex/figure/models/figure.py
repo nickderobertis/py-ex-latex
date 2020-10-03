@@ -81,7 +81,7 @@ class Figure(ContainerItem, Item):
 
     def to_pdf_and_move(self, as_document=True, outfolder: str=None, outname: str=None,
                         landscape=False):
-        from pyexlatex.logic.pdf.main import document_to_pdf_and_move
+        from pyexlatex.logic.output.main import output_document_and_move
         from pyexlatex.models.document import Document
 
         to_output: Union[Figure, Document]
@@ -98,7 +98,7 @@ class Figure(ContainerItem, Item):
         else:
             outname = latex_filename_replacements(outname)
 
-        document_to_pdf_and_move(
+        output_document_and_move(
             to_output,
             outfolder,
             image_paths=self.data.filepaths,

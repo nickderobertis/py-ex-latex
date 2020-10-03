@@ -7,11 +7,11 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       max-parallel: 1
       matrix:
-        python-version: [3.7]
+        python-version: [3.8]
 
     steps:
     - name: Dump GitHub context
@@ -41,6 +41,10 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Pipenv
       uses: dschep/install-pipenv-action@v1
+    - name: Install TexLive
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install texlive texlive-luatex texlive-science texlive-latex-extra texlive-plain-generic texlive-extra-utils -y
     - name: Install dependencies
       run: |
         pipenv sync
@@ -75,7 +79,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        python-version: [3.7]
+        python-version: [3.8]
     steps:
       - uses: actions/checkout@v1
       - name: Collect TODO
@@ -104,7 +108,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        python-version: [3.7]
+        python-version: [3.8]
     steps:
       - uses: actions/checkout@v1
       - name: Set up Python ${{ matrix.python-version }}
