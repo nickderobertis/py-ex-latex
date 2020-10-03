@@ -18,7 +18,7 @@ class HTLatexBuilder(BaseBuilder):
     output_extension = 'html'
     default_executable = 'make4ht'
     pre_file_output_args: Sequence[str] = ('--lua', '--shell-escape', '--utf8')
-    post_file_output_args = tuple()
+    post_file_output_args: Sequence[str] = tuple()
 
     def _pre_compile(self, temp_dir: str, base_file_name: str):
         config_contents = """
