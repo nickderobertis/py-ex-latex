@@ -1,3 +1,4 @@
+import pathlib
 from typing import Sequence
 
 from pyexlatex.logic.output.api.builders.base import BaseBuilder
@@ -15,6 +16,16 @@ class HTLatexBuilder(BaseBuilder):
                      ``htlatex`` can be rerun before an exception is thrown.
     """
     output_extension = 'html'
-    default_executable = 'htlatex'
-    pre_file_output_args: Sequence[str] = tuple()
-    post_file_output_args = ('"html,css-in"',)
+    default_executable = 'make4ht'
+    pre_file_output_args: Sequence[str] = ('--lua', '--shell-escape', '--utf8')
+    post_file_output_args = tuple()
+
+    def _pre_compile(self, temp_dir: str, base_file_name: str):
+        config_contents = """
+settings_add{ tex4ht_sty_par =  "html,css-in" }
+Make:htlatex()
+Make:htlatex()
+Make:htlatex()
+        """.strip()
+        out_path = pathlib.Path(temp_dir) / f'{base_file_name}.mk4'
+        out_path.write_text(config_contents)

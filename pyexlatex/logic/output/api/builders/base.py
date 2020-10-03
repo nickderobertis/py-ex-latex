@@ -60,6 +60,7 @@ class BaseBuilder:
             # run until aux file settles
             prev_aux = None
             runs_left = self.max_runs
+            self._pre_compile(tmpdir, base_fn)
             while runs_left:
                 try:
                     subprocess.check_call(args,
@@ -105,3 +106,6 @@ class BaseBuilder:
 
     def is_available(self):
         return bool(which(self.executable))
+
+    def _pre_compile(self, temp_dir: str, base_file_name: str):
+        pass

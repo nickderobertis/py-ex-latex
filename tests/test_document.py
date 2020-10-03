@@ -109,14 +109,14 @@ class TestDocument:
         doc.to_html(GENERATED_FILES_DIR)
         expect_str = (INPUT_FILES_DIR / 'document.html').read_text()
         generated_str = (GENERATED_FILES_DIR / 'document.html').read_text()
-        assert _remove_meta_src_tag(expect_str) == _remove_meta_src_tag(generated_str)
+        assert _remove_meta_tags(expect_str) == _remove_meta_tags(generated_str)
 
 
-def _remove_meta_src_tag(content: str) -> str:
+def _remove_meta_tags(content: str) -> str:
     lines = content.splitlines()
     out_str = ''
     for line in lines:
-        if line.startswith('<meta name="src" content='):
+        if line.startswith('<meta'):
             continue
         else:
             out_str += line
