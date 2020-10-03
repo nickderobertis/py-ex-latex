@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       max-parallel: 1
       matrix:
@@ -44,7 +44,7 @@ jobs:
     - name: Install TexLive
       run: |
         sudo apt-get update -y
-        sudo apt-get install texlive texlive-luatex texlive-science texlive-latex-extra texlive-plain-generic -y
+        sudo apt-get install texlive texlive-luatex texlive-science texlive-latex-extra texlive-plain-generic texlive-extra-utils -y
     - name: Install dependencies
       run: |
         pipenv sync
