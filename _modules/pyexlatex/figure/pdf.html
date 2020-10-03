@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.figure.pdf &mdash; pyexlatex 0.11.6 documentation</title>
+  <title>pyexlatex.figure.pdf &mdash; pyexlatex 0.12.0 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.11.6
+                0.12.0
               </div>
             
           
@@ -169,7 +169,7 @@
 <span></span><span class="kn">import</span> <span class="nn">posixpath</span>
 
 <span class="kn">from</span> <span class="nn">pyexlatex.figure.models</span> <span class="kn">import</span> <span class="n">Subfigure</span><span class="p">,</span> <span class="n">Figure</span>
-<span class="kn">from</span> <span class="nn">pyexlatex.logic.pdf.main</span> <span class="kn">import</span> <span class="n">document_to_pdf_and_move</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.logic.output.main</span> <span class="kn">import</span> <span class="n">output_document_and_move</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.texgen.replacements.filename</span> <span class="kn">import</span> <span class="n">_latex_valid_basename</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.document</span> <span class="kn">import</span> <span class="n">Document</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.package</span> <span class="kn">import</span> <span class="n">Package</span>
@@ -189,7 +189,7 @@
         <span class="n">as_document</span><span class="o">=</span><span class="n">as_document</span>
     <span class="p">)</span>
 
-    <span class="n">document_to_pdf_and_move</span><span class="p">(</span>
+    <span class="n">output_document_and_move</span><span class="p">(</span>
         <span class="n">document_or_figure</span><span class="p">,</span>
         <span class="n">outfolder</span><span class="p">,</span>
         <span class="n">image_paths</span><span class="o">=</span><span class="n">filepaths</span><span class="p">,</span>

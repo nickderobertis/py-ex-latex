@@ -13,7 +13,7 @@ Subpackages
 
    pyexlatex.logic.extract
    pyexlatex.logic.format
-   pyexlatex.logic.pdf
+   pyexlatex.logic.output
 
 Submodules
 ----------

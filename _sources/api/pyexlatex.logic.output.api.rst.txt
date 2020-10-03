@@ -1,0 +1,35 @@
+pyexlatex.logic.output.api package
+==================================
+
+.. automodule:: pyexlatex.logic.output.api
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.logic.output.api.builders
+   pyexlatex.logic.output.api.exc_handler
+
+Submodules
+----------
+
+pyexlatex.logic.output.api.formats module
+-----------------------------------------
+
+.. automodule:: pyexlatex.logic.output.api.formats
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.output.api.main module
+--------------------------------------
+
+.. automodule:: pyexlatex.logic.output.api.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.table.logic.pdf &mdash; pyexlatex 0.11.6 documentation</title>
+  <title>pyexlatex.table.logic.pdf &mdash; pyexlatex 0.12.0 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.11.6
+                0.12.0
               </div>
             
           
@@ -168,7 +168,7 @@
   <h1>Source code for pyexlatex.table.logic.pdf</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">pyexlatex.table.models.panels.collection</span> <span class="kn">import</span> <span class="n">PanelCollection</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.table.models.texgen.items</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">TableDocument</span>
-<span class="kn">from</span> <span class="nn">pyexlatex.logic.pdf.main</span> <span class="kn">import</span> <span class="n">document_to_pdf_and_move</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.logic.output.main</span> <span class="kn">import</span> <span class="n">output_document_and_move</span>
 
 
 <div class="viewcode-block" id="output_panel_collection_to_tex"><a class="viewcode-back" href="../../../../api/pyexlatex.table.logic.html#pyexlatex.table.logic.pdf.output_panel_collection_to_tex">[docs]</a><span class="k">def</span> <span class="nf">output_panel_collection_to_tex</span><span class="p">(</span><span class="n">panel_collection</span><span class="p">:</span> <span class="n">PanelCollection</span><span class="p">,</span> <span class="n">out_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">out_name</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s1">&#39;table&#39;</span><span class="p">,</span>
@@ -192,7 +192,7 @@
         <span class="p">)</span>
 
 
-    <span class="n">document_to_pdf_and_move</span><span class="p">(</span>
+    <span class="n">output_document_and_move</span><span class="p">(</span>
         <span class="n">table_or_document</span><span class="p">,</span>
         <span class="n">outfolder</span><span class="o">=</span><span class="n">out_folder</span><span class="p">,</span>
         <span class="n">outname</span><span class="o">=</span><span class="n">out_name</span><span class="p">,</span>

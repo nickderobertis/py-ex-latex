@@ -1,0 +1,51 @@
+pyexlatex.logic.output package
+==============================
+
+.. automodule:: pyexlatex.logic.output
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.logic.output.api
+   pyexlatex.logic.output.errors
+
+Submodules
+----------
+
+pyexlatex.logic.output.fileops module
+-------------------------------------
+
+.. automodule:: pyexlatex.logic.output.fileops
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.output.main module
+----------------------------------
+
+.. automodule:: pyexlatex.logic.output.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.output.sources module
+-------------------------------------
+
+.. automodule:: pyexlatex.logic.output.sources
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pyexlatex.logic.output.to\_file module
+--------------------------------------
+
+.. automodule:: pyexlatex.logic.output.to_file
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

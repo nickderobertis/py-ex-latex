@@ -1,0 +1,26 @@
+pyexlatex.logic.output.errors package
+=====================================
+
+.. automodule:: pyexlatex.logic.output.errors
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+   pyexlatex.logic.output.errors.models
+
+Submodules
+----------
+
+pyexlatex.logic.output.errors.exc module
+----------------------------------------
+
+.. automodule:: pyexlatex.logic.output.errors.exc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
