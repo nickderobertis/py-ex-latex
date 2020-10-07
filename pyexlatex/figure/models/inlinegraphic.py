@@ -41,7 +41,7 @@ class InlineGraphic(MultiOptionSimpleItem, Graphic):
 
     @property
     def _command_definition(self) -> Raw:
-        # TODO [$5f7de2d5a4c1890007cbbf9a]: set inline graphic command definition using models
+        # TODO [#41]: set inline graphic command definition using models
         return Raw(
 r"""
 \newcommand{\vcenteredinclude}[2]{\begingroup
