@@ -25,6 +25,14 @@ pyexlatex.figure.models.graphic module
    :undoc-members:
    :show-inheritance:
 
+pyexlatex.figure.models.inlinegraphic module
+--------------------------------------------
+
+.. automodule:: pyexlatex.figure.models.inlinegraphic
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 pyexlatex.figure.models.subfigure module
 ----------------------------------------
 
