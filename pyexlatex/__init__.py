@@ -29,6 +29,7 @@ from pyexlatex.models.format.text.italics import Italics
 from pyexlatex.models.format.text.smallcaps import SmallCaps
 from pyexlatex.models.format.code.python import Python
 from pyexlatex.figure.models.graphic import Graphic
+from pyexlatex.figure.models.inlinegraphic import InlineGraphic
 from pyexlatex.models.format.fills import VFill, HFill
 from pyexlatex.models.hyperlinks import Hyperlink
 from pyexlatex.models.package import Package

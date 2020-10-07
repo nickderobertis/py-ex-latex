@@ -49,11 +49,8 @@ class Graphic(SimpleItem):
             format_content=False
         )
 
-
-
     def __repr__(self):
         return f'<Graphic({self.filepath}, width={self.width})>'
-
 
     def _set_path(self, filepath: str):
         from pyexlatex.texgen.replacements.filename import _latex_valid_basename
