@@ -54,6 +54,7 @@ from pyexlatex.models.format.captionsetup import CaptionSetup
 from pyexlatex.models.control.newpage import PageBreak
 from pyexlatex.models.control.group import Group
 from pyexlatex.models.sizes.textsizes import TextSize
+from pyexlatex.models.toc import TableOfContents
 from pyexlatex.models.jinja import JinjaEnvironment, JinjaTemplate
 from pyexlatex.models.model import Model
 
