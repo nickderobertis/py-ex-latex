@@ -37,11 +37,3 @@ pyexlatex.presentation.beamer.colorbox module
    :undoc-members:
    :show-inheritance:
 
-pyexlatex.presentation.beamer.toc module
-----------------------------------------
-
-.. automodule:: pyexlatex.presentation.beamer.toc
-   :members:
-   :undoc-members:
-   :show-inheritance:
-

@@ -218,3 +218,11 @@ pyexlatex.models.template module
    :undoc-members:
    :show-inheritance:
 
+pyexlatex.models.toc module
+---------------------------
+
+.. automodule:: pyexlatex.models.toc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
