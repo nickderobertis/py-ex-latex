@@ -6,7 +6,7 @@ from pyexlatex.models.item import NoOptionsNoContentsItem
 class TableOfContents(NoOptionsNoContentsItem):
     name = 'tableofcontents'
 
-    def __init__(self, options: Optional[Sequence[str]] = ('currentsection',), **kwargs):
+    def __init__(self, options: Optional[Sequence[str]] = None, **kwargs):
         self.options = options
         super().__init__(self.name, modifiers=self.options_str, **kwargs)
 
