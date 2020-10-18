@@ -4,7 +4,7 @@ from typing import Union, List, Dict, Any, TYPE_CHECKING, Optional
 from pyexlatex.typing import PyexlatexItems
 
 if TYPE_CHECKING:
-    from matplotlib.pyplot import Figure as PltFigure
+    from matplotlib.pyplot import Axes, Figure as PltFigure
 
 from pyexlatex.figure.models.subfigure import Subfigure, Graphic
 from pyexlatex.models.item import Item
