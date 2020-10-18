@@ -9,6 +9,8 @@ def test_single_figure_from_graphic():
     graphic = pl.Graphic(str(EXAMPLE_IMAGE_PATH))
     fig = pl.Figure([graphic])
     assert str(fig) == '\\begin{figure}\n\\includegraphics[width=1.0\\textwidth]{Sources/nd-logo.png}\n\\end{figure}'
+    fig = pl.Figure([graphic], position_str='[h!]')
+    assert str(fig) == '\\begin{figure}\n[h!]\n\\includegraphics[width=1.0\\textwidth]{Sources/nd-logo.png}\n\\end{figure}'
     fig = pl.Figure([graphic], caption='image')
     assert str(fig) == '\\begin{figure}\n\\includegraphics[width=1.0\\textwidth]{Sources/nd-logo.png}\n\\caption{image}\n\\end{figure}'
     fig = pl.Figure.from_dict_of_names_and_filepaths({'image': str(EXAMPLE_IMAGE_PATH)})
@@ -34,4 +36,6 @@ def test_figure_from_matplotlib():
     name = 'figure from matplotlib'
     fig.to_pdf_and_move(outfolder=GENERATED_FILES_DIR, outname=name)
     compare_pdfs_in_generated_vs_input_by_name(name)
+    fig = pl.Figure.from_dict_of_names_and_plt_figures({'plot': plot}, GENERATED_FILES_DIR, position_str='[h!]')
+    assert str(fig) == '\\begin{figure}\n[h!]\n\\includegraphics[width=0.45\\linewidth]{Sources/plot.pdf}\n\\caption{plot}\n\\end{figure}'
 
