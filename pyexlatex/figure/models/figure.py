@@ -1,14 +1,15 @@
 import os
-from typing import Union, List, Dict, Any, TYPE_CHECKING
+from typing import Union, List, Dict, Any, TYPE_CHECKING, Optional
+
+from pyexlatex.typing import PyexlatexItems
+
 if TYPE_CHECKING:
     from matplotlib.pyplot import Axes, Figure as PltFigure
 
 from pyexlatex.figure.models.subfigure import Subfigure, Graphic
-from pyexlatex.models.documentitem import DocumentItem
 from pyexlatex.models.item import Item
 from pyexlatex.models.caption import Caption
 from pyexlatex.models.label import Label
-from pyexlatex.models.landscape import Landscape
 from pyexlatex.logic.builder import build_figure_content
 from pyexlatex.texgen.replacements.filename import latex_filename_replacements
 
@@ -23,17 +24,19 @@ SubfiguresOrGraphics = List[SubfigureOrGraphic]
 PltFigureOrAxes = Union['Axes', 'PltFigure']
 PltFigureOrAxesNameDict = Dict[str, PltFigureOrAxes]
 
+
 class Figure(ContainerItem, Item):
     """
-    used for creating latex figures from images. Currently the main usage is the Figure class created with the method
+    Used for creating latex figures from images. Currently the main usage is the Figure class created with the method
     Figure.from_dict_of_names_and_filepaths. Pass a dictionary where the keys are names for subfigures and the values
     are filepaths where the image for the subfigure is located.
 
     """
     name = 'figure'
 
-    def __init__(self, subfigures: SubfiguresOrGraphics, caption=None, label=None, centering=True, position_str=None,
-                 landscape: bool=False):
+    def __init__(self, subfigures: SubfiguresOrGraphics, caption: Optional[PyexlatexItems] = None,
+                 label: Optional[str] = None, centering: bool = True, position_str: Optional[str] = None,
+                 landscape: bool = False):
         self.subfigures = subfigures
         self.caption = Caption(caption) if caption else None
         self.label = Label(label) if label else None
@@ -107,22 +110,19 @@ class Figure(ContainerItem, Item):
             image_binaries=self.data.binaries
         )
 
-
     @classmethod
     def from_dict_of_names_and_filepaths(cls, filepath_name_dict: dict, figure_name: str=None,
-                                         position_str_name_dict: dict=None, label=None, centering=True,
-                                         landscape: bool = False):
+                                         position_str_name_dict: dict=None, **kwargs):
         """
+        Create a Figure from a dictionary where keys are names of subfigures and values are file paths
 
-        Args:
-            filepath_name_dict: dictionary where keys are names of subfigures and values
-                                are the filepaths to the images for those subfigures.
-            figure_name: name for overall figure
-            position_str_name_dict: dictionary where keys are names of subfigures and values
-                                are the position strs for those figures, e.g. r'[t]{0.45\linewidth}'
-
-        Returns:
-
+        :param filepath_name_dict: dictionary where keys are names of subfigures and values
+            are the filepaths to the images for those subfigures.
+        :param figure_name: name for overall figure
+        :param position_str_name_dict: dictionary where keys are names of subfigures and values
+            are the position strs for those figures, e.g. r'[t]{0.45\linewidth}'
+        :param kwargs: kwargs for Figure
+        :return: Figure
         """
 
         # TODO [#3]: for Figure, add possibility of passing grid shape rather than actual position str
@@ -143,33 +143,27 @@ class Figure(ContainerItem, Item):
         return cls(
             subfigures,
             caption=figure_name,
-            label=label,
-            centering=centering,
-            landscape=landscape
+            **kwargs
         )
 
     @classmethod
     def from_dict_of_names_and_plt_figures(cls, plt_fig_name_dict: PltFigureOrAxesNameDict, sources_outfolder: str,
                                            source_filetype: str = 'pdf',
                                            figure_name: str=None,
-                                           position_str_name_dict: dict=None, label=None, centering=True,
-                                           landscape: bool = False):
+                                           position_str_name_dict: dict=None, **kwargs):
         """
+        Create a Figure from a dictionary where keys are names of subfigures and values are matplotlib Figures
+        or Axes
 
-        Args:
-            plt_fig_name_dict: Key is display name in output figure, value is matplotlib axes or figure
-            sources_outfolder: folder to output individual plt figures
-            source_filetype: Filetype for individual plt figures. The default is pdf. Use png or another image type if
-                outputting complicated figures or performance may be affected when viewing the pdf.
-            figure_name: name for overall figure
-            position_str_name_dict: dictionary where keys are names of subfigures and values
-                are the position strs for those figures, e.g. r'[t]{0.45\linewidth}'
-            label:
-            centering:
-            landscape:
-
-        Returns: Figure
-
+        :param plt_fig_name_dict: Key is display name in output figure, value is matplotlib axes or figure
+        :param sources_outfolder: folder to output individual matplotlib figures
+        :param source_filetype: Filetype for individual plt figures. The default is pdf. Use png or another
+            image type if outputting complicated figures or performance may be affected when viewing the pdf.
+        :param figure_name: name for overall figure
+        :param position_str_name_dict: dictionary where keys are names of subfigures and values
+            are the position strs for those figures, e.g. r'[t]{0.45\linewidth}'
+        :param kwargs: kwargs for Figure
+        :return: Figure
         """
 
         filepath_name_dict = {}  # store outputted filepaths of sources to pass to from_dict_of_names_and_filepaths
@@ -183,9 +177,7 @@ class Figure(ContainerItem, Item):
             filepath_name_dict,
             figure_name=figure_name,
             position_str_name_dict=position_str_name_dict,
-            label=label,
-            centering=centering,
-            landscape=landscape
+            **kwargs
         )
 
 

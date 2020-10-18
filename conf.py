@@ -20,7 +20,7 @@ REPO_MAINTAINERS = [
 ]
 
 # Package version in the format (major, minor, release)
-PACKAGE_VERSION_TUPLE = (0, 12, 2)
+PACKAGE_VERSION_TUPLE = (0, 12, 3)
 
 # Short description of the package
 PACKAGE_SHORT_DESCRIPTION = 'Python Extends LaTeX - A High-Level Python API for Creating Latex Documents'
@@ -71,7 +71,8 @@ PACKAGE_INSTALL_REQUIRES = [
     'sympy',
     'shutilwhich',
     'bibtexparser',
-    'Jinja2'
+    'Jinja2',
+    'matplotlib',
 ]
 
 # Add any third party packages you use in requirements for optional features of your package here

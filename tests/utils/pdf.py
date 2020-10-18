@@ -1,5 +1,13 @@
 import fitz
 
+from tests.base import INPUT_FILES_DIR, GENERATED_FILES_DIR
+
+
+def compare_pdfs_in_generated_vs_input_by_name(name: str):
+    generated_file = GENERATED_FILES_DIR / f'{name}.pdf'
+    input_file = INPUT_FILES_DIR / f'{name}.pdf'
+    compare_pdfs(generated_file, input_file)
+
 
 def compare_pdfs(path_a: str, path_b: str):
     """

@@ -1,0 +1,24 @@
+\documentclass[]{article}
+\newenvironment{lfigure}{\begin{landscape}\begin{figure}}{\end{figure}\end{landscape}}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{textcomp}
+\usepackage[margin=0.8in, bottom=1.2in]{geometry}
+\usepackage[page]{appendix}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead{}
+\rfoot{Page \thepage\  of \pageref{LastPage}}
+\cfoot{}
+\begin{document}
+\begin{lfigure}
+[h!]
+\includegraphics[width=1.0\textwidth]{Sources/nd-logo.png}
+\caption{woo}
+\label{yeah}
+\end{lfigure}
+\end{document}

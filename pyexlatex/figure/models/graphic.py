@@ -18,7 +18,7 @@ class Graphic(SimpleItem):
     """
     name = 'includegraphics'
 
-    def __init__(self, filepath, width: Union[str, float] = 1.0, cache: bool = True, options: List[str] = None,
+    def __init__(self, filepath: str, width: Union[str, float] = 1.0, cache: bool = True, options: List[str] = None,
                  overlay: Optional['Overlay'] = None):
         """
 
