@@ -71,7 +71,8 @@ PACKAGE_INSTALL_REQUIRES = [
     'sympy',
     'shutilwhich',
     'bibtexparser',
-    'Jinja2'
+    'Jinja2',
+    'matplotlib',
 ]
 
 # Add any third party packages you use in requirements for optional features of your package here

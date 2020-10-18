@@ -33,6 +33,7 @@ shutilwhich = "*"
 bibtexparser = "*"
 Jinja2 = "*"
 PyMuPDF = "==1.17.3"
+matplotlib = "*"
 
 [requires]
 python_version = "3.8"
