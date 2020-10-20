@@ -27,8 +27,8 @@ class ColumnAlignment(ReprMixin, ItemBase):
         return other.align + self.align
 
     def _validate_align_str(self, align_str):
-        basic_pattern = re.compile(r'[lcr|]')
-        length_pattern = re.compile(r'[LCRD]\{[\d\w\s.]+\}')
+        basic_pattern = re.compile(r'[lcr|.]')
+        length_pattern = re.compile(r'[LCR]\{[\d\w\s.]+\}')
 
         basic_match = basic_pattern.fullmatch(align_str)
         length_match = length_pattern.fullmatch(align_str)
@@ -37,7 +37,7 @@ class ColumnAlignment(ReprMixin, ItemBase):
             self._add_requirements_for_length_match()
 
         if not (basic_match or length_match):
-            raise ValueError(f'expected alignment of l, c, r, |, L{{size}}, C{{size}}, R{{size}}, or D{{size}}. Got {align_str}')
+            raise ValueError(f'expected alignment of l, c, r, ., |, L{{size}}, C{{size}}, or R{{size}}. Got {align_str}')
 
     def _add_requirements_for_length_match(self):
         self.add_package(ColumnTypesPackage())
@@ -96,7 +96,7 @@ class ColumnsAlignment(ReprMixin, ContainerItem):
 
 
 def _full_align_str_to_align_str_list(align_str: str):
-    split_letters = ['l', 'c', 'r', '|', 'L', 'C', 'R']
+    split_letters = ['l', 'c', 'r', '|', 'L', 'C', 'R', '.']
     out_list = []
     collected_letters = ''
     split = True

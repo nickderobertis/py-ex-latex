@@ -51,8 +51,7 @@ def _build_latex_str_list_from_df(df: DataFrame):
     # TODO [#23]: remvove setting of max col width once pandas does this by default for to_latex
     #
     # See https://github.com/pandas-dev/pandas/issues/6491
-    max_length = int(df.applymap(lambda x: len(str(x))).max().max() + 1)
-    with pd.option_context("max_colwidth", max_length):
+    with pd.option_context("max_colwidth", None):
         latex_str = df.to_latex(header=False, index=False)
     latex_list = latex_str.split('\n')
 

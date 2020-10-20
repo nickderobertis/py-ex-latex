@@ -1,6 +1,7 @@
 from typing import Union, AnyStr, List, TYPE_CHECKING, Optional, Dict
 import pandas as pd
 
+from pyexlatex.texgen.packages.columntypes import ColumnTypesPackage
 
 if TYPE_CHECKING:
     from pyexlatex.table.models.texgen.items import ColumnsAlignment
@@ -35,9 +36,10 @@ class Table(DocumentItem, ReprMixin):
         :param caption: overall caption to place at top of table
         :param above_text: Not yet implemented
         :param below_text: text to place below table
-        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned
-                        as well as L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm}) for left, center, and right aligned
-                        fixed width. Default is first column left aligned, rest center aligned.
+        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
+                        as well as . for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+                        for left, center, and right aligned fixed width. Default is first column left aligned,
+                        rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
@@ -52,6 +54,7 @@ class Table(DocumentItem, ReprMixin):
         self.landscape = landscape
         self.label = Label(label) if label else None
         self.data = DocumentSetupData()
+        self.data.packages.extend(['threeparttable', 'booktabs', ColumnTypesPackage()])
         self.set_begin_document_items(landscape)
 
     def __str__(self):
