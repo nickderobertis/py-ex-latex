@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     from pyexlatex.models.documentsetup import DocumentSetupData
 from copy import deepcopy
 from pyexlatex.models.document import DocumentBase
-from pyexlatex.typing import ItemOrListOfItems
+from pyexlatex.typing import ItemOrListOfItems, PyexlatexItems
 from pyexlatex.models.package import Package
 from pyexlatex.models.control.documentclass.documentclass import DocumentClass
 from pyexlatex.models.control.mode import Mode
@@ -25,8 +25,8 @@ class Presentation(DocumentBase):
     """
     name = 'document'
 
-    def __init__(self, content: ItemOrListOfItems, packages: List[Package]=None,
-                 pre_env_contents: Optional[ItemOrListOfItems] = None,
+    def __init__(self, content: PyexlatexItems, packages: List[Union[Package, str]] = None,
+                 pre_env_contents: Optional[PyexlatexItems] = None,
                  title: Optional[str] = None, authors: Optional[Union[str, Sequence[str]]] = None,
                  date: Optional[str] = None,
                  short_title: Optional[str] = None, subtitle: Optional[str] = None, short_author: Optional[str] = None,
