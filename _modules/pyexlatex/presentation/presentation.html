@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.presentation.presentation &mdash; pyexlatex 0.12.3 documentation</title>
+  <title>pyexlatex.presentation.presentation &mdash; pyexlatex 0.13.0 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.12.3
+                0.13.0
               </div>
             
           
@@ -175,7 +175,7 @@
     <span class="kn">from</span> <span class="nn">pyexlatex.models.documentsetup</span> <span class="kn">import</span> <span class="n">DocumentSetupData</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.document</span> <span class="kn">import</span> <span class="n">DocumentBase</span>
-<span class="kn">from</span> <span class="nn">pyexlatex.typing</span> <span class="kn">import</span> <span class="n">ItemOrListOfItems</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.typing</span> <span class="kn">import</span> <span class="n">ItemOrListOfItems</span><span class="p">,</span> <span class="n">PyexlatexItems</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.package</span> <span class="kn">import</span> <span class="n">Package</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.control.documentclass.documentclass</span> <span class="kn">import</span> <span class="n">DocumentClass</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.models.control.mode</span> <span class="kn">import</span> <span class="n">Mode</span>
@@ -193,8 +193,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;document&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">ItemOrListOfItems</span><span class="p">,</span> <span class="n">packages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Package</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                 <span class="n">pre_env_contents</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ItemOrListOfItems</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">PyexlatexItems</span><span class="p">,</span> <span class="n">packages</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Package</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">pre_env_contents</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PyexlatexItems</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">authors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">short_title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">subtitle</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">short_author</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -207,14 +207,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">title_frame</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="kn">from</span> <span class="nn">pyexlatex.models.documentitem</span> <span class="kn">import</span> <span class="n">DocumentItem</span>
-        <span class="n">content_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Item</span><span class="p">,</span> <span class="n">ItemBase</span><span class="p">]]</span>
+        <span class="n">content_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Item</span><span class="p">,</span> <span class="n">ItemBase</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="p">(</span><span class="n">ItemBase</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
             <span class="n">content_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">content</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># don&#39;t overwrite existing content</span>
             <span class="n">content_list</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 
-        <span class="n">pre_env_contents_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Item</span><span class="p">,</span> <span class="n">ItemBase</span><span class="p">]]</span>
+        <span class="n">pre_env_contents_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Item</span><span class="p">,</span> <span class="n">ItemBase</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span>
         <span class="k">if</span> <span class="n">pre_env_contents</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">pre_env_contents_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pre_env_contents</span><span class="p">,</span> <span class="p">(</span><span class="n">ItemBase</span><span class="p">,</span> <span class="nb">str</span><span class="p">)):</span>
