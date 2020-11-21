@@ -1,4 +1,4 @@
-from typing import Iterable
+from typing import Iterable, Sequence
 
 from mixins.repr import ReprMixin
 from pyexlatex.table.models.data.dataitem import DataItem
@@ -8,7 +8,7 @@ from pyexlatex.table.models.spacing.cell import CellSpacer
 
 
 class RowBase(ReprMixin, RowAddMixin):
-    values: Iterable
+    values: Sequence
 
     def __len__(self):
         return sum(_get_length(value) for value in self.values)
@@ -19,6 +19,18 @@ class RowBase(ReprMixin, RowAddMixin):
 
     def __getitem__(self, item):
         return self.values[item]
+
+    def __eq__(self, other):
+        if not hasattr(other, 'values'):
+            return False
+        if len(self.values) != len(other.values):
+            return False
+
+        for val, other_value in zip(self.values, other.values):
+            if val != other_value:
+                return False
+
+        return True
 
     def pad(self, length: int, direction='right'):
         """

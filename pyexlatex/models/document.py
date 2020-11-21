@@ -36,8 +36,8 @@ class DocumentBase(ContainerItem, Item):
     name = '<invalid, do not use DocumentBase directly>'
     document_class_obj: Optional['DocumentClass'] = None
 
-    def __init__(self, content: PyexlatexItems, packages: List[Package]=None,
-                 pre_env_contents: Optional[ItemOrListOfItems] = None, data_cleanup_func: Optional[Callable] = None,
+    def __init__(self, content: PyexlatexItems, packages: PyexlatexItems = None,
+                 pre_env_contents: Optional[PyexlatexItems] = None, data_cleanup_func: Optional[Callable] = None,
                  pre_output_func: Optional[Callable] = None):
         """
 

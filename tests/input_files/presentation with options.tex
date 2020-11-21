@@ -1,0 +1,46 @@
+\documentclass[15pt]{beamer}
+\mode
+<presentation>{\usetheme{Madrid}}
+\institute[UF \& VCU]{\inst{1}
+University of Florida\\
+Line two
+\and
+\inst{2}
+Virginia Commonwealth University}
+\setbeamertemplate{headline}{\begin{beamercolorbox}[ht=2.25ex, dp=3.75ex]{section in head/foot}
+\insertnavigation{\paperwidth}
+\end{beamercolorbox}}
+\AtBeginSection{\begin{frame}
+\frametitle{Table of Contents}
+\tableofcontents[currentsection]
+\end{frame}}
+\begin{document}
+\title[Pres]{Test Presentation}
+\subtitle{A Presentation for Testing Purposes}
+\author[People]{Nick DeRobertis\inst{1}, Someone Else\inst{2}}
+\date{2020-10-19}
+\begin{frame}
+\titlepage
+\label{title-frame}
+\end{frame}
+\begin{section}{One}
+\begin{frame}
+\frametitle{One-One}
+woo
+\end{frame}
+\begin{frame}
+\frametitle{One-Two}
+woo2
+\end{frame}
+\end{section}
+\begin{section}{Two}
+\begin{frame}
+\frametitle{Two-One}
+woo3
+\end{frame}
+\begin{frame}
+\frametitle{Two-Two}
+woo4
+\end{frame}
+\end{section}
+\end{document}

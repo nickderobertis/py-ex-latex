@@ -1,6 +1,10 @@
-from typing import Union, AnyStr, List, TYPE_CHECKING, Optional, Dict
+from copy import deepcopy
+from typing import Union, AnyStr, List, TYPE_CHECKING, Optional, Dict, Callable
 import pandas as pd
+import numpy as np
 
+from pyexlatex.table.models.panels.grid import PanelGrid
+from pyexlatex.texgen.packages.columntypes import ColumnTypesPackage
 
 if TYPE_CHECKING:
     from pyexlatex.table.models.texgen.items import ColumnsAlignment
@@ -35,9 +39,10 @@ class Table(DocumentItem, ReprMixin):
         :param caption: overall caption to place at top of table
         :param above_text: Not yet implemented
         :param below_text: text to place below table
-        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned
-                        as well as L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm}) for left, center, and right aligned
-                        fixed width. Default is first column left aligned, rest center aligned.
+        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
+                        as well as . for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+                        for left, center, and right aligned fixed width. Default is first column left aligned,
+                        rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
@@ -52,6 +57,7 @@ class Table(DocumentItem, ReprMixin):
         self.landscape = landscape
         self.label = Label(label) if label else None
         self.data = DocumentSetupData()
+        self.data.packages.extend(['threeparttable', 'booktabs', ColumnTypesPackage()])
         self.set_begin_document_items(landscape)
 
     def __str__(self):
@@ -69,10 +75,51 @@ class Table(DocumentItem, ReprMixin):
         tex_generator = self.tex_obj(as_document=as_document)
         return str(tex_generator)
 
-    def tex_obj(self, as_document=True):
-        from pyexlatex.table.models.texgen.items import TableDocument, Table as TexTable, LTable
+    def tex_obj(self, as_document: bool = True, as_single_tabular: bool = False, as_panel_tabular_list: bool = False):
+        from pyexlatex.table.models.texgen.items import TableDocument, Table as TexTable, LTable, Tabular
+
+        if sum([as_document, as_single_tabular, as_panel_tabular_list]) > 1:
+            raise ValueError('must pass only one of as_document, as_single_tabular, as_panel_tabular_list')
+
+        class_factory: Callable[['Table'], Union[TableDocument, Tabular, List[Tabular], TexTable, LTable]]
         if as_document:
             class_factory = TableDocument.from_table_model
+        elif as_single_tabular:
+            def class_factory(table: 'Table') -> Tabular:
+                tabular = Tabular.from_panel_collection(
+                    table.panels,
+                    align=table.align,
+                    mid_rules=table.mid_rules
+                )
+                return tabular
+        elif as_panel_tabular_list:
+            def class_factory(table: 'Table') -> List[Tabular]:
+                tabulars: List[Tabular] = []
+                for i, panel in enumerate(table.panels.iterpanels(add_panel_order_label=False)):
+                    use_panel = panel
+                    if panel.is_spacer:
+                        continue
+                    if table.panels.has_column_labels:
+                        # If there are column labels for the panel collection, need to skip first panel
+                        # but then take its values and put as headers for all other panels
+                        if i == 0:
+                            continue
+                        headers = table.panels.rows[0]
+                        use_panel = deepcopy(panel)  # avoid modifying existing panel
+                        new_grid = np.concatenate([PanelGrid([headers]), use_panel.panel_grid], axis=0)
+                        use_panel.panel_grid = new_grid
+                    pc = PanelCollection(
+                        [use_panel],
+                        name=use_panel.name,
+                        pad_rows=0
+                    )
+                    tabular = Tabular.from_panel_collection(
+                        pc,
+                        align=table.align,
+                        mid_rules=table.mid_rules
+                    )
+                    tabulars.append(tabular)
+                return tabulars
         else:
             if self.landscape:
                 class_factory = LTable.from_table_model

@@ -28,6 +28,18 @@ class TableSection(ReprMixin):
         from pyexlatex.table.logic.table.build import _build_tabular_str_from_rows_and_lines
         return _build_tabular_str_from_rows_and_lines(self.rows, self.break_size_adjustment)
 
+    def __eq__(self, other):
+        if not hasattr(other, 'rows'):
+            return False
+        if len(self.rows) != len(other.rows):
+            return False
+
+        for row, other_row in zip(self.rows, other.rows):
+            if row != other_row:
+                return False
+
+        return True
+
     def __add__(self, other):
         # import here to avoid circular imports
         from pyexlatex.table.models.spacing.columntable import ColumnPadTable

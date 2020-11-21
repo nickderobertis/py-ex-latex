@@ -39,3 +39,21 @@ def test_figure_from_matplotlib():
     fig = pl.Figure.from_dict_of_names_and_plt_figures({'plot': plot}, GENERATED_FILES_DIR, position_str='[h!]')
     assert str(fig) == '\\begin{figure}\n[h!]\n\\includegraphics[width=0.45\\linewidth]{Sources/plot.pdf}\n\\caption{plot}\n\\end{figure}'
 
+
+def test_graphic_from_single_graphic_figure():
+    graphic = pl.Graphic(str(EXAMPLE_IMAGE_PATH))
+    fig = pl.Figure([graphic])
+    graphics = fig.to_graphic_list()
+    assert str(graphic) == str(graphics[0])
+    assert len(graphics) == 1
+
+
+def test_graphics_from_multiple_subfigure_figure():
+    graphic = pl.Graphic(str(EXAMPLE_IMAGE_PATH))
+    subf1 = pl.Subfigure(str(EXAMPLE_IMAGE_PATH))
+    subf2 = pl.Subfigure(str(EXAMPLE_IMAGE_PATH))
+    fig = pl.Figure([subf1, subf2])
+    graphics = fig.to_graphic_list()
+    assert len(graphics) == 2
+    for g in graphics:
+        assert str(graphic) == str(g)
