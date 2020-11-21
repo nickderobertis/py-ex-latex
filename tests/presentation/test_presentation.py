@@ -107,6 +107,78 @@ def test_table_in_presentation():
     compare_pdfs_in_generated_vs_input_by_name(name)
 
 
+def test_tabular_from_table_in_presentation():
+    df = pd.DataFrame(
+        [
+            (1, 2, 3.546),
+            (4, 5, 66546.4),
+            (7, 8, 96.54)
+        ],
+        columns=['a', 'b', 'c']
+    )
+    table = pl.Table.from_list_of_lists_of_dfs(
+        [[df], [df + 10]],
+        caption='My Table Title',
+        below_text='My below text',
+        align='L{5cm}c.'
+    )
+    doc = pl.Presentation(
+        [
+            pl.Section(
+                [
+                    pl.Frame(
+                        [
+                            table.tex_obj(as_document=False, as_single_tabular=True),
+                        ],
+                        title='Tabular'
+                    ),
+                ],
+                title="Section"
+            ),
+        ],
+    )
+    assert str(doc) == '\\documentclass[11pt]{beamer}\n\\mode\n<presentation>{\\usetheme{Madrid}}\n\\usepackage{booktabs}\n\\usepackage{dcolumn}\n\\newcolumntype{L}[1]{>{\\raggedright\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{C}[1]{>{\\centering\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{R}[1]{>{\\raggedleft\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{.}{D{.}{.}{-1}}\n\\begin{document}\n\\begin{section}{Section}\n\\begin{frame}\n\\frametitle{Tabular}\n\\begin{tabular}{L{5cm}c.}\n\\toprule\na & b & c\\\\\n\\midrule\n 1 &  2 &      3.546 \\\\\n 4 &  5 &  66546.400 \\\\\n 7 &  8 &     96.540 \\\\\n  &   &  \\\\\n 11 &  12 &     13.546 \\\\\n 14 &  15 &  66556.400 \\\\\n 17 &  18 &    106.540 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{frame}\n\\end{section}\n\\end{document}'
+    name = 'presentation with tabular'
+    doc.to_pdf(outfolder=GENERATED_FILES_DIR, outname=name)
+    compare_pdfs_in_generated_vs_input_by_name(name)
+
+
+def test_tabular_list_from_table_in_presentation():
+    df = pd.DataFrame(
+        [
+            (1, 2, 3.546),
+            (4, 5, 66546.4),
+            (7, 8, 96.54)
+        ],
+        columns=['a', 'b', 'c']
+    )
+    table = pl.Table.from_list_of_lists_of_dfs(
+        [[df], [df + 10]],
+        caption='My Table Title',
+        below_text='My below text',
+        align='L{5cm}c.'
+    )
+    frames = [
+        pl.Frame(tab, title=f'Tabular {i + 1}')
+        for i, tab in enumerate(table.tex_obj(as_document=False, as_panel_tabular_list=True))
+    ]
+
+    doc = pl.Presentation(
+        [
+            pl.Section(
+                [
+                    frames,
+                ],
+                title="Section"
+            ),
+        ],
+    )
+    assert str(doc) == '\\documentclass[11pt]{beamer}\n\\mode\n<presentation>{\\usetheme{Madrid}}\n\\usepackage{booktabs}\n\\usepackage{dcolumn}\n\\newcolumntype{L}[1]{>{\\raggedright\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{C}[1]{>{\\centering\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{R}[1]{>{\\raggedleft\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{.}{D{.}{.}{-1}}\n\\begin{document}\n\\begin{section}{Section}\n\\begin{frame}\n\\frametitle{Tabular 1}\n\\begin{tabular}{L{5cm}c.}\n\\toprule\na & b & c\\\\\n\\midrule\n 1 &  2 &      3.546 \\\\\n 4 &  5 &  66546.400 \\\\\n 7 &  8 &     96.540 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{frame}\n\\begin{frame}\n\\frametitle{Tabular 2}\n\\begin{tabular}{L{5cm}c.}\n\\toprule\na & b & c\\\\\n\\midrule\n 11 &  12 &     13.546 \\\\\n 14 &  15 &  66556.400 \\\\\n 17 &  18 &    106.540 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{frame}\n\\end{section}\n\\end{document}'
+    name = 'presentation with tabular list'
+    doc.to_pdf(outfolder=GENERATED_FILES_DIR, outname=name)
+    compare_pdfs_in_generated_vs_input_by_name(name)
+
+
 def test_figure_in_presentation():
     graphic = pl.Graphic(str(EXAMPLE_IMAGE_PATH), width=0.4)
     fig = pl.Figure([graphic], caption='My Figure')
