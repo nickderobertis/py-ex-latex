@@ -1,9 +1,11 @@
+from copy import deepcopy
 from typing import Union, AnyStr, List, Optional
 
 import numpy as np
 import pandas as pd
 
 from mixins.repr import ReprMixin
+
 from pyexlatex.table.logic.panels.combine import (
     common_column_labels,
     common_row_labels,
@@ -17,6 +19,7 @@ from pyexlatex.table.models.panels.panel import PanelGrid, GridShape
 from pyexlatex.table.models.spacing.columntable import ColumnPadTable
 from pyexlatex.table.models.spacing.rowtable import RowPadTable
 from pyexlatex.table.models.table.section import TableSection
+from pyexlatex.table.models.data.table import DataTable
 
 
 class PanelCollection(ReprMixin):
@@ -61,6 +64,7 @@ class PanelCollection(ReprMixin):
 
         self.has_row_labels = False
         self.has_column_labels = False
+
         self.consolidate_labels()
         self.pad_grid()
 
@@ -156,10 +160,10 @@ class PanelCollection(ReprMixin):
             num_columns = self._num_columns
         except AttributeError:
             num_columns = max([row.num_columns for row in rows])
-
         # Now pad rows
         for row in rows:
             row.pad(num_columns, direction='right')
+
 
         return rows
 
@@ -179,6 +183,12 @@ class PanelCollection(ReprMixin):
 
     def consolidate_labels(self):
 
+        # TODO: reduce complexity and improve testing of label consolidation
+        #
+        # This code has grown quite a bit to handle all the cases, and it
+        # still has not been thoroughly tested for every case. Need to expand
+        # the testing to cover all the cases and then try to simplify the code
+
         if self.label_consolidation is None:
             return
 
@@ -194,6 +204,9 @@ class PanelCollection(ReprMixin):
             use_object_equality=use_object_equality,
             enforce_label_order=self.enforce_label_order
         )
+        # Column labels may be modified to add top left corner label, but need to
+        # track original so it can be removed from existing panels
+        orig_column_labels = deepcopy(column_labels)
 
         row_labels: [LabelTable] = common_row_labels(
             self.grid,
@@ -202,18 +215,32 @@ class PanelCollection(ReprMixin):
         )
 
         if column_labels is not None:
-            self._add_column_labels(column_labels)
-            if row_labels is None:
+            if row_labels is None and not self.top_left_corner_labels.is_spacer:
                 # If there are column labels but not row labels, still need to deal with top left label.
                 # Adding the top left label is handled in the if row_labels is not None block, but it will
                 # not be reached as row_labels is None. Therefore create a blank label table for each grid row
                 # except for the column labels. The top left label to go with the column row will be added
                 # in the following block.
                 # Grid shape -1 to exclude just added column labels
-                row_labels = [LabelTable([]) for row_index in range(self.grid.shape[0] - 1)]
+                row_labels: List[LabelTable] = []
+                for grid_row in self.grid:
+                    left_value: TableSection = grid_row[0]
+                    if left_value in column_labels:
+                        # top left corner label, handled separately in row labels section
+                        continue
+                    section_height = len(left_value.rows)
+                    if isinstance(left_value, DataTable):
+                        if left_value.column_labels in column_labels:
+                            # Adjust for when the column labels have been consolidated into the overall column labels,
+                            # then don't need to add row label as this column label won't be in the output
+                            section_height -= 1
+                    label_lol = [['']] * section_height
+                    row_labels.append(LabelTable.from_list_of_lists(label_lol))
 
-
+        column_labels_created = False
         if row_labels is not None:
+            self._add_column_labels(column_labels)
+            column_labels_created = True
             # After adding column labels, there is an additional row at the top of the grid
             # Therefore we will need one additional LabelTable for the first row, which is the row of column labels
             # If top_left_corner_labels was passed on object creation, use that as LabelTable. Otherwise use a blank one
@@ -222,11 +249,26 @@ class PanelCollection(ReprMixin):
             else:
                 all_row_labels = row_labels
             self._add_row_labels(all_row_labels)
+        elif column_labels is not None:
+            # There are no common row labels, but if there are any row labels which are not being consolidated,
+            # still need to add the top left corner
+            # First detect the existence of any row labels
+            any_row_labels = False
+            for grid_row in self.grid:
+                left_value: TableSection = grid_row[0]
+                if isinstance(left_value, DataTable) and left_value.has_row_labels:
+                    any_row_labels = True
+            if any_row_labels:
+                # Now add the top left corner
+                column_labels[0] = self.top_left_corner_labels + column_labels[0]
+
+        if column_labels is not None and not column_labels_created:
+            self._add_column_labels(column_labels)
 
         # Remove from the original tables the labels that were just consolidated
         remove_label_collections_from_grid(
             self.grid,
-            column_labels=column_labels,
+            column_labels=orig_column_labels,
             row_labels=row_labels,
             use_object_equality=use_object_equality
         )
@@ -269,7 +311,6 @@ class PanelCollection(ReprMixin):
         new_grid = np.concatenate(out_grid_rows).view(GridShape)
         self._grid = new_grid
         self._rows = self._create_panel_rows() # need to recreate rows with new grid
-
 
     def _add_column_labels(self, column_labels: List[LabelTable]):
         assert len(column_labels) == self.grid.shape[1]

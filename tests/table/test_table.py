@@ -33,6 +33,22 @@ class TestTable:
         caption='My Table Title',
         below_text='My below text'
     )
+    two_panel_table_from_dict_no_index_with_tl = pl.Table.from_panel_name_df_dict(
+        {
+            'One': EXAMPLE_DF,
+            'Two': (EXAMPLE_DF + 10)
+        },
+        caption='My Table Title',
+        below_text='My below text',
+        top_left_corner_labels='woo'
+    )
+    two_panel_table_from_lol_no_index_with_tl = pl.Table.from_list_of_lists_of_dfs(
+        [[EXAMPLE_DF], [EXAMPLE_DF + 10]],
+        panel_names=['One', 'Two'],
+        caption='My Table Title',
+        below_text='My below text',
+        top_left_corner_labels=['woo'],
+    )
     two_panel_table_from_dict_with_index = pl.Table.from_panel_name_df_dict(
         {
             'One': EXAMPLE_DF,
@@ -90,6 +106,12 @@ class TestTable:
 
     def test_table(self):
         assert str(self.table) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+
+    def test_two_panel_table_no_index(self):
+        assert str(self.two_panel_table_from_dict_no_index) == str(self.two_panel_table_from_lol_no_index) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n\\midrule\n\\multicolumn{3}{l}{Panel A: One}\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n  &   &  \\\\\n\\multicolumn{3}{l}{Panel B: Two}\\\\\n 11 &  12 &  13 \\\\\n 14 &  15 &  16 \\\\\n 17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+
+    def test_two_panel_table_no_index_with_tl(self):
+        assert str(self.two_panel_table_from_dict_no_index_with_tl) == str(self.two_panel_table_from_lol_no_index_with_tl) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lccc}\n\\toprule\nwoo & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n &  1 &  2 &  3 \\\\\n &  4 &  5 &  6 \\\\\n &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n &  11 &  12 &  13 \\\\\n &  14 &  15 &  16 \\\\\n &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
 
     def test_two_panel_table_with_index(self):
         assert str(self.two_panel_table_from_dict_with_index) == str(self.two_panel_table_from_lol_with_index) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lccc}\n\\toprule\n  & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
