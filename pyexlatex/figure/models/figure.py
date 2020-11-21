@@ -216,6 +216,17 @@ class Figure(ContainerItem, Item):
 
         self.subfigures = [graphic]
 
+    def to_graphic_list(self) -> List[Graphic]:
+        graphics: List[Graphic] = []
+        for subfig_or_graphic in self.subfigures:
+            if isinstance(subfig_or_graphic, Graphic):
+                graphics.append(subfig_or_graphic)
+            elif isinstance(subfig_or_graphic, Subfigure):
+                graphics.append(subfig_or_graphic.graphic)
+            else:
+                raise ValueError(f'got other than Subfigure or Graphic in subfigures: '
+                                 f'{subfig_or_graphic} of type {type(subfig_or_graphic)}')
+        return graphics
 
 def _get_plt_figure_from_axes_or_figure(plt_axes_or_fig: PltFigureOrAxes) -> 'PltFigure':
     # Both axes and figure have the get_figure method, however for the figure, it will return None
