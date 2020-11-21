@@ -1,4 +1,4 @@
-from typing import Union, Iterable
+from typing import Union, Iterable, Sequence
 
 from pyexlatex.table.models.data.dataitem import DataItem
 from pyexlatex.table.models.labels.collection import LabelCollection
@@ -11,7 +11,7 @@ from pyexlatex.texparser.clean import _remove_backslashes
 class Row(RowBase):
     repr_cols = ['values']
 
-    def __init__(self, values: Union[Iterable[DataItem], LabelCollection, Label]):
+    def __init__(self, values: Union[Sequence[DataItem], LabelCollection, Label]):
 
         # Don't allow nested rows. If the only values passed to a Row are a Row, then use the values of that
         # row rather than the row itself as values

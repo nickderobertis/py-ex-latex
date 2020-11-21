@@ -39,14 +39,14 @@ class Presentation(DocumentBase):
         self.title_frame = None
 
         from pyexlatex.models.documentitem import DocumentItem
-        content_list: List[Union[Item, ItemBase]]
+        content_list: List[Union[Item, ItemBase, str]]
         if isinstance(content, (ItemBase, str)):
             content_list = [content]
         else:
             # don't overwrite existing content
             content_list = deepcopy(content)  # type: ignore
 
-        pre_env_contents_list: List[Union[Item, ItemBase]]
+        pre_env_contents_list: List[Union[Item, ItemBase, str]]
         if pre_env_contents is None:
             pre_env_contents_list = []
         elif isinstance(pre_env_contents, (ItemBase, str)):

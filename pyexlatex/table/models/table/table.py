@@ -1,5 +1,5 @@
 from copy import deepcopy
-from typing import Union, AnyStr, List, TYPE_CHECKING, Optional, Dict
+from typing import Union, AnyStr, List, TYPE_CHECKING, Optional, Dict, Callable
 import pandas as pd
 import numpy as np
 
@@ -81,6 +81,7 @@ class Table(DocumentItem, ReprMixin):
         if sum([as_document, as_single_tabular, as_panel_tabular_list]) > 1:
             raise ValueError('must pass only one of as_document, as_single_tabular, as_panel_tabular_list')
 
+        class_factory: Callable[['Table'], Union[TableDocument, Tabular, List[Tabular], TexTable, LTable]]
         if as_document:
             class_factory = TableDocument.from_table_model
         elif as_single_tabular:
