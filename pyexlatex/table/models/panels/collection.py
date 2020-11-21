@@ -64,18 +64,26 @@ class PanelCollection(ReprMixin):
         self.consolidate_labels()
         self.pad_grid()
 
-    def iterpanels(self):
+    def iterpanels(self, add_panel_order_label: bool = True):
         """
         First panel is headers. Then each original panel
 
         self.grid includes all panels as well as labels. Need to separate back out to
         get each panel
+
+        :param add_panel_order_label: Whether to add to names of panels Panel A:, Panel B:,
+        and so on
+
         :return:
         :rtype:
         """
 
-        # Get lengths of panels, including spacing which is added in pad_grid
-        panel_lengths = [panel.panel_grid.shape[0] * 2 - 1 for panel in self.panels]
+        # Get lengths of panels
+        if len(self.panels) > 1:
+            # Include spacing which is added in pad_grid
+            panel_lengths = [panel.panel_grid.shape[0] * 2 - 1 for panel in self.panels]
+        else:
+            panel_lengths = [self.panels[0].panel_grid.shape[0]]
         if self.has_column_labels:
             # First panel will have an additional row at the top if there are column labels
             panel_lengths[0] += 1
@@ -96,18 +104,22 @@ class PanelCollection(ReprMixin):
                         self.panels[panel_idx].name is not None
                 ):
                     # output with the name
-                    full_name = panel_string(panel_idx) + self.panels[panel_idx].name
+                    if add_panel_order_label:
+                        full_name = panel_string(panel_idx) + self.panels[panel_idx].name
+                    else:
+                        full_name = self.panels[panel_idx].name
                     yield Panel(PanelGrid([row]), name=full_name)
                 else:
                     # column labels panel, no matching name. Or no name for user supplied panel
                     yield Panel(PanelGrid([row]))
                 total_row_idx += 1
             # If we are in-between panels, not on the last panel
-            if panel_idx + 1 != len(self.panels):
-                # In between panels, there is also a spacer, yield that
-                row = self.rows[total_row_idx]
-                yield Panel(PanelGrid([row]))
-                total_row_idx += 1
+            if panel_idx + 1 != len(self.panels) and self.pad_rows > 0:
+                for _ in range(self.pad_rows):
+                    # In between panels, there are also spacers, yield those
+                    row = self.rows[total_row_idx]
+                    yield Panel(PanelGrid([row]))
+                    total_row_idx += 1
 
     @property
     def rows(self):

@@ -1,6 +1,9 @@
+from copy import deepcopy
 from typing import Union, AnyStr, List, TYPE_CHECKING, Optional, Dict
 import pandas as pd
+import numpy as np
 
+from pyexlatex.table.models.panels.grid import PanelGrid
 from pyexlatex.texgen.packages.columntypes import ColumnTypesPackage
 
 if TYPE_CHECKING:
@@ -72,10 +75,50 @@ class Table(DocumentItem, ReprMixin):
         tex_generator = self.tex_obj(as_document=as_document)
         return str(tex_generator)
 
-    def tex_obj(self, as_document=True):
-        from pyexlatex.table.models.texgen.items import TableDocument, Table as TexTable, LTable
+    def tex_obj(self, as_document: bool = True, as_single_tabular: bool = False, as_panel_tabular_list: bool = False):
+        from pyexlatex.table.models.texgen.items import TableDocument, Table as TexTable, LTable, Tabular
+
+        if sum([as_document, as_single_tabular, as_panel_tabular_list]) > 1:
+            raise ValueError('must pass only one of as_document, as_single_tabular, as_panel_tabular_list')
+
         if as_document:
             class_factory = TableDocument.from_table_model
+        elif as_single_tabular:
+            def class_factory(table: 'Table') -> Tabular:
+                tabular = Tabular.from_panel_collection(
+                    table.panels,
+                    align=table.align,
+                    mid_rules=table.mid_rules
+                )
+                return tabular
+        elif as_panel_tabular_list:
+            def class_factory(table: 'Table') -> List[Tabular]:
+                tabulars: List[Tabular] = []
+                for i, panel in enumerate(table.panels.iterpanels(add_panel_order_label=False)):
+                    use_panel = panel
+                    if panel.is_spacer:
+                        continue
+                    if table.panels.has_column_labels:
+                        # If there are column labels for the panel collection, need to skip first panel
+                        # but then take its values and put as headers for all other panels
+                        if i == 0:
+                            continue
+                        headers = table.panels.rows[0]
+                        use_panel = deepcopy(panel)  # avoid modifying existing panel
+                        new_grid = np.concatenate([PanelGrid([headers]), use_panel.panel_grid], axis=0)
+                        use_panel.panel_grid = new_grid
+                    pc = PanelCollection(
+                        [use_panel],
+                        name=use_panel.name,
+                        pad_rows=0
+                    )
+                    tabular = Tabular.from_panel_collection(
+                        pc,
+                        align=table.align,
+                        mid_rules=table.mid_rules
+                    )
+                    tabulars.append(tabular)
+                return tabulars
         else:
             if self.landscape:
                 class_factory = LTable.from_table_model
