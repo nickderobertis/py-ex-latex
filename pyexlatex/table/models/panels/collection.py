@@ -183,7 +183,7 @@ class PanelCollection(ReprMixin):
 
     def consolidate_labels(self):
 
-        # TODO: reduce complexity and improve testing of label consolidation
+        # TODO [$5fb94ad38dae16000737d3d2]: reduce complexity and improve testing of label consolidation
         #
         # This code has grown quite a bit to handle all the cases, and it
         # still has not been thoroughly tested for every case. Need to expand
