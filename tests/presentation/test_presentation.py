@@ -201,3 +201,27 @@ def test_figure_in_presentation():
     name = 'presentation with figure'
     doc.to_pdf(outfolder=GENERATED_FILES_DIR, outname=name)
     compare_pdfs_in_generated_vs_input_by_name(name)
+
+
+def test_graphic_from_figure_in_presentation():
+    graphic = pl.Graphic(str(EXAMPLE_IMAGE_PATH), width=0.4)
+    fig = pl.Figure([graphic], caption='My Figure')
+    doc = pl.Presentation(
+        [
+            pl.Section(
+                [
+                    pl.Frame(
+                        [
+                            fig.to_graphic_list()[0]
+                        ],
+                        title='Graphic'
+                    ),
+                ],
+                title="Section"
+            ),
+        ],
+    )
+    assert str(doc) == '\\documentclass[11pt]{beamer}\n\\mode\n<presentation>{\\usetheme{Madrid}}\n\\begin{document}\n\\begin{section}{Section}\n\\begin{frame}\n\\frametitle{Graphic}\n\\includegraphics[width=0.4\\textwidth]{Sources/nd-logo.png}\n\\end{frame}\n\\end{section}\n\\end{document}'
+    name = 'presentation with graphic from figure'
+    doc.to_pdf(outfolder=GENERATED_FILES_DIR, outname=name)
+    compare_pdfs_in_generated_vs_input_by_name(name)
