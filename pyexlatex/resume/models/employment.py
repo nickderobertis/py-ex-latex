@@ -34,13 +34,19 @@ class Employment(ContainerItem, Item):
         if extra_contents is not None:
             contents.append(extra_contents)
 
+        kwargs = dict(
+            env_modifiers=self._modifier_str,
+        )
         if self.prevent_page_break:
-            contents = NoPageBreak(contents)
+            kwargs.update(
+                pre_env_contents=NoPageBreak('').env._begin,
+                post_env_contents=NoPageBreak('').env._end,
+            )
 
         super().__init__(
             self.name,
             contents,
-            env_modifiers=self._modifier_str
+            **kwargs
         )
 
     @property

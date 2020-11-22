@@ -1,0 +1,85 @@
+\documentclass[11pt]{resume}
+\newenvironment{absolutelynopagebreak}{\par\nobreak\vfil\penalty0\vfilneg\vtop\bgroup}{\par\xdef\tpd{\the\prevdepth}\egroup\prevdepth=\tpd}
+\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry}
+\usepackage{xcolor}
+\definecolor{darkblue}{RGB}{50,82,209}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ragged2e}
+\address{Nick DeRobertis}
+\address{Location, here}
+\address{Contact 1 \\ Contact 2}
+\begin{document}
+\begin{section}{Normal section}
+An overview
+\end{section}
+\begin{section}{Spaced Section}
+\vspace{0.2cm}
+\begin{absolutelynopagebreak}
+\begin{employment}{Company Name}{2015 - Present}{Job Title}{Location, Here}
+\item \begin{itemize}
+\item I did
+\item some things
+\item today
+\end{itemize}
+Extra contents
+\end{employment}
+\end{absolutelynopagebreak}
+
+\begin{absolutelynopagebreak}
+\textbf{Some School}
+ (GPA 4.0/4.0)
+\hfill
+\textbf{May 2020}
+\\
+\textit{Bachelor of Science in Something}
+\hfill
+Location, Here
+\\[-8pt]
+\end{absolutelynopagebreak}
+
+\begin{absolutelynopagebreak}
+\hangindent=1cm
+\href{https://www.example.com/}{\underline{\textcolor{darkblue}{Publication Title}}},
+\textit{Journal of Awesome}
+ with 
+Coauthor One
+ and 
+Coauthor Two
+This was a really neat paper
+
+\justifying
+A description of the paper
+\vspace{0.2cm}
+\vspace{0.2cm}
+\end{absolutelynopagebreak}
+
+\begin{absolutelynopagebreak}
+\textbf{Cool Award}
+ (Some extra info)
+\hfill
+May 2020
+\\[-8pt]
+\end{absolutelynopagebreak}
+
+\begin{absolutelynopagebreak}
+\textsc{\textbf{My Reference}}
+\\
+\textit{Reference Title}
+\\
+\textit{Can be Multiple Lines}
+\\
+Organization
+\\
+Address
+\\
+Phone
+\\
+Whatever contact
+\\
+abc@123.com
+\\
+\\[-8pt]
+\end{absolutelynopagebreak}
+\vspace{-0.2cm}
+\end{section}
+\end{document}
