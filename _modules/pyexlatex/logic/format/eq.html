@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.logic.format.eq &mdash; pyexlatex 0.13.1 documentation</title>
+  <title>pyexlatex.logic.format.eq &mdash; pyexlatex 0.13.2 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.13.1
+                0.13.2
               </div>
             
           
@@ -170,16 +170,16 @@
 from sympy import latex
 
 
-<div class="viewcode-block" id="inline"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.inline">[docs]</a>def inline(eq: Eq) -&gt; str:
-    return f&#39;${latex(eq)}$&#39;</div>
+<div class="viewcode-block" id="inline"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.inline">[docs]</a>def inline(eq: str) -&gt; str:
+    return f&#39;${eq}$&#39;</div>
 
 
-<div class="viewcode-block" id="offset"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.offset">[docs]</a>def offset(eq: Eq) -&gt; str:
-    return f&#39;\\begin{{equation}}\n\t{latex(eq)}\n\\end{{equation}}&#39;</div>
+<div class="viewcode-block" id="offset"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.offset">[docs]</a>def offset(eq: str) -&gt; str:
+    return f&#39;\\begin{{equation}}\n\t{eq}\n\\end{{equation}}&#39;</div>
 
 
-<div class="viewcode-block" id="offset_no_numbering"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.offset_no_numbering">[docs]</a>def offset_no_numbering(eq: Eq) -&gt; str:
-    return f&#39;\n$${latex(eq)}$$\n&#39;</div>
+<div class="viewcode-block" id="offset_no_numbering"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.offset_no_numbering">[docs]</a>def offset_no_numbering(eq: str) -&gt; str:
+    return f&#39;\n$${eq}$$\n&#39;</div>
 
 
 <div class="viewcode-block" id="latex_partial"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.latex_partial">[docs]</a>def latex_partial(expr: Expr, eq_symbol: Symbol, wrt_symbol: Symbol, offset: bool = False) -&gt; str:
