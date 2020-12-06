@@ -37,7 +37,6 @@ class Equation(IsSpecificClassMixin, IsLatexItemMixin):
         if eq is not None and str_eq is not None:
             raise ValueError('must pass at most one of eq or str_eq')
 
-
     @property
     def eq_str(self):
         return self._eq_str
