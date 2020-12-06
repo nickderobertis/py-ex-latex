@@ -14,7 +14,7 @@ class Equation(IsSpecificClassMixin, IsLatexItemMixin):
     def __init__(self, eq: Optional[Eq] = None, str_eq: Optional[str] = None,
                  inline: bool = True, numbered: bool = True):
         self._validate(eq, str_eq)
-        self.eq_str = eq if eq else str_eq
+        self.eq_str = eq if eq is not None else str_eq
         self.inline = inline
         self.numbered = numbered
         super().__init__()
