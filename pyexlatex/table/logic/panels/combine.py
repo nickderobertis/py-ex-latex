@@ -64,6 +64,7 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
     label_attr = _get_label_attr(axis=axis)
 
     label_tables: List[Optional[LabelTable]] = []
+    label_table: Optional[LabelTable]
     for section in subgrid:
         if isinstance(section, LabelTable):
             # A label table directly in the grid
