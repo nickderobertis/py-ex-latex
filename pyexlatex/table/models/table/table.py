@@ -94,7 +94,12 @@ class Table(DocumentItem, ReprMixin):
                 return tabular
         elif as_panel_tabular_list:
             def class_factory(table: 'Table') -> List[Tabular]:
+                table = deepcopy(table)  # avoid modifying original table
                 tabulars: List[Tabular] = []
+                headers = []
+                if table.panels.has_column_labels:
+                    # Get headers if needed for later, as table may change throughout this process
+                    headers = deepcopy(table.panels.rows[0])
                 for i, panel in enumerate(table.panels.iterpanels(add_panel_order_label=False)):
                     use_panel = panel
                     if panel.is_spacer:
@@ -104,9 +109,8 @@ class Table(DocumentItem, ReprMixin):
                         # but then take its values and put as headers for all other panels
                         if i == 0:
                             continue
-                        headers = table.panels.rows[0]
                         use_panel = deepcopy(panel)  # avoid modifying existing panel
-                        new_grid = np.concatenate([PanelGrid([headers]), use_panel.panel_grid], axis=0)
+                        new_grid = np.concatenate([PanelGrid([deepcopy(headers)]), use_panel.panel_grid], axis=0)
                         use_panel.panel_grid = new_grid
                     pc = PanelCollection(
                         [use_panel],

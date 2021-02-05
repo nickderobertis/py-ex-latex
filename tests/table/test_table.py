@@ -21,7 +21,8 @@ class TestTable:
     table = pl.Table.from_list_of_lists_of_dfs(
         [[EXAMPLE_DF]],
         caption='My Table Title',
-        below_text='My below text'
+        below_text='My below text',
+        mid_rules=False,
     )
     two_panel_table_from_dict_no_index = pl.Table.from_panel_name_df_dict(
         {

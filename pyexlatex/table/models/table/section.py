@@ -24,6 +24,10 @@ class TableSection(ReprMixin):
     def length(self):
         return len(self.rows)
 
+    @property
+    def cell_width(self):
+        return max([row.cell_width for row in self.rows])
+
     def __str__(self) -> str:
         from pyexlatex.table.logic.table.build import _build_tabular_str_from_rows_and_lines
         return _build_tabular_str_from_rows_and_lines(self.rows, self.break_size_adjustment)
