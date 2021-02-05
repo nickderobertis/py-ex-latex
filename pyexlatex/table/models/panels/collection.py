@@ -145,7 +145,6 @@ class PanelCollection(ReprMixin):
 
     def _create_panel_rows(self):
         rows: [TableSection] = []
-
         for panel_row in self.grid:
             new_row = None
             for i, section in enumerate(panel_row):
@@ -214,6 +213,14 @@ class PanelCollection(ReprMixin):
             enforce_label_order=self.enforce_label_order
         )
 
+        # Remove from the original tables the labels that were just consolidated
+        remove_label_collections_from_grid(
+            self.grid,
+            column_labels=orig_column_labels,
+            row_labels=row_labels,
+            use_object_equality=use_object_equality
+        )
+
         if column_labels is not None:
             if row_labels is None and not self.top_left_corner_labels.is_spacer:
                 # If there are column labels but not row labels, still need to deal with top left label.
@@ -239,8 +246,9 @@ class PanelCollection(ReprMixin):
 
         column_labels_created = False
         if row_labels is not None:
-            self._add_column_labels(column_labels)
-            column_labels_created = True
+            if column_labels is not None:
+                self._add_column_labels(column_labels)
+                column_labels_created = True
             # After adding column labels, there is an additional row at the top of the grid
             # Therefore we will need one additional LabelTable for the first row, which is the row of column labels
             # If top_left_corner_labels was passed on object creation, use that as LabelTable. Otherwise use a blank one
@@ -265,13 +273,6 @@ class PanelCollection(ReprMixin):
         if column_labels is not None and not column_labels_created:
             self._add_column_labels(column_labels)
 
-        # Remove from the original tables the labels that were just consolidated
-        remove_label_collections_from_grid(
-            self.grid,
-            column_labels=orig_column_labels,
-            row_labels=row_labels,
-            use_object_equality=use_object_equality
-        )
 
     def pad_grid(self):
         row_pad = RowPadTable()

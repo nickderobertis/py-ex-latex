@@ -30,6 +30,33 @@ class GridShape(np.ndarray):
         if obj is None: return
         self.info = getattr(obj, 'info', None)
 
+    @property
+    def data_has_row_labels(self) -> bool:
+        from pyexlatex.table.models.data.table import DataTable
+        for section_arr in np.nditer(self, flags=('refs_ok',)):
+            section = section_arr.item()
+            if isinstance(section, DataTable):
+                if section.row_labels is not None and len(section.row_labels.label_collections) > 0:
+                    return True
+        return False
+
+    @property
+    def cell_widths(self) -> List[int]:
+        n_cols = self.shape[1]
+        widths: List[int] = []
+        for row in self:
+            width = 0
+            for i in range(n_cols):
+                section: TableSection = row[i]
+                width += section.cell_width
+            widths.append(width)
+        return widths
+
+    @property
+    def cell_width(self) -> int:
+        return max(self.cell_widths)
+
+
 def index_array(sections: List[TableSection], shape: tuple=None):
     if shape is None:
     # default is one column, as many rows as sections

@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, Union
 from pandas.core.indexes.base import Index as PandasIndex
 from itertools import zip_longest
 import warnings
@@ -70,11 +70,11 @@ class LabelTable(TableSection, ReprMixin):
         try:
             return self._rows
         except AttributeError:
-            self._rows = self._create_label_rows()
+            self._rows = self._create_rows()
 
         return self._rows
 
-    def _create_label_rows(self):
+    def _create_rows(self):
         len_rows = _max_len_or_zero(self.label_collections)
 
         rows = []
@@ -169,6 +169,14 @@ class LabelTable(TableSection, ReprMixin):
         # went through all label collections without a match. no match
         return False
 
+    def begins_with(self, item: Union[str, list, LabelCollection]):
+        if not isinstance(item, (str, list, LabelCollection)):
+            warnings.warn(f'LabelTable.begins_with() called on type {type(item)}. Will always return False')
+            return False
+
+        label: LabelCollection = LabelCollection.parse_unknown_type(item)
+        begin_label_collection = LabelCollection([self.label_collections[0][0]])
+        return begin_label_collection.matches(label)
 
     def pad(self, length: int, direction='right'):
         """

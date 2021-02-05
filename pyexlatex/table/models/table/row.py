@@ -39,3 +39,28 @@ class Row(RowBase):
         str_values = [_remove_backslashes(val) for val in str_values]
         values = [DataItem(value) for value in str_values]
         return cls(values)
+
+    @property
+    def cell_width(self):
+        return _get_cell_width(self)
+
+
+def _get_cell_width(item: Union[Row, DataItem, Sequence[DataItem], LabelCollection, Label]):
+    width = 0
+    if isinstance(item, Row):
+        for value in item.values:
+            width += _get_cell_width(value)
+    elif isinstance(item, DataItem):
+        width += 1
+    elif isinstance(item, Sequence):
+        for it in item:
+            width += _get_cell_width(it)
+    elif isinstance(item, LabelCollection):
+        for label in item.values:
+            width += _get_cell_width(label)
+    elif isinstance(item, Label):
+        width += item.span
+    else:
+        raise ValueError(f'cannot determine cell width of {item} of type {type(item)}')
+
+    return width

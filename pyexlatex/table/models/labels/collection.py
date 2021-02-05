@@ -26,7 +26,7 @@ class LabelCollection(RowBase):
         """
         if isinstance(values, tuple):
             values = list(values)
-        self.values = values
+        self.values: List[Label] = values
         underline_label_indices = _convert_underline_to_label_index_list(underline)
         self.underlines = self._convert_label_indices_to_column_indices(underline_label_indices)
 

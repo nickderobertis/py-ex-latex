@@ -84,7 +84,8 @@ def test_table_in_presentation():
         [[df]],
         caption='My Table Title',
         below_text='My below text',
-        align='L{5cm}c.'
+        align='L{5cm}c.',
+        mid_rules=False,
     )
     doc = pl.Presentation(
         [
