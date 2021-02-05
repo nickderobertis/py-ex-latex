@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.table.logic.panels.combine &mdash; pyexlatex 0.13.2 documentation</title>
+  <title>pyexlatex.table.logic.panels.combine &mdash; pyexlatex 0.13.3 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.13.2
+                0.13.3
               </div>
             
           
@@ -167,7 +167,7 @@
             
   <h1>Source code for pyexlatex.table.logic.panels.combine</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">pyexlatex.table.models.panels.grid</span> <span class="kn">import</span> <span class="n">GridShape</span>
 <span class="kn">from</span> <span class="nn">pyexlatex.table.models.labels.table</span> <span class="kn">import</span> <span class="n">LabelTable</span>
@@ -231,11 +231,34 @@
 
     <span class="n">label_attr</span> <span class="o">=</span> <span class="n">_get_label_attr</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
 
-    <span class="n">label_tables</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LabelTable</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">subgrid</span><span class="p">]</span>
+    <span class="n">label_tables</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">LabelTable</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">label_table</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">LabelTable</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">subgrid</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">LabelTable</span><span class="p">):</span>
+            <span class="c1"># A label table directly in the grid</span>
+            <span class="n">label_table</span> <span class="o">=</span> <span class="n">section</span>
+            <span class="c1"># If we are extracting row labels and there are row labels attached to DataTables in the grid</span>
+            <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">grid</span><span class="o">.</span><span class="n">data_has_row_labels</span><span class="p">:</span>
+                <span class="c1"># The row label part of a label table would be the first value</span>
+                <span class="n">collection</span> <span class="o">=</span> <span class="n">LabelCollection</span><span class="p">([</span><span class="n">label_table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]])</span>
+                <span class="n">label_table</span> <span class="o">=</span> <span class="n">LabelTable</span><span class="p">(</span><span class="n">label_collections</span><span class="o">=</span><span class="p">[</span><span class="n">collection</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">axis</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># If we are extracting column labels, the entire label table is what we are extracting</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">label_table</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Got some other section such as DataTable, extract labels from it</span>
+            <span class="n">label_table</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">label_tables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label_table</span><span class="p">)</span>
 
     <span class="c1"># first labels missing, no consolidation to be done, consolidated labels are None</span>
     <span class="k">if</span> <span class="n">label_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">label_tables</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Only one table, so it must be common</span>
+        <span class="k">return</span> <span class="n">label_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">common_label_table</span> <span class="o">=</span> <span class="n">LabelTable</span><span class="p">([])</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">label_collection</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">label_tables</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
@@ -272,18 +295,20 @@
         <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">row</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">column_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">label_table</span> <span class="ow">in</span> <span class="n">column_labels</span><span class="p">:</span>
+                    <span class="n">lt</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">label_table</span><span class="p">)</span>
                     <span class="n">_remove_label_collections</span><span class="p">(</span>
                         <span class="n">section</span><span class="p">,</span>
-                        <span class="n">label_table</span><span class="p">,</span>
+                        <span class="n">lt</span><span class="p">,</span>
                         <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                         <span class="n">use_object_equality</span><span class="o">=</span><span class="n">use_object_equality</span><span class="p">,</span>
                         <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
                     <span class="p">)</span>
             <span class="k">if</span> <span class="n">row_labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">label_table</span> <span class="ow">in</span> <span class="n">row_labels</span><span class="p">:</span>
+                    <span class="n">lt</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">label_table</span><span class="p">)</span>
                     <span class="n">_remove_label_collections</span><span class="p">(</span>
                         <span class="n">section</span><span class="p">,</span>
-                        <span class="n">label_table</span><span class="p">,</span>
+                        <span class="n">lt</span><span class="p">,</span>
                         <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                         <span class="n">use_object_equality</span><span class="o">=</span><span class="n">use_object_equality</span><span class="p">,</span>
                         <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
@@ -291,9 +316,24 @@
 
 <span class="k">def</span> <span class="nf">_remove_label_collections</span><span class="p">(</span><span class="n">section</span><span class="p">:</span> <span class="n">TableSection</span><span class="p">,</span> <span class="n">label_table</span><span class="p">:</span> <span class="n">LabelTable</span><span class="p">,</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                               <span class="n">use_object_equality</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">label_attr</span> <span class="o">=</span> <span class="n">_get_label_attr</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+
+    <span class="c1"># Handle if passed section is already a label table</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">LabelTable</span><span class="p">):</span>
+        <span class="c1"># If row</span>
+        <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># If first row label matches</span>
+            <span class="k">if</span> <span class="n">section</span><span class="o">.</span><span class="n">begins_with</span><span class="p">(</span><span class="n">label_table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">):</span>
+                <span class="c1"># Remove that first label</span>
+                <span class="n">section</span><span class="o">.</span><span class="n">_label_collections</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># If column</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If entire set of labels matches</span>
+            <span class="k">if</span> <span class="n">section</span><span class="o">.</span><span class="n">matches</span><span class="p">(</span><span class="n">label_table</span><span class="p">):</span>
+                <span class="c1"># Remove all these labels</span>
+                <span class="n">section</span><span class="o">.</span><span class="n">label_collections</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="c1"># Handle section not having labels for this axis</span>
-    <span class="n">label_attr</span> <span class="o">=</span> <span class="n">_get_label_attr</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">section</span>
 
@@ -302,7 +342,7 @@
         <span class="n">section</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">section</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">label_collection</span> <span class="ow">in</span> <span class="n">label_table</span><span class="p">:</span>
-        <span class="n">section_label_table</span><span class="p">:</span> <span class="n">LabelTable</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">section_label_table</span><span class="p">:</span> <span class="n">LabelTable</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">,</span> <span class="p">[]))</span>
         <span class="k">if</span> <span class="n">section_label_table</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">section_label_collection</span> <span class="ow">in</span> <span class="n">section_label_table</span><span class="p">:</span>
                 <span class="n">match</span> <span class="o">=</span> <span class="n">_compare_label_collections</span><span class="p">(</span>
@@ -312,14 +352,19 @@
                 <span class="p">)</span>
                 <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
                     <span class="n">section_label_table</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">section_label_collection</span><span class="p">)</span>
+                    <span class="nb">setattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">,</span> <span class="n">section_label_table</span><span class="p">)</span>
 
 
     <span class="c1"># once all label collections have been removed, remove table</span>
+    <span class="n">_remove_empty_label_table_from_section</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">section</span>
+
+
+<span class="k">def</span> <span class="nf">_remove_empty_label_table_from_section</span><span class="p">(</span><span class="n">section</span><span class="p">:</span> <span class="n">TableSection</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="n">section_label_table</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">section_label_table</span> <span class="ow">and</span> <span class="n">section_label_table</span><span class="o">.</span><span class="n">label_collections</span> <span class="o">==</span> <span class="p">[]:</span>
         <span class="nb">setattr</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">label_attr</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">section</span>
 
 
 <span class="k">def</span> <span class="nf">_get_label_attr</span><span class="p">(</span><span class="n">axis</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -379,7 +424,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, Nick DeRobertis
+        &copy; Copyright 2021, Nick DeRobertis
 
     </p>
   </div>
