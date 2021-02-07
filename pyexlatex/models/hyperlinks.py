@@ -28,7 +28,7 @@ class Hyperlink(TextAreaMixin, MultiOptionSimpleItem):
             #
             # Think about passing options. Difficult because mutliple Hyperlinks could be constructed with
             # different options, then not clear which to take.
-            Package('hyperref', modifier_str='hidelinks')
+            Package('hyperref', modifier_str='hidelinks', eq_on_modifier=False)
         )
 
         MultiOptionSimpleItem.__init__(self, self.name, *options, **kwargs)

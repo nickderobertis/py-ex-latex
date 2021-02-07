@@ -51,11 +51,12 @@ class DocumentBase(ContainerItem, Item):
             which will be used as the latex contents for output.
         """
         from pyexlatex.logic.builder import build, _build
-        self.add_data_from_content(content)
-        self.add_data_from_content(self.document_class_obj)
-
+        self.init_data()
         if packages is not None:
             self.data.packages.extend(packages)
+
+        self.add_data_from_content(content)
+        self.add_data_from_content(self.document_class_obj)
 
         self.has_references = False
         if self.data.references:
