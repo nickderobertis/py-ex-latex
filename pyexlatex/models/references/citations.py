@@ -16,8 +16,8 @@ class NatBibCiteBase(Cite):
 
     def __init__(self, item_accessor):
         self.init_data()
-        self.data.packages.append(Package('natbib'))
-        return super().__init__(item_accessor)
+        self.data.packages.append(Package('natbib', eq_on_modifier=False))
+        super().__init__(item_accessor)
 
 
 class CiteT(NatBibCiteBase):
