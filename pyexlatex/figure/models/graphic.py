@@ -30,6 +30,8 @@ class Graphic(SimpleItem):
         :param overlay: beamer overlay
         """
         self._set_path(filepath)
+        self.init_data()
+        self.add_package('graphicx')
         self.width = width
         self.binaries = None
 
