@@ -8,7 +8,7 @@ from pyexlatex.models.standalone import Standalone
 from pyexlatex.letter.letterdocument import LetterDocument
 from pyexlatex.models.equation import Equation
 from pyexlatex.models.section.paragraphs import Paragraph, SubParagraph
-from pyexlatex.models.section.sections import Section, SubSection, SubSubSection
+from pyexlatex.models.section.sections import Section, SubSection, SubSubSection, Chapter
 from pyexlatex.models.section.appendix import Appendix
 from pyexlatex.models.lists.unordered import UnorderedList
 from pyexlatex.models.lists.ordered import OrderedList

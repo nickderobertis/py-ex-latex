@@ -198,7 +198,7 @@ def test_figure_in_presentation():
             ),
         ],
     )
-    assert str(doc) == '\\documentclass[11pt]{beamer}\n\\mode\n<presentation>{\\usetheme{Madrid}}\n\\begin{document}\n\\begin{section}{Section}\n\\begin{frame}\n\\frametitle{Figure}\n\\begin{figure}\n\\includegraphics[width=0.4\\textwidth]{Sources/nd-logo.png}\n\\caption{My Figure}\n\\end{figure}\n\\end{frame}\n\\end{section}\n\\end{document}'
+    assert str(doc) == '\\documentclass[11pt]{beamer}\n\\mode\n<presentation>{\\usetheme{Madrid}}\n\\usepackage{graphicx}\n\\begin{document}\n\\begin{section}{Section}\n\\begin{frame}\n\\frametitle{Figure}\n\\begin{figure}\n\\includegraphics[width=0.4\\textwidth]{Sources/nd-logo.png}\n\\caption{My Figure}\n\\end{figure}\n\\end{frame}\n\\end{section}\n\\end{document}'
     name = 'presentation with figure'
     doc.to_pdf(outfolder=GENERATED_FILES_DIR, outname=name)
     compare_pdfs_in_generated_vs_input_by_name(name)
@@ -222,7 +222,7 @@ def test_graphic_from_figure_in_presentation():
             ),
         ],
     )
-    assert str(doc) == '\\documentclass[11pt]{beamer}\n\\mode\n<presentation>{\\usetheme{Madrid}}\n\\begin{document}\n\\begin{section}{Section}\n\\begin{frame}\n\\frametitle{Graphic}\n\\includegraphics[width=0.4\\textwidth]{Sources/nd-logo.png}\n\\end{frame}\n\\end{section}\n\\end{document}'
+    assert str(doc) == '\\documentclass[11pt]{beamer}\n\\mode\n<presentation>{\\usetheme{Madrid}}\n\\usepackage{graphicx}\n\\begin{document}\n\\begin{section}{Section}\n\\begin{frame}\n\\frametitle{Graphic}\n\\includegraphics[width=0.4\\textwidth]{Sources/nd-logo.png}\n\\end{frame}\n\\end{section}\n\\end{document}'
     name = 'presentation with graphic from figure'
     doc.to_pdf(outfolder=GENERATED_FILES_DIR, outname=name)
     compare_pdfs_in_generated_vs_input_by_name(name)
