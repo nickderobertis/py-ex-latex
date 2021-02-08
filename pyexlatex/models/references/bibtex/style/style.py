@@ -31,4 +31,6 @@ class Style(BibliographyStyle):
 
     @property
     def style_source_name(self) -> str:
-        return 'Sources/' + self.style_name
+        if self.style_definition is not None:
+            return 'Sources/' + self.style_name
+        return self.style_name

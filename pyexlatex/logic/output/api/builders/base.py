@@ -56,6 +56,7 @@ class BaseBuilder:
             inputs_value = os.pathsep.join(texinputs) + os.pathsep
             newenv['TEXINPUTS'] = inputs_value
             newenv['BSTINPUTS'] = inputs_value
+            newenv['BIBINPUTS'] = inputs_value
 
             # run until aux file settles
             prev_aux = None

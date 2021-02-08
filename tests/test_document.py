@@ -49,6 +49,9 @@ class TestDocument:
         empty_title_page_style=False,
         pre_output_func=lambda x: x + '\n\n\n',
     )
+    bibliography = pl.Bibliography([pl.BibTexArticle('person', 'Last, First', 'An article title', 'Journal of Journals',
+                                                     '2021', '10', '1', '255-256')])
+    citation = pl.CiteP('person')
 
     def test_no_options_str(self):
         doc = Document('woo')
@@ -103,6 +106,11 @@ class TestDocument:
         doc = Document('woo')
         doc.to_pdf(GENERATED_FILES_DIR)
         compare_pdfs(INPUT_FILES_DIR / 'document.pdf', GENERATED_FILES_DIR / 'document.pdf')
+
+    def test_to_pdf_with_references(self):
+        doc = Document(['woo', self.citation, self.bibliography])
+        doc.to_pdf(GENERATED_FILES_DIR, outname='document with references')
+        compare_pdfs(INPUT_FILES_DIR / 'document with references.pdf', GENERATED_FILES_DIR / 'document with references.pdf')
 
     def test_to_html(self):
         doc = Document('woo')

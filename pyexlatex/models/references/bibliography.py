@@ -20,7 +20,7 @@ class Bibliography(ContainerItem, ItemBase):
         self.style = style_manager.get_style_by_name(style_name)
         self.add_data_from_content(self.style)
         self._include_references_file(references)
-        self.data.packages.append(Package('natbib'))
+        self.data.packages.append(Package('natbib', eq_on_modifier=False))
 
     def _include_references_file(self, references: Optional[Sequence[BibTexEntryBase]] = None):
         from pyexlatex.logic.builder import _build
