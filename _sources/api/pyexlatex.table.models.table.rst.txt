@@ -9,14 +9,6 @@ pyexlatex.table.models.table package
 Submodules
 ----------
 
-pyexlatex.table.models.table.caption module
--------------------------------------------
-
-.. automodule:: pyexlatex.table.models.table.caption
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 pyexlatex.table.models.table.row module
 ---------------------------------------
 
