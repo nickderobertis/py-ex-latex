@@ -143,6 +143,22 @@ class TestTable:
         pad_rows=2,
         pad_columns=0,
     )
+    table_from_lol_with_short_caption = pl.Table.from_list_of_lists_of_dfs(
+        [[EXAMPLE_DF]],
+        caption='My Table Title',
+        short_caption='Short Capt',
+        below_text='My below text',
+        mid_rules=False,
+    )
+    table_from_dict_with_short_caption = pl.Table.from_panel_name_df_dict(
+        {
+            'One': EXAMPLE_DF,
+        },
+        caption='My Table Title',
+        short_caption='Short Capt',
+        below_text='My below text',
+        mid_rules=False,
+    )
 
     def test_table(self):
         assert str(self.table) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
@@ -167,6 +183,10 @@ class TestTable:
 
     def test_two_panel_table_double_pad(self):
         assert str(self.two_panel_table_from_dict_double_pad) == str(self.two_panel_table_from_lol_double_pad) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lccc}\n\\toprule\n  & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n  &   &   &  \\\\\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+
+    def test_table_with_short_caption(self):
+        assert str(self.table_from_dict_with_short_caption) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption[Short Capt]{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n\\multicolumn{3}{l}{Panel A: One}\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert str(self.table_from_lol_with_short_caption) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption[Short Capt]{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
 
     def test_table_to_tabular(self):
         tabular = self.two_panel_table_from_lol_with_index.tex_obj(as_document=False, as_single_tabular=True)

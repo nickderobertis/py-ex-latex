@@ -32,7 +32,8 @@ class Table(DocumentItem, ReprMixin):
     _align: Union['ColumnsAlignment', str]
 
     def __init__(self, panels: PanelCollection, caption: str=None, above_text: str=None, below_text: str=None,
-                 align: str = None, mid_rules=True, landscape=False, label: Optional[str] = None):
+                 align: str = None, mid_rules=True, landscape=False, label: Optional[str] = None,
+                 short_caption: Optional[str] = None):
         """
 
         :param panels: list of Panels
@@ -46,10 +47,11 @@ class Table(DocumentItem, ReprMixin):
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
+        :param short_caption: Caption that will be used if table name is listed in TOC
         """
         from pyexlatex.table.models.texgen.items import TableNotes
         self.panels = panels
-        self.caption = Caption(caption if caption is not None else '')
+        self.caption = Caption(caption if caption is not None else '', short_caption=short_caption)
         self.above_text = _set_above_text(above_text)
         self.below_text = TableNotes(below_text) if below_text is not None else None
         self.align = align
@@ -158,7 +160,7 @@ class Table(DocumentItem, ReprMixin):
                         top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
                         pad_rows: int=1, pad_columns: int=1, caption: str=None, above_text: str=None,
                         below_text: str=None, align: str = None, mid_rules=True, landscape=False,
-                        label: Optional[str] = None):
+                        label: Optional[str] = None, short_caption: Optional[str] = None):
         """
         Note: to quickly create latex tables, use Table.from_list_of_lists_of_dfs to pass
         pandas DataFrames directly. Use this method when more control is needed than is provided by that method.
@@ -188,6 +190,7 @@ class Table(DocumentItem, ReprMixin):
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
+        :param short_caption: Caption that will be used if table name is listed in TOC
         :return:
         """
         panel_collection = PanelCollection(
@@ -208,7 +211,8 @@ class Table(DocumentItem, ReprMixin):
             align=align,
             mid_rules=mid_rules,
             landscape=landscape,
-            label=label
+            label=label,
+            short_caption=short_caption
         )
 
     @classmethod
@@ -220,7 +224,7 @@ class Table(DocumentItem, ReprMixin):
                                   pad_rows: int = 1, pad_columns: int = 1, caption: str = None, above_text: str = None,
                                   below_text: str = None, align: str = None, mid_rules=True, landscape=False,
                                   label: Optional[str] = None,
-                                  data_table_kwargs={}
+                                  data_table_kwargs={}, short_caption: Optional[str] = None
                                   ):
         """
         To create a single panel table, pass a single list within
@@ -266,6 +270,7 @@ class Table(DocumentItem, ReprMixin):
         :param label: label for table to be referenced in text
         :param data_table_kwargs: kwargs to be passed to DataTable.from_df. Same kwargs will be passed to
                                   all data tables.
+        :param short_caption: Caption that will be used if table name is listed in TOC
         :return:
         """
         panel_collection = PanelCollection.from_list_of_lists_of_dfs(
@@ -293,7 +298,8 @@ class Table(DocumentItem, ReprMixin):
             align=align,
             mid_rules=mid_rules,
             landscape=landscape,
-            label=label
+            label=label,
+            short_caption=short_caption,
         )
 
     @classmethod
@@ -304,7 +310,7 @@ class Table(DocumentItem, ReprMixin):
                                 pad_rows: int = 1, caption: str = None, above_text: str = None,
                                 below_text: str = None, align: str = None, mid_rules=True, landscape=False,
                                 label: Optional[str] = None,
-                                data_table_kwargs={}
+                                data_table_kwargs={}, short_caption: Optional[str] = None
                                 ):
         """
         Convenience method for when there is only one DataFrame per panel. All options will be applied all panels and
@@ -339,6 +345,7 @@ class Table(DocumentItem, ReprMixin):
         :param label: label for table to be referenced in text
         :param data_table_kwargs: kwargs to be passed to DataTable.from_df. Same kwargs will be passed to
                                   all data tables.
+        :param short_caption: Caption that will be used if table name is listed in TOC
         :return:
         """
 
@@ -364,7 +371,8 @@ class Table(DocumentItem, ReprMixin):
             mid_rules=mid_rules,
             landscape=landscape,
             data_table_kwargs=data_table_kwargs,
-            label=label
+            label=label,
+            short_caption=short_caption,
         )
 
     @property

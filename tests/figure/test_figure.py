@@ -15,6 +15,8 @@ def test_single_figure_from_graphic():
     assert str(fig) == '\\begin{figure}\n\\includegraphics[width=1.0\\textwidth]{Sources/nd-logo.png}\n\\caption{image}\n\\end{figure}'
     fig = pl.Figure.from_dict_of_names_and_filepaths({'image': str(EXAMPLE_IMAGE_PATH)})
     assert str(fig) == '\\begin{figure}\n\\includegraphics[width=0.45\\linewidth]{Sources/nd-logo.png}\n\\caption{image}\n\\end{figure}'
+    fig = pl.Figure([graphic], caption='woo', short_caption='yeah')
+    assert str(fig) == '\\begin{figure}\n\\includegraphics[width=1.0\\textwidth]{Sources/nd-logo.png}\n\\caption[yeah]{woo}\n\\end{figure}'
     fig = pl.Figure([graphic], caption='woo', label='yeah', centering=False, landscape=True, position_str=r'[h!]')
     assert str(fig) == '\\begin{lfigure}\n[h!]\n\\includegraphics[width=1.0\\textwidth]{Sources/nd-logo.png}\n\\caption{woo}\n\\label{yeah}\n\\end{lfigure}'
     name = 'figure from single graphic document'
@@ -31,8 +33,8 @@ def test_subfigure_graphic():
 
 def test_figure_from_matplotlib():
     plot = pd.Series([1, 2, 3, 4]).plot().get_figure()
-    fig = pl.Figure.from_dict_of_names_and_plt_figures({'plot': plot}, GENERATED_FILES_DIR)
-    assert str(fig) == '\\begin{figure}\n\\includegraphics[width=0.45\\linewidth]{Sources/plot.pdf}\n\\caption{plot}\n\\end{figure}'
+    fig = pl.Figure.from_dict_of_names_and_plt_figures({'plot': plot}, GENERATED_FILES_DIR, figure_name='my capt', short_caption='woo')
+    assert str(fig) == '\\begin{figure}\n\\includegraphics[width=0.45\\linewidth]{Sources/plot.pdf}\n\\caption[woo]{my capt}\n\\end{figure}'
     name = 'figure from matplotlib'
     fig.to_pdf_and_move(outfolder=GENERATED_FILES_DIR, outname=name)
     compare_pdfs_in_generated_vs_input_by_name(name)

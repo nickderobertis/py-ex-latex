@@ -36,9 +36,9 @@ class Figure(ContainerItem, Item):
 
     def __init__(self, subfigures: SubfiguresOrGraphics, caption: Optional[PyexlatexItems] = None,
                  label: Optional[str] = None, centering: bool = True, position_str: Optional[str] = None,
-                 landscape: bool = False):
+                 landscape: bool = False, short_caption: Optional[str] = None):
         self.subfigures = subfigures
-        self.caption = Caption(caption) if caption else None
+        self.caption = Caption(caption, short_caption=short_caption) if caption else None
         self.label = Label(label) if label else None
         self.centering = centering
         self.landscape = landscape
