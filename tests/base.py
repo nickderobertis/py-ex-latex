@@ -46,7 +46,7 @@ class MultiOptionSimpleItemTest:
 
     def test_two_items(self):
         content = self.item_class('woo', 'yeah')
-        assert str(content) == '\\' + self.tag_name + '{woo}'
+        assert str(content) == '\\' + self.tag_name + '{woo}{yeah}'
 
 
 class TextAreaTest:
