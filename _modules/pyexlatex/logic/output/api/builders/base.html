@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.logic.output.api.builders.base &mdash; pyexlatex 0.13.7 documentation</title>
+  <title>pyexlatex.logic.output.api.builders.base &mdash; pyexlatex 0.13.8 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.13.7
+                0.13.8
               </div>
             
           
@@ -224,6 +224,7 @@
             <span class="n">inputs_value</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">texinputs</span><span class="p">)</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span>
             <span class="n">newenv</span><span class="p">[</span><span class="s1">&#39;TEXINPUTS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">inputs_value</span>
             <span class="n">newenv</span><span class="p">[</span><span class="s1">&#39;BSTINPUTS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">inputs_value</span>
+            <span class="n">newenv</span><span class="p">[</span><span class="s1">&#39;BIBINPUTS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">inputs_value</span>
 
             <span class="c1"># run until aux file settles</span>
             <span class="n">prev_aux</span> <span class="o">=</span> <span class="kc">None</span>
