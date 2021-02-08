@@ -20,7 +20,7 @@ REPO_MAINTAINERS = [
 ]
 
 # Package version in the format (major, minor, release)
-PACKAGE_VERSION_TUPLE = (0, 13, 10)
+PACKAGE_VERSION_TUPLE = (0, 13, 11)
 
 # Short description of the package
 PACKAGE_SHORT_DESCRIPTION = 'Python Extends LaTeX - A High-Level Python API for Creating Latex Documents'
