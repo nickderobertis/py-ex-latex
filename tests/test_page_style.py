@@ -1,7 +1,7 @@
 from pyexlatex.models.page.footer import RightFooter
 from pyexlatex.models.page.header import FancyHeader
 from pyexlatex.models.page.style import PageStyle, ThisPageStyle, FancyPageStyle
-from tests.base import SimpleItemTest, MultiOptionSimpleItemTest
+from tests.base import SimpleItemTest
 
 
 class TestPageStyle(SimpleItemTest):

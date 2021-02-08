@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 from mixins.repr import ReprMixin
 from pyexlatex.table.models.panels.collection import PanelCollection, Panel
 from pyexlatex.table.models.labels.table import LabelTable, LabelCollection
-from pyexlatex.table.models.table.caption import Caption
+from pyexlatex.models.caption import Caption
 from pyexlatex.logic.output.main import output_document_and_move
 from pyexlatex.texgen.replacements.filename import latex_filename_replacements
 from pyexlatex.models.documentitem import DocumentItem
@@ -49,7 +49,7 @@ class Table(DocumentItem, ReprMixin):
         """
         from pyexlatex.table.models.texgen.items import TableNotes
         self.panels = panels
-        self.caption = Caption(caption)
+        self.caption = Caption(caption if caption is not None else '')
         self.above_text = _set_above_text(above_text)
         self.below_text = TableNotes(below_text) if below_text is not None else None
         self.align = align
