@@ -295,24 +295,9 @@ class Document(DocumentBase):
             # Set margins, body size, etc. with geometry package
             all_packages.append(Package('geometry', modifier_str=page_modifier_str))
 
-        if tables_relative_font_size or figures_relative_font_size:
-            all_packages.append(Package('floatrow'))
-            if tables_relative_font_size:
-                declared_font = DeclareFloatFont(tables_relative_font_size)
-                float_setup_str = f'font={declared_font.size_def.name},capposition=top'
-                all_packages.extend([
-                    declared_font,
-                    FloatSetup('table', float_setup_str),
-                    # FloatSetup('ltable', float_setup_str)
-                ])
-            if figures_relative_font_size:
-                declared_font = DeclareFloatFont(figures_relative_font_size)
-                float_setup_str = f'font={declared_font.size_def.name},capposition=top'
-                all_packages.extend([
-                    declared_font,
-                    FloatSetup('figure', float_setup_str),
-                    # FloatSetup('lfigure', float_setup_str)
-                ])
+        all_packages.extend(
+            get_table_figure_size_packages(tables_relative_font_size, figures_relative_font_size)
+        )
 
         if floats_at_end:
             all_packages.extend([
@@ -330,6 +315,30 @@ class Document(DocumentBase):
         all_packages.append(Package('appendix', modifier_str=appendix_modifier_str))
 
         return all_packages
+
+
+def get_table_figure_size_packages(
+    tables_relative_font_size: int = 0,
+    figures_relative_font_size: int = 0
+) -> List[ItemBase]:
+    all_packages = []
+    if tables_relative_font_size or figures_relative_font_size:
+        all_packages.append(Package('floatrow'))
+        if tables_relative_font_size:
+            declared_font = DeclareFloatFont(tables_relative_font_size)
+            float_setup_str = f'font={declared_font.size_def.name},capposition=top'
+            all_packages.extend([
+                declared_font,
+                FloatSetup('table', float_setup_str),
+            ])
+        if figures_relative_font_size:
+            declared_font = DeclareFloatFont(figures_relative_font_size)
+            float_setup_str = f'font={declared_font.size_def.name},capposition=top'
+            all_packages.extend([
+                declared_font,
+                FloatSetup('figure', float_setup_str),
+            ])
+    return all_packages
 
 
 def _should_create_title_page(title: str = None, authors: Optional[List[str]] = None, date: str = None,
