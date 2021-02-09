@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.models.document &mdash; pyexlatex 0.13.11 documentation</title>
+  <title>pyexlatex.models.document &mdash; pyexlatex 0.13.12 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.13.11
+                0.13.12
               </div>
             
           
@@ -487,21 +487,23 @@
 
 <div class="viewcode-block" id="get_table_figure_size_packages"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.document.get_table_figure_size_packages">[docs]</a><span class="k">def</span> <span class="nf">get_table_figure_size_packages</span><span class="p">(</span>
     <span class="n">tables_relative_font_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">figures_relative_font_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">figures_relative_font_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">floatrow_table_options</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;capposition=top&#39;</span><span class="p">,</span>
+    <span class="n">floatrow_figure_options</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;capposition=top&#39;</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ItemBase</span><span class="p">]:</span>
     <span class="n">all_packages</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="n">tables_relative_font_size</span> <span class="ow">or</span> <span class="n">figures_relative_font_size</span><span class="p">:</span>
         <span class="n">all_packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Package</span><span class="p">(</span><span class="s1">&#39;floatrow&#39;</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">tables_relative_font_size</span><span class="p">:</span>
             <span class="n">declared_font</span> <span class="o">=</span> <span class="n">DeclareFloatFont</span><span class="p">(</span><span class="n">tables_relative_font_size</span><span class="p">)</span>
-            <span class="n">float_setup_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;font=</span><span class="si">{</span><span class="n">declared_font</span><span class="o">.</span><span class="n">size_def</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">,capposition=top&#39;</span>
+            <span class="n">float_setup_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;font=</span><span class="si">{</span><span class="n">declared_font</span><span class="o">.</span><span class="n">size_def</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">floatrow_table_options</span><span class="si">}</span><span class="s1">&#39;</span>
             <span class="n">all_packages</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
                 <span class="n">declared_font</span><span class="p">,</span>
                 <span class="n">FloatSetup</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="n">float_setup_str</span><span class="p">),</span>
             <span class="p">])</span>
         <span class="k">if</span> <span class="n">figures_relative_font_size</span><span class="p">:</span>
             <span class="n">declared_font</span> <span class="o">=</span> <span class="n">DeclareFloatFont</span><span class="p">(</span><span class="n">figures_relative_font_size</span><span class="p">)</span>
-            <span class="n">float_setup_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;font=</span><span class="si">{</span><span class="n">declared_font</span><span class="o">.</span><span class="n">size_def</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">,capposition=top&#39;</span>
+            <span class="n">float_setup_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;font=</span><span class="si">{</span><span class="n">declared_font</span><span class="o">.</span><span class="n">size_def</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="n">floatrow_figure_options</span><span class="si">}</span><span class="s1">&#39;</span>
             <span class="n">all_packages</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span>
                 <span class="n">declared_font</span><span class="p">,</span>
                 <span class="n">FloatSetup</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">float_setup_str</span><span class="p">),</span>
