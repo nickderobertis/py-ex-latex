@@ -41,9 +41,10 @@ class Table(DocumentItem, ReprMixin):
         :param above_text: Not yet implemented
         :param below_text: text to place below table
         :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
-                        as well as . for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
-                        for left, center, and right aligned fixed width. Default is first column left aligned,
-                        rest center aligned.
+            as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+            for left, center, and right aligned fixed width, and s for units. . uses the dcolumn package while
+            S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
+            rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
@@ -192,9 +193,11 @@ class Table(DocumentItem, ReprMixin):
         :param caption: overall caption to place at top of table
         :param above_text: Not yet implemented
         :param below_text: text to place below table
-        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned
-                        as well as L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm}) for left, center, and right aligned
-                        fixed width. Default is first column left aligned, rest center aligned.
+        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
+            as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+            for left, center, and right aligned fixed width, and s for units. . uses the dcolumn package while
+            S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
+            rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
@@ -270,9 +273,11 @@ class Table(DocumentItem, ReprMixin):
         :param caption: overall caption to place at top of table
         :param above_text: Not yet implemented
         :param below_text: text to place below table
-        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned
-                        as well as L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm}) for left, center, and right aligned
-                        fixed width. Default is first column left aligned, rest center aligned.
+        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
+            as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+            for left, center, and right aligned fixed width, and s for units. . uses the dcolumn package while
+            S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
+            rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
@@ -345,9 +350,11 @@ class Table(DocumentItem, ReprMixin):
         :param caption: overall caption to place at top of table
         :param above_text: Not yet implemented
         :param below_text: text to place below table
-        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned
-                        as well as L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm}) for left, center, and right aligned
-                        fixed width. Default is first column left aligned, rest center aligned.
+        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
+            as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+            for left, center, and right aligned fixed width, and s for units. . uses the dcolumn package while
+            S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
+            rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
