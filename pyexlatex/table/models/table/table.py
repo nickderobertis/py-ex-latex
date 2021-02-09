@@ -42,7 +42,9 @@ class Table(DocumentItem, ReprMixin):
         :param below_text: text to place below table
         :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
             as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
-            for left, center, and right aligned fixed width, and s for units. . uses the dcolumn package while
+            for left, center, and right aligned fixed width, and s for units. Each align other than L, C, and R
+            can be prefixed or suffixed by @{} or !{} with optional contents inside the braces
+            to control the beginning and end of each cell . uses the dcolumn package while
             S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
             rest center aligned.
         :param mid_rules: whether to add mid rules between panels
@@ -195,7 +197,9 @@ class Table(DocumentItem, ReprMixin):
         :param below_text: text to place below table
         :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
             as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
-            for left, center, and right aligned fixed width, and s for units. . uses the dcolumn package while
+            for left, center, and right aligned fixed width, and s for units. Each align other than L, C, and R
+            can be prefixed or suffixed by @{} or !{} with optional contents inside the braces
+            to control the beginning and end of each cell . uses the dcolumn package while
             S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
             rest center aligned.
         :param mid_rules: whether to add mid rules between panels
@@ -275,7 +279,9 @@ class Table(DocumentItem, ReprMixin):
         :param below_text: text to place below table
         :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
             as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
-            for left, center, and right aligned fixed width, and s for units. . uses the dcolumn package while
+            for left, center, and right aligned fixed width, and s for units. Each align other than L, C, and R
+            can be prefixed or suffixed by @{} or !{} with optional contents inside the braces
+            to control the beginning and end of each cell . uses the dcolumn package while
             S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
             rest center aligned.
         :param mid_rules: whether to add mid rules between panels
@@ -352,7 +358,9 @@ class Table(DocumentItem, ReprMixin):
         :param below_text: text to place below table
         :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
             as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
-            for left, center, and right aligned fixed width, and s for units. . uses the dcolumn package while
+            for left, center, and right aligned fixed width, and s for units. Each align other than L, C, and R
+            can be prefixed or suffixed by @{} or !{} with optional contents inside the braces
+            to control the beginning and end of each cell . uses the dcolumn package while
             S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
             rest center aligned.
         :param mid_rules: whether to add mid rules between panels

@@ -27,9 +27,9 @@ class ColumnAlignment(ReprMixin, ItemBase):
         return other.align + self.align
 
     def _validate_align_str(self, align_str):
-        basic_pattern = re.compile(r'[lcr|.]')
+        basic_pattern = re.compile(r'([@!]\{.*\})?[lcr|.]([@!]\{.*\})?')
         length_pattern = re.compile(r'[LCR]\{[\d\w\s.]+\}')
-        siunitx_pattern = re.compile(r'[sS](\[.+\])?')
+        siunitx_pattern = re.compile(r'([@!]\{.*\})?[sS](\[.+\])?([@!]\{.*\})?')
 
         basic_match = basic_pattern.fullmatch(align_str)
         length_match = length_pattern.fullmatch(align_str)
@@ -137,8 +137,9 @@ def _full_align_str_to_align_str_list(align_str: str):
         # if not splitting, add to current item
         collected_letters += letter
 
-    # Clean up list from loop. Remove first (always blank), and add last
+    # Clean up list from loop. Add last entry, and combine first two entries
     out_list.append(collected_letters)
-    out_list = out_list[1:]
+    first_val = out_list.pop(0)
+    out_list[0] = first_val + out_list[0]
 
     return out_list
