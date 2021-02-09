@@ -319,21 +319,23 @@ class Document(DocumentBase):
 
 def get_table_figure_size_packages(
     tables_relative_font_size: int = 0,
-    figures_relative_font_size: int = 0
+    figures_relative_font_size: int = 0,
+    floatrow_table_options: str = 'capposition=top',
+    floatrow_figure_options: str = 'capposition=top',
 ) -> List[ItemBase]:
     all_packages = []
     if tables_relative_font_size or figures_relative_font_size:
         all_packages.append(Package('floatrow'))
         if tables_relative_font_size:
             declared_font = DeclareFloatFont(tables_relative_font_size)
-            float_setup_str = f'font={declared_font.size_def.name},capposition=top'
+            float_setup_str = f'font={declared_font.size_def.name},{floatrow_table_options}'
             all_packages.extend([
                 declared_font,
                 FloatSetup('table', float_setup_str),
             ])
         if figures_relative_font_size:
             declared_font = DeclareFloatFont(figures_relative_font_size)
-            float_setup_str = f'font={declared_font.size_def.name},capposition=top'
+            float_setup_str = f'font={declared_font.size_def.name},{floatrow_figure_options}'
             all_packages.extend([
                 declared_font,
                 FloatSetup('figure', float_setup_str),
