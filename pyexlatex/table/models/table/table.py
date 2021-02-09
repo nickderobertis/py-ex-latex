@@ -41,15 +41,17 @@ class Table(DocumentItem, ReprMixin):
         :param above_text: Not yet implemented
         :param below_text: text to place below table
         :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
-                        as well as . for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
-                        for left, center, and right aligned fixed width. Default is first column left aligned,
-                        rest center aligned.
+            as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+            for left, center, and right aligned fixed width, and s for units. . uses the dcolumn package while
+            S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
+            rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
         :param short_caption: Caption that will be used if table name is listed in TOC
         """
         from pyexlatex.table.models.texgen.items import TableNotes
+        from pyexlatex.table.models.texgen.items import ColumnsAlignment
         self.panels = panels
         self.caption = Caption(caption if caption is not None else '', short_caption=short_caption)
         self.above_text = _set_above_text(above_text)
@@ -59,7 +61,14 @@ class Table(DocumentItem, ReprMixin):
         self.landscape = landscape
         self.label = Label(label) if label else None
         self.data = DocumentSetupData()
-        self.data.packages.extend(['threeparttable', 'booktabs', ColumnTypesPackage()])
+        self.data.packages.extend(['threeparttable', 'booktabs'])
+        # TODO: restructure data from columns alignment in table once table has been restructured to have items as tex generators
+        #
+        # This is a hack to get the correct data coming into the table. Currently, the actual ColumnsAlignment is
+        # constructed during conversion to tex objects and so it does not get included in document data.
+        if align is not None:
+            align_obj = ColumnsAlignment.from_alignment_str(align)
+            self.data.packages.extend(align_obj.data.packages)
         self.set_begin_document_items(landscape)
 
     def __str__(self):
@@ -184,9 +193,11 @@ class Table(DocumentItem, ReprMixin):
         :param caption: overall caption to place at top of table
         :param above_text: Not yet implemented
         :param below_text: text to place below table
-        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned
-                        as well as L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm}) for left, center, and right aligned
-                        fixed width. Default is first column left aligned, rest center aligned.
+        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
+            as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+            for left, center, and right aligned fixed width, and s for units. . uses the dcolumn package while
+            S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
+            rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
@@ -262,9 +273,11 @@ class Table(DocumentItem, ReprMixin):
         :param caption: overall caption to place at top of table
         :param above_text: Not yet implemented
         :param below_text: text to place below table
-        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned
-                        as well as L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm}) for left, center, and right aligned
-                        fixed width. Default is first column left aligned, rest center aligned.
+        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
+            as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+            for left, center, and right aligned fixed width, and s for units. . uses the dcolumn package while
+            S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
+            rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
@@ -337,9 +350,11 @@ class Table(DocumentItem, ReprMixin):
         :param caption: overall caption to place at top of table
         :param above_text: Not yet implemented
         :param below_text: text to place below table
-        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned
-                        as well as L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm}) for left, center, and right aligned
-                        fixed width. Default is first column left aligned, rest center aligned.
+        :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
+            as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+            for left, center, and right aligned fixed width, and s for units. . uses the dcolumn package while
+            S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
+            rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
