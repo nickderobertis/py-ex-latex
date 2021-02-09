@@ -50,6 +50,7 @@ class Table(DocumentItem, ReprMixin):
         :param short_caption: Caption that will be used if table name is listed in TOC
         """
         from pyexlatex.table.models.texgen.items import TableNotes
+        from pyexlatex.table.models.texgen.items import ColumnsAlignment
         self.panels = panels
         self.caption = Caption(caption if caption is not None else '', short_caption=short_caption)
         self.above_text = _set_above_text(above_text)
@@ -59,7 +60,14 @@ class Table(DocumentItem, ReprMixin):
         self.landscape = landscape
         self.label = Label(label) if label else None
         self.data = DocumentSetupData()
-        self.data.packages.extend(['threeparttable', 'booktabs', ColumnTypesPackage()])
+        self.data.packages.extend(['threeparttable', 'booktabs'])
+        # TODO: restructure data from columns alignment in table once table has been restructured to have items as tex generators
+        #
+        # This is a hack to get the correct data coming into the table. Currently, the actual ColumnsAlignment is
+        # constructed during conversion to tex objects and so it does not get included in document data.
+        if align is not None:
+            align_obj = ColumnsAlignment.from_alignment_str(align)
+            self.data.packages.extend(align_obj.data.packages)
         self.set_begin_document_items(landscape)
 
     def __str__(self):

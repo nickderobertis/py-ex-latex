@@ -1,5 +1,5 @@
 import re
-from typing import List
+from typing import List, Tuple, Optional
 
 from mixins.repr import ReprMixin
 from pyexlatex.models.item import ItemBase
@@ -29,18 +29,26 @@ class ColumnAlignment(ReprMixin, ItemBase):
     def _validate_align_str(self, align_str):
         basic_pattern = re.compile(r'[lcr|.]')
         length_pattern = re.compile(r'[LCR]\{[\d\w\s.]+\}')
+        siunitx_pattern = re.compile(r'[sS](\[.+\])?')
 
         basic_match = basic_pattern.fullmatch(align_str)
         length_match = length_pattern.fullmatch(align_str)
+        siunitx_match = siunitx_pattern.fullmatch(align_str)
 
         if length_match:
             self._add_requirements_for_length_match()
 
-        if not (basic_match or length_match):
-            raise ValueError(f'expected alignment of l, c, r, ., |, L{{size}}, C{{size}}, or R{{size}}. Got {align_str}')
+        if siunitx_match:
+            self._add_requirements_for_s_column_types()
+
+        if not (basic_match or length_match or siunitx_match):
+            raise ValueError(f'expected alignment of l, c, r, ., |, s, S, L{{size}}, C{{size}}, or R{{size}}. Got {align_str}')
 
     def _add_requirements_for_length_match(self):
         self.add_package(ColumnTypesPackage())
+
+    def _add_requirements_for_s_column_types(self):
+        self.add_package('siunitx')
 
 
 class ColumnsAlignment(ReprMixin, ContainerItem):
@@ -96,18 +104,32 @@ class ColumnsAlignment(ReprMixin, ContainerItem):
 
 
 def _full_align_str_to_align_str_list(align_str: str):
-    split_letters = ['l', 'c', 'r', '|', 'L', 'C', 'R', '.']
+    split_letters = ['l', 'c', 'r', '|', 'L', 'C', 'R', '.', 's', 'S']
     out_list = []
     collected_letters = ''
+    escape_pairs: List[Tuple[str, str]] = [('{', '}'), ('[', ']')]
+    escape_begins = [pair[0] for pair in escape_pairs]
+    escape_ends = [pair[1] for pair in escape_pairs]
     split = True
+    current_escape_end: str = ''
 
     for letter in align_str:
         # beginning inside of length str. don't split while inside
-        if letter == '{':
+        if letter in escape_begins:
             split = False
+            # Determine escape ending character
+            for (beg, end) in escape_pairs:
+                if letter == beg:
+                    current_escape_end = end
+                    break
+            if not current_escape_end:
+                raise ValueError(f'matched {letter} as an escape character but no '
+                                 f'end character. escape pairs: {escape_pairs}')
+
         # end of inside of length str. turn splitting back on
-        if letter == '}':
+        if letter == current_escape_end:
             split = True
+            current_escape_end = ''
         # if splitting, output what we've got so far and start a new item
         if split and letter in split_letters:
             out_list.append(collected_letters)
