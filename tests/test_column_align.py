@@ -12,6 +12,12 @@ def test_column_align():
     assert str(ColumnAlignment("C{2cm}")) == "C{2cm}"
     assert str(ColumnAlignment("s")) == "s"
     assert str(ColumnAlignment("S")) == "S"
+    assert str(ColumnAlignment("@{}l@{}")) == "@{}l@{}"
+    assert str(ColumnAlignment("l@{}")) == "l@{}"
+    assert str(ColumnAlignment("@{}l")) == "@{}l"
+    assert str(ColumnAlignment("!{}l!{}")) == "!{}l!{}"
+    assert str(ColumnAlignment("l!{}")) == "l!{}"
+    assert str(ColumnAlignment("!{}l")) == "!{}l"
     assert (
         str(ColumnAlignment("s[table-column-width=2cm]")) == "s[table-column-width=2cm]"
     )
@@ -49,7 +55,7 @@ def test_columns_align():
 
 
 def test_column_aligns_from_str():
-    align_str = "lrcL{2cm}R{2cm}C{2cm}.s[table-column-width=2cm]S"
+    align_str = "@{}lrcL{2cm}R{2cm}C{2cm}.s[table-column-width=2cm]S@{}rl@{}@{}c!{}"
     align = ColumnsAlignment.from_alignment_str(align_str)
     assert str(align) == align_str
     assert Package("dcolumn") in align.data.packages
