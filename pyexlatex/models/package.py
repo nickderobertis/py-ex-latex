@@ -2,19 +2,19 @@ from typing import Optional
 
 from mixins import EqHashMixin
 
-from pyexlatex.texgen import _usepackage_str
-from pyexlatex.models.item import ItemBase
+from pyexlatex.texgen import _usepackage_str, _requirepackage_str
+from pyexlatex.models.item import ItemBase, SimpleItem
 
 
-class Package(ItemBase):
+class PackageBase(ItemBase):
     r"""
-    Represents LaTeX \usepackage{}, pass to Document if any custom LaTeX packages are needed.
+    Base class for \usepackage and \RequirePackage
     """
     equal_attrs = ["name", "modifier_str"]
     __hash__ = EqHashMixin.__hash__
 
     def __init__(
-        self, name: str, modifier_str: Optional[str] = None, eq_on_modifier: bool = True
+            self, name: str, modifier_str: Optional[str] = None, eq_on_modifier: bool = True,
     ):
         r"""
         :param name: Name of LaTeX package
@@ -29,10 +29,10 @@ class Package(ItemBase):
         self.eq_on_modifier = eq_on_modifier
 
     def __repr__(self):
-        return f"<Package(name={self.name})>"
+        raise NotImplementedError
 
     def __str__(self):
-        return _usepackage_str(self.name, self.modifier_str)
+        raise NotImplementedError
 
     def __eq__(self, other):
         try:
@@ -55,3 +55,27 @@ class Package(ItemBase):
 
     def matches_name(self, other):
         return self.name == other
+
+
+class Package(PackageBase):
+    r"""
+    Represents LaTeX \usepackage{}, pass to Document if any custom LaTeX packages are needed.
+    """
+
+    def __repr__(self):
+        return f"<Package(name={self.name})>"
+
+    def __str__(self):
+        return _usepackage_str(self.name, self.modifier_str)
+
+
+class RequirePackage(PackageBase):
+    r"""
+    Represents LaTeX \RequirePackage, usually useful when building cls files and packages.
+    """
+
+    def __repr__(self):
+        return f"<RequirePackage(name={self.name})>"
+
+    def __str__(self):
+        return _requirepackage_str(self.name, self.modifier_str)

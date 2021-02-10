@@ -9,6 +9,11 @@ def test_package():
     assert str(package) == '\\usepackage[hidelinks]{hyperref}'
 
 
+def test_require_package():
+    package = pl.RequirePackage('hyperref', modifier_str='hidelinks')
+    assert str(package) == '\\RequirePackage[hidelinks]{hyperref}'
+
+
 def test_package_conflict():
     section = pl.Section(['woo'], title='Section')
     section.init_data()
