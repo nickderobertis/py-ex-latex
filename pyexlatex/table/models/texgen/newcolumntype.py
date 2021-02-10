@@ -12,7 +12,8 @@ class NewColumnTypes(StringAdditionMixin):
             NewColumnType(r'\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}'),
             NewColumnType(r'\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}'),
             NewColumnType(r'\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}'),
-            NewColumnType(r'\newcolumntype{.}{D{.}{.}{-1}}')
+            NewColumnType(r'\newcolumntype{.}{D{.}{.}{-1}}'),
+            NewColumnType(r'\newcolumntype{d}[1]{D{.}{.}{#1}}')
         ]
 
     def __str__(self):

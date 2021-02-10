@@ -28,23 +28,27 @@ class ColumnAlignment(ReprMixin, ItemBase):
 
     def _validate_align_str(self, align_str):
         basic_pattern = re.compile(r'[lcr|.]')
-        length_pattern = re.compile(r'[LCR]\{[\d\w\s.]+\}')
+        length_pattern = re.compile(r'[LCRd]\{[\d\w\s.]+\}')
+        dcolumn_pattern = re.compile(r'D(\{.+\})?')
         siunitx_pattern = re.compile(r'[sS](\[.+\])?')
         spacing_pattern = re.compile(r'[@!]\{.*\}')
 
         basic_match = basic_pattern.fullmatch(align_str)
         length_match = length_pattern.fullmatch(align_str)
+        dcolumn_match = dcolumn_pattern.fullmatch(align_str)
         siunitx_match = siunitx_pattern.fullmatch(align_str)
         spacing_match = spacing_pattern.fullmatch(align_str)
 
-        if length_match:
+        if length_match or dcolumn_match:
             self._add_requirements_for_length_match()
 
         if siunitx_match:
             self._add_requirements_for_s_column_types()
 
-        if not (basic_match or length_match or siunitx_match or spacing_match):
-            raise ValueError(f'expected alignment of l, c, r, ., |, s, S, L{{size}}, C{{size}}, or R{{size}}. Got {align_str}')
+        if not (basic_match or length_match or dcolumn_match or siunitx_match or spacing_match):
+            raise ValueError(f'expected alignment of l, c, r, ., |, s, S, '
+                             f'L{{size}}, C{{size}}, R{{size}}, d{{decimal format}}, '
+                             f'or D{{in sep}}{{out sep}}{{decimal format}}. Got {align_str}')
 
     def _add_requirements_for_length_match(self):
         self.add_package(ColumnTypesPackage())
@@ -120,7 +124,7 @@ class ColumnsAlignment(ReprMixin, ContainerItem):
 
 
 def _full_align_str_to_align_str_list(align_str: str):
-    split_letters = ['l', 'c', 'r', '|', 'L', 'C', 'R', '.', 's', 'S', '@', '!']
+    split_letters = ['l', 'c', 'r', '|', 'L', 'C', 'R', '.', 's', 'S', '@', '!', 'd', 'D']
     out_list = []
     collected_letters = ''
     escape_pairs: List[Tuple[str, str]] = [('{', '}'), ('[', ']')]
