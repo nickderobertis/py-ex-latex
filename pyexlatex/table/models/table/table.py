@@ -33,7 +33,7 @@ class Table(DocumentItem, ReprMixin):
 
     def __init__(self, panels: PanelCollection, caption: str=None, above_text: str=None, below_text: str=None,
                  align: str = None, mid_rules=True, landscape=False, label: Optional[str] = None,
-                 short_caption: Optional[str] = None):
+                 short_caption: Optional[str] = None, position_str: Optional[str] = None):
         """
 
         :param panels: list of Panels
@@ -53,6 +53,7 @@ class Table(DocumentItem, ReprMixin):
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
         :param short_caption: Caption that will be used if table name is listed in TOC
+        :param position_str: float positioning str, can include h, t, b, p, !, and H, e.g. htb! or H
         """
         from pyexlatex.table.models.texgen.items import TableNotes
         from pyexlatex.table.models.texgen.items import ColumnsAlignment
@@ -73,6 +74,7 @@ class Table(DocumentItem, ReprMixin):
         if align is not None:
             align_obj = ColumnsAlignment.from_alignment_str(align)
             self.data.packages.extend(align_obj.data.packages)
+        self.position_str = position_str
         self.set_begin_document_items(landscape)
 
     def __str__(self):
@@ -173,7 +175,8 @@ class Table(DocumentItem, ReprMixin):
                         top_left_corner_labels: Union[LabelTable, LabelCollection, List[AnyStr], AnyStr] = None,
                         pad_rows: int=1, pad_columns: int=1, caption: str=None, above_text: str=None,
                         below_text: str=None, align: str = None, mid_rules=True, landscape=False,
-                        label: Optional[str] = None, short_caption: Optional[str] = None):
+                        label: Optional[str] = None, short_caption: Optional[str] = None,
+                        position_str: Optional[str] = None):
         """
         Note: to quickly create latex tables, use Table.from_list_of_lists_of_dfs to pass
         pandas DataFrames directly. Use this method when more control is needed than is provided by that method.
@@ -210,6 +213,7 @@ class Table(DocumentItem, ReprMixin):
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
         :param short_caption: Caption that will be used if table name is listed in TOC
+        :param position_str: float positioning str, can include h, t, b, p, !, and H, e.g. htb! or H
         :return:
         """
         panel_collection = PanelCollection(
@@ -231,7 +235,8 @@ class Table(DocumentItem, ReprMixin):
             mid_rules=mid_rules,
             landscape=landscape,
             label=label,
-            short_caption=short_caption
+            short_caption=short_caption,
+            position_str=position_str,
         )
 
     @classmethod
@@ -243,7 +248,8 @@ class Table(DocumentItem, ReprMixin):
                                   pad_rows: int = 1, pad_columns: int = 1, caption: str = None, above_text: str = None,
                                   below_text: str = None, align: str = None, mid_rules=True, landscape=False,
                                   label: Optional[str] = None,
-                                  data_table_kwargs={}, short_caption: Optional[str] = None
+                                  data_table_kwargs={}, short_caption: Optional[str] = None,
+                                  position_str: Optional[str] = None
                                   ):
         """
         To create a single panel table, pass a single list within
@@ -296,6 +302,7 @@ class Table(DocumentItem, ReprMixin):
         :param data_table_kwargs: kwargs to be passed to DataTable.from_df. Same kwargs will be passed to
                                   all data tables.
         :param short_caption: Caption that will be used if table name is listed in TOC
+        :param position_str: float positioning str, can include h, t, b, p, !, and H, e.g. htb! or H
         :return:
         """
         panel_collection = PanelCollection.from_list_of_lists_of_dfs(
@@ -325,6 +332,7 @@ class Table(DocumentItem, ReprMixin):
             landscape=landscape,
             label=label,
             short_caption=short_caption,
+            position_str=position_str,
         )
 
     @classmethod
@@ -335,7 +343,8 @@ class Table(DocumentItem, ReprMixin):
                                 pad_rows: int = 1, caption: str = None, above_text: str = None,
                                 below_text: str = None, align: str = None, mid_rules=True, landscape=False,
                                 label: Optional[str] = None,
-                                data_table_kwargs={}, short_caption: Optional[str] = None
+                                data_table_kwargs={}, short_caption: Optional[str] = None,
+                                position_str: Optional[str] = None
                                 ):
         """
         Convenience method for when there is only one DataFrame per panel. All options will be applied all panels and
@@ -377,6 +386,7 @@ class Table(DocumentItem, ReprMixin):
         :param data_table_kwargs: kwargs to be passed to DataTable.from_df. Same kwargs will be passed to
                                   all data tables.
         :param short_caption: Caption that will be used if table name is listed in TOC
+        :param position_str: float positioning str, can include h, t, b, p, !, and H, e.g. htb! or H
         :return:
         """
 
@@ -404,6 +414,7 @@ class Table(DocumentItem, ReprMixin):
             data_table_kwargs=data_table_kwargs,
             label=label,
             short_caption=short_caption,
+            position_str=position_str,
         )
 
     @property

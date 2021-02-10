@@ -84,11 +84,13 @@ class ThreePartTable(TextAreaBase, ReprMixin):
 
         return cls(tabular, caption=caption, **kwargs)
 
+
 class Table(TextAreaBase, ReprMixin):
     name = 'table'
     repr_cols = ['caption']
 
-    def __init__(self, three_part_table: ThreePartTable, centering=True, landscape=False):
+    def __init__(self, three_part_table: ThreePartTable, centering=True, landscape=False,
+                 position_str: Optional[str] = None):
         self.caption = three_part_table.caption
         self.landscape = landscape
 
@@ -99,7 +101,11 @@ class Table(TextAreaBase, ReprMixin):
 
         content = [item for item in items if item is not None]
 
-        super().__init__(self.name, content)
+        env_modifiers: Optional[str] = None
+        if position_str is not None:
+            env_modifiers = self._wrap_with_bracket(position_str)
+
+        super().__init__(self.name, content, env_modifiers=env_modifiers)
 
     def __str__(self):
         content_with_env = super().__str__()
@@ -133,7 +139,7 @@ class Table(TextAreaBase, ReprMixin):
             below_text=table.below_text,
             label=table.label
         )
-        obj = cls(three_part_table, *args, landscape=table.landscape, **kwargs)
+        obj = cls(three_part_table, *args, landscape=table.landscape, position_str=table.position_str, **kwargs)
         obj.add_data_from_content(table)
         return obj
 

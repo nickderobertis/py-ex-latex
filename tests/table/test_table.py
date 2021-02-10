@@ -188,6 +188,13 @@ class TestTable:
         mid_rules=False,
         align='@{}l!{}c@{}c@{}'
     )
+    table_with_position_str = pl.Table.from_list_of_lists_of_dfs(
+        [[EXAMPLE_DF]],
+        caption='My Table Title',
+        below_text='My below text',
+        mid_rules=False,
+        position_str='htb'
+    )
 
     def test_table(self):
         assert str(self.table) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
@@ -225,6 +232,9 @@ class TestTable:
 
     def test_table_with_spacing_adjust_aligns(self):
         assert str(self.table_with_spacing_adjust_aligns) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{@{}l!{}c@{}c@{}}\n\\toprule\na & b & c\\\\\n 1 &   2.540 &    3.100 \\\\\n 4 &  50.000 &  654.000 \\\\\n 7 &   8.114 &    9.541 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+
+    def test_table_with_position_str(self):
+        assert str(self.table_with_position_str) == '\\begin{table}[htb]\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
 
     def test_table_to_tabular(self):
         tabular = self.two_panel_table_from_lol_with_index.tex_obj(as_document=False, as_single_tabular=True)
