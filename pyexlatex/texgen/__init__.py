@@ -80,6 +80,14 @@ def _usepackage_str(str_, modifier_str=None):
     return rf'\usepackage{full_modifier_str}{{{str_}}}'
 
 
+def _requirepackage_str(str_, modifier_str=None):
+    if modifier_str:
+        full_modifier_str = f'[{modifier_str}]'
+    else:
+        full_modifier_str = ''
+    return rf'\RequirePackage{full_modifier_str}{{{str_}}}'
+
+
 def bibtex_str(item_type: str, item_accessor: str, fields: Dict[str, str]) -> str:
     from pyexlatex.logic.builder import _build
     begin_str = f'@{item_type}{{{item_accessor},'

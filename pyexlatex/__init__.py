@@ -32,7 +32,7 @@ from pyexlatex.figure.models.graphic import Graphic
 from pyexlatex.figure.models.inlinegraphic import InlineGraphic
 from pyexlatex.models.format.fills import VFill, HFill
 from pyexlatex.models.hyperlinks import Hyperlink
-from pyexlatex.models.package import Package
+from pyexlatex.models.package import Package, RequirePackage
 from pyexlatex.models.page.header import Header
 from pyexlatex.models.page.footer import LeftFooter, RightFooter, CenterFooter, FooterLine
 from pyexlatex.models.page.number import ThisPageNumber
