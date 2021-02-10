@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyexlatex.texgen &mdash; pyexlatex 0.13.16 documentation</title>
+  <title>pyexlatex.texgen &mdash; pyexlatex 0.13.17 documentation</title>
   
 
   
@@ -72,7 +72,7 @@
             
             
               <div class="version">
-                0.13.16
+                0.13.17
               </div>
             
           
@@ -246,6 +246,14 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">full_modifier_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="k">return</span> <span class="sa">rf</span><span class="s1">&#39;\usepackage</span><span class="si">{</span><span class="n">full_modifier_str</span><span class="si">}{</span><span class="p">{{</span><span class="n">str_</span><span class="p">}}</span><span class="si">}</span><span class="s1">&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">_requirepackage_str</span><span class="p">(</span><span class="n">str_</span><span class="p">,</span> <span class="n">modifier_str</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">modifier_str</span><span class="p">:</span>
+        <span class="n">full_modifier_str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">modifier_str</span><span class="si">}</span><span class="s1">]&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">full_modifier_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span> <span class="sa">rf</span><span class="s1">&#39;\RequirePackage</span><span class="si">{</span><span class="n">full_modifier_str</span><span class="si">}{</span><span class="p">{{</span><span class="n">str_</span><span class="p">}}</span><span class="si">}</span><span class="s1">&#39;</span>
 
 
 <div class="viewcode-block" id="bibtex_str"><a class="viewcode-back" href="../../api/pyexlatex.texgen.html#pyexlatex.texgen.bibtex_str">[docs]</a><span class="k">def</span> <span class="nf">bibtex_str</span><span class="p">(</span><span class="n">item_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item_accessor</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fields</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
