@@ -41,12 +41,14 @@ class Table(DocumentItem, ReprMixin):
         :param above_text: Not yet implemented
         :param below_text: text to place below table
         :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
-            as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
-            for left, center, and right aligned fixed width, and s for units. Each align other than L, C, and R
-            can be prefixed or suffixed by @{} or !{} with optional contents inside the braces
-            to control the beginning and end of each cell . uses the dcolumn package while
-            S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
-            rest center aligned.
+            as well as ., S, d{decimal format}, and D{in sep}{out sep}{decimal format}
+            for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+            for left, center, and right aligned fixed width, and s for units. @{} or !{} with optional contents inside
+            the braces can be passed to control the beginning and end of each cell ., d, and D use the dcolumn package
+            while S uses the siunitx package and they have slightly different behavior. . and d are custom columns
+            created to simplify using D: . is decimal aligned with any number of decimal places, d allows
+            specifying the number of decimals, but both use . as the input and output separator.
+            Default is first column left aligned, rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
@@ -196,12 +198,14 @@ class Table(DocumentItem, ReprMixin):
         :param above_text: Not yet implemented
         :param below_text: text to place below table
         :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
-            as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
-            for left, center, and right aligned fixed width, and s for units. Each align other than L, C, and R
-            can be prefixed or suffixed by @{} or !{} with optional contents inside the braces
-            to control the beginning and end of each cell . uses the dcolumn package while
-            S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
-            rest center aligned.
+            as well as ., S, d{decimal format}, and D{in sep}{out sep}{decimal format}
+            for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+            for left, center, and right aligned fixed width, and s for units. @{} or !{} with optional contents inside
+            the braces can be passed to control the beginning and end of each cell ., d, and D use the dcolumn package
+            while S uses the siunitx package and they have slightly different behavior. . and d are custom columns
+            created to simplify using D: . is decimal aligned with any number of decimal places, d allows
+            specifying the number of decimals, but both use . as the input and output separator.
+            Default is first column left aligned, rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
@@ -278,12 +282,14 @@ class Table(DocumentItem, ReprMixin):
         :param above_text: Not yet implemented
         :param below_text: text to place below table
         :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
-            as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
-            for left, center, and right aligned fixed width, and s for units. Each align other than L, C, and R
-            can be prefixed or suffixed by @{} or !{} with optional contents inside the braces
-            to control the beginning and end of each cell . uses the dcolumn package while
-            S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
-            rest center aligned.
+            as well as ., S, d{decimal format}, and D{in sep}{out sep}{decimal format}
+            for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+            for left, center, and right aligned fixed width, and s for units. @{} or !{} with optional contents inside
+            the braces can be passed to control the beginning and end of each cell ., d, and D use the dcolumn package
+            while S uses the siunitx package and they have slightly different behavior. . and d are custom columns
+            created to simplify using D: . is decimal aligned with any number of decimal places, d allows
+            specifying the number of decimals, but both use . as the input and output separator.
+            Default is first column left aligned, rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text
@@ -357,12 +363,14 @@ class Table(DocumentItem, ReprMixin):
         :param above_text: Not yet implemented
         :param below_text: text to place below table
         :param align: Can take any string that would normally used in tabular (i.e. rrr for three columns right aligned)
-            as well as . and S for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
-            for left, center, and right aligned fixed width, and s for units. Each align other than L, C, and R
-            can be prefixed or suffixed by @{} or !{} with optional contents inside the braces
-            to control the beginning and end of each cell . uses the dcolumn package while
-            S uses the siunitx package and they have slightly different behavior. Default is first column left aligned,
-            rest center aligned.
+            as well as ., S, d{decimal format}, and D{in sep}{out sep}{decimal format}
+            for decimal aligned, and L{<width>), C{<width>}, and R{<width>} (i.e. L{3cm})
+            for left, center, and right aligned fixed width, and s for units. @{} or !{} with optional contents inside
+            the braces can be passed to control the beginning and end of each cell ., d, and D use the dcolumn package
+            while S uses the siunitx package and they have slightly different behavior. . and d are custom columns
+            created to simplify using D: . is decimal aligned with any number of decimal places, d allows
+            specifying the number of decimals, but both use . as the input and output separator.
+            Default is first column left aligned, rest center aligned.
         :param mid_rules: whether to add mid rules between panels
         :param landscape: whether to output landscape tex
         :param label: label for table to be referenced in text

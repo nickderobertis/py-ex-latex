@@ -10,6 +10,8 @@ def test_column_align():
     assert str(ColumnAlignment("L{2cm}")) == "L{2cm}"
     assert str(ColumnAlignment("R{2cm}")) == "R{2cm}"
     assert str(ColumnAlignment("C{2cm}")) == "C{2cm}"
+    assert str(ColumnAlignment("d{2.5}")) == "d{2.5}"
+    assert str(ColumnAlignment("D{.}{.}{2.5}")) == "D{.}{.}{2.5}"
     assert str(ColumnAlignment("s")) == "s"
     assert str(ColumnAlignment("S")) == "S"
     assert str(ColumnAlignment("|")) == "|"
@@ -24,9 +26,10 @@ def test_column_align():
         str(ColumnAlignment("S[table-column-width=2cm]")) == "S[table-column-width=2cm]"
     )
 
-    with pytest.raises(ValueError) as exc_info:
-        ColumnAlignment("z")
-    assert "expected alignment of" in str(exc_info.value)
+    for bad_aligns in ['z', 'D{}', 'd{']:
+        with pytest.raises(ValueError) as exc_info:
+            ColumnAlignment("z")
+        assert "expected alignment of" in str(exc_info.value)
 
 
 def test_columns_align():
@@ -66,8 +69,8 @@ def test_column_aligns_from_str():
     assert Package("siunitx") in align.data.packages
     assert len(align.data.packages) == 2
 
-    align_str = "L{5cm}@{}.@{}"
-    align = ColumnsAlignment.from_alignment_str(align_str, num_columns=2)
+    align_str = "L{5cm}@{}.@{}D{.}{.}{3.2}d{4.5}"
+    align = ColumnsAlignment.from_alignment_str(align_str, num_columns=4)
     assert str(align) == align_str
     assert Package("dcolumn") in align.data.packages
     assert len(align.data.packages) == 1
