@@ -12,12 +12,11 @@ def test_column_align():
     assert str(ColumnAlignment("C{2cm}")) == "C{2cm}"
     assert str(ColumnAlignment("s")) == "s"
     assert str(ColumnAlignment("S")) == "S"
-    assert str(ColumnAlignment("@{}l@{}")) == "@{}l@{}"
-    assert str(ColumnAlignment("l@{}")) == "l@{}"
-    assert str(ColumnAlignment("@{}l")) == "@{}l"
-    assert str(ColumnAlignment("!{}l!{}")) == "!{}l!{}"
-    assert str(ColumnAlignment("l!{}")) == "l!{}"
-    assert str(ColumnAlignment("!{}l")) == "!{}l"
+    assert str(ColumnAlignment("|")) == "|"
+    assert str(ColumnAlignment("@{}")) == "@{}"
+    assert str(ColumnAlignment(r"@{\hspace{5cm}}")) == r"@{\hspace{5cm}}"
+    assert str(ColumnAlignment("!{}")) == "!{}"
+    assert str(ColumnAlignment(r"!{\hspace{5cm}}")) == r"!{\hspace{5cm}}"
     assert (
         str(ColumnAlignment("s[table-column-width=2cm]")) == "s[table-column-width=2cm]"
     )
@@ -55,9 +54,20 @@ def test_columns_align():
 
 
 def test_column_aligns_from_str():
+    align_str = r"lc|r!{\hspace{2cm}}"
+    align = ColumnsAlignment.from_alignment_str(align_str, num_columns=3)
+    assert str(align) == align_str
+    assert not align.data.packages
+
     align_str = "@{}lrcL{2cm}R{2cm}C{2cm}.s[table-column-width=2cm]S@{}rl@{}@{}c!{}"
-    align = ColumnsAlignment.from_alignment_str(align_str)
+    align = ColumnsAlignment.from_alignment_str(align_str, num_columns=12)
     assert str(align) == align_str
     assert Package("dcolumn") in align.data.packages
     assert Package("siunitx") in align.data.packages
     assert len(align.data.packages) == 2
+
+    align_str = "L{5cm}@{}.@{}"
+    align = ColumnsAlignment.from_alignment_str(align_str, num_columns=2)
+    assert str(align) == align_str
+    assert Package("dcolumn") in align.data.packages
+    assert len(align.data.packages) == 1

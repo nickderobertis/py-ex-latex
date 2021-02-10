@@ -27,13 +27,15 @@ class ColumnAlignment(ReprMixin, ItemBase):
         return other.align + self.align
 
     def _validate_align_str(self, align_str):
-        basic_pattern = re.compile(r'([@!]\{.*\})?[lcr|.]([@!]\{.*\})?')
+        basic_pattern = re.compile(r'[lcr|.]')
         length_pattern = re.compile(r'[LCR]\{[\d\w\s.]+\}')
-        siunitx_pattern = re.compile(r'([@!]\{.*\})?[sS](\[.+\])?([@!]\{.*\})?')
+        siunitx_pattern = re.compile(r'[sS](\[.+\])?')
+        spacing_pattern = re.compile(r'[@!]\{.*\}')
 
         basic_match = basic_pattern.fullmatch(align_str)
         length_match = length_pattern.fullmatch(align_str)
         siunitx_match = siunitx_pattern.fullmatch(align_str)
+        spacing_match = spacing_pattern.fullmatch(align_str)
 
         if length_match:
             self._add_requirements_for_length_match()
@@ -41,7 +43,7 @@ class ColumnAlignment(ReprMixin, ItemBase):
         if siunitx_match:
             self._add_requirements_for_s_column_types()
 
-        if not (basic_match or length_match or siunitx_match):
+        if not (basic_match or length_match or siunitx_match or spacing_match):
             raise ValueError(f'expected alignment of l, c, r, ., |, s, S, L{{size}}, C{{size}}, or R{{size}}. Got {align_str}')
 
     def _add_requirements_for_length_match(self):
@@ -49,6 +51,16 @@ class ColumnAlignment(ReprMixin, ItemBase):
 
     def _add_requirements_for_s_column_types(self):
         self.add_package('siunitx')
+
+    @property
+    def col_length(self) -> int:
+        if self.align == '|':
+            return 0
+        spacing_adjust_pattern = re.compile(r'[@!]\{.*\}')
+        if spacing_adjust_pattern.fullmatch(self.align):
+            return 0
+
+        return 1
 
 
 class ColumnsAlignment(ReprMixin, ContainerItem):
@@ -69,6 +81,10 @@ class ColumnsAlignment(ReprMixin, ContainerItem):
             yield align
 
     @staticmethod
+    def _get_col_length(aligns: List[ColumnAlignment]) -> int:
+        return sum([align.col_length for align in aligns])
+
+    @staticmethod
     def _get_aligns(aligns: List[ColumnAlignment] = None, num_columns: int=None):
         if aligns is None and num_columns is None:
             raise ValueError('must pass aligns or num columns')
@@ -86,7 +102,7 @@ class ColumnsAlignment(ReprMixin, ContainerItem):
             raise ValueError('must pass aligns or num columns')
 
         # number of alignments matches number of columns. no extra processing needed
-        if len(aligns) == num_columns:
+        if ColumnsAlignment._get_col_length(aligns) == num_columns:
             return aligns
 
         # if one alignment is passed with many columns, use that align with all columns
@@ -104,7 +120,7 @@ class ColumnsAlignment(ReprMixin, ContainerItem):
 
 
 def _full_align_str_to_align_str_list(align_str: str):
-    split_letters = ['l', 'c', 'r', '|', 'L', 'C', 'R', '.', 's', 'S']
+    split_letters = ['l', 'c', 'r', '|', 'L', 'C', 'R', '.', 's', 'S', '@', '!']
     out_list = []
     collected_letters = ''
     escape_pairs: List[Tuple[str, str]] = [('{', '}'), ('[', ']')]
