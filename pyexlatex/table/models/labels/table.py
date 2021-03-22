@@ -197,4 +197,22 @@ class LabelTable(TableSection, ReprMixin):
         item: LabelCollection = LabelCollection.parse_unknown_type(item)
 
         # add rather than append directly to activate setter
-        self.label_collections.insert(item, index)
+        self.label_collections.insert(index, item)
+
+    def split_bottom_left(self) -> 'LabelTable':
+        """
+        Takes the bottom left label and creates a new LabelTable from it,
+        removing it from this LabelTable
+        """
+        out_label_collections: List[LabelCollection] = []
+        for i, label_collection in enumerate(self.label_collections):
+            if i == len(self.label_collections) - 1:
+                # Last row, do the split
+                label = label_collection.values.pop(0)
+                out_label_collections.append(LabelCollection([label]))
+            else:
+                out_label_collections.append(LabelCollection.from_str_list(['']))
+        return self.__class__(out_label_collections)
+
+
+

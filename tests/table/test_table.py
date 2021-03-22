@@ -274,7 +274,7 @@ class TestTable:
         assert str(self.table_from_panel_with_index_and_tl) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\nTL Header & a & b & c\\\\\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
 
     def test_table_from_panel_with_index_and_all_headers(self):
-        assert str(self.table_from_panel_with_index_and_all_headers) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\n  & \\multicolumn{3}{c}{Header}\\\\\n\\cmidrule(lr){2-4}\nTL Header & a & b & c\\\\\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+        assert str(self.table_from_panel_with_index_and_all_headers) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\n & \\multicolumn{3}{c}{Header}\\\\\n\\cmidrule(lr){2-4}\nTL Header & a & b & c\\\\\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
 
     def test_table_in_document(self):
         doc = pl.Document([self.table])

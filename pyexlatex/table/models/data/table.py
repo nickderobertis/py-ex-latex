@@ -24,13 +24,11 @@ class DataTable(TableSection, ReprMixin):
 
     def __init__(self, values_table: ValuesTable, column_labels: LabelTable=None, row_labels: LabelTable=None,
                  top_left_corner_labels: LabelClassOrStrs = None, break_size_adjustment: Optional[str] = None):
-        self.values_table = values_table
-        self.column_labels = column_labels
-        self.row_labels = row_labels
         self.top_left_corner_labels = _set_top_left_corner_labels(top_left_corner_labels)
+        self.values_table = values_table
+        self.row_labels = row_labels
+        self.column_labels = column_labels
         self.break_size_adjustment = break_size_adjustment
-
-        self.should_add_top_left = (self.has_column_labels) and (self.has_row_labels)
 
     def __add__(self, other):
         if isinstance(other, DataTable):
@@ -72,6 +70,10 @@ class DataTable(TableSection, ReprMixin):
         )
 
     @property
+    def should_add_top_left(self) -> bool:
+        return self.has_column_labels and self.has_row_labels
+
+    @property
     def rows(self):
         try:
             return self._rows
@@ -88,7 +90,10 @@ class DataTable(TableSection, ReprMixin):
 
     @column_labels.setter
     def column_labels(self, labels: LabelTable):
-        self._column_labels = labels
+        if labels is not None and not labels.is_empty and self.has_row_labels:
+            self._column_labels = self.top_left_corner_labels + labels
+        else:
+            self._column_labels = labels
         self._recreate_rows_if_created()
 
     @property
@@ -121,11 +126,7 @@ class DataTable(TableSection, ReprMixin):
 
         rows = []
         if self.has_column_labels:
-            if self.should_add_top_left:
-                column_labels = self.top_left_corner_labels + self.column_labels
-            else:
-                column_labels = self.column_labels
-            rows += column_labels.rows
+            rows += self.column_labels.rows
 
         # need to add row labels inline with values table
         if self.has_row_labels:

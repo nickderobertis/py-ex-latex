@@ -75,10 +75,72 @@ def _pad_obj(obj, length: int, direction='right'):
 
     if num_values_to_add == 0:
         return
+    if num_values_to_add < 0:
+        return _negative_pad_obj(obj, abs(num_values_to_add), direction=direction)
 
     if direction == 'right':
         obj.values += [CellSpacer(num_values_to_add)]
     elif direction == 'left':
         obj.values = [CellSpacer(num_values_to_add)] + obj.values
+    else:
+        raise ValueError(f'must pass left or right for direction. got {direction}')
+
+
+def _negative_pad_obj(obj, num_values_to_remove: int, direction='right'):
+    """
+    Used in the case where row has too many values. If any of those
+    values are spacers in the same direction, remove as many as are
+    needed. If they are not spacers or too many need to be removed,
+    raises an error.
+    """
+    num_existing_spacers = _get_length_of_spacers_in_direction(obj, direction)
+    if num_existing_spacers < num_values_to_remove:
+        raise ValueError(f'not able to adjust row {obj} to remove {num_values_to_remove} spacers')
+    _remove_spacers_in_direction(obj, direction=direction)
+    num_values_to_add = num_existing_spacers - num_values_to_remove
+
+    if num_values_to_add == 0:
+        return
+
+    if direction == 'right':
+        obj.values += [CellSpacer(num_values_to_add)]
+    elif direction == 'left':
+        obj.values = [CellSpacer(num_values_to_add)] + obj.values
+    else:
+        raise ValueError(f'must pass left or right for direction. got {direction}')
+
+
+def _get_length_of_spacers_in_direction(obj, direction='right') -> int:
+    if direction == 'right':
+        values = reversed(obj.values)
+    elif direction == 'left':
+        values = obj.values
+    else:
+        raise ValueError(f'must pass left or right for direction. got {direction}')
+
+    spacer_length = 0
+    for value in values:
+        if isinstance(value, CellSpacer):
+            spacer_length += value.span
+        else:
+            break
+    return spacer_length
+
+
+def _remove_spacers_in_direction(obj, direction='right'):
+    if direction == 'right':
+        last_spacer_idx = -1
+        for i, value in enumerate(reversed(obj.values)):
+            if not isinstance(value, CellSpacer):
+                last_spacer_idx = -i
+                break
+        obj.values = obj.values[:last_spacer_idx]
+    elif direction == 'left':
+        last_spacer_idx = 0
+        for i, value in enumerate(obj.values):
+            if not isinstance(value, CellSpacer):
+                last_spacer_idx = i - 1
+                break
+        obj.values = obj.values[last_spacer_idx + 1:]
     else:
         raise ValueError(f'must pass left or right for direction. got {direction}')

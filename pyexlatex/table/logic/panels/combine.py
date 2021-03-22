@@ -190,6 +190,9 @@ def _remove_label_collections(section: TableSection, label_table: LabelTable, ax
     # once all label collections have been removed, remove table
     _remove_empty_label_table_from_section(section, label_attr)
 
+    # Recreate rows in section
+    section._recreate_rows_if_created()
+
     return section
 
 
@@ -202,10 +205,10 @@ def _remove_empty_label_table_from_section(section: TableSection, label_attr: st
 def _get_label_attr(axis: int=0):
     # select rows
     if axis == 0:
-        return 'row_labels'
+        return '_row_labels'
     # select columns
     elif axis == 1:
-        return 'column_labels'
+        return '_column_labels'
     else:
         raise ValueError(f'axis must be 0 or 1, got {axis}')
 
