@@ -224,6 +224,40 @@ class TestTable:
     )
     panel_with_index_all_headers_and_no_columns = pl.Panel.from_data_tables([data_table_with_index_all_headers_and_no_columns])
     table_from_panel_with_index_all_headers_and_no_columns = pl.Table.from_panel_list([panel_with_index_all_headers_and_no_columns])
+    panel_one_from_two_data_tables = pl.Panel.from_data_tables(
+        [
+            pl.DataTable.from_df(
+                EXAMPLE_DF,
+                include_index=True,
+                extra_header='DT 1',
+            ),
+            pl.DataTable.from_df(
+                (EXAMPLE_DF + 10),
+                include_index=True,
+                extra_header='DT 2',
+            )
+        ],
+        shape=(1, 2)
+    )
+    panel_two_from_two_data_tables = pl.Panel.from_data_tables(
+        [
+            pl.DataTable.from_df(
+                (EXAMPLE_DF + 20),
+                include_index=True,
+                extra_header='DT 3',
+            ),
+            pl.DataTable.from_df(
+                (EXAMPLE_DF + 30),
+                include_index=True,
+                extra_header='DT 4',
+            )
+        ],
+        shape=(1, 2)
+    )
+    table_from_dual_panel_dual_data_tables = pl.Table.from_panel_list([
+        panel_one_from_two_data_tables,
+        panel_two_from_two_data_tables,
+    ])
 
     def test_table(self):
         assert str(self.table) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
@@ -287,6 +321,9 @@ class TestTable:
 
     def test_table_from_panel_with_index_all_headers_and_no_columns(self):
         assert str(self.table_from_panel_with_index_all_headers_and_no_columns) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\nTL Header & \\multicolumn{3}{c}{Header}\\\\\n\\cmidrule(lr){3-5}\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+
+    def test_table_from_dual_panel_dual_data_tables(self):
+        assert str(self.table_from_dual_panel_dual_data_tables) == ''
 
     def test_table_in_document(self):
         doc = pl.Document([self.table])
