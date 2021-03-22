@@ -195,6 +195,11 @@ class TestTable:
         mid_rules=False,
         position_str='htb'
     )
+    table_with_tl = pl.Table.from_list_of_lists_of_dfs(
+        [[EXAMPLE_DF]],
+        caption='My Table Title',
+        top_left_corner_labels='TL Header',
+    )
     data_table_with_index_and_all_headers = pl.DataTable.from_df(
         EXAMPLE_DF,
         include_index=True,
@@ -254,6 +259,9 @@ class TestTable:
         assert isinstance(tabular_list, list)
         assert str(tabular_list[0]) == '\\begin{tabular}{lccc}\n\\toprule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n  & a & b & c\\\\\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}'
         assert str(tabular_list[1]) == '\\begin{tabular}{lccc}\n\\toprule\n\\multicolumn{4}{l}{Panel A: Two}\\\\\n  & a & b & c\\\\\n\\midrule\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}'
+
+    def test_table_with_tl(self):
+        assert str(self.table_with_tl) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lccc}\n\\toprule\nTL Header & a & b & c\\\\\n\\midrule\n &  1 &  2 &  3 \\\\\n &  4 &  5 &  6 \\\\\n &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
 
     def test_table_from_panel_with_index_and_all_headers(self):
         assert str(self.table_from_panel_with_index_and_all_headers) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\n  & \\multicolumn{3}{c}{Header}\\\\\n\\cmidrule(lr){2-4}\nTL Header & a & b & c\\\\\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
