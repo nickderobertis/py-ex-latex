@@ -212,12 +212,6 @@ class DataTable(TableSection, ReprMixin):
                 for i in range(num_spacers):
                     dt.top_left_corner_labels.label_collections.insert(0, LabelCollection.from_str_list([' ']))
 
-            # add spacer to top left corner labels to match new row of headers
-            if (not include_columns) and include_index:
-                # header becomes new columns, have to add top left as if there were columns
-                dt.should_add_top_left = True
-
-
         return dt
 
 def _determine_match(labels1: LabelTable, labels2: LabelTable):
