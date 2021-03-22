@@ -215,6 +215,15 @@ class TestTable:
     )
     panel_with_index_and_all_headers = pl.Panel.from_data_tables([data_table_with_index_and_all_headers])
     table_from_panel_with_index_and_all_headers = pl.Table.from_panel_list([panel_with_index_and_all_headers])
+    data_table_with_index_all_headers_and_no_columns = pl.DataTable.from_df(
+        EXAMPLE_DF,
+        include_index=True,
+        include_columns=False,
+        extra_header='Header',
+        top_left_corner_labels='TL Header'
+    )
+    panel_with_index_all_headers_and_no_columns = pl.Panel.from_data_tables([data_table_with_index_all_headers_and_no_columns])
+    table_from_panel_with_index_all_headers_and_no_columns = pl.Table.from_panel_list([panel_with_index_all_headers_and_no_columns])
 
     def test_table(self):
         assert str(self.table) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
@@ -275,6 +284,9 @@ class TestTable:
 
     def test_table_from_panel_with_index_and_all_headers(self):
         assert str(self.table_from_panel_with_index_and_all_headers) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\n & \\multicolumn{3}{c}{Header}\\\\\n\\cmidrule(lr){2-4}\nTL Header & a & b & c\\\\\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+
+    def test_table_from_panel_with_index_all_headers_and_no_columns(self):
+        assert str(self.table_from_panel_with_index_all_headers_and_no_columns) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\nTL Header & \\multicolumn{3}{c}{Header}\\\\\n\\cmidrule(lr){3-5}\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
 
     def test_table_in_document(self):
         doc = pl.Document([self.table])
