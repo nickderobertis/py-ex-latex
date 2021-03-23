@@ -152,11 +152,12 @@ class PanelCollection(ReprMixin):
         try:
             return self._grid
         except AttributeError:
-            self._grid = _concatenate_uneven_rows_filling_right(
+            # Copy to avoid modifying original contents
+            self._grid = deepcopy(_concatenate_uneven_rows_filling_right(
                 [panel.panel_grid for panel in self.panels],
                 fill_value=TableSection([]),
                 array_class=GridShape
-            )
+            ))
 
         return self._grid
 
