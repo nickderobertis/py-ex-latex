@@ -67,7 +67,7 @@ class Table(DocumentItem, ReprMixin):
         self.label = Label(label) if label else None
         self.data = DocumentSetupData()
         self.data.packages.extend(['threeparttable', 'booktabs'])
-        # TODO [$6022d3f4630b420008874959]: restructure data from columns alignment in table once table has been restructured to have items as tex generators
+        # TODO [#71]: restructure data from columns alignment in table once table has been restructured to have items as tex generators
         #
         # This is a hack to get the correct data coming into the table. Currently, the actual ColumnsAlignment is
         # constructed during conversion to tex objects and so it does not get included in document data.

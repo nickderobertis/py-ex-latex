@@ -260,7 +260,7 @@ class PanelCollection(ReprMixin):
                     # there are already enough values. Split this off the column label,
                     # as instead the top row label will be used
                     for col_label in column_labels:
-                        # TODO [$605a41546a43de0008722d47]: better label consolidation for multiple sub-tables horizontally
+                        # TODO [#70]: better label consolidation for multiple sub-tables horizontally
                         #
                         # In this situation, it is not clear from which sub-tables the indices
                         # were consolidated. Right now, removing column headers as if there
