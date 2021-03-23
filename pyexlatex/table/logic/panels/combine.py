@@ -1,5 +1,7 @@
 import copy
-from typing import List, Sequence, Optional
+from typing import List, Sequence, Optional, Tuple
+
+from typing_extensions import TypedDict
 
 from pyexlatex.table.models.panels.grid import GridShape
 from pyexlatex.table.models.labels.table import LabelTable
@@ -121,34 +123,49 @@ def _common_labels(grid: GridShape, num: int, axis: int=0, use_object_equality=T
 
     return common_label_table
 
+
+class LabelsRemoved(TypedDict):
+    columns: List[Tuple[int, int]]
+    rows: List[Tuple[int, int]]
+
+
 def remove_label_collections_from_grid(grid: GridShape, column_labels: List[LabelTable] = None,
-                                       row_labels: List[LabelTable] = None, use_object_equality=True):
-    for row in grid:
-        for section in row:
+                                       row_labels: List[LabelTable] = None, use_object_equality=True) -> LabelsRemoved:
+    column_indices: List[Tuple[int, int]] = []
+    row_indices: List[Tuple[int, int]] = []
+    for row_num, row in enumerate(grid):
+        for col_num, section in enumerate(row):
             if column_labels is not None:
                 for label_table in column_labels:
                     lt = copy.deepcopy(label_table)
-                    _remove_label_collections(
+                    removed = _remove_label_collections(
                         section,
                         lt,
                         axis=1,
                         use_object_equality=use_object_equality,
                         inplace=True
                     )
+                    if removed:
+                        column_indices.append((row_num, col_num))
             if row_labels is not None:
                 for label_table in row_labels:
                     lt = copy.deepcopy(label_table)
-                    _remove_label_collections(
+                    removed = _remove_label_collections(
                         section,
                         lt,
                         axis=0,
                         use_object_equality=use_object_equality,
                         inplace=True
                     )
+                    if removed:
+                        row_indices.append((row_num, col_num))
+    return LabelsRemoved(columns=column_indices, rows=row_indices)
+
 
 def _remove_label_collections(section: TableSection, label_table: LabelTable, axis: int=0,
-                              use_object_equality=True, inplace=False):
+                              use_object_equality=True, inplace=False) -> Tuple[TableSection, bool]:
     label_attr = _get_label_attr(axis=axis)
+    removed = False
 
     # Handle if passed section is already a label table
     if isinstance(section, LabelTable):
@@ -158,16 +175,18 @@ def _remove_label_collections(section: TableSection, label_table: LabelTable, ax
             if section.begins_with(label_table[0][0].value):
                 # Remove that first label
                 section._label_collections[0].values.pop(0)
+                removed = True
         # If column
         else:
             # If entire set of labels matches
             if section.matches(label_table):
                 # Remove all these labels
                 section.label_collections = []
+                removed = True
 
     # Handle section not having labels for this axis
     if not hasattr(section, label_attr):
-        return section
+        return section, removed
 
     # Now has labels for this axis. Create a copy to avoid modifying original
     if not inplace:
@@ -177,20 +196,19 @@ def _remove_label_collections(section: TableSection, label_table: LabelTable, ax
         section_label_table: LabelTable = copy.deepcopy(getattr(section, label_attr, []))
         if section_label_table is not None:
             for section_label_collection in section_label_table:
-                match = _compare_label_collections(
-                    label_collection,
-                    section_label_collection,
-                    use_object_equality=use_object_equality
-                )
+                match = section_label_collection.is_subset_of(label_collection)
                 if match:
                     section_label_table.remove(section_label_collection)
                     setattr(section, label_attr, section_label_table)
-
+                    removed = True
 
     # once all label collections have been removed, remove table
     _remove_empty_label_table_from_section(section, label_attr)
 
-    return section
+    # Recreate rows in section
+    section._recreate_rows_if_created()
+
+    return section, removed
 
 
 def _remove_empty_label_table_from_section(section: TableSection, label_attr: str):
@@ -202,10 +220,10 @@ def _remove_empty_label_table_from_section(section: TableSection, label_attr: st
 def _get_label_attr(axis: int=0):
     # select rows
     if axis == 0:
-        return 'row_labels'
+        return '_row_labels'
     # select columns
     elif axis == 1:
-        return 'column_labels'
+        return '_column_labels'
     else:
         raise ValueError(f'axis must be 0 or 1, got {axis}')
 

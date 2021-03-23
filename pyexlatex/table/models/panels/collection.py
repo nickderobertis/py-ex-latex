@@ -1,5 +1,5 @@
 from copy import deepcopy
-from typing import Union, AnyStr, List, Optional
+from typing import Union, AnyStr, List, Optional, Sequence, Tuple
 
 import numpy as np
 import pandas as pd
@@ -144,39 +144,20 @@ class PanelCollection(ReprMixin):
         return self._num_columns
 
     def _create_panel_rows(self):
-        rows: [TableSection] = []
-        for panel_row in self.grid:
-            new_row = None
-            for i, section in enumerate(panel_row):
-                if i == 0:
-                    new_row = section
-                else:
-                    new_row = new_row + section
-            if new_row:
-                rows.append(new_row)
-
-        try:
-            num_columns = self._num_columns
-        except AttributeError:
-            num_columns = max([row.num_columns for row in rows])
-        # Now pad rows
-        for row in rows:
-            row.pad(num_columns, direction='right')
-
-
+        rows, self._num_columns = _create_panel_rows_from_grid(self.grid)
         return rows
-
 
     @property
     def grid(self):
         try:
             return self._grid
         except AttributeError:
-            self._grid = _concatenate_uneven_rows_filling_right(
+            # Copy to avoid modifying original contents
+            self._grid = deepcopy(_concatenate_uneven_rows_filling_right(
                 [panel.panel_grid for panel in self.panels],
                 fill_value=TableSection([]),
                 array_class=GridShape
-            )
+            ))
 
         return self._grid
 
@@ -212,14 +193,27 @@ class PanelCollection(ReprMixin):
             use_object_equality=use_object_equality,
             enforce_label_order=self.enforce_label_order
         )
-
         # Remove from the original tables the labels that were just consolidated
-        remove_label_collections_from_grid(
+        removed_indices = remove_label_collections_from_grid(
             self.grid,
             column_labels=orig_column_labels,
             row_labels=row_labels,
             use_object_equality=use_object_equality
         )
+
+        # When there are multiple sub-tables horizontally and
+        # they have had their row labels consolidated, need
+        # to remove any blank column labels which were there
+        # for the row labels
+        for loc in removed_indices['rows']:
+            if loc[1] == 0:
+                # First column, don't need to remove label
+                continue
+            section: DataTable = self.grid[loc]
+            if section.column_labels is not None and section.column_labels.begins_with(' '):
+                # Middle sub-table which had spacer for row labels
+                # but now does not need it
+                section.column_labels.split_bottom_left()
 
         if column_labels is not None:
             if row_labels is None and not self.top_left_corner_labels.is_spacer:
@@ -253,7 +247,31 @@ class PanelCollection(ReprMixin):
             # Therefore we will need one additional LabelTable for the first row, which is the row of column labels
             # If top_left_corner_labels was passed on object creation, use that as LabelTable. Otherwise use a blank one
             if self.has_column_labels:
-                all_row_labels = [self.top_left_corner_labels] + row_labels
+                # Determine whether to use panel collection TL labels or whether
+                # they are already in existing label table from data table
+                num_labels = sum(label.cell_width for label in column_labels)
+                # Form a temporary grid skipping the header to determine the number of columns
+                temp_grid, _ = _add_row_labels_to_grid(self.grid[1:,:], row_labels)
+                temp_rows, num_columns = _create_panel_rows_from_grid(temp_grid)
+                self._num_columns = num_columns
+                tl_corner_label = self.top_left_corner_labels
+                if num_labels >= num_columns:
+                    # Must already be top left corner label included in table, because
+                    # there are already enough values. Split this off the column label,
+                    # as instead the top row label will be used
+                    for col_label in column_labels:
+                        # TODO: better label consolidation for multiple sub-tables horizontally
+                        #
+                        # In this situation, it is not clear from which sub-tables the indices
+                        # were consolidated. Right now, removing column headers as if there
+                        # was full label consolidation (same index on every table).
+                        # Need to start tracking for which sub-tables were the indices removed.
+                        first_col_label = col_label.split_bottom_left()
+                    if self.top_left_corner_labels.is_spacer:
+                        # If we don't have any top left corner labels at the collection
+                        # level, then use the first column label
+                        tl_corner_label = first_col_label
+                all_row_labels = [tl_corner_label] + row_labels
             else:
                 all_row_labels = row_labels
             self._add_row_labels(all_row_labels)
@@ -330,20 +348,7 @@ class PanelCollection(ReprMixin):
         self._grid = np.concatenate([column_label_grid, self._grid]).view(GridShape)
 
     def _add_row_labels(self, row_labels: List[LabelTable]):
-        assert len(row_labels) == self.grid.shape[0]
-
-        if all(table.is_empty for table in row_labels):
-            # if no consolidated labels, no need to add
-            self.has_row_labels = False
-            return
-
-        self.has_row_labels = True
-
-        # Form PanelGrid from labels
-        row_label_grid = PanelGrid(row_labels, shape=(len(row_labels), 1))
-
-        # Combine label PanelGrid and existing PanelGrid
-        self._grid = np.concatenate([row_label_grid, self._grid], axis=1).view(GridShape)
+        self._grid, self.has_row_labels = _add_row_labels_to_grid(self._grid, row_labels)
 
     @classmethod
     def from_list_of_lists_of_dfs(cls, df_list_of_lists: List[List[pd.DataFrame]],
@@ -455,3 +460,41 @@ def _concatenate_uneven_rows_filling_right(rows, fill_value=np.nan, array_class=
         out_arr = out_arr.view(array_class)
 
     return out_arr
+
+
+def _add_row_labels_to_grid(grid: GridShape, row_labels: List[LabelTable]) -> Tuple[GridShape, bool]:
+    assert len(row_labels) == grid.shape[0]
+
+    if all(table.is_empty for table in row_labels):
+        # if no consolidated labels, no need to add
+        return grid, False
+
+    # Form PanelGrid from labels
+    row_label_grid = PanelGrid(row_labels, shape=(len(row_labels), 1))
+
+    # Combine label PanelGrid and existing PanelGrid
+    new_grid = np.concatenate([row_label_grid, grid], axis=1).view(GridShape)
+
+    return new_grid, True
+
+
+def _create_panel_rows_from_grid(grid: GridShape) -> Tuple[List[TableSection], int]:
+    rows: List[TableSection] = []
+    for panel_row in grid:
+        new_row = None
+        for i, section in enumerate(panel_row):
+            if i == 0:
+                new_row = section
+            else:
+                new_row = new_row + section
+        if new_row:
+            rows.append(new_row)
+
+    num_columns = max([row.num_columns for row in rows])
+    # Now pad rows
+    rows = deepcopy(rows)  # avoid modifying inplace
+    for row in rows:
+        row.pad(num_columns, direction='right')
+
+
+    return rows, num_columns

@@ -40,10 +40,16 @@ class LabelTable(TableSection, ReprMixin):
             column_labels = other.column_labels
             row_labels = self
 
+            if column_labels is not None:
+                # Pad column labels to account for new row labels
+                num_columns_after = self.num_columns + values_table.num_columns
+                column_labels.pad(num_columns_after, direction='left')
+
             return DataTable(
                 values_table=values_table,
                 column_labels=column_labels,
-                row_labels=row_labels
+                row_labels=row_labels,
+                skip_add_top_left_to_column_labels=True
             )
         if isinstance(other, ColumnPadTable):
             self.pad(self.num_columns + other.width)
@@ -197,4 +203,22 @@ class LabelTable(TableSection, ReprMixin):
         item: LabelCollection = LabelCollection.parse_unknown_type(item)
 
         # add rather than append directly to activate setter
-        self.label_collections.insert(item, index)
+        self.label_collections.insert(index, item)
+
+    def split_bottom_left(self) -> 'LabelTable':
+        """
+        Takes the bottom left label and creates a new LabelTable from it,
+        removing it from this LabelTable
+        """
+        out_label_collections: List[LabelCollection] = []
+        for i, label_collection in enumerate(self.label_collections):
+            if i == len(self.label_collections) - 1:
+                # Last row, do the split
+                label = label_collection.pop_left()
+                out_label_collections.append(LabelCollection([label]))
+            else:
+                out_label_collections.append(LabelCollection.from_str_list(['']))
+        return self.__class__(out_label_collections)
+
+
+

@@ -23,14 +23,17 @@ class DataTable(TableSection, ReprMixin):
     repr_cols = ['values_table', 'column_labels', 'row_labels']
 
     def __init__(self, values_table: ValuesTable, column_labels: LabelTable=None, row_labels: LabelTable=None,
-                 top_left_corner_labels: LabelClassOrStrs = None, break_size_adjustment: Optional[str] = None):
-        self.values_table = values_table
-        self.column_labels = column_labels
-        self.row_labels = row_labels
+                 top_left_corner_labels: LabelClassOrStrs = None, break_size_adjustment: Optional[str] = None,
+                 skip_add_top_left_to_column_labels: bool = False):
         self.top_left_corner_labels = _set_top_left_corner_labels(top_left_corner_labels)
+        self.values_table = values_table
+        self.row_labels = row_labels
+        if skip_add_top_left_to_column_labels:
+            self._column_labels = column_labels
+        else:
+            # Use setter which combines with top left
+            self.column_labels = column_labels
         self.break_size_adjustment = break_size_adjustment
-
-        self.should_add_top_left = (self.has_column_labels) and (self.has_row_labels)
 
     def __add__(self, other):
         if isinstance(other, DataTable):
@@ -68,8 +71,14 @@ class DataTable(TableSection, ReprMixin):
             values_table=values_table,
             column_labels=column_labels,
             row_labels=row_labels,
-            top_left_corner_labels=self.top_left_corner_labels
+            top_left_corner_labels=self.top_left_corner_labels,
+            # should already be added from initial construction, no need to do again
+            skip_add_top_left_to_column_labels=True
         )
+
+    @property
+    def should_add_top_left(self) -> bool:
+        return self.has_column_labels and self.has_row_labels
 
     @property
     def rows(self):
@@ -88,7 +97,10 @@ class DataTable(TableSection, ReprMixin):
 
     @column_labels.setter
     def column_labels(self, labels: LabelTable):
-        self._column_labels = labels
+        if labels is not None and not labels.is_empty and self.has_row_labels:
+            self._column_labels = self.top_left_corner_labels + labels
+        else:
+            self._column_labels = labels
         self._recreate_rows_if_created()
 
     @property
@@ -121,11 +133,7 @@ class DataTable(TableSection, ReprMixin):
 
         rows = []
         if self.has_column_labels:
-            if self.should_add_top_left:
-                column_labels = self.top_left_corner_labels + self.column_labels
-            else:
-                column_labels = self.column_labels
-            rows += column_labels.rows
+            rows += self.column_labels.rows
 
         # need to add row labels inline with values table
         if self.has_row_labels:
@@ -210,12 +218,6 @@ class DataTable(TableSection, ReprMixin):
 
                 for i in range(num_spacers):
                     dt.top_left_corner_labels.label_collections.insert(0, LabelCollection.from_str_list([' ']))
-
-            # add spacer to top left corner labels to match new row of headers
-            if (not include_columns) and include_index:
-                # header becomes new columns, have to add top left as if there were columns
-                dt.should_add_top_left = True
-
 
         return dt
 

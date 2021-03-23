@@ -51,6 +51,21 @@ class LabelCollection(RowBase):
         # same number of rows, all rows equal
         return True
 
+    def is_subset_of(self, other) -> bool:
+        """
+        Checks whether this label collection is part of another
+        label collection. E.g. if other has ['a', 'b'] and
+        this has ['a'] then this is a subset.
+        """
+        for i, value in enumerate(other):
+            try:
+                matched = value == self[i]
+                if not matched:
+                    return False
+            except IndexError:
+                break
+        return True
+
     @classmethod
     def from_str_list(cls, str_list: List[str], underline: Union[int, str]=None) -> 'LabelCollection':
         """
@@ -93,7 +108,7 @@ class LabelCollection(RowBase):
 
         return column_indices
 
-    def shift_underlines(self, shift):
+    def shift_underlines(self, shift: int):
         if self.underlines is None:
             return
         self.underlines = [u + shift for u in self.underlines]
@@ -145,6 +160,12 @@ class LabelCollection(RowBase):
             self.shift_underlines(num_values_to_add)
 
         super().pad(length=length, direction=direction)
+
+    def pop_left(self) -> Label:
+        label = self.values.pop(0)
+        self.shift_underlines(-1)
+        return label
+
 
 def _get_item_length(item):
     if isinstance(item, Label):
