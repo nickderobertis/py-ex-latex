@@ -254,6 +254,12 @@ class TestTable:
         include_index=True,
         extra_header='DT 2',
     )
+    dt_with_index_header_and_tl_1 = pl.DataTable.from_df(
+        EXAMPLE_DF,
+        include_index=True,
+        extra_header='DT 1',
+        top_left_corner_labels='TL 1'
+    )
     panel_one_from_two_data_tables_horizontal = pl.Panel.from_data_tables(
         [
             dt_with_index_and_header_1,
@@ -304,6 +310,18 @@ class TestTable:
     )
     table_from_dual_panel_dual_data_tables_vertical_subset_column_match = pl.Table.from_panel_list([
         panel_one_from_two_data_tables_vertical,
+        panel_two_from_two_data_tables_two_column_vertical,
+    ])
+    panel_one_from_two_data_tables_with_tl_vertical = pl.Panel.from_data_tables(
+        [
+            dt_with_index_header_and_tl_1,
+            dt_with_index_and_header_2
+        ],
+        shape=(2, 1),
+        name='One'
+    )
+    table_from_dual_panel_dual_data_tables_with_tl_vertical_subset_column_match = pl.Table.from_panel_list([
+        panel_one_from_two_data_tables_with_tl_vertical,
         panel_two_from_two_data_tables_two_column_vertical,
     ])
 
@@ -378,6 +396,9 @@ class TestTable:
 
     def test_table_from_dual_panel_dual_data_tables_vertical_subset_column_match(self):
         assert str(self.table_from_dual_panel_dual_data_tables_vertical_subset_column_match) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\n  & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n  & \\multicolumn{3}{c}{DT 1}\\\\\n\\cmidrule(lr){2-4}\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n  & \\multicolumn{3}{c}{DT 2}\\\\\n\\cmidrule(lr){2-4}\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n  &   &   &  \\\\\n\\multicolumn{3}{l}{Panel B: Two}\\\\\n  & \\multicolumn{2}{c}{DT 1} &  \\\\\n\\cmidrule(lr){2-3}\n0 &  1 &  2  &  \\\\\n1 &  4 &  5  &  \\\\\n2 &  7 &  8  &  \\\\\n  &   &   &  \\\\\n  & \\multicolumn{2}{c}{DT 2} &  \\\\\n\\cmidrule(lr){2-3}\n0 &  11 &  12  &  \\\\\n1 &  14 &  15  &  \\\\\n2 &  17 &  18  &  \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+
+    def test_table_from_dual_panel_dual_data_tables_with_tl_vertical_subset_column_match(self):
+        assert str(self.table_from_dual_panel_dual_data_tables_with_tl_vertical_subset_column_match) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n  & \\multicolumn{3}{c}{DT 1}\\\\\n\\cmidrule(lr){2-4}\nTL 1 & a & b & c\\\\\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n  & \\multicolumn{3}{c}{DT 2}\\\\\n\\cmidrule(lr){2-4}\n  & a & b & c\\\\\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n  &   &   &  \\\\\n\\multicolumn{3}{l}{Panel B: Two}\\\\\n  & \\multicolumn{2}{c}{DT 1} &  \\\\\n\\cmidrule(lr){2-3}\n  & a & b &  \\\\\n0 &  1 &  2  &  \\\\\n1 &  4 &  5  &  \\\\\n2 &  7 &  8  &  \\\\\n  &   &   &  \\\\\n  & \\multicolumn{2}{c}{DT 2} &  \\\\\n\\cmidrule(lr){2-3}\n  & a & b &  \\\\\n0 &  11 &  12  &  \\\\\n1 &  14 &  15  &  \\\\\n2 &  17 &  18  &  \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
 
     def test_table_in_document(self):
         doc = pl.Document([self.table])
