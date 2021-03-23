@@ -40,10 +40,16 @@ class LabelTable(TableSection, ReprMixin):
             column_labels = other.column_labels
             row_labels = self
 
+            if column_labels is not None:
+                # Pad column labels to account for new row labels
+                num_columns_after = self.num_columns + values_table.num_columns
+                column_labels.pad(num_columns_after, direction='left')
+
             return DataTable(
                 values_table=values_table,
                 column_labels=column_labels,
-                row_labels=row_labels
+                row_labels=row_labels,
+                skip_add_top_left_to_column_labels=True
             )
         if isinstance(other, ColumnPadTable):
             self.pad(self.num_columns + other.width)
