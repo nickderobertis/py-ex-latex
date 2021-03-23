@@ -214,7 +214,7 @@ class LabelTable(TableSection, ReprMixin):
         for i, label_collection in enumerate(self.label_collections):
             if i == len(self.label_collections) - 1:
                 # Last row, do the split
-                label = label_collection.values.pop(0)
+                label = label_collection.pop_left()
                 out_label_collections.append(LabelCollection([label]))
             else:
                 out_label_collections.append(LabelCollection.from_str_list(['']))

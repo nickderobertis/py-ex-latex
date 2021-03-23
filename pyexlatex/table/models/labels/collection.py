@@ -108,7 +108,7 @@ class LabelCollection(RowBase):
 
         return column_indices
 
-    def shift_underlines(self, shift):
+    def shift_underlines(self, shift: int):
         if self.underlines is None:
             return
         self.underlines = [u + shift for u in self.underlines]
@@ -160,6 +160,12 @@ class LabelCollection(RowBase):
             self.shift_underlines(num_values_to_add)
 
         super().pad(length=length, direction=direction)
+
+    def pop_left(self) -> Label:
+        label = self.values.pop(0)
+        self.shift_underlines(-1)
+        return label
+
 
 def _get_item_length(item):
     if isinstance(item, Label):

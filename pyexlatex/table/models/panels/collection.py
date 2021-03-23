@@ -194,12 +194,26 @@ class PanelCollection(ReprMixin):
             enforce_label_order=self.enforce_label_order
         )
         # Remove from the original tables the labels that were just consolidated
-        remove_label_collections_from_grid(
+        removed_indices = remove_label_collections_from_grid(
             self.grid,
             column_labels=orig_column_labels,
             row_labels=row_labels,
             use_object_equality=use_object_equality
         )
+
+        # When there are multiple sub-tables horizontally and
+        # they have had their row labels consolidated, need
+        # to remove any blank column labels which were there
+        # for the row labels
+        for loc in removed_indices['rows']:
+            if loc[1] == 0:
+                # First column, don't need to remove label
+                continue
+            section: DataTable = self.grid[loc]
+            if section.column_labels is not None and section.column_labels.begins_with(' '):
+                # Middle sub-table which had spacer for row labels
+                # but now does not need it
+                section.column_labels.split_bottom_left()
 
         if column_labels is not None:
             if row_labels is None and not self.top_left_corner_labels.is_spacer:

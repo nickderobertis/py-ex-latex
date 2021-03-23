@@ -73,6 +73,7 @@ PACKAGE_INSTALL_REQUIRES = [
     'bibtexparser',
     'Jinja2',
     'matplotlib',
+    'typing_extensions',
 ]
 
 # Add any third party packages you use in requirements for optional features of your package here
