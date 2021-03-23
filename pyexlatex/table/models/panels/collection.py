@@ -234,17 +234,24 @@ class PanelCollection(ReprMixin):
             if self.has_column_labels:
                 # Determine whether to use panel collection TL labels or whether
                 # they are already in existing label table from data table
-                num_labels = max(label.cell_width for label in column_labels)
+                num_labels = sum(label.cell_width for label in column_labels)
                 # Form a temporary grid skipping the header to determine the number of columns
                 temp_grid, _ = _add_row_labels_to_grid(self.grid[1:,:], row_labels)
                 temp_rows, num_columns = _create_panel_rows_from_grid(temp_grid)
                 self._num_columns = num_columns
                 tl_corner_label = self.top_left_corner_labels
-                if num_labels == num_columns:
+                if num_labels >= num_columns:
                     # Must already be top left corner label included in table, because
                     # there are already enough values. Split this off the column label,
                     # as instead the top row label will be used
-                    first_col_label = column_labels[-1].split_bottom_left()
+                    for col_label in column_labels:
+                        # TODO: better label consolidation for multiple sub-tables horizontally
+                        #
+                        # In this situation, it is not clear from which sub-tables the indices
+                        # were consolidated. Right now, removing column headers as if there
+                        # was full label consolidation (same index on every table).
+                        # Need to start tracking for which sub-tables were the indices removed.
+                        first_col_label = col_label.split_bottom_left()
                     if self.top_left_corner_labels.is_spacer:
                         # If we don't have any top left corner labels at the collection
                         # level, then use the first column label

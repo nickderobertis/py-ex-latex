@@ -23,11 +23,16 @@ class DataTable(TableSection, ReprMixin):
     repr_cols = ['values_table', 'column_labels', 'row_labels']
 
     def __init__(self, values_table: ValuesTable, column_labels: LabelTable=None, row_labels: LabelTable=None,
-                 top_left_corner_labels: LabelClassOrStrs = None, break_size_adjustment: Optional[str] = None):
+                 top_left_corner_labels: LabelClassOrStrs = None, break_size_adjustment: Optional[str] = None,
+                 skip_add_top_left_to_column_labels: bool = False):
         self.top_left_corner_labels = _set_top_left_corner_labels(top_left_corner_labels)
         self.values_table = values_table
         self.row_labels = row_labels
-        self.column_labels = column_labels
+        if skip_add_top_left_to_column_labels:
+            self._column_labels = column_labels
+        else:
+            # Use setter which combines with top left
+            self.column_labels = column_labels
         self.break_size_adjustment = break_size_adjustment
 
     def __add__(self, other):
@@ -66,7 +71,9 @@ class DataTable(TableSection, ReprMixin):
             values_table=values_table,
             column_labels=column_labels,
             row_labels=row_labels,
-            top_left_corner_labels=self.top_left_corner_labels
+            top_left_corner_labels=self.top_left_corner_labels,
+            # should already be added from initial construction, no need to do again
+            skip_add_top_left_to_column_labels=True
         )
 
     @property

@@ -237,7 +237,8 @@ class TestTable:
                 extra_header='DT 2',
             )
         ],
-        shape=(1, 2)
+        shape=(1, 2),
+        name='One'
     )
     panel_two_from_two_data_tables = pl.Panel.from_data_tables(
         [
@@ -252,7 +253,8 @@ class TestTable:
                 extra_header='DT 4',
             )
         ],
-        shape=(1, 2)
+        shape=(1, 2),
+        name='Two'
     )
     table_from_dual_panel_dual_data_tables = pl.Table.from_panel_list([
         panel_one_from_two_data_tables,
@@ -323,7 +325,7 @@ class TestTable:
         assert str(self.table_from_panel_with_index_all_headers_and_no_columns) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\nTL Header & \\multicolumn{3}{c}{Header}\\\\\n\\cmidrule(lr){3-5}\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
 
     def test_table_from_dual_panel_dual_data_tables(self):
-        assert str(self.table_from_dual_panel_dual_data_tables) == ''
+        assert str(self.table_from_dual_panel_dual_data_tables) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccccccc}\n\\toprule\n  & a & b & c &   & a & b & c\\\\\n\\midrule\n\\multicolumn{8}{l}{Panel A: One}\\\\\n  & \\multicolumn{3}{c}{DT 1} &   & \\multicolumn{3}{c}{DT 2}\\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){6-8}\n0 &  1 &  2 &  3  &   &  11 &  12 &  13 \\\\\n1 &  4 &  5 &  6  &   &  14 &  15 &  16 \\\\\n2 &  7 &  8 &  9  &   &  17 &  18 &  19 \\\\\n  &   &   &   &   &   &   &  \\\\\n\\multicolumn{8}{l}{Panel B: Two}\\\\\n  & \\multicolumn{3}{c}{DT 3} &   & \\multicolumn{3}{c}{DT 4}\\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){6-8}\n0 &  21 &  22 &  23  &   &  31 &  32 &  33 \\\\\n1 &  24 &  25 &  26  &   &  34 &  35 &  36 \\\\\n2 &  27 &  28 &  29  &   &  37 &  38 &  39 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
 
     def test_table_in_document(self):
         doc = pl.Document([self.table])
