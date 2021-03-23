@@ -51,6 +51,21 @@ class LabelCollection(RowBase):
         # same number of rows, all rows equal
         return True
 
+    def is_subset_of(self, other) -> bool:
+        """
+        Checks whether this label collection is part of another
+        label collection. E.g. if other has ['a', 'b'] and
+        this has ['a'] then this is a subset.
+        """
+        for i, value in enumerate(other):
+            try:
+                matched = value == self[i]
+                if not matched:
+                    return False
+            except IndexError:
+                break
+        return True
+
     @classmethod
     def from_str_list(cls, str_list: List[str], underline: Union[int, str]=None) -> 'LabelCollection':
         """

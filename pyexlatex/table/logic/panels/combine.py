@@ -177,11 +177,7 @@ def _remove_label_collections(section: TableSection, label_table: LabelTable, ax
         section_label_table: LabelTable = copy.deepcopy(getattr(section, label_attr, []))
         if section_label_table is not None:
             for section_label_collection in section_label_table:
-                match = _compare_label_collections(
-                    label_collection,
-                    section_label_collection,
-                    use_object_equality=use_object_equality
-                )
+                match = section_label_collection.is_subset_of(label_collection)
                 if match:
                     section_label_table.remove(section_label_collection)
                     setattr(section, label_attr, section_label_table)
