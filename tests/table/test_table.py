@@ -244,6 +244,30 @@ class TestTable:
         include_index=True,
         extra_header='DT 4',
     )
+    dt_with_index_and_header_no_columns_1 = pl.DataTable.from_df(
+        EXAMPLE_DF,
+        include_index=True,
+        include_columns=False,
+        extra_header='DT 1',
+    )
+    dt_with_index_and_header_no_columns_2 = pl.DataTable.from_df(
+        (EXAMPLE_DF + 10),
+        include_index=True,
+        include_columns=False,
+        extra_header='DT 2',
+    )
+    dt_with_index_and_header_no_columns_3 = pl.DataTable.from_df(
+        (EXAMPLE_DF + 20),
+        include_index=True,
+        include_columns=False,
+        extra_header='DT 3',
+    )
+    dt_with_index_and_header_no_columns_4 = pl.DataTable.from_df(
+        (EXAMPLE_DF + 30),
+        include_index=True,
+        include_columns=False,
+        extra_header='DT 4',
+    )
     dt_two_column_with_index_and_header_1 = pl.DataTable.from_df(
         EXAMPLE_DF[['a', 'b']],
         include_index=True,
@@ -279,6 +303,26 @@ class TestTable:
     table_from_dual_panel_dual_data_tables_horizontal = pl.Table.from_panel_list([
         panel_one_from_two_data_tables_horizontal,
         panel_two_from_two_data_tables_horizontal,
+    ])
+    panel_one_from_two_data_tables_no_columns_horizontal = pl.Panel.from_data_tables(
+        [
+            dt_with_index_and_header_no_columns_1,
+            dt_with_index_and_header_no_columns_2,
+        ],
+        shape=(1, 2),
+        name='One'
+    )
+    panel_two_from_two_data_tables_no_columns_horizontal = pl.Panel.from_data_tables(
+        [
+            dt_with_index_and_header_no_columns_3,
+            dt_with_index_and_header_no_columns_4,
+        ],
+        shape=(1, 2),
+        name='Two'
+    )
+    table_from_dual_panel_dual_data_tables_no_columns_horizontal = pl.Table.from_panel_list([
+        panel_one_from_two_data_tables_no_columns_horizontal,
+        panel_two_from_two_data_tables_no_columns_horizontal,
     ])
     panel_one_from_two_data_tables_vertical = pl.Panel.from_data_tables(
         [
@@ -390,6 +434,9 @@ class TestTable:
 
     def test_table_from_dual_panel_dual_data_tables_horizontal(self):
         assert str(self.table_from_dual_panel_dual_data_tables_horizontal) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccccccc}\n\\toprule\n  & a & b & c &   & a & b & c\\\\\n\\midrule\n\\multicolumn{8}{l}{Panel A: One}\\\\\n  & \\multicolumn{3}{c}{DT 1} &   & \\multicolumn{3}{c}{DT 2}\\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){6-8}\n0 &  1 &  2 &  3  &   &  11 &  12 &  13 \\\\\n1 &  4 &  5 &  6  &   &  14 &  15 &  16 \\\\\n2 &  7 &  8 &  9  &   &  17 &  18 &  19 \\\\\n  &   &   &   &   &   &   &  \\\\\n\\multicolumn{8}{l}{Panel B: Two}\\\\\n  & \\multicolumn{3}{c}{DT 3} &   & \\multicolumn{3}{c}{DT 4}\\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){6-8}\n0 &  21 &  22 &  23  &   &  31 &  32 &  33 \\\\\n1 &  24 &  25 &  26  &   &  34 &  35 &  36 \\\\\n2 &  27 &  28 &  29  &   &  37 &  38 &  39 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+
+    def test_table_from_dual_panel_dual_data_tables_no_columns_horizontal(self):
+        assert str(self.table_from_dual_panel_dual_data_tables_no_columns_horizontal) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccccccc}\n\\toprule\n\\multicolumn{8}{l}{Panel A: One}\\\\\n  & \\multicolumn{3}{c}{DT 1} &   & \\multicolumn{3}{c}{DT 2}\\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){6-8}\n0 &  1 &  2 &  3  &   &  11 &  12 &  13 \\\\\n1 &  4 &  5 &  6  &   &  14 &  15 &  16 \\\\\n2 &  7 &  8 &  9  &   &  17 &  18 &  19 \\\\\n  &   &   &   &   &   &   &  \\\\\n\\multicolumn{8}{l}{Panel B: Two}\\\\\n  & \\multicolumn{3}{c}{DT 3} &   & \\multicolumn{3}{c}{DT 4}\\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){6-8}\n0 &  21 &  22 &  23  &   &  31 &  32 &  33 \\\\\n1 &  24 &  25 &  26  &   &  34 &  35 &  36 \\\\\n2 &  27 &  28 &  29  &   &  37 &  38 &  39 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
 
     def test_table_from_dual_panel_dual_data_tables_vertical(self):
         assert str(self.table_from_dual_panel_dual_data_tables_vertical) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\n  & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n  & \\multicolumn{3}{c}{DT 1}\\\\\n\\cmidrule(lr){2-4}\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n  & \\multicolumn{3}{c}{DT 2}\\\\\n\\cmidrule(lr){2-4}\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n  &   &   &  \\\\\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n  & \\multicolumn{3}{c}{DT 3}\\\\\n\\cmidrule(lr){2-4}\n0 &  21 &  22 &  23 \\\\\n1 &  24 &  25 &  26 \\\\\n2 &  27 &  28 &  29 \\\\\n  &   &   &  \\\\\n  & \\multicolumn{3}{c}{DT 4}\\\\\n\\cmidrule(lr){2-4}\n0 &  31 &  32 &  33 \\\\\n1 &  34 &  35 &  36 \\\\\n2 &  37 &  38 &  39 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
