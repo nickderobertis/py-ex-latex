@@ -4,6 +4,7 @@ import pandas as pd
 
 import pyexlatex as pl
 from tests.base import GENERATED_FILES_DIR
+from tests.utils.generate import assert_same_or_generate_table, assert_same_or_generate_document
 from tests.utils.pdf import compare_pdfs_in_generated_vs_input_by_name
 
 EXAMPLE_DF = pd.DataFrame(
@@ -370,114 +371,119 @@ class TestTable:
     ])
 
     def test_table(self):
-        assert str(self.table) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table, "table")
 
     def test_two_panel_table_no_index(self):
-        assert str(self.two_panel_table_from_dict_no_index) == str(self.two_panel_table_from_lol_no_index) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n\\midrule\n\\multicolumn{3}{l}{Panel A: One}\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n  &   &  \\\\\n\\multicolumn{3}{l}{Panel B: Two}\\\\\n 11 &  12 &  13 \\\\\n 14 &  15 &  16 \\\\\n 17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.two_panel_table_from_dict_no_index, "two_panel_table_from_dict_no_index")
 
     def test_two_panel_table_no_index_with_tl(self):
-        assert str(self.two_panel_table_from_dict_no_index_with_tl) == str(self.two_panel_table_from_lol_no_index_with_tl) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lccc}\n\\toprule\nwoo & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n &  1 &  2 &  3 \\\\\n &  4 &  5 &  6 \\\\\n &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n &  11 &  12 &  13 \\\\\n &  14 &  15 &  16 \\\\\n &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.two_panel_table_from_dict_no_index_with_tl, "two_panel_table_from_dict_no_index_with_tl")
 
     def test_two_panel_table_with_index(self):
-        assert str(self.two_panel_table_from_dict_with_index) == str(self.two_panel_table_from_lol_with_index) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lccc}\n\\toprule\n  & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.two_panel_table_from_dict_with_index, "two_panel_table_from_dict_with_index")
 
     def test_two_panel_table_with_index_and_name(self):
-        assert str(self.two_panel_table_from_dict_with_index_and_name) == str(self.two_panel_table_from_lol_with_index_and_name) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lccc}\n\\toprule\n  & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.two_panel_table_from_dict_with_index_and_name, "two_panel_table_from_dict_with_index_and_name")
 
     def test_two_panel_table_with_index_and_tl(self):
-        assert str(self.two_panel_table_from_dict_with_index_and_tl) == str(self.two_panel_table_from_lol_with_index_and_tl) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lccc}\n\\toprule\nTL Label & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.two_panel_table_from_dict_with_index_and_tl,
+                                      "two_panel_table_with_index_and_tl")
+        assert_same_or_generate_table(self.two_panel_table_from_lol_with_index_and_tl,
+                                      "two_panel_table_with_index_and_tl")
 
     def test_two_panel_table_no_pad(self):
-        assert str(self.two_panel_table_from_dict_no_pad) == str(self.two_panel_table_from_lol_no_pad) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lccc}\n\\toprule\n  & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\midrule\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.two_panel_table_from_dict_no_pad, "two_panel_table_no_pad")
+        assert_same_or_generate_table(self.two_panel_table_from_lol_no_pad, "two_panel_table_no_pad")
 
     def test_two_panel_table_double_pad(self):
-        assert str(self.two_panel_table_from_dict_double_pad) == str(self.two_panel_table_from_lol_double_pad) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lccc}\n\\toprule\n  & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n  &   &   &  \\\\\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.two_panel_table_from_dict_double_pad, "two_panel_table_double_pad")
+        assert_same_or_generate_table(self.two_panel_table_from_lol_double_pad, "two_panel_table_double_pad")
 
     def test_table_with_short_caption(self):
-        assert str(self.table_from_dict_with_short_caption) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption[Short Capt]{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n\\multicolumn{3}{l}{Panel A: One}\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
-        assert str(self.table_from_lol_with_short_caption) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption[Short Capt]{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_from_dict_with_short_caption, "table_from_dict_with_short_caption")
+        assert_same_or_generate_table(self.table_from_lol_with_short_caption, "table_from_lol_with_short_caption")
 
     def test_table_with_siunitx_aligns(self):
-        assert str(self.table_with_siunitx_aligns) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lS[table-column-width=4cm]s}\n\\toprule\na & b & c\\\\\n 1 &   2.540 &    3.100 \\\\\n 4 &  50.000 &  654.000 \\\\\n 7 &   8.114 &    9.541 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_with_siunitx_aligns, "table_with_siunitx_aligns")
 
     def test_table_with_dcolumn_aligns(self):
-        assert str(self.table_with_dcolumn_aligns) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{ld{2.3}D{.}{,}{3.3}}\n\\toprule\na & b & c\\\\\n 1 &   2.540 &    3.100 \\\\\n 4 &  50.000 &  654.000 \\\\\n 7 &   8.114 &    9.541 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_with_dcolumn_aligns, "table_with_dcolumn_aligns")
 
     def test_table_with_spacing_adjust_aligns(self):
-        assert str(self.table_with_spacing_adjust_aligns) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{@{}l!{}c@{}c@{}}\n\\toprule\na & b & c\\\\\n 1 &   2.540 &    3.100 \\\\\n 4 &  50.000 &  654.000 \\\\\n 7 &   8.114 &    9.541 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_with_spacing_adjust_aligns, "table_with_spacing_adjust_aligns")
 
     def test_table_with_position_str(self):
-        assert str(self.table_with_position_str) == '\\begin{table}[htb]\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_with_position_str, "table_with_position_str")
 
     def test_table_to_tabular(self):
         tabular = self.two_panel_table_from_lol_with_index.tex_obj(as_document=False, as_single_tabular=True)
-        assert str(tabular) == '\\begin{tabular}{lccc}\n\\toprule\n  & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}'
+        assert_same_or_generate_table(tabular, "table_to_tabular")
 
     def test_table_to_tabular_list(self):
         tabular_list = self.two_panel_table_from_lol_with_index.tex_obj(as_document=False, as_panel_tabular_list=True)
         assert len(tabular_list) == 2
         assert isinstance(tabular_list, list)
-        assert str(tabular_list[0]) == '\\begin{tabular}{lccc}\n\\toprule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n  & a & b & c\\\\\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}'
-        assert str(tabular_list[1]) == '\\begin{tabular}{lccc}\n\\toprule\n\\multicolumn{4}{l}{Panel A: Two}\\\\\n  & a & b & c\\\\\n\\midrule\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}'
+        assert_same_or_generate_table(tabular_list[0], "table_to_tabular_list_1")
+        assert_same_or_generate_table(tabular_list[1], "table_to_tabular_list_2")
 
     def test_table_with_tl(self):
-        assert str(self.table_with_tl) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lccc}\n\\toprule\nTL Header & a & b & c\\\\\n\\midrule\n &  1 &  2 &  3 \\\\\n &  4 &  5 &  6 \\\\\n &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_with_tl, "table_with_tl")
 
     def test_table_from_panel_with_index_and_tl(self):
-        assert str(self.table_from_panel_with_index_and_tl) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\nTL Header & a & b & c\\\\\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_from_panel_with_index_and_tl, "table_from_panel_with_index_and_tl")
 
     def test_table_from_panel_with_index_and_all_headers(self):
-        assert str(self.table_from_panel_with_index_and_all_headers) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\n & \\multicolumn{3}{c}{Header}\\\\\n\\cmidrule(lr){2-4}\nTL Header & a & b & c\\\\\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_from_panel_with_index_and_all_headers, "table_from_panel_with_index_and_all_headers")
 
     def test_table_from_panel_with_index_all_headers_and_no_columns(self):
-        assert str(self.table_from_panel_with_index_all_headers_and_no_columns) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\nTL Header & \\multicolumn{3}{c}{Header}\\\\\n\\cmidrule(lr){2-4}\n\\midrule\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_from_panel_with_index_all_headers_and_no_columns, "table_from_panel_with_index_all_headers_and_no_columns")
 
     def test_table_from_dual_panel_dual_data_tables_horizontal(self):
-        assert str(self.table_from_dual_panel_dual_data_tables_horizontal) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccccccc}\n\\toprule\n  & a & b & c &   & a & b & c\\\\\n\\midrule\n\\multicolumn{8}{l}{Panel A: One}\\\\\n  & \\multicolumn{3}{c}{DT 1} &   & \\multicolumn{3}{c}{DT 2}\\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){6-8}\n0 &  1 &  2 &  3  &   &  11 &  12 &  13 \\\\\n1 &  4 &  5 &  6  &   &  14 &  15 &  16 \\\\\n2 &  7 &  8 &  9  &   &  17 &  18 &  19 \\\\\n  &   &   &   &   &   &   &  \\\\\n\\multicolumn{8}{l}{Panel B: Two}\\\\\n  & \\multicolumn{3}{c}{DT 3} &   & \\multicolumn{3}{c}{DT 4}\\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){6-8}\n0 &  21 &  22 &  23  &   &  31 &  32 &  33 \\\\\n1 &  24 &  25 &  26  &   &  34 &  35 &  36 \\\\\n2 &  27 &  28 &  29  &   &  37 &  38 &  39 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_from_dual_panel_dual_data_tables_horizontal, "table_from_dual_panel_dual_data_tables_horizontal")
 
     def test_table_from_dual_panel_dual_data_tables_no_columns_horizontal(self):
-        assert str(self.table_from_dual_panel_dual_data_tables_no_columns_horizontal) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccccccc}\n\\toprule\n\\multicolumn{8}{l}{Panel A: One}\\\\\n  & \\multicolumn{3}{c}{DT 1} &   & \\multicolumn{3}{c}{DT 2}\\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){6-8}\n0 &  1 &  2 &  3  &   &  11 &  12 &  13 \\\\\n1 &  4 &  5 &  6  &   &  14 &  15 &  16 \\\\\n2 &  7 &  8 &  9  &   &  17 &  18 &  19 \\\\\n  &   &   &   &   &   &   &  \\\\\n\\multicolumn{8}{l}{Panel B: Two}\\\\\n  & \\multicolumn{3}{c}{DT 3} &   & \\multicolumn{3}{c}{DT 4}\\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){6-8}\n0 &  21 &  22 &  23  &   &  31 &  32 &  33 \\\\\n1 &  24 &  25 &  26  &   &  34 &  35 &  36 \\\\\n2 &  27 &  28 &  29  &   &  37 &  38 &  39 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_from_dual_panel_dual_data_tables_no_columns_horizontal, "table_from_dual_panel_dual_data_tables_no_columns_horizontal")
 
     def test_table_from_dual_panel_dual_data_tables_vertical(self):
-        assert str(self.table_from_dual_panel_dual_data_tables_vertical) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\n  & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n  & \\multicolumn{3}{c}{DT 1}\\\\\n\\cmidrule(lr){2-4}\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n  & \\multicolumn{3}{c}{DT 2}\\\\\n\\cmidrule(lr){2-4}\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n  &   &   &  \\\\\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n  & \\multicolumn{3}{c}{DT 3}\\\\\n\\cmidrule(lr){2-4}\n0 &  21 &  22 &  23 \\\\\n1 &  24 &  25 &  26 \\\\\n2 &  27 &  28 &  29 \\\\\n  &   &   &  \\\\\n  & \\multicolumn{3}{c}{DT 4}\\\\\n\\cmidrule(lr){2-4}\n0 &  31 &  32 &  33 \\\\\n1 &  34 &  35 &  36 \\\\\n2 &  37 &  38 &  39 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_from_dual_panel_dual_data_tables_vertical, "table_from_dual_panel_dual_data_tables_vertical")
 
     def test_table_from_dual_panel_dual_data_tables_vertical_subset_column_match(self):
-        assert str(self.table_from_dual_panel_dual_data_tables_vertical_subset_column_match) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\n  & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n  & \\multicolumn{3}{c}{DT 1}\\\\\n\\cmidrule(lr){2-4}\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n  & \\multicolumn{3}{c}{DT 2}\\\\\n\\cmidrule(lr){2-4}\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n  &   &   &  \\\\\n\\multicolumn{3}{l}{Panel B: Two}\\\\\n  & \\multicolumn{2}{c}{DT 1} &  \\\\\n\\cmidrule(lr){2-3}\n0 &  1 &  2  &  \\\\\n1 &  4 &  5  &  \\\\\n2 &  7 &  8  &  \\\\\n  &   &   &  \\\\\n  & \\multicolumn{2}{c}{DT 2} &  \\\\\n\\cmidrule(lr){2-3}\n0 &  11 &  12  &  \\\\\n1 &  14 &  15  &  \\\\\n2 &  17 &  18  &  \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_from_dual_panel_dual_data_tables_vertical_subset_column_match, "table_from_dual_panel_dual_data_tables_vertical_subset_column_match")
 
     def test_table_from_dual_panel_dual_data_tables_with_tl_vertical_subset_column_match(self):
-        assert str(self.table_from_dual_panel_dual_data_tables_with_tl_vertical_subset_column_match) == '\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{}\n\\begin{tabular}{lccc}\n\\toprule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n  & \\multicolumn{3}{c}{DT 1}\\\\\n\\cmidrule(lr){2-4}\nTL 1 & a & b & c\\\\\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n  & \\multicolumn{3}{c}{DT 2}\\\\\n\\cmidrule(lr){2-4}\n  & a & b & c\\\\\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n  &   &   &  \\\\\n\\multicolumn{3}{l}{Panel B: Two}\\\\\n  & \\multicolumn{2}{c}{DT 1} &  \\\\\n\\cmidrule(lr){2-3}\n  & a & b &  \\\\\n0 &  1 &  2  &  \\\\\n1 &  4 &  5  &  \\\\\n2 &  7 &  8  &  \\\\\n  &   &   &  \\\\\n  & \\multicolumn{2}{c}{DT 2} &  \\\\\n\\cmidrule(lr){2-3}\n  & a & b &  \\\\\n0 &  11 &  12  &  \\\\\n1 &  14 &  15  &  \\\\\n2 &  17 &  18  &  \\\\\n\\bottomrule\n\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}'
+        assert_same_or_generate_table(self.table_from_dual_panel_dual_data_tables_with_tl_vertical_subset_column_match, "table_from_dual_panel_dual_data_tables_with_tl_vertical_subset_column_match")
 
     def test_table_in_document(self):
         doc = pl.Document([self.table])
-        assert str(doc) == '\\documentclass[]{article}\n\\usepackage{amsmath}\n\\usepackage{pdflscape}\n\\usepackage{booktabs}\n\\usepackage{array}\n\\usepackage{threeparttable}\n\\usepackage{fancyhdr}\n\\usepackage{lastpage}\n\\usepackage{textcomp}\n\\usepackage{dcolumn}\n\\newcolumntype{L}[1]{>{\\raggedright\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{C}[1]{>{\\centering\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{R}[1]{>{\\raggedleft\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{.}{D{.}{.}{-1}}\n\\newcolumntype{d}[1]{D{.}{.}{#1}}\n\\usepackage[T1]{fontenc}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{graphicx}\n\\usepackage[margin=0.8in, bottom=1.2in]{geometry}\n\\usepackage[page]{appendix}\n\\pagestyle{fancy}\n\\renewcommand{\\headrulewidth}{0pt}\n\\fancyhead{}\n\\rfoot{Page \\thepage\\  of \\pageref{LastPage}}\n\\cfoot{}\n\\begin{document}\n\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lcc}\n\\toprule\na & b & c\\\\\n 1 &  2 &  3 \\\\\n 4 &  5 &  6 \\\\\n 7 &  8 &  9 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}\n\\end{document}'
         name = 'document with table'
+        assert_same_or_generate_document(doc, name)
         doc.to_pdf(outfolder=GENERATED_FILES_DIR, outname=name)
         compare_pdfs_in_generated_vs_input_by_name(name)
 
     def test_two_panel_table_in_document(self):
         doc = pl.Document([self.two_panel_table_from_lol_with_index])
-        assert str(doc) == '\\documentclass[]{article}\n\\usepackage{amsmath}\n\\usepackage{pdflscape}\n\\usepackage{booktabs}\n\\usepackage{array}\n\\usepackage{threeparttable}\n\\usepackage{fancyhdr}\n\\usepackage{lastpage}\n\\usepackage{textcomp}\n\\usepackage{dcolumn}\n\\newcolumntype{L}[1]{>{\\raggedright\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{C}[1]{>{\\centering\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{R}[1]{>{\\raggedleft\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{.}{D{.}{.}{-1}}\n\\newcolumntype{d}[1]{D{.}{.}{#1}}\n\\usepackage[T1]{fontenc}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{graphicx}\n\\usepackage[margin=0.8in, bottom=1.2in]{geometry}\n\\usepackage[page]{appendix}\n\\pagestyle{fancy}\n\\renewcommand{\\headrulewidth}{0pt}\n\\fancyhead{}\n\\rfoot{Page \\thepage\\  of \\pageref{LastPage}}\n\\cfoot{}\n\\begin{document}\n\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lccc}\n\\toprule\n  & a & b & c\\\\\n\\midrule\n\\multicolumn{4}{l}{Panel A: One}\\\\\n0 &  1 &  2 &  3 \\\\\n1 &  4 &  5 &  6 \\\\\n2 &  7 &  8 &  9 \\\\\n  &   &   &  \\\\\n\\multicolumn{4}{l}{Panel B: Two}\\\\\n0 &  11 &  12 &  13 \\\\\n1 &  14 &  15 &  16 \\\\\n2 &  17 &  18 &  19 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}\n\\end{document}'
         name = 'document with two panel table'
+        assert_same_or_generate_document(doc, name)
         doc.to_pdf(outfolder=GENERATED_FILES_DIR, outname=name)
         compare_pdfs_in_generated_vs_input_by_name(name)
 
     def test_siunitx_table_in_document(self):
         doc = pl.Document([self.table_with_siunitx_aligns])
-        assert str(doc) == '\\documentclass[]{article}\n\\usepackage{amsmath}\n\\usepackage{pdflscape}\n\\usepackage{booktabs}\n\\usepackage{array}\n\\usepackage{threeparttable}\n\\usepackage{fancyhdr}\n\\usepackage{lastpage}\n\\usepackage{textcomp}\n\\usepackage{dcolumn}\n\\newcolumntype{L}[1]{>{\\raggedright\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{C}[1]{>{\\centering\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{R}[1]{>{\\raggedleft\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{.}{D{.}{.}{-1}}\n\\newcolumntype{d}[1]{D{.}{.}{#1}}\n\\usepackage[T1]{fontenc}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{graphicx}\n\\usepackage[margin=0.8in, bottom=1.2in]{geometry}\n\\usepackage[page]{appendix}\n\\usepackage{siunitx}\n\\pagestyle{fancy}\n\\renewcommand{\\headrulewidth}{0pt}\n\\fancyhead{}\n\\rfoot{Page \\thepage\\  of \\pageref{LastPage}}\n\\cfoot{}\n\\begin{document}\n\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{lS[table-column-width=4cm]s}\n\\toprule\na & b & c\\\\\n 1 &   2.540 &    3.100 \\\\\n 4 &  50.000 &  654.000 \\\\\n 7 &   8.114 &    9.541 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}\n\\end{document}'
         name = 'document with siunitx table'
+        assert_same_or_generate_document(doc, name)
         doc.to_pdf(outfolder=GENERATED_FILES_DIR, outname=name)
         compare_pdfs_in_generated_vs_input_by_name(name)
 
     def test_dcolumn_table_in_document(self):
         doc = pl.Document([self.table_with_dcolumn_aligns])
-        assert str(doc) == '\\documentclass[]{article}\n\\usepackage{amsmath}\n\\usepackage{pdflscape}\n\\usepackage{booktabs}\n\\usepackage{array}\n\\usepackage{threeparttable}\n\\usepackage{fancyhdr}\n\\usepackage{lastpage}\n\\usepackage{textcomp}\n\\usepackage{dcolumn}\n\\newcolumntype{L}[1]{>{\\raggedright\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{C}[1]{>{\\centering\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{R}[1]{>{\\raggedleft\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{.}{D{.}{.}{-1}}\n\\newcolumntype{d}[1]{D{.}{.}{#1}}\n\\usepackage[T1]{fontenc}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{graphicx}\n\\usepackage[margin=0.8in, bottom=1.2in]{geometry}\n\\usepackage[page]{appendix}\n\\pagestyle{fancy}\n\\renewcommand{\\headrulewidth}{0pt}\n\\fancyhead{}\n\\rfoot{Page \\thepage\\  of \\pageref{LastPage}}\n\\cfoot{}\n\\begin{document}\n\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{ld{2.3}D{.}{,}{3.3}}\n\\toprule\na & b & c\\\\\n 1 &   2.540 &    3.100 \\\\\n 4 &  50.000 &  654.000 \\\\\n 7 &   8.114 &    9.541 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}\n\\end{document}'
         name = 'document with dcolumn table'
+        assert_same_or_generate_document(doc, name)
         doc.to_pdf(outfolder=GENERATED_FILES_DIR, outname=name)
         compare_pdfs_in_generated_vs_input_by_name(name)
 
     def test_spacing_adjust_aligns_table_in_document(self):
         doc = pl.Document([self.table_with_spacing_adjust_aligns])
-        assert str(doc) == '\\documentclass[]{article}\n\\usepackage{amsmath}\n\\usepackage{pdflscape}\n\\usepackage{booktabs}\n\\usepackage{array}\n\\usepackage{threeparttable}\n\\usepackage{fancyhdr}\n\\usepackage{lastpage}\n\\usepackage{textcomp}\n\\usepackage{dcolumn}\n\\newcolumntype{L}[1]{>{\\raggedright\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{C}[1]{>{\\centering\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{R}[1]{>{\\raggedleft\\let\\newline\\\\\\arraybackslash\\hspace{0pt}}m{#1}}\n\\newcolumntype{.}{D{.}{.}{-1}}\n\\newcolumntype{d}[1]{D{.}{.}{#1}}\n\\usepackage[T1]{fontenc}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{graphicx}\n\\usepackage[margin=0.8in, bottom=1.2in]{geometry}\n\\usepackage[page]{appendix}\n\\pagestyle{fancy}\n\\renewcommand{\\headrulewidth}{0pt}\n\\fancyhead{}\n\\rfoot{Page \\thepage\\  of \\pageref{LastPage}}\n\\cfoot{}\n\\begin{document}\n\\begin{table}\n\\centering\n\\begin{threeparttable}\n\\caption{My Table Title}\n\\begin{tabular}{@{}l!{}c@{}c@{}}\n\\toprule\na & b & c\\\\\n 1 &   2.540 &    3.100 \\\\\n 4 &  50.000 &  654.000 \\\\\n 7 &   8.114 &    9.541 \\\\\n\\bottomrule\n\n\\end{tabular}\n\\begin{tablenotes}[para, flushleft]\nMy below text\n\\end{tablenotes}\n\\end{threeparttable}\n\\end{table}\n\\end{document}'
         name = 'document with spacing adjust aligns table'
+        assert_same_or_generate_document(doc, name)
         doc.to_pdf(outfolder=GENERATED_FILES_DIR, outname=name)
         compare_pdfs_in_generated_vs_input_by_name(name)
