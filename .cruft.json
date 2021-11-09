@@ -1,6 +1,6 @@
 {
     "template": "https://github.com/nickderobertis/cookiecutter-pypi-sphinx",
-    "commit": "8d81039ce38bdaf0812c754568d1b6a46941839c",
+    "commit": "091fcff1b2a425adc13a75fc587fbbb190b7ca3a",
     "context": {
         "cookiecutter": {
             "package_name": "pyexlatex",
@@ -13,6 +13,7 @@
             "author_email": "whoopnip@gmail.com",
             "google_analytics_id": "UA-155734278-1",
             "logo_url": "https://nickderobertis.github.io/derobertis-project-logo/_images/pyexlatex.svg",
+            "install_packages": "",
             "_template": "https://github.com/nickderobertis/cookiecutter-pypi-sphinx"
         }
     }
