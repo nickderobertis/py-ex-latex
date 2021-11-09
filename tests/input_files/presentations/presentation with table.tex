@@ -1,0 +1,36 @@
+\documentclass[11pt]{beamer}
+\mode
+<presentation>{\usetheme{Madrid}}
+\usepackage{threeparttable}
+\usepackage{booktabs}
+\usepackage{dcolumn}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\begin{document}
+\begin{section}{Section}
+\begin{frame}
+\frametitle{Table}
+\begin{table}
+\centering
+\begin{threeparttable}
+\caption{My Table Title}
+\begin{tabular}{L{5cm}c.}
+\toprule
+a & b & c\\
+1 & 2 &     3.546 \\
+4 & 5 & 66546.400 \\
+7 & 8 &    96.540 \\
+\bottomrule
+
+\end{tabular}
+\begin{tablenotes}[para, flushleft]
+My below text
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{frame}
+\end{section}
+\end{document}

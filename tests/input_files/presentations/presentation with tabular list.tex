@@ -1,0 +1,40 @@
+\documentclass[11pt]{beamer}
+\mode
+<presentation>{\usetheme{Madrid}}
+\usepackage{booktabs}
+\usepackage{dcolumn}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\begin{document}
+\begin{section}{Section}
+\begin{frame}
+\frametitle{Tabular 1}
+\begin{tabular}{L{5cm}c.}
+\toprule
+a & b & c\\
+\midrule
+1 & 2 &     3.546 \\
+4 & 5 & 66546.400 \\
+7 & 8 &    96.540 \\
+\bottomrule
+
+\end{tabular}
+\end{frame}
+\begin{frame}
+\frametitle{Tabular 2}
+\begin{tabular}{L{5cm}c.}
+\toprule
+a & b & c\\
+\midrule
+11 & 12 &    13.546 \\
+14 & 15 & 66556.400 \\
+17 & 18 &   106.540 \\
+\bottomrule
+
+\end{tabular}
+\end{frame}
+\end{section}
+\end{document}

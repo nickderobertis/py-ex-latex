@@ -13,6 +13,7 @@ TESTS_DIR = pathlib.Path(__file__).parent
 INPUT_FILES_DIR = TESTS_DIR / 'input_files'
 INPUT_TABLES_DIR = INPUT_FILES_DIR / "tables"
 INPUT_DOCUMENTS_DIR = INPUT_FILES_DIR / "documents"
+INPUT_PRESENTATIONS_DIR = INPUT_FILES_DIR / "presentations"
 EXAMPLE_IMAGE_PATH = INPUT_FILES_DIR / 'nd-logo.png'
 GENERATED_FILES_DIR = TESTS_DIR / 'generated_files'
 
