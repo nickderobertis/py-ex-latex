@@ -1,0 +1,53 @@
+\documentclass[]{article}
+\usepackage{amsmath}
+\usepackage{pdflscape}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{textcomp}
+\usepackage{dcolumn}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\usepackage[T1]{fontenc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage[margin=0.8in, bottom=1.2in]{geometry}
+\usepackage[page]{appendix}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead{}
+\rfoot{Page \thepage\  of \pageref{LastPage}}
+\cfoot{}
+\begin{document}
+\begin{table}
+\centering
+\begin{threeparttable}
+\caption{My Table Title}
+\begin{tabular}{lccc}
+\toprule
+  & a & b & c\\
+\midrule
+\multicolumn{4}{l}{Panel A: One}\\
+0 & 1 & 2 & 3 \\
+1 & 4 & 5 & 6 \\
+2 & 7 & 8 & 9 \\
+  &   &   &  \\
+\multicolumn{4}{l}{Panel B: Two}\\
+0 & 11 & 12 & 13 \\
+1 & 14 & 15 & 16 \\
+2 & 17 & 18 & 19 \\
+\bottomrule
+
+\end{tabular}
+\begin{tablenotes}[para, flushleft]
+My below text
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}
