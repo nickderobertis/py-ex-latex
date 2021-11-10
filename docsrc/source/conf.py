@@ -29,6 +29,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 import conf
 import version as vs
 from docsrc.directives.auto_summary import AutoSummaryNameOnly
+from docsrc.directives.pyexlatex_example import PyexlatexExample
 
 # -- General configuration ------------------------------------------------
 
@@ -259,4 +260,5 @@ def skip(app, what, name, obj, would_skip, options):
 def setup(app):
     app.connect("autodoc-skip-member", skip)
     app.add_directive('autosummarynameonly', AutoSummaryNameOnly)
+    app.add_directive("pyexlatex", PyexlatexExample)
     app.add_css_file('custom.css')

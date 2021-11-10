@@ -16,6 +16,80 @@ To get started, look here.
 An overview
 ===========
 
+``pyexlatex`` lets you create PDF and HTML documents and
+presentations with a high-level API. Getting started is
+as simple as:
+
+.. pyexlatex:: simplest_document
+
+   pl.Document("some content")
+
+It has two APIs, object-oriented and template-driven, to
+suit different workflows. ``pyexlatex`` makes it easy
+to insert data into your document.
+
+Object-oriented:
+
+.. pyexlatex:: object_oriented_document
+
+   my_value = 5
+
+   contents = [
+       pl.Section(
+           [
+               f'Some text. My value is {my_value}.',
+               pl.UnorderedList([
+                   'A bullet',
+                   'List'
+               ])
+           ],
+           title='First Section'
+       )
+   ]
+
+   pl.Document(contents)
+
+Template-driven:
+
+.. pyexlatex:: template_driven_document
+
+   template = """
+   {% filter Section(title='First Section') %}
+
+   Some text. My value is {{ my_value }}.
+   {{ [
+       'A bullet',
+       'List'
+   ] | UnorderedList }}
+
+   {% endfilter %}
+   """
+
+   class MyModel(pl.Model):
+       my_value = 5
+
+   content = [MyModel(template_str=template)]
+   pl.Document(content)
+
+Presentations are supported too.
+
+.. pyexlatex:: basic_presentation
+
+   pres_content = [
+       pl.Frame(
+           [
+               'Some text',
+               pl.Block(
+                   [
+                       'more text'
+                   ],
+                   title='My Block'
+               ),
+               pl.OrderedList(["one", "two"])
+           ]
+       )
+   ]
+   pl.Presentation(pres_content)
 
 
 Document Types
