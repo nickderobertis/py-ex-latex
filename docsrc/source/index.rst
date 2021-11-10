@@ -16,6 +16,10 @@ To get started, look here.
 An overview
 ===========
 
+.. pyexlatex::
+
+   section = pl.Section(["woo"], title="First Section")
+   output = pl.Document(section)
 
 
 Document Types
