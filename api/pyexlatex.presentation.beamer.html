@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.presentation.beamer package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.presentation.beamer.columns package" href="pyexlatex.presentation.beamer.columns.html" />
@@ -201,9 +205,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.presentation.beamer">
+  <section id="module-pyexlatex.presentation.beamer">
 <span id="pyexlatex-presentation-beamer-package"></span><h1>pyexlatex.presentation.beamer package<a class="headerlink" href="#module-pyexlatex.presentation.beamer" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
+<section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
@@ -278,17 +282,100 @@
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="submodules">
+</section>
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.presentation.beamer.block">
+</section>
+<section id="module-pyexlatex.presentation.beamer.block">
 <span id="pyexlatex-presentation-beamer-block-module"></span><h2>pyexlatex.presentation.beamer.block module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.block" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.presentation.beamer.colorbox">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.block.AlertBlock">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.block.</span></span><span class="sig-name descname"><span class="pre">AlertBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/block.html#AlertBlock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.block.AlertBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.block.BlockBase" title="pyexlatex.presentation.beamer.block.BlockBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.block.BlockBase</span></code></a></p>
+<p>Block with an optional header which is red</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.block.AlertBlock.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'alertblock'</span></em><a class="headerlink" href="#pyexlatex.presentation.beamer.block.AlertBlock.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.block.Block">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.block.</span></span><span class="sig-name descname"><span class="pre">Block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/block.html#Block"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.block.Block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.block.BlockBase" title="pyexlatex.presentation.beamer.block.BlockBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.block.BlockBase</span></code></a></p>
+<p>Block with an optional header</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.block.Block.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'block'</span></em><a class="headerlink" href="#pyexlatex.presentation.beamer.block.Block.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.block.BlockBase">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.block.</span></span><span class="sig-name descname"><span class="pre">BlockBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/block.html#BlockBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.block.BlockBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaBase" title="pyexlatex.models.section.base.TextAreaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaBase</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.block.BlockBase.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/block.html#BlockBase.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.block.BlockBase.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.block.BlockBase.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&lt;invalid,</span> <span class="pre">use</span> <span class="pre">a</span> <span class="pre">subclass,</span> <span class="pre">not</span> <span class="pre">BlockBase&gt;'</span></em><a class="headerlink" href="#pyexlatex.presentation.beamer.block.BlockBase.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.block.ExamplesBlock">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.block.</span></span><span class="sig-name descname"><span class="pre">ExamplesBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/block.html#ExamplesBlock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.block.ExamplesBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.block.BlockBase" title="pyexlatex.presentation.beamer.block.BlockBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.block.BlockBase</span></code></a></p>
+<p>Block which always has the header title “Examples”</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.block.ExamplesBlock.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/block.html#ExamplesBlock.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.block.ExamplesBlock.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.block.ExamplesBlock.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'examples'</span></em><a class="headerlink" href="#pyexlatex.presentation.beamer.block.ExamplesBlock.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.presentation.beamer.colorbox">
 <span id="pyexlatex-presentation-beamer-colorbox-module"></span><h2>pyexlatex.presentation.beamer.colorbox module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.colorbox" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.colorbox.BeamerColorBox">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.colorbox.</span></span><span class="sig-name descname"><span class="pre">BeamerColorBox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/colorbox.html#BeamerColorBox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.colorbox.BeamerColorBox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaBase" title="pyexlatex.models.section.base.TextAreaBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaBase</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.colorbox.BeamerColorBox.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/colorbox.html#BeamerColorBox.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.colorbox.BeamerColorBox.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.colorbox.BeamerColorBox.modifier_str">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">modifier_str</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><a class="headerlink" href="#pyexlatex.presentation.beamer.colorbox.BeamerColorBox.modifier_str" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.colorbox.BeamerColorBox.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'beamercolorbox'</span></em><a class="headerlink" href="#pyexlatex.presentation.beamer.colorbox.BeamerColorBox.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
 
 
            </div>

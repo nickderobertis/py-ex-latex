@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.table.models.panels package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.table.models.spacing package" href="pyexlatex.table.models.spacing.html" />
@@ -203,62 +207,278 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.table.models.panels">
+  <section id="module-pyexlatex.table.models.panels">
 <span id="pyexlatex-table-models-panels-package"></span><h1>pyexlatex.table.models.panels package<a class="headerlink" href="#module-pyexlatex.table.models.panels" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.table.models.panels.collection">
+</section>
+<section id="module-pyexlatex.table.models.panels.collection">
 <span id="pyexlatex-table-models-panels-collection-module"></span><h2>pyexlatex.table.models.panels.collection module<a class="headerlink" href="#module-pyexlatex.table.models.panels.collection" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.table.models.panels.grid">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.collection.PanelCollection">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.table.models.panels.collection.</span></span><span class="sig-name descname"><span class="pre">PanelCollection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">panels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_consolidation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'object'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enforce_label_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_left_corner_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/collection.html#PanelCollection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.collection.PanelCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
+<p>Lays panel contents in a grid, consolidates labels, creates padding between tables</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.collection.PanelCollection.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">panels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_consolidation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'object'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enforce_label_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_left_corner_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/collection.html#PanelCollection.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.collection.PanelCollection.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.params.panels"></span><strong>panels</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.params.panels">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="#pyexlatex.table.models.panels.panel.Panel" title="pyexlatex.table.models.panels.panel.Panel"><code class="xref py py-class docutils literal notranslate"><span class="pre">Panel</span></code></a>]) – list of Panels, which represent a full set of rows of the table. for multiple
+sections in one set of rows, create DataTables for each section and pass to Panels.</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.params.label_consolidation"></span><strong>label_consolidation</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.params.label_consolidation">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – pass ‘object’ to compare object equality for label consolidation, ‘str’
+for converting all labels to strings then comparing equality. Use ‘object’
+for more control over consolidation.</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.params.enforce_label_order"></span><strong>enforce_label_order</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.params.enforce_label_order">¶</a> – pass False to allow consolidating lower labels even if upper labels do not match.
+e.g. if labels on one table are [[‘Top1’], [‘Bot1’, ‘Bot2’]], then labels on the other
+table are [[‘Top2’], [‘Bot1’, ‘Bot2’]], consolidated labels when passing False will be
+[‘Bot1’, ‘Bot2’], while when passing True, no labels will be consolidated. Under True,
+will start from the top label, then stop consolidating once it has a mismatch.</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.params.top_left_corner_labels"></span><strong>top_left_corner_labels</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.params.top_left_corner_labels">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference internal" href="pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable" title="pyexlatex.table.models.labels.table.LabelTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">LabelTable</span></code></a>, <a class="reference internal" href="pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.collection.LabelCollection" title="pyexlatex.table.models.labels.collection.LabelCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">LabelCollection</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.AnyStr" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">AnyStr</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.AnyStr" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">AnyStr</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]) – additional labels to place in the top left corner. pass a single string
+or a list of strings for convenience. a list of strings will be create labels
+which span the gap horizontally and go downwards, one label per row. pass
+LabelCollection or LabelTable for more control.</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.params.pad_rows"></span><strong>pad_rows</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.params.pad_rows">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – horizontal spacing to put between panels</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.params.pad_columns"></span><strong>pad_columns</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.params.pad_columns">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – vertical spacing to put between TableSections</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.params.name"></span><strong>name</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.params.name">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – name that will be used to construct caption in output</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.collection.PanelCollection.consolidate_labels">
+<span class="sig-name descname"><span class="pre">consolidate_labels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/collection.html#PanelCollection.consolidate_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.collection.PanelCollection.consolidate_labels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_list_of_lists_of_dfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_list_of_lists</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_table_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/collection.html#PanelCollection.from_list_of_lists_of_dfs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs" title="Permalink to this definition">¶</a></dt>
+<dd><p>To create a single panel table, pass a single list within
+a list of DataFrames, e.g. [[df1, df2]] then shape will specify how the DataFrames will
+be organized in the Panel. If you pass two lists within the outer list, then shape will
+apply to each Panel. So [[df1, df2], [df3, df4]] with shape=(1,2) create a two Panel table
+with two tables placed within each panel going horizontally, so that the overall shape is (2,2).</p>
+<p>Note: convenience method for if not much control over table is needed.
+To apply different options to each panel, construct them individually using
+Panel.from_df_list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs.params.df_list_of_lists"></span><strong>df_list_of_lists</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs.params.df_list_of_lists">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>]]) – </p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs.params.panel_names"></span><strong>panel_names</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs.params.panel_names">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]) – list of panel names. Must be of same length as outer list in df_list_of_lists</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs.params.args"></span><strong>args</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs.params.args">¶</a> – args to pass to PanelCollection constructor</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs.params.panel_kwargs"></span><strong>panel_kwargs</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs.params.panel_kwargs">¶</a> – Panel.from_df_list kwargs. Same kwargs will be passed to all panels</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs.params.kwargs"></span><strong>kwargs</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs.params.kwargs">¶</a> – kwargs to pass to PanelCollection constructor</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs.params.data_table_kwargs"></span><strong>data_table_kwargs</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.from_list_of_lists_of_dfs.params.data_table_kwargs">¶</a> – kwargs to be passed to DataTable.from_df. Same kwargs will be passed to
+all data tables.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>PanelCollection</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.collection.PanelCollection.grid">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">grid</span></span><a class="headerlink" href="#pyexlatex.table.models.panels.collection.PanelCollection.grid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.collection.PanelCollection.iterpanels">
+<span class="sig-name descname"><span class="pre">iterpanels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">add_panel_order_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/collection.html#PanelCollection.iterpanels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.collection.PanelCollection.iterpanels" title="Permalink to this definition">¶</a></dt>
+<dd><p>First panel is headers. Then each original panel</p>
+<p>self.grid includes all panels as well as labels. Need to separate back out to
+get each panel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><span class="target" id="pyexlatex.table.models.panels.collection.PanelCollection.iterpanels.params.add_panel_order_label"></span><strong>add_panel_order_label</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.collection.PanelCollection.iterpanels.params.add_panel_order_label">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Whether to add to names of panels Panel A:, Panel B:,</p>
+</dd>
+</dl>
+<p>and so on</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.collection.PanelCollection.num_columns">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">num_columns</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#pyexlatex.table.models.panels.collection.PanelCollection.num_columns" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.collection.PanelCollection.pad_grid">
+<span class="sig-name descname"><span class="pre">pad_grid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/collection.html#PanelCollection.pad_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.collection.PanelCollection.pad_grid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.collection.PanelCollection.repr_cols">
+<span class="sig-name descname"><span class="pre">repr_cols</span></span><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">['name',</span> <span class="pre">'panels']</span></em><a class="headerlink" href="#pyexlatex.table.models.panels.collection.PanelCollection.repr_cols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.collection.PanelCollection.rows">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">rows</span></span><a class="headerlink" href="#pyexlatex.table.models.panels.collection.PanelCollection.rows" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.collection.PanelCollection.to_tex">
+<span class="sig-name descname"><span class="pre">to_tex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mid_rule</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/collection.html#PanelCollection.to_tex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.collection.PanelCollection.to_tex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.table.models.panels.grid">
 <span id="pyexlatex-table-models-panels-grid-module"></span><h2>pyexlatex.table.models.panels.grid module<a class="headerlink" href="#module-pyexlatex.table.models.panels.grid" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="pyexlatex.table.models.panels.grid.GridShape">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.table.models.panels.grid.</code><code class="sig-name descname">GridShape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_array</span></em>, <em class="sig-param"><span class="n">info</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/grid.html#GridShape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.panels.grid.GridShape" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.20)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></p>
-<dl class="py method">
-<dt id="pyexlatex.table.models.panels.grid.GridShape.cell_width">
-<em class="property">property </em><code class="sig-name descname">cell_width</code><a class="headerlink" href="#pyexlatex.table.models.panels.grid.GridShape.cell_width" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.grid.GridShape">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.table.models.panels.grid.</span></span><span class="sig-name descname"><span class="pre">GridShape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/grid.html#GridShape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.grid.GridShape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.21)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.grid.GridShape.cell_width">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">cell_width</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></em><a class="headerlink" href="#pyexlatex.table.models.panels.grid.GridShape.cell_width" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="pyexlatex.table.models.panels.grid.GridShape.cell_widths">
-<em class="property">property </em><code class="sig-name descname">cell_widths</code><a class="headerlink" href="#pyexlatex.table.models.panels.grid.GridShape.cell_widths" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.grid.GridShape.cell_widths">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">cell_widths</span></span><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyexlatex.table.models.panels.grid.GridShape.cell_widths" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="pyexlatex.table.models.panels.grid.GridShape.data_has_row_labels">
-<em class="property">property </em><code class="sig-name descname">data_has_row_labels</code><a class="headerlink" href="#pyexlatex.table.models.panels.grid.GridShape.data_has_row_labels" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.grid.GridShape.data_has_row_labels">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_has_row_labels</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#pyexlatex.table.models.panels.grid.GridShape.data_has_row_labels" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.grid.PanelGrid">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.table.models.panels.grid.</span></span><span class="sig-name descname"><span class="pre">PanelGrid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sections</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="pyexlatex.table.models.table.html#pyexlatex.table.models.table.section.TableSection" title="pyexlatex.table.models.table.section.TableSection"><span class="pre">pyexlatex.table.models.table.section.TableSection</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><span class="pre">tuple</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/grid.html#PanelGrid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.grid.PanelGrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.grid.PanelGrid.repr_cols">
+<span class="sig-name descname"><span class="pre">repr_cols</span></span><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">['sections',</span> <span class="pre">'shape']</span></em><a class="headerlink" href="#pyexlatex.table.models.panels.grid.PanelGrid.repr_cols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
-<dt id="pyexlatex.table.models.panels.grid.index_array">
-<code class="sig-prename descclassname">pyexlatex.table.models.panels.grid.</code><code class="sig-name descname">index_array</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sections</span></em>, <em class="sig-param"><span class="n">shape</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/grid.html#index_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.table.models.panels.grid.index_array" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.grid.index_array">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.table.models.panels.grid.</span></span><span class="sig-name descname"><span class="pre">index_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sections</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/grid.html#index_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.grid.index_array" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.table.models.panels.panel">
+</section>
+<section id="module-pyexlatex.table.models.panels.panel">
 <span id="pyexlatex-table-models-panels-panel-module"></span><h2>pyexlatex.table.models.panels.panel module<a class="headerlink" href="#module-pyexlatex.table.models.panels.panel" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.panel.Panel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.table.models.panels.panel.</span></span><span class="sig-name descname"><span class="pre">Panel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">panel_grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/panel.html#Panel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.panel.Panel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
+<p>Represents one section of a table. May have multiple DataTables within one panel.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.panel.Panel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">panel_grid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/panel.html#Panel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.panel.Panel.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.panel.Panel.from_data_tables">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_data_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_table_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/panel.html#Panel.from_data_tables"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.panel.Panel.from_data_tables" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="pyexlatex.table.models.panels.panel.Panel.from_data_tables.params.data_table_list"></span><strong>data_table_list</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.panel.Panel.from_data_tables.params.data_table_list">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="pyexlatex.table.models.data.html#pyexlatex.table.models.data.table.DataTable" title="pyexlatex.table.models.data.table.DataTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataTable</span></code></a>]) – list of pyexlatex.table.DataTable</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.panel.Panel.from_data_tables.params.shape"></span><strong>shape</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.panel.Panel.from_data_tables.params.shape">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>]) – tuple of (rows, columns) to arrange DataTables. They will be placed from left to right,
+then from top to bottom.
+passsing None defaults one column, as many rows as DataTables</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.panel.Panel.from_data_tables.params.name"></span><strong>name</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.panel.Panel.from_data_tables.params.name">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – name to be displayed with panel</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.panel.Panel.from_df">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/panel.html#Panel.from_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.panel.Panel.from_df" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.panel.Panel.from_df_list">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_df_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_table_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/panels/panel.html#Panel.from_df_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.panels.panel.Panel.from_df_list" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="pyexlatex.table.models.panels.panel.Panel.from_df_list.params.df_list"></span><strong>df_list</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.panel.Panel.from_df_list.params.df_list">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>]) – list of pandas DataFrame</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.panel.Panel.from_df_list.params.shape"></span><strong>shape</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.panel.Panel.from_df_list.params.shape">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>]) – tuple of (rows, columns) to arrange DataFrames. They will be placed from left to right,
+then from top to bottom.
+passsing None defaults one column, as many rows as DataFrames</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.panel.Panel.from_df_list.params.name"></span><strong>name</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.panel.Panel.from_df_list.params.name">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – name to be displayed with panel</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.panel.Panel.from_df_list.params.include_columns"></span><strong>include_columns</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.panel.Panel.from_df_list.params.include_columns">¶</a> – </p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.panel.Panel.from_df_list.params.include_index"></span><strong>include_index</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.panel.Panel.from_df_list.params.include_index">¶</a> – </p></li>
+<li><p><span class="target" id="pyexlatex.table.models.panels.panel.Panel.from_df_list.params.data_table_kwargs"></span><strong>data_table_kwargs</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.panels.panel.Panel.from_df_list.params.data_table_kwargs">¶</a> – kwargs to be passed to DataTable.from_df. Same kwargs will be passed to
+all data tables.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.panel.Panel.is_spacer">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_spacer</span></span><a class="headerlink" href="#pyexlatex.table.models.panels.panel.Panel.is_spacer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.panel.Panel.num_columns">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">num_columns</span></span><a class="headerlink" href="#pyexlatex.table.models.panels.panel.Panel.num_columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.panel.Panel.repr_cols">
+<span class="sig-name descname"><span class="pre">repr_cols</span></span><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">['name',</span> <span class="pre">'panel_grid']</span></em><a class="headerlink" href="#pyexlatex.table.models.panels.panel.Panel.repr_cols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.panels.panel.Panel.rows">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">rows</span></span><a class="headerlink" href="#pyexlatex.table.models.panels.panel.Panel.rows" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
 
 
            </div>

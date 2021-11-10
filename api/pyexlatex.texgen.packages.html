@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.texgen.packages package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.texgen.replacements package" href="pyexlatex.texgen.replacements.html" />
@@ -201,18 +205,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.texgen.packages">
+  <section id="module-pyexlatex.texgen.packages">
 <span id="pyexlatex-texgen-packages-package"></span><h1>pyexlatex.texgen.packages package<a class="headerlink" href="#module-pyexlatex.texgen.packages" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.texgen.packages.columntypes">
+</section>
+<section id="module-pyexlatex.texgen.packages.columntypes">
 <span id="pyexlatex-texgen-packages-columntypes-module"></span><h2>pyexlatex.texgen.packages.columntypes module<a class="headerlink" href="#module-pyexlatex.texgen.packages.columntypes" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.texgen.packages.default">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.texgen.packages.columntypes.ColumnTypesPackage">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.texgen.packages.columntypes.</span></span><span class="sig-name descname"><span class="pre">ColumnTypesPackage</span></span><a class="reference internal" href="../_modules/pyexlatex/texgen/packages/columntypes.html#ColumnTypesPackage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.texgen.packages.columntypes.ColumnTypesPackage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.package.Package" title="pyexlatex.models.package.Package"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.package.Package</span></code></a></p>
+<p>New column types are created by importing the dcolumn package then adding the column type definition lines</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.texgen.packages.columntypes.ColumnTypesPackage.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/texgen/packages/columntypes.html#ColumnTypesPackage.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.texgen.packages.columntypes.ColumnTypesPackage.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="pyexlatex.texgen.packages.columntypes.ColumnTypesPackage.params.name"></span><strong>name</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.texgen.packages.columntypes.ColumnTypesPackage.params.name">¶</a> – Name of LaTeX package</p></li>
+<li><p><span class="target" id="pyexlatex.texgen.packages.columntypes.ColumnTypesPackage.params.modifier_str"></span><strong>modifier_str</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.texgen.packages.columntypes.ColumnTypesPackage.params.modifier_str">¶</a> – any options to be passed to the LaTeX package. E.g. if ‘abc=true’
+is passed, it will render as usepackage[abc=true]{mypackage}</p></li>
+<li><p><span class="target" id="pyexlatex.texgen.packages.columntypes.ColumnTypesPackage.params.eq_on_modifier"></span><strong>eq_on_modifier</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.texgen.packages.columntypes.ColumnTypesPackage.params.eq_on_modifier">¶</a> – Whether to consider any package options when checking equality
+of the package. Useful to set it to False when this package should not be added
+if it was previously added with different options</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.texgen.packages.default">
 <span id="pyexlatex-texgen-packages-default-module"></span><h2>pyexlatex.texgen.packages.default module<a class="headerlink" href="#module-pyexlatex.texgen.packages.default" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

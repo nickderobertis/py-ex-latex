@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.models.format.text package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.models.format.text.color package" href="pyexlatex.models.format.text.color.html" />
@@ -203,9 +207,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.models.format.text">
+  <section id="module-pyexlatex.models.format.text">
 <span id="pyexlatex-models-format-text-package"></span><h1>pyexlatex.models.format.text package<a class="headerlink" href="#module-pyexlatex.models.format.text" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
+<section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
@@ -226,21 +230,71 @@
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="submodules">
+</section>
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.models.format.text.bold">
+</section>
+<section id="module-pyexlatex.models.format.text.bold">
 <span id="pyexlatex-models-format-text-bold-module"></span><h2>pyexlatex.models.format.text.bold module<a class="headerlink" href="#module-pyexlatex.models.format.text.bold" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.models.format.text.italics">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.bold.Bold">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.models.format.text.bold.</span></span><span class="sig-name descname"><span class="pre">Bold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/bold.html#Bold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.bold.Bold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaMixin" title="pyexlatex.models.section.base.TextAreaMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaMixin</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<p>Makes text bold.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.bold.Bold.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/bold.html#Bold.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.bold.Bold.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.bold.Bold.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'textbf'</span></em><a class="headerlink" href="#pyexlatex.models.format.text.bold.Bold.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.models.format.text.italics">
 <span id="pyexlatex-models-format-text-italics-module"></span><h2>pyexlatex.models.format.text.italics module<a class="headerlink" href="#module-pyexlatex.models.format.text.italics" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.models.format.text.linespacing">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.italics.Italics">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.models.format.text.italics.</span></span><span class="sig-name descname"><span class="pre">Italics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/italics.html#Italics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.italics.Italics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaMixin" title="pyexlatex.models.section.base.TextAreaMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaMixin</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<p>Italicizes text.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.italics.Italics.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/italics.html#Italics.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.italics.Italics.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.italics.Italics.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'textit'</span></em><a class="headerlink" href="#pyexlatex.models.format.text.italics.Italics.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.models.format.text.linespacing">
 <span id="pyexlatex-models-format-text-linespacing-module"></span><h2>pyexlatex.models.format.text.linespacing module<a class="headerlink" href="#module-pyexlatex.models.format.text.linespacing" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.linespacing.LineSpacing">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.models.format.text.linespacing.</span></span><span class="sig-name descname"><span class="pre">LineSpacing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_spacing</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/linespacing.html#LineSpacing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.linespacing.LineSpacing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.linespacing.LineSpacing.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_spacing</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/linespacing.html#LineSpacing.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.linespacing.LineSpacing.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.linespacing.LineSpacing.name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#pyexlatex.models.format.text.linespacing.LineSpacing.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
-<dt id="pyexlatex.models.format.text.linespacing.latex_line_spacing_from_logical_line_spacing">
-<code class="sig-prename descclassname">pyexlatex.models.format.text.linespacing.</code><code class="sig-name descname">latex_line_spacing_from_logical_line_spacing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line_spacing</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/linespacing.html#latex_line_spacing_from_logical_line_spacing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.models.format.text.linespacing.latex_line_spacing_from_logical_line_spacing" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.linespacing.latex_line_spacing_from_logical_line_spacing">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.models.format.text.linespacing.</span></span><span class="sig-name descname"><span class="pre">latex_line_spacing_from_logical_line_spacing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_spacing</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/linespacing.html#latex_line_spacing_from_logical_line_spacing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.linespacing.latex_line_spacing_from_logical_line_spacing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Latex for some reason has 1.65 as double line spacing, 1.325 as one and a half
 line spacing, and 1 as single spacing. Take an input on a normal scale (2 is
 double spaced, 1 is single space, 1.5 is one and a half spacing, and so on), and
@@ -252,28 +306,114 @@ Args:</p>
 <p>Returns:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.models.format.text.monospace">
+</section>
+<section id="module-pyexlatex.models.format.text.monospace">
 <span id="pyexlatex-models-format-text-monospace-module"></span><h2>pyexlatex.models.format.text.monospace module<a class="headerlink" href="#module-pyexlatex.models.format.text.monospace" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.models.format.text.nohyphens">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.monospace.Monospace">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.models.format.text.monospace.</span></span><span class="sig-name descname"><span class="pre">Monospace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/monospace.html#Monospace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.monospace.Monospace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<p>Pass text to render it in a monospace font.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.monospace.Monospace.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/monospace.html#Monospace.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.monospace.Monospace.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.monospace.Monospace.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'texttt'</span></em><a class="headerlink" href="#pyexlatex.models.format.text.monospace.Monospace.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.models.format.text.nohyphens">
 <span id="pyexlatex-models-format-text-nohyphens-module"></span><h2>pyexlatex.models.format.text.nohyphens module<a class="headerlink" href="#module-pyexlatex.models.format.text.nohyphens" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.models.format.text.smallcaps">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.nohyphens.NoHyphens">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.models.format.text.nohyphens.</span></span><span class="sig-name descname"><span class="pre">NoHyphens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/nohyphens.html#NoHyphens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.nohyphens.NoHyphens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<p>Prevents a line break within text, where a hyphen would normally be placed. However when it is used alone it
+will make text run over the margin. Use NoLineBreak to avoid this.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.nohyphens.NoHyphens.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/nohyphens.html#NoHyphens.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.nohyphens.NoHyphens.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.nohyphens.NoHyphens.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'nohyphens'</span></em><a class="headerlink" href="#pyexlatex.models.format.text.nohyphens.NoHyphens.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.models.format.text.smallcaps">
 <span id="pyexlatex-models-format-text-smallcaps-module"></span><h2>pyexlatex.models.format.text.smallcaps module<a class="headerlink" href="#module-pyexlatex.models.format.text.smallcaps" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.models.format.text.text">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.smallcaps.SmallCaps">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.models.format.text.smallcaps.</span></span><span class="sig-name descname"><span class="pre">SmallCaps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/smallcaps.html#SmallCaps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.smallcaps.SmallCaps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaMixin" title="pyexlatex.models.section.base.TextAreaMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaMixin</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<p>Makes text all caps, but with originally capital letters slightly larger than other letters.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.smallcaps.SmallCaps.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/smallcaps.html#SmallCaps.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.smallcaps.SmallCaps.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.smallcaps.SmallCaps.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'textsc'</span></em><a class="headerlink" href="#pyexlatex.models.format.text.smallcaps.SmallCaps.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.models.format.text.text">
 <span id="pyexlatex-models-format-text-text-module"></span><h2>pyexlatex.models.format.text.text module<a class="headerlink" href="#module-pyexlatex.models.format.text.text" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.models.format.text.underline">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.text.Text">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.models.format.text.text.</span></span><span class="sig-name descname"><span class="pre">Text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modifiers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/text.html#Text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.text.Text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<p>Gets back to raw text, useful to have normal text formatting inside of equations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.text.Text.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modifiers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/text.html#Text.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.text.Text.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.text.Text.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'text'</span></em><a class="headerlink" href="#pyexlatex.models.format.text.text.Text.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.models.format.text.underline">
 <span id="pyexlatex-models-format-text-underline-module"></span><h2>pyexlatex.models.format.text.underline module<a class="headerlink" href="#module-pyexlatex.models.format.text.underline" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.underline.Underline">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.models.format.text.underline.</span></span><span class="sig-name descname"><span class="pre">Underline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/underline.html#Underline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.underline.Underline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.section.html#pyexlatex.models.section.base.TextAreaMixin" title="pyexlatex.models.section.base.TextAreaMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.section.base.TextAreaMixin</span></code></a>, <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.SimpleItem" title="pyexlatex.models.item.SimpleItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.SimpleItem</span></code></a></p>
+<p>Adds an underline to text.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.underline.Underline.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contents</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/models/format/text/underline.html#Underline.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.models.format.text.underline.Underline.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.models.format.text.underline.Underline.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'underline'</span></em><a class="headerlink" href="#pyexlatex.models.format.text.underline.Underline.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
 
 
            </div>

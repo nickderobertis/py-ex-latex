@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyexlatex.figure.models.figure &mdash; pyexlatex 0.14.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../_static/logo.svg"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/clipboard.min.js"></script>
+        <script src="../../../../_static/copybutton.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> pyexlatex
+          
+
+          
+            
+            <img src="../../../../_static/logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.14.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">pyexlatex</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">pyexlatex</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyexlatex.figure.models.figure</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyexlatex.figure.models.figure</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">pyexlatex.typing</span> <span class="kn">import</span> <span class="n">PyexlatexItems</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">Axes</span><span class="p">,</span> <span class="n">Figure</span> <span class="k">as</span> <span class="n">PltFigure</span>
+
+<span class="kn">from</span> <span class="nn">pyexlatex.figure.models.subfigure</span> <span class="kn">import</span> <span class="n">Subfigure</span><span class="p">,</span> <span class="n">Graphic</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="kn">import</span> <span class="n">Item</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.caption</span> <span class="kn">import</span> <span class="n">Caption</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.label</span> <span class="kn">import</span> <span class="n">Label</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.logic.builder</span> <span class="kn">import</span> <span class="n">build_figure_content</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.texgen.replacements.filename</span> <span class="kn">import</span> <span class="n">latex_filename_replacements</span>
+
+<span class="kn">from</span> <span class="nn">pyexlatex.models.commands.newenvironment</span> <span class="kn">import</span> <span class="n">NewEnvironment</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.commands.begin</span> <span class="kn">import</span> <span class="n">Begin</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.commands.end</span> <span class="kn">import</span> <span class="n">End</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.environment</span> <span class="kn">import</span> <span class="n">Environment</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.containeritem</span> <span class="kn">import</span> <span class="n">ContainerItem</span>
+
+<span class="n">SubfigureOrGraphic</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">Subfigure</span><span class="p">,</span> <span class="n">Graphic</span><span class="p">]</span>
+<span class="n">SubfiguresOrGraphics</span> <span class="o">=</span> <span class="n">List</span><span class="p">[</span><span class="n">SubfigureOrGraphic</span><span class="p">]</span>
+<span class="n">PltFigureOrAxes</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;Axes&#39;</span><span class="p">,</span> <span class="s1">&#39;PltFigure&#39;</span><span class="p">]</span>
+<span class="n">PltFigureOrAxesNameDict</span> <span class="o">=</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">PltFigureOrAxes</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Figure"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.figure.Figure">[docs]</a><span class="k">class</span> <span class="nc">Figure</span><span class="p">(</span><span class="n">ContainerItem</span><span class="p">,</span> <span class="n">Item</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Used for creating latex figures from images. Currently the main usage is the Figure class created with the method</span>
+<span class="sd">    Figure.from_dict_of_names_and_filepaths. Pass a dictionary where the keys are names for subfigures and the values</span>
+<span class="sd">    are filepaths where the image for the subfigure is located.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;figure&#39;</span>
+
+<div class="viewcode-block" id="Figure.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.figure.Figure.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subfigures</span><span class="p">:</span> <span class="n">SubfiguresOrGraphics</span><span class="p">,</span> <span class="n">caption</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PyexlatexItems</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">label</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">centering</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">position_str</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">landscape</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">short_caption</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span> <span class="o">=</span> <span class="n">subfigures</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">caption</span> <span class="o">=</span> <span class="n">Caption</span><span class="p">(</span><span class="n">caption</span><span class="p">,</span> <span class="n">short_caption</span><span class="o">=</span><span class="n">short_caption</span><span class="p">)</span> <span class="k">if</span> <span class="n">caption</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">label</span><span class="p">)</span> <span class="k">if</span> <span class="n">label</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">centering</span> <span class="o">=</span> <span class="n">centering</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">landscape</span> <span class="o">=</span> <span class="n">landscape</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_remove_subfigure_elevate_contents_to_figure_if_single_subfigure</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_data_from_content</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="p">)</span>
+
+        <span class="n">content</span> <span class="o">=</span> <span class="n">build_figure_content</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="p">,</span>
+            <span class="n">caption</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">caption</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+            <span class="n">centering</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">centering</span><span class="p">,</span>
+            <span class="n">position_str</span><span class="o">=</span><span class="n">position_str</span>
+        <span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">landscape</span><span class="p">:</span>
+            <span class="n">lfigure_def</span> <span class="o">=</span> <span class="n">NewEnvironment</span><span class="p">(</span>
+                <span class="s1">&#39;lfigure&#39;</span><span class="p">,</span>
+                <span class="n">Begin</span><span class="p">(</span><span class="s1">&#39;landscape&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">Begin</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+                <span class="n">End</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">End</span><span class="p">(</span><span class="s1">&#39;landscape&#39;</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">begin_document_items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lfigure_def</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="s1">&#39;lfigure&#39;</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;Figure(subfigures=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="si">}</span><span class="s1">, caption=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">caption</span><span class="si">}</span><span class="s1">)&gt;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">subfigure</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">subfigure</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Figure.as_document"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.figure.Figure.as_document">[docs]</a>    <span class="k">def</span> <span class="nf">as_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">landscape</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">pyexlatex.models.document</span> <span class="kn">import</span> <span class="n">Document</span>
+        <span class="kn">from</span> <span class="nn">pyexlatex.figure.packages</span> <span class="kn">import</span> <span class="n">default_packages</span>
+
+        <span class="k">return</span> <span class="n">Document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default_packages</span><span class="p">,</span> <span class="n">landscape</span><span class="o">=</span><span class="n">landscape</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Figure.to_pdf_and_move"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.figure.Figure.to_pdf_and_move">[docs]</a>    <span class="k">def</span> <span class="nf">to_pdf_and_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_document</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">outfolder</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">outname</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                        <span class="n">landscape</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">pyexlatex.logic.output.main</span> <span class="kn">import</span> <span class="n">output_document_and_move</span>
+        <span class="kn">from</span> <span class="nn">pyexlatex.models.document</span> <span class="kn">import</span> <span class="n">Document</span>
+
+        <span class="n">to_output</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Figure</span><span class="p">,</span> <span class="n">Document</span><span class="p">]</span>
+        <span class="n">to_output</span> <span class="o">=</span> <span class="bp">self</span>  <span class="c1"># Figure</span>
+        <span class="k">if</span> <span class="n">as_document</span><span class="p">:</span>
+            <span class="n">to_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_document</span><span class="p">(</span>  <span class="c1"># Document</span>
+                <span class="n">landscape</span><span class="o">=</span><span class="n">landscape</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">landscape</span> <span class="o">==</span> <span class="kc">False</span> <span class="k">else</span> <span class="kc">False</span>  <span class="c1"># don&#39;t apply landscape twice</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">outfolder</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">outfolder</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span>
+        <span class="k">if</span> <span class="n">outname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">outname</span> <span class="o">=</span> <span class="s1">&#39;figure&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">outname</span> <span class="o">=</span> <span class="n">latex_filename_replacements</span><span class="p">(</span><span class="n">outname</span><span class="p">)</span>
+
+        <span class="n">output_document_and_move</span><span class="p">(</span>
+            <span class="n">to_output</span><span class="p">,</span>
+            <span class="n">outfolder</span><span class="p">,</span>
+            <span class="n">image_paths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">filepaths</span><span class="p">,</span>
+            <span class="n">outname</span><span class="o">=</span><span class="n">outname</span><span class="p">,</span>
+            <span class="n">as_document</span><span class="o">=</span><span class="n">as_document</span><span class="p">,</span>
+            <span class="n">image_binaries</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">binaries</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Figure.from_dict_of_names_and_filepaths"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.figure.Figure.from_dict_of_names_and_filepaths">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict_of_names_and_filepaths</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filepath_name_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">figure_name</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                         <span class="n">position_str_name_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a Figure from a dictionary where keys are names of subfigures and values are file paths</span>
+
+<span class="sd">        :param filepath_name_dict: dictionary where keys are names of subfigures and values</span>
+<span class="sd">            are the filepaths to the images for those subfigures.</span>
+<span class="sd">        :param figure_name: name for overall figure</span>
+<span class="sd">        :param position_str_name_dict: dictionary where keys are names of subfigures and values</span>
+<span class="sd">            are the position strs for those figures, e.g. r&#39;[t]{0.45\linewidth}&#39;</span>
+<span class="sd">        :param kwargs: kwargs for Figure</span>
+<span class="sd">        :return: Figure</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># TODO [#3]: for Figure, add possibility of passing grid shape rather than actual position str</span>
+
+        <span class="k">if</span> <span class="n">position_str_name_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">position_str_name_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">subfigures</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">filepath_name_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">subfigures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">Subfigure</span><span class="p">(</span>
+                    <span class="n">filepath</span><span class="p">,</span>
+                    <span class="n">caption</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">position_str</span><span class="o">=</span><span class="n">position_str_name_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">position_str_name_dict</span> <span class="k">else</span> <span class="sa">r</span><span class="s1">&#39;[t]{0.45\linewidth}&#39;</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">subfigures</span><span class="p">,</span>
+            <span class="n">caption</span><span class="o">=</span><span class="n">figure_name</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Figure.from_dict_of_names_and_plt_figures"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.figure.Figure.from_dict_of_names_and_plt_figures">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict_of_names_and_plt_figures</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">plt_fig_name_dict</span><span class="p">:</span> <span class="n">PltFigureOrAxesNameDict</span><span class="p">,</span> <span class="n">sources_outfolder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                                           <span class="n">source_filetype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;pdf&#39;</span><span class="p">,</span>
+                                           <span class="n">figure_name</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                                           <span class="n">position_str_name_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a Figure from a dictionary where keys are names of subfigures and values are matplotlib Figures</span>
+<span class="sd">        or Axes</span>
+
+<span class="sd">        :param plt_fig_name_dict: Key is display name in output figure, value is matplotlib axes or figure</span>
+<span class="sd">        :param sources_outfolder: folder to output individual matplotlib figures</span>
+<span class="sd">        :param source_filetype: Filetype for individual plt figures. The default is pdf. Use png or another</span>
+<span class="sd">            image type if outputting complicated figures or performance may be affected when viewing the pdf.</span>
+<span class="sd">        :param figure_name: name for overall figure</span>
+<span class="sd">        :param position_str_name_dict: dictionary where keys are names of subfigures and values</span>
+<span class="sd">            are the position strs for those figures, e.g. r&#39;[t]{0.45\linewidth}&#39;</span>
+<span class="sd">        :param kwargs: kwargs for Figure</span>
+<span class="sd">        :return: Figure</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">filepath_name_dict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># store outputted filepaths of sources to pass to from_dict_of_names_and_filepaths</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">plt_figure_or_axes</span> <span class="ow">in</span> <span class="n">plt_fig_name_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">plt_figure</span> <span class="o">=</span> <span class="n">_get_plt_figure_from_axes_or_figure</span><span class="p">(</span><span class="n">plt_figure_or_axes</span><span class="p">)</span>
+            <span class="n">outpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sources_outfolder</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">latex_filename_replacements</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">source_filetype</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">plt_figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">outpath</span><span class="p">)</span>
+            <span class="n">filepath_name_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">outpath</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_dict_of_names_and_filepaths</span><span class="p">(</span>
+            <span class="n">filepath_name_dict</span><span class="p">,</span>
+            <span class="n">figure_name</span><span class="o">=</span><span class="n">figure_name</span><span class="p">,</span>
+            <span class="n">position_str_name_dict</span><span class="o">=</span><span class="n">position_str_name_dict</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span></div>
+
+
+
+    <span class="k">def</span> <span class="nf">_remove_subfigure_elevate_contents_to_figure_if_single_subfigure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If there is a single subfigure, leaving in subfigure format results in very small output. Must strip</span>
+<span class="sd">        out subfigure layer, leaving only a figure with a graphic, then it can fill the page.</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">Subfigure</span><span class="p">,</span> <span class="n">Graphic</span><span class="p">]]</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;graphic&#39;</span><span class="p">):</span>
+            <span class="c1"># got subfigure</span>
+            <span class="n">item_is_subfigure</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">orig_graphic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">graphic</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># got graphic</span>
+            <span class="n">item_is_subfigure</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">orig_graphic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">orig_width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">width</span>
+
+        <span class="c1"># Elevate caption of sub-figure if there is no figure caption</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">caption</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">item_is_subfigure</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">caption</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">caption</span>
+
+        <span class="c1"># update width to original width</span>
+        <span class="n">graphic</span> <span class="o">=</span> <span class="n">Graphic</span><span class="p">(</span><span class="n">orig_graphic</span><span class="o">.</span><span class="n">filepaths</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="n">orig_width</span><span class="p">)</span>
+
+        <span class="c1"># need to turn off centering to cover whole page</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">centering</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span> <span class="o">=</span> <span class="p">[</span><span class="n">graphic</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Figure.to_graphic_list"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.figure.Figure.to_graphic_list">[docs]</a>    <span class="k">def</span> <span class="nf">to_graphic_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Graphic</span><span class="p">]:</span>
+        <span class="n">graphics</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Graphic</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">subfig_or_graphic</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subfigures</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">subfig_or_graphic</span><span class="p">,</span> <span class="n">Graphic</span><span class="p">):</span>
+                <span class="n">graphics</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subfig_or_graphic</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">subfig_or_graphic</span><span class="p">,</span> <span class="n">Subfigure</span><span class="p">):</span>
+                <span class="n">graphics</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subfig_or_graphic</span><span class="o">.</span><span class="n">graphic</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;got other than Subfigure or Graphic in subfigures: &#39;</span>
+                                 <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">subfig_or_graphic</span><span class="si">}</span><span class="s1"> of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">subfig_or_graphic</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">graphics</span></div></div>
+
+<span class="k">def</span> <span class="nf">_get_plt_figure_from_axes_or_figure</span><span class="p">(</span><span class="n">plt_axes_or_fig</span><span class="p">:</span> <span class="n">PltFigureOrAxes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;PltFigure&#39;</span><span class="p">:</span>
+    <span class="c1"># Both axes and figure have the get_figure method, however for the figure, it will return None</span>
+    <span class="n">possible_figure</span> <span class="o">=</span> <span class="n">plt_axes_or_fig</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">possible_figure</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">plt_axes_or_fig</span>  <span class="c1"># had figure already</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">possible_figure</span> <span class="c1"># extracted figure from axes</span>
+
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021, Nick DeRobertis
+
+    </p>
+  </div>
+    
+    
+      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-155734278-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

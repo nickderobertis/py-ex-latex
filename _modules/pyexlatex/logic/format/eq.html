@@ -24,10 +24,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
         <script src="../../../../_static/clipboard.min.js"></script>
         <script src="../../../../_static/copybutton.js"></script>
     
@@ -38,12 +38,15 @@
   
   <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
@@ -166,31 +169,31 @@
            <div itemprop="articleBody">
             
   <h1>Source code for pyexlatex.logic.format.eq</h1><div class="highlight"><pre>
-<span></span>from sympy import Eq, Expr, Symbol
-from sympy import latex
+<span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Eq</span><span class="p">,</span> <span class="n">Expr</span><span class="p">,</span> <span class="n">Symbol</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">latex</span>
 
 
-<div class="viewcode-block" id="inline"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.inline">[docs]</a>def inline(eq: str) -&gt; str:
-    return f&#39;${eq}$&#39;</div>
+<div class="viewcode-block" id="inline"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.inline">[docs]</a><span class="k">def</span> <span class="nf">inline</span><span class="p">(</span><span class="n">eq</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">eq</span><span class="si">}</span><span class="s1">$&#39;</span></div>
 
 
-<div class="viewcode-block" id="offset"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.offset">[docs]</a>def offset(eq: str) -&gt; str:
-    return f&#39;\\begin{{equation}}\n\t{eq}\n\\end{{equation}}&#39;</div>
+<div class="viewcode-block" id="offset"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.offset">[docs]</a><span class="k">def</span> <span class="nf">offset</span><span class="p">(</span><span class="n">eq</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">begin</span><span class="se">{{</span><span class="s1">equation</span><span class="se">}}\n\t</span><span class="si">{</span><span class="n">eq</span><span class="si">}</span><span class="se">\n\\</span><span class="s1">end</span><span class="se">{{</span><span class="s1">equation</span><span class="se">}}</span><span class="s1">&#39;</span></div>
 
 
-<div class="viewcode-block" id="offset_no_numbering"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.offset_no_numbering">[docs]</a>def offset_no_numbering(eq: str) -&gt; str:
-    return f&#39;\n$${eq}$$\n&#39;</div>
+<div class="viewcode-block" id="offset_no_numbering"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.offset_no_numbering">[docs]</a><span class="k">def</span> <span class="nf">offset_no_numbering</span><span class="p">(</span><span class="n">eq</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">$$</span><span class="si">{</span><span class="n">eq</span><span class="si">}</span><span class="s1">$$</span><span class="se">\n</span><span class="s1">&#39;</span></div>
 
 
-<div class="viewcode-block" id="latex_partial"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.latex_partial">[docs]</a>def latex_partial(expr: Expr, eq_symbol: Symbol, wrt_symbol: Symbol, offset: bool = False) -&gt; str:
+<div class="viewcode-block" id="latex_partial"><a class="viewcode-back" href="../../../../api/pyexlatex.logic.format.html#pyexlatex.logic.format.eq.latex_partial">[docs]</a><span class="k">def</span> <span class="nf">latex_partial</span><span class="p">(</span><span class="n">expr</span><span class="p">:</span> <span class="n">Expr</span><span class="p">,</span> <span class="n">eq_symbol</span><span class="p">:</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">wrt_symbol</span><span class="p">:</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 
-    begin_str = &#39;$&#39;
-    end_str = &#39;$&#39;
-    if offset:
-        begin_str = &#39;\\begin{equation}\n\t&#39;
-        end_str = &#39;\n\\end{equation}&#39;
-    return rf&#39;{begin_str}\frac{{\partial {latex(eq_symbol)}}}{{\partial {latex(wrt_symbol)}}} = &#39; \
-        rf&#39;{latex(expr)}{end_str}&#39;</div>
+    <span class="n">begin_str</span> <span class="o">=</span> <span class="s1">&#39;$&#39;</span>
+    <span class="n">end_str</span> <span class="o">=</span> <span class="s1">&#39;$&#39;</span>
+    <span class="k">if</span> <span class="n">offset</span><span class="p">:</span>
+        <span class="n">begin_str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">begin</span><span class="si">{equation}</span><span class="se">\n\t</span><span class="s1">&#39;</span>
+        <span class="n">end_str</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n\\</span><span class="s1">end</span><span class="si">{equation}</span><span class="s1">&#39;</span>
+    <span class="k">return</span> <span class="sa">rf</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">begin_str</span><span class="si">}</span><span class="s1">\frac</span><span class="se">{{</span><span class="s1">\partial </span><span class="si">{</span><span class="n">latex</span><span class="p">(</span><span class="n">eq_symbol</span><span class="p">)</span><span class="si">}</span><span class="se">}}{{</span><span class="s1">\partial </span><span class="si">{</span><span class="n">latex</span><span class="p">(</span><span class="n">wrt_symbol</span><span class="p">)</span><span class="si">}</span><span class="se">}}</span><span class="s1"> = &#39;</span> \
+        <span class="sa">rf</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">latex</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span><span class="si">}{</span><span class="n">end_str</span><span class="si">}</span><span class="s1">&#39;</span></div>
 </pre></div>
 
            </div>

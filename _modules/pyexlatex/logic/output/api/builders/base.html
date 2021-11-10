@@ -24,10 +24,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
         <script src="../../../../../../_static/jquery.js"></script>
         <script src="../../../../../../_static/underscore.js"></script>
         <script src="../../../../../../_static/doctools.js"></script>
-        <script src="../../../../../../_static/language_data.js"></script>
         <script src="../../../../../../_static/clipboard.min.js"></script>
         <script src="../../../../../../_static/copybutton.js"></script>
     
@@ -38,12 +38,15 @@
   
   <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../../search.html" /> 
 </head>
@@ -202,7 +205,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">bibtex</span> <span class="o">=</span> <span class="n">bibtex</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_runs</span> <span class="o">=</span> <span class="n">max_runs</span></div>
 
-<div class="viewcode-block" id="BaseBuilder.build"><a class="viewcode-back" href="../../../../../../api/pyexlatex.logic.output.api.builders.html#pyexlatex.logic.output.api.builders.base.BaseBuilder.build">[docs]</a>    <span class="nd">@data</span><span class="p">(</span><span class="s1">&#39;source&#39;</span><span class="p">)</span>
+    <span class="nd">@data</span><span class="p">(</span><span class="s1">&#39;source&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">texinputs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">run_bibtex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">texinputs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">texinputs</span> <span class="o">=</span> <span class="p">[]</span>
@@ -271,7 +274,7 @@
                     <span class="s1">&#39;Maximum number of runs (</span><span class="si">{}</span><span class="s1">) without a stable .aux file &#39;</span>
                     <span class="s1">&#39;reached.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_runs</span><span class="p">))</span>
 
-            <span class="k">return</span> <span class="n">I</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">output_fn</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">I</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">output_fn</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BaseBuilder.is_available"><a class="viewcode-back" href="../../../../../../api/pyexlatex.logic.output.api.builders.html#pyexlatex.logic.output.api.builders.base.BaseBuilder.is_available">[docs]</a>    <span class="k">def</span> <span class="nf">is_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">which</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">executable</span><span class="p">))</span></div>

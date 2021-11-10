@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.logic.extract package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.logic.format package" href="pyexlatex.logic.format.html" />
@@ -201,83 +205,83 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.logic.extract">
+  <section id="module-pyexlatex.logic.extract">
 <span id="pyexlatex-logic-extract-package"></span><h1>pyexlatex.logic.extract package<a class="headerlink" href="#module-pyexlatex.logic.extract" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.logic.extract.by_attr">
+</section>
+<section id="module-pyexlatex.logic.extract.by_attr">
 <span id="pyexlatex-logic-extract-by-attr-module"></span><h2>pyexlatex.logic.extract.by_attr module<a class="headerlink" href="#module-pyexlatex.logic.extract.by_attr" title="Permalink to this headline">¶</a></h2>
 <dl class="py exception">
-<dt id="pyexlatex.logic.extract.by_attr.CouldNotExtractObjsWithAttrException">
-<em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.logic.extract.by_attr.</code><code class="sig-name descname">CouldNotExtractObjsWithAttrException</code><a class="reference internal" href="../_modules/pyexlatex/logic/extract/by_attr.html#CouldNotExtractObjsWithAttrException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.extract.by_attr.CouldNotExtractObjsWithAttrException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dt class="sig sig-object py" id="pyexlatex.logic.extract.by_attr.CouldNotExtractObjsWithAttrException">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.extract.by_attr.</span></span><span class="sig-name descname"><span class="pre">CouldNotExtractObjsWithAttrException</span></span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/by_attr.html#CouldNotExtractObjsWithAttrException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.extract.by_attr.CouldNotExtractObjsWithAttrException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="pyexlatex.logic.extract.by_attr.extract_objs_with_attr_from_ambiguous_collection">
-<code class="sig-prename descclassname">pyexlatex.logic.extract.by_attr.</code><code class="sig-name descname">extract_objs_with_attr_from_ambiguous_collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span></em>, <em class="sig-param"><span class="n">attr</span></em>, <em class="sig-param"><span class="n">attr_value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/by_attr.html#extract_objs_with_attr_from_ambiguous_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.extract.by_attr.extract_objs_with_attr_from_ambiguous_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.extract.by_attr.extract_objs_with_attr_from_ambiguous_collection">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.extract.by_attr.</span></span><span class="sig-name descname"><span class="pre">extract_objs_with_attr_from_ambiguous_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/by_attr.html#extract_objs_with_attr_from_ambiguous_collection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.extract.by_attr.extract_objs_with_attr_from_ambiguous_collection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.logic.extract.by_type">
+</section>
+<section id="module-pyexlatex.logic.extract.by_type">
 <span id="pyexlatex-logic-extract-by-type-module"></span><h2>pyexlatex.logic.extract.by_type module<a class="headerlink" href="#module-pyexlatex.logic.extract.by_type" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="pyexlatex.logic.extract.by_type.extract_objs_of_type_from_ambiguous_collection">
-<code class="sig-prename descclassname">pyexlatex.logic.extract.by_type.</code><code class="sig-name descname">extract_objs_of_type_from_ambiguous_collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span></em>, <em class="sig-param"><span class="n">obj_types</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/by_type.html#extract_objs_of_type_from_ambiguous_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.extract.by_type.extract_objs_of_type_from_ambiguous_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.extract.by_type.extract_objs_of_type_from_ambiguous_collection">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.extract.by_type.</span></span><span class="sig-name descname"><span class="pre">extract_objs_of_type_from_ambiguous_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_types</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/by_type.html#extract_objs_of_type_from_ambiguous_collection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.extract.by_type.extract_objs_of_type_from_ambiguous_collection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.logic.extract.docitems">
+</section>
+<section id="module-pyexlatex.logic.extract.docitems">
 <span id="pyexlatex-logic-extract-docitems-module"></span><h2>pyexlatex.logic.extract.docitems module<a class="headerlink" href="#module-pyexlatex.logic.extract.docitems" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="pyexlatex.logic.extract.docitems.extract_document_items_from_ambiguous_collection">
-<code class="sig-prename descclassname">pyexlatex.logic.extract.docitems.</code><code class="sig-name descname">extract_document_items_from_ambiguous_collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/docitems.html#extract_document_items_from_ambiguous_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.extract.docitems.extract_document_items_from_ambiguous_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.extract.docitems.extract_document_items_from_ambiguous_collection">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.extract.docitems.</span></span><span class="sig-name descname"><span class="pre">extract_document_items_from_ambiguous_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/docitems.html#extract_document_items_from_ambiguous_collection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.extract.docitems.extract_document_items_from_ambiguous_collection" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.documentitem.DocumentItem" title="pyexlatex.models.documentitem.DocumentItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DocumentItem</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.documentitem.DocumentItem" title="pyexlatex.models.documentitem.DocumentItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DocumentItem</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="pyexlatex.logic.extract.docitems.extract_document_items_from_ambiguous_collection_by_type">
-<code class="sig-prename descclassname">pyexlatex.logic.extract.docitems.</code><code class="sig-name descname">extract_document_items_from_ambiguous_collection_by_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/docitems.html#extract_document_items_from_ambiguous_collection_by_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.extract.docitems.extract_document_items_from_ambiguous_collection_by_type" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.extract.docitems.extract_document_items_from_ambiguous_collection_by_type">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.extract.docitems.</span></span><span class="sig-name descname"><span class="pre">extract_document_items_from_ambiguous_collection_by_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/docitems.html#extract_document_items_from_ambiguous_collection_by_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.extract.docitems.extract_document_items_from_ambiguous_collection_by_type" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.documentitem.DocumentItem" title="pyexlatex.models.documentitem.DocumentItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DocumentItem</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.documentitem.DocumentItem" title="pyexlatex.models.documentitem.DocumentItem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DocumentItem</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="pyexlatex.logic.extract.docitems.is_latex_item">
-<code class="sig-prename descclassname">pyexlatex.logic.extract.docitems.</code><code class="sig-name descname">is_latex_item</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">item</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/docitems.html#is_latex_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.extract.docitems.is_latex_item" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.extract.docitems.is_latex_item">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.extract.docitems.</span></span><span class="sig-name descname"><span class="pre">is_latex_item</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/docitems.html#is_latex_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.extract.docitems.is_latex_item" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.logic.extract.get">
+</section>
+<section id="module-pyexlatex.logic.extract.get">
 <span id="pyexlatex-logic-extract-get-module"></span><h2>pyexlatex.logic.extract.get module<a class="headerlink" href="#module-pyexlatex.logic.extract.get" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="pyexlatex.logic.extract.get.get_attr_from_items_or_collection">
-<code class="sig-prename descclassname">pyexlatex.logic.extract.get.</code><code class="sig-name descname">get_attr_from_items_or_collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">attr</span></em>, <em class="sig-param"><span class="n">unique</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">collected_attr_values</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/get.html#get_attr_from_items_or_collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.extract.get.get_attr_from_items_or_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.extract.get.get_attr_from_items_or_collection">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.extract.get.</span></span><span class="sig-name descname"><span class="pre">get_attr_from_items_or_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collected_attr_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/extract/get.html#get_attr_from_items_or_collection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.extract.get.get_attr_from_items_or_collection" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</p>
 </dd>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.logic.extract.tools">
+</section>
+<section id="module-pyexlatex.logic.extract.tools">
 <span id="pyexlatex-logic-extract-tools-module"></span><h2>pyexlatex.logic.extract.tools module<a class="headerlink" href="#module-pyexlatex.logic.extract.tools" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

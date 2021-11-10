@@ -1,0 +1,392 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyexlatex.table.models.texgen.alignment &mdash; pyexlatex 0.14.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../../../_static/logo.svg"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/clipboard.min.js"></script>
+        <script src="../../../../../_static/copybutton.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/sphinx_paramlinks.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home" alt="Documentation Home"> pyexlatex
+          
+
+          
+            
+            <img src="../../../../../_static/logo.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.14.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../tutorial.html">Getting started with pyexlatex</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../api/modules.html">pyexlatex</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">pyexlatex</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pyexlatex.table.models.texgen.alignment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyexlatex.table.models.texgen.alignment</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">mixins.repr</span> <span class="kn">import</span> <span class="n">ReprMixin</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.item</span> <span class="kn">import</span> <span class="n">ItemBase</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.models.containeritem</span> <span class="kn">import</span> <span class="n">ContainerItem</span>
+<span class="kn">from</span> <span class="nn">pyexlatex.texgen.packages.columntypes</span> <span class="kn">import</span> <span class="n">ColumnTypesPackage</span>
+
+
+<div class="viewcode-block" id="ColumnAlignment"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.alignment.ColumnAlignment">[docs]</a><span class="k">class</span> <span class="nc">ColumnAlignment</span><span class="p">(</span><span class="n">ReprMixin</span><span class="p">,</span> <span class="n">ItemBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Alignment of a single column in a table</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">repr_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;align&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="ColumnAlignment.__init__"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.alignment.ColumnAlignment.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">align_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_align_str</span><span class="p">(</span><span class="n">align_str</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">align</span> <span class="o">=</span> <span class="n">align_str</span></div>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">align</span>
+
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">align</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">align</span>
+
+    <span class="k">def</span> <span class="fm">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">align</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">align</span>
+
+    <span class="k">def</span> <span class="nf">_validate_align_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">align_str</span><span class="p">):</span>
+        <span class="n">basic_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[lcr|.]&#39;</span><span class="p">)</span>
+        <span class="n">length_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[LCRd]\{[\d\w\s.]+\}&#39;</span><span class="p">)</span>
+        <span class="n">dcolumn_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;D(\{.+\})?&#39;</span><span class="p">)</span>
+        <span class="n">siunitx_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[sS](\[.+\])?&#39;</span><span class="p">)</span>
+        <span class="n">spacing_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[@!]\{.*\}&#39;</span><span class="p">)</span>
+
+        <span class="n">basic_match</span> <span class="o">=</span> <span class="n">basic_pattern</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">align_str</span><span class="p">)</span>
+        <span class="n">length_match</span> <span class="o">=</span> <span class="n">length_pattern</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">align_str</span><span class="p">)</span>
+        <span class="n">dcolumn_match</span> <span class="o">=</span> <span class="n">dcolumn_pattern</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">align_str</span><span class="p">)</span>
+        <span class="n">siunitx_match</span> <span class="o">=</span> <span class="n">siunitx_pattern</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">align_str</span><span class="p">)</span>
+        <span class="n">spacing_match</span> <span class="o">=</span> <span class="n">spacing_pattern</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">align_str</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">length_match</span> <span class="ow">or</span> <span class="n">dcolumn_match</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_requirements_for_length_match</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">siunitx_match</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_add_requirements_for_s_column_types</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">basic_match</span> <span class="ow">or</span> <span class="n">length_match</span> <span class="ow">or</span> <span class="n">dcolumn_match</span> <span class="ow">or</span> <span class="n">siunitx_match</span> <span class="ow">or</span> <span class="n">spacing_match</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;expected alignment of l, c, r, ., |, s, S, &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;L</span><span class="se">{{</span><span class="s1">size</span><span class="se">}}</span><span class="s1">, C</span><span class="se">{{</span><span class="s1">size</span><span class="se">}}</span><span class="s1">, R</span><span class="se">{{</span><span class="s1">size</span><span class="se">}}</span><span class="s1">, d</span><span class="se">{{</span><span class="s1">decimal format</span><span class="se">}}</span><span class="s1">, &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;or D</span><span class="se">{{</span><span class="s1">in sep</span><span class="se">}}{{</span><span class="s1">out sep</span><span class="se">}}{{</span><span class="s1">decimal format</span><span class="se">}}</span><span class="s1">. Got </span><span class="si">{</span><span class="n">align_str</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_add_requirements_for_length_match</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_package</span><span class="p">(</span><span class="n">ColumnTypesPackage</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">_add_requirements_for_s_column_types</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_package</span><span class="p">(</span><span class="s1">&#39;siunitx&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">col_length</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">align</span> <span class="o">==</span> <span class="s1">&#39;|&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="n">spacing_adjust_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[@!]\{.*\}&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">spacing_adjust_pattern</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">align</span><span class="p">):</span>
+            <span class="k">return</span> <span class="mi">0</span>
+
+        <span class="k">return</span> <span class="mi">1</span></div>
+
+
+<div class="viewcode-block" id="ColumnsAlignment"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.alignment.ColumnsAlignment">[docs]</a><span class="k">class</span> <span class="nc">ColumnsAlignment</span><span class="p">(</span><span class="n">ReprMixin</span><span class="p">,</span> <span class="n">ContainerItem</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A set of column alignments, usually for the whole table</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">repr_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;aligns&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="ColumnsAlignment.__init__"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.alignment.ColumnsAlignment.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aligns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ColumnAlignment</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">num_columns</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aligns</span> <span class="o">=</span> <span class="n">ColumnsAlignment</span><span class="o">.</span><span class="n">_get_aligns</span><span class="p">(</span><span class="n">aligns</span><span class="p">,</span> <span class="n">num_columns</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_data_from_content</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">aligns</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">align</span><span class="p">)</span> <span class="k">for</span> <span class="n">align</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">aligns</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">align</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">aligns</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">align</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_col_length</span><span class="p">(</span><span class="n">aligns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ColumnAlignment</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">align</span><span class="o">.</span><span class="n">col_length</span> <span class="k">for</span> <span class="n">align</span> <span class="ow">in</span> <span class="n">aligns</span><span class="p">])</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_aligns</span><span class="p">(</span><span class="n">aligns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ColumnAlignment</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">num_columns</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">aligns</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">num_columns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;must pass aligns or num columns&#39;</span><span class="p">)</span>
+
+        <span class="c1"># default align is first column left, rest centered</span>
+        <span class="k">if</span> <span class="n">aligns</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">num_columns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">ColumnAlignment</span><span class="p">(</span><span class="s1">&#39;l&#39;</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="n">ColumnAlignment</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)]</span> <span class="o">*</span> <span class="p">(</span><span class="n">num_columns</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># if we don&#39;t know how many columns, must assume passed number of aligns is correct</span>
+        <span class="k">if</span> <span class="n">num_columns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">aligns</span>
+
+        <span class="c1"># Shouldn&#39;t hit this block, but needed for typing</span>
+        <span class="k">if</span> <span class="n">aligns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;must pass aligns or num columns&#39;</span><span class="p">)</span>
+
+        <span class="c1"># number of alignments matches number of columns. no extra processing needed</span>
+        <span class="k">if</span> <span class="n">ColumnsAlignment</span><span class="o">.</span><span class="n">_get_col_length</span><span class="p">(</span><span class="n">aligns</span><span class="p">)</span> <span class="o">==</span> <span class="n">num_columns</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">aligns</span>
+
+        <span class="c1"># if one alignment is passed with many columns, use that align with all columns</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">aligns</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">aligns</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="n">num_columns</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;got </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">aligns</span><span class="p">)</span><span class="si">}</span><span class="s1"> alignments for </span><span class="si">{</span><span class="n">num_columns</span><span class="si">}</span><span class="s1"> columns. unclear how to apply&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ColumnsAlignment.from_alignment_str"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.models.texgen.html#pyexlatex.table.models.texgen.alignment.ColumnsAlignment.from_alignment_str">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_alignment_str</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">align_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">num_columns</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">align_str_list</span> <span class="o">=</span> <span class="n">_full_align_str_to_align_str_list</span><span class="p">(</span><span class="n">align_str</span><span class="p">)</span>
+        <span class="n">aligns</span> <span class="o">=</span> <span class="p">[</span><span class="n">ColumnAlignment</span><span class="p">(</span><span class="n">align</span><span class="p">)</span> <span class="k">for</span> <span class="n">align</span> <span class="ow">in</span> <span class="n">align_str_list</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">aligns</span><span class="p">,</span> <span class="n">num_columns</span><span class="o">=</span><span class="n">num_columns</span><span class="p">)</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_full_align_str_to_align_str_list</span><span class="p">(</span><span class="n">align_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">split_letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;@&#39;</span><span class="p">,</span> <span class="s1">&#39;!&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">]</span>
+    <span class="n">out_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">collected_letters</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">escape_pairs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;{&#39;</span><span class="p">,</span> <span class="s1">&#39;}&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="s1">&#39;]&#39;</span><span class="p">)]</span>
+    <span class="n">escape_begins</span> <span class="o">=</span> <span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">escape_pairs</span><span class="p">]</span>
+    <span class="n">escape_ends</span> <span class="o">=</span> <span class="p">[</span><span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">escape_pairs</span><span class="p">]</span>
+    <span class="n">split</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">current_escape_end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">align_str</span><span class="p">:</span>
+        <span class="c1"># beginning inside of length str. don&#39;t split while inside</span>
+        <span class="k">if</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">escape_begins</span><span class="p">:</span>
+            <span class="n">split</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="c1"># Determine escape ending character</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span> <span class="ow">in</span> <span class="n">escape_pairs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">letter</span> <span class="o">==</span> <span class="n">beg</span><span class="p">:</span>
+                    <span class="n">current_escape_end</span> <span class="o">=</span> <span class="n">end</span>
+                    <span class="k">break</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">current_escape_end</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;matched </span><span class="si">{</span><span class="n">letter</span><span class="si">}</span><span class="s1"> as an escape character but no &#39;</span>
+                                 <span class="sa">f</span><span class="s1">&#39;end character. escape pairs: </span><span class="si">{</span><span class="n">escape_pairs</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="c1"># end of inside of length str. turn splitting back on</span>
+        <span class="k">if</span> <span class="n">letter</span> <span class="o">==</span> <span class="n">current_escape_end</span><span class="p">:</span>
+            <span class="n">split</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">current_escape_end</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="c1"># if splitting, output what we&#39;ve got so far and start a new item</span>
+        <span class="k">if</span> <span class="n">split</span> <span class="ow">and</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">split_letters</span><span class="p">:</span>
+            <span class="n">out_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">collected_letters</span><span class="p">)</span>
+            <span class="n">collected_letters</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="c1"># if not splitting, add to current item</span>
+        <span class="n">collected_letters</span> <span class="o">+=</span> <span class="n">letter</span>
+
+    <span class="c1"># Clean up list from loop. Add last entry, and combine first two entries</span>
+    <span class="n">out_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">collected_letters</span><span class="p">)</span>
+    <span class="n">first_val</span> <span class="o">=</span> <span class="n">out_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">out_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">first_val</span> <span class="o">+</span> <span class="n">out_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">out_list</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021, Nick DeRobertis
+
+    </p>
+  </div>
+    
+    
+      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-155734278-1', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

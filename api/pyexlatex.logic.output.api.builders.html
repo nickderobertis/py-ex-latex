@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.logic.output.api.builders package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.logic.output.api.exc_handler package" href="pyexlatex.logic.output.api.exc_handler.html" />
@@ -205,62 +209,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.logic.output.api.builders">
+  <section id="module-pyexlatex.logic.output.api.builders">
 <span id="pyexlatex-logic-output-api-builders-package"></span><h1>pyexlatex.logic.output.api.builders package<a class="headerlink" href="#module-pyexlatex.logic.output.api.builders" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.logic.output.api.builders.base">
+</section>
+<section id="module-pyexlatex.logic.output.api.builders.base">
 <span id="pyexlatex-logic-output-api-builders-base-module"></span><h2>pyexlatex.logic.output.api.builders.base module<a class="headerlink" href="#module-pyexlatex.logic.output.api.builders.base" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="pyexlatex.logic.output.api.builders.base.BaseBuilder">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.logic.output.api.builders.base.</code><code class="sig-name descname">BaseBuilder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">executable</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bibtex</span><span class="o">=</span><span class="default_value">'bibtex'</span></em>, <em class="sig-param"><span class="n">max_runs</span><span class="o">=</span><span class="default_value">15</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/builders/base.html#BaseBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.base.BaseBuilder">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.api.builders.base.</span></span><span class="sig-name descname"><span class="pre">BaseBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">executable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bibtex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bibtex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_runs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/builders/base.html#BaseBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The base class for LaTeX file builders</p>
 <dl class="py method">
-<dt id="pyexlatex.logic.output.api.builders.base.BaseBuilder.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">executable</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bibtex</span><span class="o">=</span><span class="default_value">'bibtex'</span></em>, <em class="sig-param"><span class="n">max_runs</span><span class="o">=</span><span class="default_value">15</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/builders/base.html#BaseBuilder.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pyexlatex.logic.output.api.builders.base.BaseBuilder.build">
-<code class="sig-name descname">build</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source</span></em>, <em class="sig-param"><span class="n">texinputs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">run_bibtex</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/builders/base.html#BaseBuilder.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.build" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.base.BaseBuilder.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">executable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bibtex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bibtex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_runs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/builders/base.html#BaseBuilder.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.__init__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pyexlatex.logic.output.api.builders.base.BaseBuilder.default_executable">
-<code class="sig-name descname">default_executable</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.default_executable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.base.BaseBuilder.default_executable">
+<span class="sig-name descname"><span class="pre">default_executable</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.default_executable" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pyexlatex.logic.output.api.builders.base.BaseBuilder.is_available">
-<code class="sig-name descname">is_available</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/builders/base.html#BaseBuilder.is_available"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.is_available" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.base.BaseBuilder.is_available">
+<span class="sig-name descname"><span class="pre">is_available</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/builders/base.html#BaseBuilder.is_available"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.is_available" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pyexlatex.logic.output.api.builders.base.BaseBuilder.output_extension">
-<code class="sig-name descname">output_extension</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.output_extension" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.base.BaseBuilder.output_extension">
+<span class="sig-name descname"><span class="pre">output_extension</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.output_extension" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pyexlatex.logic.output.api.builders.base.BaseBuilder.post_file_output_args">
-<code class="sig-name descname">post_file_output_args</code><em class="property">: Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></em><em class="property"> = ()</em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.post_file_output_args" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.base.BaseBuilder.post_file_output_args">
+<span class="sig-name descname"><span class="pre">post_file_output_args</span></span><em class="property"><span class="pre">:</span> <span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">()</span></em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.post_file_output_args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pyexlatex.logic.output.api.builders.base.BaseBuilder.pre_file_output_args">
-<code class="sig-name descname">pre_file_output_args</code><em class="property">: Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></em><em class="property"> = ('-interaction=batchmode', '-halt-on-error', '-shell-escape', '-file-line-error')</em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.pre_file_output_args" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.base.BaseBuilder.pre_file_output_args">
+<span class="sig-name descname"><span class="pre">pre_file_output_args</span></span><em class="property"><span class="pre">:</span> <span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">('-interaction=batchmode',</span> <span class="pre">'-halt-on-error',</span> <span class="pre">'-shell-escape',</span> <span class="pre">'-file-line-error')</span></em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder.pre_file_output_args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.logic.output.api.builders.htlatex">
+</section>
+<section id="module-pyexlatex.logic.output.api.builders.htlatex">
 <span id="pyexlatex-logic-output-api-builders-htlatex-module"></span><h2>pyexlatex.logic.output.api.builders.htlatex module<a class="headerlink" href="#module-pyexlatex.logic.output.api.builders.htlatex" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.logic.output.api.builders.htlatex.</code><code class="sig-name descname">HTLatexBuilder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">executable</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bibtex</span><span class="o">=</span><span class="default_value">'bibtex'</span></em>, <em class="sig-param"><span class="n">max_runs</span><span class="o">=</span><span class="default_value">15</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/builders/htlatex.html#HTLatexBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.api.builders.htlatex.</span></span><span class="sig-name descname"><span class="pre">HTLatexBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">executable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bibtex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bibtex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_runs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/builders/htlatex.html#HTLatexBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder" title="pyexlatex.logic.output.api.builders.base.BaseBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.logic.output.api.builders.base.BaseBuilder</span></code></a></p>
 <p>A simple htlatex-based builder for LaTeX files to generate HTML from LaTeX.</p>
 <p>Builds LaTeX files by copying them to a temporary directly and running
@@ -268,41 +266,41 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.params.executable"></span><strong>executable</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.params.executable">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – The path to the <code class="docutils literal notranslate"><span class="pre">htlatex</span></code> binary (will looked up on
+<li><p><span class="target" id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.params.executable"></span><strong>executable</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.params.executable">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – The path to the <code class="docutils literal notranslate"><span class="pre">htlatex</span></code> binary (will looked up on
 <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>).</p></li>
-<li><p><span class="target" id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.params.max_runs"></span><strong>max_runs</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.params.max_runs">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – An integer providing an upper limit on the amount of times
+<li><p><span class="target" id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.params.max_runs"></span><strong>max_runs</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.params.max_runs">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – An integer providing an upper limit on the amount of times
 <code class="docutils literal notranslate"><span class="pre">htlatex</span></code> can be rerun before an exception is thrown.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.default_executable">
-<code class="sig-name descname">default_executable</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></em><em class="property"> = 'make4ht'</em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.default_executable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.default_executable">
+<span class="sig-name descname"><span class="pre">default_executable</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">'make4ht'</span></em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.default_executable" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.output_extension">
-<code class="sig-name descname">output_extension</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></em><em class="property"> = 'html'</em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.output_extension" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.output_extension">
+<span class="sig-name descname"><span class="pre">output_extension</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">'html'</span></em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.output_extension" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.post_file_output_args">
-<code class="sig-name descname">post_file_output_args</code><em class="property">: Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></em><em class="property"> = ()</em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.post_file_output_args" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.post_file_output_args">
+<span class="sig-name descname"><span class="pre">post_file_output_args</span></span><em class="property"><span class="pre">:</span> <span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">()</span></em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.post_file_output_args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.pre_file_output_args">
-<code class="sig-name descname">pre_file_output_args</code><em class="property">: Sequence<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></em><em class="property"> = ('--lua', '--shell-escape', '--utf8')</em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.pre_file_output_args" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.pre_file_output_args">
+<span class="sig-name descname"><span class="pre">pre_file_output_args</span></span><em class="property"><span class="pre">:</span> <span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">('--lua',</span> <span class="pre">'--shell-escape',</span> <span class="pre">'--utf8')</span></em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.htlatex.HTLatexBuilder.pre_file_output_args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.logic.output.api.builders.lualatex">
+</section>
+<section id="module-pyexlatex.logic.output.api.builders.lualatex">
 <span id="pyexlatex-logic-output-api-builders-lualatex-module"></span><h2>pyexlatex.logic.output.api.builders.lualatex module<a class="headerlink" href="#module-pyexlatex.logic.output.api.builders.lualatex" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.logic.output.api.builders.lualatex.</code><code class="sig-name descname">LuaLatexBuilder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">executable</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">bibtex</span><span class="o">=</span><span class="default_value">'bibtex'</span></em>, <em class="sig-param"><span class="n">max_runs</span><span class="o">=</span><span class="default_value">15</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/builders/lualatex.html#LuaLatexBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.api.builders.lualatex.</span></span><span class="sig-name descname"><span class="pre">LuaLatexBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">executable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bibtex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bibtex'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_runs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/builders/lualatex.html#LuaLatexBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyexlatex.logic.output.api.builders.base.BaseBuilder" title="pyexlatex.logic.output.api.builders.base.BaseBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.logic.output.api.builders.base.BaseBuilder</span></code></a></p>
 <p>A simple lualatex-based builder for LaTeX files.</p>
 <p>Builds LaTeX files by copying them to a temporary directly and running
@@ -310,27 +308,27 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><span class="target" id="pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.params.executable"></span><strong>executable</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.params.executable">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – The path to the <code class="docutils literal notranslate"><span class="pre">lualatex</span></code> binary (will looked up on
+<li><p><span class="target" id="pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.params.executable"></span><strong>executable</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.params.executable">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – The path to the <code class="docutils literal notranslate"><span class="pre">lualatex</span></code> binary (will looked up on
 <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>).</p></li>
-<li><p><span class="target" id="pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.params.max_runs"></span><strong>max_runs</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.params.max_runs">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – An integer providing an upper limit on the amount of times
+<li><p><span class="target" id="pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.params.max_runs"></span><strong>max_runs</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.params.max_runs">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – An integer providing an upper limit on the amount of times
 <code class="docutils literal notranslate"><span class="pre">lualatex</span></code> can be rerun before an exception is thrown.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt id="pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.default_executable">
-<code class="sig-name descname">default_executable</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></em><em class="property"> = 'lualatex'</em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.default_executable" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.default_executable">
+<span class="sig-name descname"><span class="pre">default_executable</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">'lualatex'</span></em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.default_executable" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.output_extension">
-<code class="sig-name descname">output_extension</code><em class="property">: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></em><em class="property"> = 'pdf'</em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.output_extension" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.output_extension">
+<span class="sig-name descname"><span class="pre">output_extension</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><em class="property"> <span class="pre">=</span> <span class="pre">'pdf'</span></em><a class="headerlink" href="#pyexlatex.logic.output.api.builders.lualatex.LuaLatexBuilder.output_extension" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

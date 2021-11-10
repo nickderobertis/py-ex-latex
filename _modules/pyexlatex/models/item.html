@@ -24,10 +24,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/language_data.js"></script>
         <script src="../../../_static/clipboard.min.js"></script>
         <script src="../../../_static/copybutton.js"></script>
     
@@ -38,12 +38,15 @@
   
   <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
@@ -204,7 +207,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">package</span><span class="p">)</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">ItemBase</span><span class="p">(</span><span class="n">DataItem</span><span class="p">,</span> <span class="n">IsSpecificClassMixin</span><span class="p">,</span> <span class="n">IsLatexItemMixin</span><span class="p">,</span> <span class="n">StringAdditionMixin</span><span class="p">,</span> <span class="n">EqHashMixin</span><span class="p">,</span> <span class="n">EqOnAttrsMixin</span><span class="p">):</span>
+<div class="viewcode-block" id="ItemBase"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.ItemBase">[docs]</a><span class="k">class</span> <span class="nc">ItemBase</span><span class="p">(</span><span class="n">DataItem</span><span class="p">,</span> <span class="n">IsSpecificClassMixin</span><span class="p">,</span> <span class="n">IsLatexItemMixin</span><span class="p">,</span> <span class="n">StringAdditionMixin</span><span class="p">,</span> <span class="n">EqHashMixin</span><span class="p">,</span> <span class="n">EqOnAttrsMixin</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base class for all latex generating classes</span>
 <span class="sd">    </span>
@@ -213,9 +216,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="ItemBase.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.ItemBase.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init_data</span><span class="p">()</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
     <span class="nd">@overload</span>
     <span class="k">def</span> <span class="nf">_wrap_with</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="s1">&#39;PyexlatexItem&#39;</span><span class="p">,</span> <span class="n">begin_wrap</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end_wrap</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -271,12 +274,12 @@
     <span class="k">def</span> <span class="nf">_get_list_copy_from_list_or_none</span><span class="p">(</span><span class="n">list_or_none</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">list_or_none</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span>
-        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">list_or_none</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">list_or_none</span><span class="p">)</span></div>
 
 
 
 
-<span class="k">class</span> <span class="nc">Item</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+<div class="viewcode-block" id="Item"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.Item">[docs]</a><span class="k">class</span> <span class="nc">Item</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
     <span class="n">equal_attrs</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;contents&#39;</span><span class="p">,</span>
         <span class="s1">&#39;pre_env_contents&#39;</span><span class="p">,</span>
@@ -285,7 +288,7 @@
         <span class="s1">&#39;env&#39;</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">pre_env_contents</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">post_env_contents</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env_modifiers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="Item.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.Item.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">pre_env_contents</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">post_env_contents</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env_modifiers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="kn">from</span> <span class="nn">pyexlatex.models.environment</span> <span class="kn">import</span> <span class="n">Environment</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">modifiers</span><span class="o">=</span><span class="n">env_modifiers</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="n">overlay</span><span class="p">)</span>
@@ -293,7 +296,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">pre_env_contents</span> <span class="o">=</span> <span class="n">pre_env_contents</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">post_env_contents</span> <span class="o">=</span> <span class="n">post_env_contents</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;Item(name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">, contents=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="si">}</span><span class="s1">)&gt;&#39;</span>
@@ -310,10 +313,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">post_env_contents</span>
         <span class="p">]</span>
         <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">possible_items</span> <span class="k">if</span> <span class="n">item</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">_build</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_build</span><span class="p">(</span><span class="n">items</span><span class="p">)</span></div>
 
 
-<span class="k">class</span> <span class="nc">SimpleItem</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleItem"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.SimpleItem">[docs]</a><span class="k">class</span> <span class="nc">SimpleItem</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
     <span class="n">equal_attrs</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;contents&#39;</span><span class="p">,</span>
         <span class="s1">&#39;modifiers&#39;</span><span class="p">,</span>
@@ -323,7 +326,7 @@
         <span class="s1">&#39;data&#39;</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">pre_modifiers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<div class="viewcode-block" id="SimpleItem.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.SimpleItem.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">pre_modifiers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                  <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">format_content</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="n">contents</span>
@@ -331,7 +334,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">pre_modifiers</span> <span class="o">=</span> <span class="n">pre_modifiers</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">format_content</span> <span class="o">=</span> <span class="n">format_content</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s1">(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="si">}</span><span class="s1">)&gt;&#39;</span>
@@ -344,66 +347,66 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">pre_modifiers</span><span class="p">,</span>
             <span class="n">overlay</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlay</span><span class="p">,</span>
             <span class="n">format_content</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">format_content</span>
-        <span class="p">)</span>
+        <span class="p">)</span></div>
 
 
-<span class="k">class</span> <span class="nc">MultiOptionSimpleItem</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+<div class="viewcode-block" id="MultiOptionSimpleItem"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.MultiOptionSimpleItem">[docs]</a><span class="k">class</span> <span class="nc">MultiOptionSimpleItem</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">options</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="MultiOptionSimpleItem.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.MultiOptionSimpleItem.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">options</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">options</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s1">(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="si">}</span><span class="s1">)&gt;&#39;</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">_multi_option_item_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlay</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_multi_option_item_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlay</span><span class="p">)</span></div>
 
 
-<span class="k">class</span> <span class="nc">NoBracesItem</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+<div class="viewcode-block" id="NoBracesItem"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.NoBracesItem">[docs]</a><span class="k">class</span> <span class="nc">NoBracesItem</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="NoBracesItem.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.NoBracesItem.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="n">contents</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s1">(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="si">}</span><span class="s1">)&gt;&#39;</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">_no_braces_item_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlay</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_no_braces_item_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlay</span><span class="p">)</span></div>
 
 
-<span class="k">class</span> <span class="nc">EqualsItem</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+<div class="viewcode-block" id="EqualsItem"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.EqualsItem">[docs]</a><span class="k">class</span> <span class="nc">EqualsItem</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+<div class="viewcode-block" id="EqualsItem.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.EqualsItem.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="n">contents</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s1">(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="si">}</span><span class="s1">)&gt;&#39;</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">item_equals_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">item_equals_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span></div>
 
 
-<span class="k">class</span> <span class="nc">NoOptionsNoContentsItem</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
+<div class="viewcode-block" id="NoOptionsNoContentsItem"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.NoOptionsNoContentsItem">[docs]</a><span class="k">class</span> <span class="nc">NoOptionsNoContentsItem</span><span class="p">(</span><span class="n">ItemBase</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="NoOptionsNoContentsItem.__init__"><a class="viewcode-back" href="../../../api/pyexlatex.models.html#pyexlatex.models.item.NoOptionsNoContentsItem.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">overlay</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Overlay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">modifiers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">overlay</span> <span class="o">=</span> <span class="n">overlay</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">modifiers</span> <span class="o">=</span> <span class="n">modifiers</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s1">&gt;&#39;</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">no_options_no_contents_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlay</span><span class="p">,</span> <span class="n">modifiers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modifiers</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">no_options_no_contents_str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">overlay</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlay</span><span class="p">,</span> <span class="n">modifiers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">modifiers</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

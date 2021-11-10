@@ -24,10 +24,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js"></script>
         <script src="../../../../../../_static/jquery.js"></script>
         <script src="../../../../../../_static/underscore.js"></script>
         <script src="../../../../../../_static/doctools.js"></script>
-        <script src="../../../../../../_static/language_data.js"></script>
         <script src="../../../../../../_static/clipboard.min.js"></script>
         <script src="../../../../../../_static/copybutton.js"></script>
     
@@ -38,12 +38,15 @@
   
   <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../../search.html" /> 
 </head>
@@ -178,25 +181,25 @@
 <span class="kn">from</span> <span class="nn">pyexlatex.layouts.multicol</span> <span class="kn">import</span> <span class="n">MultiCol</span>
 
 
-<span class="k">class</span> <span class="nc">TwoColumnFrame</span><span class="p">(</span><span class="n">GridFrame</span><span class="p">):</span>
+<div class="viewcode-block" id="TwoColumnFrame"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnFrame">[docs]</a><span class="k">class</span> <span class="nc">TwoColumnFrame</span><span class="p">(</span><span class="n">GridFrame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a GridFrame, automatically setting widths and heights as an even split based on the shape</span>
 <span class="sd">    of the content passed</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_content</span><span class="p">,</span> <span class="n">right_content</span><span class="p">,</span> <span class="o">**</span><span class="n">frame_kwargs</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">([[</span><span class="n">left_content</span><span class="p">,</span> <span class="n">right_content</span><span class="p">]],</span> <span class="o">**</span><span class="n">frame_kwargs</span><span class="p">)</span>
+<div class="viewcode-block" id="TwoColumnFrame.__init__"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnFrame.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_content</span><span class="p">,</span> <span class="n">right_content</span><span class="p">,</span> <span class="o">**</span><span class="n">frame_kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">([[</span><span class="n">left_content</span><span class="p">,</span> <span class="n">right_content</span><span class="p">]],</span> <span class="o">**</span><span class="n">frame_kwargs</span><span class="p">)</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">BasicTwoColumnFrame</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
+<div class="viewcode-block" id="BasicTwoColumnFrame"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnFrame">[docs]</a><span class="k">class</span> <span class="nc">BasicTwoColumnFrame</span><span class="p">(</span><span class="n">Frame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Similar to TwoColumnFrame but does not put any constraints on vertical sizing</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_content</span><span class="p">,</span> <span class="n">right_content</span><span class="p">,</span> <span class="o">**</span><span class="n">frame_kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="BasicTwoColumnFrame.__init__"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnFrame.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">left_content</span><span class="p">,</span> <span class="n">right_content</span><span class="p">,</span> <span class="o">**</span><span class="n">frame_kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">content</span> <span class="o">=</span> <span class="p">[</span><span class="n">left_content</span><span class="p">,</span> <span class="n">right_content</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">MultiCol</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="o">**</span><span class="n">frame_kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="o">**</span><span class="n">frame_kwargs</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="TwoGraphicBase"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase">[docs]</a><span class="k">class</span> <span class="nc">TwoGraphicBase</span><span class="p">:</span>
@@ -258,18 +261,18 @@
         <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">per_graphic</span><span class="si">}{</span><span class="n">TextHeight</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span></div>
 
 
-<span class="k">class</span> <span class="nc">TwoColumnGraphicFrame</span><span class="p">(</span><span class="n">TwoGraphicBase</span><span class="p">,</span> <span class="n">TwoColumnFrame</span><span class="p">):</span>
+<div class="viewcode-block" id="TwoColumnGraphicFrame"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicFrame">[docs]</a><span class="k">class</span> <span class="nc">TwoColumnGraphicFrame</span><span class="p">(</span><span class="n">TwoGraphicBase</span><span class="p">,</span> <span class="n">TwoColumnFrame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A GridFrame with graphics on one side and text on the other.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">class</span> <span class="nc">BasicTwoColumnGraphicFrame</span><span class="p">(</span><span class="n">TwoGraphicBase</span><span class="p">,</span> <span class="n">BasicTwoColumnFrame</span><span class="p">):</span>
+<div class="viewcode-block" id="BasicTwoColumnGraphicFrame"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnGraphicFrame">[docs]</a><span class="k">class</span> <span class="nc">BasicTwoColumnGraphicFrame</span><span class="p">(</span><span class="n">TwoGraphicBase</span><span class="p">,</span> <span class="n">BasicTwoColumnFrame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Similar to TwoColumnGraphicFrame, but does not put any constraints on vertical sizing</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="TwoColumnGraphicDimRevealBase"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase">[docs]</a><span class="k">class</span> <span class="nc">TwoColumnGraphicDimRevealBase</span><span class="p">(</span><span class="n">DimRevealMixin</span><span class="p">):</span>
@@ -282,18 +285,18 @@
                          <span class="o">**</span><span class="n">frame_kwargs</span><span class="p">)</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">TwoColumnGraphicDimRevealFrame</span><span class="p">(</span><span class="n">TwoColumnGraphicDimRevealBase</span><span class="p">,</span> <span class="n">TwoColumnGraphicFrame</span><span class="p">):</span>
+<div class="viewcode-block" id="TwoColumnGraphicDimRevealFrame"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealFrame">[docs]</a><span class="k">class</span> <span class="nc">TwoColumnGraphicDimRevealFrame</span><span class="p">(</span><span class="n">TwoColumnGraphicDimRevealBase</span><span class="p">,</span> <span class="n">TwoColumnGraphicFrame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A TwoColumnGraphicFrame where the non-graphic column is bulleted or numbered dim and reveal items</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 
 
-<span class="k">class</span> <span class="nc">BasicTwoColumnGraphicDimRevealFrame</span><span class="p">(</span><span class="n">TwoColumnGraphicDimRevealBase</span><span class="p">,</span> <span class="n">TwoColumnGraphicFrame</span><span class="p">):</span>
+<div class="viewcode-block" id="BasicTwoColumnGraphicDimRevealFrame"><a class="viewcode-back" href="../../../../../../api/pyexlatex.presentation.beamer.templates.frames.html#pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnGraphicDimRevealFrame">[docs]</a><span class="k">class</span> <span class="nc">BasicTwoColumnGraphicDimRevealFrame</span><span class="p">(</span><span class="n">TwoColumnGraphicDimRevealBase</span><span class="p">,</span> <span class="n">TwoColumnGraphicFrame</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A BasicTwoColumnGraphicFrame where the non-graphic column is bulleted or numbered dim and reveal items</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">pass</span>
+    <span class="k">pass</span></div>
 </pre></div>
 
            </div>

@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.logic.output.api.exc_handler package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.logic.output.api.exc_handler.prepend package" href="pyexlatex.logic.output.api.exc_handler.prepend.html" />
@@ -205,9 +209,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.logic.output.api.exc_handler">
+  <section id="module-pyexlatex.logic.output.api.exc_handler">
 <span id="pyexlatex-logic-output-api-exc-handler-package"></span><h1>pyexlatex.logic.output.api.exc_handler package<a class="headerlink" href="#module-pyexlatex.logic.output.api.exc_handler" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
+<section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
@@ -221,31 +225,30 @@
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="submodules">
+</section>
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.logic.output.api.exc_handler.main">
+</section>
+<section id="module-pyexlatex.logic.output.api.exc_handler.main">
 <span id="pyexlatex-logic-output-api-exc-handler-main-module"></span><h2>pyexlatex.logic.output.api.exc_handler.main module<a class="headerlink" href="#module-pyexlatex.logic.output.api.exc_handler.main" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="pyexlatex.logic.output.api.exc_handler.main.APIExceptionHandler">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.logic.output.api.exc_handler.main.</code><code class="sig-name descname">APIExceptionHandler</code><span class="sig-paren">(</span><em class="sig-param">exceptions</em>, <em class="sig-param">orig_exception</em>, <em class="sig-param">latex_str</em>, <em class="sig-param">prepend_kwargs_dict=None</em>, <em class="sig-param">prepend_items_dict=None</em>, <em class="sig-param">retries_remaining=3</em>, <em class="sig-param">output_format=&lt;OutputFormats.PDF: 'pdf'&gt;</em>, <em class="sig-param">**latex_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/main.html#APIExceptionHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.main.APIExceptionHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.exc_handler.main.APIExceptionHandler">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.api.exc_handler.main.</span></span><span class="sig-name descname"><span class="pre">APIExceptionHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exceptions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latex_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepend_kwargs_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepend_items_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retries_remaining</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">OutputFormats.PDF</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">latex_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/main.html#APIExceptionHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.main.APIExceptionHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
-<dt id="pyexlatex.logic.output.api.exc_handler.main.APIExceptionHandler.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">exceptions</em>, <em class="sig-param">orig_exception</em>, <em class="sig-param">latex_str</em>, <em class="sig-param">prepend_kwargs_dict=None</em>, <em class="sig-param">prepend_items_dict=None</em>, <em class="sig-param">retries_remaining=3</em>, <em class="sig-param">output_format=&lt;OutputFormats.PDF: 'pdf'&gt;</em>, <em class="sig-param">**latex_kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/main.html#APIExceptionHandler.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.main.APIExceptionHandler.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.exc_handler.main.APIExceptionHandler.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exceptions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latex_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepend_kwargs_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepend_items_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retries_remaining</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">OutputFormats.PDF</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">latex_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/main.html#APIExceptionHandler.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.main.APIExceptionHandler.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
-<dt id="pyexlatex.logic.output.api.exc_handler.main.APIExceptionHandler.handle_exceptions">
-<code class="sig-name descname">handle_exceptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/main.html#APIExceptionHandler.handle_exceptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.main.APIExceptionHandler.handle_exceptions" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.exc_handler.main.APIExceptionHandler.handle_exceptions">
+<span class="sig-name descname"><span class="pre">handle_exceptions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/main.html#APIExceptionHandler.handle_exceptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.main.APIExceptionHandler.handle_exceptions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

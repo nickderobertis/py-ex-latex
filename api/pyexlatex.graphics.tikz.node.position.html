@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.graphics.tikz.node.position package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.layouts package" href="pyexlatex.layouts.html" />
@@ -205,30 +209,227 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.graphics.tikz.node.position">
+  <section id="module-pyexlatex.graphics.tikz.node.position">
 <span id="pyexlatex-graphics-tikz-node-position-package"></span><h1>pyexlatex.graphics.tikz.node.position package<a class="headerlink" href="#module-pyexlatex.graphics.tikz.node.position" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.graphics.tikz.node.position.directions">
+</section>
+<section id="module-pyexlatex.graphics.tikz.node.position.directions">
 <span id="pyexlatex-graphics-tikz-node-position-directions-module"></span><h2>pyexlatex.graphics.tikz.node.position.directions module<a class="headerlink" href="#module-pyexlatex.graphics.tikz.node.position.directions" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.graphics.tikz.node.position.position">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.Above">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.</span></span><span class="sig-name descname"><span class="pre">Above</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">of</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combined_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/graphics/tikz/node/position/directions.html#Above"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.Above" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.graphics.tikz.node.position.directions.VerticalDirection" title="pyexlatex.graphics.tikz.node.position.directions.VerticalDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.VerticalDirection</span></code></a></p>
+<p>Used for placing nodes: construct with one node, pass as placement to another node, that second node will
+be placed above the first node.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.Above.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'above'</span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.Above.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.Below">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.</span></span><span class="sig-name descname"><span class="pre">Below</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">of</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combined_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/graphics/tikz/node/position/directions.html#Below"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.Below" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.graphics.tikz.node.position.directions.VerticalDirection" title="pyexlatex.graphics.tikz.node.position.directions.VerticalDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.VerticalDirection</span></code></a></p>
+<p>Used for placing nodes: construct with one node, pass as placement to another node, that second node will
+be placed below the first node.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.Below.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'below'</span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.Below.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.</span></span><span class="sig-name descname"><span class="pre">DirectionBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">of</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combined_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/graphics/tikz/node/position/directions.html#DirectionBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.models.html#pyexlatex.models.item.ItemBase" title="pyexlatex.models.item.ItemBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.models.item.ItemBase</span></code></a></p>
+<p>Base class for relative positioning directions in TikZ, e.g. above, above right, etc.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">of</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combined_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/graphics/tikz/node/position/directions.html#DirectionBase.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.params.direction"></span><strong>direction</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.params.direction">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ForwardRef" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForwardRef</span></code></a>]) – </p></li>
+<li><p><span class="target" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.params.of"></span><strong>of</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.params.of">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ForwardRef" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForwardRef</span></code></a>]) – </p></li>
+<li><p><span class="target" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.params.by"></span><strong>by</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.params.by">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]) – </p></li>
+<li><p><span class="target" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.params.combined_direction"></span><strong>combined_direction</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.params.combined_direction">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – In some usages of directions, they are specified together, e.g.
+above right=2cm and 3cm. In other usages, they are specified separately, e.g. above=2cm, right=3cm.
+When combined_direction=True, will use the former style, and when False will use the latter style</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.by_str">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">by_str</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.by_str" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.full_direction">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">full_direction</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.full_direction" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.has_combined_direction">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">has_combined_direction</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.has_combined_direction" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.horizontal_by_str">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">horizontal_by_str</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.horizontal_by_str" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.horizontal_of_str">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">horizontal_of_str</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.horizontal_of_str" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.is_vertical_direction">
+<span class="sig-name descname"><span class="pre">is_vertical_direction</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.is_vertical_direction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'&lt;invalid,</span> <span class="pre">do</span> <span class="pre">not</span> <span class="pre">use</span> <span class="pre">DirectionBase</span> <span class="pre">directly&gt;'</span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.of_label">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">of_label</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.of_label" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.of_str">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">of_str</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.of_str" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.vertical_by_str">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">vertical_by_str</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.vertical_by_str" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.DirectionBase.vertical_of_str">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">vertical_of_str</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase.vertical_of_str" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.HorizontalDirection">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.</span></span><span class="sig-name descname"><span class="pre">HorizontalDirection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">of</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combined_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/graphics/tikz/node/position/directions.html#HorizontalDirection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.HorizontalDirection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase" title="pyexlatex.graphics.tikz.node.position.directions.DirectionBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.DirectionBase</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.HorizontalDirection.is_vertical_direction">
+<span class="sig-name descname"><span class="pre">is_vertical_direction</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.HorizontalDirection.is_vertical_direction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.Left">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.</span></span><span class="sig-name descname"><span class="pre">Left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">of</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combined_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/graphics/tikz/node/position/directions.html#Left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.Left" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.graphics.tikz.node.position.directions.HorizontalDirection" title="pyexlatex.graphics.tikz.node.position.directions.HorizontalDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.HorizontalDirection</span></code></a></p>
+<p>Used for placing nodes: construct with one node, pass as placement to another node, that second node will
+be placed to the left of the first node.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.Left.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'left'</span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.Left.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.Right">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.</span></span><span class="sig-name descname"><span class="pre">Right</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">of</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combined_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/graphics/tikz/node/position/directions.html#Right"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.Right" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.graphics.tikz.node.position.directions.HorizontalDirection" title="pyexlatex.graphics.tikz.node.position.directions.HorizontalDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.HorizontalDirection</span></code></a></p>
+<p>Used for placing nodes: construct with one node, pass as placement to another node, that second node will
+be placed to the right of the first node.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.Right.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'right'</span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.Right.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.VerticalDirection">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.</span></span><span class="sig-name descname"><span class="pre">VerticalDirection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">of</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combined_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/graphics/tikz/node/position/directions.html#VerticalDirection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.VerticalDirection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.graphics.tikz.node.position.directions.DirectionBase" title="pyexlatex.graphics.tikz.node.position.directions.DirectionBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.graphics.tikz.node.position.directions.DirectionBase</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.directions.VerticalDirection.is_vertical_direction">
+<span class="sig-name descname"><span class="pre">is_vertical_direction</span></span><em class="property"><span class="pre">:</span> <span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.directions.VerticalDirection.is_vertical_direction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.graphics.tikz.node.position.position">
 <span id="pyexlatex-graphics-tikz-node-position-position-module"></span><h2>pyexlatex.graphics.tikz.node.position.position module<a class="headerlink" href="#module-pyexlatex.graphics.tikz.node.position.position" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="pyexlatex.graphics.tikz.node.position.position.NodePosition">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.graphics.tikz.node.position.position.</code><code class="sig-name descname">NodePosition</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">location</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/graphics/tikz/node/position/position.html#NodePosition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.position.NodePosition" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.position.NodePosition">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.graphics.tikz.node.position.position.</span></span><span class="sig-name descname"><span class="pre">NodePosition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/graphics/tikz/node/position/position.html#NodePosition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.position.NodePosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
-<dt id="pyexlatex.graphics.tikz.node.position.position.NodePosition.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">location</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/graphics/tikz/node/position/position.html#NodePosition.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.position.NodePosition.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="pyexlatex.graphics.tikz.node.position.position.NodePosition.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/graphics/tikz/node/position/position.html#NodePosition.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.graphics.tikz.node.position.position.NodePosition.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

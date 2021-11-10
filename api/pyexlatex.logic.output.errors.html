@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.logic.output.errors package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.logic.output.errors.models package" href="pyexlatex.logic.output.errors.models.html" />
@@ -203,9 +207,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.logic.output.errors">
+  <section id="module-pyexlatex.logic.output.errors">
 <span id="pyexlatex-logic-output-errors-package"></span><h1>pyexlatex.logic.output.errors package<a class="headerlink" href="#module-pyexlatex.logic.output.errors" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
+<section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
@@ -218,34 +222,34 @@
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="submodules">
+</section>
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.logic.output.errors.exc">
+</section>
+<section id="module-pyexlatex.logic.output.errors.exc">
 <span id="pyexlatex-logic-output-errors-exc-module"></span><h2>pyexlatex.logic.output.errors.exc module<a class="headerlink" href="#module-pyexlatex.logic.output.errors.exc" title="Permalink to this headline">¶</a></h2>
 <p>Add exceptions here and set _match_str to whatever string should match the exception. They will automatically
 be passed to the exception manager</p>
 <dl class="py exception">
-<dt id="pyexlatex.logic.output.errors.exc.LatexException">
-<em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.logic.output.errors.exc.</code><code class="sig-name descname">LatexException</code><a class="reference internal" href="../_modules/pyexlatex/logic/output/errors/exc.html#LatexException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.errors.exc.LatexException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.errors.exc.LatexException">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.errors.exc.</span></span><span class="sig-name descname"><span class="pre">LatexException</span></span><a class="reference internal" href="../_modules/pyexlatex/logic/output/errors/exc.html#LatexException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.errors.exc.LatexException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
 </dd></dl>
 
 <dl class="py exception">
-<dt id="pyexlatex.logic.output.errors.exc.OutputLoopConsecutiveDeadCycles">
-<em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.logic.output.errors.exc.</code><code class="sig-name descname">OutputLoopConsecutiveDeadCycles</code><a class="reference internal" href="../_modules/pyexlatex/logic/output/errors/exc.html#OutputLoopConsecutiveDeadCycles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.errors.exc.OutputLoopConsecutiveDeadCycles" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.errors.exc.OutputLoopConsecutiveDeadCycles">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.errors.exc.</span></span><span class="sig-name descname"><span class="pre">OutputLoopConsecutiveDeadCycles</span></span><a class="reference internal" href="../_modules/pyexlatex/logic/output/errors/exc.html#OutputLoopConsecutiveDeadCycles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.errors.exc.OutputLoopConsecutiveDeadCycles" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyexlatex.logic.output.errors.exc.LatexException" title="pyexlatex.logic.output.errors.exc.LatexException"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.logic.output.errors.exc.LatexException</span></code></a></p>
 </dd></dl>
 
 <dl class="py exception">
-<dt id="pyexlatex.logic.output.errors.exc.TooManyUnprocessedFloatsException">
-<em class="property">exception </em><code class="sig-prename descclassname">pyexlatex.logic.output.errors.exc.</code><code class="sig-name descname">TooManyUnprocessedFloatsException</code><a class="reference internal" href="../_modules/pyexlatex/logic/output/errors/exc.html#TooManyUnprocessedFloatsException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.errors.exc.TooManyUnprocessedFloatsException" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.errors.exc.TooManyUnprocessedFloatsException">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.errors.exc.</span></span><span class="sig-name descname"><span class="pre">TooManyUnprocessedFloatsException</span></span><a class="reference internal" href="../_modules/pyexlatex/logic/output/errors/exc.html#TooManyUnprocessedFloatsException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.errors.exc.TooManyUnprocessedFloatsException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pyexlatex.logic.output.errors.exc.LatexException" title="pyexlatex.logic.output.errors.exc.LatexException"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.logic.output.errors.exc.LatexException</span></code></a></p>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

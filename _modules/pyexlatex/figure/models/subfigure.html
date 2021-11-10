@@ -24,10 +24,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
         <script src="../../../../_static/clipboard.min.js"></script>
         <script src="../../../../_static/copybutton.js"></script>
     
@@ -38,12 +38,15 @@
   
   <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
@@ -179,13 +182,13 @@
 <span class="n">POSITION_STR_PATTERN</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\[([tcb])\]{([\d.\w</span><span class="se">\\</span><span class="s1">]+)}&#39;</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">Subfigure</span><span class="p">(</span><span class="n">ContainerItem</span><span class="p">,</span> <span class="n">Item</span><span class="p">):</span>
+<div class="viewcode-block" id="Subfigure"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.subfigure.Subfigure">[docs]</a><span class="k">class</span> <span class="nc">Subfigure</span><span class="p">(</span><span class="n">ContainerItem</span><span class="p">,</span> <span class="n">Item</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Used for more control over building figures</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;subfigure&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">centering</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">position_str</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;[t]{0.45\linewidth}&#39;</span><span class="p">,</span>
+<div class="viewcode-block" id="Subfigure.__init__"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.subfigure.Subfigure.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">caption</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">centering</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">position_str</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;[t]{0.45\linewidth}&#39;</span><span class="p">,</span>
                  <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">graphic</span> <span class="o">=</span> <span class="n">Graphic</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="n">cache</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">caption</span> <span class="o">=</span> <span class="n">Caption</span><span class="p">(</span><span class="n">caption</span><span class="p">)</span> <span class="k">if</span> <span class="n">caption</span> <span class="k">else</span> <span class="kc">None</span>
@@ -203,10 +206,10 @@
             <span class="n">position_str</span><span class="o">=</span><span class="n">position_str</span>
         <span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;Subfigure(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">graphic</span><span class="o">.</span><span class="n">filepath</span><span class="si">}</span><span class="s1">, caption=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">caption</span><span class="si">}</span><span class="s1">)&gt;&#39;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;Subfigure(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">graphic</span><span class="o">.</span><span class="n">filepath</span><span class="si">}</span><span class="s1">, caption=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">caption</span><span class="si">}</span><span class="s1">)&gt;&#39;</span></div>
 
 
 <div class="viewcode-block" id="anchor_and_width_from_position_str"><a class="viewcode-back" href="../../../../api/pyexlatex.figure.models.html#pyexlatex.figure.models.subfigure.anchor_and_width_from_position_str">[docs]</a><span class="k">def</span> <span class="nf">anchor_and_width_from_position_str</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>

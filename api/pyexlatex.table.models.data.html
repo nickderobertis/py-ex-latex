@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.table.models.data package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.table.models.labels package" href="pyexlatex.table.models.labels.html" />
@@ -203,24 +207,176 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.table.models.data">
+  <section id="module-pyexlatex.table.models.data">
 <span id="pyexlatex-table-models-data-package"></span><h1>pyexlatex.table.models.data package<a class="headerlink" href="#module-pyexlatex.table.models.data" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.table.models.data.dataitem">
+</section>
+<section id="module-pyexlatex.table.models.data.dataitem">
 <span id="pyexlatex-table-models-data-dataitem-module"></span><h2>pyexlatex.table.models.data.dataitem module<a class="headerlink" href="#module-pyexlatex.table.models.data.dataitem" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.table.models.data.row">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.dataitem.DataItem">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.table.models.data.dataitem.</span></span><span class="sig-name descname"><span class="pre">DataItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/data/dataitem.html#DataItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.data.dataitem.DataItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code>, <a class="reference internal" href="pyexlatex.table.models.mixins.addvalues.html#pyexlatex.table.models.mixins.addvalues.row.RowAddMixin" title="pyexlatex.table.models.mixins.addvalues.row.RowAddMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.mixins.addvalues.row.RowAddMixin</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.dataitem.DataItem.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/data/dataitem.html#DataItem.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.data.dataitem.DataItem.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.dataitem.DataItem.repr_cols">
+<span class="sig-name descname"><span class="pre">repr_cols</span></span><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">['value']</span></em><a class="headerlink" href="#pyexlatex.table.models.data.dataitem.DataItem.repr_cols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.table.models.data.row">
 <span id="pyexlatex-table-models-data-row-module"></span><h2>pyexlatex.table.models.data.row module<a class="headerlink" href="#module-pyexlatex.table.models.data.row" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.table.models.data.table">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.row.DataRow">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.table.models.data.row.</span></span><span class="sig-name descname"><span class="pre">DataRow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/data/row.html#DataRow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.data.row.DataRow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.table.models.table.html#pyexlatex.table.models.table.row.Row" title="pyexlatex.table.models.table.row.Row"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.table.row.Row</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.row.DataRow.values">
+<span class="sig-name descname"><span class="pre">values</span></span><em class="property"><span class="pre">:</span> <span class="pre">Sequence</span></em><a class="headerlink" href="#pyexlatex.table.models.data.row.DataRow.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.table.models.data.table">
 <span id="pyexlatex-table-models-data-table-module"></span><h2>pyexlatex.table.models.data.table module<a class="headerlink" href="#module-pyexlatex.table.models.data.table" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.table.models.data.valuestable">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.table.DataTable">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.table.models.data.table.</span></span><span class="sig-name descname"><span class="pre">DataTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_left_corner_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">break_size_adjustment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_add_top_left_to_column_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/data/table.html#DataTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.data.table.DataTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.table.models.table.html#pyexlatex.table.models.table.section.TableSection" title="pyexlatex.table.models.table.section.TableSection"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.table.section.TableSection</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">mixins.repr.ReprMixin</span></code></p>
+<p>Represents a subsection in a panel, but tracks row and column labels, which may be consolidated when
+assembled into Panels then a Table</p>
+<p>Use DataTable.from_df to create a DataTable from a pandas DataFrame.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.table.DataTable.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_left_corner_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">break_size_adjustment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_add_top_left_to_column_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/data/table.html#DataTable.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.data.table.DataTable.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.table.DataTable.column_labels">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">column_labels</span></span><a class="headerlink" href="#pyexlatex.table.models.data.table.DataTable.column_labels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.table.DataTable.from_df">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_header_underline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_left_corner_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/data/table.html#DataTable.from_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.data.table.DataTable.from_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use for the most fine-grained control in creating tables. Construct DataTables from
+pandas DataFrames, modify labels as needed, assemble them into Panels, then create a latex Table with
+Table.from_panel_list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span class="target" id="pyexlatex.table.models.data.table.DataTable.from_df.params.df"></span><strong>df</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.data.table.DataTable.from_df.params.df">¶</a> (<code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code>) – </p></li>
+<li><p><span class="target" id="pyexlatex.table.models.data.table.DataTable.from_df.params.include_columns"></span><strong>include_columns</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.data.table.DataTable.from_df.params.include_columns">¶</a> – </p></li>
+<li><p><span class="target" id="pyexlatex.table.models.data.table.DataTable.from_df.params.include_index"></span><strong>include_index</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.data.table.DataTable.from_df.params.include_index">¶</a> – </p></li>
+<li><p><span class="target" id="pyexlatex.table.models.data.table.DataTable.from_df.params.extra_header"></span><strong>extra_header</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.data.table.DataTable.from_df.params.extra_header">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – extra headers to place over the existing column labels (or over values if
+there are no column labels). Useful when placing multiple DataTables horizontally
+in a Panel. If a str is passed, str will become a multicolumn header for the entire
+DataTable. If a list of as many strs as there are columns is passed, these
+will be placed above any existing column labels. LabelTable and LabelCollection objects
+may also be passed for more control. When those objects are passed, the extra_header_underline
+argument is ignored.</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.data.table.DataTable.from_df.params.extra_header_underline"></span><strong>extra_header_underline</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.data.table.DataTable.from_df.params.extra_header_underline">¶</a> – whether to add an underline under the extra header, if the extre header
+was passed</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.data.table.DataTable.from_df.params.top_left_corner_labels"></span><strong>top_left_corner_labels</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.data.table.DataTable.from_df.params.top_left_corner_labels">¶</a> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference internal" href="pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.table.LabelTable" title="pyexlatex.table.models.labels.table.LabelTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">LabelTable</span></code></a>, <a class="reference internal" href="pyexlatex.table.models.labels.html#pyexlatex.table.models.labels.collection.LabelCollection" title="pyexlatex.table.models.labels.collection.LabelCollection"><code class="xref py py-class docutils literal notranslate"><span class="pre">LabelCollection</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.AnyStr" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">AnyStr</span></code></a>], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.AnyStr" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">AnyStr</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>]) – additional labels to place in the top left corner. pass a single string
+or a list of strings for convenience. a list of strings will be create labels
+which span the gap horizontally and go downwards, one label per row. pass
+LabelCollection or LabelTable for more control.</p></li>
+<li><p><span class="target" id="pyexlatex.table.models.data.table.DataTable.from_df.params.kwargs"></span><strong>kwargs</strong><a class="paramlink headerlink reference internal" href="#pyexlatex.table.models.data.table.DataTable.from_df.params.kwargs">¶</a> – DataTable kwargs</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.table.DataTable.has_column_labels">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">has_column_labels</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#pyexlatex.table.models.data.table.DataTable.has_column_labels" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.table.DataTable.has_row_labels">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">has_row_labels</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#pyexlatex.table.models.data.table.DataTable.has_row_labels" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.table.DataTable.repr_cols">
+<span class="sig-name descname"><span class="pre">repr_cols</span></span><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"> <span class="pre">=</span> <span class="pre">['values_table',</span> <span class="pre">'column_labels',</span> <span class="pre">'row_labels']</span></em><a class="headerlink" href="#pyexlatex.table.models.data.table.DataTable.repr_cols" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.table.DataTable.row_labels">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">row_labels</span></span><a class="headerlink" href="#pyexlatex.table.models.data.table.DataTable.row_labels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.table.DataTable.rows">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">rows</span></span><a class="headerlink" href="#pyexlatex.table.models.data.table.DataTable.rows" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.table.DataTable.should_add_top_left">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">should_add_top_left</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></em><a class="headerlink" href="#pyexlatex.table.models.data.table.DataTable.should_add_top_left" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.table.DataTable.values_table">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">values_table</span></span><a class="headerlink" href="#pyexlatex.table.models.data.table.DataTable.values_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.table.models.data.valuestable">
 <span id="pyexlatex-table-models-data-valuestable-module"></span><h2>pyexlatex.table.models.data.valuestable module<a class="headerlink" href="#module-pyexlatex.table.models.data.valuestable" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.valuestable.ValuesTable">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.table.models.data.valuestable.</span></span><span class="sig-name descname"><span class="pre">ValuesTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">break_size_adjustment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/data/valuestable.html#ValuesTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.data.valuestable.ValuesTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.table.models.table.html#pyexlatex.table.models.table.section.TableSection" title="pyexlatex.table.models.table.section.TableSection"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.table.models.table.section.TableSection</span></code></a></p>
+<p>Python interface for a part of a table containing rows and columns with values</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.valuestable.ValuesTable.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">break_size_adjustment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/data/valuestable.html#ValuesTable.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.data.valuestable.ValuesTable.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.valuestable.ValuesTable.from_df">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/data/valuestable.html#ValuesTable.from_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.data.valuestable.ValuesTable.from_df" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.table.models.data.valuestable.ValuesTable.from_list_of_lists">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_list_of_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_of_lists</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/table/models/data/valuestable.html#ValuesTable.from_list_of_lists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.table.models.data.valuestable.ValuesTable.from_list_of_lists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
 
 
            </div>

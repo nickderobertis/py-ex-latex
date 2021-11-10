@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.logic.output.api.exc_handler.prepend package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.logic.output.errors package" href="pyexlatex.logic.output.errors.html" />
@@ -207,89 +211,89 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.logic.output.api.exc_handler.prepend">
+  <section id="module-pyexlatex.logic.output.api.exc_handler.prepend">
 <span id="pyexlatex-logic-output-api-exc-handler-prepend-package"></span><h1>pyexlatex.logic.output.api.exc_handler.prepend package<a class="headerlink" href="#module-pyexlatex.logic.output.api.exc_handler.prepend" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.logic.output.api.exc_handler.prepend.cycles">
+</section>
+<section id="module-pyexlatex.logic.output.api.exc_handler.prepend.cycles">
 <span id="pyexlatex-logic-output-api-exc-handler-prepend-cycles-module"></span><h2>pyexlatex.logic.output.api.exc_handler.prepend.cycles module<a class="headerlink" href="#module-pyexlatex.logic.output.api.exc_handler.prepend.cycles" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="pyexlatex.logic.output.api.exc_handler.prepend.cycles.get_max_dead_cycles_and_new_num_cycles">
-<code class="sig-prename descclassname">pyexlatex.logic.output.api.exc_handler.prepend.cycles.</code><code class="sig-name descname">get_max_dead_cycles_and_new_num_cycles</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cycles_num</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/cycles.html#get_max_dead_cycles_and_new_num_cycles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.cycles.get_max_dead_cycles_and_new_num_cycles" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.exc_handler.prepend.cycles.get_max_dead_cycles_and_new_num_cycles">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.api.exc_handler.prepend.cycles.</span></span><span class="sig-name descname"><span class="pre">get_max_dead_cycles_and_new_num_cycles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cycles_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/cycles.html#get_max_dead_cycles_and_new_num_cycles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.cycles.get_max_dead_cycles_and_new_num_cycles" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">MaxDeadCycles</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference internal" href="pyexlatex.models.control.html#pyexlatex.models.control.maxdeadcycles.MaxDeadCycles" title="pyexlatex.models.control.maxdeadcycles.MaxDeadCycles"><code class="xref py py-class docutils literal notranslate"><span class="pre">MaxDeadCycles</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="pyexlatex.logic.output.api.exc_handler.prepend.cycles.handle_output_loop_cycles_exception">
-<code class="sig-prename descclassname">pyexlatex.logic.output.api.exc_handler.prepend.cycles.</code><code class="sig-name descname">handle_output_loop_cycles_exception</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">latex_str</span></em>, <em class="sig-param"><span class="n">callback</span></em>, <em class="sig-param"><span class="n">cycles_num</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">callback_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/cycles.html#handle_output_loop_cycles_exception"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.cycles.handle_output_loop_cycles_exception" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.exc_handler.prepend.cycles.handle_output_loop_cycles_exception">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.api.exc_handler.prepend.cycles.</span></span><span class="sig-name descname"><span class="pre">handle_output_loop_cycles_exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latex_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cycles_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">callback_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/cycles.html#handle_output_loop_cycles_exception"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.cycles.handle_output_loop_cycles_exception" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.logic.output.api.exc_handler.prepend.floats">
+</section>
+<section id="module-pyexlatex.logic.output.api.exc_handler.prepend.floats">
 <span id="pyexlatex-logic-output-api-exc-handler-prepend-floats-module"></span><h2>pyexlatex.logic.output.api.exc_handler.prepend.floats module<a class="headerlink" href="#module-pyexlatex.logic.output.api.exc_handler.prepend.floats" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="pyexlatex.logic.output.api.exc_handler.prepend.floats.get_extra_float_and_new_num_floats">
-<code class="sig-prename descclassname">pyexlatex.logic.output.api.exc_handler.prepend.floats.</code><code class="sig-name descname">get_extra_float_and_new_num_floats</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">extra_floats_num</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/floats.html#get_extra_float_and_new_num_floats"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.floats.get_extra_float_and_new_num_floats" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.exc_handler.prepend.floats.get_extra_float_and_new_num_floats">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.api.exc_handler.prepend.floats.</span></span><span class="sig-name descname"><span class="pre">get_extra_float_and_new_num_floats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra_floats_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/floats.html#get_extra_float_and_new_num_floats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.floats.get_extra_float_and_new_num_floats" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ExtraFloats</span></code>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference internal" href="pyexlatex.models.control.html#pyexlatex.models.control.extrafloats.ExtraFloats" title="pyexlatex.models.control.extrafloats.ExtraFloats"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtraFloats</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.logic.output.api.exc_handler.prepend.main">
+</section>
+<section id="module-pyexlatex.logic.output.api.exc_handler.prepend.main">
 <span id="pyexlatex-logic-output-api-exc-handler-prepend-main-module"></span><h2>pyexlatex.logic.output.api.exc_handler.prepend.main module<a class="headerlink" href="#module-pyexlatex.logic.output.api.exc_handler.prepend.main" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="pyexlatex.logic.output.api.exc_handler.prepend.main.add_prepend_items_dict_to_latex_str">
-<code class="sig-prename descclassname">pyexlatex.logic.output.api.exc_handler.prepend.main.</code><code class="sig-name descname">add_prepend_items_dict_to_latex_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prepend_items_dict</span></em>, <em class="sig-param"><span class="n">latex_str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/main.html#add_prepend_items_dict_to_latex_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.main.add_prepend_items_dict_to_latex_str" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.exc_handler.prepend.main.add_prepend_items_dict_to_latex_str">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.api.exc_handler.prepend.main.</span></span><span class="sig-name descname"><span class="pre">add_prepend_items_dict_to_latex_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prepend_items_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latex_str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/main.html#add_prepend_items_dict_to_latex_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.main.add_prepend_items_dict_to_latex_str" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="pyexlatex.logic.output.api.exc_handler.prepend.main.get_data_to_handle_prepend_exception">
-<code class="sig-prename descclassname">pyexlatex.logic.output.api.exc_handler.prepend.main.</code><code class="sig-name descname">get_data_to_handle_prepend_exception</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">exception</span></em>, <em class="sig-param"><span class="n">prepend_kwarg_dict</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/main.html#get_data_to_handle_prepend_exception"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.main.get_data_to_handle_prepend_exception" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.exc_handler.prepend.main.get_data_to_handle_prepend_exception">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.api.exc_handler.prepend.main.</span></span><span class="sig-name descname"><span class="pre">get_data_to_handle_prepend_exception</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exception</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepend_kwarg_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/main.html#get_data_to_handle_prepend_exception"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.main.get_data_to_handle_prepend_exception" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="pyexlatex.logic.output.api.exc_handler.prepend.main.get_prepend_kwarg_dict">
-<code class="sig-prename descclassname">pyexlatex.logic.output.api.exc_handler.prepend.main.</code><code class="sig-name descname">get_prepend_kwarg_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prepend_kwarg_dict</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/main.html#get_prepend_kwarg_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.main.get_prepend_kwarg_dict" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.exc_handler.prepend.main.get_prepend_kwarg_dict">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.api.exc_handler.prepend.main.</span></span><span class="sig-name descname"><span class="pre">get_prepend_kwarg_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prepend_kwarg_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/main.html#get_prepend_kwarg_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.main.get_prepend_kwarg_dict" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="pyexlatex.logic.output.api.exc_handler.prepend.main.handle_prepend_exceptions">
-<code class="sig-prename descclassname">pyexlatex.logic.output.api.exc_handler.prepend.main.</code><code class="sig-name descname">handle_prepend_exceptions</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">exceptions</span></em>, <em class="sig-param"><span class="n">prepend_kwarg_dict</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">prepend_items_dict</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/main.html#handle_prepend_exceptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.main.handle_prepend_exceptions" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.api.exc_handler.prepend.main.handle_prepend_exceptions">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.api.exc_handler.prepend.main.</span></span><span class="sig-name descname"><span class="pre">handle_prepend_exceptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exceptions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepend_kwarg_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prepend_items_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/api/exc_handler/prepend/main.html#handle_prepend_exceptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.api.exc_handler.prepend.main.handle_prepend_exceptions" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="pyexlatex.logic.output.errors.html#pyexlatex.logic.output.errors.exc.LatexException" title="pyexlatex.logic.output.errors.exc.LatexException"><code class="xref py py-class docutils literal notranslate"><span class="pre">LatexException</span></code></a>]]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]], <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="pyexlatex.logic.output.errors.html#pyexlatex.logic.output.errors.exc.LatexException" title="pyexlatex.logic.output.errors.exc.LatexException"><code class="xref py py-class docutils literal notranslate"><span class="pre">LatexException</span></code></a>]]</p>
 </dd>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.logic.output.api.exc_handler.prepend.typing">
+</section>
+<section id="module-pyexlatex.logic.output.api.exc_handler.prepend.typing">
 <span id="pyexlatex-logic-output-api-exc-handler-prepend-typing-module"></span><h2>pyexlatex.logic.output.api.exc_handler.prepend.typing module<a class="headerlink" href="#module-pyexlatex.logic.output.api.exc_handler.prepend.typing" title="Permalink to this headline">¶</a></h2>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.presentation.beamer.templates.frames package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.presentation.beamer.templates.lists package" href="pyexlatex.presentation.beamer.templates.lists.html" />
@@ -205,101 +209,259 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.presentation.beamer.templates.frames">
+  <section id="module-pyexlatex.presentation.beamer.templates.frames">
 <span id="pyexlatex-presentation-beamer-templates-frames-package"></span><h1>pyexlatex.presentation.beamer.templates.frames package<a class="headerlink" href="#module-pyexlatex.presentation.beamer.templates.frames" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="submodules">
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.presentation.beamer.templates.frames.dim_reveal">
+</section>
+<section id="module-pyexlatex.presentation.beamer.templates.frames.dim_reveal">
 <span id="pyexlatex-presentation-beamer-templates-frames-dim-reveal-module"></span><h2>pyexlatex.presentation.beamer.templates.frames.dim_reveal module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.templates.frames.dim_reveal" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.templates.frames.dim_reveal.</code><code class="sig-name descname">DimRevealMixin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">ordered_list</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">frame_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/dim_reveal.html#DimRevealMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealListFrame">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.dim_reveal.</span></span><span class="sig-name descname"><span class="pre">DimRevealListFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/dim_reveal.html#DimRevealListFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealListFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin" title="pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin</span></code></a>, <a class="reference internal" href="pyexlatex.presentation.beamer.frame.html#pyexlatex.presentation.beamer.frame.frame.Frame" title="pyexlatex.presentation.beamer.frame.frame.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.frame.frame.Frame</span></code></a></p>
+<p>A Frame where the content is bulleted or numbered dim and reveal items</p>
 <dl class="py method">
-<dt id="pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">ordered_list</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">frame_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/dim_reveal.html#DimRevealMixin.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealListFrame.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/dim_reveal.html#DimRevealListFrame.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealListFrame.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.presentation.beamer.templates.frames.graphic">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.dim_reveal.</span></span><span class="sig-name descname"><span class="pre">DimRevealMixin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/dim_reveal.html#DimRevealMixin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/dim_reveal.html#DimRevealMixin.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.presentation.beamer.templates.frames.graphic">
 <span id="pyexlatex-presentation-beamer-templates-frames-graphic-module"></span><h2>pyexlatex.presentation.beamer.templates.frames.graphic module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.templates.frames.graphic" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.presentation.beamer.templates.frames.grid">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.graphic.FullWidthFrame">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.graphic.</span></span><span class="sig-name descname"><span class="pre">FullWidthFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/graphic.html#FullWidthFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.graphic.FullWidthFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.presentation.beamer.frame.html#pyexlatex.presentation.beamer.frame.frame.Frame" title="pyexlatex.presentation.beamer.frame.frame.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.frame.frame.Frame</span></code></a></p>
+<p>Resizes passed latex object to take up entire frame.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.graphic.FullWidthFrame.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/graphic.html#FullWidthFrame.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.graphic.FullWidthFrame.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.graphic.GraphicFrame">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.graphic.</span></span><span class="sig-name descname"><span class="pre">GraphicFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/graphic.html#GraphicFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.graphic.GraphicFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.graphic.FullWidthFrame" title="pyexlatex.presentation.beamer.templates.frames.graphic.FullWidthFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.graphic.FullWidthFrame</span></code></a></p>
+<p>Resizes passed graphic to take up entire frame. Can pass a file path or a latex object.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.graphic.GraphicFrame.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/graphic.html#GraphicFrame.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.graphic.GraphicFrame.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.graphic.</span></span><span class="sig-name descname"><span class="pre">MultiGraphicFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/graphic.html#MultiGraphicFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.presentation.beamer.frame.html#pyexlatex.presentation.beamer.frame.frame.Frame" title="pyexlatex.presentation.beamer.frame.frame.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.frame.frame.Frame</span></code></a></p>
+<p>Resizes each graphic to full width and puts vertical space in between graphics.
+Can pass a file path or a latex object.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame.HORIZTONAL_SPACING">
+<span class="sig-name descname"><span class="pre">HORIZTONAL_SPACING</span></span><em class="property"> <span class="pre">=</span> <span class="pre">0.05</span></em><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame.HORIZTONAL_SPACING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame.MAX_HEIGHT">
+<span class="sig-name descname"><span class="pre">MAX_HEIGHT</span></span><em class="property"> <span class="pre">=</span> <span class="pre">0.8</span></em><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame.MAX_HEIGHT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame.MAX_WIDTH">
+<span class="sig-name descname"><span class="pre">MAX_WIDTH</span></span><em class="property"> <span class="pre">=</span> <span class="pre">0.9</span></em><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame.MAX_WIDTH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame.VERTICAL_SPACING">
+<span class="sig-name descname"><span class="pre">VERTICAL_SPACING</span></span><em class="property"> <span class="pre">=</span> <span class="pre">0.05</span></em><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame.VERTICAL_SPACING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/graphic.html#MultiGraphicFrame.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.graphic.MultiGraphicFrame.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.presentation.beamer.templates.frames.grid">
 <span id="pyexlatex-presentation-beamer-templates-frames-grid-module"></span><h2>pyexlatex.presentation.beamer.templates.frames.grid module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.templates.frames.grid" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.presentation.beamer.templates.frames.two_col">
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.grid.CellFrame">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.grid.</span></span><span class="sig-name descname"><span class="pre">CellFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_shape</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/grid.html#CellFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.grid.CellFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.presentation.beamer.frame.html#pyexlatex.presentation.beamer.frame.frame.Frame" title="pyexlatex.presentation.beamer.frame.frame.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.frame.frame.Frame</span></code></a></p>
+<p>Lay frame out in a grid where each cell is arbitrarily sized</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.grid.CellFrame.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_shape</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/grid.html#CellFrame.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.grid.CellFrame.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl>
+<dt>Args:</dt><dd><p>content:
+grid_shape: list of list of tuples of (width, height), e.g. [</p>
+<blockquote>
+<div><blockquote>
+<div><p>[(0.3, 0.4), (0.7, 0.4)],
+[(0.3, 0.6), (0.7, 0.6)],</p>
+</div></blockquote>
+<p>] would create a 2x2 grid with 40% of height in the first row, 60% in the second row. 30% width in the
+first column, 70% width in the second column.</p>
+</div></blockquote>
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs:</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.grid.GridFrame">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.grid.</span></span><span class="sig-name descname"><span class="pre">GridFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/grid.html#GridFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.grid.GridFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.presentation.beamer.frame.html#pyexlatex.presentation.beamer.frame.frame.Frame" title="pyexlatex.presentation.beamer.frame.frame.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.frame.frame.Frame</span></code></a></p>
+<p>Creates a CellFrame, automatically setting widths and heights as an even split based on the shape
+of the content passed</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.grid.GridFrame.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/grid.html#GridFrame.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.grid.GridFrame.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyexlatex.presentation.beamer.templates.frames.two_col">
 <span id="pyexlatex-presentation-beamer-templates-frames-two-col-module"></span><h2>pyexlatex.presentation.beamer.templates.frames.two_col module<a class="headerlink" href="#module-pyexlatex.presentation.beamer.templates.frames.two_col" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
-<dt id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.templates.frames.two_col.</code><code class="sig-name descname">TwoColumnGraphicDimRevealBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">graphics</span></em>, <em class="sig-param"><span class="n">graphics_on_right</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">ordered_list</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">frame_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#TwoColumnGraphicDimRevealBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin" title="pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin</span></code></a></p>
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnFrame">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.</span></span><span class="sig-name descname"><span class="pre">BasicTwoColumnFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#BasicTwoColumnFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="pyexlatex.presentation.beamer.frame.html#pyexlatex.presentation.beamer.frame.frame.Frame" title="pyexlatex.presentation.beamer.frame.frame.Frame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.frame.frame.Frame</span></code></a></p>
+<p>Similar to TwoColumnFrame but does not put any constraints on vertical sizing</p>
 <dl class="py method">
-<dt id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">graphics</span></em>, <em class="sig-param"><span class="n">graphics_on_right</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">ordered_list</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">frame_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#TwoColumnGraphicDimRevealBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnFrame.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#BasicTwoColumnFrame.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnFrame.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase">
-<em class="property">class </em><code class="sig-prename descclassname">pyexlatex.presentation.beamer.templates.frames.two_col.</code><code class="sig-name descname">TwoGraphicBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">graphics</span></em>, <em class="sig-param"><span class="n">graphics_on_right</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">frame_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#TwoGraphicBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="py method">
-<dt id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">content</span></em>, <em class="sig-param"><span class="n">graphics</span></em>, <em class="sig-param"><span class="n">graphics_on_right</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">frame_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#TwoGraphicBase.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnGraphicDimRevealFrame">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.</span></span><span class="sig-name descname"><span class="pre">BasicTwoColumnGraphicDimRevealFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics_on_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#BasicTwoColumnGraphicDimRevealFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnGraphicDimRevealFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase" title="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase</span></code></a>, <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicFrame" title="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicFrame</span></code></a></p>
+<p>A BasicTwoColumnGraphicFrame where the non-graphic column is bulleted or numbered dim and reveal items</p>
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnGraphicFrame">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.</span></span><span class="sig-name descname"><span class="pre">BasicTwoColumnGraphicFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics_on_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#BasicTwoColumnGraphicFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnGraphicFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase" title="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase</span></code></a>, <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnFrame" title="pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.BasicTwoColumnFrame</span></code></a></p>
+<p>Similar to TwoColumnGraphicFrame, but does not put any constraints on vertical sizing</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnFrame">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.</span></span><span class="sig-name descname"><span class="pre">TwoColumnFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#TwoColumnFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.grid.GridFrame" title="pyexlatex.presentation.beamer.templates.frames.grid.GridFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.grid.GridFrame</span></code></a></p>
+<p>Creates a GridFrame, automatically setting widths and heights as an even split based on the shape
+of the content passed</p>
 <dl class="py method">
-<dt id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.graphic_contents">
-<em class="property">property </em><code class="sig-name descname">graphic_contents</code><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.graphic_contents" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnFrame.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#TwoColumnFrame.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnFrame.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.</span></span><span class="sig-name descname"><span class="pre">TwoColumnGraphicDimRevealBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics_on_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#TwoColumnGraphicDimRevealBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin" title="pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.dim_reveal.DimRevealMixin</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics_on_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#TwoColumnGraphicDimRevealBase.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealFrame">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.</span></span><span class="sig-name descname"><span class="pre">TwoColumnGraphicDimRevealFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics_on_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#TwoColumnGraphicDimRevealFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase" title="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicDimRevealBase</span></code></a>, <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicFrame" title="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicFrame</span></code></a></p>
+<p>A TwoColumnGraphicFrame where the non-graphic column is bulleted or numbered dim and reveal items</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicFrame">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.</span></span><span class="sig-name descname"><span class="pre">TwoColumnGraphicFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics_on_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#TwoColumnGraphicFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnGraphicFrame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase" title="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase</span></code></a>, <a class="reference internal" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnFrame" title="pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.TwoColumnFrame</span></code></a></p>
+<p>A GridFrame with graphics on one side and text on the other.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pyexlatex.presentation.beamer.templates.frames.two_col.</span></span><span class="sig-name descname"><span class="pre">TwoGraphicBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics_on_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#TwoGraphicBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics_on_right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">frame_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/presentation/beamer/templates/frames/two_col.html#TwoGraphicBase.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.graphic_contents">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">graphic_contents</span></span><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ItemBase</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.graphic_contents" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ForwardRef" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForwardRef</span></code></a>]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ForwardRef" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ForwardRef</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.graphic_height">
-<em class="property">property </em><code class="sig-name descname">graphic_height</code><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.graphic_height" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.graphic_height">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">graphic_height</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></em><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.graphic_height" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.graphic_spacing">
-<em class="property">property </em><code class="sig-name descname">graphic_spacing</code><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.graphic_spacing" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.graphic_spacing">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">graphic_spacing</span></span><em class="property"><span class="pre">:</span> <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a></em><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.graphic_spacing" title="Permalink to this definition">¶</a></dt>
 <dd><p>Total amount of padding between images as a fraction of text height</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.left_content">
-<em class="property">property </em><code class="sig-name descname">left_content</code><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.left_content" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.left_content">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">left_content</span></span><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.left_content" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="py method">
-<dt id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.right_content">
-<em class="property">property </em><code class="sig-name descname">right_content</code><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.right_content" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.right_content">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">right_content</span></span><a class="headerlink" href="#pyexlatex.presentation.beamer.templates.frames.two_col.TwoGraphicBase.right_content" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -4,7 +4,8 @@
 <html lang="en" >
 <head>
   <meta charset="utf-8">
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pyexlatex.logic.output package &mdash; pyexlatex 0.14.0 documentation</title>
@@ -24,10 +25,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
     
@@ -38,12 +39,15 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pyexlatex.logic.output.api package" href="pyexlatex.logic.output.api.html" />
@@ -201,9 +205,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-pyexlatex.logic.output">
+  <section id="module-pyexlatex.logic.output">
 <span id="pyexlatex-logic-output-package"></span><h1>pyexlatex.logic.output package<a class="headerlink" href="#module-pyexlatex.logic.output" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
+<section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
@@ -256,48 +260,48 @@
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="submodules">
+</section>
+<section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.logic.output.fileops">
+</section>
+<section id="module-pyexlatex.logic.output.fileops">
 <span id="pyexlatex-logic-output-fileops-module"></span><h2>pyexlatex.logic.output.fileops module<a class="headerlink" href="#module-pyexlatex.logic.output.fileops" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-pyexlatex.logic.output.main">
+</section>
+<section id="module-pyexlatex.logic.output.main">
 <span id="pyexlatex-logic-output-main-module"></span><h2>pyexlatex.logic.output.main module<a class="headerlink" href="#module-pyexlatex.logic.output.main" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="pyexlatex.logic.output.main.output_document_and_move">
-<code class="sig-prename descclassname">pyexlatex.logic.output.main.</code><code class="sig-name descname">output_document_and_move</code><span class="sig-paren">(</span><em class="sig-param">document</em>, <em class="sig-param">outfolder</em>, <em class="sig-param">output_format=&lt;OutputFormats.PDF: 'pdf'&gt;</em>, <em class="sig-param">image_paths=None</em>, <em class="sig-param">outname='figure'</em>, <em class="sig-param">as_document=True</em>, <em class="sig-param">move_folder_name='Figures'</em>, <em class="sig-param">image_binaries=None</em>, <em class="sig-param">run_bibtex=False</em>, <em class="sig-param">date_time_move=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/main.html#output_document_and_move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.main.output_document_and_move" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.main.output_document_and_move">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.main.</span></span><span class="sig-name descname"><span class="pre">output_document_and_move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outfolder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">OutputFormats.PDF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_paths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'figure'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">as_document</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">move_folder_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Figures'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_binaries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_bibtex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_time_move</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/main.html#output_document_and_move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.main.output_document_and_move" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.logic.output.sources">
+</section>
+<section id="module-pyexlatex.logic.output.sources">
 <span id="pyexlatex-logic-output-sources-module"></span><h2>pyexlatex.logic.output.sources module<a class="headerlink" href="#module-pyexlatex.logic.output.sources" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="pyexlatex.logic.output.sources.output_sources_return_tex_input_paths">
-<code class="sig-prename descclassname">pyexlatex.logic.output.sources.</code><code class="sig-name descname">output_sources_return_tex_input_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">outfolder</span></em>, <em class="sig-param"><span class="n">image_paths</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">image_binaries</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/sources.html#output_sources_return_tex_input_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.sources.output_sources_return_tex_input_paths" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.sources.output_sources_return_tex_input_paths">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.sources.</span></span><span class="sig-name descname"><span class="pre">output_sources_return_tex_input_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outfolder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_paths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_binaries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/sources.html#output_sources_return_tex_input_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.sources.output_sources_return_tex_input_paths" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.9)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</p>
 </dd>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="module-pyexlatex.logic.output.to_file">
+</section>
+<section id="module-pyexlatex.logic.output.to_file">
 <span id="pyexlatex-logic-output-to-file-module"></span><h2>pyexlatex.logic.output.to_file module<a class="headerlink" href="#module-pyexlatex.logic.output.to_file" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="pyexlatex.logic.output.to_file.latex_str_to_file">
-<code class="sig-prename descclassname">pyexlatex.logic.output.to_file.</code><code class="sig-name descname">latex_str_to_file</code><span class="sig-paren">(</span><em class="sig-param">latex_str</em>, <em class="sig-param">filepath</em>, <em class="sig-param">output_format=&lt;OutputFormats.PDF: 'pdf'&gt;</em>, <em class="sig-param">texinputs=None</em>, <em class="sig-param">run_bibtex=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/to_file.html#latex_str_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.to_file.latex_str_to_file" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.to_file.latex_str_to_file">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.to_file.</span></span><span class="sig-name descname"><span class="pre">latex_str_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latex_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">OutputFormats.PDF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texinputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_bibtex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/to_file.html#latex_str_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.to_file.latex_str_to_file" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pyexlatex.logic.output.to_file.latex_str_to_file_obj_with_sources">
-<code class="sig-prename descclassname">pyexlatex.logic.output.to_file.</code><code class="sig-name descname">latex_str_to_file_obj_with_sources</code><span class="sig-paren">(</span><em class="sig-param">latex_str</em>, <em class="sig-param">output_format=&lt;OutputFormats.PDF: 'pdf'&gt;</em>, <em class="sig-param">image_paths=None</em>, <em class="sig-param">image_binaries=None</em>, <em class="sig-param">run_bibtex=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/to_file.html#latex_str_to_file_obj_with_sources"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyexlatex.logic.output.to_file.latex_str_to_file_obj_with_sources" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pyexlatex.logic.output.to_file.latex_str_to_file_obj_with_sources">
+<span class="sig-prename descclassname"><span class="pre">pyexlatex.logic.output.to_file.</span></span><span class="sig-name descname"><span class="pre">latex_str_to_file_obj_with_sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latex_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">OutputFormats.PDF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_paths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_binaries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_bibtex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyexlatex/logic/output/to_file.html#latex_str_to_file_obj_with_sources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyexlatex.logic.output.to_file.latex_str_to_file_obj_with_sources" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

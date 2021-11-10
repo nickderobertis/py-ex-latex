@@ -24,10 +24,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
         <script src="../../../../../_static/jquery.js"></script>
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/language_data.js"></script>
         <script src="../../../../../_static/clipboard.min.js"></script>
         <script src="../../../../../_static/copybutton.js"></script>
     
@@ -38,12 +38,15 @@
   
   <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../../../../../_static/sphinx_paramlinks.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../_static/gallery.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../_static/gallery-binder.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/sg_gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/sg_gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/sg_gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/sg_gallery-rendered-html.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" /> 
 </head>
@@ -292,9 +295,9 @@
     <span class="k">return</span> <span class="n">common_label_table</span>
 
 
-<span class="k">class</span> <span class="nc">LabelsRemoved</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<div class="viewcode-block" id="LabelsRemoved"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.logic.panels.html#pyexlatex.table.logic.panels.combine.LabelsRemoved">[docs]</a><span class="k">class</span> <span class="nc">LabelsRemoved</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
     <span class="n">columns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
-    <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span>
+    <span class="n">rows</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span></div>
 
 
 <div class="viewcode-block" id="remove_label_collections_from_grid"><a class="viewcode-back" href="../../../../../api/pyexlatex.table.logic.panels.html#pyexlatex.table.logic.panels.combine.remove_label_collections_from_grid">[docs]</a><span class="k">def</span> <span class="nf">remove_label_collections_from_grid</span><span class="p">(</span><span class="n">grid</span><span class="p">:</span> <span class="n">GridShape</span><span class="p">,</span> <span class="n">column_labels</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">LabelTable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
