@@ -25,7 +25,7 @@ def pdf_iframe(src: str) -> nodes.raw:
     id="ID" 
     style="border:1px solid #666CCC" 
     title="PDF" 
-    src="{src}" 
+    src="{src}#navpanes=0&toolbar=0&view=Fit" 
     frameborder="1" 
     scrolling="auto" 
     height="600" 
