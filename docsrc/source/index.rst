@@ -16,10 +16,10 @@ To get started, look here.
 An overview
 ===========
 
-.. pyexlatex::
+.. pyexlatex:: test_name
 
    section = pl.Section(["woo"], title="First Section")
-   output = pl.Document(section)
+   pl.Document(section)
 
 
 Document Types
