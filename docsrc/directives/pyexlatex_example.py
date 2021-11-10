@@ -62,6 +62,16 @@ def _run_source_extract_globals(source: str) -> Dict[str, Any]:
 def _run_pyexlatex_build_from_source(source: str, name: str):
     globs = _run_source_extract_globals(source)
     output: DocumentBase = globs["output"]
+
+    # Skip build if an identical output already exists
+    tex_path = PDFS_PATH / f"{name}.tex"
+    if tex_path.exists():
+        tex_content = tex_path.read_text()
+        if str(output) == tex_content:
+            print(f"{name} example was previously built, skipping")
+            return
+
+    print(f"Building example {name}")
     output.to_pdf(PDFS_PATH, name)
 
 
@@ -74,6 +84,7 @@ class PyexlatexExample(SphinxDirective):
     has_content = True
 
     def run(self) -> List[Node]:
+        print("\n\nStarting pyexlatex example generation")
         name: str = self.arguments[0]
         pyexlatex_internal_script = _create_internal_pyexlatex_script(self.content)
         _run_pyexlatex_build_from_source(pyexlatex_internal_script, name)
