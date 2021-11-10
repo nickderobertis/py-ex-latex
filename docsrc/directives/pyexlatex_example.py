@@ -84,7 +84,6 @@ class PyexlatexExample(SphinxDirective):
     has_content = True
 
     def run(self) -> List[Node]:
-        print("\n\nStarting pyexlatex example generation")
         name: str = self.arguments[0]
         pyexlatex_internal_script = _create_internal_pyexlatex_script(self.content)
         _run_pyexlatex_build_from_source(pyexlatex_internal_script, name)
